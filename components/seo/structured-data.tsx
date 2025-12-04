@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rashid.dev";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
 const schemas = [
   {
@@ -35,7 +35,7 @@ const schemas = [
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${siteUrl}#service`,
-    name: "Rashid.dev - Web Development & Design Services",
+    name: "Rashid Iqbal - Web Development & Design Services",
     description: "Freelance web development and design services. Specializing in landing pages, web applications, and mobile apps built with Next.js, Framer, Figma, Expo, and Flutter.",
     url: siteUrl,
     provider: {
@@ -78,7 +78,7 @@ const schemas = [
     "@type": "WebSite",
     "@id": `${siteUrl}#website`,
     url: siteUrl,
-    name: "Rashid.dev",
+    name: "Rashid Iqbal",
     description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps.",
     publisher: {
       "@id": `${siteUrl}#person`,
@@ -96,7 +96,7 @@ const schemas = [
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${siteUrl}#organization`,
-    name: "Rashid.dev",
+    name: "Rashid Iqbal",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     sameAs: [

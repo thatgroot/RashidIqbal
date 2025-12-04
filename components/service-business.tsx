@@ -17,7 +17,7 @@ export function ServiceBusinessV2() {
                                 <div className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
                             </div>
                             <div className="ml-4 px-3 py-0.5 bg-white border border-zinc-200 rounded text-[10px] text-zinc-400 flex-1">
-                                cms.rashid.dev/dashboard
+                                cms.aestho.xyz/dashboard
                             </div>
                         </div>
                         <div className="p-6">

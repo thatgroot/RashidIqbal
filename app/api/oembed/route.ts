@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rashid.dev';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aestho.xyz';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
     title: 'Rashid Iqbal - Freelance Web Developer & Designer',
     author_name: 'Rashid Iqbal',
     author_url: siteUrl,
-    provider_name: 'Rashid.dev',
+    provider_name: 'Rashid Iqbal',
     provider_url: siteUrl,
     cache_age: 3600,
     html: `<iframe src="${url}" width="${maxwidth || '800'}" height="${maxheight || '600'}" frameborder="0" allowfullscreen></iframe>`,

@@ -18,13 +18,13 @@ const geistMono = Geist_Mono({
   preload: true,
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rashid.dev";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Rashid Iqbal - Freelance Web Developer & Designer",
-    template: "%s | Rashid.dev"
+    template: "%s | Rashid Iqbal"
   },
   description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps. Building with Next.js, Framer, Figma, Expo, and Flutter.",
   keywords: ["freelance developer", "web developer", "Next.js developer", "Framer developer", "Figma designer", "mobile app developer", "Expo", "Flutter", "landing pages", "web applications"],
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Rashid.dev",
+    siteName: "Rashid Iqbal",
     title: "Rashid Iqbal - Freelance Web Developer & Designer",
     description: "Your Vision, Built Right. Freelance web developer and designer specializing in landing pages, web applications, and mobile apps.",
     images: [

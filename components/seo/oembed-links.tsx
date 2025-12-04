@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://rashid.dev";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
 export function OEmbedLinks() {
   useEffect(() => {

@@ -35,7 +35,7 @@ export function ProcessV2() {
   return (
     <section className="bg-white" id="process">
       <div className="max-w-7xl mx-auto border-l border-zinc-100">
-        <GridContainer  > 
+        <GridContainer  >
           <GridItem className="py-24">
             <div className="max-w-2xl">
               <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
@@ -48,28 +48,26 @@ export function ProcessV2() {
           </GridItem>
         </GridContainer>
 
-        <GridContainer cols={4}  > 
-            {/* Connecting Line */}
-            <div 
-                className="hidden md:block absolute h-[2px] bg-zinc-100 z-0 overflow-hidden"
-                style={{ 
-                    top: '3.25rem', 
-                    left: '3.25rem', 
-                    width: '75%' 
-                }}
-            >
-                <motion.div 
-                    className="h-full bg-orange-500"
-                    animate={{ x: ["-100%", "100%"] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-            </div>
-
-            {steps.map((step, i) => (
+        <GridContainer cols={4}>
+          {steps.map((step, i) => (
             <GridItem key={i} className="group" padding={true}>
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="w-10 h-10 bg-white border-2 border-zinc-100 rounded-full flex items-center justify-center mb-6 group-hover:border-orange-500 transition-colors relative">
-                  <step.icon className="w-4 h-4 text-zinc-500 group-hover:text-orange-500" />
+              <div className="relative flex flex-col h-full">
+                {/* Icon with connecting line */}
+                <div className="relative mb-6">
+                  {/* Line extending to the right (hidden on last item and mobile) */}
+                  {i < steps.length - 1 && (
+                    <div className="hidden md:block absolute top-1/2 left-full h-[2px] bg-zinc-100 -translate-y-1/2 overflow-hidden" style={{ width: 'calc(100% + 2rem)' }}>
+                      <motion.div
+                        className="h-full w-full bg-orange-500"
+                        animate={{ x: ["-100%", "100%"] }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: i * 0.5 }}
+                      />
+                    </div>
+                  )}
+                  {/* Icon circle - above the line */}
+                  <div className="w-10 h-10 bg-white border-2 border-zinc-100 rounded-full flex items-center justify-center group-hover:border-orange-500 transition-colors relative z-10">
+                    <step.icon className="w-4 h-4 text-zinc-500 group-hover:text-orange-500" />
+                  </div>
                 </div>
                 <h3 className="text-lg font-medium text-zinc-900 mb-2">{step.title}</h3>
                 <p className="text-sm text-zinc-500">{step.desc}</p>
@@ -78,7 +76,7 @@ export function ProcessV2() {
           ))}
         </GridContainer>
 
-          <GridContainer  > 
+        <GridContainer  >
           <GridItem className="pt-24 pb-48">
             <div className="max-w-xl">
               <h2 className="text-3xl font-semibold text-zinc-900 mb-4">
@@ -87,7 +85,7 @@ export function ProcessV2() {
               <p className="text-lg text-zinc-500 mb-8">
                 When it all comes together, the result feels effortless and complete. A polished, working product ready to perform and make an impact. Looking back, I feel proud of what your project will become.
               </p>
-              <button 
+              <button
                 onClick={() => {
                   const pricingSection = document.querySelector('#pricing');
                   if (pricingSection) {
@@ -106,7 +104,7 @@ export function ProcessV2() {
               </button>
             </div>
           </GridItem>
-          </GridContainer>
+        </GridContainer>
       </div>
     </section>
   );

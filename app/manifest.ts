@@ -3,8 +3,8 @@ import { MetadataRoute } from 'next';
 export default function manifest(): MetadataRoute.Manifest {
   
   return {
-    name: 'Rashid.dev - Freelance Web Developer & Designer',
-    short_name: 'Rashid.dev',
+    name: 'Rashid Iqbal - Freelance Web Developer & Designer',
+    short_name: 'Rashid Iqbal',
     description: 'Freelance web developer and designer specializing in landing pages, web applications, and mobile apps.',
     start_url: '/',
     display: 'standalone',

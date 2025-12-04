@@ -33,7 +33,7 @@ export function NavbarV2() {
       <div className="max-w-container h-full border-x border-zinc-100 flex items-center justify-between px-8 relative z-10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-orange-500" />
-          <span className="font-bold text-zinc-900 tracking-tight">Rashid.dev</span>
+          <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">

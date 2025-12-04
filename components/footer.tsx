@@ -12,7 +12,7 @@ export function FooterV2() {
                 <div className="flex flex-col h-full justify-between">
                     <div>
                         <div className="w-8 h-8 bg-orange-500 text-white flex items-center justify-center font-bold mb-6">R</div>
-                        <span className="font-bold text-zinc-900 tracking-tight">Rashid.dev</span>
+                              <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
                     </div>
                     <p className="text-xs text-zinc-500 mt-12">
                         © {new Date().getFullYear()} Rashid Iqbal. <br />
