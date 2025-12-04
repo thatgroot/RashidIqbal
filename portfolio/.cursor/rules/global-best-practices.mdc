@@ -1,0 +1,75 @@
+---
+description: Global Best Practices for Next.js, Accessibility, and Performance Optimization
+globs: **/*.tsx, **/*.ts, **/*.css
+alwaysApply: true
+---
+
+# Global Best Practices
+
+This project follows strict guidelines for performance, accessibility, and code maintainability.
+
+## Image Optimization
+
+- **Use `next/image` Component**: Always use the `next/image` component instead of standard `<img>` tags.
+- **Size Appropriately**: Use the `sizes` prop to help the browser select the correct image size.
+    - **Responsive Grid Example**:
+      ```typescript
+      <div className="grid-element relative h-64"> {/* Parent must be relative for fill */}
+        <Image
+          fill
+          src="/example.png"
+          alt="Descriptive alt text"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover"
+        />
+      </div>
+      ```
+- **Avoid Layout Shift**: Always specify `width` and `height` or use `fill` with a parent container that has `position: relative` (or fixed/absolute).
+- **Lazy Loading**: Images are lazy-loaded by default. Use `priority` for LCP (Largest Contentful Paint) images (e.g., hero section).
+- **Accessibility**: Always provide a descriptive `alt` attribute. Use `alt=""` for decorative images.
+
+## DOM Size Optimization
+
+- **Avoid Excessive Wrappers**: Don't create extra `div` elements solely for styling (e.g., backgrounds, borders) if pseudo-elements (`::before`, `::after`) can achieve the same result.
+- **Use CSS Utility Classes**:
+    - Use `.dotted-bg` for radial gradient backgrounds instead of separate wrapper divs.
+    - Use `.grid-item-visual` for visual containers.
+    - Use `.grid-item-content` for content wrappers.
+    - Use `.max-w-container` for section max-width constraints.
+
+## Accessibility (A11y)
+
+- **Semantic HTML**: Use semantic tags (`<section>`, `<article>`, `<nav>`, `<button>`) appropriately.
+- **Accessible Names**: Ensure all interactive elements (buttons, links, inputs) have an accessible name via text content, `aria-label`, or `aria-labelledby`.
+- **Decorative Elements**: Hide decorative icons using `aria-hidden="true"`.
+- **Contrast**: Ensure text meets WCAG AA contrast ratios (4.5:1 for normal text). Avoid light grays like `text-zinc-400` on white backgrounds; prefer `text-zinc-500` or darker.
+- **Heading Hierarchy**: Maintain sequential heading levels (`h1` -> `h2` -> `h3`).
+
+## SEO & Structured Data
+
+- **Metadata**: Use the Next.js `Metadata` API for all pages.
+    - Define `title`, `description`, `openGraph`, `twitter`, and `alternates` (canonical).
+    - Example:
+      ```typescript
+      export const metadata: Metadata = {
+        title: "My Page Title",
+        description: "Concise summary...",
+        openGraph: { ... },
+      };
+      ```
+- **Rich Snippets (JSON-LD)**: Use `application/ld+json` script tags to provide structured data.
+    - Implement for: `Organization`, `Person`, `WebSite`, `BreadcrumbList`, `Article`, or `Product` where applicable.
+    - Use valid schema.org types.
+    - Validate using Google's Rich Results Test.
+- **Semantic Structure**: Ensure standard HTML5 landmarks (`<header>`, `<main>`, `<footer>`, `<aside>`) are used to help search engines understand page structure.
+- **Canonical URLs**: Always specify a canonical URL to prevent duplicate content issues.
+
+## CSS & Tailwind
+
+- **Extract Common Patterns**: Identify repeated complex class strings and extract them to `globals.css` using `@layer components` or standard CSS classes if they reduce DOM nodes.
+- **Motion Preferences**: Respect `prefers-reduced-motion` media query for animations.
+
+## Next.js App Router
+
+- **Manifest**: Link web manifests correctly via the `metadata` object, not manual `<link>` tags in `layout.tsx`.
+- **File Structure**: Keep routes in `app/` and reusable components in `components/`.

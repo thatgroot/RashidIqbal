@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+button, a, .cursor-pointer {
+  cursor: pointer;
+}
+
+/* Accessibility: Skip to main content */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+}
+
+.skip-to-main:focus {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1em;
+}
+
+/* Grid item corner nodes - using box-shadow to create multiple corners from single elements */
+/* Reduces from 4 div elements to 2 span elements (50% reduction in DOM nodes) */
+.grid-corner-left {
+  /* Create bottom-left corner using box-shadow */
+  box-shadow: 0 99999px 0 0 currentColor;
+}
+
+.grid-corner-right {
+  /* Create bottom-right corner using box-shadow */
+  box-shadow: 0 99999px 0 0 currentColor;
+}
+
+.grid-corner-left,
+.grid-corner-right {
+  color: rgb(229 231 235);
+}
+
+.group:hover .grid-corner-left,
+.group:hover .grid-corner-right {
+  color: rgb(249 115 22);
+}
+
+/* Dotted Grid Background Optimization - uses pseudo-element to reduce DOM size */
+.dotted-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#e4e4e7 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dotted-bg-16::before {
+  background-size: 16px 16px;
+}
+
+.dotted-bg-opacity-30::before {
+  opacity: 0.3;
+}
+
+.dotted-bg-opacity-70::before {
+  opacity: 0.7;
+}
+
+/* Layout Utility Classes - Extracted to reduce repetitive Tailwind classes in DOM */
+
+/* For visual/flat grid items (e.g. Hero window, Mobile phone visual) */
+.grid-item-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  padding: 0;
+}
+
+/* For content wrapper inside GridItem */
+.grid-item-content {
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Standard Section Container */
+.max-w-container {
+  max-width: 80rem; /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
