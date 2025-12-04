@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "./grid-system";
 
 const brands = [
-  "Vercel", "Stripe", "Linear", "Raycast", "Scale", "Ramp", "Mercury", "Retool"
+  "UpdateAI", "Lean Scale", "Funnel Labs", "Melissa Ambrosini", "Nick Broadhurst", 
+  "uToura", "SkarduApp", "ROAD iD", "Deals Finders", "Saku Monsters", 
+  "Scorch Token", "Pedro the Token"
 ];
 
 export function TrustedByV2() {
