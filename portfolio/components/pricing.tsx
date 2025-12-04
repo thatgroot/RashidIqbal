@@ -92,7 +92,7 @@ export function PricingV2() {
                     <div className="space-y-4 mb-8 h-64">
                         {getFeatures(i).map((f, j) => (
                             <div key={j} className="flex items-center gap-3 text-sm text-zinc-700">
-                                <Check className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                                <Check className="w-4 h-4 text-orange-500 shrink-0" />
                                 {f}
                             </div>
                         ))}
