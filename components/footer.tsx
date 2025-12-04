@@ -31,10 +31,10 @@ export function FooterV2() {
 
             <GridItem label="Connect">
                 <ul className="space-y-4 text-sm text-zinc-500 mt-4">
-                    <li><Link href="#" className="hover:text-orange-500 transition-colors">Twitter / X</Link></li>
-                    <li><Link href="#" className="hover:text-orange-500 transition-colors">LinkedIn</Link></li>
-                    <li><Link href="#" className="hover:text-orange-500 transition-colors">GitHub</Link></li>
-                    <li><Link href="#" className="hover:text-orange-500 transition-colors">Email</Link></li>
+                          <li><Link href="https://x.com/rashidrealme" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">Twitter / X</Link></li>
+                          <li><Link href="https://www.linkedin.com/in/callmerashidiqbal/" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">LinkedIn</Link></li>
+                          <li><Link href="https://github.com/thatgroot" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">GitHub</Link></li>
+                          <li><Link href="mailto:rashidiqbal.freelance@gmail.com" className="hover:text-orange-500 transition-colors">Email</Link></li>
                 </ul>
             </GridItem>
         </GridContainer>
