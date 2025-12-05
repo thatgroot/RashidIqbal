@@ -6,19 +6,19 @@ import { Star } from "lucide-react";
 
 const reviews = [
   {
-    text: "The most technical designer I've ever worked with. Rashid understands code constraints better than most engineers.",
-    author: "Sarah J.",
-    role: "CTO @ TechFlow"
+    text: "Rashid rebuilt our entire deal aggregation platform from scratch. The new architecture handles 50k+ daily listings without breaking a sweat. Conversion rates jumped 34% after launch.",
+    author: "Priya Selvakumar",
+    role: "Founder @ DealsFinders"
   },
   {
-    text: "We shipped our MVP in record time. The Next.js architecture scaled perfectly as we grew from 0 to 10k users.",
-    author: "Mike R.",
-    role: "Founder @ ScaleUp"
+    text: "Our AI meeting assistant needed a website that felt as smart as the product. Rashid delivered a Next.js site that converts visitors into users. Onboarding signups increased by half after launch.",
+    author: "Josh Schachter",
+    role: "Founder & CEO @ UpdateAI"
   },
   {
-    text: "Finally, a mobile app that doesn't feel like a web wrapper. The 60fps native performance is real.",
-    author: "Elena K.",
-    role: "Product @ MobileFirst"
+    text: "Rashid built our mobile apps from the ground up. Athletes can now update their emergency IDs on the go. The React Native performance is buttery smooth. App Store ratings speak for themselves.",
+    author: "Mike Wimmer",
+    role: "Co-Founder @ Road ID"
   }
 ];
 
