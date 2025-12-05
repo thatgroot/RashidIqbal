@@ -47,7 +47,7 @@ export function NavbarV2() {
           <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
         </button>
 
-        <div className="hidden md:flex items-center gap-1 text-sm font-medium">
+        <div className="hidden desktop:flex items-center gap-1 text-sm font-medium">
           <Link 
             href="#work" 
             onClick={(e) => scrollToSection(e, "#work")} 
@@ -86,7 +86,7 @@ export function NavbarV2() {
         </div>
 
         <div className="relative flex items-center gap-3">
-          <span className="hidden lg:flex items-center gap-1.5 text-xs text-zinc-500">
+          <span className="hidden desktop:flex items-center gap-1.5 text-xs text-zinc-500">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>

@@ -4,6 +4,9 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   
+  /* Custom breakpoint for mobile at 1080px */
+  --breakpoint-desktop: 1080px;
+  
   --animate-shimmer: shimmer 2s linear infinite;
 
   @keyframes shimmer {

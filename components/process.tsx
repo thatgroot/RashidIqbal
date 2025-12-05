@@ -145,7 +145,7 @@ export function ProcessV2() {
         <GridContainer>
           <GridItem className="py-24">
             <motion.div
-              className="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+              className="flex flex-col desktop:flex-row desktop:items-center desktop:justify-between gap-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -169,7 +169,7 @@ export function ProcessV2() {
                     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                   }
                 }}
-                className="px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 shrink-0"
+                className="w-full desktop:w-auto px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

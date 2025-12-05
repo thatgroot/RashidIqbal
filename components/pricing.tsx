@@ -83,7 +83,7 @@ export function PricingV2() {
         <GridContainer> 
             <GridItem className="py-24">
                 <motion.div 
-                  className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+                  className="w-full flex flex-col desktop:flex-row desktop:items-end desktop:justify-between gap-8"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
@@ -116,40 +116,64 @@ export function PricingV2() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: 0.3 }}
-                      className="flex items-center gap-1 p-1 bg-zinc-100"
+                      className="flex items-center border-b border-zinc-200"
                     >
                         <button
                             onClick={() => setServiceType("landing")}
-                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
+                            className={`relative flex items-center justify-center gap-2 px-4 desktop:px-5 py-3 text-xs font-mono uppercase tracking-wider transition-colors ${
                                 serviceType === "landing"
-                                    ? "bg-white text-zinc-900 shadow-sm"
-                                    : "text-zinc-500 hover:text-zinc-700"
+                                    ? "text-zinc-900"
+                                    : "text-zinc-400 hover:text-zinc-600"
                             }`}
+                            aria-label="Landing Page"
                         >
                             <Layout className="w-4 h-4" aria-hidden="true" />
-                            <span>Landing Page</span>
+                            <span className="hidden desktop:inline">Landing</span>
+                            {serviceType === "landing" && (
+                              <motion.div
+                                layoutId="serviceTypeIndicator"
+                                className="absolute bottom-0 left-0 right-0 h-px bg-orange-500"
+                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                              />
+                            )}
                         </button>
                         <button
                             onClick={() => setServiceType("web")}
-                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
+                            className={`relative flex items-center justify-center gap-2 px-4 desktop:px-5 py-3 text-xs font-mono uppercase tracking-wider transition-colors ${
                                 serviceType === "web"
-                                    ? "bg-white text-zinc-900 shadow-sm"
-                                    : "text-zinc-500 hover:text-zinc-700"
+                                    ? "text-zinc-900"
+                                    : "text-zinc-400 hover:text-zinc-600"
                             }`}
+                            aria-label="Web App"
                         >
                             <Code2 className="w-4 h-4" aria-hidden="true" />
-                            <span>Web App</span>
+                            <span className="hidden desktop:inline">Web App</span>
+                            {serviceType === "web" && (
+                              <motion.div
+                                layoutId="serviceTypeIndicator"
+                                className="absolute bottom-0 left-0 right-0 h-px bg-orange-500"
+                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                              />
+                            )}
                         </button>
                         <button
                             onClick={() => setServiceType("mobile")}
-                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
+                            className={`relative flex items-center justify-center gap-2 px-4 desktop:px-5 py-3 text-xs font-mono uppercase tracking-wider transition-colors ${
                                 serviceType === "mobile"
-                                    ? "bg-white text-zinc-900 shadow-sm"
-                                    : "text-zinc-500 hover:text-zinc-700"
+                                    ? "text-zinc-900"
+                                    : "text-zinc-400 hover:text-zinc-600"
                             }`}
+                            aria-label="Mobile App"
                         >
                             <Smartphone className="w-4 h-4" aria-hidden="true" />
-                            <span>Mobile App</span>
+                            <span className="hidden desktop:inline">Mobile</span>
+                            {serviceType === "mobile" && (
+                              <motion.div
+                                layoutId="serviceTypeIndicator"
+                                className="absolute bottom-0 left-0 right-0 h-px bg-orange-500"
+                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                              />
+                            )}
                         </button>
                     </motion.div>
                 </motion.div>
