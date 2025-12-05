@@ -31,7 +31,7 @@ export function FAQV2() {
   return (
     <>
       <FAQStructuredData />
-    <section className="pt-20 bg-white" id="resources">
+    <section className="bg-white" id="resources">
       <div className="max-w-7xl mx-auto border-l border-zinc-100">
         <GridContainer cols={2}> 
             <GridItem className="py-24">

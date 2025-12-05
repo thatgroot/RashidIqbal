@@ -12,7 +12,7 @@ const brands = [
 export function TrustedByV2() {
   return (
     <motion.section 
-      className="pt-20 bg-white border-b border-zinc-100"
+      className="bg-white border-b border-zinc-100"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}

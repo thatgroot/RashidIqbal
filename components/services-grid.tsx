@@ -46,7 +46,7 @@ const itemVariants = {
 
 export function ServicesGridV2() {
   return (
-    <section className="pt-20 bg-white" id="services">
+    <section className="bg-white" id="services">
       <div className="max-w-7xl mx-auto border-l border-zinc-100">
         <GridContainer> 
             <GridItem className="py-24">

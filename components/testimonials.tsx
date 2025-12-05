@@ -38,7 +38,7 @@ const reviewVariants = {
 
 export function TestimonialsV2() {
   return (
-    <section className="pt-20 bg-white" id="testimonials">
+    <section className="bg-white" id="testimonials">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer> 
             <GridItem className="py-24">

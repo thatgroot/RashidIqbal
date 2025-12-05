@@ -167,7 +167,7 @@ const projectVariants = {
 
 export function WorkV2() {
   return (
-    <section className="pt-20 bg-white" id="work">
+    <section className="bg-white" id="work">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer> 
             <GridItem className="py-24 flex justify-between items-end">

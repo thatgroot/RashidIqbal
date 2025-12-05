@@ -78,7 +78,7 @@ export function PricingV2() {
   };
 
   return (
-    <section className="pt-20 bg-white" id="pricing">
+    <section className="bg-white" id="pricing">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer> 
             <GridItem className="py-24">

@@ -12,6 +12,7 @@ import { PricingV2 } from "@/components/pricing";
 import { FAQV2 } from "@/components/faq";
 import { CTASectionV2 } from "@/components/cta";
 import { FooterV2 } from "@/components/footer";
+import { SectionSpacer } from "@/components/section-spacer";
 
 
 export const metadata: Metadata = {
@@ -51,14 +52,23 @@ export default function PageV2Enhanced() {
         <NavbarV2 />
         <HeroV2 />
         <TrustedByV2 />
-      <ServicesGridV2 />
+        <SectionSpacer />
+        <ServicesGridV2 />
+        <SectionSpacer />
         <ComparisonV2 />
+        <SectionSpacer />
         <ProcessV2 />
+        <SectionSpacer />
         <Tools />
+        <SectionSpacer />
         <WorkV2 />
+        <SectionSpacer />
         <TestimonialsV2 />
+        <SectionSpacer />
         <PricingV2 />
+        <SectionSpacer />
         <FAQV2 />
+        <SectionSpacer />
         <CTASectionV2 />
         <FooterV2 />
     </main>

@@ -15,7 +15,7 @@ const valueProps = [
 export function CTASectionV2() {
   return (
     <>
-      <section className="pt-20 bg-white border-y border-zinc-100">
+      <section className="bg-white border-y border-zinc-100">
         <div className="max-w-container border-l border-zinc-100">
           <GridContainer cols={2}> 
             <motion.div 

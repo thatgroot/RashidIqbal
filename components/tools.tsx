@@ -46,7 +46,7 @@ export function Tools() {
   const activeCategory = categories.find(c => c.id === activeTab);
 
   return (
-    <section className="pt-20 bg-white" id="tools">
+    <section className="bg-white" id="tools">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer>
           <GridItem className="py-32">
