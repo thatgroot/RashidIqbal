@@ -5,6 +5,7 @@ import { ServicesGridV2 } from "@/components/services-grid";
 import { TrustedByV2 } from "@/components/trusted-by";
 import { ComparisonV2 } from "@/components/comparison";
 import { ProcessV2 } from "@/components/process";
+import { Tools } from "@/components/tools";
 import { WorkV2 } from "@/components/work";
 import { TestimonialsV2 } from "@/components/testimonials";
 import { PricingV2 } from "@/components/pricing";
@@ -53,6 +54,7 @@ export default function PageV2Enhanced() {
       <ServicesGridV2 />
         <ComparisonV2 />
         <ProcessV2 />
+        <Tools />
         <WorkV2 />
         <TestimonialsV2 />
         <PricingV2 />
