@@ -10,7 +10,7 @@ const steps = [
     num: "01",
     title: "Talk",
     verb: "Discover",
-    desc: "Every great project starts with a conversation. We dive into your vision, goals, and what success looks like for you."
+    desc: "Every great project starts with a conversation. We dive into your vision, goals, and what success looks like."
   },
   {
     num: "02",
@@ -36,10 +36,16 @@ const STEP_DURATION = 3000;
 
 export function ProcessV2() {
   const [activeStep, setActiveStep] = useState(0);
+  const [cycleKey, setCycleKey] = useState(0); // Forces re-render of progress bar
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % steps.length);
+      setActiveStep((prev) => {
+        const next = (prev + 1) % steps.length;
+        // Increment cycle key to force fresh animation
+        setCycleKey((k) => k + 1);
+        return next;
+      });
     }, STEP_DURATION);
     return () => clearInterval(timer);
   }, []);
@@ -70,24 +76,28 @@ export function ProcessV2() {
         <GridContainer cols={4}>
           {steps.map((step, i) => {
             const isActive = i === activeStep;
-            const isPast = i < activeStep;
             
             return (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                onClick={() => setActiveStep(i)}
-                className="cursor-pointer"
+                onClick={() => {
+                  setActiveStep(i);
+                  setCycleKey((k) => k + 1);
+                }}
+                className="cursor-pointer relative h-full"
               >
                 <GridItem padding={false} className="h-full">
-                  <div className="p-6 md:p-8 pb-10 h-full flex flex-col min-h-[280px] relative">
+                  <motion.div 
+                    className="p-6 md:p-8 h-full flex flex-col"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                  >
                     {/* Step Number - Large */}
                     <div className="flex items-baseline justify-between mb-6">
                       <span className={`text-6xl md:text-7xl font-bold transition-colors duration-500 ${
-                        isActive ? 'text-orange-500' : isPast ? 'text-zinc-200' : 'text-zinc-100'
+                        isActive ? 'text-orange-500' : 'text-zinc-100'
                       }`}>
                         {step.num}
                       </span>
@@ -111,23 +121,22 @@ export function ProcessV2() {
                     }`}>
                       {step.desc}
                     </p>
-
-                    {/* Progress Indicator - Absolutely positioned at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-100 overflow-hidden">
-                      <motion.div
-                        className="h-full bg-orange-500 origin-left"
-                        initial={{ scaleX: isPast ? 1 : 0 }}
-                        animate={{ scaleX: isActive ? 1 : isPast ? 1 : 0 }}
-                        transition={{ 
-                          duration: isActive ? STEP_DURATION / 1000 : 0.3, 
-                          ease: isActive ? "linear" : "easeOut"
-                        }}
-                        key={isActive ? `active-${i}` : `static-${i}`}
-                      />
-                    </div>
-                  </div>
+                  </motion.div>
                 </GridItem>
-              </motion.div>
+                
+                {/* Progress Indicator - Only shows on active step */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-100 overflow-hidden z-10">
+                  {isActive && (
+                    <motion.div
+                      key={`progress-${cycleKey}`}
+                      className="h-full bg-orange-500 origin-left"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
+                    />
+                  )}
+                </div>
+              </div>
             );
           })}
         </GridContainer>
