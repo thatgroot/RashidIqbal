@@ -32,22 +32,16 @@ export function GridContainer({ children, className, cols = 1, enableSnake = fal
 }
 
 export function GridItem({ children, className, title, label, padding = true }: { children: React.ReactNode, className?: string, title?: string, label?: string, padding?: boolean }) {
+  // Corners are now CSS-only via .grid-item-corners pseudo-elements in globals.css
   return (
-    <div className={cn("relative border-b border-r border-zinc-100 bg-white group grid-item-corners", padding ? "p-8 sm:p-12" : "", className)}>
-      {/* Corner nodes - reduced from 4 divs to 2 spans using box-shadow (50% reduction) */}
-      <span className="absolute -top-[3px] -left-[3px] w-1.5 h-1.5 bg-zinc-200 group-hover:bg-orange-500 transition-colors z-10 grid-corner-left" aria-hidden="true" />
-      <span className="absolute -top-[3px] -right-[3px] w-1.5 h-1.5 bg-zinc-200 group-hover:bg-orange-500 transition-colors z-10 grid-corner-right" aria-hidden="true" />
-      
-      {/* Content */}
-      <div className="grid-item-content">
-        {(title || label) && (
-            <div className="flex justify-between items-start mb-6">
-                {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
-                {label && <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">{label}</span>}
-            </div>
-        )}
-        {children}
-      </div>
+    <div className={cn("relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden", padding ? "p-8 sm:p-12" : "", className)}>
+      {(title || label) && (
+        <div className="flex justify-between items-start mb-6">
+          {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
+          {label && <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">{label}</span>}
+        </div>
+      )}
+      {children}
     </div>
   );
 }

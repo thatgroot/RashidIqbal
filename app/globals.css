@@ -51,26 +51,30 @@ button, a, .cursor-pointer {
   top: 1em;
 }
 
-/* Grid item corner nodes - using box-shadow to create multiple corners from single elements */
-/* Reduces from 4 div elements to 2 span elements (50% reduction in DOM nodes) */
-.grid-corner-left {
-  /* Create bottom-left corner using box-shadow */
-  box-shadow: 0 99999px 0 0 currentColor;
+/* Grid item corner nodes - using pseudo-elements (100% reduction in DOM nodes) */
+.grid-item-corners::before,
+.grid-item-corners::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background-color: rgb(229 231 235);
+  z-index: 10;
+  transition: background-color 0.3s;
 }
 
-.grid-corner-right {
-  /* Create bottom-right corner using box-shadow */
-  box-shadow: 0 99999px 0 0 currentColor;
+.grid-item-corners::before {
+  left: -3px;
 }
 
-.grid-corner-left,
-.grid-corner-right {
-  color: rgb(229 231 235);
+.grid-item-corners::after {
+  right: -3px;
 }
 
-.group:hover .grid-corner-left,
-.group:hover .grid-corner-right {
-  color: rgb(249 115 22);
+.group.grid-item-corners:hover::before,
+.group.grid-item-corners:hover::after {
+  background-color: rgb(249 115 22);
 }
 
 /* Dotted Grid Background Optimization - uses pseudo-element to reduce DOM size */
