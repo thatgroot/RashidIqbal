@@ -3,7 +3,7 @@
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { GridContainer, GridItem } from "./grid-system";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export function HeroV2() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -194,13 +194,27 @@ function ToolGridItem({ label, delay, children }: { label: string; delay: number
 }
 
 function HeroWindowV2() {
-    const [activeTab, setActiveTab] = useState("dev");
-
-    const tabs = [
-        { id: "design", label: "Design" },
-        { id: "dev", label: "Code" },
-        { id: "apps", label: "Ship" },
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isTyping, setIsTyping] = useState(true);
+    
+    const steps = [
+        { id: "design", word: "Design", color: "text-orange-500" },
+        { id: "code", word: "Code", color: "text-zinc-900" },
+        { id: "ship", word: "Ship", color: "text-emerald-500" },
     ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsTyping(false);
+            setTimeout(() => {
+                setActiveIndex((prev) => (prev + 1) % steps.length);
+                setIsTyping(true);
+            }, 400);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, [steps.length]);
+
+    const currentStep = steps[activeIndex];
 
     return (
         <motion.div 
@@ -210,39 +224,67 @@ function HeroWindowV2() {
             transition={{ delay: 0.3, duration: 0.5 }}
         >
             <div className="w-full h-full flex flex-col">
-                {/* Minimal tab bar */}
-                <div className="flex gap-1 mb-6">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`px-4 py-2 text-xs font-bold transition-all ${
-                                activeTab === tab.id
-                                    ? "bg-zinc-900 text-white"
-                                    : "bg-zinc-100 text-zinc-500 hover:text-zinc-700"
-                            }`}
-                        >
-                            {tab.label}
-                        </button>
-                    ))}
+                {/* Typewriter header */}
+                <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-2">
+                        {steps.map((step, i) => (
+                            <motion.div
+                                key={step.id}
+                                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                                    i === activeIndex ? "bg-orange-500" : "bg-zinc-200"
+                                }`}
+                                animate={{ scale: i === activeIndex ? 1.2 : 1 }}
+                            />
+                        ))}
+                    </div>
+                    <div className="h-12 flex items-center overflow-hidden">
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={currentStep.id}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: isTyping ? 1 : 0 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className={`text-3xl md:text-4xl font-bold ${currentStep.color}`}
+                            >
+                                {currentStep.word}
+                                <motion.span
+                                    className="inline-block w-0.5 h-8 bg-current ml-1 align-middle"
+                                    animate={{ opacity: [1, 0] }}
+                                    transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                                />
+                            </motion.span>
+                        </AnimatePresence>
+                    </div>
                 </div>
 
                 {/* Content area */}
                 <div className="flex-1 relative">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={activeTab}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
+                            key={currentStep.id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.05 }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
                             className="absolute inset-0"
                         >
-                            {activeTab === "design" && <DesignVisualNew />}
-                            {activeTab === "dev" && <DevVisualNew />}
-                            {activeTab === "apps" && <AppsVisualNew />}
+                            {currentStep.id === "design" && <DesignVisualNew />}
+                            {currentStep.id === "code" && <DevVisualNew />}
+                            {currentStep.id === "ship" && <AppsVisualNew />}
                         </motion.div>
                     </AnimatePresence>
+                </div>
+
+                {/* Progress bar */}
+                <div className="h-1 bg-zinc-100 mt-4 overflow-hidden">
+                    <motion.div
+                        className="h-full bg-orange-500"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 3, ease: "linear", repeat: Infinity }}
+                        key={activeIndex}
+                    />
                 </div>
             </div>
         </motion.div>

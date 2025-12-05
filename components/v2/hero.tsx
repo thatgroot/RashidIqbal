@@ -1,9 +1,9 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MousePointer2, Smartphone, Code2, PenTool } from "lucide-react";
+import { ArrowRight, MousePointer2 } from "lucide-react";
 import { GridContainer, GridItem } from "./grid-system";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function HeroV2() {
     return (
@@ -115,67 +115,100 @@ export function HeroV2() {
 }
 
 function HeroWindowV2() {
-    const [activeTab, setActiveTab] = useState("dev");
-
-    const tabs = [
-        { id: "dev", label: "Development", icon: Code2 },
-        { id: "design", label: "Design", icon: PenTool },
-        { id: "apps", label: "Apps", icon: Smartphone },
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [isTyping, setIsTyping] = useState(true);
+    
+    const steps = [
+        { id: "design", word: "Design", color: "text-orange-500" },
+        { id: "code", word: "Code", color: "text-zinc-900" },
+        { id: "ship", word: "Ship", color: "text-emerald-500" },
     ];
 
-    return (
-        <div className="absolute inset-0 flex flex-col p-2 md:p-6 dotted-bg">
-            {/* Single Unified Window - Fills Container */}
-            <div className="w-full h-full bg-white border border-zinc-200 shadow-sm flex flex-col overflow-hidden relative z-10">
-                {/* Integrated Header / Tabs */}
-                <div className="h-12 border-b border-zinc-200 flex items-center bg-zinc-50/50 overflow-x-auto scrollbar-hide">
-                    {/* Window Controls */}
-                    <div className="flex gap-2 px-3 md:px-6 border-r border-zinc-200 h-full items-center shrink-0">
-                        <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                        <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                        <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-                    </div>
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIsTyping(false);
+            setTimeout(() => {
+                setActiveIndex((prev) => (prev + 1) % steps.length);
+                setIsTyping(true);
+            }, 400);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, [steps.length]);
 
-                    {/* Tabs - Square & Integrated */}
-                    <div className="flex h-full">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`flex items-center gap-2 md:gap-3 px-4 md:px-8 h-full text-sm font-bold transition-all border-r border-zinc-200 whitespace-nowrap ${activeTab === tab.id
-                                    ? "bg-white text-zinc-900 relative"
-                                    : "bg-zinc-50/50 text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100"
-                                    }`}
-                            >
-                                <tab.icon className="w-4 h-4" />
-                                <span className="hidden lg:inline">{tab.label}</span>
-                                {activeTab === tab.id && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-orange-500" />
-                                )}
-                            </button>
+    const currentStep = steps[activeIndex];
+
+    return (
+        <motion.div 
+            className="absolute inset-0 flex flex-col p-4 md:p-8 dotted-bg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+        >
+            <div className="w-full h-full flex flex-col">
+                {/* Typewriter header */}
+                <div className="mb-6">
+                    <div className="flex items-center gap-2 mb-2">
+                        {steps.map((step, i) => (
+                            <motion.div
+                                key={step.id}
+                                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                                    i === activeIndex ? "bg-orange-500" : "bg-zinc-200"
+                                }`}
+                                animate={{ scale: i === activeIndex ? 1.2 : 1 }}
+                            />
                         ))}
+                    </div>
+                    <div className="h-12 flex items-center overflow-hidden">
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={currentStep.id}
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: isTyping ? 1 : 0 }}
+                                exit={{ y: -20, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className={`text-3xl md:text-4xl font-bold ${currentStep.color}`}
+                            >
+                                {currentStep.word}
+                                <motion.span
+                                    className="inline-block w-0.5 h-8 bg-current ml-1 align-middle"
+                                    animate={{ opacity: [1, 0] }}
+                                    transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                                />
+                            </motion.span>
+                        </AnimatePresence>
                     </div>
                 </div>
 
-                {/* Content Area */}
-                <div className="flex-1 relative overflow-hidden bg-white">
+                {/* Content area */}
+                <div className="flex-1 relative">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={activeTab}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
+                            key={currentStep.id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.05 }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
                             className="absolute inset-0"
                         >
-                            {activeTab === "design" && <DesignVisual />}
-                            {activeTab === "dev" && <DevVisual />}
-                            {activeTab === "apps" && <AppsVisual />}
+                            {currentStep.id === "design" && <DesignVisual />}
+                            {currentStep.id === "code" && <DevVisual />}
+                            {currentStep.id === "ship" && <AppsVisual />}
                         </motion.div>
                     </AnimatePresence>
                 </div>
+
+                {/* Progress bar */}
+                <div className="h-1 bg-zinc-100 mt-4 overflow-hidden">
+                    <motion.div
+                        className="h-full bg-orange-500"
+                        initial={{ width: "0%" }}
+                        animate={{ width: "100%" }}
+                        transition={{ duration: 3, ease: "linear", repeat: Infinity }}
+                        key={activeIndex}
+                    />
+                </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
