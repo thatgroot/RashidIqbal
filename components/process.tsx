@@ -83,7 +83,7 @@ export function ProcessV2() {
                 className="cursor-pointer"
               >
                 <GridItem padding={false} className="h-full">
-                  <div className="p-6 md:p-8 h-full flex flex-col min-h-[280px]">
+                  <div className="p-6 md:p-8 pb-10 h-full flex flex-col min-h-[280px] relative">
                     {/* Step Number - Large */}
                     <div className="flex items-baseline justify-between mb-6">
                       <span className={`text-6xl md:text-7xl font-bold transition-colors duration-500 ${
@@ -106,14 +106,14 @@ export function ProcessV2() {
                     </h3>
                     
                     {/* Description */}
-                    <p className={`text-sm leading-relaxed flex-1 transition-colors duration-300 ${
+                    <p className={`text-sm leading-relaxed transition-colors duration-300 ${
                       isActive ? 'text-zinc-600' : 'text-zinc-400'
                     }`}>
                       {step.desc}
                     </p>
 
-                    {/* Progress Indicator */}
-                    <div className="mt-6 h-0.5 bg-zinc-100 overflow-hidden">
+                    {/* Progress Indicator - Absolutely positioned at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-100 overflow-hidden">
                       <motion.div
                         className="h-full bg-orange-500 origin-left"
                         initial={{ scaleX: isPast ? 1 : 0 }}
