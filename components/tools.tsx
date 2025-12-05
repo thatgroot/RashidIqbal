@@ -34,9 +34,9 @@ const categories = [
     id: "ai-builders",
     label: "AI Builders",
     tools: [
-      { name: "Lovable", desc: "Full-stack apps from prompts", url: "https://lovable.dev", color: "#FF6B6B" },
-      { name: "Bolt", desc: "Instant web apps", url: "https://bolt.new", color: "#1389FD" },
-      { name: "Base44", desc: "AI-powered app platform", url: "https://base44.com", color: "#6366F1" }
+      { name: "Lovable", desc: "Apps & websites by chatting with AI", url: "https://lovable.dev", color: "#FF6B6B" },
+      { name: "Bolt", desc: "The #1 vibe coding tool", url: "https://bolt.new", color: "#1389FD" },
+      { name: "Base44", desc: "Build apps in minutes with words", url: "https://base44.com", color: "#F97316" }
     ]
   }
 ];

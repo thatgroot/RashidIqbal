@@ -7,7 +7,7 @@ export function SectionSpacer() {
     <div className="bg-white">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer>
-          <GridItem padding={false} className="h-[120px]">
+                  <GridItem padding={false} className="h-[200px]">
             <div className="h-full" />
           </GridItem>
         </GridContainer>
