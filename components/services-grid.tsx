@@ -6,6 +6,7 @@ import { Figma, Zap, Layout } from "lucide-react";
 import { DesignSectionV2 } from "./design-section";
 import { WebSectionV2 } from "./web-section";
 import { MobileSectionV2 } from "./mobile-section";
+import { InnerSpacer } from "./section-spacer";
 const services = [
   {
     title: "Landing Pages",
@@ -130,12 +131,15 @@ export function ServicesGridV2() {
 
 
         {/* Design Phase */}
+        <InnerSpacer />
         <DesignSectionV2 />
 
         {/* Web/Infrastructure Phase */}
+        <InnerSpacer />
         <WebSectionV2 />
 
         {/* Mobile Phase */}
+        <InnerSpacer />
         <MobileSectionV2 />
       </div>
     </section>
