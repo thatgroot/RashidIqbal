@@ -20,7 +20,7 @@ const myApproachBenefits = [
 
 export function ComparisonV2() {
   return (
-    <section className="bg-white">
+    <section className="pt-20 bg-white">
       <div className="max-w-7xl mx-auto border-l border-zinc-100">
         <GridContainer> 
             <GridItem className="py-24">

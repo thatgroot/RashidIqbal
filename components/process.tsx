@@ -51,7 +51,7 @@ export function ProcessV2() {
   }, []);
 
   return (
-    <section className="bg-white" id="process">
+    <section className="pt-20 bg-white" id="process">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer>
           <GridItem className="py-24">
