@@ -13,7 +13,7 @@ export function ProblemSolutionV2() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 desktop:grid-cols-2 gap-8">
           {/* The Problem */}
           <div className="p-8 bg-white rounded-lg border border-red-100 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 left-0 w-1 h-full bg-red-500" />

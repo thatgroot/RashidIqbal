@@ -4,7 +4,7 @@
 export function AboutV2() {
   return (
     <section className="py-24 px-4 bg-white">
-      <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+      <div className="max-w-4xl mx-auto grid grid-cols-1 desktop:grid-cols-3 gap-12 items-start">
          <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100">
             {/* Placeholder for profile image */}
             <div className="absolute inset-0 flex items-center justify-center text-zinc-300 font-bold text-4xl">
@@ -12,7 +12,7 @@ export function AboutV2() {
             </div>
          </div>
          
-         <div className="md:col-span-2 space-y-6">
+         <div className="desktop:col-span-2 space-y-6">
             <h2 className="text-3xl font-bold text-zinc-900">
                 I&apos;m Rashid. I Build Products.
             </h2>

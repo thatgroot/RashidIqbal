@@ -28,7 +28,7 @@ export function FooterV2() {
     >
       <div className="max-w-7xl mx-auto border-l border-zinc-100">
         <GridContainer cols={3}> 
-            <GridItem className="col-span-1 md:col-span-1">
+            <GridItem className="col-span-1 desktop:col-span-1">
                 <motion.div 
                   className="flex flex-col h-full justify-between"
                   initial={{ opacity: 0, y: 20 }}

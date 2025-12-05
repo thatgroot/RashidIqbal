@@ -31,12 +31,12 @@ export function HeroV2() {
             <div className="max-w-container border-l border-zinc-100 relative">
                 <GridContainer cols={2}> 
                     <GridItem className="border-t py-24">
-                        <motion.div className="max-w-xl" style={{ y: smoothY, scale }}>
+                        <motion.div className="w-full desktop:max-w-xl text-center desktop:text-left" style={{ y: smoothY, scale }}>
                             <motion.div
                                 initial={{ opacity: 0, y: 20, scale: 0.9 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 transition={{ type: "spring", stiffness: 100 }}
-                                className="flex items-center gap-3 text-xs font-mono text-orange-700 mb-8"
+                                className="flex items-center justify-center desktop:justify-start gap-3 text-xs font-mono text-orange-700 mb-8"
                             >
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -50,7 +50,7 @@ export function HeroV2() {
                                 initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1, type: "spring", stiffness: 80 }}
-                        className="text-5xl md:text-7xl font-semibold tracking-tight text-zinc-900 mb-10 leading-[1.1]"
+                                className="text-5xl desktop:text-7xl font-semibold tracking-tight text-zinc-900 mb-10 leading-[1.1]"
                     >
                                 <motion.span
                                     initial={{ opacity: 0, x: -20 }}
@@ -75,7 +75,7 @@ export function HeroV2() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                        className="text-lg text-zinc-500 max-w-md leading-relaxed mb-12"
+                        className="text-lg text-zinc-500 desktop:max-w-md leading-relaxed mb-12 mx-auto desktop:mx-0"
                     >
                         Tight deadlines, complex projects, late nights. I&apos;ve seen it all. What stays constant is my commitment to deliver results that exceed expectations. Your project gets my full focus until it&apos;s perfect.
                     </motion.p>
@@ -84,7 +84,7 @@ export function HeroV2() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                        className="flex flex-wrap gap-4"
+                        className="flex flex-wrap gap-4 justify-center desktop:justify-start"
                     >
                                 <motion.button 
                                     whileHover={{ scale: 1.02, y: -2 }}
@@ -218,7 +218,7 @@ function HeroWindowV2() {
 
     return (
         <motion.div 
-            className="absolute inset-0 flex flex-col p-4 md:p-8 dotted-bg"
+            className="absolute inset-0 flex flex-col p-4 desktop:p-8 dotted-bg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -245,7 +245,7 @@ function HeroWindowV2() {
                                 animate={{ y: 0, opacity: isTyping ? 1 : 0 }}
                                 exit={{ y: -20, opacity: 0 }}
                                 transition={{ duration: 0.3, ease: "easeOut" }}
-                                className={`text-3xl md:text-4xl font-bold ${currentStep.color}`}
+                                className={`text-3xl desktop:text-4xl font-bold ${currentStep.color}`}
                             >
                                 {currentStep.word}
                                 <motion.span

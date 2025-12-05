@@ -19,7 +19,7 @@ export function CTASectionV2() {
         <div className="max-w-container border-l border-zinc-100">
           <GridContainer cols={2}> 
             <motion.div 
-              className="border-b border-r border-zinc-100 p-12 lg:p-24 flex flex-col justify-center"
+              className="border-b border-r border-zinc-100 p-12 desktop:p-24 flex flex-col justify-center"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -46,7 +46,7 @@ export function CTASectionV2() {
                 </motion.span>
               </motion.div>
               <motion.h2 
-                className="text-4xl md:text-6xl font-semibold text-zinc-900 tracking-tight"
+                className="text-4xl desktop:text-6xl font-semibold text-zinc-900 tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -66,7 +66,7 @@ export function CTASectionV2() {
             </motion.div>
 
             <motion.div 
-              className="border-b border-r border-zinc-100 p-12 lg:p-24 relative overflow-hidden dotted-bg"
+              className="border-b border-r border-zinc-100 p-12 desktop:p-24 relative overflow-hidden dotted-bg"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -145,7 +145,7 @@ export function CTASectionV2() {
           <GridContainer cols={1}> 
             <GridItem className="min-h-[700px] relative overflow-hidden dotted-bg" padding={false}>
               <motion.div 
-                className="relative z-10 h-full w-full p-4 md:p-8"
+                className="relative z-10 h-full w-full p-4 desktop:p-8"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

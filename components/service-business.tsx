@@ -6,7 +6,7 @@ import { ArrowRight, Search, } from "lucide-react";
 export function ServiceBusinessV2() {
     return (
         <section className="py-24 px-4 border-b border-zinc-200 bg-zinc-50/50 overflow-hidden">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="max-w-6xl mx-auto grid grid-cols-1 desktop:grid-cols-2 gap-16 items-center">
                 <div className="relative">
                     <div className="absolute -inset-4 bg-blue-50/50 rounded-3xl transform -rotate-3" />
                     <div className="relative bg-white border border-zinc-200 rounded-xl shadow-sm overflow-hidden">
@@ -71,7 +71,7 @@ export function ServiceBusinessV2() {
                     <div className="inline-flex items-center gap-2 px-2 py-1 bg-blue-50 text-blue-700 rounded text-[10px] font-mono font-medium uppercase tracking-wider mb-6">
                         Enterprise Module
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 tracking-tight">
+                    <h2 className="text-3xl desktop:text-4xl font-bold text-zinc-900 mb-6 tracking-tight">
                         Business Intelligence Websites
                     </h2>
                     <p className="text-zinc-500 mb-8 leading-relaxed">

@@ -6,12 +6,12 @@ import { ArrowRight } from "lucide-react";
 export function ServiceLandingV2() {
   return (
     <section className="py-24 px-4 border-b border-zinc-200 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className="order-2 lg:order-1">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 desktop:grid-cols-2 gap-16 items-center">
+        <div className="order-2 desktop:order-1">
            <div className="inline-flex items-center gap-2 px-2 py-1 bg-green-50 text-green-700 rounded text-[10px] font-mono font-medium uppercase tracking-wider mb-6">
               Performance Module
            </div>
-           <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 tracking-tight">
+           <h2 className="text-3xl desktop:text-4xl font-bold text-zinc-900 mb-6 tracking-tight">
               High-Conversion Landing Pages
            </h2>
            <p className="text-zinc-500 mb-8 leading-relaxed">
@@ -35,7 +35,7 @@ export function ServiceLandingV2() {
            </button>
         </div>
 
-        <div className="order-1 lg:order-2 relative">
+        <div className="order-1 desktop:order-2 relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-green-50 to-transparent rounded-2xl" />
             <div className="relative bg-white border border-zinc-200 rounded-xl shadow-lg p-6">
                 <div className="flex justify-between items-center mb-8 border-b border-zinc-100 pb-4">

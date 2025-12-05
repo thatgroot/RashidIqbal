@@ -19,9 +19,9 @@ export function GridContainer({ children, className, cols = 1, enableSnake = fal
       ref={containerRef}
       className={cn(
       "grid relative items-stretch", 
-      cols === 4 ? "md:grid-cols-4" : 
-      cols === 3 ? "md:grid-cols-3" : 
-      cols === 2 ? "md:grid-cols-2" : 
+      cols === 4 ? "desktop:grid-cols-4" : 
+      cols === 3 ? "desktop:grid-cols-3" : 
+      cols === 2 ? "desktop:grid-cols-2" : 
       "grid-cols-1", 
       className
     )}>

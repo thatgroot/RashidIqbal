@@ -11,7 +11,7 @@ const stack = [
 export function StackV2() {
   return (
     <section className="py-12 border-y border-zinc-100 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col desktop:flex-row items-center gap-8">
         <div className="text-xs font-bold text-zinc-400 whitespace-nowrap uppercase tracking-widest">
            Tech Stack
         </div>

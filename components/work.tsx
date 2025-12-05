@@ -276,7 +276,7 @@ export function WorkV2() {
         
         {/* Mobile 'View All' Button */}
         <motion.div 
-          className="md:hidden border-b border-r border-zinc-100 p-8 flex justify-center"
+          className="desktop:hidden border-b border-r border-zinc-100 p-8 flex justify-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

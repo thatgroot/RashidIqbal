@@ -9,13 +9,13 @@ export function WebSectionV2() {
     <GridContainer cols={2}> 
       {/* Web Visual */}
       <motion.div
-        className="order-2 md:order-1"
+        className="order-2 desktop:order-1"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <div className="min-h-[500px] p-6 md:p-8 border-b border-r border-zinc-100 dotted-bg relative">
+        <div className="min-h-[500px] p-6 desktop:p-8 border-b border-r border-zinc-100 dotted-bg relative">
           {/* Browser Frame */}
           <motion.div 
             className="w-full h-full min-h-[400px] bg-white border border-zinc-200 flex flex-col overflow-hidden"
@@ -47,7 +47,7 @@ export function WebSectionV2() {
             </div>
             
             {/* Code Content */}
-            <div className="flex-1 p-6 md:p-8 space-y-5">
+            <div className="flex-1 p-6 desktop:p-8 space-y-5">
               {/* Code Lines */}
               {[0, 1, 2, 3, 4].map((i) => (
                 <motion.div 
@@ -112,7 +112,7 @@ export function WebSectionV2() {
       </motion.div>
 
       {/* Content */}
-      <GridItem className="py-24 order-1 md:order-2" label="02 · Infrastructure">
+      <GridItem className="py-24 order-1 desktop:order-2" label="02 · Infrastructure">
         <motion.div 
           className="max-w-lg mt-auto"
           initial={{ opacity: 0, y: 30 }}

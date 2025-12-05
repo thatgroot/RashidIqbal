@@ -73,7 +73,7 @@ export function MobileSectionV2() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="min-h-[500px] p-6 md:p-8 border-b border-r border-zinc-100 dotted-bg relative flex items-center justify-center">
+        <div className="min-h-[500px] p-6 desktop:p-8 border-b border-r border-zinc-100 dotted-bg relative flex items-center justify-center">
           {/* Phone Frame */}
           <motion.div 
             className="w-[280px] h-[560px] bg-white border-2 border-zinc-200 rounded-[3rem] overflow-hidden relative cursor-pointer"

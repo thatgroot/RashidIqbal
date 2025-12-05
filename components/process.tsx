@@ -88,7 +88,7 @@ export function ProcessV2() {
               >
                 <GridItem padding={false} className="h-full">
                   <motion.div 
-                    className="p-6 md:p-8 h-full flex flex-col"
+                    className="p-6 desktop:p-8 h-full flex flex-col"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -96,7 +96,7 @@ export function ProcessV2() {
                   >
                     {/* Step Number - Large */}
                     <div className="flex items-baseline justify-between mb-6">
-                      <span className={`text-6xl md:text-7xl font-bold transition-colors duration-500 ${
+                      <span className={`text-6xl desktop:text-7xl font-bold transition-colors duration-500 ${
                         isActive ? 'text-orange-500' : 'text-zinc-100'
                       }`}>
                         {step.num}

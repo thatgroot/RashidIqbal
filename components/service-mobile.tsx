@@ -6,12 +6,12 @@ import { ArrowRight, Download } from "lucide-react";
 export function ServiceMobileV2() {
   return (
     <section className="py-24 px-4 border-b border-zinc-200 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className="order-2 lg:order-1">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 desktop:grid-cols-2 gap-16 items-center">
+        <div className="order-2 desktop:order-1">
            <div className="inline-flex items-center gap-2 px-2 py-1 bg-purple-50 text-purple-700 rounded text-[10px] font-mono font-medium uppercase tracking-wider mb-6">
               Native Ecosystems
            </div>
-           <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-6 tracking-tight">
+           <h2 className="text-3xl desktop:text-4xl font-bold text-zinc-900 mb-6 tracking-tight">
               Cross-Platform Mobile Apps
            </h2>
            <p className="text-zinc-500 mb-8 leading-relaxed">
@@ -35,7 +35,7 @@ export function ServiceMobileV2() {
            </button>
         </div>
 
-        <div className="order-1 lg:order-2 flex justify-center">
+        <div className="order-1 desktop:order-2 flex justify-center">
             <div className="relative">
                 {/* Phone Mockup */}
                 <div className="relative w-64 h-[500px] bg-zinc-900 rounded-[2.5rem] shadow-2xl border-4 border-zinc-800 overflow-hidden">

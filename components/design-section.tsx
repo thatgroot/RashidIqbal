@@ -73,7 +73,7 @@ export function DesignSectionV2() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="min-h-[500px] p-6 md:p-8 border-b border-r border-zinc-100 dotted-bg relative">
+        <div className="min-h-[500px] p-6 desktop:p-8 border-b border-r border-zinc-100 dotted-bg relative">
           {/* Canvas Container */}
           <motion.div 
             className="w-full h-full min-h-[400px] bg-white border border-zinc-200 relative overflow-hidden"
