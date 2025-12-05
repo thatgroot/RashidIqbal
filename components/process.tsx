@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "./grid-system";
 import { MessageSquare, Search, PenTool, Rocket, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const steps = [
   {
@@ -31,61 +32,141 @@ const steps = [
   }
 ];
 
+const STEP_DURATION = 2500; // ms per step
+
 export function ProcessV2() {
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, STEP_DURATION);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="bg-white" id="process">
       <div className="max-w-7xl mx-auto border-l border-zinc-100">
-        <GridContainer  >
+        <GridContainer>
           <GridItem className="py-24">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
+            <motion.div
+              className="max-w-2xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.h2
+                className="text-4xl font-semibold text-zinc-900 mb-6"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 The Recipe for Success.
-              </h2>
-              <p className="text-lg text-zinc-500">
+              </motion.h2>
+              <motion.p
+                className="text-lg text-zinc-500"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 Every great project starts with a conversation. We explore, prepare, cook, and serve, turning your vision into something real, polished, and built to last.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </GridItem>
         </GridContainer>
 
-        <GridContainer cols={4}>
-          {steps.map((step, i) => (
-            <GridItem key={i} className="group" padding={true}>
-              <div className="relative flex flex-col h-full">
-                {/* Icon with connecting line */}
-                <div className="relative mb-6">
-                  {/* Line extending to the right (hidden on last item and mobile) */}
-                  {i < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-1/2 left-full h-[2px] bg-zinc-100 -translate-y-1/2 overflow-hidden" style={{ width: 'calc(100% + 2rem)' }}>
+        {/* 2x2 Layout */}
+        <GridContainer cols={2}>
+          {steps.map((step, i) => {
+            const isActive = i === activeStep;
+            return (
+              <motion.div
+                key={i}
+                className="relative h-full"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <GridItem className="h-full relative overflow-hidden group" padding={false}>
+                  <div className="p-8 md:p-12 h-full flex flex-col relative z-10">
+                    {/* Header */}
+                    <div className="flex justify-between items-start mb-8">
                       <motion.div
-                        className="h-full w-full bg-orange-500"
-                        animate={{ x: ["-100%", "100%"] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: i * 0.5 }}
-                      />
+                        className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-colors duration-300 ${isActive ? 'bg-orange-500 border-orange-500 text-white' : 'bg-white border-zinc-200 text-zinc-500'}`}
+                      >
+                        <step.icon className="w-6 h-6" />
+                      </motion.div>
+                      <span className="text-4xl font-bold text-zinc-100 select-none font-mono">
+                        {step.id}
+                      </span>
                     </div>
-                  )}
-                  {/* Icon circle - above the line */}
-                  <div className="w-10 h-10 bg-white border-2 border-zinc-100 rounded-full flex items-center justify-center group-hover:border-orange-500 transition-colors relative z-10">
-                    <step.icon className="w-4 h-4 text-zinc-500 group-hover:text-orange-500" />
+
+                    {/* Content */}
+                    <h3 className={`text-xl font-bold mb-4 transition-colors duration-300 ${isActive ? 'text-orange-500' : 'text-zinc-900'}`}>
+                      {step.title}
+                    </h3>
+                    <p className="text-zinc-500 leading-relaxed">
+                      {step.desc}
+                    </p>
+
+                    {/* Progress Bar (Bottom) */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-zinc-100">
+                      {isActive && (
+                        <motion.div 
+                          className="h-full bg-orange-500 origin-left"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
+                        />
+                      )}
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-lg font-medium text-zinc-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-zinc-500">{step.desc}</p>
-              </div>
-            </GridItem>
-          ))}
+
+                  {/* Background Highlight for Active State */}
+                  <motion.div
+                    className="absolute inset-0 bg-orange-50/30 pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isActive ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </GridItem>
+              </motion.div>
+            );
+          })}
         </GridContainer>
 
-        <GridContainer  >
+        <GridContainer>
           <GridItem className="pt-24 pb-48">
-            <div className="max-w-xl">
-              <h2 className="text-3xl font-semibold text-zinc-900 mb-4">
+            <motion.div
+              className="max-w-xl"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.h2
+                className="text-3xl font-semibold text-zinc-900 mb-4"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
                 Let&apos;s Travel to the Inbox.
-              </h2>
-              <p className="text-lg text-zinc-500 mb-8">
+              </motion.h2>
+              <motion.p
+                className="text-lg text-zinc-500 mb-8"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 When it all comes together, the result feels effortless and complete. A polished, working product ready to perform and make an impact. Looking back, I feel proud of what your project will become.
-              </p>
-              <button
+              </motion.p>
+              <motion.button
                 onClick={() => {
                   const pricingSection = document.querySelector('#pricing');
                   if (pricingSection) {
@@ -98,14 +179,29 @@ export function ProcessV2() {
                     });
                   }
                 }}
-                className="px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 group"
+                className="px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 group relative overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
+                <motion.span
+                  className="absolute inset-0 bg-orange-500"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10 flex items-center gap-2">
                 View Pricing <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+                </span>
+              </motion.button>
+            </motion.div>
           </GridItem>
         </GridContainer>
       </div>
     </section>
   );
 }
+

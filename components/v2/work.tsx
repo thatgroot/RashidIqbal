@@ -152,66 +152,27 @@ const projects = [
   }
 ];
 
-const projectVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: "easeOut" as const
-    }
-  })
-};
-
 export function WorkV2() {
   return (
     <section className="bg-white" id="work">
       <div className="max-w-container border-l border-zinc-100">
-        <GridContainer> 
+        <GridContainer  > 
             <GridItem className="py-24 flex justify-between items-end">
-                <motion.div 
-                  className="max-w-2xl"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
-                >
-                    <motion.h2 
-                      className="text-4xl font-semibold text-zinc-900 mb-6"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    >
+                <div className="max-w-2xl">
+                    <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
                         When It All Comes Together.
-                    </motion.h2>
-                    <motion.p 
-                      className="text-lg text-zinc-500"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                    >
+                    </h2>
+                    <p className="text-lg text-zinc-500">
                         The result feels effortless and complete. A polished, working product ready to perform and make an impact. Here&apos;s what that looks like in practice.
-                    </motion.p>
-                </motion.div>
+                    </p>
+                </div>
              
             </GridItem>
         </GridContainer>
 
-        <GridContainer cols={2}> 
+        <GridContainer cols={2}  > 
             {projects.map((project, i) => (
-                <motion.div
-                  key={i}
-                  custom={i % 4}
-                  variants={projectVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                >
-                  <GridItem padding={false} className="group bg-white hover:bg-zinc-50/50 transition-colors duration-300 relative overflow-hidden flex flex-col">
+                <GridItem key={i} padding={false} className="group bg-white hover:bg-zinc-50/50 transition-colors duration-300 relative overflow-hidden flex flex-col">
                     {/* Visual Area */}
                     <div className="aspect-video bg-zinc-50/50 relative overflow-hidden flex items-center justify-center group-hover:bg-zinc-100/50 transition-colors dotted-bg dotted-bg-16">
                         <motion.div 
@@ -227,30 +188,20 @@ export function WorkV2() {
                     <div className="flex flex-col flex-1 p-8 sm:p-12">
                         <div className="flex justify-between items-start mb-4">
                             <div>
-                                  <motion.div 
-                                    className="text-xs font-bold text-orange-700 mb-2 uppercase tracking-wider"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2 }}
-                                  >
-                                    {project.category}
-                                  </motion.div>
+                                <div className="text-xs font-bold text-orange-700 mb-2 uppercase tracking-wider">{project.category}</div>
                                 <h3 className="text-2xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-1">
                                     {project.name}
                                 </h3>
                             </div>
-                              <motion.a 
+                            <a 
                                 href={project.link} 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 aria-label={`Visit ${project.name} website (opens in new tab)`}
-                                  className="p-2 bg-white text-zinc-400 hover:text-orange-500 transition-colors"
-                                  whileHover={{ scale: 1.2, rotate: 45 }}
-                                  whileTap={{ scale: 0.9 }}
+                                className="p-2 bg-white text-zinc-400 hover:text-zinc-900 transition-colors"
                             >
                                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-                              </motion.a>
+                            </a>
                         </div>
                         
                         <p className="text-zinc-500 leading-relaxed mb-6 text-sm flex-1">
@@ -259,36 +210,22 @@ export function WorkV2() {
 
                         <div className="flex gap-2">
                             {project.stack.map((tech, j) => (
-                                  <motion.span 
-                                    key={j} 
-                                    className="px-2 py-1 bg-zinc-50 text-[10px] font-bold text-zinc-500 uppercase tracking-wider"
-                                    whileHover={{ backgroundColor: "#f97316", color: "#fff" }}
-                                  >
+                                <span key={j} className="px-2 py-1 bg-zinc-50 text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                                     {tech}
-                                  </motion.span>
+                                </span>
                             ))}
                         </div>
                     </div>
                 </GridItem>
-                </motion.div>
             ))}
         </GridContainer>
         
         {/* Mobile 'View All' Button */}
-        <motion.div 
-          className="md:hidden border-b border-r border-zinc-100 p-8 flex justify-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-             <motion.button 
-               className="text-sm font-bold text-zinc-900 items-center gap-2 border-b border-zinc-900 pb-1 flex"
-               whileHover={{ scale: 1.05 }}
-               whileTap={{ scale: 0.95 }}
-             >
+        <div className="md:hidden border-b border-r border-zinc-100 p-8 flex justify-center">
+             <button className="text-sm font-bold text-zinc-900 items-center gap-2 border-b border-zinc-900 pb-1 flex">
                 View All Projects <ArrowUpRight className="w-4 h-4" />
-            </motion.button>
-        </motion.div>
+            </button>
+        </div>
       </div>
     </section>
   );

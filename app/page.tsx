@@ -3,9 +3,6 @@ import { HeroV2 } from "@/components/hero";
 import { NavbarV2 } from "@/components/navbar";
 import { ServicesGridV2 } from "@/components/services-grid";
 import { TrustedByV2 } from "@/components/trusted-by";
-import { DesignSectionV2 } from "@/components/design-section";
-import { WebSectionV2 } from "@/components/web-section";
-import { MobileSectionV2 } from "@/components/mobile-section";
 import { ComparisonV2 } from "@/components/comparison";
 import { ProcessV2 } from "@/components/process";
 import { WorkV2 } from "@/components/work";
@@ -17,24 +14,26 @@ import { FooterV2 } from "@/components/footer";
  
 
 export const metadata: Metadata = {
+  title: "Rashid Iqbal | V2 Enhanced",
   description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps. Building with Next.js, Framer, Figma, Expo, and Flutter.",
 };
 
-export default function PageV2() {
+export default function PageV2Enhanced() {
   return (
-    <>
-      <a href="#main-content" className="skip-to-main">
-        Skip to main content
-      </a>
-      <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans">
-        <div className="fixed inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-size-[40px_40px] -z-10" />
+    <main className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
+      {/* Enhanced Background with animated gradient */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-size-[40px_40px]" />
+        <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-zinc-50/50" />
+        {/* Subtle gradient orbs */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-500/2 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/2 rounded-full blur-3xl" />
+      </div>
+
         <NavbarV2 />
         <HeroV2 />
         <TrustedByV2 />
-        <ServicesGridV2 />
-        <DesignSectionV2 />
-        <WebSectionV2 />
-        <MobileSectionV2 />
+      <ServicesGridV2 />
         <ComparisonV2 />
         <ProcessV2 />
         <WorkV2 />
@@ -43,7 +42,6 @@ export default function PageV2() {
         <FAQV2 />
         <CTASectionV2 />
         <FooterV2 />
-      </main>
-    </>
+    </main>
   );
 }

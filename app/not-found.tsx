@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GridContainer, GridItem } from "@/components/grid-system";
+import { GridContainer, GridItem } from "@/components/v2/grid-system";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Search, FileQuestion } from "lucide-react";
 

@@ -1,42 +1,80 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MousePointer2, Smartphone, Code2, PenTool } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { GridContainer, GridItem } from "./grid-system";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export function HeroV2() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start start", "end start"]
+    });
+    
+    const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+    const smoothY = useSpring(y, { stiffness: 100, damping: 30 });
+
     return (
-        <section className="pt-18 bg-white relative">
-            <div className="max-w-container border-l border-zinc-100">
-                <GridContainer cols={2}  > 
+        <section ref={sectionRef} className="pt-18 bg-white relative overflow-hidden">
+            {/* Animated background gradient */}
+            <motion.div 
+                className="absolute inset-0 pointer-events-none"
+                style={{ opacity }}
+            >
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-3xl" />
+            </motion.div>
+
+            <div className="max-w-container border-l border-zinc-100 relative">
+                <GridContainer cols={2}> 
                     <GridItem className="border-t py-24">
-                        <div className="max-w-xl">
+                        <motion.div className="max-w-xl" style={{ y: smoothY, scale }}>
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                transition={{ type: "spring", stiffness: 100 }}
                                 className="flex items-center gap-3 text-xs font-mono text-orange-700 mb-8"
                             >
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
                                 </span>
+                                <Sparkles className="w-3 h-3" />
                                 AVAILABLE FOR NEW PROJECTS
                             </motion.div>
 
                     <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
+                                transition={{ delay: 0.1, type: "spring", stiffness: 80 }}
                         className="text-5xl md:text-7xl font-semibold tracking-tight text-zinc-900 mb-10 leading-[1.1]"
                     >
-                        Your Vision, Built Right.
+                                <motion.span
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="inline-block"
+                                >
+                                    Your Vision,
+                                </motion.span>
+                                <br />
+                                <motion.span
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="inline-block bg-linear-to-r from-zinc-900 via-zinc-700 to-zinc-900 bg-clip-text"
+                                >
+                                    Built Right.
+                                </motion.span>
                     </motion.h1>
                     
                     <motion.p 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                                transition={{ delay: 0.4 }}
                         className="text-lg text-zinc-500 max-w-md leading-relaxed mb-12"
                     >
                         Tight deadlines, complex projects, late nights. I&apos;ve seen it all. What stays constant is my commitment to deliver results that exceed expectations. Your project gets my full focus until it&apos;s perfect.
@@ -45,10 +83,12 @@ export function HeroV2() {
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
+                                transition={{ delay: 0.5 }}
                         className="flex flex-wrap gap-4"
                     >
-                        <button 
+                                <motion.button 
+                                    whileHover={{ scale: 1.02, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
                             onClick={(e) => {
                                 e.preventDefault();
                                 const element = document.querySelector("#work");
@@ -62,12 +102,20 @@ export function HeroV2() {
                                     });
                                 }
                             }}
-                            className="px-8 py-4 bg-zinc-900 text-white text-sm font-medium hover:bg-orange-500 transition-colors flex items-center gap-2 group"
+                                    className="px-8 py-4 bg-zinc-900 text-white text-sm font-medium hover:bg-orange-500 transition-colors flex items-center gap-2 group relative overflow-hidden"
                         >
+                                    <motion.span
+                                        className="absolute inset-0 bg-orange-500"
+                                        initial={{ x: "-100%" }}
+                                        whileHover={{ x: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                    <span className="relative z-10 flex items-center gap-2">
                             View Portfolio <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
+                                    </span>
+                                </motion.button>
+                            </motion.div>
                     </motion.div>
-                        </div>
                     </GridItem>
 
                     {/* Interactive Hero Window */}
@@ -76,41 +124,72 @@ export function HeroV2() {
                     </GridItem>
                 </GridContainer>
 
-                <GridContainer cols={3}  > 
-                    <GridItem label="Tool">
-                        <div className="mt-auto flex items-center gap-3">
+                <GridContainer cols={3}> 
+                    <ToolGridItem label="Tool" delay={0.6}>
+                        <div className="h-full flex flex-col justify-end">
+                            <div className="flex items-center gap-3">
+                                <motion.div whileHover={{ rotate: 10, scale: 1.1 }} transition={{ type: "spring" }}>
                             <FigmaIcon />
+                                </motion.div>
                             <div className="text-lg font-medium text-zinc-900">Figma</div>
+                            </div>
                         </div>
-                    </GridItem>
-                    <GridItem label="Builder">
-                        <div className="mt-auto flex items-center gap-3">
+                    </ToolGridItem>
+                    <ToolGridItem label="Builder" delay={0.7}>
+                        <div className="h-full flex flex-col justify-end">
+                            <div className="flex items-center gap-3">
+                                <motion.div whileHover={{ rotate: -10, scale: 1.1 }} transition={{ type: "spring" }}>
                             <FramerIcon />
+                                </motion.div>
                             <div className="text-lg font-medium text-zinc-900">Framer</div>
+                            </div>
                         </div>
-                    </GridItem>
-                    <GridItem label="Framework">
-                        <div className="mt-auto space-y-3">
+                    </ToolGridItem>
+                    <ToolGridItem label="Framework" delay={0.8}>
+                        <div className="h-full flex flex-col justify-end">
+                            <div className="space-y-3">
                             <div className="flex items-center gap-4">
+                                    <motion.div whileHover={{ y: -3 }} transition={{ type: "spring" }}>
                                 <NextIcon />
+                                    </motion.div>
+                                    <motion.div whileHover={{ y: -3 }} transition={{ type: "spring", delay: 0.05 }}>
                                 <ExpoIcon />
+                                    </motion.div>
+                                    <motion.div whileHover={{ y: -3 }} transition={{ type: "spring", delay: 0.1 }}>
                                 <FlutterIcon />
+                                    </motion.div>
                             </div>
                             <div className="pt-2 border-t border-zinc-100 flex items-center gap-4">
-                                <div className="flex items-center gap-2">
+                                    <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
                                     <CursorIcon />
                                     <span className="text-sm font-medium text-zinc-900">Cursor</span>
-                                </div>
-                                <div className="flex items-center gap-2">
+                                    </motion.div>
+                                    <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-2">
                                     <BoltIcon />
                                     <span className="text-sm font-medium text-zinc-900">Bolt</span>
+                                    </motion.div>
                                 </div>
                             </div>
                         </div>
-                    </GridItem>
+                    </ToolGridItem>
                 </GridContainer>
             </div>
         </section>
+    );
+}
+
+function ToolGridItem({ label, delay, children }: { label: string; delay: number; children: React.ReactNode }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay, type: "spring", stiffness: 100 }}
+            className="h-full"
+        >
+            <GridItem label={label} className="h-full">
+                {children}
+            </GridItem>
+        </motion.div>
     );
 }
 
@@ -118,47 +197,38 @@ function HeroWindowV2() {
     const [activeTab, setActiveTab] = useState("dev");
 
     const tabs = [
-        { id: "dev", label: "Development", icon: Code2 },
-        { id: "design", label: "Design", icon: PenTool },
-        { id: "apps", label: "Apps", icon: Smartphone },
+        { id: "design", label: "Design" },
+        { id: "dev", label: "Code" },
+        { id: "apps", label: "Ship" },
     ];
 
     return (
-        <div className="absolute inset-0 flex flex-col p-2 md:p-6 dotted-bg">
-            {/* Single Unified Window - Fills Container */}
-            <div className="w-full h-full bg-white border border-zinc-200 shadow-sm flex flex-col overflow-hidden relative z-10">
-                {/* Integrated Header / Tabs */}
-                <div className="h-12 border-b border-zinc-200 flex items-center bg-zinc-50/50 overflow-x-auto scrollbar-hide">
-                    {/* Window Controls */}
-                    <div className="flex gap-2 px-3 md:px-6 border-r border-zinc-200 h-full items-center shrink-0">
-                        <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                        <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                        <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-                    </div>
-
-                    {/* Tabs - Square & Integrated */}
-                    <div className="flex h-full">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`flex items-center gap-2 md:gap-3 px-4 md:px-8 h-full text-sm font-bold transition-all border-r border-zinc-200 whitespace-nowrap ${activeTab === tab.id
-                                    ? "bg-white text-zinc-900 relative"
-                                    : "bg-zinc-50/50 text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100"
-                                    }`}
-                            >
-                                <tab.icon className="w-4 h-4" />
-                                <span className="hidden lg:inline">{tab.label}</span>
-                                {activeTab === tab.id && (
-                                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-orange-500" />
-                                )}
-                            </button>
-                        ))}
-                    </div>
+        <motion.div 
+            className="absolute inset-0 flex flex-col p-4 md:p-8 dotted-bg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+        >
+            <div className="w-full h-full flex flex-col">
+                {/* Minimal tab bar */}
+                <div className="flex gap-1 mb-6">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-4 py-2 text-xs font-bold transition-all ${
+                                activeTab === tab.id
+                                    ? "bg-zinc-900 text-white"
+                                    : "bg-zinc-100 text-zinc-500 hover:text-zinc-700"
+                            }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
                 </div>
 
-                {/* Content Area */}
-                <div className="flex-1 relative overflow-hidden bg-white">
+                {/* Content area */}
+                <div className="flex-1 relative">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeTab}
@@ -168,261 +238,184 @@ function HeroWindowV2() {
                             transition={{ duration: 0.2 }}
                             className="absolute inset-0"
                         >
-                            {activeTab === "design" && <DesignVisual />}
-                            {activeTab === "dev" && <DevVisual />}
-                            {activeTab === "apps" && <AppsVisual />}
+                            {activeTab === "design" && <DesignVisualNew />}
+                            {activeTab === "dev" && <DevVisualNew />}
+                            {activeTab === "apps" && <AppsVisualNew />}
                         </motion.div>
                     </AnimatePresence>
                 </div>
             </div>
+        </motion.div>
+    );
+}
+
+// New minimal visual components
+function DesignVisualNew() {
+    return (
+        <div className="w-full h-full flex items-center justify-center">
+            <div className="relative w-full max-w-xs aspect-square">
+                {/* Main frame */}
+                <motion.div 
+                    className="absolute inset-0 border-2 border-zinc-200"
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                />
+                
+                {/* Orange square */}
+                <motion.div 
+                    className="absolute top-6 left-6 w-16 h-16 bg-orange-500"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring" }}
+                />
+                
+                {/* Grid lines */}
+                <motion.div 
+                    className="absolute top-1/2 left-0 right-0 h-px bg-zinc-200"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
+                />
+                <motion.div 
+                    className="absolute top-0 bottom-0 left-1/2 w-px bg-zinc-200"
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ delay: 0.4, duration: 0.4 }}
+                />
+                
+                {/* Text lines */}
+                <motion.div 
+                    className="absolute bottom-8 right-6 space-y-2"
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 }}
+                >
+                    <div className="w-24 h-2 bg-zinc-900" />
+                    <div className="w-16 h-2 bg-zinc-300" />
+                </motion.div>
+                
+                {/* Circle */}
+                <motion.div 
+                    className="absolute top-1/4 right-8 w-10 h-10 border-2 border-zinc-300 rounded-full"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                />
+                
+                {/* Corner marks */}
+                <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-orange-500" />
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-orange-500" />
+            </div>
         </div>
     );
 }
 
-function DesignVisual() {
+function DevVisualNew() {
     return (
-        <div className="relative w-full h-full flex items-center justify-center bg-zinc-50/30 overflow-hidden dotted-bg dotted-bg-opacity-70">
-            <motion.div
-                className="relative bg-white border border-zinc-200 w-full max-w-lg h-64 sm:h-80 shadow-sm mx-8"
-                initial={{ rotate: -1, y: 0 }}
-                animate={{ rotate: 1, y: -5 }}
-                transition={{
-                    rotate: { duration: 8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
-                    y: { duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
-                }}
+        <div className="w-full h-full flex items-center justify-center p-4">
+            <div className="w-full max-w-sm bg-white border border-zinc-200">
+                {/* Header */}
+                <div className="h-8 border-b border-zinc-100 flex items-center px-3 gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-zinc-300" />
+                    <div className="w-2 h-2 rounded-full bg-zinc-300" />
+                    <div className="w-2 h-2 rounded-full bg-zinc-300" />
+                </div>
+                
+                {/* Code content */}
+                <div className="p-4 space-y-3 font-mono text-xs">
+                    {[
+                        { num: 1, width: "60%", highlight: false },
+                        { num: 2, width: "75%", highlight: false },
+                        { num: 3, width: "45%", highlight: true },
+                        { num: 4, width: "80%", highlight: false },
+                        { num: 5, width: "55%", highlight: false },
+                    ].map((line, i) => (
+                        <motion.div 
+                            key={i}
+                            className="flex gap-3 items-center"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.1 }}
+                        >
+                            <span className="text-zinc-300 w-3">{line.num}</span>
+                            <motion.div 
+                                className={`h-2 ${line.highlight ? 'bg-orange-500' : 'bg-zinc-200'}`}
+                                style={{ width: line.width }}
+                                animate={line.highlight ? { opacity: [1, 0.5, 1] } : {}}
+                                transition={{ duration: 1.5, repeat: Infinity }}
+                            />
+                        </motion.div>
+                    ))}
+                </div>
+                
+                {/* Footer */}
+                <div className="h-6 border-t border-zinc-100 flex items-center px-3 gap-2">
+                    <motion.div 
+                        className="w-2 h-2 bg-orange-500"
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                    />
+                    <span className="text-[10px] text-zinc-400">ready</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function AppsVisualNew() {
+    return (
+        <div className="w-full h-full flex items-center justify-center gap-6">
+            {/* Phone */}
+            <motion.div 
+                className="w-20 h-40 border-2 border-zinc-200 rounded-xl relative overflow-hidden"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
             >
-                <div className="w-full h-full bg-white border border-zinc-100 flex flex-col">
-                    {/* Interface Header */}
-                    <div className="h-8 border-b border-zinc-100 flex items-center justify-between px-4 bg-zinc-50/50">
-                        <div className="w-24 h-2 bg-zinc-200 rounded-full" />
-                        <div className="flex gap-2">
-                            <div className="w-4 h-4 bg-zinc-100 border border-zinc-200 rounded-sm" />
-                            <div className="w-4 h-4 bg-zinc-100 border border-zinc-200 rounded-sm" />
-                        </div>
-                    </div>
-
-                    <div className="flex-1 flex">
-                        {/* Sidebar - Hidden on very small screens */}
-                        <div className="w-16 border-r border-zinc-100 bg-zinc-50/30 flex-col gap-2 p-2 hidden sm:flex">
-                            <div className="w-full aspect-square bg-zinc-100 rounded-sm border border-zinc-200" />
-                            <div className="w-full aspect-square bg-zinc-100 rounded-sm border border-zinc-200" />
-                            <div className="w-full aspect-square bg-zinc-100 rounded-sm border border-zinc-200" />
-                        </div>
-
-                        {/* Canvas Content */}
-                        <div className="flex-1 p-6 relative">
-                            <div className="absolute top-6 left-6 right-6 bottom-6 border border-dashed border-blue-300 rounded-sm flex flex-col p-4 gap-3 bg-blue-50/5">
-                                <div className="w-1/2 h-4 bg-zinc-100 rounded-sm" />
-                                <div className="w-full h-24 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                                <div className="flex gap-2">
-                                    <div className="w-20 h-6 bg-zinc-900 rounded-sm" />
-                                    <div className="w-20 h-6 bg-zinc-100 border border-zinc-200 rounded-sm" />
-                                </div>
-                            </div>
-
-                            {/* Floating Palette */}
-                            <motion.div
-                                className="absolute top-4 right-4 w-24 bg-white border border-zinc-200 p-2 shadow-sm z-10"
-                                animate={{ y: [-5, 5, -5] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                <div className="text-[8px] text-zinc-500 mb-1 uppercase font-bold">Colors</div>
-                                <div className="grid grid-cols-4 gap-1">
-                                    <div className="w-4 h-4 bg-orange-500 rounded-sm" />
-                                    <div className="w-4 h-4 bg-zinc-900 rounded-sm" />
-                                    <div className="w-4 h-4 bg-blue-500 rounded-sm" />
-                                    <div className="w-4 h-4 bg-zinc-200 rounded-sm" />
-                                </div>
-                            </motion.div>
-                        </div>
-
-                        {/* Right Panel - Hidden on smaller screens */}
-                        <div className="w-32 border-l border-zinc-100 bg-white p-3 hidden md:block">
-                            <div className="space-y-3">
-                                <div className="w-full h-2 bg-zinc-100 rounded-full" />
-                                <div className="grid grid-cols-2 gap-2">
-                                    <div className="h-6 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                                    <div className="h-6 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                                </div>
-                                <div className="w-full h-20 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                            </div>
-                        </div>
-                    </div>
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 w-8 h-1 bg-zinc-200 rounded-full" />
+                <div className="p-2 pt-4 space-y-2">
+                    <div className="w-full h-8 bg-orange-500 rounded-sm" />
+                    <div className="w-full h-2 bg-zinc-200" />
+                    <div className="w-3/4 h-2 bg-zinc-100" />
                 </div>
-
-                {/* Cursor Interaction */}
-                <motion.div
-                    className="absolute z-20"
-                    animate={{
-                        x: [0, 80, 40, 0],
-                        y: [0, 40, 80, 0]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    style={{ top: '40%', left: '20%' }}
-                >
-                    <MousePointer2 className="w-5 h-5 text-black fill-black stroke-white" />
-                    <div className="ml-2 px-1.5 py-0.5 bg-orange-500 text-white text-[9px] font-bold inline-block rounded-sm shadow-sm">
-                        You
-                    </div>
-                </motion.div>
             </motion.div>
-        </div>
-    );
-}
-
-function DevVisual() {
-    return (
-        <div className="w-full h-full bg-white p-4 md:p-8 font-mono text-xs md:text-sm relative overflow-hidden flex flex-col">
-            <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-                <Code2 className="w-96 h-96" />
-            </div>
-            <div className="space-y-4 relative z-10 max-w-3xl overflow-y-auto custom-scrollbar h-full">
-                <div className="flex gap-3 items-center text-zinc-500 border-b border-zinc-100 pb-4 flex-wrap">
-                    <span>rashid@dev</span>
-                    <span className="text-zinc-300">~</span>
-                    <span>portfolio-v2</span>
-                </div>
-
-                <div className="space-y-2">
-                    <div className="flex gap-3 flex-wrap">
-                        <span className="text-orange-500 font-bold">➜</span>
-                        <span className="text-zinc-900">npx create-next-app@latest</span>
-                    </div>
-                    <div className="text-zinc-500 pl-6 border-l-2 border-zinc-100 ml-2 py-1">
-                        Need to install the following packages: <br />
-                        create-next-app@14.1.0
-                    </div>
-                </div>
-
-                <div className="space-y-4 pt-2">
-                    <div className="flex gap-3 items-start flex-wrap">
-                        <span className="text-green-500 mt-0.5">?</span>
-                        <span className="text-zinc-900 font-bold">What is your project named?</span>
-                        <TypeWriter text=" my-portfolio" delay={0.5} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2 }}
-                        className="flex gap-3 items-start flex-wrap"
-                    >
-                        <span className="text-green-500 mt-0.5">?</span>
-                        <span className="text-zinc-900 font-bold">Would you like to use TypeScript?</span>
-                        <span className="text-orange-500">Yes</span>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2.5 }}
-                        className="flex gap-3 items-start flex-wrap"
-                    >
-                        <span className="text-green-500 mt-0.5">?</span>
-                        <span className="text-zinc-900 font-bold">Would you like to use Tailwind CSS?</span>
-                        <span className="text-orange-500">Yes</span>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 3.5 }}
-                        className="pt-4 text-green-600 flex items-start gap-3 font-bold flex-wrap"
-                    >
-                        <span className="mt-0.5">✔</span> Success! Created my-portfolio at ./my-portfolio
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 4.5 }}
-                        className="pt-4 text-zinc-500"
-                    >
-                        <div className="flex gap-3 flex-wrap">
-                             <span className="text-orange-500 font-bold">➜</span> cd my-portfolio
+            
+            {/* Desktop */}
+            <motion.div 
+                className="w-48 h-32 border-2 border-zinc-200 relative"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+            >
+                <div className="p-3 space-y-2">
+                    <div className="flex gap-2">
+                        <div className="w-1/3 h-12 bg-zinc-100" />
+                        <div className="flex-1 space-y-1">
+                            <div className="w-full h-2 bg-zinc-200" />
+                            <div className="w-2/3 h-2 bg-zinc-100" />
                         </div>
-                        <div className="flex gap-3 flex-wrap">
-                            <span className="text-orange-500 font-bold">➜</span> npm run dev
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 5.5 }}
-                        className="p-4 bg-green-50 border border-green-100 rounded text-green-700 mt-4 inline-block break-all"
-                    >
-                        ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-                    </motion.div>
+                    </div>
+                    <div className="w-12 h-4 bg-orange-500" />
                 </div>
-            </div>
-        </div>
-    );
-}
-
-function AppsVisual() {
-    return (
-        <div className="w-full h-full flex items-end justify-center gap-4 sm:gap-8 pb-8 bg-zinc-50/30 px-4 sm:px-12">
-            {[0, 1, 2].map((i) => (
-                <motion.div
-                    key={i}
-                    className="bg-white border-x border-t border-zinc-200 relative overflow-hidden shadow-sm"
-                    // Desktop: 16:10 aspect (approx), Tablet: 3:4, Mobile: 9:19.5
-                    // Using fixed widths/heights to maintain ratios visually
-                    style={{
-                        width: i === 2 ? '45%' : i === 1 ? '30%' : '15%',
-                        height: i === 2 ? '80%' : i === 1 ? '60%' : '50%',
-                        minWidth: i === 2 ? '240px' : i === 1 ? '160px' : '80px'
-                    }}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
-                >
-                    <div className="w-full h-1 bg-orange-500" />
-                    <div className="p-2 sm:p-4 space-y-2 sm:space-y-4">
-                        <div className="w-full h-24 sm:h-32 bg-zinc-50 border border-zinc-100" />
-                        <div className="w-3/4 h-2 sm:h-3 bg-zinc-100" />
-                        <div className="w-1/2 h-2 sm:h-3 bg-zinc-100" />
-
-                        {i === 2 && (
-                            <div className="grid grid-cols-3 gap-2 mt-4">
-                                <div className="h-16 bg-blue-50 rounded border border-blue-100" />
-                                <div className="h-16 bg-purple-50 rounded border border-purple-100" />
-                                <div className="h-16 bg-green-50 rounded border border-green-100" />
-                            </div>
-                        )}
-
-                        {i === 1 && (
-                            <div className="grid grid-cols-2 gap-2 mt-4">
-                                <div className="h-12 bg-blue-50 rounded" />
-                                <div className="h-12 bg-purple-50 rounded" />
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Badge */}
-                    <div className="absolute bottom-4 left-4 bg-zinc-100 px-2 py-1 text-[10px] font-bold text-zinc-500 uppercase border border-zinc-200">
-                        {i === 0 ? 'Mobile' : i === 1 ? 'Tablet' : 'Desktop'}
-                    </div>
-                </motion.div>
-            ))}
-        </div>
-    );
-}
-
-function TypeWriter({ text, delay = 0 }: { text: string, delay?: number }) {
-    return (
-        <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay }}
-        >
-            {text}
-            <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="inline-block w-1.5 h-3 bg-orange-500 ml-1 align-middle"
+                {/* Stand */}
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-8 h-3 bg-zinc-200" />
+            </motion.div>
+            
+            {/* Floating elements */}
+            <motion.div 
+                className="absolute top-8 right-8 w-3 h-3 bg-orange-500"
+                animate={{ rotate: [0, 90, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
             />
-        </motion.span>
+            <motion.div 
+                className="absolute bottom-8 left-8 w-4 h-4 border border-zinc-300"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 3, repeat: Infinity }}
+            />
+        </div>
     );
 }
+
 
 function FigmaIcon() {
     return (

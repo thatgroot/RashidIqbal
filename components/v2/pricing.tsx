@@ -45,19 +45,6 @@ const plans = [
   }
 ];
 
-const planVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.5,
-      ease: "easeOut" as const
-    }
-  })
-};
-
 export function PricingV2() {
   const [openPlan, setOpenPlan] = useState<number | null>(null);
   const [selectedServices, setSelectedServices] = useState<{ [key: number]: ServiceType }>({});
@@ -72,94 +59,42 @@ export function PricingV2() {
   return (
     <section className="bg-white" id="pricing">
       <div className="max-w-container border-l border-zinc-100">
-        <GridContainer> 
+        <GridContainer  > 
             <GridItem className="py-24">
-                <motion.div 
-                  className="max-w-2xl"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6 }}
-                >
-                    <motion.h2 
-                      className="text-4xl font-semibold text-zinc-900 mb-6"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    >
+                <div className="max-w-2xl">
+                    <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
                         Simple, Flat Pricing.
-                    </motion.h2>
-                    <motion.p 
-                      className="text-lg text-zinc-500"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                    >
+                    </h2>
+                    <p className="text-lg text-zinc-500">
                         No hidden fees. No hourly billing surprises. Just great work at a fixed price.
-                    </motion.p>
-                </motion.div>
+                    </p>
+                </div>
             </GridItem>
         </GridContainer>
 
-        <GridContainer cols={3}> 
+        <GridContainer cols={3}  > 
             {plans.map((plan, i) => (
-                <motion.div
-                  key={i}
-                  custom={i}
-                  variants={planVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                >
-                  <GridItem className={plan.popular ? "bg-zinc-50/50" : ""}>
+                <GridItem key={i} className={plan.popular ? "bg-zinc-50/50" : ""}>
                     {plan.popular && (
-                          <motion.div 
-                            className="absolute top-8 right-8 px-3 py-1 bg-orange-700 text-white text-[10px] font-bold uppercase tracking-wider"
-                            initial={{ scale: 0, rotate: -10 }}
-                            whileInView={{ scale: 1, rotate: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5, type: "spring" }}
-                          >
+                        <div className="absolute top-8 right-8 px-3 py-1 bg-orange-700 text-white text-[10px] font-bold uppercase tracking-wider">
                             Most Popular
-                          </motion.div>
+                        </div>
                     )}
                     
                     <div className="mb-8 mt-4">
                         <h3 className="text-xl font-medium text-zinc-900 mb-2">{plan.name}</h3>
-                          <motion.div 
-                            className="text-4xl font-semibold text-zinc-900 mb-4"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 + 0.3 }}
-                          >
+                        <div className="text-4xl font-semibold text-zinc-900 mb-4">
                             {plan.label}
-                          </motion.div>
+                        </div>
                         <p className="text-sm text-zinc-500 leading-relaxed h-12">{plan.desc}</p>
                     </div>
 
                     <div className="space-y-4 mb-8 h-64">
                         {getFeatures(i).map((f, j) => (
-                              <motion.div 
-                                key={j} 
-                                className="flex items-center gap-3 text-sm text-zinc-700"
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: j * 0.05 + i * 0.1 + 0.3 }}
-                              >
-                                  <motion.div
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: j * 0.05 + i * 0.1 + 0.35, type: "spring" }}
-                                  >
+                            <div key={j} className="flex items-center gap-3 text-sm text-zinc-700">
                                 <Check className="w-4 h-4 text-orange-500 shrink-0" />
-                                  </motion.div>
                                 {f}
-                              </motion.div>
+                            </div>
                         ))}
                     </div>
 
@@ -211,18 +146,15 @@ export function PricingV2() {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             className="w-full"
                         >
-                            <motion.button 
+                            <button 
                                 onClick={() => setOpenPlan(i)}
                                 className={`w-full py-3 text-sm font-bold transition-colors flex items-center justify-center gap-2 ${
                                 plan.popular 
                                     ? "bg-zinc-900 text-white hover:bg-orange-600" 
                                     : "bg-white border border-zinc-200 text-zinc-900 hover:bg-zinc-50"
-                            }`}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                            >
+                            }`}>
                                 Let&apos;s Talk <ArrowRight className="w-4 h-4" />
-                            </motion.button>
+                            </button>
                         </motion.div>
 
                         {/* Contact Options - Appear in place */}
@@ -237,53 +169,30 @@ export function PricingV2() {
                                 >
                                     
                                     <div className="relative z-10 flex gap-2 w-full bg-white">
-                                        <motion.a 
-                                          href="mailto:rashidiqbal.freelance@gmail.com" 
-                                          className="flex-1 py-3 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 border border-zinc-200 transition-colors" 
-                                          title="Email"
-                                          whileHover={{ scale: 1.05 }}
-                                          whileTap={{ scale: 0.95 }}
-                                        >
+                                        <a href="mailto:rashidiqbal.freelance@gmail.com" className="flex-1 py-3 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 border border-zinc-200 transition-colors" title="Email">
                                             <SiGmail size={16} />
-                                        </motion.a>
-                                        <motion.a 
-                                          href="https://wa.me/923554665643" 
-                                          className="flex-1 py-3 bg-green-50 hover:bg-green-100 flex items-center justify-center text-green-600 border border-green-200 transition-colors" 
-                                          title="WhatsApp"
-                                          whileHover={{ scale: 1.05 }}
-                                          whileTap={{ scale: 0.95 }}
-                                        >
+                                        </a>
+                                        <a href="https://wa.me/923554665643" className="flex-1 py-3 bg-green-50 hover:bg-green-100 flex items-center justify-center text-green-600 border border-green-200 transition-colors" title="WhatsApp">
                                             <SiWhatsapp size={16} />
-                                        </motion.a>
-                                        <motion.a 
-                                          href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" 
-                                          target="_blank" 
-                                          rel="noopener noreferrer" 
-                                          className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors" 
-                                          title="Upwork"
-                                          whileHover={{ scale: 1.05 }}
-                                          whileTap={{ scale: 0.95 }}
-                                        >
+                                        </a>
+                                        <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors" title="Upwork">
                                             <SiUpwork size={16} />
-                                        </motion.a>
-                                        <motion.button 
+                                        </a>
+                                        <button 
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 setOpenPlan(null);
                                             }}
                                             className="px-3 py-3 hover:bg-zinc-100 text-zinc-400 border border-zinc-200 transition-colors"
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
                                         >
                                             <ArrowRight className="w-4 h-4 rotate-180" />
-                                        </motion.button>
+                                        </button>
                                     </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>
                     </div>
                 </GridItem>
-                </motion.div>
             ))}
         </GridContainer>
       </div>

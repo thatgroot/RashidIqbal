@@ -11,32 +11,14 @@ const brands = [
 
 export function TrustedByV2() {
   return (
-    <motion.section 
-      className="bg-white border-b border-zinc-100"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
-    >
+    <section className="bg-white border-b border-zinc-100">
       <div className="max-w-container border-l border-zinc-100">
-        <GridContainer> 
+        <GridContainer  > 
             <GridItem className="py-12">
-              <motion.div 
-                className="flex flex-col md:flex-row items-center gap-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <motion.p 
-                  className="text-xs font-bold text-zinc-900 whitespace-nowrap"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <p className="text-xs font-bold text-zinc-900 whitespace-nowrap">
                   TRUSTED BY 50+ COMPANIES
-                </motion.p>
+                </p>
                 
                 <div className="flex-1 w-full overflow-hidden mask-linear-fade relative">
                 <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-white to-transparent z-10" />
@@ -48,20 +30,16 @@ export function TrustedByV2() {
                         transition={{ duration: 40, ease: "linear", repeat: Infinity }}
                     >
                         {[...brands, ...brands].map((brand, i) => (
-                      <motion.span 
-                        key={i} 
-                        className="text-lg font-bold text-zinc-500 hover:text-orange-500 transition-colors cursor-default"
-                        whileHover={{ scale: 1.1, y: -2 }}
-                      >
+                            <span key={i} className="text-lg font-bold text-zinc-500 hover:text-zinc-700 transition-colors cursor-default">
                                 {brand}
-                      </motion.span>
+                            </span>
                         ))}
                     </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </GridItem>
         </GridContainer>
       </div>
-    </motion.section>
+    </section>
   );
 }
