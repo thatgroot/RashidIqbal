@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MousePointer2 } from "lucide-react";
+import { ArrowRight, MousePointer2, Code2 } from "lucide-react";
 import { GridContainer, GridItem } from "./grid-system";
 import { useState, useEffect } from "react";
 
