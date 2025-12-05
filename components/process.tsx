@@ -2,37 +2,37 @@
 
 import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "./grid-system";
-import { MessageSquare, Search, PenTool, Rocket, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const steps = [
   {
-    id: "01",
+    num: "01",
     title: "Talk",
-    desc: "Every great project starts with a conversation. We dive into your vision, goals, and ideas so we know exactly what success looks like.",
-    icon: MessageSquare
+    verb: "Discover",
+    desc: "Every great project starts with a conversation. We dive into your vision, goals, and what success looks like for you."
   },
   {
-    id: "02",
-    title: "Prepare",
-    desc: "We gather inspiration, mockups, and test samples. You get a taste of the direction before anything is fully built, so there are no surprises.",
-    icon: Search
+    num: "02",
+    title: "Prepare", 
+    verb: "Design",
+    desc: "Wireframes, mockups, and prototypes. You see the direction before a single line of code is written."
   },
   {
-    id: "03",
+    num: "03",
     title: "Cook",
-    desc: "This is where your project comes alive. Every piece is crafted carefully, refined, and brought together until it&apos;s ready to impress.",
-    icon: PenTool
+    verb: "Build",
+    desc: "Your project comes alive. Pixel-perfect implementation with clean, scalable code that performs."
   },
   {
-    id: "04",
+    num: "04",
     title: "Serve",
-    desc: "Finally, your project is delivered polished, complete, and ready to create impact. What started as an idea now becomes tangible and high-performing.",
-    icon: Rocket
+    verb: "Launch",
+    desc: "Polished, tested, and deployed. Your product is live and ready to make an impact."
   }
 ];
 
-const STEP_DURATION = 2500; // ms per step
+const STEP_DURATION = 3000;
 
 export function ProcessV2() {
   const [activeStep, setActiveStep] = useState(0);
@@ -46,7 +46,7 @@ export function ProcessV2() {
 
   return (
     <section className="bg-white" id="process">
-      <div className="max-w-7xl mx-auto border-l border-zinc-100">
+      <div className="max-w-container border-l border-zinc-100">
         <GridContainer>
           <GridItem className="py-24">
             <motion.div
@@ -56,116 +56,100 @@ export function ProcessV2() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <motion.h2
-                className="text-4xl font-semibold text-zinc-900 mb-6"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                The Recipe for Success.
-              </motion.h2>
-              <motion.p
-                className="text-lg text-zinc-500"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                Every great project starts with a conversation. We explore, prepare, cook, and serve, turning your vision into something real, polished, and built to last.
-              </motion.p>
+              <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
+                How We&apos;ll Work Together.
+              </h2>
+              <p className="text-lg text-zinc-500">
+                A proven 4-step process that turns ideas into shipped products. No surprises, just results.
+              </p>
             </motion.div>
           </GridItem>
         </GridContainer>
 
-        {/* 2x2 Layout */}
-        <GridContainer cols={2}>
+        {/* Horizontal Steps - Full Width */}
+        <GridContainer cols={4}>
           {steps.map((step, i) => {
             const isActive = i === activeStep;
+            const isPast = i < activeStep;
+            
             return (
               <motion.div
                 key={i}
-                className="relative h-full"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
+                onClick={() => setActiveStep(i)}
+                className="cursor-pointer"
               >
-                <GridItem className="h-full relative overflow-hidden group" padding={false}>
-                  <div className="p-8 md:p-12 h-full flex flex-col relative z-10">
-                    {/* Header */}
-                    <div className="flex justify-between items-start mb-8">
-                      <motion.div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center border transition-colors duration-300 ${isActive ? 'bg-orange-500 border-orange-500 text-white' : 'bg-white border-zinc-200 text-zinc-500'}`}
-                      >
-                        <step.icon className="w-6 h-6" />
-                      </motion.div>
-                      <span className="text-4xl font-bold text-zinc-100 select-none font-mono">
-                        {step.id}
+                <GridItem padding={false} className="h-full">
+                  <div className="p-6 md:p-8 h-full flex flex-col min-h-[280px]">
+                    {/* Step Number - Large */}
+                    <div className="flex items-baseline justify-between mb-6">
+                      <span className={`text-6xl md:text-7xl font-bold transition-colors duration-500 ${
+                        isActive ? 'text-orange-500' : isPast ? 'text-zinc-200' : 'text-zinc-100'
+                      }`}>
+                        {step.num}
+                      </span>
+                      <span className={`text-[10px] font-mono uppercase tracking-widest transition-colors duration-300 ${
+                        isActive ? 'text-orange-500' : 'text-zinc-400'
+                      }`}>
+                        {step.verb}
                       </span>
                     </div>
-
-                    {/* Content */}
-                    <h3 className={`text-xl font-bold mb-4 transition-colors duration-300 ${isActive ? 'text-orange-500' : 'text-zinc-900'}`}>
+                    
+                    {/* Title */}
+                    <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${
+                      isActive ? 'text-zinc-900' : 'text-zinc-700'
+                    }`}>
                       {step.title}
                     </h3>
-                    <p className="text-zinc-500 leading-relaxed">
+                    
+                    {/* Description */}
+                    <p className={`text-sm leading-relaxed flex-1 transition-colors duration-300 ${
+                      isActive ? 'text-zinc-600' : 'text-zinc-400'
+                    }`}>
                       {step.desc}
                     </p>
 
-                    {/* Progress Bar (Bottom) */}
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-zinc-100">
-                      {isActive && (
-                        <motion.div 
-                          className="h-full bg-orange-500 origin-left"
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          transition={{ duration: STEP_DURATION / 1000, ease: "linear" }}
-                        />
-                      )}
+                    {/* Progress Indicator */}
+                    <div className="mt-6 h-0.5 bg-zinc-100 overflow-hidden">
+                      <motion.div
+                        className="h-full bg-orange-500 origin-left"
+                        initial={{ scaleX: isPast ? 1 : 0 }}
+                        animate={{ scaleX: isActive ? 1 : isPast ? 1 : 0 }}
+                        transition={{ 
+                          duration: isActive ? STEP_DURATION / 1000 : 0.3, 
+                          ease: isActive ? "linear" : "easeOut"
+                        }}
+                        key={isActive ? `active-${i}` : `static-${i}`}
+                      />
                     </div>
                   </div>
-
-                  {/* Background Highlight for Active State */}
-                  <motion.div
-                    className="absolute inset-0 bg-orange-50/30 pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isActive ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
                 </GridItem>
               </motion.div>
             );
           })}
         </GridContainer>
 
+        {/* CTA Section */}
         <GridContainer>
-          <GridItem className="pt-24 pb-48">
+          <GridItem className="py-24">
             <motion.div
-              className="max-w-xl"
+              className="flex flex-col md:flex-row md:items-center md:justify-between gap-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <motion.h2
-                className="text-3xl font-semibold text-zinc-900 mb-4"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                Let&apos;s Travel to the Inbox.
-              </motion.h2>
-              <motion.p
-                className="text-lg text-zinc-500 mb-8"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                When it all comes together, the result feels effortless and complete. A polished, working product ready to perform and make an impact. Looking back, I feel proud of what your project will become.
-              </motion.p>
+              <div className="max-w-lg">
+                <h3 className="text-2xl font-semibold text-zinc-900 mb-3">
+                  Ready to start?
+                </h3>
+                <p className="text-zinc-500">
+                  Most projects go from first call to launch in 4-8 weeks.
+                </p>
+              </div>
               <motion.button
                 onClick={() => {
                   const pricingSection = document.querySelector('#pricing');
@@ -173,29 +157,14 @@ export function ProcessV2() {
                     const offset = 64;
                     const elementPosition = pricingSection.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    window.scrollTo({
-                      top: offsetPosition,
-                      behavior: "smooth"
-                    });
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                   }
                 }}
-                className="px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 group relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                className="px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 shrink-0"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <motion.span
-                  className="absolute inset-0 bg-orange-500"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="relative z-10 flex items-center gap-2">
-                View Pricing <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </span>
+                View Pricing <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </motion.button>
             </motion.div>
           </GridItem>

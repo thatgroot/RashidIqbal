@@ -218,7 +218,7 @@ function HeroWindowV2() {
 
     return (
         <motion.div 
-            className="absolute inset-0 flex flex-col p-4 md:p-8 dotted-bg"
+            className="absolute inset-0 flex flex-col p-2 md:p-8 dotted-bg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
