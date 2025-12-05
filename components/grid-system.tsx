@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import { GridSnake } from "@/components/ui/grid-snake";
 
@@ -32,15 +32,28 @@ export function GridContainer({ children, className, cols = 1, enableSnake = fal
 }
 
 export function GridItem({ children, className, title, label, padding = true }: { children: React.ReactNode, className?: string, title?: string, label?: string, padding?: boolean }) {
+  const itemRef = useRef<HTMLDivElement>(null);
+  
   // Check if this is a visual container (no hover effects on visual items)
   const isVisual = className?.includes("grid-item-visual");
 
-  // Corners and hover effects are now CSS-only via .grid-item-corners class in globals.css
+  // Set CSS custom properties for cursor position (no extra DOM nodes)
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!itemRef.current || isVisual) return;
+    const rect = itemRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    itemRef.current.style.setProperty('--mouse-x', `${x}%`);
+    itemRef.current.style.setProperty('--mouse-y', `${y}%`);
+  }, [isVisual]);
+
   return (
     <div 
+      ref={itemRef}
+      onMouseMove={!isVisual ? handleMouseMove : undefined}
       className={cn(
         "relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden transition-colors duration-200",
-        !isVisual && "hover:bg-zinc-50/80",
+        !isVisual && "grid-item-hover",
         padding ? "p-8 sm:p-12" : "", 
         className
       )}

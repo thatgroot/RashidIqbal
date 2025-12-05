@@ -77,6 +77,28 @@ button, a, .cursor-pointer {
   background-color: rgb(249 115 22);
 }
 
+/* Cursor-following gradient hover effect - uses CSS variables, no extra DOM */
+.grid-item-hover {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  background-image: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    transparent 0%,
+    transparent 100%
+  );
+  transition: background-color 0.2s;
+}
+
+.grid-item-hover:hover {
+  background-color: rgba(250, 250, 250, 0.8);
+  background-image: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(249, 115, 22, 0.08) 0%,
+    rgba(249, 115, 22, 0.03) 30%,
+    transparent 70%
+  );
+}
+
 /* Dotted Grid Background Optimization - uses pseudo-element to reduce DOM size */
 .dotted-bg::before {
   content: '';
