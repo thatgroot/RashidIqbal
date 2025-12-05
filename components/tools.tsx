@@ -49,7 +49,7 @@ export function Tools() {
     <section className="bg-white" id="tools">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer>
-          <GridItem className="py-24">
+          <GridItem className="py-32">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export function Tools() {
               <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
                 Tools I Work With.
               </h2>
-              <p className="text-lg text-zinc-500 max-w-xl mb-12">
+              <p className="text-lg text-zinc-500 max-w-xl mb-16">
                 A curated toolkit that helps me ship faster without sacrificing quality.
               </p>
 
@@ -67,8 +67,8 @@ export function Tools() {
               <div className="max-w-3xl">
                 <div className="border border-zinc-200 overflow-hidden">
                   {/* Window Title Bar - Minimal */}
-                  <div className="flex items-center justify-between px-4 py-3 bg-zinc-50 border-b border-zinc-200">
-                    <div className="flex gap-1.5">
+                  <div className="flex items-center justify-between px-6 py-4 bg-zinc-50 border-b border-zinc-200">
+                    <div className="flex gap-2">
                       <div className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
                       <div className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
                       <div className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
@@ -79,13 +79,13 @@ export function Tools() {
                     <div className="w-12" />
                   </div>
 
-                  {/* Tabs - Clean style */}
-                  <div className="flex border-b border-zinc-200 bg-white">
+                  {/* Tabs - Clean style with more spacing */}
+                  <div className="flex border-b border-zinc-200 bg-white px-2">
                     {categories.map((category) => (
                       <button
                         key={category.id}
                         onClick={() => setActiveTab(category.id)}
-                        className={`relative px-5 py-3 text-xs font-mono uppercase tracking-wider transition-colors ${
+                        className={`relative px-6 py-4 text-xs font-mono uppercase tracking-wider transition-colors ${
                           activeTab === category.id 
                             ? 'text-zinc-900' 
                             : 'text-zinc-400 hover:text-zinc-600'
@@ -103,8 +103,8 @@ export function Tools() {
                     ))}
                   </div>
 
-                  {/* Content */}
-                  <div className="bg-white">
+                  {/* Content - More vertical padding */}
+                  <div className="bg-white py-4">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={activeTab}
@@ -122,11 +122,11 @@ export function Tools() {
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.05 }}
-                            className="flex items-center gap-4 p-5 border-b border-zinc-100 last:border-b-0 hover:bg-zinc-50 transition-colors group"
+                            className="flex items-center gap-5 px-8 py-5 hover:bg-zinc-50 transition-colors group"
                           >
                             {/* Color indicator */}
                             <div 
-                              className="w-2 h-2 rounded-full shrink-0"
+                              className="w-2.5 h-2.5 rounded-full shrink-0"
                               style={{ backgroundColor: tool.color }}
                             />
                             
@@ -135,7 +135,7 @@ export function Tools() {
                               <span className="font-medium text-zinc-900 group-hover:text-orange-500 transition-colors">
                                 {tool.name}
                               </span>
-                              <span className="text-zinc-300 mx-3">—</span>
+                              <span className="text-zinc-200 mx-4">—</span>
                               <span className="text-sm text-zinc-500">{tool.desc}</span>
                             </div>
                             
@@ -152,7 +152,7 @@ export function Tools() {
                 </div>
 
                 {/* Footer */}
-                <p className="text-xs text-zinc-400 mt-4">
+                <p className="text-xs text-zinc-400 mt-6">
                   The right tool for the right job. Always exploring what&apos;s next.
                 </p>
               </div>
