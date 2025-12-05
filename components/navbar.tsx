@@ -47,22 +47,60 @@ export function NavbarV2() {
           <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
         </button>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
-          <Link href="#services" onClick={(e) => scrollToSection(e, "#services")} className="hover:text-orange-500 transition-colors">Services</Link>
-          <Link href="#work" onClick={(e) => scrollToSection(e, "#work")} className="hover:text-orange-500 transition-colors">Work</Link>
-          <Link href="#process" onClick={(e) => scrollToSection(e, "#process")} className="hover:text-orange-500 transition-colors">Process</Link>
-          <Link href="#resources" onClick={(e) => scrollToSection(e, "#resources")} className="hover:text-orange-500 transition-colors">FAQ</Link>
+        <div className="hidden md:flex items-center gap-1 text-sm font-medium">
+          <Link 
+            href="#work" 
+            onClick={(e) => scrollToSection(e, "#work")} 
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+          >
+            Work
+          </Link>
+          <Link 
+            href="#pricing" 
+            onClick={(e) => scrollToSection(e, "#pricing")} 
+            className="px-3 py-2 text-orange-600 hover:text-orange-700 hover:bg-orange-50 transition-all rounded-sm font-semibold"
+          >
+            Pricing
+          </Link>
+          <Link 
+            href="#testimonials" 
+            onClick={(e) => scrollToSection(e, "#testimonials")} 
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+          >
+            Reviews
+          </Link>
+          <Link 
+            href="#process" 
+            onClick={(e) => scrollToSection(e, "#process")} 
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+          >
+            Process
+          </Link>
+          <Link 
+            href="#resources" 
+            onClick={(e) => scrollToSection(e, "#resources")} 
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+          >
+            FAQ
+          </Link>
         </div>
 
-        <div className="relative">
+        <div className="relative flex items-center gap-3">
+          <span className="hidden lg:flex items-center gap-1.5 text-xs text-zinc-500">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Available now
+          </span>
           <button 
             onClick={() => setShowContactOptions(!showContactOptions)}
             aria-label="Start project contact options"
             aria-expanded={showContactOptions}
             aria-haspopup="true"
-            className="px-4 py-2 bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-orange-500 transition-colors flex items-center gap-2"
+            className="px-5 py-2.5 bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-orange-500 transition-all hover:scale-105 flex items-center gap-2"
           >
-            Start Project
+            Book a Call
           </button>
 
           <AnimatePresence>

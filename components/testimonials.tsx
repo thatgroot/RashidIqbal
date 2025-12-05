@@ -38,7 +38,7 @@ const reviewVariants = {
 
 export function TestimonialsV2() {
   return (
-    <section className="bg-white">
+    <section className="bg-white" id="testimonials">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer> 
             <GridItem className="py-24">
@@ -98,7 +98,7 @@ export function TestimonialsV2() {
                                     viewport={{ once: true }}
                                     transition={{ delay: 0.4 + i * 0.1 + j * 0.05 }}
                                   >
-                                    <Star className="w-4 h-4 fill-orange-500 text-orange-500" />
+                                    <Star className="w-4 h-4 fill-orange-500 text-orange-500" aria-hidden="true" />
                                   </motion.div>
                             ))}
                           </motion.div>

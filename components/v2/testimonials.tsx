@@ -23,7 +23,7 @@ const reviews = [
 
 export function TestimonialsV2() {
   return (
-    <section className="bg-white">
+    <section className="bg-white" id="testimonials">
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer  > 
             <GridItem className="py-24">
@@ -45,7 +45,7 @@ export function TestimonialsV2() {
                     <div className="relative z-10">
                         <div className="flex gap-1 mb-8">
                             {[...Array(5)].map((_, j) => (
-                                <Star key={j} className="w-4 h-4 fill-orange-500 text-orange-500" />
+                                <Star key={j} className="w-4 h-4 fill-orange-500 text-orange-500" aria-hidden="true" />
                             ))}
                         </div>
                         <p className="text-lg text-zinc-900 leading-relaxed mb-8 font-medium">

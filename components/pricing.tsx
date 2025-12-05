@@ -10,38 +10,47 @@ type ServiceType = "landing" | "web" | "mobile";
 
 const plans = [
   {
-    name: "Starter",
-    label: "Design",
-    desc: "Validate your idea with world-class design. Professional Figma designs for your product.",
-    baseFeatures: ["Figma Design System", "Brand Identity", "Component Library", "2 Weeks Turnaround"],
+    name: "Launch",
+    tagline: "Design Only",
+    desc: "Stop guessing. Start with designs that convert. Get investor-ready mockups in 2 weeks.",
+    idealFor: "Founders validating ideas",
+    baseFeatures: ["Production-Ready Figma Files", "Design System You Own Forever", "Mobile + Desktop Layouts"],
     serviceFeatures: {
-        landing: ["High-Converting Layouts", "Desktop & Mobile Views"],
-        web: ["Dashboard UI Kit", "User Flow Prototyping"],
-        mobile: ["iOS & Android Screens", "Interactive Prototypes"]
-    }
+        landing: ["Conversion-Optimized Pages", "A/B Test Variants"],
+        web: ["Full Dashboard UI Kit", "User Journey Mapping"],
+        mobile: ["iOS + Android Screens", "Clickable Prototype"]
+    },
+    deliveryTime: "2 weeks",
+    highlight: null
   },
   {
-    name: "Growth",
-    label: "Development",
-    desc: "Bring your designs to life. Pixel-perfect frontend development ready for growth.",
-    baseFeatures: ["Clean Code Architecture", "Smooth Animations", "Performance First", "4 Weeks Turnaround"],
+    name: "Build",
+    tagline: "Design + Development",
+    desc: "From Figma to live product. Ship faster with clean, scalable code that grows with you.",
+    idealFor: "Startups ready to launch",
+    baseFeatures: ["Everything in Launch", "Pixel-Perfect Development", "60fps Animations", "SEO & Performance Optimized"],
     serviceFeatures: {
-        landing: ["Framer Development", "CMS Integration"],
-        web: ["Next.js Application", "Responsive Implementation"],
-        mobile: ["Expo / React Native", "Native Feel & Gestures"]
+        landing: ["Framer or Next.js Site", "CMS for Easy Updates"],
+        web: ["Full Next.js Application", "API Integration Ready"],
+        mobile: ["React Native / Expo App", "Smooth Native Gestures"]
     },
-    popular: true
+    deliveryTime: "4 weeks",
+    popular: true,
+    highlight: "Best Value"
   },
   {
     name: "Scale",
-    label: "Full Service",
-    desc: "The complete package. From concept to production-grade application.",
-    baseFeatures: ["Full Product Design", "End-to-End Development", "Dedicated Support", "Custom SLA"],
+    tagline: "Full Partnership",
+    desc: "Your product deserves a dedicated partner. End-to-end execution with priority support.",
+    idealFor: "Funded startups & agencies",
+    baseFeatures: ["Everything in Build", "Dedicated Slack Channel", "Weekly Strategy Calls", "Priority Bug Fixes"],
     serviceFeatures: {
-        landing: ["Design + Framer Site", "Advanced SEO & Analytics"],
-        web: ["Design + Next.js App", "Scalable Architecture"],
-        mobile: ["Design + Expo App", "App Store Deployment"]
-    }
+        landing: ["Multi-Page Website", "Analytics Dashboard Setup"],
+        web: ["Complex App Architecture", "Database & Auth Setup"],
+        mobile: ["App Store Submission", "Push Notifications"]
+    },
+    deliveryTime: "Custom",
+    highlight: "White Glove"
   }
 ];
 
@@ -60,11 +69,10 @@ const planVariants = {
 
 export function PricingV2() {
   const [openPlan, setOpenPlan] = useState<number | null>(null);
-  const [selectedServices, setSelectedServices] = useState<{ [key: number]: ServiceType }>({});
+  const [serviceType, setServiceType] = useState<ServiceType>("landing");
 
   const getFeatures = (planIndex: number) => {
       const plan = plans[planIndex];
-      const serviceType = selectedServices[planIndex] || "landing"; // Default to landing if not selected
       const specificFeatures = plan.serviceFeatures ? plan.serviceFeatures[serviceType] : [];
       return [...plan.baseFeatures, ...specificFeatures];
   };
@@ -75,30 +83,75 @@ export function PricingV2() {
         <GridContainer> 
             <GridItem className="py-24">
                 <motion.div 
-                  className="max-w-2xl"
+                  className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.6 }}
                 >
-                    <motion.h2 
-                      className="text-4xl font-semibold text-zinc-900 mb-6"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
+                    <div className="max-w-xl">
+                        <motion.h2 
+                          className="text-4xl font-semibold text-zinc-900 mb-4"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                        >
+                            Invest in Results.
+                        </motion.h2>
+                        <motion.p 
+                          className="text-lg text-zinc-500"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            Fixed pricing. No hourly surprises. You pay for outcomes, not hours logged.
+                        </motion.p>
+                    </div>
+                    
+                    {/* Service Type Selector */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      className="flex items-center gap-1 p-1 bg-zinc-100"
                     >
-                        Simple, Flat Pricing.
-                    </motion.h2>
-                    <motion.p 
-                      className="text-lg text-zinc-500"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                    >
-                        No hidden fees. No hourly billing surprises. Just great work at a fixed price.
-                    </motion.p>
+                        <button
+                            onClick={() => setServiceType("landing")}
+                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
+                                serviceType === "landing"
+                                    ? "bg-white text-zinc-900 shadow-sm"
+                                    : "text-zinc-500 hover:text-zinc-700"
+                            }`}
+                        >
+                            <Layout className="w-4 h-4" aria-hidden="true" />
+                            <span>Landing Page</span>
+                        </button>
+                        <button
+                            onClick={() => setServiceType("web")}
+                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
+                                serviceType === "web"
+                                    ? "bg-white text-zinc-900 shadow-sm"
+                                    : "text-zinc-500 hover:text-zinc-700"
+                            }`}
+                        >
+                            <Code2 className="w-4 h-4" aria-hidden="true" />
+                            <span>Web App</span>
+                        </button>
+                        <button
+                            onClick={() => setServiceType("mobile")}
+                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
+                                serviceType === "mobile"
+                                    ? "bg-white text-zinc-900 shadow-sm"
+                                    : "text-zinc-500 hover:text-zinc-700"
+                            }`}
+                        >
+                            <Smartphone className="w-4 h-4" aria-hidden="true" />
+                            <span>Mobile App</span>
+                        </button>
+                    </motion.div>
                 </motion.div>
             </GridItem>
         </GridContainer>
@@ -113,94 +166,77 @@ export function PricingV2() {
                   whileInView="visible"
                   viewport={{ once: true, margin: "-50px" }}
                 >
-                  <GridItem className={plan.popular ? "bg-zinc-50/50" : ""}>
-                    {plan.popular && (
+                  <GridItem className={plan.popular ? "bg-gradient-to-b from-orange-50/50 to-white ring-2 ring-orange-500/20 ring-inset" : ""}>
+                    {/* Badge */}
+                    {(plan.popular || plan.highlight) && (
                           <motion.div 
-                            className="absolute top-8 right-8 px-3 py-1 bg-orange-700 text-white text-[10px] font-bold uppercase tracking-wider"
+                            className={`absolute top-6 right-6 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
+                              plan.popular 
+                                ? "bg-orange-500 text-white" 
+                                : "bg-zinc-900 text-white"
+                            }`}
                             initial={{ scale: 0, rotate: -10 }}
                             whileInView={{ scale: 1, rotate: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: 0.5, type: "spring" }}
                           >
-                            Most Popular
+                            {plan.highlight || "Most Popular"}
                           </motion.div>
                     )}
                     
-                    <div className="mb-8 mt-4">
-                        <h3 className="text-xl font-medium text-zinc-900 mb-2">{plan.name}</h3>
-                          <motion.div 
-                            className="text-4xl font-semibold text-zinc-900 mb-4"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.1 + 0.3 }}
-                          >
-                            {plan.label}
-                          </motion.div>
-                        <p className="text-sm text-zinc-500 leading-relaxed h-12">{plan.desc}</p>
+                    <div className="mb-6 mt-2">
+                        {/* Tier Name */}
+                        <motion.h3 
+                          className="text-3xl font-bold text-zinc-900 mb-1"
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1 + 0.3 }}
+                        >
+                          {plan.name}
+                        </motion.h3>
+                        <div className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-4">{plan.tagline}</div>
+                        
+                        {/* Value Prop */}
+                        <p className="text-sm text-zinc-600 leading-relaxed mb-4">{plan.desc}</p>
+                        
+                        {/* Ideal For */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-100 text-xs text-zinc-600">
+                          <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>
+                          {plan.idealFor}
+                        </div>
                     </div>
 
-                    <div className="space-y-4 mb-8 h-64">
+                    {/* Features */}
+                    <div className="space-y-3 mb-6 min-h-[200px]">
+                        <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-3">What&apos;s Included</div>
                         {getFeatures(i).map((f, j) => (
                               <motion.div 
                                 key={j} 
-                                className="flex items-center gap-3 text-sm text-zinc-700"
+                                className="flex items-start gap-3 text-sm text-zinc-700"
                                 initial={{ opacity: 0, x: -10 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: j * 0.05 + i * 0.1 + 0.3 }}
                               >
                                   <motion.div
+                                    className="mt-0.5"
                                     initial={{ scale: 0 }}
                                     whileInView={{ scale: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: j * 0.05 + i * 0.1 + 0.35, type: "spring" }}
                                   >
-                                <Check className="w-4 h-4 text-orange-500 shrink-0" />
+                                    <Check className="w-4 h-4 text-orange-500 shrink-0" aria-hidden="true" />
                                   </motion.div>
-                                {f}
+                                <span>{f}</span>
                               </motion.div>
                         ))}
                     </div>
-
-                    {/* Service Type Selection */}
-                    <div className="mb-6">
-                        <div className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Service Type</div>
-                        <div className="grid grid-cols-3 gap-2">
-                            <button
-                                onClick={() => setSelectedServices({ ...selectedServices, [i]: "landing" })}
-                                className={`py-2 px-3 text-xs font-medium transition-colors border flex items-center justify-center gap-1.5 ${
-                                    (selectedServices[i] || "landing") === "landing"
-                                        ? "bg-zinc-900 text-white border-zinc-900"
-                                        : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
-                                }`}
-                            >
-                                <Layout className="w-3 h-3" />
-                                Landing
-                            </button>
-                            <button
-                                onClick={() => setSelectedServices({ ...selectedServices, [i]: "web" })}
-                                className={`py-2 px-3 text-xs font-medium transition-colors border flex items-center justify-center gap-1.5 ${
-                                    selectedServices[i] === "web"
-                                        ? "bg-zinc-900 text-white border-zinc-900"
-                                        : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
-                                }`}
-                            >
-                                <Code2 className="w-3 h-3" />
-                                Web App
-                            </button>
-                            <button
-                                onClick={() => setSelectedServices({ ...selectedServices, [i]: "mobile" })}
-                                className={`py-2 px-3 text-xs font-medium transition-colors border flex items-center justify-center gap-1.5 ${
-                                    selectedServices[i] === "mobile"
-                                        ? "bg-zinc-900 text-white border-zinc-900"
-                                        : "bg-white text-zinc-600 border-zinc-200 hover:bg-zinc-50"
-                                }`}
-                            >
-                                <Smartphone className="w-3 h-3" />
-                                Mobile
-                            </button>
-                        </div>
+                    
+                    {/* Delivery Time */}
+                    <div className="flex items-center justify-between py-3 border-t border-zinc-100 mb-6">
+                      <span className="text-xs text-zinc-500">Delivery</span>
+                      <span className="text-sm font-semibold text-zinc-900">{plan.deliveryTime}</span>
                     </div>
 
                     <div className="relative overflow-hidden">
@@ -213,15 +249,15 @@ export function PricingV2() {
                         >
                             <motion.button 
                                 onClick={() => setOpenPlan(i)}
-                                className={`w-full py-3 text-sm font-bold transition-colors flex items-center justify-center gap-2 ${
+                                className={`w-full py-4 text-sm font-bold transition-all flex items-center justify-center gap-2 ${
                                 plan.popular 
-                                    ? "bg-zinc-900 text-white hover:bg-orange-600" 
-                                    : "bg-white border border-zinc-200 text-zinc-900 hover:bg-zinc-50"
+                                    ? "bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/25" 
+                                    : "bg-zinc-900 text-white hover:bg-zinc-800"
                             }`}
-                                whileHover={{ scale: 1.02 }}
+                                whileHover={{ scale: 1.02, y: -2 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                Let&apos;s Talk <ArrowRight className="w-4 h-4" />
+                                {plan.popular ? "Start Building" : "Get Started"} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                             </motion.button>
                         </motion.div>
 
@@ -271,7 +307,7 @@ export function PricingV2() {
                                                 e.stopPropagation();
                                                 setOpenPlan(null);
                                             }}
-                                            className="px-3 py-3 hover:bg-zinc-100 text-zinc-400 border border-zinc-200 transition-colors"
+                                            className="px-3 py-3 hover:bg-zinc-100 text-zinc-500 border border-zinc-200 transition-colors"
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
                                         >

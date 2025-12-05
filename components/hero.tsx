@@ -397,7 +397,7 @@ function DevVisualNew() {
                         animate={{ opacity: [1, 0.3, 1] }}
                         transition={{ duration: 1, repeat: Infinity }}
                     />
-                    <span className="text-[10px] text-zinc-400">ready</span>
+                    <span className="text-[10px] text-zinc-500">ready</span>
                 </div>
             </div>
         </div>
