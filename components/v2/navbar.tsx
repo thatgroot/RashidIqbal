@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiGmail, SiWhatsapp } from "react-icons/si";
 import { useState } from "react";
@@ -31,10 +32,21 @@ export function NavbarV2() {
     >
       
       <div className="max-w-container h-full border-x border-zinc-100 flex items-center justify-between px-8 relative z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 bg-orange-500" />
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          aria-label="Scroll to top"
+        >
+          {/* Logo from favicon.svg */}
+          <Image
+            src="/favicon.svg"
+            alt=""
+            width={28}
+            height={28}
+            aria-hidden="true"
+          />
           <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
-        </div>
+        </button>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
           <Link href="#services" onClick={(e) => scrollToSection(e, "#services")} className="hover:text-orange-500 transition-colors">Services</Link>

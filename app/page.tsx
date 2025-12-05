@@ -11,11 +11,28 @@ import { PricingV2 } from "@/components/pricing";
 import { FAQV2 } from "@/components/faq";
 import { CTASectionV2 } from "@/components/cta";
 import { FooterV2 } from "@/components/footer";
- 
+
 
 export const metadata: Metadata = {
-  title: "Rashid Iqbal | V2 Enhanced",
-  description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps. Building with Next.js, Framer, Figma, Expo, and Flutter.",
+  title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
+  description: "Expert freelance developer specializing in high-converting landing pages, scalable Next.js web apps, and native mobile applications. Turn your vision into a polished product.",
+  keywords: ["Freelance Developer", "Next.js Expert", "React Native Developer", "Web Design", "Framer Developer", "High Performance Web"],
+  openGraph: {
+    title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
+    description: "Expert freelance developer specializing in high-converting landing pages, scalable Next.js web apps, and native mobile applications.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
+    description: "Turn your vision into a polished product with expert web and mobile development.",
+  },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function PageV2Enhanced() {
