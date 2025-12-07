@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { SiGmail, SiWhatsapp } from "react-icons/si";
+import { SiGmail, SiWhatsapp, SiUpwork } from "react-icons/si";
 import { useState } from "react";
 
 export function NavbarV2() {
@@ -116,13 +116,21 @@ export function NavbarV2() {
               >
                 
                 <div className="relative z-10 bg-white">
+                  <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" role="menuitem" className="flex items-center gap-3 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-900 hover:text-white transition-colors border-b border-zinc-100">
+                      <Image src="/icons/cal.png" alt="" width={16} height={16} className="rounded-sm" aria-hidden="true" />
+                      <span>Cal.com</span>
+                  </a>
                   <a href="mailto:rashidiqbal.freelance@gmail.com" role="menuitem" className="flex items-center gap-3 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-orange-500 transition-colors border-b border-zinc-100">
                       <SiGmail size={16} aria-hidden="true" />
                       <span>Email</span>
                   </a>
-                  <a href="https://wa.me/923554665643" role="menuitem" className="flex items-center gap-3 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-green-500 transition-colors">
+                  <a href="https://wa.me/923554665643" role="menuitem" className="flex items-center gap-3 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-green-500 transition-colors border-b border-zinc-100">
                       <SiWhatsapp size={16} aria-hidden="true" />
                       <span>WhatsApp</span>
+                  </a>
+                  <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" target="_blank" rel="noopener noreferrer" role="menuitem" className="flex items-center gap-3 px-4 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-green-600 transition-colors">
+                      <SiUpwork size={16} aria-hidden="true" />
+                      <span>Upwork</span>
                   </a>
                 </div>
               </motion.div>

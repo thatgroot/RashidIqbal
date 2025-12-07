@@ -58,12 +58,20 @@ export function GridItem({ children, className, title, label, padding = true }: 
         className
       )}
     >
-        {(title || label) && (
-            <div className="flex justify-between items-start mb-6">
-                {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
-          {label && <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-orange-500 transition-colors">{label}</span>}
-            </div>
+        {/* Label positioned absolutely in top-right corner */}
+        {label && (
+          <span className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[10px] font-mono text-zinc-400 uppercase tracking-widest group-hover:text-orange-500 transition-colors z-10">
+            {label}
+          </span>
         )}
+        
+        {/* Title with margin if present */}
+        {title && (
+          <div className="mb-6">
+            <h3 className="text-lg font-medium text-zinc-900">{title}</h3>
+          </div>
+        )}
+        
         {children}
     </div>
   );

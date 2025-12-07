@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { GridContainer, GridItem } from "./grid-system";
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 
-// --- Icons ---
+// --- Icon Components with Real Logos ---
 
 function FigmaIcon({ className }: { className?: string }) {
     return (
@@ -19,12 +20,13 @@ function FigmaIcon({ className }: { className?: string }) {
     );
 }
 
-function FramerIcon({ className }: { className?: string }) {
+function FramerIconSvg({ className }: { className?: string }) {
     return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 0H12V8L4 0Z" fill="#000"/>
-            <path d="M12 8H20V16H4L12 8Z" fill="#000"/>
-            <path d="M12 16H20V24L12 16Z" fill="#000"/>
+        <svg className={className} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fillRule="evenodd" clipRule="evenodd" d="M16 30C23.732 30 30 23.732 30 16C30 8.26801 23.732 2 16 2C8.26801 2 2 8.26801 2 16C2 23.732 8.26801 30 16 30Z" fill="white" stroke="#e4e4e7" strokeWidth="1"/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M9 20.3335H16V27.0002L9 20.3335Z" fill="#0055FF"/>
+            <path d="M16 13.6665H9V20.3332H23L16 13.6665Z" fill="#00AAFF"/>
+            <path d="M9 7L16 13.6667H23V7H9Z" fill="#88DDFF"/>
         </svg>
     );
 }
@@ -32,20 +34,20 @@ function FramerIcon({ className }: { className?: string }) {
 function NextJsIcon({ className }: { className?: string }) {
     return (
         <svg className={className} viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="mask0_1_2" style={{maskType:"alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
+            <mask id="mask0_tools_nextjs" style={{maskType:"alpha"}} maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
                 <circle cx="90" cy="90" r="90" fill="black"/>
             </mask>
-            <g mask="url(#mask0_1_2)">
+            <g mask="url(#mask0_tools_nextjs)">
                 <circle cx="90" cy="90" r="90" fill="black"/>
-                <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_1_2)"/>
-                <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_1_2)"/>
+                <path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_tools_nextjs)"/>
+                <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_tools_nextjs)"/>
             </g>
             <defs>
-                <linearGradient id="paint0_linear_1_2" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
+                <linearGradient id="paint0_linear_tools_nextjs" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
                     <stop stopColor="white"/>
                     <stop offset="1" stopColor="white" stopOpacity="0"/>
                 </linearGradient>
-                <linearGradient id="paint1_linear_1_2" x1="121" y1="54" x2="120.799" y2="106.875" gradientUnits="userSpaceOnUse">
+                <linearGradient id="paint1_linear_tools_nextjs" x1="121" y1="54" x2="120.799" y2="106.875" gradientUnits="userSpaceOnUse">
                     <stop stopColor="white"/>
                     <stop offset="1" stopColor="white" stopOpacity="0"/>
                 </linearGradient>
@@ -54,10 +56,10 @@ function NextJsIcon({ className }: { className?: string }) {
     );
 }
 
-function ExpoIcon({ className }: { className?: string }) {
+function ExpoIconSvg({ className }: { className?: string }) {
     return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.5766 11.2663C18.9557 11.3581 20.1898 10.4162 20.4603 9.06229C20.1275 8.54719 19.5585 8.23747 18.946 8.23747C17.3542 8.20103 16.5 10.0956 17.5766 11.2663ZM11.1472 3.66421L14.9016 1.48907L13.705 0.814331L8.52686 3.81433L8.93952 4.04412L9.72353 4.48484L11.1472 3.66421ZM15.3828 1.28925C15.4452 1.30817 15.4956 1.35932 15.5145 1.42098L17.2547 6.74073C17.2876 6.83251 17.2511 6.93131 17.167 6.98177C15.7879 7.5508 15.1237 9.1852 15.5433 10.7296C16.003 12.405 17.682 13.4847 19.3673 13.3095C19.4619 13.3018 19.553 13.3606 19.5824 13.4517L21.378 18.919L21.4067 18.9392L15.9005 22.2823C15.8746 22.297 15.8417 22.3075 15.8087 22.3075C15.7611 22.3187 15.7107 22.3075 15.6665 22.2788L13.7291 21.2589C13.6955 21.2372 13.6702 21.205 13.6527 21.1692L13.6072 21.0712L13.6114 16.6778L13.6177 12.2816L13.6856 12.1961C13.7207 12.1501 13.7952 12.091 13.8478 12.0625C13.9377 12.0187 13.9728 12.0143 14.3519 12.0143C14.7991 12.0143 14.8736 12.0318 14.9898 12.1589C15.0227 12.194 16.239 14.0261 17.6941 16.2327L19.164 19.2875L20.9392 21.775L21.029 21.7159C21.8247 21.1987 22.6662 20.4623 23.3324 19.6953C24.7504 18.0671 25.6644 16.0816 25.9712 13.9648C26.0611 13.349 26.072 13.1671 26.072 12.3373C26.072 11.503 26.0611 11.3211 25.9712 10.7053C25.3619 6.49533 22.3659 2.95827 18.3027 1.6477C17.586 1.41539 16.8232 1.2554 15.9685 1.15899C15.7581 1.13708 15.3092 1.113 15.1273 1.13052C15.0797 1.1349 14.9259 1.14804 14.7879 1.15899C14.755 1.16118 15.0227 1.21813 15.3828 1.28925ZM9.55318 4.86265L8.19917 4.09946L2.80877 14.77L3.78696 15.3466L8.43296 8.4524C8.47712 8.39 8.55002 8.35714 8.62292 8.36809C8.69582 8.37576 8.7575 8.42176 8.78764 8.48637L13.8532 17.1677L15.2072 17.9309L9.55318 4.86265ZM18.9446 12.2619C17.3635 12.2254 16.5092 14.12 17.5857 15.2907C18.9648 15.3825 20.1989 14.4407 20.4694 13.0867C20.1366 12.5716 19.5676 12.2619 18.9551 12.2619H18.9446Z" />
+        <svg className={className} viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24.292 15.547c1.968 0.131 3.729-1.213 4.115-3.145-0.475-0.735-1.287-1.177-2.161-1.177-2.272-0.052-3.491 2.651-1.953 4.323zM15.115 4.697l5.359-3.104-1.708-0.963-7.391 4.281 0.589 0.328 1.119 0.629 2.032-1.176zM21.161 1.307c0.089 0.027 0.161 0.1 0.188 0.188l2.484 7.593c0.047 0.131-0.005 0.272-0.125 0.344-1.968 1.156-2.916 3.489-2.317 5.693 0.656 2.391 2.937 3.953 5.401 3.703 0.135-0.011 0.265 0.073 0.307 0.203l2.563 7.803c0.041 0.131-0.011 0.271-0.125 0.344l-7.859 4.771c-0.037 0.021-0.084 0.036-0.131 0.036-0.068 0.016-0.14 0-0.203-0.041l-2.765-1.797c-0.048-0.031-0.084-0.077-0.109-0.129l-5.396-12.896-8.219 4.875c-0.016 0.011-0.037 0.021-0.052 0.032-0.084 0.036-0.183 0.025-0.261-0.021l-1.859-1.093c-0.136-0.073-0.188-0.245-0.115-0.381l7.953-15.749c0.025-0.057 0.077-0.104 0.135-0.131l7.959-4.609c0.088-0.052 0.197-0.057 0.292-0.005zM12.839 6.407l-1.932-1.089-7.693 15.229 1.396 0.823 6.631-9.015c0.063-0.089 0.167-0.136 0.271-0.12 0.104 0.011 0.192 0.077 0.235 0.177l7.228 17.296 1.933 1.251-8.063-24.552zM26.245 16.964c-2.256 0-3.787-2.292-2.923-4.376 0.86-2.083 3.563-2.619 5.156-1.025 0.595 0.593 0.928 1.396 0.928 2.235 0.005 1.749-1.412 3.167-3.161 3.167z"/>
         </svg>
     );
 }
@@ -70,18 +72,62 @@ function CursorIcon({ className }: { className?: string }) {
     );
 }
 
-function BoltIcon({ className }: { className?: string }) {
+function BoltIconSvg({ className }: { className?: string }) {
     return (
-        <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 21L15 11H9L13 1H7L3 13H9L5 21H11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <svg className={className} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="16" height="16" rx="4" fill="black"/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M8.64368 11.7731C7.91976 11.7731 7.20901 11.5147 6.80099 10.9591L6.65707 11.6143L4 13L4.28684 11.6143L6.22186 3H8.59103L7.9066 6.03634C8.45941 5.44199 8.97273 5.22234 9.63083 5.22234C11.0523 5.22234 12 6.1397 12 7.81938C12 9.55074 10.9076 11.7731 8.64368 11.7731ZM9.55186 8.31036C9.55186 9.11144 8.97273 9.71871 8.22249 9.71871C7.8013 9.71871 7.4196 9.56366 7.16952 9.29233L7.53806 7.70309C7.81447 7.43176 8.13036 7.27671 8.49889 7.27671C9.06486 7.27671 9.55186 7.69017 9.55186 8.31036Z" fill="white"/>
         </svg>
     );
 }
 
-function LovableIcon({ className }: { className?: string }) {
+function LovableIconSvg({ className }: { className?: string }) {
     return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF6B6B"/>
+        <svg className={className} viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="lovable-gradient-tools" x1="7.736" x2="15.072" y1="4.218" y2="23.867" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.025" stopColor="#FF8E63"/>
+                    <stop offset="0.56" stopColor="#FF7EB0"/>
+                    <stop offset="0.95" stopColor="#4B73FF"/>
+                </linearGradient>
+                <filter id="lovable-filter-c-tools" width="45.444" height="46.274" x="-12.638" y="-10.326" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feGaussianBlur result="effect1" stdDeviation="3.58"/>
+                </filter>
+                <filter id="lovable-filter-d-tools" width="54.181" height="46.274" x="-15.297" y="-19.094" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feGaussianBlur result="effect1" stdDeviation="3.58"/>
+                </filter>
+                <filter id="lovable-filter-e-tools" width="45.444" height="42.383" x="-7.677" y="-20.154" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feGaussianBlur result="effect1" stdDeviation="3.58"/>
+                </filter>
+                <filter id="lovable-filter-f-tools" width="33.038" height="33.538" x="-4.448" y="-12.73" colorInterpolationFilters="sRGB" filterUnits="userSpaceOnUse">
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                    <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feGaussianBlur result="effect1" stdDeviation="3.58"/>
+                </filter>
+                <mask id="lovable-mask-tools" width="23" height="24" x="0" y="0" maskUnits="userSpaceOnUse" style={{maskType: "alpha"}}>
+                    <path fill="url(#lovable-gradient-tools)" fillRule="evenodd" d="M6.898 0c3.81 0 6.898 3.179 6.898 7.1v2.7h2.295c3.81 0 6.898 3.178 6.898 7.1S19.901 24 16.091 24H0V7.1C0 3.18 3.088 0 6.898 0" clipRule="evenodd"/>
+                </mask>
+            </defs>
+            <g mask="url(#lovable-mask-tools)">
+                <g filter="url(#lovable-filter-c-tools)">
+                    <ellipse cx="10.084" cy="12.811" fill="#4B73FF" rx="15.562" ry="15.977"/>
+                </g>
+                <g filter="url(#lovable-filter-d-tools)">
+                    <ellipse cx="11.794" cy="4.043" fill="#FF66F4" rx="19.931" ry="15.977"/>
+                </g>
+                <g filter="url(#lovable-filter-e-tools)">
+                    <ellipse cx="15.045" cy="1.037" fill="#FF0105" rx="15.562" ry="14.031"/>
+                </g>
+                <g filter="url(#lovable-filter-f-tools)">
+                    <ellipse cx="12.071" cy="4.039" fill="#FE7B02" rx="9.359" ry="9.608"/>
+                </g>
+            </g>
         </svg>
     );
 }
@@ -97,12 +143,17 @@ function GoogleIcon({ className }: { className?: string }) {
     );
 }
 
-function Base44Icon({ className }: { className?: string }) {
+function Base44IconImg({ className }: { className?: string }) {
     return (
-        <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="24" height="24" rx="4" fill="#F97316"/>
-            <path d="M7 17L12 7L17 17H14L12 12L10 17H7Z" fill="white"/>
-        </svg>
+        <div className={className}>
+            <Image 
+                src="/icons/base44.png" 
+                alt="Base44" 
+                width={24} 
+                height={24}
+                className="w-full h-full object-contain"
+            />
+        </div>
     );
 }
 
@@ -114,7 +165,7 @@ const categories = [
     label: "Design",
     tools: [
       { name: "Figma", desc: "Collaborative interface design", url: "https://figma.com", icon: FigmaIcon },
-      { name: "Framer", desc: "No-code production sites", url: "https://framer.com", icon: FramerIcon }
+      { name: "Framer", desc: "No-code production sites", url: "https://framer.com", icon: FramerIconSvg }
     ]
   },
   {
@@ -122,7 +173,7 @@ const categories = [
     label: "Development",
     tools: [
       { name: "Next.js", desc: "React framework for the web", url: "https://nextjs.org", icon: NextJsIcon },
-      { name: "Expo", desc: "Universal native apps", url: "https://expo.dev", icon: ExpoIcon }
+      { name: "Expo", desc: "Universal native apps", url: "https://expo.dev", icon: ExpoIconSvg }
     ]
   },
   {
@@ -137,9 +188,9 @@ const categories = [
     id: "ai-builders",
     label: "AI Builders",
     tools: [
-      { name: "Lovable", desc: "Apps & websites by chatting with AI", url: "https://lovable.dev", icon: LovableIcon },
-      { name: "Bolt", desc: "The #1 vibe coding tool", url: "https://bolt.new", icon: BoltIcon },
-      { name: "Base44", desc: "Build apps in minutes with words", url: "https://base44.com", icon: Base44Icon }
+      { name: "Lovable", desc: "Apps & websites by chatting with AI", url: "https://lovable.dev", icon: LovableIconSvg },
+      { name: "Bolt", desc: "The #1 vibe coding tool", url: "https://bolt.new", icon: BoltIconSvg },
+      { name: "Base44", desc: "Build apps in minutes with words", url: "https://base44.com", icon: Base44IconImg }
     ]
   }
 ];
@@ -217,7 +268,7 @@ export function Tools() {
                         transition={{ duration: 0.2 }}
                         className="divide-y divide-zinc-50"
                       >
-                        {activeCategory?.tools.map((tool, i) => (
+                        {activeCategory?.tools.map((tool) => (
                           <motion.a
                             key={tool.name}
                             href={tool.url}

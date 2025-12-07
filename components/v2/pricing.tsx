@@ -5,6 +5,7 @@ import { Check, ArrowRight, Layout, Code2, Smartphone } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiGmail, SiWhatsapp, SiUpwork } from "react-icons/si";
+import Image from "next/image";
 
 type ServiceType = "landing" | "web" | "mobile";
 
@@ -204,6 +205,9 @@ export function PricingV2() {
                                         </a>
                                         <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors" title="Upwork">
                                             <SiUpwork size={16} />
+                                        </a>
+                                        <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center border border-zinc-900 transition-colors" title="Cal.com">
+                                            <Image src="/icons/cal.png" alt="Cal.com" width={16} height={16} className="rounded-sm" />
                                         </a>
                                         <button 
                                             onClick={(e) => {
