@@ -221,25 +221,25 @@ export function Tools() {
               <div className="max-w-3xl">
                 <div className="border border-zinc-200 overflow-hidden bg-zinc-50/50 rounded-xl shadow-xs">
                   {/* Window Title Bar - Minimal */}
-                  <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-zinc-100">
-                    <div className="flex gap-2">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-400/20 border border-red-400/50" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-amber-400/20 border border-amber-400/50" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-400/20 border border-green-400/50" />
+                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border-b border-zinc-100">
+                    <div className="flex gap-1.5 sm:gap-2">
+                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-400/20 border border-red-400/50" />
+                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400/20 border border-amber-400/50" />
+                      <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-400/20 border border-green-400/50" />
                     </div>
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+                    <span className="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
                       stack.config
                     </span>
-                    <div className="w-12" />
+                    <div className="w-8 sm:w-12" />
                   </div>
 
-                  {/* Tabs - Clean style with more spacing */}
-                  <div className="flex border-b border-zinc-100 bg-zinc-50/50 px-2">
+                  {/* Tabs - Responsive with horizontal scroll on mobile */}
+                  <div className="flex border-b border-zinc-100 bg-zinc-50/50 overflow-x-auto scrollbar-hide">
                     {categories.map((category) => (
                       <button
                         key={category.id}
                         onClick={() => setActiveTab(category.id)}
-                        className={`relative px-6 py-4 text-xs font-mono uppercase tracking-wider transition-colors ${
+                        className={`relative px-3 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-colors whitespace-nowrap flex-shrink-0 ${
                           activeTab === category.id 
                             ? 'text-zinc-900 font-medium' 
                             : 'text-zinc-400 hover:text-zinc-600'
@@ -258,7 +258,7 @@ export function Tools() {
                   </div>
 
                   {/* Content - More vertical padding */}
-                  <div className="bg-white min-h-[280px]">
+                  <div className="bg-white min-h-[220px] sm:min-h-[280px]">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={activeTab}
@@ -274,11 +274,11 @@ export function Tools() {
                             href={tool.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-6 px-8 py-6 hover:bg-zinc-50/50 transition-all group"
+                            className="flex items-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6 hover:bg-zinc-50/50 transition-all group"
                           >
                             {/* Icon Container */}
-                            <div className="w-12 h-12 flex items-center justify-center bg-zinc-50 rounded-lg border border-zinc-100 group-hover:border-zinc-200 group-hover:scale-105 transition-all shadow-sm">
-                                <tool.icon className="w-6 h-6" />
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-zinc-50 rounded-lg border border-zinc-100 group-hover:border-zinc-200 group-hover:scale-105 transition-all shadow-sm flex-shrink-0">
+                                <tool.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                             </div>
                             
                             {/* Tool info */}
@@ -304,7 +304,7 @@ export function Tools() {
                 </div>
 
                 {/* Footer */}
-                <div className="mt-6 flex items-center justify-between text-xs text-zinc-400 font-mono">
+                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-[10px] sm:text-xs text-zinc-400 font-mono">
                     <p>The right tool for the right job.</p>
                     <p>Always exploring what&apos;s next.</p>
                 </div>

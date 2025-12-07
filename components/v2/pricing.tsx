@@ -70,7 +70,13 @@ export function PricingV2() {
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer  > 
             <GridItem className="py-24">
-                <div className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+                <motion.div 
+                    className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                >
                     <div className="max-w-xl">
                         <h2 className="text-4xl font-semibold text-zinc-900 mb-4">
                             Invest in Results.
@@ -116,55 +122,122 @@ export function PricingV2() {
                             <span>Mobile App</span>
                         </button>
                     </div>
-                </div>
+                </motion.div>
             </GridItem>
         </GridContainer>
 
         <GridContainer cols={3}  > 
             {plans.map((plan, i) => (
-                <GridItem key={i} className={plan.popular ? "bg-gradient-to-b from-orange-50/50 to-white ring-2 ring-orange-500/20 ring-inset" : ""}>
+                <motion.div
+                    key={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.08, delayChildren: i * 0.12 } }
+                    }}
+                >
+                <GridItem className={plan.popular ? "bg-gradient-to-b from-orange-50/50 to-white ring-2 ring-orange-500/20 ring-inset" : ""}>
                     {/* Badge */}
                     {(plan.popular || plan.highlight) && (
-                        <div className={`absolute top-6 right-6 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
-                          plan.popular 
-                            ? "bg-orange-500 text-white" 
-                            : "bg-zinc-900 text-white"
-                        }`}>
+                        <motion.div 
+                            className={`absolute top-6 right-6 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
+                              plan.popular 
+                                ? "bg-orange-500 text-white" 
+                                : "bg-zinc-900 text-white"
+                            }`}
+                            variants={{
+                                hidden: { opacity: 0, scale: 0.8 },
+                                visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } }
+                            }}
+                        >
                             {plan.highlight || "Most Popular"}
-                        </div>
+                        </motion.div>
                     )}
                     
                     <div className="mb-6 mt-2">
                         {/* Tier Name */}
-                        <h3 className="text-3xl font-bold text-zinc-900 mb-1">{plan.name}</h3>
-                        <div className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-4">{plan.tagline}</div>
+                        <motion.h3 
+                            className="text-3xl font-bold text-zinc-900 mb-1"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
+                            {plan.name}
+                        </motion.h3>
+                        <motion.div 
+                            className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-4"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
+                            {plan.tagline}
+                        </motion.div>
                         
                         {/* Value Prop */}
-                        <p className="text-sm text-zinc-600 leading-relaxed mb-4">{plan.desc}</p>
+                        <motion.p 
+                            className="text-sm text-zinc-600 leading-relaxed mb-4"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
+                            {plan.desc}
+                        </motion.p>
                         
                         {/* Ideal For */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-100 text-xs text-zinc-600">
+                        <motion.div 
+                            className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-100 text-xs text-zinc-600"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
                           <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>
                           {plan.idealFor}
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Features */}
                     <div className="space-y-3 mb-6 min-h-[200px]">
-                        <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-3">What&apos;s Included</div>
+                        <motion.div 
+                            className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-3"
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: { opacity: 1, transition: { duration: 0.3 } }
+                            }}
+                        >
+                            What&apos;s Included
+                        </motion.div>
                         {getFeatures(i).map((f, j) => (
-                            <div key={j} className="flex items-start gap-3 text-sm text-zinc-700">
+                            <motion.div 
+                                key={j} 
+                                className="flex items-start gap-3 text-sm text-zinc-700"
+                                variants={{
+                                    hidden: { opacity: 0, x: -10 },
+                                    visible: { opacity: 1, x: 0, transition: { duration: 0.3, delay: j * 0.05 } }
+                                }}
+                            >
                                 <Check className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" aria-hidden="true" />
                                 <span>{f}</span>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                     
                     {/* Delivery Time */}
-                    <div className="flex items-center justify-between py-3 border-t border-zinc-100 mb-6">
+                    <motion.div 
+                        className="flex items-center justify-between py-3 border-t border-zinc-100 mb-6"
+                        variants={{
+                            hidden: { opacity: 0, y: 10 },
+                            visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                        }}
+                    >
                       <span className="text-xs text-zinc-500">Delivery</span>
                       <span className="text-sm font-semibold text-zinc-900">{plan.deliveryTime}</span>
-                    </div>
+                    </motion.div>
 
                     <div className="relative overflow-hidden">
                         {/* Button that slides out */}
@@ -224,6 +297,7 @@ export function PricingV2() {
                         </AnimatePresence>
                     </div>
                 </GridItem>
+                </motion.div>
             ))}
         </GridContainer>
       </div>

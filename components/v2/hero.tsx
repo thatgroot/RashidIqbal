@@ -122,7 +122,7 @@ export function HeroV2() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="flex flex-col sm:flex-row items-center gap-4"
+                                className="flex flex-row items-center gap-3 sm:gap-4"
                             >
                                 <button
                                     onClick={(e) => {
@@ -138,11 +138,11 @@ export function HeroV2() {
                                             });
                                         }
                                     }}
-                                    className="px-8 py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 group"
+                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center justify-center gap-2 group"
                                 >
                                     View Portfolio <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </button>
-                                <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white border border-zinc-200 text-zinc-600 text-sm font-bold hover:border-zinc-900 hover:text-zinc-900 transition-colors flex items-center gap-2">
+                                <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" className="px-6 sm:px-8 py-3 sm:py-4 bg-white border border-zinc-200 text-zinc-600 text-sm font-bold hover:border-zinc-900 hover:text-zinc-900 transition-colors flex items-center justify-center gap-2">
                                     Book a Meeting
                                 </a>
                             </motion.div>

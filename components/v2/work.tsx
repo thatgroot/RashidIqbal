@@ -158,23 +158,45 @@ export function WorkV2() {
       <div className="max-w-container border-l border-zinc-100">
         <GridContainer  > 
             <GridItem className="py-24 flex justify-between items-end">
-                <div className="max-w-2xl">
+                <motion.div 
+                    className="max-w-2xl"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                >
                     <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
                         When It All Comes Together.
                     </h2>
                     <p className="text-lg text-zinc-500">
                         The result feels effortless and complete. A polished, working product ready to perform and make an impact. Here&apos;s what that looks like in practice.
                     </p>
-                </div>
+                </motion.div>
              
             </GridItem>
         </GridContainer>
 
         <GridContainer cols={2}  > 
             {projects.map((project, i) => (
-                <GridItem key={i} padding={false} className="group bg-white hover:bg-zinc-50/50 transition-colors duration-300 relative overflow-hidden flex flex-col">
+                <motion.div
+                    key={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.1, delayChildren: (i % 2) * 0.1 } }
+                    }}
+                >
+                <GridItem padding={false} className="group bg-white hover:bg-zinc-50/50 transition-colors duration-300 relative overflow-hidden flex flex-col">
                     {/* Visual Area */}
-                    <div className="aspect-video bg-zinc-50/50 relative overflow-hidden flex items-center justify-center group-hover:bg-zinc-100/50 transition-colors dotted-bg dotted-bg-16">
+                    <motion.div 
+                        className="aspect-video bg-zinc-50/50 relative overflow-hidden flex items-center justify-center group-hover:bg-zinc-100/50 transition-colors dotted-bg dotted-bg-16"
+                        variants={{
+                            hidden: { opacity: 0, scale: 0.95 },
+                            visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+                        }}
+                    >
                         <motion.div 
                             whileHover={{ scale: 1.05 }}
                             transition={{ duration: 0.4 }}
@@ -182,11 +204,17 @@ export function WorkV2() {
                         >
                             <ImageVisual src={project.imageSrc} alt={project.imageAlt} />
                         </motion.div>
-                    </div>
+                    </motion.div>
 
                     {/* Content Area */}
                     <div className="flex flex-col flex-1 p-8 sm:p-12">
-                        <div className="flex justify-between items-start mb-4">
+                        <motion.div 
+                            className="flex justify-between items-start mb-4"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
                             <div>
                                 <div className="text-xs font-bold text-orange-700 mb-2 uppercase tracking-wider">{project.category}</div>
                                 <h3 className="text-2xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-1">
@@ -202,21 +230,34 @@ export function WorkV2() {
                             >
                                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                             </a>
-                        </div>
+                        </motion.div>
                         
-                        <p className="text-zinc-500 leading-relaxed mb-6 text-sm flex-1">
+                        <motion.p 
+                            className="text-zinc-500 leading-relaxed mb-6 text-sm flex-1"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
                             {project.desc}
-                        </p>
+                        </motion.p>
 
-                        <div className="flex gap-2">
+                        <motion.div 
+                            className="flex gap-2"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
                             {project.stack.map((tech, j) => (
                                 <span key={j} className="px-2 py-1 bg-zinc-50 text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                                     {tech}
                                 </span>
                             ))}
-                        </div>
+                        </motion.div>
                     </div>
                 </GridItem>
+                </motion.div>
             ))}
         </GridContainer>
         
