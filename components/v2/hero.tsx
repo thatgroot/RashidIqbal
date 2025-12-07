@@ -1,21 +1,93 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MousePointer2, Code2 } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useMotionValue, useMotionTemplate } from "framer-motion";
+import { ArrowRight, Layout, Code, Smartphone } from "lucide-react";
 import { GridContainer, GridItem } from "./grid-system";
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+
+const projectImages = [
+    "/work-screenshots/deals-finders.png",
+    "/work-screenshots/funnel-labs.png",
+    "/work-screenshots/leanscale.png",
+    "/work-screenshots/melissa-ambrosini.png",
+    "/work-screenshots/nick-broadhurst.png",
+    "/work-screenshots/pedro-token.png",
+    "/work-screenshots/road-id.png",
+    "/work-screenshots/saku-monsters.png",
+];
 
 export function HeroV2() {
+    const sectionRef = useRef<HTMLElement>(null);
+    useScroll({
+        target: sectionRef,
+        offset: ["start start", "end start"]
+    });
+
+    // Mouse tracking for lens effect
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+        const { left, top } = currentTarget.getBoundingClientRect();
+        mouseX.set(clientX - left);
+        mouseY.set(clientY - top);
+    }
+
+    const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
+
     return (
-        <section className="pt-18 bg-white relative">
-            <div className="max-w-container border-l border-zinc-100">
-                <GridContainer cols={2}  > 
-                    <GridItem className="border-t py-24">
-                        <div className="max-w-xl">
+        <section ref={sectionRef} className="pt-18 bg-white relative overflow-hidden">
+            <div className="max-w-container border-l border-zinc-100 relative">
+                <GridContainer cols={1}>
+                    {/* Main Hero Content */}
+                    <GridItem
+                        className="border-t min-h-[90vh] flex flex-col justify-center relative overflow-hidden group"
+                        padding={false}
+                    >
+                        {/* Lens Effect Layer - Visible on Hover */}
+                        <motion.div
+                            className="absolute inset-0 z-0 pointer-events-none hidden md:block"
+                            style={{ maskImage, WebkitMaskImage: maskImage }}
+                        >
+                            <div className="absolute inset-0 bg-zinc-50 opacity-20" />
+                            {/* Montage of work */}
+                            <div className="absolute inset-0 grid grid-cols-4 gap-2 opacity-30 rotate-12 scale-125">
+                                {projectImages.map((src, i) => (
+                                    <div key={i} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
+                                        <Image
+                                            src={src}
+                                            alt="Project preview"
+                                            fill
+                                            className="object-cover grayscale"
+                                            sizes="20vw"
+                                        />
+                                    </div>
+                                ))}
+                                {projectImages.map((src, i) => (
+                                    <div key={`dup-${i}`} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
+                                        <Image
+                                            src={src}
+                                            alt="Project preview"
+                                            fill
+                                            className="object-cover grayscale"
+                                            sizes="20vw"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        <div
+                            className="relative z-10 w-full px-6 py-24 md:px-12 md:py-32 flex flex-col items-center text-center"
+                            onMouseMove={handleMouseMove}
+                        >
+                            {/* Status Pill */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="flex items-center gap-3 text-xs font-mono text-orange-700 mb-8"
+                                transition={{ delay: 0.1 }}
+                                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 text-orange-700 text-xs font-medium mb-8"
                             >
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
@@ -24,79 +96,92 @@ export function HeroV2() {
                                 AVAILABLE FOR NEW PROJECTS
                             </motion.div>
 
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-semibold tracking-tight text-zinc-900 mb-10 leading-[1.1]"
-                    >
-                        Your Vision, Built Right.
-                    </motion.h1>
-                    
-                    <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg text-zinc-500 max-w-md leading-relaxed mb-12"
-                    >
-                        Tight deadlines, complex projects, late nights. I&apos;ve seen it all. What stays constant is my commitment to deliver results that exceed expectations. Your project gets my full focus until it&apos;s perfect.
-                    </motion.p>
+                            {/* Headline */}
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="text-6xl md:text-8xl font-semibold tracking-tighter text-zinc-900 mb-8 max-w-4xl mx-auto leading-[0.9]"
+                            >
+                                Your Vision, <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Built Right.</span>
+                            </motion.h1>
 
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-wrap gap-4"
-                    >
-                        <button 
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const element = document.querySelector("#work");
-                                if (element) {
-                                    const offset = 64;
-                                    const elementPosition = element.getBoundingClientRect().top;
-                                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                                    window.scrollTo({
-                                        top: offsetPosition,
-                                        behavior: "smooth"
-                                    });
-                                }
-                            }}
-                            className="px-8 py-4 bg-zinc-900 text-white text-sm font-medium hover:bg-orange-500 transition-colors flex items-center gap-2 group"
-                        >
-                            View Portfolio <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                    </motion.div>
+                            {/* Description */}
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="text-lg md:text-xl text-zinc-500 max-w-xl mx-auto leading-relaxed mb-10"
+                            >
+                                Tight deadlines, complex projects, late nights. I&apos;ve seen it all. What stays constant is my commitment to deliver results that exceed expectations.
+                            </motion.p>
+
+                            {/* CTA */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                                className="flex flex-col sm:flex-row items-center gap-4"
+                            >
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const element = document.querySelector("#work");
+                                        if (element) {
+                                            const offset = 64;
+                                            const elementPosition = element.getBoundingClientRect().top;
+                                            const offsetPosition = elementPosition + window.pageYOffset - offset;
+                                            window.scrollTo({
+                                                top: offsetPosition,
+                                                behavior: "smooth"
+                                            });
+                                        }
+                                    }}
+                                    className="px-8 py-4 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-all rounded-full flex items-center gap-2 group shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                                >
+                                    View Portfolio <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </button>
+                                <a href="mailto:hello@example.com" className="px-8 py-4 bg-white border border-zinc-200 text-zinc-600 text-sm font-medium hover:bg-zinc-50 transition-all rounded-full flex items-center gap-2">
+                                    Contact Me
+                                </a>
+                            </motion.div>
+                        </div>
+
+                        {/* Visual Background Element - Only visible when NOT hovering lens area to avoid clutter */}
+                        <div className="absolute inset-0 z-0 opacity-40 md:opacity-100 pointer-events-none mix-blend-multiply">
+                            <VisualBackground />
                         </div>
                     </GridItem>
 
-                    {/* Interactive Hero Window */}
-                    <GridItem className="border-t bg-zinc-50/30 grid-item-visual" padding={false}>
+                    {/* Interactive Window Section */}
+                    <GridItem className="border-t bg-zinc-50/50 grid-item-visual w-full min-h-[600px]" padding={false}>
                         <HeroWindowV2 />
                     </GridItem>
                 </GridContainer>
 
-                <GridContainer cols={3}  > 
-                    <GridItem label="Tool">
-                        <div className="mt-auto flex items-center gap-3">
+                {/* Tools Grid */}
+                <GridContainer cols={3}>
+                    <ToolGridItem label="Tool" delay={0.5}>
+                        <div className="flex items-center gap-3">
                             <FigmaIcon />
                             <div className="text-lg font-medium text-zinc-900">Figma</div>
                         </div>
-                    </GridItem>
-                    <GridItem label="Builder">
-                        <div className="mt-auto flex items-center gap-3">
+                    </ToolGridItem>
+                    <ToolGridItem label="Builder" delay={0.6}>
+                        <div className="flex items-center gap-3">
                             <FramerIcon />
                             <div className="text-lg font-medium text-zinc-900">Framer</div>
                         </div>
-                    </GridItem>
-                    <GridItem label="Framework">
-                        <div className="mt-auto space-y-3">
+                    </ToolGridItem>
+                    <ToolGridItem label="Framework" delay={0.7}>
+                        <div className="flex flex-col gap-3">
                             <div className="flex items-center gap-4">
                                 <NextIcon />
                                 <ExpoIcon />
                                 <FlutterIcon />
                             </div>
-                            <div className="pt-2 border-t border-zinc-100 flex items-center gap-4">
+                            <div className="flex items-center gap-4 pt-2 border-t border-zinc-100">
                                 <div className="flex items-center gap-2">
                                     <CursorIcon />
                                     <span className="text-sm font-medium text-zinc-900">Cursor</span>
@@ -107,356 +192,384 @@ export function HeroV2() {
                                 </div>
                             </div>
                         </div>
-                    </GridItem>
+                    </ToolGridItem>
                 </GridContainer>
             </div>
         </section>
     );
 }
 
-function HeroWindowV2() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [isTyping, setIsTyping] = useState(true);
-    
-    const steps = [
-        { id: "design", word: "Design", color: "text-orange-500" },
-        { id: "code", word: "Code", color: "text-zinc-900" },
-        { id: "ship", word: "Ship", color: "text-emerald-500" },
-    ];
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIsTyping(false);
-            setTimeout(() => {
-                setActiveIndex((prev) => (prev + 1) % steps.length);
-                setIsTyping(true);
-            }, 400);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, [steps.length]);
-
-    const currentStep = steps[activeIndex];
-
+function VisualBackground() {
     return (
-        <motion.div 
-            className="absolute inset-0 flex flex-col p-4 md:p-8 dotted-bg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+        <div className="w-full h-full relative overflow-hidden">
+            {/* Abstract animated shapes */}
+            <motion.div
+                animate={{
+                    y: [0, -20, 0],
+                    rotate: [0, 5, 0]
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-[10%] left-[5%] w-64 h-64 bg-linear-to-br from-orange-100/40 to-transparent rounded-full blur-3xl"
+            />
+            <motion.div
+                animate={{
+                    y: [0, 30, 0],
+                    rotate: [0, -5, 0]
+                }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-linear-to-tl from-blue-100/40 to-transparent rounded-full blur-3xl"
+            />
+        </div>
+    )
+}
+
+function ToolGridItem({ label, delay, children }: { label: string; delay: number; children: React.ReactNode }) {
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay, duration: 0.5 }}
+            className="h-full"
         >
-            <div className="w-full h-full flex flex-col">
-                {/* Typewriter header */}
-                <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-2">
-                        {steps.map((step, i) => (
-                            <motion.div
-                                key={step.id}
-                                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                                    i === activeIndex ? "bg-orange-500" : "bg-zinc-200"
-                                }`}
-                                animate={{ scale: i === activeIndex ? 1.2 : 1 }}
-                            />
-                        ))}
-                    </div>
-                    <div className="h-12 flex items-center overflow-hidden">
-                        <AnimatePresence mode="wait">
-                            <motion.span
-                                key={currentStep.id}
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: isTyping ? 1 : 0 }}
-                                exit={{ y: -20, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: "easeOut" }}
-                                className={`text-3xl md:text-4xl font-bold ${currentStep.color}`}
-                            >
-                                {currentStep.word}
-                                <motion.span
-                                    className="inline-block w-0.5 h-8 bg-current ml-1 align-middle"
-                                    animate={{ opacity: [1, 0] }}
-                                    transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-                                />
-                            </motion.span>
-                        </AnimatePresence>
-                    </div>
-                </div>
-
-                {/* Content area */}
-                <div className="flex-1 relative">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={currentStep.id}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 1.05 }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                            className="absolute inset-0"
-                        >
-                            {currentStep.id === "design" && <DesignVisual />}
-                            {currentStep.id === "code" && <DevVisual />}
-                            {currentStep.id === "ship" && <AppsVisual />}
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
-
-                {/* Progress bar */}
-                <div className="h-1 bg-zinc-100 mt-4 overflow-hidden">
-                    <motion.div
-                        className="h-full bg-orange-500"
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: 3, ease: "linear", repeat: Infinity }}
-                        key={activeIndex}
-                    />
-                </div>
-            </div>
+            <GridItem label={label} className="h-full flex items-center justify-center py-12">
+                {children}
+            </GridItem>
         </motion.div>
     );
 }
 
-function DesignVisual() {
+function HeroWindowV2() {
+    const [activeTab, setActiveTab] = useState(0);
+    const tabs = [
+        { id: "design", label: "Design", icon: Layout, color: "text-orange-500" },
+        { id: "code", label: "Code", icon: Code, color: "text-blue-500" },
+        { id: "ship", label: "Ship", icon: Smartphone, color: "text-emerald-500" },
+    ];
+
+    // Auto-rotate tabs
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setActiveTab((prev) => (prev + 1) % tabs.length);
+        }, 4000);
+        return () => clearInterval(timer);
+    }, [tabs.length]);
+
     return (
-        <div className="relative w-full h-full flex items-center justify-center bg-zinc-50/30 overflow-hidden dotted-bg dotted-bg-opacity-70">
-            <motion.div
-                className="relative bg-white border border-zinc-200 w-full max-w-lg h-64 sm:h-80 shadow-sm mx-8"
-                initial={{ rotate: -1, y: 0 }}
-                animate={{ rotate: 1, y: -5 }}
-                transition={{
-                    rotate: { duration: 8, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
-                    y: { duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }
-                }}
-            >
-                <div className="w-full h-full bg-white border border-zinc-100 flex flex-col">
-                    {/* Interface Header */}
-                    <div className="h-8 border-b border-zinc-100 flex items-center justify-between px-4 bg-zinc-50/50">
-                        <div className="w-24 h-2 bg-zinc-200 rounded-full" />
-                        <div className="flex gap-2">
-                            <div className="w-4 h-4 bg-zinc-100 border border-zinc-200 rounded-sm" />
-                            <div className="w-4 h-4 bg-zinc-100 border border-zinc-200 rounded-sm" />
+        <div className="w-full h-full flex flex-col relative overflow-hidden group">
+            {/* Window Controls & Tabs */}
+            <div className="w-full border-b border-zinc-200 bg-white/80 backdrop-blur-md z-10 px-6 py-4 flex items-center justify-between">
+                <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-red-400/80" />
+                    <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+                    <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
+                </div>
+
+                <div className="flex gap-1 bg-zinc-100/50 p-1 rounded-lg">
+                    {tabs.map((tab, index) => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(index)}
+                            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${activeTab === index
+                                ? "bg-white text-zinc-900 shadow-sm"
+                                : "text-zinc-500 hover:text-zinc-700"
+                                }`}
+                        >
+                            <tab.icon className={`w-3.5 h-3.5 ${activeTab === index ? tab.color : ""}`} />
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="w-16" /> {/* Spacer for balance */}
+            </div>
+
+            {/* Content Area */}
+            <div className="flex-1 relative bg-zinc-50/50">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 1.02 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-0 flex items-center justify-center p-8 md:p-16"
+                    >
+                        {activeTab === 0 && <DesignShowcase />}
+                        {activeTab === 1 && <CodeShowcase />}
+                        {activeTab === 2 && <ShipShowcase />}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="absolute bottom-0 left-0 h-1 bg-zinc-200 w-full">
+                <motion.div 
+                    key={activeTab}
+                    className="h-full bg-zinc-900"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 4, ease: "linear" }}
+                />
+            </div>
+        </div>
+    );
+}
+
+function DesignShowcase() {
+    return (
+        <div className="relative w-full max-w-2xl aspect-video bg-zinc-50 rounded-xl border border-zinc-200 shadow-xl overflow-hidden flex">
+            {/* Sidebar - Layers */}
+            <div className="w-48 border-r border-zinc-200 bg-white p-3 hidden md:flex flex-col gap-2">
+                <div className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Layers</div>
+                {[1, 2, 3].map((i) => (
+                    <div key={i} className="flex items-center gap-2 p-2 rounded hover:bg-zinc-50 cursor-default">
+                        <div className="w-3 h-3 border border-zinc-300 rounded sm:rounded-sm" />
+                        <div className="w-20 h-2 bg-zinc-100 rounded" />
+                    </div>
+                ))}
+            </div>
+
+            {/* Canvas */}
+            <div className="flex-1 relative flex items-center justify-center p-8 bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] bg-size-[16px_16px]">
+                <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative w-64 h-40 bg-white rounded-lg shadow-sm border border-zinc-100 overflow-hidden group"
+                >
+                    {/* Header */}
+                    <div className="h-8 border-b border-zinc-100 flex items-center px-3 gap-2">
+                        <div className="w-2 h-2 rounded-full bg-red-400" />
+                        <div className="w-2 h-2 rounded-full bg-amber-400" />
+                        <div className="w-2 h-2 rounded-full bg-green-400" />
+                    </div>
+                    {/* Content */}
+                    <div className="p-4 space-y-3">
+                        <motion.div
+                            className="w-full h-16 rounded-md bg-zinc-100 border border-zinc-200"
+                            animate={{
+                                backgroundColor: ["#f4f4f5", "#fff7ed", "#f4f4f5"],
+                                borderColor: ["#e4e4e7", "#ffedd5", "#e4e4e7"]
+                            }}
+                            transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
+                        />
+                        <div className="space-y-2">
+                            <div className="w-3/4 h-2 bg-zinc-100 rounded" />
+                            <div className="w-1/2 h-2 bg-zinc-100 rounded" />
+                        </div>
+                        <div className="flex gap-2 pt-2">
+                            <div className="w-1/3 h-6 bg-zinc-900 rounded" />
+                            <div className="w-1/3 h-6 bg-zinc-100 rounded" />
                         </div>
                     </div>
+                </motion.div>
 
-                    <div className="flex-1 flex">
-                        {/* Sidebar - Hidden on very small screens */}
-                        <div className="w-16 border-r border-zinc-100 bg-zinc-50/30 flex-col gap-2 p-2 hidden sm:flex">
-                            <div className="w-full aspect-square bg-zinc-100 rounded-sm border border-zinc-200" />
-                            <div className="w-full aspect-square bg-zinc-100 rounded-sm border border-zinc-200" />
-                            <div className="w-full aspect-square bg-zinc-100 rounded-sm border border-zinc-200" />
+                {/* Cursor Animation */}
+                <motion.div
+                    className="absolute z-50 pointer-events-none"
+                    initial={{ x: "120%", y: "120%" }}
+                    animate={{
+                        x: ["50%", "40%", "60%", "50%"],
+                        y: ["50%", "40%", "60%", "50%"]
+                    }}
+                    transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        times: [0, 0.4, 0.6, 1]
+                    }}
+                >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-md text-black">
+                        <path d="M5.65376 12.3673H5.46026L5.31717 12.4976L0.500002 16.8829L0.500002 1.19169L11.7841 12.3673H5.65376Z" fill="currentColor" stroke="white" strokeWidth="1.5" />
+                    </svg>
+                    <div className="absolute left-4 top-4 px-2 py-1 bg-orange-500 text-white text-[10px] font-bold rounded-full whitespace-nowrap shadow-sm">
+                        Rashid
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* Right Sidebar - Properties */}
+            <div className="w-56 border-l border-zinc-200 bg-white p-3 hidden lg:flex flex-col gap-4">
+                <div>
+                    <div className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Properties</div>
+                    <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                            <div className="w-16 h-6 bg-zinc-50 rounded border border-zinc-100" />
+                            <div className="w-16 h-6 bg-zinc-50 rounded border border-zinc-100" />
                         </div>
+                        <div className="w-full h-24 bg-zinc-50 rounded border border-zinc-100" />
+                    </div>
+                </div>
+                <div className="mt-auto">
+                    <div className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-2">Export</div>
+                    <div className="w-full h-8 bg-zinc-900 rounded flex items-center justify-center text-xs text-white">
+                        Export SVG
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-                        {/* Canvas Content */}
-                        <div className="flex-1 p-6 relative">
-                            <div className="absolute top-6 left-6 right-6 bottom-6 border border-dashed border-blue-300 rounded-sm flex flex-col p-4 gap-3 bg-blue-50/5">
-                                <div className="w-1/2 h-4 bg-zinc-100 rounded-sm" />
-                                <div className="w-full h-24 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                                <div className="flex gap-2">
-                                    <div className="w-20 h-6 bg-zinc-900 rounded-sm" />
-                                    <div className="w-20 h-6 bg-zinc-100 border border-zinc-200 rounded-sm" />
-                                </div>
-                            </div>
+function CodeShowcase() {
+    return (
+        <div className="relative w-full max-w-2xl aspect-video bg-[#1E1E1E] rounded-xl shadow-2xl overflow-hidden flex flex-col font-mono text-sm group">
+            {/* Window Header */}
+            <div className="h-9 bg-[#252526] flex items-center px-4 gap-2 border-b border-[#333] select-none">
+                <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                    <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                </div>
+                <div className="ml-4 text-zinc-400 text-xs flex items-center gap-2 bg-[#1e1e1e] px-3 py-1 rounded-t-md mt-1">
+                    <span className="text-blue-400">TSX</span>
+                    hero.tsx
+                </div>
+            </div>
 
-                            {/* Floating Palette */}
-                            <motion.div
-                                className="absolute top-4 right-4 w-24 bg-white border border-zinc-200 p-2 shadow-sm z-10"
-                                animate={{ y: [-5, 5, -5] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                            >
-                                <div className="text-[8px] text-zinc-500 mb-1 uppercase font-bold">Colors</div>
-                                <div className="grid grid-cols-4 gap-1">
-                                    <div className="w-4 h-4 bg-orange-500 rounded-sm" />
-                                    <div className="w-4 h-4 bg-zinc-900 rounded-sm" />
-                                    <div className="w-4 h-4 bg-blue-500 rounded-sm" />
-                                    <div className="w-4 h-4 bg-zinc-200 rounded-sm" />
-                                </div>
-                            </motion.div>
+            {/* Code Area */}
+            <div className="flex-1 p-4 text-zinc-300 leading-relaxed overflow-hidden relative">
+                <div className="flex">
+                    <div className="text-zinc-600 select-none pr-4 text-right border-r border-[#333] mr-4 w-8">
+                        1<br />2<br />3<br />4<br />5<br />6<br />7<br />8
+                    </div>
+                    <div className="flex-1">
+                        <div><span className="text-[#C586C0]">export</span> <span className="text-[#569CD6]">function</span> <span className="text-[#DCDCAA]">Hero</span>() {"{"}</div>
+                        <div className="pl-4"><span className="text-[#C586C0]">return</span> (</div>
+                        <div className="pl-8">
+                            &lt;<span className="text-[#4EC9B0]">motion.div</span>
                         </div>
-
-                        {/* Right Panel - Hidden on smaller screens */}
-                        <div className="w-32 border-l border-zinc-100 bg-white p-3 hidden md:block">
-                            <div className="space-y-3">
-                                <div className="w-full h-2 bg-zinc-100 rounded-full" />
-                                <div className="grid grid-cols-2 gap-2">
-                                    <div className="h-6 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                                    <div className="h-6 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                                </div>
-                                <div className="w-full h-20 bg-zinc-50 border border-zinc-100 rounded-sm" />
-                            </div>
+                        <div className="pl-12">
+                            <span className="text-[#9CDCFE]">initial</span>={"{"}{"{"} <span className="text-[#9CDCFE]">opacity</span>: <span className="text-[#B5CEA8]">0</span> {"}"}{"}"}
                         </div>
+                        <div className="pl-12">
+                            <span className="text-[#9CDCFE]">animate</span>={"{"}{"{"} <span className="text-[#9CDCFE]">opacity</span>: <span className="text-[#B5CEA8]">1</span> {"}"}{"}"}
+                        </div>
+                        <div className="pl-8">
+                            &gt;
+                        </div>
+                        <div className="pl-12 flex items-center">
+                            &lt;<span className="text-[#4EC9B0]">h1</span>&gt;
+                            <span className="text-[#CE9178]">Hello World</span>
+                            &lt;/<span className="text-[#4EC9B0]">h1</span>&gt;
+                            <motion.div 
+                                className="w-2 h-4 bg-blue-400 ml-1"
+                                animate={{ opacity: [1, 0] }}
+                                transition={{ duration: 0.8, repeat: Infinity }}
+                            />
+                        </div>
+                        <div className="pl-8">
+                            &lt;/<span className="text-[#4EC9B0]">motion.div</span>&gt;
+                        </div>
+                        <div>);</div>
+                        <div>{"}"}</div>
                     </div>
                 </div>
 
-                {/* Cursor Interaction */}
-                <motion.div
-                    className="absolute z-20"
-                    animate={{
-                        x: [0, 80, 40, 0],
-                        y: [0, 40, 80, 0]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    style={{ top: '40%', left: '20%' }}
+                {/* Success Toast */}
+                <motion.div 
+                    initial={{ y: 50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 2, duration: 0.5 }}
+                    className="absolute bottom-4 right-4 bg-[#252526] border border-green-900/50 text-green-400 px-3 py-2 rounded shadow-lg text-xs flex items-center gap-2"
                 >
-                    <MousePointer2 className="w-5 h-5 text-black fill-black stroke-white" />
-                    <div className="ml-2 px-1.5 py-0.5 bg-orange-500 text-white text-[9px] font-bold inline-block rounded-sm shadow-sm">
-                        You
-                    </div>
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    Compiled successfully
                 </motion.div>
+            </div>
+
+            {/* Terminal/Status Bar */}
+            <div className="h-6 bg-[#007ACC] text-white text-[10px] flex items-center px-3 justify-between select-none">
+                <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="opacity-70"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.5 16.5l-1.5 1.5-4-4-4 4-1.5-1.5 5.5-5.5 5.5 5.5z" /></svg>
+                        master
+                    </span>
+                    <span className="opacity-70">0 errors, 0 warnings</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <span>Ln 8, Col 24</span>
+                    <span>UTF-8</span>
+                    <span>TypeScript React</span>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ShipShowcase() {
+    return (
+        <div className="relative w-full max-w-2xl h-full flex items-center justify-center gap-8">
+            <motion.div 
+                className="w-[120px] h-[240px] bg-white border-[6px] border-zinc-800 rounded-[24px] shadow-xl overflow-hidden relative z-10"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+            >
+                {/* Notch */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 bg-zinc-800 rounded-b-lg z-20" />
+
+                <div className="w-full h-full bg-zinc-50 flex flex-col pt-6">
+                    <div className="p-3 space-y-3">
+                        <div className="w-full h-24 bg-orange-500 rounded-xl shadow-lg shadow-orange-500/20" />
+                        <div className="space-y-2">
+                            <div className="w-full h-3 bg-zinc-200 rounded-full" />
+                            <div className="w-2/3 h-3 bg-zinc-200 rounded-full" />
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 pt-2">
+                            <div className="h-12 bg-white rounded-lg border border-zinc-100" />
+                            <div className="h-12 bg-white rounded-lg border border-zinc-100" />
+                        </div>
+                    </div>
+                    {/* Bottom Nav */}
+                    <div className="mt-auto h-12 bg-white border-t border-zinc-100 flex justify-around items-center px-2">
+                        <div className="w-6 h-6 rounded-full bg-zinc-100" />
+                        <div className="w-6 h-6 rounded-full bg-zinc-100" />
+                        <div className="w-6 h-6 rounded-full bg-orange-100" />
+                    </div>
+                </div>
+            </motion.div>
+
+            <motion.div
+                className="w-[360px] h-[240px] bg-white border border-zinc-200 rounded-xl shadow-2xl overflow-hidden relative hidden md:block"
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+            >
+                <div className="w-full h-full bg-white flex flex-col">
+                    <div className="h-8 border-b border-zinc-100 w-full flex items-center px-3 gap-2">
+                        <div className="flex gap-1.5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-zinc-200" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-zinc-200" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-zinc-200" />
+                        </div>
+                        <div className="flex-1 flex justify-center">
+                            <div className="w-32 h-5 bg-zinc-50 rounded text-[10px] flex items-center justify-center text-zinc-400">example.com</div>
+                        </div>
+                    </div>
+                    <div className="p-6 flex gap-6 h-full">
+                        <div className="w-1/3 h-full">
+                            <div className="w-full h-8 bg-zinc-900 rounded mb-4" />
+                            <div className="space-y-2">
+                                <div className="w-full h-2 bg-zinc-100 rounded" />
+                                <div className="w-full h-2 bg-zinc-100 rounded" />
+                                <div className="w-2/3 h-2 bg-zinc-100 rounded" />
+                            </div>
+                            <div className="mt-6 w-24 h-8 bg-orange-500 rounded shadow-lg shadow-orange-500/20" />
+                        </div>
+                        <div className="flex-1 h-full bg-zinc-50 rounded-lg border border-zinc-100 relative overflow-hidden">
+                            <div className="absolute top-4 right-4 w-32 h-32 bg-orange-100 rounded-full blur-2xl opacity-50" />
+                            <div className="absolute bottom-4 left-4 w-32 h-32 bg-blue-100 rounded-full blur-2xl opacity-50" />
+                        </div>
+                    </div>
+                </div>
             </motion.div>
         </div>
     );
 }
 
-function DevVisual() {
-    return (
-        <div className="w-full h-full bg-white p-4 md:p-8 font-mono text-xs md:text-sm relative overflow-hidden flex flex-col">
-            <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-                <Code2 className="w-96 h-96" />
-            </div>
-            <div className="space-y-4 relative z-10 max-w-3xl overflow-y-auto custom-scrollbar h-full">
-                <div className="flex gap-3 items-center text-zinc-500 border-b border-zinc-100 pb-4 flex-wrap">
-                    <span>rashid@dev</span>
-                    <span className="text-zinc-300">~</span>
-                    <span>portfolio-v2</span>
-                </div>
-
-                <div className="space-y-2">
-                    <div className="flex gap-3 flex-wrap">
-                        <span className="text-orange-500 font-bold">➜</span>
-                        <span className="text-zinc-900">npx create-next-app@latest</span>
-                    </div>
-                    <div className="text-zinc-500 pl-6 border-l-2 border-zinc-100 ml-2 py-1">
-                        Need to install the following packages: <br />
-                        create-next-app@14.1.0
-                    </div>
-                </div>
-
-                <div className="space-y-4 pt-2">
-                    <div className="flex gap-3 items-start flex-wrap">
-                        <span className="text-green-500 mt-0.5">?</span>
-                        <span className="text-zinc-900 font-bold">What is your project named?</span>
-                        <TypeWriter text=" my-portfolio" delay={0.5} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2 }}
-                        className="flex gap-3 items-start flex-wrap"
-                    >
-                        <span className="text-green-500 mt-0.5">?</span>
-                        <span className="text-zinc-900 font-bold">Would you like to use TypeScript?</span>
-                        <span className="text-orange-500">Yes</span>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 2.5 }}
-                        className="flex gap-3 items-start flex-wrap"
-                    >
-                        <span className="text-green-500 mt-0.5">?</span>
-                        <span className="text-zinc-900 font-bold">Would you like to use Tailwind CSS?</span>
-                        <span className="text-orange-500">Yes</span>
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 3.5 }}
-                        className="pt-4 text-green-600 flex items-start gap-3 font-bold flex-wrap"
-                    >
-                        <span className="mt-0.5">✔</span> Success! Created my-portfolio at ./my-portfolio
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 4.5 }}
-                        className="pt-4 text-zinc-500"
-                    >
-                        <div className="flex gap-3 flex-wrap">
-                             <span className="text-orange-500 font-bold">➜</span> cd my-portfolio
-                        </div>
-                        <div className="flex gap-3 flex-wrap">
-                            <span className="text-orange-500 font-bold">➜</span> npm run dev
-                        </div>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 5.5 }}
-                        className="p-4 bg-green-50 border border-green-100 rounded text-green-700 mt-4 inline-block break-all"
-                    >
-                        ready - started server on 0.0.0.0:3000, url: http://localhost:3000
-                    </motion.div>
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function AppsVisual() {
-    return (
-        <div className="w-full h-full flex items-end justify-center gap-4 sm:gap-8 pb-8 bg-zinc-50/30 px-4 sm:px-12">
-            {[0, 1, 2].map((i) => (
-                <motion.div
-                    key={i}
-                    className="bg-white border-x border-t border-zinc-200 relative overflow-hidden shadow-sm"
-                    // Desktop: 16:10 aspect (approx), Tablet: 3:4, Mobile: 9:19.5
-                    // Using fixed widths/heights to maintain ratios visually
-                    style={{
-                        width: i === 2 ? '45%' : i === 1 ? '30%' : '15%',
-                        height: i === 2 ? '80%' : i === 1 ? '60%' : '50%',
-                        minWidth: i === 2 ? '240px' : i === 1 ? '160px' : '80px'
-                    }}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
-                >
-                    <div className="w-full h-1 bg-orange-500" />
-                    <div className="p-2 sm:p-4 space-y-2 sm:space-y-4">
-                        <div className="w-full h-24 sm:h-32 bg-zinc-50 border border-zinc-100" />
-                        <div className="w-3/4 h-2 sm:h-3 bg-zinc-100" />
-                        <div className="w-1/2 h-2 sm:h-3 bg-zinc-100" />
-
-                        {i === 2 && (
-                            <div className="grid grid-cols-3 gap-2 mt-4">
-                                <div className="h-16 bg-blue-50 rounded border border-blue-100" />
-                                <div className="h-16 bg-purple-50 rounded border border-purple-100" />
-                                <div className="h-16 bg-green-50 rounded border border-green-100" />
-                            </div>
-                        )}
-
-                        {i === 1 && (
-                            <div className="grid grid-cols-2 gap-2 mt-4">
-                                <div className="h-12 bg-blue-50 rounded" />
-                                <div className="h-12 bg-purple-50 rounded" />
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Badge */}
-                    <div className="absolute bottom-4 left-4 bg-zinc-100 px-2 py-1 text-[10px] font-bold text-zinc-500 uppercase border border-zinc-200">
-                        {i === 0 ? 'Mobile' : i === 1 ? 'Tablet' : 'Desktop'}
-                    </div>
-                </motion.div>
-            ))}
-        </div>
-    );
-}
-
-function TypeWriter({ text, delay = 0 }: { text: string, delay?: number }) {
-    return (
-        <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay }}
-        >
-            {text}
-            <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="inline-block w-1.5 h-3 bg-orange-500 ml-1 align-middle"
-            />
-        </motion.span>
-    );
-}
-
+// Icons
 function FigmaIcon() {
     return (
         <svg width="21" height="32" viewBox="0 0 21 32" fill="none" xmlns="http://www.w3.org/2000/svg">

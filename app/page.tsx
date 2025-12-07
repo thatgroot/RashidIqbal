@@ -1,17 +1,17 @@
 import { Metadata } from "next";
-import { HeroV2 } from "@/components/hero";
-import { NavbarV2 } from "@/components/navbar";
-import { ServicesGridV2 } from "@/components/services-grid";
-import { TrustedByV2 } from "@/components/trusted-by";
-import { ComparisonV2 } from "@/components/comparison";
-import { ProcessV2 } from "@/components/process";
+import { HeroV2 as Hero } from "@/components/v2/hero";
+import { NavbarV2 as Navbar } from "@/components/v2/navbar";
+import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
+import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
+import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
+import { ProcessV2 as Process } from "@/components/v2/process";
 import { Tools } from "@/components/tools";
-import { WorkV2 } from "@/components/work";
-import { TestimonialsV2 } from "@/components/testimonials";
-import { PricingV2 } from "@/components/pricing";
-import { FAQV2 } from "@/components/faq";
-import { CTASectionV2 } from "@/components/cta";
-import { FooterV2 } from "@/components/footer";
+import { WorkV2 as Work } from "@/components/v2/work";
+import { TestimonialsV2 as Testimonials } from "@/components/v2/testimonials";
+import { PricingV2 as Pricing } from "@/components/v2/pricing";
+import { FAQV2 as FAQ } from "@/components/v2/faq";
+import { CTASectionV2 as CTASection } from "@/components/v2/cta";
+import { FooterV2 as Footer } from "@/components/v2/footer";
 import { SectionSpacer } from "@/components/section-spacer";
 
 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PageV2Enhanced() {
+export default function Page() {
   return (
     <main className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
       {/* Enhanced Background with animated gradient */}
@@ -49,28 +49,28 @@ export default function PageV2Enhanced() {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/2 rounded-full blur-3xl" />
       </div>
 
-        <NavbarV2 />
-        <HeroV2 />
-        <TrustedByV2 />
+      <Navbar />
+      <Hero />
+      <TrustedBy />
         <SectionSpacer />
-        <ServicesGridV2 />
+      <ServicesGrid />
         <SectionSpacer />
-        <ComparisonV2 />
+      <Comparison />
         <SectionSpacer />
-        <ProcessV2 />
+      <Process />
         <SectionSpacer />
         <Tools />
         <SectionSpacer />
-        <WorkV2 />
+      <Work />
         <SectionSpacer />
-        <TestimonialsV2 />
+      <Testimonials />
         <SectionSpacer />
-        <PricingV2 />
+      <Pricing />
         <SectionSpacer />
-        <FAQV2 />
+      <FAQ />
         <SectionSpacer />
-        <CTASectionV2 />
-        <FooterV2 />
+      <CTASection />
+      <Footer />
     </main>
   );
 }

@@ -58,13 +58,13 @@ export function GridItem({ children, className, title, label, padding = true }: 
         className
       )}
     >
-      {(title || label) && (
-        <div className="flex justify-between items-start mb-6">
-          {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
+        {(title || label) && (
+            <div className="flex justify-between items-start mb-6">
+                {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
           {label && <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-orange-500 transition-colors">{label}</span>}
-        </div>
-      )}
-      {children}
+            </div>
+        )}
+        {children}
     </div>
   );
 }
