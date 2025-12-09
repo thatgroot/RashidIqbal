@@ -39,7 +39,7 @@ export function ServiceLandingV2() {
             <div className="absolute inset-0 bg-gradient-to-tr from-green-50 to-transparent rounded-2xl" />
             <div className="relative bg-white border border-zinc-200 rounded-xl shadow-lg p-6">
                 <div className="flex justify-between items-center mb-8 border-b border-zinc-100 pb-4">
-                    <span className="font-mono text-xs text-zinc-400">LIGHTHOUSE_METRICS</span>
+                    <span className="font-mono text-xs text-zinc-500">LIGHTHOUSE_METRICS</span>
                     <span className="font-mono text-xs text-green-600 bg-green-50 px-2 py-1 rounded">PASS</span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">

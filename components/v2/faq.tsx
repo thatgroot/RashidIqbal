@@ -53,7 +53,7 @@ export function FAQV2() {
                             className="w-full flex items-center justify-between p-8 text-left hover:bg-zinc-50 transition-colors"
                         >
                             <span className="font-medium text-zinc-900 pr-8">{faq.q}</span>
-                            {openIndex === i ? <Minus className="w-5 h-5 text-zinc-400" /> : <Plus className="w-5 h-5 text-zinc-400" />}
+                            {openIndex === i ? <Minus className="w-5 h-5 text-zinc-500" /> : <Plus className="w-5 h-5 text-zinc-500" />}
                         </button>
                         <AnimatePresence>
                             {openIndex === i && (

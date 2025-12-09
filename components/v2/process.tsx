@@ -168,7 +168,7 @@ export function ProcessV2() {
                       {step.num}
                     </motion.span>
                     <span className={`text-[10px] font-mono uppercase tracking-widest transition-colors duration-500 ${
-                      isActive ? 'text-orange-500' : isPast ? 'text-emerald-500' : 'text-zinc-400'
+                      isActive ? 'text-orange-500' : isPast ? 'text-emerald-500' : 'text-zinc-500'
                     }`}>
                       {step.verb}
                     </span>

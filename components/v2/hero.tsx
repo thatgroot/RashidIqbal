@@ -86,9 +86,9 @@ export function HeroV2() {
                                 className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 text-xs font-medium mb-6"
                             >
                                 <span className="flex items-center gap-2 text-orange-700">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
                                     </span>
                                     AVAILABLE NOW
                                 </span>
@@ -128,7 +128,7 @@ export function HeroV2() {
                                     href="https://cal.com/rashid.iqbal" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-500 text-white text-sm font-bold hover:bg-orange-600 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-600 text-white text-sm font-bold hover:bg-orange-700 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-600/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2"
                                 >
                                     Book a Free Call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </a>
@@ -175,12 +175,12 @@ export function HeroV2() {
                                 transition={{ delay: 1, duration: 0.5 }}
                                 className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
                             >
-                                <span className="text-xs text-zinc-400 uppercase tracking-widest">Scroll to explore</span>
+                                <span className="text-xs text-zinc-500 uppercase tracking-widest">Scroll to explore</span>
                                 <motion.div
                                     animate={{ y: [0, 8, 0] }}
                                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                                 >
-                                    <ArrowDown className="w-4 h-4 text-zinc-400" aria-hidden="true" />
+                                    <ArrowDown className="w-4 h-4 text-zinc-500" aria-hidden="true" />
                                 </motion.div>
                             </motion.div>
                         </div>

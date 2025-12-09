@@ -226,7 +226,7 @@ export function WorkV2() {
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 aria-label={`Visit ${project.name} website (opens in new tab)`}
-                                className="p-2 bg-white text-zinc-400 hover:text-zinc-900 transition-colors"
+                                className="p-2 bg-white text-zinc-500 hover:text-zinc-900 transition-colors"
                             >
                                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                             </a>

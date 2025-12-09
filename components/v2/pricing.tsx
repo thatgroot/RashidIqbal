@@ -256,7 +256,7 @@ export function PricingV2() {
                                 onClick={() => setOpenPlan(i)}
                                 className={`w-full py-4 text-sm font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 ${
                                 plan.popular 
-                                    ? "bg-orange-500 text-white hover:bg-orange-600 shadow-lg shadow-orange-500/25" 
+                                    ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-600/25" 
                                     : "bg-zinc-900 text-white hover:bg-zinc-800"
                             }`}>
                                 {plan.popular ? "Start Building" : "Get Started"} <ArrowRight className="w-4 h-4" aria-hidden="true" />

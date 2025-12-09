@@ -227,7 +227,7 @@ export function Tools() {
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400/20 border border-amber-400/50" />
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-400/20 border border-green-400/50" />
                     </div>
-                    <span className="text-[8px] sm:text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+                    <span className="text-[8px] sm:text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
                       stack.config
                     </span>
                     <div className="w-8 sm:w-12" />
@@ -242,7 +242,7 @@ export function Tools() {
                         className={`relative px-3 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-colors whitespace-nowrap flex-shrink-0 ${
                           activeTab === category.id 
                             ? 'text-zinc-900 font-medium' 
-                            : 'text-zinc-400 hover:text-zinc-600'
+                            : 'text-zinc-500 hover:text-zinc-700'
                         }`}
                       >
                         {category.label}

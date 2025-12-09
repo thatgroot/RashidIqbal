@@ -55,7 +55,7 @@ export function DesignSectionV2() {
                     {/* Main Canvas Area - Flat */}
                     <div className="absolute inset-12 top-32 bg-white border border-zinc-200">
                         <div className="h-8 border-b border-zinc-100 flex items-center px-4 justify-between">
-                            <span className="text-[10px] font-bold text-zinc-400 uppercase">Frame 1</span>
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase">Frame 1</span>
                             <div className="flex gap-1">
                                 <div className="w-2 h-2 bg-zinc-200 rounded-full" />
                                 <div className="w-2 h-2 bg-zinc-200 rounded-full" />

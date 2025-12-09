@@ -16,7 +16,7 @@ export function ServiceBusinessV2() {
                                 <div className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
                                 <div className="w-2.5 h-2.5 rounded-full bg-zinc-300" />
                             </div>
-                            <div className="ml-4 px-3 py-0.5 bg-white border border-zinc-200 rounded text-[10px] text-zinc-400 flex-1">
+                            <div className="ml-4 px-3 py-0.5 bg-white border border-zinc-200 rounded text-[10px] text-zinc-500 flex-1">
                                 cms.aestho.xyz/dashboard
                             </div>
                         </div>
@@ -58,7 +58,7 @@ export function ServiceBusinessV2() {
                                 <div className="h-1.5 w-full bg-zinc-100 rounded overflow-hidden">
                                     <div className="h-full w-[90%] bg-blue-500" />
                                 </div>
-                                <div className="flex justify-between text-[10px] text-zinc-400 font-mono">
+                                <div className="flex justify-between text-[10px] text-zinc-500 font-mono">
                                     <span>Rank</span>
                                     <span>#1</span>
                                 </div>

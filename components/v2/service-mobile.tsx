@@ -65,7 +65,7 @@ export function ServiceMobileV2() {
                             </div>
                             <div>
                                 <div className="text-[10px] text-white font-bold">Update Installed</div>
-                                <div className="text-[10px] text-zinc-400">Version 2.0 is live</div>
+                                <div className="text-[10px] text-zinc-500">Version 2.0 is live</div>
                             </div>
                         </motion.div>
                     </div>
