@@ -12,7 +12,9 @@ type ServiceType = "landing" | "web" | "mobile";
 const plans = [
   {
     name: "Launch",
-    tagline: "Design Only",
+    tagline: "Design Package",
+    startingPrice: "From $2,500",
+    priceRange: "$2,500 - $4,500",
     desc: "Stop guessing. Start with designs that convert. Get investor-ready mockups in 2 weeks.",
     idealFor: "Founders validating ideas",
     baseFeatures: ["Production-Ready Figma Files", "Design System You Own Forever", "Mobile + Desktop Layouts"],
@@ -26,7 +28,9 @@ const plans = [
   },
   {
     name: "Build",
-    tagline: "Design + Development",
+    tagline: "Full Build",
+    startingPrice: "From $5,000",
+    priceRange: "$5,000 - $12,000",
     desc: "From Figma to live product. Ship faster with clean, scalable code that grows with you.",
     idealFor: "Startups ready to launch",
     baseFeatures: ["Everything in Launch", "Pixel-Perfect Development", "60fps Animations", "SEO & Performance Optimized"],
@@ -41,7 +45,9 @@ const plans = [
   },
   {
     name: "Scale",
-    tagline: "Full Partnership",
+    tagline: "Growth Partner",
+    startingPrice: "From $15,000",
+    priceRange: "$15,000+",
     desc: "Your product deserves a dedicated partner. End-to-end execution with priority support.",
     idealFor: "Funded startups & agencies",
     baseFeatures: ["Everything in Build", "Dedicated Slack Channel", "Weekly Strategy Calls", "Priority Bug Fixes"],
@@ -68,59 +74,46 @@ export function PricingV2() {
   return (
     <section className="bg-white" id="pricing">
       <div className="max-w-container border-l border-zinc-100">
-        <GridContainer  > 
-            <GridItem className="py-24">
+        {/* Header with Inline Selector */}
+        <GridContainer>
+            <GridItem className="py-20">
                 <motion.div 
-                    className="w-full flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+                    className="max-w-3xl"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6 }}
                 >
-                    <div className="max-w-xl">
-                        <h2 className="text-4xl font-semibold text-zinc-900 mb-4">
-                            Invest in Results.
-                        </h2>
-                        <p className="text-lg text-zinc-500">
-                            Fixed pricing. No hourly surprises. You pay for outcomes, not hours logged.
-                        </p>
-                    </div>
+                    <h2 className="text-4xl md:text-5xl font-semibold text-zinc-900 mb-6 tracking-tight">
+                        Invest in Results.
+                    </h2>
+                    <p className="text-lg text-zinc-500 mb-8">
+                        Fixed pricing. No hourly surprises. You pay for outcomes, not hours logged.
+                    </p>
                     
-                    {/* Service Type Selector */}
-                    <div className="flex items-center gap-1 p-1 bg-zinc-100">
-                        <button
-                            onClick={() => setServiceType("landing")}
-                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
-                                serviceType === "landing"
-                                    ? "bg-white text-zinc-900 shadow-sm"
-                                    : "text-zinc-500 hover:text-zinc-700"
-                            }`}
-                        >
-                            <Layout className="w-4 h-4" aria-hidden="true" />
-                            <span>Landing Page</span>
-                        </button>
-                        <button
-                            onClick={() => setServiceType("web")}
-                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
-                                serviceType === "web"
-                                    ? "bg-white text-zinc-900 shadow-sm"
-                                    : "text-zinc-500 hover:text-zinc-700"
-                            }`}
-                        >
-                            <Code2 className="w-4 h-4" aria-hidden="true" />
-                            <span>Web App</span>
-                        </button>
-                        <button
-                            onClick={() => setServiceType("mobile")}
-                            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-all ${
-                                serviceType === "mobile"
-                                    ? "bg-white text-zinc-900 shadow-sm"
-                                    : "text-zinc-500 hover:text-zinc-700"
-                            }`}
-                        >
-                            <Smartphone className="w-4 h-4" aria-hidden="true" />
-                            <span>Mobile App</span>
-                        </button>
+                    {/* Compact Service Selector */}
+                    <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Service type">
+                        <span className="text-sm text-zinc-600 mr-2 font-medium">Choose your project type:</span>
+                        {[
+                            { type: "landing" as ServiceType, icon: Layout, label: "Landing Page" },
+                            { type: "web" as ServiceType, icon: Code2, label: "Web App" },
+                            { type: "mobile" as ServiceType, icon: Smartphone, label: "Mobile App" }
+                        ].map((item) => (
+                            <button
+                                key={item.type}
+                                onClick={() => setServiceType(item.type)}
+                                role="tab"
+                                aria-selected={serviceType === item.type}
+                                className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
+                                    serviceType === item.type
+                                        ? "bg-zinc-900 text-white border-zinc-900"
+                                        : "bg-white text-zinc-600 border-zinc-200 hover:border-zinc-900 hover:text-zinc-900"
+                                }`}
+                            >
+                                <item.icon className={`w-4 h-4 ${serviceType === item.type ? "text-orange-400" : ""}`} aria-hidden="true" />
+                                {item.label}
+                            </button>
+                        ))}
                     </div>
                 </motion.div>
             </GridItem>
@@ -138,7 +131,7 @@ export function PricingV2() {
                         visible: { transition: { staggerChildren: 0.08, delayChildren: i * 0.12 } }
                     }}
                 >
-                <GridItem className={plan.popular ? "bg-gradient-to-b from-orange-50/50 to-white ring-2 ring-orange-500/20 ring-inset" : ""}>
+                <GridItem className={plan.popular ? "bg-gradient-to-b from-orange-50/80 to-white ring-2 ring-orange-500/30 ring-inset shadow-xl shadow-orange-500/10 scale-[1.02] relative z-10" : ""}>
                     {/* Badge */}
                     {(plan.popular || plan.highlight) && (
                         <motion.div 
@@ -168,13 +161,25 @@ export function PricingV2() {
                             {plan.name}
                         </motion.h3>
                         <motion.div 
-                            className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-4"
+                            className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-2"
                             variants={{
                                 hidden: { opacity: 0, y: 10 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
                             }}
                         >
                             {plan.tagline}
+                        </motion.div>
+                        
+                        {/* Price */}
+                        <motion.div 
+                            className="text-2xl font-bold text-zinc-900 mb-4"
+                            variants={{
+                                hidden: { opacity: 0, y: 10 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                            }}
+                        >
+                            {plan.startingPrice}
+                            <span className="text-sm font-normal text-zinc-500 ml-1">USD</span>
                         </motion.div>
                         
                         {/* Value Prop */}
@@ -270,26 +275,27 @@ export function PricingV2() {
                                 >
                                     
                                     <div className="relative z-10 flex gap-2 w-full bg-white">
-                                        <a href="mailto:rashidiqbal.freelance@gmail.com" className="flex-1 py-3 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 border border-zinc-200 transition-colors" title="Email">
-                                            <SiGmail size={16} />
+                                        <a href="mailto:rashidiqbal.freelance@gmail.com" className="flex-1 py-3 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 border border-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Contact via Email">
+                                            <SiGmail size={16} aria-hidden="true" />
                                         </a>
-                                        <a href="https://wa.me/923554665643" className="flex-1 py-3 bg-green-50 hover:bg-green-100 flex items-center justify-center text-green-600 border border-green-200 transition-colors" title="WhatsApp">
-                                            <SiWhatsapp size={16} />
+                                        <a href="https://wa.me/923554665643" className="flex-1 py-3 bg-green-50 hover:bg-green-100 flex items-center justify-center text-green-600 border border-green-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500" aria-label="Contact via WhatsApp">
+                                            <SiWhatsapp size={16} aria-hidden="true" />
                                         </a>
-                                        <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors" title="Upwork">
-                                            <SiUpwork size={16} />
+                                        <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" aria-label="Hire on Upwork">
+                                            <SiUpwork size={16} aria-hidden="true" />
                                         </a>
-                                        <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center border border-zinc-900 transition-colors" title="Cal.com">
-                                            <Image src="/icons/cal.png" alt="Cal.com" width={16} height={16} className="rounded-sm" />
+                                        <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center border border-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Book a call on Cal.com">
+                                            <Image src="/icons/cal.png" alt="" width={16} height={16} className="rounded-sm" aria-hidden="true" />
                                         </a>
                                         <button 
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 setOpenPlan(null);
                                             }}
-                                            className="px-3 py-3 hover:bg-zinc-100 text-zinc-500 border border-zinc-200 transition-colors"
+                                            className="px-3 py-3 hover:bg-zinc-100 text-zinc-500 border border-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-500"
+                                            aria-label="Close contact options"
                                         >
-                                            <ArrowRight className="w-4 h-4 rotate-180" />
+                                            <ArrowRight className="w-4 h-4 rotate-180" aria-hidden="true" />
                                         </button>
                                     </div>
                                 </motion.div>

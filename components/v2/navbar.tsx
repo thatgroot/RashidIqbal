@@ -34,7 +34,7 @@ export function NavbarV2() {
       <div className="max-w-container h-full border-x border-zinc-100 flex items-center justify-between px-8 relative z-10">
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          className="flex items-center gap-3 hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
           aria-label="Scroll to top"
         >
           {/* Logo from favicon.svg */}
@@ -48,39 +48,39 @@ export function NavbarV2() {
           <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
         </button>
 
-        <div className="hidden md:flex items-center gap-1 text-sm font-medium">
+        <div className="hidden md:flex items-center gap-1 text-sm font-medium shrink-0">
           <Link 
             href="#work" 
             onClick={(e) => scrollToSection(e, "#work")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Work
           </Link>
           <Link 
             href="#pricing" 
             onClick={(e) => scrollToSection(e, "#pricing")} 
-            className="px-3 py-2 text-orange-600 hover:text-orange-700 hover:bg-orange-50 transition-all rounded-sm font-semibold"
+            className="px-3 py-2 text-orange-600 hover:text-orange-700 hover:bg-orange-50 transition-all rounded-sm font-semibold whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Pricing
           </Link>
           <Link 
             href="#testimonials" 
             onClick={(e) => scrollToSection(e, "#testimonials")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Reviews
           </Link>
           <Link 
             href="#process" 
             onClick={(e) => scrollToSection(e, "#process")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Process
           </Link>
           <Link 
             href="#resources" 
             onClick={(e) => scrollToSection(e, "#resources")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm"
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             FAQ
           </Link>
@@ -99,7 +99,7 @@ export function NavbarV2() {
             aria-label="Start project contact options"
             aria-expanded={showContactOptions}
             aria-haspopup="true"
-            className="px-5 py-2.5 bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-orange-500 transition-all hover:scale-105 flex items-center gap-2"
+            className="px-5 py-2.5 bg-zinc-900 text-white text-xs font-bold uppercase tracking-wider hover:bg-orange-500 transition-all hover:scale-105 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Book a Call
           </button>

@@ -62,6 +62,8 @@ export function TestimonialsV2() {
                     <div className="relative z-10">
                         <motion.div 
                             className="flex gap-1 mb-8"
+                            role="img"
+                            aria-label="5 out of 5 stars rating"
                             variants={{
                                 hidden: { opacity: 0, y: 10 },
                                 visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }

@@ -260,13 +260,6 @@ export function WorkV2() {
                 </motion.div>
             ))}
         </GridContainer>
-        
-        {/* Mobile 'View All' Button */}
-        <div className="md:hidden border-b border-r border-zinc-100 p-8 flex justify-center">
-             <button className="text-sm font-bold text-zinc-900 items-center gap-2 border-b border-zinc-900 pb-1 flex">
-                View All Projects <ArrowUpRight className="w-4 h-4" />
-            </button>
-        </div>
       </div>
     </section>
   );

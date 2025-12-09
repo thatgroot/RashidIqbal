@@ -17,8 +17,8 @@ export function CTASectionV2() {
                 <span>READY_TO_SHIP</span>
               </div>
               <h2 className="text-4xl md:text-6xl font-semibold text-zinc-900 tracking-tight">
-                Ready To Build? <br />
-                <span className="text-zinc-500">Let&apos;s cook the recipe together.</span>
+                Ready To Launch? <br />
+                <span className="text-zinc-500">Let&apos;s build something amazing.</span>
               </h2>
             </div>
 

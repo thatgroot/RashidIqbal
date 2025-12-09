@@ -31,7 +31,7 @@ export function AboutV2() {
                 ].map((stat, i) => (
                     <div key={i}>
                         <div className="text-2xl font-bold text-zinc-900">{stat.value}</div>
-                        <div className="text-xs text-zinc-400 uppercase tracking-wider mt-1">{stat.label}</div>
+                        <div className="text-xs text-zinc-500 uppercase tracking-wider mt-1">{stat.label}</div>
                     </div>
                 ))}
             </div>

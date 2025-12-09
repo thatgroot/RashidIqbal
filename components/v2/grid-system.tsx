@@ -60,7 +60,7 @@ export function GridItem({ children, className, title, label, padding = true }: 
     >
         {/* Label positioned absolutely in top-right corner */}
         {label && (
-          <span className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[10px] font-mono text-zinc-400 uppercase tracking-widest group-hover:text-orange-500 transition-colors z-10">
+          <span className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-orange-500 transition-colors z-10">
             {label}
           </span>
         )}

@@ -37,6 +37,27 @@ button, a, .cursor-pointer {
   cursor: pointer;
 }
 
+/* Global Focus Styles for Accessibility */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgb(249 115 22);
+  outline-offset: 2px;
+}
+
+/* Ensure links have visible focus */
+a:focus-visible {
+  border-radius: 2px;
+}
+
+/* Interactive elements base states */
+button, a {
+  transition: all 0.2s ease;
+}
+
 /* Accessibility: Skip to main content */
 .skip-to-main {
   position: absolute;

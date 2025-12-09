@@ -8,25 +8,25 @@ import { useState, useEffect } from "react";
 const steps = [
   {
     num: "01",
-    title: "Talk",
+    title: "Discovery Call",
     verb: "Discover",
     desc: "Every great project starts with a conversation. We dive into your vision, goals, and what success looks like for you."
   },
   {
     num: "02",
-    title: "Prepare", 
+    title: "Design Sprint", 
     verb: "Design",
     desc: "Wireframes, mockups, and prototypes. You see the direction before a single line of code is written."
   },
   {
     num: "03",
-    title: "Cook",
+    title: "Development",
     verb: "Build",
     desc: "Your project comes alive. Pixel-perfect implementation with clean, scalable code that performs."
   },
   {
     num: "04",
-    title: "Serve",
+    title: "Launch Day",
     verb: "Launch",
     desc: "Polished, tested, and deployed. Your product is live and ready to make an impact."
   }
