@@ -9,6 +9,7 @@
   
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-spin-slow: spin-slow 3s linear infinite;
+  --animate-border-travel: border-travel 2.5s linear infinite;
 
   @keyframes shimmer {
     from {
@@ -20,6 +21,15 @@
   }
 
   @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes border-travel {
     from {
       transform: rotate(0deg);
     }

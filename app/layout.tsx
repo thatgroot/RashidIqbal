@@ -99,14 +99,27 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://framerusercontent.com" />
+        
+        {/* PWA Meta Tags */}
+        <meta name="application-name" content="Rashid Iqbal" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Rashid Iqbal" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#18181b" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        
         {/* Geo Meta Tags for Location-Based SEO */}
         <meta name="geo.region" content="PK" />
         <meta name="geo.placename" content="Pakistan" />
+        
         {/* Social Media Platform Tags */}
         <meta property="fb:app_id" content="" />
         <meta name="linkedin:owner" content="rashidiqbal" />
         {/* Pinterest Verification (when available) */}
         {/* <meta name="p:domain_verify" content="your-pinterest-code" /> */}
+        
         <OEmbedLinks />
       </head>
       <body

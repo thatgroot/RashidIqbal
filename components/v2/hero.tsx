@@ -78,21 +78,35 @@ export function HeroV2() {
                             className="relative z-10 w-full px-6 py-20 md:px-12 md:py-28 flex flex-col items-center text-center"
                             onMouseMove={handleMouseMove}
                         >
-                            {/* Status Pill with Urgency - Animated Glow Border */}
+                            {/* Status Pill with Urgency - Animated Border Trail */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-orange-50 text-xs font-medium mb-6 overflow-hidden"
+                                className="relative inline-flex items-center gap-3 px-4 py-2 rounded-full text-xs font-medium mb-6"
                             >
-                                {/* Animated gradient border */}
-                                <div className="absolute inset-0 rounded-full">
-                                    <div className="absolute inset-0 rounded-full animate-spin-slow bg-[conic-gradient(from_0deg,#f97316,#fb923c,#fdba74,#fed7aa,#fdba74,#fb923c,#f97316)]" style={{ animationDuration: '3s' }} />
+                                {/* Static border background */}
+                                <div className="absolute inset-0 rounded-full border border-orange-200" />
+                                {/* Animated traveling light on border */}
+                                <div className="absolute inset-[-1px] rounded-full overflow-hidden">
+                                    <div 
+                                        className="absolute inset-0 animate-border-travel"
+                                        style={{
+                                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 340deg, #f97316 350deg, #fb923c 355deg, #f97316 360deg)',
+                                        }}
+                                    />
                                 </div>
-                                {/* Glow effect */}
-                                <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,#f97316,#fb923c,#fdba74,#fed7aa,#fdba74,#fb923c,#f97316)] opacity-50 blur-md animate-spin-slow" style={{ animationDuration: '3s' }} />
+                                {/* Glow that follows the light */}
+                                <div className="absolute inset-[-4px] rounded-full overflow-hidden pointer-events-none">
+                                    <div 
+                                        className="absolute inset-0 animate-border-travel blur-sm opacity-60"
+                                        style={{
+                                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 340deg, #f97316 350deg, #fb923c 355deg, #f97316 360deg)',
+                                        }}
+                                    />
+                                </div>
                                 {/* Inner background */}
-                                <div className="absolute inset-[2px] rounded-full bg-orange-50" />
+                                <div className="absolute inset-[1px] rounded-full bg-orange-50" />
                                 {/* Content */}
                                 <span className="relative flex items-center gap-2 text-orange-700 z-10">
                                     <span className="relative flex h-2 w-2">
