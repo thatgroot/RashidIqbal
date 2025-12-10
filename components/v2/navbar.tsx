@@ -84,6 +84,12 @@ export function NavbarV2() {
           >
             FAQ
           </Link>
+          <Link 
+            href="/blog" 
+            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+          >
+            Blog
+          </Link>
         </div>
 
         <div className="relative flex items-center gap-3">
