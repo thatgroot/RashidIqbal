@@ -137,7 +137,6 @@ export default function RootLayout({
         </a>
         <StructuredData />
         {children}
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -177,6 +176,7 @@ export default function RootLayout({
           }}
         />
       </body>
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }
