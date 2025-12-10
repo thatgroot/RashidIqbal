@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -137,44 +138,19 @@ export default function RootLayout({
         </a>
         <StructuredData />
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                // Register Service Worker for offline support
-                if ('serviceWorker' in navigator) {
-                  window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                      console.log('SW registered: ', registration);
-                    }).catch(function(error) {
-                      console.log('SW registration failed: ', error);
-                    });
-                  });
-                }
-                
-                // Fix accessibility for open-side-panel button if it exists
-                function fixButtonAccessibility() {
-                  const openSidePanelButton = document.getElementById('open-side-panel');
-                  if (openSidePanelButton && !openSidePanelButton.getAttribute('aria-label')) {
-                    openSidePanelButton.setAttribute('aria-label', 'Open side panel');
-                  }
-                }
-                
-                // Try immediately
-                fixButtonAccessibility();
-                
-                // Also try after DOM is fully loaded
-                if (document.readyState === 'loading') {
-                  document.addEventListener('DOMContentLoaded', fixButtonAccessibility);
-                }
-                
-                // Use MutationObserver to catch dynamically added buttons
-                const observer = new MutationObserver(fixButtonAccessibility);
-                observer.observe(document.body, { childList: true, subtree: true });
-              })();
-            `,
-          }}
-        />
+        {/* Service Worker Registration - loads after page is interactive */}
+        <Script
+          id="sw-registration"
+          strategy="afterInteractive"
+        >
+          {`
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.register('/sw.js')
+                .then((registration) => console.log('SW registered:', registration.scope))
+                .catch((error) => console.error('SW registration failed:', error));
+            }
+          `}
+        </Script>
       </body>
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>

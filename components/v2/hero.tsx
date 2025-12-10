@@ -2,9 +2,10 @@
 
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
 import { ArrowRight, ArrowDown, Users } from "lucide-react";
-import { GridContainer, GridItem } from "./grid-system";
+
 import { useRef } from "react";
 import Image from "next/image";
+import { GridContainer, GridItem } from "./grid-system";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
