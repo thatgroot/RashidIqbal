@@ -189,7 +189,7 @@ export function HeroV2() {
                                     <span>trusted</span>
                                 </div>
                                 <span className="hidden sm:inline">•</span>
-                                <span className="hidden sm:inline">15% avg. conversion lift</span>
+                                <span className="hidden sm:inline">12% avg. conversion lift</span>
                             </motion.div>
 
                             {/* Scroll Indicator */}
@@ -197,7 +197,7 @@ export function HeroV2() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 1, duration: 0.5 }}
-                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 mt-4"
                             >
                                 <span className="text-xs text-zinc-500 uppercase tracking-widest">Scroll to explore</span>
                                 <motion.div

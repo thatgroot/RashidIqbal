@@ -7,7 +7,7 @@ import { GridContainer, GridItem } from "./grid-system";
 
 const reviews = [
   {
-        text: "Rashid rebuilt our entire deal aggregation platform from scratch. The new architecture handles 50k+ daily listings without breaking a sweat. Conversion rates jumped 15% after launch.",
+        text: "Rashid rebuilt our entire deal aggregation platform from scratch. The new architecture handles 50k+ daily listings without breaking a sweat. Conversion rates jumped 12% after launch.",
     author: "Priya Selvakumar",
     role: "Founder @ DealsFinders"
   },
