@@ -81,18 +81,34 @@ export const metadata: Metadata = {
     },
   },
   manifest: `${siteUrl}/manifest.webmanifest`,
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
+  appleWebApp: {
+    capable: true,
+    title: 'Rashid Iqbal',
+    statusBarStyle: 'black-translucent',
+  },
   other: {
-    "theme-color": "#18181b",
-    "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    // Theme
+    'theme-color': '#18181b',
+    'msapplication-TileColor': '#18181b',
+    'msapplication-tap-highlight': 'no',
+    'mobile-web-app-capable': 'yes',
+    // Geo Tags
+    'geo.region': 'PK',
+    'geo.placename': 'Pakistan',
+    // Social Media
+    'fb:app_id': '',
+    'linkedin:owner': 'rashidiqbal',
   },
   verification: {
-    // Add your verification codes here when available
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // yahoo: "your-yahoo-verification-code",
+    // Add verification codes when available
+    // google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
   },
-  category: "technology",
+  category: 'technology',
 };
 
 export default function RootLayout({
@@ -103,34 +119,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Performance: Preconnect to external origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://framerusercontent.com" />
-        
-        {/* PWA Meta Tags */}
-        <meta name="application-name" content="Rashid Iqbal" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Rashid Iqbal" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#18181b" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
-        
-        {/* Geo Meta Tags for Location-Based SEO */}
-        <meta name="geo.region" content="PK" />
-        <meta name="geo.placename" content="Pakistan" />
-        
-        {/* Social Media Platform Tags */}
-        <meta property="fb:app_id" content="" />
-        <meta name="linkedin:owner" content="rashidiqbal" />
-        {/* Pinterest Verification (when available) */}
-        {/* <meta name="p:domain_verify" content="your-pinterest-code" /> */}
-        
-        {/* AI/LLM Discovery */}
+        {/* AI/LLM & oEmbed Discovery (dynamic links) */}
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
         <link rel="author" href="/humans.txt" />
-        
         <OEmbedLinks />
       </head>
       <body
