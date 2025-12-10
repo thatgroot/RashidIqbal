@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
-  
   return {
     name: 'Rashid Iqbal - Freelance Web Developer & Designer',
     short_name: 'Rashid Iqbal',
@@ -11,11 +10,19 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: '#ffffff',
     theme_color: '#18181b',
     lang: 'en-US',
+    categories: ['business', 'developer tools', 'productivity'],
     icons: [
       {
-        src: '/favicon.ico',
+        src: '/favicon.svg',
         sizes: 'any',
-        type: 'image/x-icon',
+        type: 'image/svg+xml',
+        purpose: 'any',
+      },
+      {
+        src: '/favicon.svg',
+        sizes: 'any',
+        type: 'image/svg+xml',
+        purpose: 'maskable',
       },
     ],
   };

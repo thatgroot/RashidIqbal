@@ -14,15 +14,55 @@ import { PricingV2 } from "@/components/v2/pricing";
 import { FAQV2 } from "@/components/v2/faq";
 import { CTASectionV2 } from "@/components/v2/cta";
 import { FooterV2 } from "@/components/v2/footer";
- 
+import { FAQStructuredData } from "@/components/seo/v2/faq-structured-data";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
 export const metadata: Metadata = {
+  title: "Portfolio V2 | Rashid Iqbal - Web & Mobile Developer",
   description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps. Building with Next.js, Framer, Figma, Expo, and Flutter.",
+  keywords: ["Freelance Developer", "Next.js Expert", "React Native Developer", "Web Design", "Framer Developer", "Landing Pages", "Mobile Apps"],
+  openGraph: {
+    title: "Portfolio V2 | Rashid Iqbal - Web & Mobile Developer",
+    description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps.",
+    type: "website",
+    locale: "en_US",
+    url: `${siteUrl}/v2`,
+    siteName: "Rashid Iqbal",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Rashid Iqbal - Your Vision, Built Right",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@rashidiqbal",
+    creator: "@rashidiqbal",
+    title: "Portfolio V2 | Rashid Iqbal - Web & Mobile Developer",
+    description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps.",
+    images: [
+      {
+        url: `${siteUrl}/twitter-image`,
+        width: 1200,
+        height: 630,
+        alt: "Rashid Iqbal - Your Vision, Built Right",
+      },
+    ],
+  },
+  alternates: {
+    canonical: `${siteUrl}/v2`,
+  },
 };
 
 export default function PageV2() {
   return (
     <>
+      <FAQStructuredData />
       <a href="#main-content" className="skip-to-main">
         Skip to main content
       </a>

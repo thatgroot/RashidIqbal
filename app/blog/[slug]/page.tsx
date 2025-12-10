@@ -2,12 +2,93 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { getPostBySlug, getPostSlugs, getRelatedPosts } from "@/lib/blog";
+import { getPostBySlug, getPostSlugs, getRelatedPosts, BlogPost } from "@/lib/blog";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { Calendar, Clock, ArrowLeft, Tag, Share2 } from "lucide-react";
 import { SiX, SiLinkedin } from "react-icons/si";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
+
+/**
+ * Article Structured Data component for blog posts
+ * Implements schema.org Article markup for rich search results
+ */
+function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string }) {
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: post.coverImage
+      ? post.coverImage.startsWith("http")
+        ? post.coverImage
+        : `${siteUrl}${post.coverImage}`
+      : `${siteUrl}/opengraph-image`,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+      url: siteUrl,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Rashid Iqbal",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo.svg`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/blog/${slug}`,
+    },
+    keywords: post.tags.join(", "),
+    articleSection: post.category,
+    wordCount: post.content.split(/\s+/).length,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${siteUrl}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${siteUrl}/blog/${slug}`,
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+    </>
+  );
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,29 +109,53 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
+  const imageUrl = post.coverImage
+    ? post.coverImage.startsWith("http")
+      ? post.coverImage
+      : `${siteUrl}${post.coverImage}`
+    : `${siteUrl}/opengraph-image`;
 
   return {
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.description,
+    keywords: post.tags,
+    authors: [{ name: post.author.name, url: siteUrl }],
     openGraph: {
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.description,
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.date,
       authors: [post.author.name],
       tags: post.tags,
-      images: post.coverImage
-        ? [{ url: post.coverImage.startsWith("http") ? post.coverImage : `${siteUrl}${post.coverImage}` }]
-        : undefined,
+      section: post.category,
+      siteName: "Rashid Iqbal",
+      locale: "en_US",
+      url: `${siteUrl}/blog/${slug}`,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+          type: "image/png",
+        },
+      ],
     },
     twitter: {
       card: post.twitterCard || "summary_large_image",
+      site: "@rashidiqbal",
+      creator: post.author.twitter || "@rashidiqbal",
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.description,
-      images: post.coverImage
-        ? [post.coverImage.startsWith("http") ? post.coverImage : `${siteUrl}${post.coverImage}`]
-        : undefined,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     alternates: {
       canonical: `${siteUrl}/blog/${slug}`,
@@ -67,11 +172,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const relatedPosts = getRelatedPosts(slug, post.tags);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
   const postUrl = `${siteUrl}/blog/${slug}`;
 
   return (
-    <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
+    <>
+      <ArticleStructuredData post={post} slug={slug} />
+      <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
       {/* Background */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-size-[40px_40px]" />
@@ -243,7 +349,8 @@ export default async function BlogPostPage({ params }: PageProps) {
       )}
 
       <Footer />
-    </main>
+      </main>
+    </>
   );
 }
 

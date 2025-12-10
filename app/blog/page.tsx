@@ -29,13 +29,31 @@ export const metadata: Metadata = {
     title: "Blog - Web Development Insights & Tutorials",
     description:
       "Expert articles on web development, mobile apps, design systems, and conversion optimization.",
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "Rashid Iqbal - Web Development Blog",
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@rashidiqbal",
+    creator: "@rashidiqbal",
     title: "Blog - Web Development Insights & Tutorials",
     description:
       "Expert articles on web development, mobile apps, and conversion optimization.",
-    creator: "@rashidiqbal",
+    images: [
+      {
+        url: `${siteUrl}/twitter-image`,
+        width: 1200,
+        height: 630,
+        alt: "Rashid Iqbal - Web Development Blog",
+      },
+    ],
   },
   alternates: {
     canonical: `${siteUrl}/blog`,
