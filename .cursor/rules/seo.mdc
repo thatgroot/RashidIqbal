@@ -1,0 +1,57 @@
+---
+alwaysApply: true
+---
+
+---
+description: SEO, AI/LLM Visibility, and Social Media Optimization for Next.js
+globs: **/*.tsx, **/*.ts
+alwaysApply: true
+---
+
+# SEO & AI/LLM Visibility Best Practices
+
+## Next.js Metadata API (use instead of manual tags)
+
+- **Always use `export const metadata: Metadata`** for SEO tags
+- **Never use manual `<meta>` tags** in `<head>` for standard metadata
+- Use `metadata.other` for custom meta tags (geo, PWA, social)
+- Use `metadata.appleWebApp` for PWA Apple tags
+- Use `metadata.icons` for favicons and apple-touch-icon
+- Use `metadata.verification` for Google/Bing verification codes
+
+## Required Files for Full Visibility
+
+| File | Location | Purpose |
+|------|----------|---------|
+| `sitemap.ts` | `app/` | Dynamic sitemap for crawlers |
+| `robots.ts` | `app/` | Crawler permissions + AI bots |
+| `manifest.ts` | `app/` | PWA manifest |
+| `feed.xml/route.ts` | `app/` | RSS feed for syndication |
+| `llms.txt` | `public/` | AI/LLM readable summary |
+| `llms-full.txt` | `public/` | Detailed AI context |
+| `humans.txt` | `public/` | Site credits |
+| `security.txt` | `public/.well-known/` | Security contact |
+
+## AI Crawler Rules (in robots.ts)
+
+Include rules for: `GPTBot`, `ClaudeBot`, `Google-Extended`, `PerplexityBot`, `CCBot`, `cohere-ai`
+
+## Google Analytics (Next.js way)
+
+import { GoogleAnalytics } from "@next/third-parties/google";
+// Place AFTER </body> but inside </html>
+<GoogleAnalytics gaId="G-XXXXXX" />## Scripts (Next.js way)
+
+import Script from "next/script";
+<Script id="my-script" strategy="afterInteractive">{`...`}</Script>## Structured Data
+
+- Use JSON-LD in a component with `dangerouslySetInnerHTML`
+- Include: `Person`, `Organization`, `WebSite`, `FAQPage`, `Article`
+
+## What stays in `<head>`
+
+Only these need manual `<head>` tags:
+- `<link rel="preconnect">` (performance)
+- `<link rel="dns-prefetch">` (performance)
+- Dynamic oEmbed links
+- Custom `rel="alternate"` links (llms.txt)

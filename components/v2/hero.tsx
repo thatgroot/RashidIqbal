@@ -34,12 +34,12 @@ export function HeroV2() {
     const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
 
     return (
-        <section ref={sectionRef} className="pt-18 bg-white relative overflow-hidden">
+        <section ref={sectionRef} className="pt-16 bg-white relative overflow-hidden">
             <div className="max-w-container border-l border-zinc-100 relative">
                 <GridContainer cols={1}>
                     {/* Main Hero Content */}
                     <GridItem
-                        className="border-t min-h-[90vh] flex flex-col justify-center relative overflow-hidden group"
+                        className="border-t min-h-[65vh] flex flex-col justify-center relative overflow-hidden group"
                         padding={false}
                     >
                         {/* Lens Effect Layer - Visible on Hover */}
@@ -76,7 +76,7 @@ export function HeroV2() {
                         </motion.div>
 
                         <div
-                            className="relative z-10 w-full px-6 py-20 md:px-12 md:py-28 flex flex-col items-center text-center"
+                            className="relative z-10 w-full px-6 py-12 md:px-12 md:py-16 flex flex-col items-center text-center"
                             onMouseMove={handleMouseMove}
                         >
                             {/* Status Pill with Urgency - Animated Border Trail */}
