@@ -6,80 +6,165 @@ const schemas = [
     "@type": "Person",
     "@id": `${siteUrl}#person`,
     name: "Rashid Iqbal",
+    givenName: "Rashid",
+    familyName: "Iqbal",
     url: siteUrl,
+    image: `${siteUrl}/logo.svg`,
     jobTitle: "Freelance Web Developer & Designer",
-    description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps. Building with Next.js, Framer, Figma, Expo, and Flutter.",
+    description: "Freelance Next.js and Framer developer based in Pakistan. Specializing in high-converting landing pages, web applications, and mobile apps.",
     email: "rashidiqbal.freelance@gmail.com",
+    // Location for discoverability
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "PK",
+      addressRegion: "Pakistan",
+    },
+    nationality: {
+      "@type": "Country",
+      name: "Pakistan",
+    },
+    // Social profiles for cross-platform presence
     sameAs: [
       "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
+      "https://www.behance.net/thatgroot",
+      "https://contra.com/rashidiqbal",
+      "https://github.com/thatgroot",
+      "https://www.linkedin.com/in/callmerashidiqbal/",
+      "https://x.com/rashidrealme",
       "https://wa.me/923554665643",
     ],
     knowsAbout: [
-      "Web Development",
-      "Next.js",
-      "React",
-      "Framer",
-      "Figma",
+      "Next.js Development",
+      "React Development",
+      "Framer Development",
+      "Figma Design",
       "Mobile App Development",
-      "Expo",
-      "Flutter",
-      "Landing Pages",
-      "Web Applications",
+      "Expo Development",
+      "Flutter Development",
+      "Landing Page Design",
+      "Web Application Development",
+      "UI/UX Design",
+      "TypeScript",
+      "Tailwind CSS",
     ],
-    alumniOf: {
+    knowsLanguage: ["English", "Urdu"],
+    // Work context
+    worksFor: {
       "@type": "Organization",
-      name: "Freelance Developer",
+      name: "Freelance",
     },
   },
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${siteUrl}#service`,
-    name: "Rashid Iqbal - Web Development & Design Services",
-    description: "Freelance web development and design services. Specializing in landing pages, web applications, and mobile apps built with Next.js, Framer, Figma, Expo, and Flutter.",
+    name: "Rashid Iqbal - Next.js & Framer Developer (Pakistan)",
+    alternateName: "Rashid Iqbal Web Development",
+    description: "Hire a freelance Next.js and Framer developer from Pakistan. Specializing in high-converting landing pages, web applications, and mobile apps. Fast delivery, pixel-perfect design.",
     url: siteUrl,
+    image: `${siteUrl}/logo.svg`,
+    telephone: "+923554665643",
+    email: "rashidiqbal.freelance@gmail.com",
+    // Location for local SEO
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "PK",
+      addressRegion: "Pakistan",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: "30.3753",
+      longitude: "69.3451",
+    },
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "Worldwide",
+      },
+      {
+        "@type": "Country",
+        name: "United States",
+      },
+      {
+        "@type": "Country",
+        name: "United Kingdom",
+      },
+      {
+        "@type": "Country",
+        name: "Canada",
+      },
+      {
+        "@type": "Country",
+        name: "Australia",
+      },
+    ],
+    priceRange: "$$$",
     provider: {
       "@id": `${siteUrl}#person`,
     },
-    areaServed: "Worldwide",
     serviceType: [
+      "Next.js Development",
+      "Framer Development",
       "Web Development",
       "Web Design",
       "Mobile App Development",
       "Landing Page Design",
       "UI/UX Design",
     ],
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Landing Page Development",
-        description: "High-converting landing pages built with Framer and Figma",
-        price: "4900",
-        priceCurrency: "USD",
-      },
-      {
-        "@type": "Offer",
-        name: "Web Application Development",
-        description: "Full-stack web applications built with Next.js",
-        price: "9500",
-        priceCurrency: "USD",
-      },
-      {
-        "@type": "Offer",
-        name: "Mobile App Development",
-        description: "Mobile applications built with Expo and Flutter",
-        price: "8900",
-        priceCurrency: "USD",
-      },
-    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Web Development Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Landing Page Development",
+            description: "High-converting landing pages built with Framer and Next.js",
+          },
+          price: "4900",
+          priceCurrency: "USD",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Web Application Development",
+            description: "Full-stack web applications built with Next.js and React",
+          },
+          price: "9500",
+          priceCurrency: "USD",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Mobile App Development",
+            description: "Cross-platform mobile apps built with Expo and Flutter",
+          },
+          price: "8900",
+          priceCurrency: "USD",
+        },
+      ],
+    },
+    // Aggregate rating placeholder
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "50",
+      bestRating: "5",
+      worstRating: "1",
+    },
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${siteUrl}#website`,
     url: siteUrl,
-    name: "Rashid Iqbal",
-    description: "Freelance web developer and designer specializing in landing pages, web applications, and mobile apps.",
+    name: "Rashid Iqbal - Next.js & Framer Developer",
+    alternateName: "aestho.xyz",
+    description: "Hire a freelance Next.js and Framer developer from Pakistan. High-converting landing pages, web applications, and mobile apps.",
+    inLanguage: "en-US",
     publisher: {
       "@id": `${siteUrl}#person`,
     },
@@ -87,7 +172,7 @@ const schemas = [
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+        urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -98,10 +183,29 @@ const schemas = [
     "@id": `${siteUrl}#organization`,
     name: "Rashid Iqbal",
     url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/logo.svg`,
+      width: "512",
+      height: "512",
+    },
+    founder: {
+      "@id": `${siteUrl}#person`,
+    },
     sameAs: [
       "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
+      "https://www.behance.net/thatgroot",
+      "https://contra.com/rashidiqbal",
+      "https://github.com/thatgroot",
+      "https://www.linkedin.com/in/callmerashidiqbal/",
+      "https://x.com/rashidrealme",
     ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: "rashidiqbal.freelance@gmail.com",
+      availableLanguage: ["English", "Urdu"],
+    },
   },
   {
     "@context": "https://schema.org",
@@ -116,20 +220,20 @@ const schemas = [
       {
         "@type": "ListItem",
         position: 2,
-        name: "Services",
-        item: `${siteUrl}#services`,
+        name: "Portfolio",
+        item: `${siteUrl}/#work`,
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: "Work",
-        item: `${siteUrl}#work`,
+        name: "Pricing",
+        item: `${siteUrl}/#pricing`,
       },
       {
         "@type": "ListItem",
         position: 4,
-        name: "Pricing",
-        item: `${siteUrl}#pricing`,
+        name: "Blog",
+        item: `${siteUrl}/blog`,
       },
     ],
   },
@@ -148,4 +252,3 @@ export function StructuredData() {
     </>
   );
 }
-

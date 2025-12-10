@@ -1,41 +1,76 @@
-# Rashid Iqbal - Freelance Web Developer & Designer
+# Rashid Iqbal — Next.js & Framer Developer (Pakistan)
 
-> Professional web developer specializing in high-converting landing pages, web applications, and mobile apps.
+> Freelance web developer from Pakistan specializing in Next.js, Framer, and React. I build high-converting landing pages, web applications, and mobile apps.
 
-## About
+## Who I Am
 
-Rashid Iqbal is a freelance web developer and designer based in Pakistan. He specializes in building modern, performant websites using Next.js, Framer, Figma, Expo, and Flutter.
+Name: Rashid Iqbal
+Location: Pakistan (available for remote work worldwide)
+Role: Freelance Web Developer & Designer
+Experience: 50+ projects delivered
+Specialization: Next.js, Framer, React, Landing Pages
 
-## Services
+## What I Build
 
-- **Landing Pages**: High-converting, beautifully designed landing pages
-- **Web Applications**: Full-stack web applications with modern tech stacks
-- **Mobile Apps**: Cross-platform mobile applications using Expo and Flutter
-- **UI/UX Design**: User interface and experience design with Figma
-- **Framer Development**: Interactive prototypes and production websites
+### Landing Pages
+High-converting landing pages with 15%+ conversion rates. Built with Framer and Next.js. Pixel-perfect design, fast loading, mobile responsive.
+
+### Web Applications
+Full-stack web applications using Next.js, React, TypeScript, and Tailwind CSS. Real-time features, authentication, dashboards, APIs.
+
+### Mobile Apps
+Cross-platform mobile apps using Expo (React Native) and Flutter. iOS and Android from single codebase.
 
 ## Tech Stack
 
 - Frontend: Next.js, React, TypeScript, Tailwind CSS
-- Mobile: Expo, React Native, Flutter
 - Design: Figma, Framer
+- Mobile: Expo (React Native), Flutter
+- AI Tools: Cursor, Bolt, v0
 - Backend: Node.js, Supabase, Firebase
+
+## Why Hire Me
+
+- Fast delivery (most projects ship in 4-8 weeks)
+- Pixel-perfect implementation from Figma designs
+- Performance optimized (90+ Lighthouse scores)
+- Clean, maintainable code
+- Direct communication, no agencies
+
+## Pricing
+
+- Landing Pages: Starting at $4,900
+- Web Applications: Starting at $9,500
+- Mobile Apps: Starting at $8,900
+
+View detailed pricing: https://aestho.xyz/#pricing
+
+## Portfolio
+
+See my work: https://aestho.xyz/#work
+
+Notable projects include landing pages, SaaS dashboards, e-commerce sites, and mobile apps for clients in US, UK, Australia, and Europe.
 
 ## Contact
 
 - Website: https://aestho.xyz
-- Email: Available on website
-- Availability: Currently accepting new projects
+- Email: rashidiqbal.freelance@gmail.com
+- WhatsApp: +92 355 466 5643
+- Book a Call: https://cal.com/rashid.iqbal
 
-## Pricing
+## Profiles
 
-Visit https://aestho.xyz/#pricing for current service packages and rates.
+- Upwork: https://www.upwork.com/freelancers/~01b24c107f5b5af596
+- Behance: https://www.behance.net/thatgroot
+- Contra: https://contra.com/rashidiqbal
+- GitHub: https://github.com/thatgroot
+- LinkedIn: https://www.linkedin.com/in/callmerashidiqbal/
+- X/Twitter: https://x.com/rashidrealme
 
-## Blog
+## Availability
 
-Read articles on web development, design, and freelancing at https://aestho.xyz/blog
+Currently accepting new projects. Limited slots available each month.
 
-## Portfolio
+## Keywords
 
-View completed projects at https://aestho.xyz/#work
-
+Next.js developer Pakistan, Framer developer, freelance web developer Pakistan, hire React developer, landing page developer, Figma to code, web application developer, mobile app developer, Expo developer, Flutter developer, TypeScript developer, Tailwind CSS expert

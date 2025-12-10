@@ -25,6 +25,7 @@ AI coding assistants are powerful. But without guardrails, they produce inconsis
 The solution? **Cursor Rules**—project-specific instructions that ensure every AI-generated line of code meets your standards for performance, accessibility, and SEO.
 
 After implementing these rules across multiple projects, I've seen:
+
 - **90% reduction** in accessibility issues
 - **Consistent Core Web Vitals** scores across all pages
 - **AI/LLM visibility** that most developers don't even know exists
@@ -35,16 +36,15 @@ Here's my complete playbook.
 
 Cursor rules are markdown files that live in your `.cursor/rules/` directory. They tell the AI assistant how to write code for your specific project.
 
-```
-your-project/
-├── .cursor/
-│   └── rules/
-│       ├── global-best-practices.mdc
-│       └── seo.mdc
-├── app/
-├── components/
-└── ...
-```
+Your project structure should look like this:
+
+- `your-project/`
+  - `.cursor/`
+    - `rules/`
+      - `global-best-practices.mdc`
+      - `seo.mdc`
+  - `app/`
+  - `components/`
 
 The `alwaysApply: true` flag means these rules apply to every file matching the glob pattern—automatically.
 
@@ -52,22 +52,16 @@ The `alwaysApply: true` flag means these rules apply to every file matching the 
 
 Every unoptimized image is a conversion killer. Here's how I enforce proper image handling:
 
-```markdown
----
-description: Image Optimization Rules
-globs: **/*.tsx
-alwaysApply: true
----
+**The Rule:**
 
-## Image Optimization
+- Always use `next/image` instead of standard `<img>` tags
+- Use the `sizes` prop for responsive images
+- Avoid layout shift by specifying `width`/`height` or using `fill`
+- Use `priority` for LCP images (hero sections)
+- Provide descriptive `alt` text; use `alt=""` for decorative images
 
-- **Always use `next/image`** instead of `<img>` tags
-- **Use the `sizes` prop** for responsive images
-- **Avoid layout shift**: Always specify `width`/`height` or use `fill`
-- **Use `priority`** for LCP images (hero sections)
-- **Provide descriptive `alt`** text; use `alt=""` for decorative images
+**Example Implementation:**
 
-### Example:
 ```tsx
 <div className="relative h-64">
   <Image
@@ -80,7 +74,6 @@ alwaysApply: true
   />
 </div>
 ```
-```
 
 **Why this matters:** A single unoptimized image can tank your Core Web Vitals. This rule ensures every image is automatically optimized, lazy-loaded, and properly sized.
 
@@ -88,8 +81,7 @@ alwaysApply: true
 
 Accessibility isn't optional—it's a legal requirement in many jurisdictions. And frankly, it's just good engineering.
 
-```markdown
-## Accessibility Standards
+**The Standards:**
 
 - **Semantic HTML**: Use `<section>`, `<article>`, `<nav>`, `<button>` appropriately
 - **Accessible names**: All interactive elements need text, `aria-label`, or `aria-labelledby`
@@ -98,12 +90,14 @@ Accessibility isn't optional—it's a legal requirement in many jurisdictions. A
 - **Heading hierarchy**: Sequential levels (h1 → h2 → h3)
 - **Focus states**: All interactive elements must have visible focus indicators
 
-### Bad:
+**Bad Example:**
+
 ```tsx
 <div onClick={handleClick}>Click me</div>
 ```
 
-### Good:
+**Good Example:**
+
 ```tsx
 <button 
   onClick={handleClick}
@@ -112,9 +106,9 @@ Accessibility isn't optional—it's a legal requirement in many jurisdictions. A
   Click me
 </button>
 ```
-```
 
 **The rule enforces:**
+
 - No `div` or `span` for clickable elements
 - Proper focus management
 - Screen reader compatibility
@@ -124,17 +118,17 @@ Accessibility isn't optional—it's a legal requirement in many jurisdictions. A
 
 Manual `<meta>` tags in the `<head>` are a code smell. Next.js has a Metadata API—use it.
 
-```markdown
-## SEO Metadata
+**The Standards:**
 
-- **Always use `export const metadata: Metadata`** for SEO
-- **Never use manual `<meta>` tags** in `<head>`
+- Always use `export const metadata: Metadata` for SEO
+- Never use manual `<meta>` tags in `<head>`
 - Use `metadata.other` for custom tags (geo, PWA)
 - Use `metadata.appleWebApp` for PWA Apple tags
 - Use `metadata.icons` for favicons
 - Use `metadata.verification` for search console codes
 
-### Example:
+**Example Implementation:**
+
 ```tsx
 export const metadata: Metadata = {
   title: 'Page Title | Brand',
@@ -150,9 +144,9 @@ export const metadata: Metadata = {
   },
 };
 ```
-```
 
-**What stays in `<head>`:**
+**What stays in `<head>` (manual tags):**
+
 - `<link rel="preconnect">` (performance)
 - `<link rel="dns-prefetch">` (performance)
 - Dynamic oEmbed links
@@ -164,10 +158,8 @@ Here's what 99% of developers miss: **AI chatbots are the new search engines.**
 
 When someone asks ChatGPT "find me a web developer in Pakistan" or "who builds high-converting landing pages," will your site be referenced?
 
-```markdown
-## AI Crawler Visibility
+**Required Files for AI Visibility:**
 
-### Required Files:
 | File | Location | Purpose |
 |------|----------|---------|
 | `sitemap.ts` | `app/` | Dynamic sitemap |
@@ -176,14 +168,14 @@ When someone asks ChatGPT "find me a web developer in Pakistan" or "who builds h
 | `llms-full.txt` | `public/` | Detailed AI context |
 | `feed.xml` | `app/feed.xml/route.ts` | RSS for syndication |
 
-### robots.ts must include:
+**robots.ts must include rules for:**
+
 - GPTBot (ChatGPT)
 - ClaudeBot (Anthropic)
 - Google-Extended (Gemini)
 - PerplexityBot
 - CCBot (Common Crawl)
 - cohere-ai
-```
 
 **My `llms.txt` structure:**
 
@@ -209,59 +201,60 @@ This file is specifically designed for AI systems to understand and cite your co
 
 ## Rule #5: Performance Patterns
 
-Performance rules prevent death by a thousand cuts:
+Performance rules prevent death by a thousand cuts.
 
-```markdown
-## Performance Standards
+**DOM Size Optimization:**
 
-### DOM Size
 - Avoid excessive wrapper divs
 - Use CSS pseudo-elements (`::before`, `::after`) for styling
 - Extract repeated patterns to CSS classes
 
-### Scripts
+**Script Handling:**
+
 - Use `next/script` with `strategy="afterInteractive"`
 - Never use `dangerouslySetInnerHTML` for scripts
 - Place Google Analytics after `</body>`, inside `</html>`
 
-### Example:
-```tsx
-// Bad
-<script dangerouslySetInnerHTML={{ __html: '...' }} />
+**Bad Example:**
 
-// Good
+```tsx
+<script dangerouslySetInnerHTML={{ __html: '...' }} />
+```
+
+**Good Example:**
+
+```tsx
 import Script from 'next/script';
+
 <Script id="analytics" strategy="afterInteractive">
   {`// your code`}
 </Script>
 ```
 
-### Third-Party Libraries
+**Third-Party Libraries (Next.js way):**
+
 ```tsx
-// Use Next.js official integrations
 import { GoogleAnalytics } from '@next/third-parties/google';
 
-// Place after body
+// In your layout, place after body
 <body>{children}</body>
 <GoogleAnalytics gaId="G-XXXXXX" />
-```
 ```
 
 ## Rule #6: Structured Data
 
-Rich snippets in search results come from structured data. Here's the rule:
+Rich snippets in search results come from structured data.
 
-```markdown
-## Structured Data (JSON-LD)
+**Include schema.org markup for:**
 
-Include schema.org markup for:
 - `Person` or `Organization` (site-wide)
 - `WebSite` with search action
 - `FAQPage` for FAQ sections
 - `Article` for blog posts
 - `BreadcrumbList` for navigation
 
-### Implementation:
+**Implementation Example:**
+
 ```tsx
 function StructuredData() {
   const schema = {
@@ -284,45 +277,27 @@ function StructuredData() {
   );
 }
 ```
-```
 
 ## The Complete Rules File
 
-Here's my production-ready `.cursor/rules/global-best-practices.mdc`:
+Here's my production-ready rule file structure:
 
-```markdown
+**File: `.cursor/rules/global-best-practices.mdc`**
+
+```yaml
 ---
 description: Global Best Practices
 globs: **/*.tsx, **/*.ts, **/*.css
 alwaysApply: true
 ---
-
-# Project Standards
-
-## Images
-- Use `next/image` exclusively
-- Always include `sizes` prop
-- Use `priority` for LCP images
-- Descriptive `alt` text required
-
-## Accessibility
-- Semantic HTML only
-- All buttons need accessible names
-- `aria-hidden="true"` for decorative elements
-- 4.5:1 contrast ratio minimum
-- Visible focus states required
-
-## SEO
-- Use Metadata API, not manual tags
-- Canonical URLs on all pages
-- JSON-LD structured data required
-
-## Performance
-- `next/script` for all scripts
-- No inline `<script>` tags
-- `@next/third-parties` for analytics
-- Minimize wrapper divs
 ```
+
+**Content to include:**
+
+1. **Images** - Use `next/image` exclusively, always include `sizes`, use `priority` for LCP
+2. **Accessibility** - Semantic HTML, accessible names, `aria-hidden` for decorative elements
+3. **SEO** - Use Metadata API, canonical URLs, JSON-LD structured data
+4. **Performance** - `next/script` for scripts, `@next/third-parties` for analytics
 
 ## Results You Can Expect
 
@@ -360,4 +335,3 @@ The AI becomes an extension of your standards, not a source of technical debt.
 *Want to see these rules in action? [Check out my work →](/#work)*
 
 *Need help implementing this in your project? [Let's talk →](/#pricing)*
-
