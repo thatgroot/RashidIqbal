@@ -179,38 +179,6 @@ class StockChart extends CustomPainter {
 - Smaller talent pool (Dart isn't as common)
 - Web support is usable but not production-grade for complex apps
 
-## Project Examples: What I Actually Choose
-
-### E-Commerce App → Chose Expo
-
-**Requirements:**
-- 70% code sharing with existing React website
-- 6-week deadline
-- Standard UI (product grids, cart, checkout)
-- Team of 3 React developers
-
-**Result**: Shipped MVP in 5 weeks. Reused 60% of business logic from web. Client saved $40K.
-
-### Trading Platform → Chose Flutter
-
-**Requirements:**
-- Real-time candlestick charts
-- Sub-16ms frame times (mandatory)
-- Premium, custom UI
-- Performance on mid-range devices
-
-**Result**: Consistent 60fps. Users couldn't tell it wasn't native. Featured in App Store.
-
-### Content Platform → Chose Expo
-
-**Requirements:**
-- Video playback
-- Push notifications
-- Quick iterations based on user feedback
-- Web version needed eventually
-
-**Result**: Launched on iOS, Android, and web from single codebase. 3-person team maintains everything.
-
 ## My Default Stack
 
 For most projects, this is what I reach for:
@@ -253,8 +221,8 @@ Both frameworks are production-ready and battle-tested. Your choice should be dr
 3. **Timeline** (fast vs perfect)
 4. **Long-term roadmap** (web? desktop?)
 
-Still torn? [Let's chat about your specific project](/contact). I'll give you a straight answer in 15 minutes.
+Still torn? [Check out my mobile app development packages →](/#pricing)
 
 ---
 
-*P.S. I've shipped $2M+ in app revenue across both frameworks. The framework matters less than you think—execution matters more.*
+*P.S. The framework matters less than you think—execution matters more.*

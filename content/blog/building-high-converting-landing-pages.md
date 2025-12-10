@@ -208,8 +208,8 @@ Stop reading. Start implementing:
 4. **Test your mobile experience** on a real device
 5. **Measure baseline metrics** before making changes
 
-Ready to transform your landing page into a conversion machine? [Let's discuss your project](/contact).
+Ready to transform your landing page into a conversion machine? [See how I can help →](/#pricing)
 
 ---
 
-*P.S. The average landing page converts at 2.35%. My clients average 12-18%. The difference isn't magic—it's methodology.*
+*P.S. The average landing page converts at 2.35%. The difference isn't magic—it's methodology.*

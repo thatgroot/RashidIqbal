@@ -20,13 +20,11 @@ linkedinDescription: "Expert analysis comparing Next.js and Framer for modern we
 
 # Next.js vs Framer: The Strategic Choice That Saves You $20K
 
-I've watched companies burn $20,000+ choosing the wrong platform. 
+Choosing the wrong platform can cost you $20,000+ in wasted development time.
 
-A VC-backed startup built their marketing site in Next.js. Six months later, their marketing team was still waiting on developers to change headlines. They scrapped everything and rebuilt in Framer.
+Building a marketing site in Next.js? Your marketing team will be stuck waiting on developers to change headlines. Building a web app in Framer? You'll hit a wall when you need user authentication.
 
-A SaaS company built their entire product in Framer. Now they're paying me to rebuild the whole thing in Next.js because Framer can't handle their authentication system.
-
-Don't be these people. Let me show you exactly when to use each.
+Let me show you exactly when to use each—so you don't make expensive mistakes.
 
 ## The 30-Second Decision Framework
 
@@ -106,13 +104,11 @@ export async function generateStaticParams() {
 
 ### 3. Custom Business Logic
 
-Real example from last month:
-
-A client needed a calculator that:
-- Pulled real-time currency rates
-- Applied tiered pricing rules
-- Generated PDF quotes
-- Sent to their CRM
+Imagine you need a calculator that:
+- Pulls real-time currency rates
+- Applies tiered pricing rules
+- Generates PDF quotes
+- Sends data to a CRM
 
 ```typescript
 // This is trivial in Next.js
@@ -284,8 +280,8 @@ They solve different problems. Using Framer for a web app is like using Figma to
 
 **Match the tool to the job.**
 
-Need help deciding? [Book a 15-minute call](/contact). I'll tell you exactly what you need—even if it's neither of these.
+Need help deciding? [Check out my web development packages →](/#pricing)
 
 ---
 
-*P.S. I use both tools weekly. I love both tools. But I love shipping the right solution even more.*
+*P.S. I use both tools weekly. I love both. But I love shipping the right solution even more.*
