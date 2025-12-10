@@ -2,27 +2,51 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiGmail, SiWhatsapp, SiUpwork } from "react-icons/si";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export function NavbarV2() {
   const [showContactOptions, setShowContactOptions] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.querySelector(id);
-    if (element) {
-      const offset = 64; // Navbar height + some padding
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+  const isHomePage = pathname === "/";
+  const isBlogPage = pathname.startsWith("/blog");
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+      if (isHomePage) {
+        // On home page: smooth scroll to section
+        e.preventDefault();
+        const element = document.querySelector(sectionId);
+        if (element) {
+          const offset = 64; // Navbar height + some padding
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        // On other pages: navigate to home page with hash
+        e.preventDefault();
+        router.push(`/${sectionId}`);
+      }
+    },
+    [isHomePage, router]
+  );
+
+  const handleLogoClick = useCallback(() => {
+    if (isHomePage) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
     }
-  };
+  }, [isHomePage, router]);
 
   return (
     <motion.nav 
@@ -33,9 +57,9 @@ export function NavbarV2() {
       
       <div className="max-w-container h-full border-x border-zinc-100 flex items-center justify-between px-8 relative z-10">
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={handleLogoClick}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
-          aria-label="Scroll to top"
+          aria-label={isHomePage ? "Scroll to top" : "Go to home page"}
         >
           {/* Logo from favicon.svg */}
           <Image
@@ -50,43 +74,47 @@ export function NavbarV2() {
 
         <div className="hidden md:flex items-center gap-1 text-sm font-medium shrink-0">
           <Link 
-            href="#work" 
-            onClick={(e) => scrollToSection(e, "#work")} 
+            href="/#work" 
+            onClick={(e) => handleNavClick(e, "#work")} 
             className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Work
           </Link>
           <Link 
-            href="#pricing" 
-            onClick={(e) => scrollToSection(e, "#pricing")} 
+            href="/#pricing" 
+            onClick={(e) => handleNavClick(e, "#pricing")} 
             className="px-3 py-2 text-orange-600 hover:text-orange-700 hover:bg-orange-50 transition-all rounded-sm font-semibold whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Pricing
           </Link>
           <Link 
-            href="#testimonials" 
-            onClick={(e) => scrollToSection(e, "#testimonials")} 
+            href="/#testimonials" 
+            onClick={(e) => handleNavClick(e, "#testimonials")} 
             className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Reviews
           </Link>
           <Link 
-            href="#process" 
-            onClick={(e) => scrollToSection(e, "#process")} 
+            href="/#process" 
+            onClick={(e) => handleNavClick(e, "#process")} 
             className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             Process
           </Link>
           <Link 
-            href="#resources" 
-            onClick={(e) => scrollToSection(e, "#resources")} 
+            href="/#resources" 
+            onClick={(e) => handleNavClick(e, "#resources")} 
             className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
           >
             FAQ
           </Link>
           <Link 
             href="/blog" 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
+              isBlogPage 
+                ? "text-orange-600 font-semibold bg-orange-50" 
+                : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
+            }`}
           >
             Blog
           </Link>
