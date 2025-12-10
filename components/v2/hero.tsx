@@ -165,7 +165,7 @@ export function HeroV2() {
                                     <span>trusted</span>
                                 </div>
                                 <span className="hidden sm:inline">•</span>
-                                <span className="hidden sm:inline">34% avg. conversion lift</span>
+                                <span className="hidden sm:inline">15% avg. conversion lift</span>
                             </motion.div>
 
                             {/* Scroll Indicator */}

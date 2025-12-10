@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GridContainer, GridItem } from "./grid-system";
+
 import { Star } from "lucide-react";
+import { GridContainer, GridItem } from "./grid-system";
 
 const reviews = [
   {
-    text: "Rashid rebuilt our entire deal aggregation platform from scratch. The new architecture handles 50k+ daily listings without breaking a sweat. Conversion rates jumped 34% after launch.",
+        text: "Rashid rebuilt our entire deal aggregation platform from scratch. The new architecture handles 50k+ daily listings without breaking a sweat. Conversion rates jumped 15% after launch.",
     author: "Priya Selvakumar",
     role: "Founder @ DealsFinders"
   },
