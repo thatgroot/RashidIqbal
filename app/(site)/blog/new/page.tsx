@@ -13,7 +13,6 @@ import {
   X,
   Image as ImageIcon,
   Tag,
-  Calendar,
   Globe,
   Twitter,
   Linkedin,
@@ -33,12 +32,10 @@ interface PostData {
   coverImage: string;
   published: boolean;
   featured: boolean;
-  // SEO
   seoTitle: string;
   seoDescription: string;
   canonicalUrl: string;
   ogImage: string;
-  // Social
   twitterCard: "summary" | "summary_large_image";
   linkedinTitle: string;
   linkedinDescription: string;
@@ -82,7 +79,6 @@ export default function BlogEditorPage() {
 
   const [tagInput, setTagInput] = useState("");
 
-  // Auto-generate slug from title
   const generateSlug = (title: string) => {
     return title
       .toLowerCase()
@@ -206,7 +202,6 @@ export default function BlogEditorPage() {
   };
 
   const handlePreview = () => {
-    // Store in sessionStorage for preview
     sessionStorage.setItem("blog-preview", JSON.stringify(postData));
     window.open("/blog/preview", "_blank");
   };
@@ -233,7 +228,6 @@ export default function BlogEditorPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Save Status */}
             {saveStatus === "success" && (
               <span className="flex items-center gap-1 text-sm text-green-600">
                 <CheckCircle className="w-4 h-4" />
@@ -247,13 +241,10 @@ export default function BlogEditorPage() {
               </span>
             )}
 
-            {/* SEO Settings */}
             <button
               onClick={() => setShowSeoPanel(!showSeoPanel)}
               className={`p-2 rounded transition-colors ${
-                showSeoPanel
-                  ? "bg-zinc-900 text-white"
-                  : "text-zinc-500 hover:bg-zinc-100"
+                showSeoPanel ? "bg-zinc-900 text-white" : "text-zinc-500 hover:bg-zinc-100"
               }`}
               aria-label="SEO Settings"
               title="SEO Settings"
@@ -261,7 +252,6 @@ export default function BlogEditorPage() {
               <Settings className="w-5 h-5" />
             </button>
 
-            {/* Preview */}
             <button
               onClick={handlePreview}
               className="flex items-center gap-2 px-4 py-2 border border-zinc-200 rounded text-sm font-medium text-zinc-700 hover:bg-zinc-100 transition-colors"
@@ -270,7 +260,6 @@ export default function BlogEditorPage() {
               Preview
             </button>
 
-            {/* Save Draft */}
             <button
               onClick={() => handleSave(false)}
               disabled={saving}
@@ -280,7 +269,6 @@ export default function BlogEditorPage() {
               Save Draft
             </button>
 
-            {/* Publish */}
             <button
               onClick={() => handleSave(true)}
               disabled={saving}
@@ -296,26 +284,22 @@ export default function BlogEditorPage() {
         {/* Main Editor */}
         <div className="flex-1 space-y-6">
           {/* Title */}
-          <div>
-            <input
-              type="text"
-              value={postData.title}
-              onChange={handleTitleChange}
-              placeholder="Enter post title..."
-              className="w-full text-4xl font-bold text-zinc-900 placeholder:text-zinc-300 bg-transparent border-none outline-none"
-            />
-          </div>
+          <input
+            type="text"
+            value={postData.title}
+            onChange={handleTitleChange}
+            placeholder="Enter post title..."
+            className="w-full text-4xl font-bold text-zinc-900 placeholder:text-zinc-300 bg-transparent border-none outline-none"
+          />
 
           {/* Description */}
-          <div>
-            <textarea
-              value={postData.description}
-              onChange={handleDescriptionChange}
-              placeholder="Brief description of your post (shows in previews)..."
-              rows={2}
-              className="w-full text-lg text-zinc-600 placeholder:text-zinc-300 bg-transparent border-none outline-none resize-none"
-            />
-          </div>
+          <textarea
+            value={postData.description}
+            onChange={handleDescriptionChange}
+            placeholder="Brief description of your post (shows in previews)..."
+            rows={2}
+            className="w-full text-lg text-zinc-600 placeholder:text-zinc-300 bg-transparent border-none outline-none resize-none"
+          />
 
           {/* Cover Image */}
           <div className="border border-dashed border-zinc-300 rounded-lg overflow-hidden">
@@ -385,7 +369,6 @@ export default function BlogEditorPage() {
                 </div>
               </div>
             )}
-            {/* Hidden file input */}
             <input
               ref={coverImageInputRef}
               type="file"
@@ -490,7 +473,6 @@ export default function BlogEditorPage() {
                 SEO & Social
               </h3>
 
-              {/* SEO Title */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-zinc-700 mb-1">
                   SEO Title
@@ -509,7 +491,6 @@ export default function BlogEditorPage() {
                 </p>
               </div>
 
-              {/* SEO Description */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-zinc-700 mb-1">
                   Meta Description
@@ -531,7 +512,6 @@ export default function BlogEditorPage() {
                 </p>
               </div>
 
-              {/* Canonical URL */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-zinc-700 mb-1">
                   Canonical URL (optional)
@@ -552,7 +532,6 @@ export default function BlogEditorPage() {
 
               <hr className="my-4 border-zinc-200" />
 
-              {/* Twitter */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-zinc-700 mb-1">
                   <Twitter className="w-4 h-4 inline mr-1" />
@@ -573,7 +552,6 @@ export default function BlogEditorPage() {
                 </select>
               </div>
 
-              {/* LinkedIn Title */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-zinc-700 mb-1">
                   <Linkedin className="w-4 h-4 inline mr-1" />
@@ -592,26 +570,6 @@ export default function BlogEditorPage() {
                   className="w-full px-3 py-2 border border-zinc-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
-
-              {/* OG Image */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-zinc-700 mb-1">
-                  <Calendar className="w-4 h-4 inline mr-1" />
-                  Custom OG Image
-                </label>
-                <input
-                  type="text"
-                  value={postData.ogImage}
-                  onChange={(e) =>
-                    setPostData((prev) => ({ ...prev, ogImage: e.target.value }))
-                  }
-                  placeholder={postData.coverImage || "/blog/og-image.jpg"}
-                  className="w-full px-3 py-2 border border-zinc-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-                />
-                <p className="text-xs text-zinc-400 mt-1">
-                  Leave empty to auto-generate from cover image
-                </p>
-              </div>
             </div>
           )}
 
@@ -623,7 +581,6 @@ export default function BlogEditorPage() {
               </span>
             </div>
             <div className="p-4">
-              {/* OG Preview */}
               <div className="border border-zinc-200 rounded overflow-hidden">
                 <div className="bg-zinc-100 aspect-video flex items-center justify-center">
                   {postData.coverImage || postData.ogImage ? (
@@ -651,4 +608,3 @@ export default function BlogEditorPage() {
     </main>
   );
 }
-

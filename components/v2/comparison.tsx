@@ -52,8 +52,8 @@ export function ComparisonV2() {
                     visible: { transition: { staggerChildren: 0.1, delayChildren: 0 } }
                 }}
             >
-                <GridItem label="Standard Agency" className="bg-zinc-50/30">
-                    <div className="space-y-6">
+            <GridItem label="Standard Agency" className="bg-zinc-50/30">
+                <div className="space-y-6">
                         {agencyProblems.map((item, i) => (
                             <motion.div 
                                 key={i} 
@@ -70,13 +70,13 @@ export function ComparisonV2() {
                                         visible: { scale: 1, transition: { duration: 0.3, delay: i * 0.05 } }
                                     }}
                                 >
-                                    <X className="w-3 h-3" />
+                                <X className="w-3 h-3" />
                                 </motion.div>
-                                {item}
+                            {item}
                             </motion.div>
-                        ))}
-                    </div>
-                </GridItem>
+                    ))}
+                </div>
+            </GridItem>
             </motion.div>
             
             {/* My Approach - Benefits */}
@@ -89,8 +89,8 @@ export function ComparisonV2() {
                     visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
                 }}
             >
-                <GridItem label="My Approach" className="bg-white">
-                    <div className="space-y-6">
+            <GridItem label="My Approach" className="bg-white">
+                <div className="space-y-6">
                         {myApproach.map((item, i) => (
                             <motion.div 
                                 key={i} 
@@ -107,13 +107,13 @@ export function ComparisonV2() {
                                         visible: { scale: 1, transition: { duration: 0.3, delay: i * 0.05 } }
                                     }}
                                 >
-                                    <Check className="w-3 h-3" />
+                                <Check className="w-3 h-3" />
                                 </motion.div>
-                                {item}
+                            {item}
                             </motion.div>
-                        ))}
-                    </div>
-                </GridItem>
+                    ))}
+                </div>
+            </GridItem>
             </motion.div>
         </GridContainer>
       </div>
