@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
 import { OEmbedLinks } from "@/components/seo/oembed-links";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-BZT67TX18E";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -134,6 +137,7 @@ export default function RootLayout({
         </a>
         <StructuredData />
         {children}
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
         <script
           dangerouslySetInnerHTML={{
             __html: `
