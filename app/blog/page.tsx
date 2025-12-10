@@ -5,6 +5,8 @@ import { getAllPosts, getAllTags, getFeaturedPosts } from "@/lib/blog";
 import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { BlogStructuredData } from "@/components/blog/structured-data";
 import { BlogOEmbedLinks } from "@/components/blog/oembed-links";
+import { BlogNavbar } from "@/components/blog/blog-navbar";
+import { FooterV2 } from "@/components/v2/footer";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
@@ -71,7 +73,8 @@ export default function BlogPage() {
     <>
       <BlogOEmbedLinks />
       <BlogStructuredData posts={posts} />
-
+      <BlogNavbar />
+      
       <main id="main-content" className="min-h-screen bg-white pt-16">
         {/* Hero Section */}
         <section className="border-b border-zinc-100">
@@ -278,6 +281,9 @@ export default function BlogPage() {
           </div>
         </section>
       </main>
+      
+      <FooterV2 />
     </>
   );
 }
+

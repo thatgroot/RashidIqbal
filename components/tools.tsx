@@ -285,8 +285,8 @@ export function Tools() {
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-3 mb-1">
                                 <span className="font-semibold text-zinc-900 group-hover:text-orange-500 transition-colors">
-                                {tool.name}
-                              </span>
+                                    {tool.name}
+                                </span>
                               </div>
                               <span className="text-sm text-zinc-500">{tool.desc}</span>
                             </div>
