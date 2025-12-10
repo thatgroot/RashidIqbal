@@ -40,6 +40,7 @@ export function TiptapEditor({
   placeholder = "Start writing your blog post...",
 }: TiptapEditorProps) {
   const editor = useEditor({
+    immediatelyRender: false, // Prevents SSR hydration mismatch
     extensions: [
       StarterKit,
       Placeholder.configure({

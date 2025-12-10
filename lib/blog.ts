@@ -5,36 +5,7 @@ import readingTime from "reading-time";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  author: {
-    name: string;
-    avatar?: string;
-    twitter?: string;
-    linkedin?: string;
-  };
-  coverImage?: string;
-  tags: string[];
-  category: string;
-  published: boolean;
-  featured?: boolean;
-  readingTime: string;
-  content: string;
-  // SEO fields
-  seoTitle?: string;
-  seoDescription?: string;
-  canonicalUrl?: string;
-  ogImage?: string;
-  // Social preview
-  twitterCard?: "summary" | "summary_large_image";
-  linkedinTitle?: string;
-  linkedinDescription?: string;
-}
-
-export type BlogPostMeta = Omit<BlogPost, "content">;
+// Types are declared globally in types/blog.d.ts
 
 function parseFrontmatter(fileContent: string, slug: string): BlogPost {
   const { data, content } = matter(fileContent);

@@ -1,7 +1,6 @@
-import { BlogPostMeta } from "@/lib/blog";
-
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
+// Types are declared globally in types/blog.d.ts
 interface BlogStructuredDataProps {
   posts: BlogPostMeta[];
 }
@@ -74,22 +73,7 @@ export function BlogStructuredData({ posts }: BlogStructuredDataProps) {
 }
 
 interface BlogPostStructuredDataProps {
-  post: {
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
-    author: {
-      name: string;
-      twitter?: string;
-      linkedin?: string;
-    };
-    coverImage?: string;
-    tags: string[];
-    category: string;
-    readingTime: string;
-    content: string;
-  };
+  post: BlogPost;
 }
 
 export function BlogPostStructuredData({ post }: BlogPostStructuredDataProps) {
