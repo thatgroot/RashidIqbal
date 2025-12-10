@@ -6,7 +6,7 @@ author:
   name: "Rashid Iqbal"
   twitter: "@rashidiqbal"
   linkedin: "rashidiqbal"
-coverImage: "/blog/nextjs-vs-framer.jpg"
+coverImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop&q=80"
 tags: ["Next.js", "Framer", "web development", "comparison"]
 category: "Technology"
 published: true

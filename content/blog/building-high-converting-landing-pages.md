@@ -6,7 +6,7 @@ author:
   name: "Rashid Iqbal"
   twitter: "@rashidiqbal"
   linkedin: "rashidiqbal"
-coverImage: "/blog/landing-pages-cover.jpg"
+coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80"
 tags: ["landing pages", "conversion optimization", "web development", "Next.js"]
 category: "Development"
 published: true

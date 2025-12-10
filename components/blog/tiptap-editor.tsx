@@ -6,7 +6,7 @@ import ImageExtension from "@tiptap/extension-image";
 import LinkExtension from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import Highlight from "@tiptap/extension-highlight";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Bold,
   Italic,
@@ -26,19 +26,26 @@ import {
   Code2,
   Minus,
   AlignLeft,
+  Upload,
+  Loader2,
 } from "lucide-react";
 
 interface TiptapEditorProps {
   content: string;
   onChange: (content: string) => void;
   placeholder?: string;
+  slug?: string; // For organizing uploaded images
 }
 
 export function TiptapEditor({
   content,
   onChange,
   placeholder = "Start writing your blog post...",
+  slug = "general",
 }: TiptapEditorProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
   const editor = useEditor({
     immediatelyRender: false, // Prevents SSR hydration mismatch
     extensions: [
@@ -99,7 +106,7 @@ export function TiptapEditor({
     editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
   }, [editor]);
 
-  const addImage = useCallback(() => {
+  const addImageFromUrl = useCallback(() => {
     if (!editor) return;
 
     const url = window.prompt("Enter image URL:");
@@ -107,6 +114,48 @@ export function TiptapEditor({
       editor.chain().focus().setImage({ src: url }).run();
     }
   }, [editor]);
+
+  const handleFileUpload = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file || !editor) return;
+
+      setUploading(true);
+
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("slug", slug);
+
+        const response = await fetch("/api/blog/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || "Upload failed");
+        }
+
+        const data = await response.json();
+        editor.chain().focus().setImage({ src: data.url }).run();
+      } catch (error) {
+        console.error("Upload error:", error);
+        alert(error instanceof Error ? error.message : "Failed to upload image");
+      } finally {
+        setUploading(false);
+        // Reset file input
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      }
+    },
+    [editor, slug]
+  );
+
+  const triggerFileUpload = useCallback(() => {
+    fileInputRef.current?.click();
+  }, []);
 
   if (!editor) {
     return (
@@ -233,12 +282,28 @@ export function TiptapEditor({
 
         {/* Insert */}
         <div className="flex items-center gap-1 pr-2 border-r border-zinc-200">
-          <ToolbarButton onClick={setLink} isActive={editor.isActive("link")} title="Link">
+          <ToolbarButton onClick={setLink} isActive={editor.isActive("link")} title="Link (Ctrl+K)">
             <LinkIcon className="w-4 h-4" />
           </ToolbarButton>
-          <ToolbarButton onClick={addImage} title="Insert Image">
+          <ToolbarButton onClick={triggerFileUpload} disabled={uploading} title="Upload Image">
+            {uploading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Upload className="w-4 h-4" />
+            )}
+          </ToolbarButton>
+          <ToolbarButton onClick={addImageFromUrl} title="Insert Image from URL">
             <ImageIcon className="w-4 h-4" />
           </ToolbarButton>
+          {/* Hidden file input */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/jpeg,image/png,image/gif,image/webp"
+            onChange={handleFileUpload}
+            className="hidden"
+            aria-hidden="true"
+          />
         </div>
 
         {/* History */}

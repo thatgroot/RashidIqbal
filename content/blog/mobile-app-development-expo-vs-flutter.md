@@ -6,7 +6,7 @@ author:
   name: "Rashid Iqbal"
   twitter: "@rashidiqbal"
   linkedin: "rashidiqbal"
-coverImage: "/blog/expo-vs-flutter.jpg"
+coverImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=630&fit=crop&q=80"
 tags: ["mobile development", "Expo", "Flutter", "React Native", "cross-platform"]
 category: "Mobile"
 published: true

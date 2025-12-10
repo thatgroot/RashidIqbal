@@ -7,6 +7,8 @@ import { BlogPostStructuredData } from "@/components/blog/structured-data";
 import { BlogPostOEmbedLinks } from "@/components/blog/oembed-links";
 import { ShareButtons } from "@/components/blog/share-buttons";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
+import { BlogNavbar } from "@/components/blog/blog-navbar";
+import { FooterV2 } from "@/components/v2/footer";
 import { ArrowLeft, Calendar, Clock, User, Tag, ArrowRight } from "lucide-react";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
@@ -106,8 +108,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     <>
       <BlogPostOEmbedLinks slug={slug} title={post.title} />
       <BlogPostStructuredData post={post} />
+      <BlogNavbar />
 
-      <main id="main-content" className="min-h-screen bg-white">
+      <main id="main-content" className="min-h-screen bg-white pt-16">
         {/* Article Header */}
         <header className="border-b border-zinc-100">
           <div className="max-w-4xl mx-auto px-6 py-8">
@@ -318,6 +321,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </section>
       </main>
+      
+      <FooterV2 />
     </>
   );
 }

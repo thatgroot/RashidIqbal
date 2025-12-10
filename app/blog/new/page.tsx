@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { TiptapEditor } from "@/components/blog/tiptap-editor";
 import {
   ArrowLeft,
@@ -18,6 +19,8 @@ import {
   Linkedin,
   AlertCircle,
   CheckCircle,
+  Upload,
+  Loader2,
 } from "lucide-react";
 
 interface PostData {
@@ -55,6 +58,8 @@ export default function BlogEditorPage() {
   const [showSeoPanel, setShowSeoPanel] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState<"idle" | "success" | "error">("idle");
+  const [coverImageUploading, setCoverImageUploading] = useState(false);
+  const coverImageInputRef = useRef<HTMLInputElement>(null);
 
   const [postData, setPostData] = useState<PostData>({
     title: "",
@@ -109,6 +114,44 @@ export default function BlogEditorPage() {
   const handleContentChange = useCallback((content: string) => {
     setPostData((prev) => ({ ...prev, content }));
   }, []);
+
+  const handleCoverImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setCoverImageUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("slug", postData.slug || "general");
+
+      const response = await fetch("/api/blog/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Upload failed");
+      }
+
+      const data = await response.json();
+      setPostData((prev) => ({
+        ...prev,
+        coverImage: data.url,
+        ogImage: prev.ogImage || data.url,
+      }));
+    } catch (error) {
+      console.error("Cover image upload error:", error);
+      alert(error instanceof Error ? error.message : "Failed to upload cover image");
+    } finally {
+      setCoverImageUploading(false);
+      if (coverImageInputRef.current) {
+        coverImageInputRef.current.value = "";
+      }
+    }
+  };
 
   const addTag = () => {
     if (tagInput.trim() && !postData.tags.includes(tagInput.trim())) {
@@ -275,16 +318,81 @@ export default function BlogEditorPage() {
           </div>
 
           {/* Cover Image */}
-          <div className="flex items-center gap-4 p-4 border border-dashed border-zinc-300 rounded-lg">
-            <ImageIcon className="w-6 h-6 text-zinc-400" />
+          <div className="border border-dashed border-zinc-300 rounded-lg overflow-hidden">
+            {postData.coverImage ? (
+              <div className="relative">
+                <div className="relative aspect-video bg-zinc-100">
+                  <Image
+                    src={postData.coverImage}
+                    alt="Cover image preview"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 800px"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => coverImageInputRef.current?.click()}
+                    className="px-4 py-2 bg-white text-zinc-900 rounded text-sm font-medium hover:bg-zinc-100"
+                  >
+                    Change
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPostData((prev) => ({ ...prev, coverImage: "" }))}
+                    className="px-4 py-2 bg-red-500 text-white rounded text-sm font-medium hover:bg-red-600"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="p-6">
+                <div className="flex flex-col items-center gap-4 text-center">
+                  <div className="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center">
+                    {coverImageUploading ? (
+                      <Loader2 className="w-6 h-6 text-zinc-400 animate-spin" />
+                    ) : (
+                      <ImageIcon className="w-6 h-6 text-zinc-400" />
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-zinc-700">Add cover image</p>
+                    <p className="text-xs text-zinc-500 mt-1">Recommended: 1200×630px (16:9 ratio)</p>
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => coverImageInputRef.current?.click()}
+                      disabled={coverImageUploading}
+                      className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium rounded hover:bg-zinc-800 disabled:opacity-50"
+                    >
+                      <Upload className="w-4 h-4" />
+                      Upload
+                    </button>
+                    <span className="text-zinc-400 text-sm self-center">or</span>
+                    <input
+                      type="text"
+                      value={postData.coverImage}
+                      onChange={(e) =>
+                        setPostData((prev) => ({ ...prev, coverImage: e.target.value }))
+                      }
+                      placeholder="Paste URL..."
+                      className="px-3 py-2 border border-zinc-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            {/* Hidden file input */}
             <input
-              type="text"
-              value={postData.coverImage}
-              onChange={(e) =>
-                setPostData((prev) => ({ ...prev, coverImage: e.target.value }))
-              }
-              placeholder="Cover image URL (e.g., /blog/my-image.jpg)"
-              className="flex-1 text-sm text-zinc-600 placeholder:text-zinc-400 bg-transparent border-none outline-none"
+              ref={coverImageInputRef}
+              type="file"
+              accept="image/jpeg,image/png,image/gif,image/webp"
+              onChange={handleCoverImageUpload}
+              className="hidden"
+              aria-hidden="true"
             />
           </div>
 
@@ -293,6 +401,7 @@ export default function BlogEditorPage() {
             content={postData.content}
             onChange={handleContentChange}
             placeholder="Start writing your blog post..."
+            slug={postData.slug || "general"}
           />
         </div>
 
