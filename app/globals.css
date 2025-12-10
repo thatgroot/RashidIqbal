@@ -40,8 +40,8 @@
 }
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #ffffff;
+  --foreground: #18181b;
 }
 
 body {
@@ -51,6 +51,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+}
+
+/* Text selection styling */
+::selection {
+  background-color: rgb(249 115 22 / 0.3);
+  color: #18181b;
+}
+
+::-moz-selection {
+  background-color: rgb(249 115 22 / 0.3);
+  color: #18181b;
+}
+
+/* Code block selection */
+pre ::selection,
+code ::selection {
+  background-color: rgb(249 115 22 / 0.5);
+  color: #ffffff;
+}
+
+pre ::-moz-selection,
+code ::-moz-selection {
+  background-color: rgb(249 115 22 / 0.5);
+  color: #ffffff;
 }
 
 button, a, .cursor-pointer {
