@@ -5,15 +5,86 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiGmail, SiWhatsapp, SiUpwork } from "react-icons/si";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+
+// Navigation items with their section IDs
+const NAV_SECTIONS = [
+  { id: "work", label: "Work", href: "/#work" },
+  { id: "pricing", label: "Pricing", href: "/#pricing" },
+  { id: "testimonials", label: "Reviews", href: "/#testimonials" },
+  { id: "process", label: "Process", href: "/#process" },
+  { id: "resources", label: "FAQ", href: "/#resources" },
+] as const;
 
 export function NavbarV2() {
   const [showContactOptions, setShowContactOptions] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const pathname = usePathname();
   const router = useRouter();
 
   const isHomePage = pathname === "/";
   const isBlogPage = pathname.startsWith("/blog");
+
+  // Track active section using Intersection Observer
+  useEffect(() => {
+    if (!isHomePage) {
+      setActiveSection(null);
+      return;
+    }
+
+    const sectionIds = NAV_SECTIONS.map((s) => s.id);
+    const observers: IntersectionObserver[] = [];
+
+    // Track visibility of each section
+    const visibleSections = new Map<string, number>();
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Store the intersection ratio
+              visibleSections.set(id, entry.intersectionRatio);
+            } else {
+              visibleSections.delete(id);
+            }
+
+            // Find the section with highest visibility
+            let maxRatio = 0;
+            let mostVisibleSection: string | null = null;
+
+            visibleSections.forEach((ratio, sectionId) => {
+              if (ratio > maxRatio) {
+                maxRatio = ratio;
+                mostVisibleSection = sectionId;
+              }
+            });
+
+            // If no section is visible, check which one is closest to viewport top
+            if (!mostVisibleSection && visibleSections.size === 0) {
+              setActiveSection(null);
+            } else {
+              setActiveSection(mostVisibleSection);
+            }
+          });
+        },
+        {
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+          rootMargin: "-80px 0px -50% 0px", // Account for navbar height
+        }
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
+  }, [isHomePage]);
 
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -73,41 +144,23 @@ export function NavbarV2() {
         </button>
 
         <div className="hidden md:flex items-center gap-1 text-sm font-medium shrink-0">
-          <Link 
-            href="/#work" 
-            onClick={(e) => handleNavClick(e, "#work")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-          >
-            Work
-          </Link>
-          <Link 
-            href="/#pricing" 
-            onClick={(e) => handleNavClick(e, "#pricing")} 
-            className="px-3 py-2 text-orange-600 hover:text-orange-700 hover:bg-orange-50 transition-all rounded-sm font-semibold whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-          >
-            Pricing
-          </Link>
-          <Link 
-            href="/#testimonials" 
-            onClick={(e) => handleNavClick(e, "#testimonials")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-          >
-            Reviews
-          </Link>
-          <Link 
-            href="/#process" 
-            onClick={(e) => handleNavClick(e, "#process")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-          >
-            Process
-          </Link>
-          <Link 
-            href="/#resources" 
-            onClick={(e) => handleNavClick(e, "#resources")} 
-            className="px-3 py-2 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-          >
-            FAQ
-          </Link>
+          {NAV_SECTIONS.map((section) => {
+            const isActive = isHomePage && activeSection === section.id;
+            return (
+              <Link
+                key={section.id}
+                href={section.href}
+                onClick={(e) => handleNavClick(e, `#${section.id}`)}
+                className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
+                  isActive
+                    ? "text-orange-600 font-semibold bg-orange-50"
+                    : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
+                }`}
+              >
+                {section.label}
+              </Link>
+            );
+          })}
           <Link 
             href="/blog" 
             className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
