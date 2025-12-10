@@ -78,22 +78,31 @@ export function HeroV2() {
                             className="relative z-10 w-full px-6 py-20 md:px-12 md:py-28 flex flex-col items-center text-center"
                             onMouseMove={handleMouseMove}
                         >
-                            {/* Status Pill with Urgency */}
+                            {/* Status Pill with Urgency - Animated Glow Border */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 text-xs font-medium mb-6"
+                                className="relative inline-flex items-center gap-3 px-4 py-2 rounded-full bg-orange-50 text-xs font-medium mb-6 overflow-hidden"
                             >
-                                <span className="flex items-center gap-2 text-orange-700">
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                                {/* Animated gradient border */}
+                                <div className="absolute inset-0 rounded-full">
+                                    <div className="absolute inset-0 rounded-full animate-spin-slow bg-[conic-gradient(from_0deg,#f97316,#fb923c,#fdba74,#fed7aa,#fdba74,#fb923c,#f97316)]" style={{ animationDuration: '3s' }} />
+                                </div>
+                                {/* Glow effect */}
+                                <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,#f97316,#fb923c,#fdba74,#fed7aa,#fdba74,#fb923c,#f97316)] opacity-50 blur-md animate-spin-slow" style={{ animationDuration: '3s' }} />
+                                {/* Inner background */}
+                                <div className="absolute inset-[2px] rounded-full bg-orange-50" />
+                                {/* Content */}
+                                <span className="relative flex items-center gap-2 text-orange-700 z-10">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
                                     </span>
                                     AVAILABLE NOW
                                 </span>
-                                <span className="w-px h-4 bg-orange-200"></span>
-                                <span className="text-zinc-600">Only 2 project slots left this month</span>
+                                <span className="relative w-px h-4 bg-orange-200 z-10"></span>
+                                <span className="relative text-zinc-600 z-10">Only 2 project slots left this month</span>
                             </motion.div>
 
                             {/* Headline */}
