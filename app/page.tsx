@@ -1,17 +1,17 @@
 import { Metadata } from "next";
-import { HeroV2 as Hero } from "@/components/hero";
-import { NavbarV2 as Navbar } from "@/components/navbar";
-import { ServicesGridV2 as ServicesGrid } from "@/components/services-grid";
-import { TrustedByV2 as TrustedBy } from "@/components/trusted-by";
-import { ComparisonV2 as Comparison } from "@/components/comparison";
-import { ProcessV2 as Process } from "@/components/process";
+import { HeroV2 as Hero } from "@/components/v2/hero";
+import { NavbarV2 as Navbar } from "@/components/v2/navbar";
+import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
+import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
+import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
+import { ProcessV2 as Process } from "@/components/v2/process";
 import { Tools } from "@/components/tools";
-import { WorkV2 as Work } from "@/components/work";
-import { TestimonialsV2 as Testimonials } from "@/components/testimonials";
-import { PricingV2 as Pricing } from "@/components/pricing";
-import { FAQV2 as FAQ } from "@/components/faq";
-import { CTASectionV2 as CTASection } from "@/components/cta";
-import { FooterV2 as Footer } from "@/components/footer";
+import { WorkV2 as Work } from "@/components/v2/work";
+import { TestimonialsV2 as Testimonials } from "@/components/v2/testimonials";
+import { PricingV2 as Pricing } from "@/components/v2/pricing";
+import { FAQV2 as FAQ } from "@/components/v2/faq";
+import { CTASectionV2 as CTASection } from "@/components/v2/cta";
+import { FooterV2 as Footer } from "@/components/v2/footer";
 import { SectionSpacer } from "@/components/section-spacer";
 
 

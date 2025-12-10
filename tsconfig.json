@@ -11,6 +11,7 @@
     "jsx": "react-jsx",
     "incremental": true,
     "strict": true,
+    // Other options you might want for comprehensive checks:
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
@@ -20,12 +21,11 @@
     "alwaysStrict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": true, // Report errors on unused local variables
+    "noUnusedParameters": true, // Report errors on unused parameters
     "exactOptionalPropertyTypes": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "typeRoots": ["./types", "./node_modules/@types"],
     "plugins": [
       {
         "name": "next"
@@ -37,7 +37,6 @@
   },
   "include": [
     "next-env.d.ts",
-    "types/**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
