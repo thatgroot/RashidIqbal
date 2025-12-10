@@ -22,12 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${siteUrl}/v2`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
       url: `${siteUrl}/blog`,
       lastModified: currentDate,
       changeFrequency: 'weekly',

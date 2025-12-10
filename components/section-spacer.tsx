@@ -1,6 +1,6 @@
 "use client";
 
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "./v2/grid-system";
 
 // For use between major sections (has full container wrapper)
 export function SectionSpacer() {

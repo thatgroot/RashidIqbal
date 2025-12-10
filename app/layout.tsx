@@ -125,6 +125,17 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                // Register Service Worker for offline support
+                if ('serviceWorker' in navigator) {
+                  window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                      console.log('SW registered: ', registration);
+                    }).catch(function(error) {
+                      console.log('SW registration failed: ', error);
+                    });
+                  });
+                }
+                
                 // Fix accessibility for open-side-panel button if it exists
                 function fixButtonAccessibility() {
                   const openSidePanelButton = document.getElementById('open-side-panel');

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "./v2/grid-system";
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";

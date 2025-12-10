@@ -18,10 +18,10 @@ export function GridContainer({ children, className, cols = 1, enableSnake = fal
     <div 
       ref={containerRef}
       className={cn(
-      "grid relative", 
-      cols === 4 ? "md:grid-cols-4" : 
-      cols === 3 ? "md:grid-cols-3" : 
-      cols === 2 ? "md:grid-cols-2" : 
+      "grid relative items-stretch", 
+      cols === 4 ? "desktop:grid-cols-4" : 
+      cols === 3 ? "desktop:grid-cols-3" : 
+      cols === 2 ? "desktop:grid-cols-2" : 
       "grid-cols-1", 
       className
     )}>
@@ -52,27 +52,25 @@ export function GridItem({ children, className, title, label, padding = true }: 
       ref={itemRef}
       onMouseMove={!isVisual ? handleMouseMove : undefined}
       className={cn(
-        "relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden",
+        "relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden transition-colors duration-200",
         !isVisual && "grid-item-hover",
         padding ? "p-8 sm:p-12" : "", 
         className
       )}
     >
-        {/* Label positioned absolutely in top-right corner */}
-        {label && (
-          <span className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-orange-500 transition-colors z-10">
-            {label}
-          </span>
-        )}
-        
-        {/* Title with margin if present */}
-        {title && (
-          <div className="mb-6">
-            <h3 className="text-lg font-medium text-zinc-900">{title}</h3>
-          </div>
-        )}
-        
+      {(title || label) && (
+        <div className="flex justify-between items-start mb-6">
+          {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
+          {label && (
+            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-orange-500 transition-colors duration-300">
+              {label}
+            </span>
+          )}
+        </div>
+      )}
+      <div className={cn(isVisual && "h-full flex items-center justify-center")}>
         {children}
+      </div>
     </div>
   );
 }
