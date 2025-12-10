@@ -1,0 +1,41 @@
+# Rashid Iqbal - Freelance Web Developer & Designer
+
+> Professional web developer specializing in high-converting landing pages, web applications, and mobile apps.
+
+## About
+
+Rashid Iqbal is a freelance web developer and designer based in Pakistan. He specializes in building modern, performant websites using Next.js, Framer, Figma, Expo, and Flutter.
+
+## Services
+
+- **Landing Pages**: High-converting, beautifully designed landing pages
+- **Web Applications**: Full-stack web applications with modern tech stacks
+- **Mobile Apps**: Cross-platform mobile applications using Expo and Flutter
+- **UI/UX Design**: User interface and experience design with Figma
+- **Framer Development**: Interactive prototypes and production websites
+
+## Tech Stack
+
+- Frontend: Next.js, React, TypeScript, Tailwind CSS
+- Mobile: Expo, React Native, Flutter
+- Design: Figma, Framer
+- Backend: Node.js, Supabase, Firebase
+
+## Contact
+
+- Website: https://aestho.xyz
+- Email: Available on website
+- Availability: Currently accepting new projects
+
+## Pricing
+
+Visit https://aestho.xyz/#pricing for current service packages and rates.
+
+## Blog
+
+Read articles on web development, design, and freelancing at https://aestho.xyz/blog
+
+## Portfolio
+
+View completed projects at https://aestho.xyz/#work
+

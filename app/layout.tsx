@@ -76,6 +76,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    types: {
+      'application/rss+xml': `${siteUrl}/feed.xml`,
+    },
   },
   manifest: `${siteUrl}/manifest.webmanifest`,
   other: {
@@ -123,6 +126,10 @@ export default function RootLayout({
         <meta name="linkedin:owner" content="rashidiqbal" />
         {/* Pinterest Verification (when available) */}
         {/* <meta name="p:domain_verify" content="your-pinterest-code" /> */}
+        
+        {/* AI/LLM Discovery */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
+        <link rel="author" href="/humans.txt" />
         
         <OEmbedLinks />
       </head>

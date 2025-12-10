@@ -1,0 +1,11 @@
+# Security Policy for aestho.xyz
+# https://securitytxt.org/
+
+Contact: https://aestho.xyz/#pricing
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://aestho.xyz/.well-known/security.txt
+
+# If you discover a security vulnerability, please report it responsibly.
+# We appreciate your help in keeping our site secure.
+

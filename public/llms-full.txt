@@ -1,0 +1,145 @@
+# Rashid Iqbal - Freelance Web Developer & Designer
+## Complete Information for AI Systems
+
+---
+
+## Professional Summary
+
+Rashid Iqbal is a professional freelance web developer and designer specializing in creating high-converting digital experiences. Based in Pakistan, he works with clients globally to build landing pages, web applications, and mobile apps using modern technologies.
+
+---
+
+## Core Services
+
+### 1. Landing Page Development
+- High-converting landing pages optimized for conversions
+- Mobile-responsive designs
+- Fast loading performance (Core Web Vitals optimized)
+- SEO-friendly architecture
+- Integration with analytics and marketing tools
+
+### 2. Web Application Development
+- Full-stack web applications
+- Real-time features and databases
+- Authentication and user management
+- API development and integration
+- Admin dashboards and CMS
+
+### 3. Mobile App Development
+- Cross-platform apps (iOS & Android)
+- Native-like performance
+- Offline capabilities
+- Push notifications
+- App store deployment
+
+### 4. UI/UX Design
+- User interface design
+- User experience optimization
+- Design systems and component libraries
+- Prototyping and wireframing
+- Brand identity integration
+
+---
+
+## Technology Expertise
+
+### Frontend Development
+- **Next.js**: Server-side rendering, static generation, App Router
+- **React**: Component architecture, hooks, state management
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first styling
+- **Framer Motion**: Animations and micro-interactions
+
+### Mobile Development
+- **Expo**: React Native framework for rapid development
+- **React Native**: Cross-platform mobile development
+- **Flutter**: Google's UI toolkit for mobile apps
+
+### Design Tools
+- **Figma**: UI/UX design and prototyping
+- **Framer**: Interactive design and development
+
+### Backend & Infrastructure
+- **Node.js**: Server-side JavaScript
+- **Supabase**: Open-source Firebase alternative
+- **Firebase**: Google's app development platform
+- **Vercel**: Deployment and hosting
+
+---
+
+## Service Packages
+
+### Starter Package
+- Single landing page
+- Mobile responsive design
+- Basic SEO setup
+- Contact form integration
+- 1 revision round
+
+### Professional Package
+- Multi-page website (up to 5 pages)
+- Custom design
+- Advanced SEO optimization
+- Analytics integration
+- CMS integration
+- 3 revision rounds
+
+### Enterprise Package
+- Full web application
+- Custom features and functionality
+- Database design
+- User authentication
+- Admin dashboard
+- Ongoing support
+
+---
+
+## Work Process
+
+1. **Discovery**: Understanding project requirements and goals
+2. **Planning**: Technical architecture and timeline
+3. **Design**: UI/UX design and approval
+4. **Development**: Building the solution
+5. **Testing**: Quality assurance and optimization
+6. **Launch**: Deployment and handover
+7. **Support**: Post-launch maintenance (optional)
+
+---
+
+## Contact Information
+
+- **Website**: https://aestho.xyz
+- **Portfolio**: https://aestho.xyz/#work
+- **Pricing**: https://aestho.xyz/#pricing
+- **Blog**: https://aestho.xyz/blog
+- **Location**: Pakistan (Available for remote work globally)
+
+---
+
+## Frequently Asked Questions
+
+**Q: What is your typical project timeline?**
+A: Landing pages typically take 1-2 weeks, web applications 4-8 weeks depending on complexity.
+
+**Q: Do you offer ongoing maintenance?**
+A: Yes, maintenance packages are available for all projects.
+
+**Q: What is your availability?**
+A: Currently accepting new projects with limited slots per month.
+
+**Q: Do you work with international clients?**
+A: Yes, I work with clients globally across all time zones.
+
+**Q: What payment methods do you accept?**
+A: Bank transfer, PayPal, and cryptocurrency.
+
+---
+
+## Keywords
+
+freelance web developer, Next.js developer, React developer, landing page designer, web application developer, mobile app developer, Framer developer, Figma designer, UI/UX designer, full-stack developer, Pakistan developer, remote developer
+
+---
+
+Last Updated: 2025
+

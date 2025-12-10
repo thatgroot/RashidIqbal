@@ -1,0 +1,25 @@
+/* TEAM */
+Developer & Designer: Rashid Iqbal
+Site: https://aestho.xyz
+Location: Pakistan
+
+/* THANKS */
+Next.js Team - https://nextjs.org
+Vercel - https://vercel.com
+Tailwind CSS - https://tailwindcss.com
+Framer Motion - https://www.framer.com/motion
+
+/* SITE */
+Last update: 2025
+Standards: HTML5, CSS3, ES6+
+Components: React, Next.js App Router
+Styling: Tailwind CSS
+Animations: Framer Motion
+Deployment: Vercel
+Analytics: Google Analytics 4
+
+/* AI CRAWLERS */
+This site welcomes AI crawlers and language models.
+See /llms.txt for AI-readable content.
+See /llms-full.txt for detailed information.
+
