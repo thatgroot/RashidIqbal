@@ -197,9 +197,9 @@ export function HeroV2() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 1, duration: 0.5 }}
-                                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 mt-4"
+                                className="mt-12 flex flex-col items-center gap-2"
                             >
-                                <span className="text-xs text-zinc-500 uppercase tracking-widest">Scroll to explore</span>
+                                <span className="text-xs text-zinc-400 uppercase tracking-widest">Scroll to explore</span>
                                 <motion.div
                                     animate={{ y: [0, 8, 0] }}
                                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
