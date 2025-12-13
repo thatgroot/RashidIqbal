@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withPostHogConfig } from "@posthog/nextjs-config";
 
 const nextConfig: NextConfig = {
   images: {
@@ -23,4 +24,13 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 };
 
-export default nextConfig;
+// PostHog source maps configuration for error tracking
+export default withPostHogConfig(nextConfig, {
+  personalApiKey: process.env.NEXT_PUBLIC_PH_PERSONAL_API_KEY || "",
+  envId: "265682",
+  host: "https://us.i.posthog.com",
+  sourcemaps: {
+    enabled: !!process.env.NEXT_PUBLIC_PH_PERSONAL_API_KEY,
+    deleteAfterUpload: true,
+  },
+});
