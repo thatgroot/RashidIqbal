@@ -89,7 +89,7 @@ export function HeroV2() {
                                 {/* Static border background */}
                                 <div className="absolute inset-0 rounded-full border border-orange-200" />
                                 {/* Animated traveling light on border */}
-                                <div className="absolute inset-[-1px] rounded-full overflow-hidden">
+                                <div className="absolute inset-px rounded-full overflow-hidden">
                                     <div 
                                         className="absolute inset-0 animate-border-travel"
                                         style={{
@@ -107,7 +107,7 @@ export function HeroV2() {
                                     />
                                 </div>
                                 {/* Inner background */}
-                                <div className="absolute inset-[1px] rounded-full bg-orange-50" />
+                                <div className="absolute -inset-1 rounded-full bg-orange-50" />
                                 {/* Content */}
                                 <span className="relative flex items-center gap-2 text-orange-700 z-10">
                                     <span className="relative flex h-2 w-2">
@@ -282,15 +282,24 @@ function VisualBackground() {
 
 function ToolGridItem({ label, delay, children }: { label: string; delay: number; children: React.ReactNode }) {
     return (
-                    <motion.div
+        <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay, duration: 0.5 }}
             className="h-full"
         >
-            <GridItem label={label} className="h-full flex items-center justify-center py-12">
-                {children}
+            <GridItem className="h-full flex flex-col">
+                {/* Label row - aligned to top-right */}
+                <div className="flex justify-start">
+                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] group-hover:text-orange-500 transition-colors duration-300">
+                        {label}
+                    </span>
+                </div>
+                {/* Content - centered in remaining space */}
+                <div className="flex-1 flex items-center justify-center">
+                    {children}
+                </div>
             </GridItem>
         </motion.div>
     );

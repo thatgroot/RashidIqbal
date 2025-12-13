@@ -239,7 +239,7 @@ export function Tools() {
                       <button
                         key={category.id}
                         onClick={() => setActiveTab(category.id)}
-                        className={`relative px-3 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-colors whitespace-nowrap flex-shrink-0 ${
+                        className={`relative px-3 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-colors whitespace-nowrap shrink-0 ${
                           activeTab === category.id 
                             ? 'text-zinc-900 font-medium' 
                             : 'text-zinc-500 hover:text-zinc-700'
@@ -255,7 +255,7 @@ export function Tools() {
                         )}
                       </button>
                     ))}
-                  </div>
+                  </div> 
 
                   {/* Content - More vertical padding */}
                   <div className="bg-white min-h-[220px] sm:min-h-[280px]">
@@ -277,7 +277,7 @@ export function Tools() {
                             className="flex items-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6 hover:bg-zinc-50/50 transition-all group"
                           >
                             {/* Icon Container */}
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-zinc-50 rounded-lg border border-zinc-100 group-hover:border-zinc-200 group-hover:scale-105 transition-all shadow-sm flex-shrink-0">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-zinc-50 rounded-lg border border-zinc-100 group-hover:border-zinc-200 group-hover:scale-105 transition-all shadow-sm shrink-0">
                                 <tool.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                             </div>
                             
