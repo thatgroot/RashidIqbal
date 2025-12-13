@@ -131,13 +131,13 @@ export function PricingV2() {
                         visible: { transition: { staggerChildren: 0.08, delayChildren: i * 0.12 } }
                     }}
                 >
-                <GridItem className={plan.popular ? "bg-gradient-to-b from-orange-50/80 to-white ring-2 ring-orange-500/30 ring-inset shadow-xl shadow-orange-500/10 scale-[1.02] relative z-10" : ""}>
-                    {/* Badge */}
+                    <GridItem className={plan.popular ? "bg-linear-to-b from-orange-50/80 to-white ring-2 ring-orange-500/30 ring-inset shadow-xl shadow-orange-500/10 scale-[1.02] relative z-10" : ""}>
+                        {/* Badge - using darker orange for WCAG AA contrast (4.5:1) */}
                     {(plan.popular || plan.highlight) && (
                         <motion.div 
                             className={`absolute top-6 right-6 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
                               plan.popular 
-                                ? "bg-orange-500 text-white" 
+                                    ? "bg-orange-700 text-white" 
                                 : "bg-zinc-900 text-white"
                             }`}
                             variants={{
@@ -256,7 +256,7 @@ export function PricingV2() {
                                 onClick={() => setOpenPlan(i)}
                                 className={`w-full py-4 text-sm font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 ${
                                 plan.popular 
-                                    ? "bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-600/25" 
+                                    ? "bg-orange-700 text-white hover:bg-orange-800 shadow-lg shadow-orange-700/25" 
                                     : "bg-zinc-900 text-white hover:bg-zinc-800"
                             }`}>
                                 {plan.popular ? "Start Building" : "Get Started"} <ArrowRight className="w-4 h-4" aria-hidden="true" />

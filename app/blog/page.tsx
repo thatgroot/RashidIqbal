@@ -261,7 +261,7 @@ export default function BlogPage() {
                 href="https://cal.com/rashid.iqbal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-2 bg-orange-500 text-white text-center text-sm font-medium rounded hover:bg-orange-600 transition-colors"
+                className="block w-full py-2 bg-orange-700 text-white text-center text-sm font-medium rounded hover:bg-orange-800 transition-colors"
               >
                 Let&apos;s Connect
               </a>

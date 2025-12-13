@@ -152,7 +152,7 @@ export function HeroV2() {
                                     href="https://cal.com/rashid.iqbal" 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-600 text-white text-sm font-bold hover:bg-orange-700 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-600/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-600 focus-visible:ring-offset-2"
+                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
                                 >
                                     Book a Free Call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </a>

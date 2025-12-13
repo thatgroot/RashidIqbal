@@ -25,10 +25,12 @@ export function NavbarV2() {
   const isHomePage = pathname === "/";
   const isBlogPage = pathname.startsWith("/blog");
 
+  // Reset active section when navigating away from home page
+  const currentActiveSection = isHomePage ? activeSection : null;
+
   // Track active section using Intersection Observer (only on home page)
   useEffect(() => {
     if (!isHomePage) {
-      setActiveSection(null);
       return;
     }
 
@@ -131,7 +133,7 @@ export function NavbarV2() {
 
         <div className="hidden md:flex items-center gap-1 text-sm font-medium shrink-0">
           {NAV_SECTIONS.map((section) => {
-            const isActive = isHomePage && activeSection === section.id;
+            const isActive = currentActiveSection === section.id;
             return (
               <Link
                 key={section.id}
