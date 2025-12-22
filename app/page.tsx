@@ -79,9 +79,9 @@ export default function Page() {
         <Hero />
         <TrustedBy />
         <SectionSpacer />
-        <ServicesGrid />
-        <SectionSpacer />
         <Comparison />
+        <SectionSpacer />
+        <ServicesGrid />
         <SectionSpacer />
         <Process />
         <SectionSpacer />

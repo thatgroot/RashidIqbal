@@ -9,9 +9,9 @@ import { useState, useEffect, useCallback } from "react";
 
 // Navigation sections for the home page
 const NAV_SECTIONS = [
-  { id: "pricing", label: "Pricing", href: "/#pricing" },
-  { id: "testimonials", label: "Reviews", href: "/#testimonials" },
   { id: "process", label: "Process", href: "/#process" },
+  { id: "testimonials", label: "Reviews", href: "/#testimonials" },
+  { id: "pricing", label: "Pricing", href: "/#pricing" },
   { id: "resources", label: "FAQ", href: "/#resources" },
 ] as const;
 
@@ -139,8 +139,8 @@ export function NavbarV2() {
                 href={section.href}
                 onClick={(e) => handleNavClick(e, `#${section.id}`)}
                 className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isActive
-                    ? "text-orange-600 font-semibold bg-orange-50"
-                    : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
+                  ? "text-orange-600 font-semibold bg-orange-50"
+                  : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
                   }`}
               >
                 {section.label}
@@ -150,8 +150,8 @@ export function NavbarV2() {
           <Link
             href="/blog"
             className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isBlogPage
-                ? "text-orange-600 font-semibold bg-orange-50"
-                : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
+              ? "text-orange-600 font-semibold bg-orange-50"
+              : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
               }`}
           >
             Blog

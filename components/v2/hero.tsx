@@ -117,7 +117,7 @@ export function HeroV2() {
                                     AVAILABLE NOW
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
-                                <span className="relative text-zinc-600 z-10">Accepting 2 new projects for December</span>
+                                <span className="relative text-zinc-600 z-10">Accepting 2 new projects this month</span>
                             </motion.div>
 
                             {/* Headline */}
