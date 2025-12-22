@@ -5,14 +5,13 @@ import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
 import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
 import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
 import { ProcessV2 as Process } from "@/components/v2/process";
-
 import { TestimonialsV2 as Testimonials } from "@/components/v2/testimonials";
 import { PricingV2 as Pricing } from "@/components/v2/pricing";
 import { FAQV2 as FAQ } from "@/components/v2/faq";
 import { CTASectionV2 as CTASection } from "@/components/v2/cta";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { SectionSpacer } from "@/components/section-spacer";
-import { FAQStructuredData } from "@/components/seo/faq-structured-data";
+
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
 
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <FAQStructuredData />
+
       <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
         {/* Enhanced Background with animated gradient */}
         <div className="fixed inset-0 -z-10">
@@ -86,8 +85,6 @@ export default function Page() {
         <SectionSpacer />
         <Process />
         <SectionSpacer />
-        <SectionSpacer />
-
         <Testimonials />
         <SectionSpacer />
         <Pricing />

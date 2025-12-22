@@ -90,7 +90,7 @@ export function HeroV2() {
                                 <div className="absolute inset-0 rounded-full border border-orange-200" />
                                 {/* Animated traveling light on border */}
                                 <div className="absolute inset-px rounded-full overflow-hidden">
-                                    <div 
+                                    <div
                                         className="absolute inset-0 animate-border-travel"
                                         style={{
                                             background: 'conic-gradient(from 0deg, transparent 0deg, transparent 340deg, #f97316 350deg, #fb923c 355deg, #f97316 360deg)',
@@ -99,7 +99,7 @@ export function HeroV2() {
                                 </div>
                                 {/* Glow that follows the light */}
                                 <div className="absolute inset-[-4px] rounded-full overflow-hidden pointer-events-none">
-                                    <div 
+                                    <div
                                         className="absolute inset-0 animate-border-travel blur-sm opacity-60"
                                         style={{
                                             background: 'conic-gradient(from 0deg, transparent 0deg, transparent 340deg, #f97316 350deg, #fb923c 355deg, #f97316 360deg)',
@@ -117,64 +117,65 @@ export function HeroV2() {
                                     AVAILABLE NOW
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
-                                <span className="relative text-zinc-600 z-10">Only 2 project slots left this month</span>
+                                <span className="relative text-zinc-600 z-10">Accepting 2 new projects for December</span>
                             </motion.div>
 
                             {/* Headline */}
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
                                 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[0.9]"
-                    >
-                                Your Vision, <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Built Right.</span>
-                    </motion.h1>
-                    
+                            >
+                                High-Performance <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Web & Mobile Apps.</span> <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">Shipped Fast.</span>
+                            </motion.h1>
+
                             {/* Description - Improved copy */}
-                    <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
-                    >
-                                Launch faster with pixel-perfect design & code that converts. Most projects ship in <span className="font-semibold text-zinc-900">4-8 weeks</span>.
-                    </motion.p>
+                            >
+                                Expert design and development in one package. From Figma prototypes to scalable Next.js & Apps. Ship your MVP in <span className="font-semibold text-zinc-900">weeks, not months</span>.
+                            </motion.p>
 
                             {/* CTA - Improved hierarchy */}
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
                                 className="flex flex-row items-center gap-3 sm:gap-4 mb-8"
                             >
-                                <a 
-                                    href="https://cal.com/rashid.iqbal" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
+                                <a
+                                    href="https://cal.com/rashid.iqbal"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
                                 >
-                                    Book a Free Call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                                    Book a Strategy Call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </a>
-                        <button 
-                            onClick={(e) => {
-                                e.preventDefault();
-                                const element = document.querySelector("#work");
-                                if (element) {
-                                    const offset = 64;
-                                    const elementPosition = element.getBoundingClientRect().top;
-                                    const offsetPosition = elementPosition + window.pageYOffset - offset;
-                                    window.scrollTo({
-                                        top: offsetPosition,
-                                        behavior: "smooth"
-                                    });
-                                }
-                            }}
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const element = document.querySelector("#work");
+                                        if (element) {
+                                            const offset = 64;
+                                            const elementPosition = element.getBoundingClientRect().top;
+                                            const offsetPosition = elementPosition + window.pageYOffset - offset;
+                                            window.scrollTo({
+                                                top: offsetPosition,
+                                                behavior: "smooth"
+                                            });
+                                        }
+                                    }}
                                     className="px-6 sm:px-8 py-3 sm:py-4 bg-white border border-zinc-200 text-zinc-700 text-sm font-bold hover:border-zinc-900 hover:text-zinc-900 transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
-                        >
+                                >
                                     View Portfolio
-                        </button>
-                    </motion.div>
+                                </button>
+                            </motion.div>
 
                             {/* Social Proof - Above fold */}
                             <motion.div
@@ -268,8 +269,8 @@ function VisualBackground() {
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute top-[10%] left-[5%] w-64 h-64 bg-linear-to-br from-orange-100/40 to-transparent rounded-full blur-3xl"
             />
-                <motion.div
-                    animate={{
+            <motion.div
+                animate={{
                     y: [0, 30, 0],
                     rotate: [0, -5, 0]
                 }}
@@ -342,7 +343,7 @@ function NextIcon() {
 function ExpoIcon() {
     return (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="#000000" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24.292 15.547c1.968 0.131 3.729-1.213 4.115-3.145-0.475-0.735-1.287-1.177-2.161-1.177-2.272-0.052-3.491 2.651-1.953 4.323zM15.115 4.697l5.359-3.104-1.708-0.963-7.391 4.281 0.589 0.328 1.119 0.629 2.032-1.176zM21.161 1.307c0.089 0.027 0.161 0.1 0.188 0.188l2.484 7.593c0.047 0.131-0.005 0.272-0.125 0.344-1.968 1.156-2.916 3.489-2.317 5.693 0.656 2.391 2.937 3.953 5.401 3.703 0.135-0.011 0.265 0.073 0.307 0.203l2.563 7.803c0.041 0.131-0.011 0.271-0.125 0.344l-7.859 4.771c-0.037 0.021-0.084 0.036-0.131 0.036-0.068 0.016-0.14 0-0.203-0.041l-2.765-1.797c-0.048-0.031-0.084-0.077-0.109-0.129l-5.396-12.896-8.219 4.875c-0.016 0.011-0.037 0.021-0.052 0.032-0.084 0.036-0.183 0.025-0.261-0.021l-1.859-1.093c-0.136-0.073-0.188-0.245-0.115-0.381l7.953-15.749c0.025-0.057 0.077-0.104 0.135-0.131l7.959-4.609c0.088-0.052 0.197-0.057 0.292-0.005zM12.839 6.407l-1.932-1.089-7.693 15.229 1.396 0.823 6.631-9.015c0.063-0.089 0.167-0.136 0.271-0.12 0.104 0.011 0.192 0.077 0.235 0.177l7.228 17.296 1.933 1.251-8.063-24.552zM26.245 16.964c-2.256 0-3.787-2.292-2.923-4.376 0.86-2.083 3.563-2.619 5.156-1.025 0.595 0.593 0.928 1.396 0.928 2.235 0.005 1.749-1.412 3.167-3.161 3.167z"/>
+            <path d="M24.292 15.547c1.968 0.131 3.729-1.213 4.115-3.145-0.475-0.735-1.287-1.177-2.161-1.177-2.272-0.052-3.491 2.651-1.953 4.323zM15.115 4.697l5.359-3.104-1.708-0.963-7.391 4.281 0.589 0.328 1.119 0.629 2.032-1.176zM21.161 1.307c0.089 0.027 0.161 0.1 0.188 0.188l2.484 7.593c0.047 0.131-0.005 0.272-0.125 0.344-1.968 1.156-2.916 3.489-2.317 5.693 0.656 2.391 2.937 3.953 5.401 3.703 0.135-0.011 0.265 0.073 0.307 0.203l2.563 7.803c0.041 0.131-0.011 0.271-0.125 0.344l-7.859 4.771c-0.037 0.021-0.084 0.036-0.131 0.036-0.068 0.016-0.14 0-0.203-0.041l-2.765-1.797c-0.048-0.031-0.084-0.077-0.109-0.129l-5.396-12.896-8.219 4.875c-0.016 0.011-0.037 0.021-0.052 0.032-0.084 0.036-0.183 0.025-0.261-0.021l-1.859-1.093c-0.136-0.073-0.188-0.245-0.115-0.381l7.953-15.749c0.025-0.057 0.077-0.104 0.135-0.131l7.959-4.609c0.088-0.052 0.197-0.057 0.292-0.005zM12.839 6.407l-1.932-1.089-7.693 15.229 1.396 0.823 6.631-9.015c0.063-0.089 0.167-0.136 0.271-0.12 0.104 0.011 0.192 0.077 0.235 0.177l7.228 17.296 1.933 1.251-8.063-24.552zM26.245 16.964c-2.256 0-3.787-2.292-2.923-4.376 0.86-2.083 3.563-2.619 5.156-1.025 0.595 0.593 0.928 1.396 0.928 2.235 0.005 1.749-1.412 3.167-3.161 3.167z" />
         </svg>
     )
 }
@@ -350,11 +351,11 @@ function ExpoIcon() {
 function FlutterIcon() {
     return (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="#000000" xmlns="http://www.w3.org/2000/svg">
-            <polyline points="15.383 18.316 18.744 15.042 27.093 15.042 19.697 22.438 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316" style={{fill:"#40d0fd"}}/>
-            <polygon points="4.907 16.125 9.106 20.424 27.093 2.287 18.744 2.287 4.907 16.125" style={{fill:"#41d0fd",isolation:"isolate"}}/>
-            <polygon points="11.176 22.479 15.435 26.675 19.697 22.438 15.383 18.316 11.176 22.479" style={{fill:"#1fbcfd"}}/>
-            <polygon points="15.435 26.675 19.697 22.438 26.989 29.813 18.593 29.813 15.435 26.675" style={{fill:"#095a9d"}}/>
-            <polygon points="15.435 26.675 19.406 25.354 18.068 24.057 15.435 26.675" style={{fill:"#0e5199"}}/>
+            <polyline points="15.383 18.316 18.744 15.042 27.093 15.042 19.697 22.438 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316" style={{ fill: "#40d0fd" }} />
+            <polygon points="4.907 16.125 9.106 20.424 27.093 2.287 18.744 2.287 4.907 16.125" style={{ fill: "#41d0fd", isolation: "isolate" }} />
+            <polygon points="11.176 22.479 15.435 26.675 19.697 22.438 15.383 18.316 11.176 22.479" style={{ fill: "#1fbcfd" }} />
+            <polygon points="15.435 26.675 19.697 22.438 26.989 29.813 18.593 29.813 15.435 26.675" style={{ fill: "#095a9d" }} />
+            <polygon points="15.435 26.675 19.406 25.354 18.068 24.057 15.435 26.675" style={{ fill: "#0e5199" }} />
         </svg>
     )
 }
@@ -362,7 +363,7 @@ function FlutterIcon() {
 function CursorIcon() {
     return (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z"/>
+            <path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z" />
         </svg>
     )
 }
@@ -370,7 +371,7 @@ function CursorIcon() {
 function BoltIcon() {
     return (
         <svg width="16" height="16" viewBox="0 0 12 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" d="M6.64 12.866c-1.035 0-2.051-.368-2.635-1.158l-.206.932L0 14.61l.41-1.97L3.177.39h3.388l-.979 4.318c.79-.846 1.525-1.158 2.466-1.158 2.032 0 3.388 1.305 3.388 3.693 0 2.462-1.563 5.623-4.8 5.623ZM7.94 7.94c0 1.14-.828 2.003-1.901 2.003-.602 0-1.148-.22-1.506-.606l.527-2.26c.395-.386.847-.607 1.374-.607.81 0 1.506.588 1.506 1.47Z" clipRule="evenodd"/>
+            <path fillRule="evenodd" d="M6.64 12.866c-1.035 0-2.051-.368-2.635-1.158l-.206.932L0 14.61l.41-1.97L3.177.39h3.388l-.979 4.318c.79-.846 1.525-1.158 2.466-1.158 2.032 0 3.388 1.305 3.388 3.693 0 2.462-1.563 5.623-4.8 5.623ZM7.94 7.94c0 1.14-.828 2.003-1.901 2.003-.602 0-1.148-.22-1.506-.606l.527-2.26c.395-.386.847-.607 1.374-.607.81 0 1.506.588 1.506 1.47Z" clipRule="evenodd" />
         </svg>
     )
 }
