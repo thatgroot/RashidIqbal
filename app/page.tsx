@@ -5,8 +5,7 @@ import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
 import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
 import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
 import { ProcessV2 as Process } from "@/components/v2/process";
-import { Tools } from "@/components/tools";
-import { WorkV2 as Work } from "@/components/v2/work";
+
 import { TestimonialsV2 as Testimonials } from "@/components/v2/testimonials";
 import { PricingV2 as Pricing } from "@/components/v2/pricing";
 import { FAQV2 as FAQ } from "@/components/v2/faq";
@@ -87,10 +86,8 @@ export default function Page() {
         <SectionSpacer />
         <Process />
         <SectionSpacer />
-        <Tools />
         <SectionSpacer />
-        <Work />
-        <SectionSpacer />
+
         <Testimonials />
         <SectionSpacer />
         <Pricing />

@@ -9,7 +9,6 @@ import { useState, useEffect, useCallback } from "react";
 
 // Navigation sections for the home page
 const NAV_SECTIONS = [
-  { id: "work", label: "Work", href: "/#work" },
   { id: "pricing", label: "Pricing", href: "/#pricing" },
   { id: "testimonials", label: "Reviews", href: "/#testimonials" },
   { id: "process", label: "Process", href: "/#process" },
@@ -110,7 +109,7 @@ export function NavbarV2() {
   }, [isHomePage, router]);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       className="fixed top-0 left-0 right-0 z-50 h-16 bg-white/80 backdrop-blur-md border-b border-zinc-100 dotted-bg dotted-bg-opacity-30"
@@ -139,23 +138,21 @@ export function NavbarV2() {
                 key={section.id}
                 href={section.href}
                 onClick={(e) => handleNavClick(e, `#${section.id}`)}
-                className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
-                  isActive
+                className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isActive
                     ? "text-orange-600 font-semibold bg-orange-50"
                     : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
-                }`}
+                  }`}
               >
                 {section.label}
               </Link>
             );
           })}
-          <Link 
-            href="/blog" 
-            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
-              isBlogPage 
-                ? "text-orange-600 font-semibold bg-orange-50" 
+          <Link
+            href="/blog"
+            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isBlogPage
+                ? "text-orange-600 font-semibold bg-orange-50"
                 : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
-            }`}
+              }`}
           >
             Blog
           </Link>
@@ -169,7 +166,7 @@ export function NavbarV2() {
             </span>
             Available now
           </span>
-          <button 
+          <button
             onClick={() => setShowContactOptions(!showContactOptions)}
             aria-label="Start project contact options"
             aria-expanded={showContactOptions}
