@@ -102,15 +102,6 @@ const schemas = [
     provider: {
       "@id": `${siteUrl}#person`,
     },
-    serviceType: [
-      "Next.js Development",
-      "Framer Development",
-      "Web Development",
-      "Web Design",
-      "Mobile App Development",
-      "Landing Page Design",
-      "UI/UX Design",
-    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Web Development Services",
