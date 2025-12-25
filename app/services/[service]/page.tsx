@@ -72,47 +72,43 @@ function ServiceStructuredData({
     service: (typeof SERVICES)[0];
     slug: string;
 }) {
-    const serviceSchema = {
+    const combinedSchema = {
         "@context": "https://schema.org",
-        "@type": "Service",
-        name: service.title,
-        description: service.description,
-        provider: {
-            "@type": "Person",
-            name: "Rashid Iqbal",
-            url: SITE_URL,
-        },
-        url: `${SITE_URL}/services/${slug}`,
-        areaServed: {
-            "@type": "Place",
-            name: "Worldwide",
-        },
-    };
-
-    const faqSchema = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: service.faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
+        "@graph": [
+            {
+                "@type": "Service",
+                name: service.title,
+                description: service.description,
+                provider: {
+                    "@type": "Person",
+                    name: "Rashid Iqbal",
+                    url: SITE_URL,
+                },
+                url: `${SITE_URL}/services/${slug}`,
+                areaServed: {
+                    "@type": "Place",
+                    name: "Worldwide",
+                },
             },
-        })),
+            {
+                "@type": "FAQPage",
+                mainEntity: service.faqs.map((faq) => ({
+                    "@type": "Question",
+                    name: faq.question,
+                    acceptedAnswer: {
+                        "@type": "Answer",
+                        text: faq.answer,
+                    },
+                })),
+            },
+        ],
     };
 
     return (
-        <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-            />
-        </>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
+        />
     );
 }
 
