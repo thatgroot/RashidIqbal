@@ -1,43 +1,166 @@
 "use client";
 
 import Link from "next/link";
-import { GridContainer, GridItem } from "./grid-system";
+import { SERVICES, LOCATIONS, TECHNOLOGIES } from "@/lib/seo-data";
+import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 
 export function FooterV2() {
   return (
-    <footer className="bg-white border-t border-zinc-100">
-      <div className="max-w-7xl mx-auto border-l border-zinc-100">
-        <GridContainer cols={3}  > 
-            <GridItem className="col-span-1 md:col-span-1">
-                <div className="flex flex-col h-full justify-between">
-                    <div>
-                        <div className="w-8 h-8 bg-orange-500 text-white flex items-center justify-center font-bold mb-6">R</div>
-                              <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
-                    </div>
-                    <p className="text-xs text-zinc-500 mt-12">
-                        © {new Date().getFullYear()} Rashid Iqbal. <br />
-                        All systems operational.
-                    </p>
-                </div>
-            </GridItem>
-            
-            <GridItem label="Services">
-                <ul className="space-y-4 text-sm text-zinc-500 mt-4">
-                    <li><Link href="#services" className="hover:text-orange-500 transition-colors">Landing Pages</Link></li>
-                    <li><Link href="#services" className="hover:text-orange-500 transition-colors">Marketing Sites</Link></li>
-                    <li><Link href="#services" className="hover:text-orange-500 transition-colors">Web Applications</Link></li>
-                </ul>
-            </GridItem>
+    <footer className="bg-zinc-900 text-white">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
+          {/* Brand */}
+          <div className="col-span-2">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-orange-500 text-white flex items-center justify-center font-bold rounded">
+                R
+              </div>
+              <span className="font-bold text-lg">Rashid Iqbal</span>
+            </div>
+            <p className="text-zinc-400 text-sm mb-6 max-w-xs">
+              Freelance developer specializing in high-converting landing pages,
+              web applications, and mobile apps.
+            </p>
+            <a
+              href={`mailto:${AUTHOR.email}`}
+              className="text-orange-500 hover:text-orange-400 transition-colors text-sm"
+            >
+              {AUTHOR.email}
+            </a>
+          </div>
 
-            <GridItem label="Connect">
-                <ul className="space-y-4 text-sm text-zinc-500 mt-4">
-                          <li><Link href="https://x.com/rashidrealme" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">Twitter / X</Link></li>
-                          <li><Link href="https://www.linkedin.com/in/callmerashidiqbal/" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">LinkedIn</Link></li>
-                          <li><Link href="https://github.com/thatgroot" target="_blank" rel="noopener noreferrer" className="hover:text-orange-500 transition-colors">GitHub</Link></li>
-                          <li><Link href="mailto:rashidiqbal.freelance@gmail.com" className="hover:text-orange-500 transition-colors">Email</Link></li>
-                </ul>
-            </GridItem>
-        </GridContainer>
+          {/* Services */}
+          <div>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+              Services
+            </h4>
+            <ul className="space-y-3">
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  >
+                    {service.shortTitle}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Locations */}
+          <div>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+              Locations
+            </h4>
+            <ul className="space-y-3">
+              {LOCATIONS.map((location) => (
+                <li key={location.slug}>
+                  <Link
+                    href={`/hire/${location.slug}`}
+                    className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  >
+                    {location.country}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Technologies */}
+          <div>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+              Technologies
+            </h4>
+            <ul className="space-y-3">
+              {TECHNOLOGIES.map((tech) => (
+                <li key={tech.slug}>
+                  <Link
+                    href={`/developer/${tech.slug}`}
+                    className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  >
+                    {tech.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+              Connect
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href={SOCIAL_LINKS.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Twitter / X
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  LinkedIn
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={SOCIAL_LINKS.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  GitHub
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-zinc-500">
+            © {new Date().getFullYear()} Rashid Iqbal. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/services"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              Services
+            </Link>
+            <Link
+              href="/hire"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              Hire Me
+            </Link>
+            <Link
+              href="/blog"
+              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              Blog
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

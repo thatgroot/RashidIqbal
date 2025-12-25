@@ -5,6 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
 import { OEmbedLinks } from "@/components/seo/oembed-links";
+import { SITE_URL as siteUrl } from "@/lib/constants";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-BZT67TX18E";
 
@@ -22,7 +23,7 @@ const geistMono = Geist_Mono({
   preload: true,
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -89,6 +90,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
+    languages: {
+      'en-US': siteUrl,
+    },
     types: {
       'application/rss+xml': `${siteUrl}/feed.xml`,
     },
@@ -145,8 +149,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
         {/* Skip Link for Accessibility */}
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white focus:font-medium focus:rounded-sm"
         >
           Skip to main content

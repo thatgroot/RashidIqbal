@@ -1,5 +1,6 @@
 "use client";
 
+import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 import { GridContainer, GridItem } from "./grid-system";
 import { Check, ArrowRight } from "lucide-react";
 import { useState } from "react";
@@ -215,17 +216,17 @@ export function PricingV2() {
                                             >
 
                                                 <div className="relative z-10 flex gap-2 w-full bg-white">
-                                                    <a href="mailto:rashidiqbal.freelance@gmail.com" className="flex-1 py-3 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 border border-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Contact via Email">
+                                                    <a href={`mailto:${AUTHOR.email}`} className="flex-1 py-3 bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center text-zinc-600 border border-zinc-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Contact via Email">
                                                         <SiGmail size={16} aria-hidden="true" />
                                                     </a>
-                                                    <a href="https://wa.me/923554665643" className="flex-1 py-3 bg-green-50 hover:bg-green-100 flex items-center justify-center text-green-600 border border-green-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500" aria-label="Contact via WhatsApp">
+                                                    <a href={SOCIAL_LINKS.whatsapp} className="flex-1 py-3 bg-green-50 hover:bg-green-100 flex items-center justify-center text-green-600 border border-green-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500" aria-label="Contact via WhatsApp">
                                                         <SiWhatsapp size={16} aria-hidden="true" />
                                                     </a>
-                                                    <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" aria-label="Hire on Upwork">
+                                                    <a href={SOCIAL_LINKS.upwork} target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 border border-blue-200 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500" aria-label="Hire on Upwork">
                                                         <SiUpwork size={16} aria-hidden="true" />
                                                     </a>
-                                                    <a href="https://cal.com/rashid.iqbal" target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center border border-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Book a call on Cal.com">
-                                                        <Image src="/icons/cal.png" alt="" width={16} height={16} className="rounded-sm" aria-hidden="true" />
+                                                    <a href={SOCIAL_LINKS.calcom} target="_blank" rel="noopener noreferrer" className="flex-1 py-3 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center border border-zinc-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500" aria-label="Book a call on Cal.com">
+                                                        <Image src="/icons/cal.png" alt="Cal.com Booking Icon" width={16} height={16} className="rounded-sm" aria-hidden="true" />
                                                     </a>
                                                     <button
                                                         onClick={(e) => {

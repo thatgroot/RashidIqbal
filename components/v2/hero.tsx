@@ -6,6 +6,7 @@ import { ArrowRight, ArrowDown, Users } from "lucide-react";
 import { useRef } from "react";
 import Image from "next/image";
 import { GridContainer, GridItem } from "./grid-system";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -54,7 +55,7 @@ export function HeroV2() {
                                     <div key={i} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
                                         <Image
                                             src={src}
-                                            alt="Project preview"
+                                            alt={`Showcase of previous project ${i + 1}`}
                                             fill
                                             className="object-cover grayscale"
                                             sizes="20vw"
@@ -65,7 +66,7 @@ export function HeroV2() {
                                     <div key={`dup-${i}`} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
                                         <Image
                                             src={src}
-                                            alt="Project preview"
+                                            alt={`Showcase of previous project ${i + 1}`}
                                             fill
                                             className="object-cover grayscale"
                                             sizes="20vw"
@@ -150,7 +151,7 @@ export function HeroV2() {
                                 className="flex flex-row items-center gap-3 sm:gap-4 mb-8"
                             >
                                 <a
-                                    href="https://cal.com/rashid.iqbal"
+                                    href={SOCIAL_LINKS.calcom}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"

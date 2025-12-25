@@ -5,8 +5,9 @@ import { getAllPosts, getFeaturedPosts, getAllTags } from "@/lib/blog";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
+import { SITE_URL as siteUrl } from "@/lib/constants";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
+
 
 export const metadata: Metadata = {
   title: "Blog - Web Development Insights & Tutorials",

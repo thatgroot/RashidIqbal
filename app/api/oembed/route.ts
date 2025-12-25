@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aestho.xyz';
+import { SITE_URL as siteUrl } from '@/lib/constants';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

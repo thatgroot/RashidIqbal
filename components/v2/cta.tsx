@@ -2,6 +2,7 @@
 
 import { GridContainer, GridItem } from "./grid-system";
 import { ArrowRight, Terminal, Check, Clock } from "lucide-react";
+import { SOCIAL_LINKS } from "@/lib/constants";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 
@@ -10,7 +11,7 @@ export function CTASectionV2() {
     <>
       <section className="bg-white border-y border-zinc-100">
         <div className="max-w-container border-l border-zinc-100">
-          <GridContainer cols={2}  > 
+          <GridContainer cols={2}  >
             <div className="border-b border-r border-zinc-100 p-12 lg:p-24 flex flex-col justify-center">
               <div className="flex items-center gap-3 text-orange-700 mb-8 font-mono text-xs">
                 <Terminal className="w-4 h-4" />
@@ -41,7 +42,7 @@ export function CTASectionV2() {
                 </div>
 
                 {/* Primary CTA */}
-                <button 
+                <button
                   onClick={() => {
                     const calendarSection = document.querySelector('#booking-calendar');
                     if (calendarSection) {
@@ -66,7 +67,7 @@ export function CTASectionV2() {
       {/* Cal.com Embed Section */}
       <section id="booking-calendar" className="bg-white border-b border-zinc-100">
         <div className="max-w-container border-l border-r border-zinc-100">
-          <GridContainer cols={1}  > 
+          <GridContainer cols={1}  >
             <GridItem className="min-h-[700px] relative overflow-hidden dotted-bg" padding={false}>
               <div className="relative z-10 h-full w-full p-4 md:p-8">
                 <div className="bg-white h-full w-full rounded-lg overflow-hidden">
@@ -92,8 +93,8 @@ function BookingCalendar() {
   return (
     <Cal
       namespace="30min"
-      calLink="rashid.iqbal/30min"
-      config={{ "layout": "month_view", "embedType": "team.event.booking.slots", "theme": "light",}}
+      calLink={SOCIAL_LINKS.calcom.replace("https://cal.com/", "") + "/30min"}
+      config={{ "layout": "month_view", "embedType": "team.event.booking.slots", "theme": "light", }}
 
     />
   );

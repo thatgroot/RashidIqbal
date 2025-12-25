@@ -1,14 +1,14 @@
 import { getAllPosts } from '@/lib/blog';
+import { SITE_URL as siteUrl } from '@/lib/constants';
 
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aestho.xyz';
   const posts = getAllPosts();
-  
+
   const feedItems = posts
     .map((post) => {
       const postUrl = `${siteUrl}/blog/${post.slug}`;
       const pubDate = new Date(post.date).toUTCString();
-      
+
       return `
     <item>
       <title><![CDATA[${post.title}]]></title>

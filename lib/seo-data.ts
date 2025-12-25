@@ -1,0 +1,614 @@
+// ============================================================================
+// SEO Data - Programmatic SEO Content for Service, Location, and Technology Pages
+// ============================================================================
+
+export interface Service {
+    slug: string;
+    title: string;
+    shortTitle: string;
+    description: string;
+    metaDescription: string;
+    heroHeadline: string;
+    heroSubheadline: string;
+    features: string[];
+    benefits: { title: string; description: string }[];
+    faqs: { question: string; answer: string }[];
+    relatedTechnologies: string[];
+    relatedServices: string[];
+    priceRange: string;
+}
+
+export interface Location {
+    slug: string;
+    region: string;
+    country: string;
+    title: string;
+    metaDescription: string;
+    heroHeadline: string;
+    heroSubheadline: string;
+    timezone: string;
+    availability: string;
+    localBenefits: string[];
+    testimonialRegion?: string;
+}
+
+export interface Technology {
+    slug: string;
+    name: string;
+    title: string;
+    metaDescription: string;
+    heroHeadline: string;
+    heroSubheadline: string;
+    expertise: string[];
+    useCases: string[];
+    relatedServices: string[];
+    icon?: string;
+    certification?: {
+        name: string;
+        issuer: string;
+        link?: string;
+    };
+}
+
+// ============================================================================
+// Services Data
+// ============================================================================
+
+export const SERVICES: Service[] = [
+    {
+        slug: "landing-pages",
+        title: "Landing Page Development",
+        shortTitle: "Landing Pages",
+        description: "High-converting landing pages that turn visitors into customers. Built with Framer or Next.js for maximum performance.",
+        metaDescription: "Get a high-converting landing page built by an expert developer. Framer & Next.js specialist. Fast delivery, pixel-perfect design. Book a free consultation.",
+        heroHeadline: "Landing Pages That Convert",
+        heroSubheadline: "I build landing pages that don't just look good—they're engineered to turn visitors into paying customers.",
+        features: [
+            "Conversion-optimized design",
+            "Mobile-first responsive layout",
+            "Fast loading speeds (sub-2s)",
+            "SEO-ready structure",
+            "Analytics integration",
+            "A/B testing ready",
+        ],
+        benefits: [
+            {
+                title: "Higher Conversion Rates",
+                description: "Strategic placement of CTAs, social proof, and value propositions designed to maximize conversions.",
+            },
+            {
+                title: "Lightning Fast Performance",
+                description: "Optimized images, lazy loading, and modern frameworks ensure your page loads in under 2 seconds.",
+            },
+            {
+                title: "SEO-Ready Foundation",
+                description: "Built with semantic HTML, structured data, and optimized metadata to rank higher on Google.",
+            },
+            {
+                title: "Mobile-First Design",
+                description: "60% of traffic comes from mobile. Your landing page will look perfect on every device.",
+            },
+        ],
+        faqs: [
+            {
+                question: "How long does it take to build a landing page?",
+                answer: "Most landing pages are completed in 1-2 weeks. Rush delivery is available for time-sensitive launches.",
+            },
+            {
+                question: "Do you provide the design or just development?",
+                answer: "Both! I can work from your existing Figma designs or create a custom design from scratch based on your brand.",
+            },
+            {
+                question: "What platform do you recommend—Framer or Next.js?",
+                answer: "Framer is perfect for marketing sites that your team needs to update frequently. Next.js is better for complex functionality or custom integrations.",
+            },
+            {
+                question: "Can you help with copywriting?",
+                answer: "I provide guidance on copy structure and can recommend copywriters, but I focus on design and development.",
+            },
+        ],
+        relatedTechnologies: ["nextjs", "framer", "react"],
+        relatedServices: ["web-applications", "figma-to-code"],
+        priceRange: "$4,900+",
+    },
+    {
+        slug: "web-applications",
+        title: "Web Application Development",
+        shortTitle: "Web Apps",
+        description: "Full-stack web applications built with Next.js and React. From MVP to enterprise-scale, I build apps that grow with you.",
+        metaDescription: "Custom web application development with Next.js & React. Full-stack solutions from MVP to enterprise scale. Expert freelance developer available now.",
+        heroHeadline: "Web Apps Built to Scale",
+        heroSubheadline: "From MVP to enterprise, I build web applications with clean architecture that grows with your business.",
+        features: [
+            "Full-stack development",
+            "Authentication & authorization",
+            "Database design & integration",
+            "API development",
+            "Real-time features",
+            "Cloud deployment",
+        ],
+        benefits: [
+            {
+                title: "Clean, Maintainable Code",
+                description: "Type-safe TypeScript codebase with clear architecture patterns that your future team will thank you for.",
+            },
+            {
+                title: "Scalable Infrastructure",
+                description: "Built on modern cloud platforms like Vercel, AWS, or Firebase that scale automatically with your growth.",
+            },
+            {
+                title: "Rapid Development",
+                description: "Weekly sprints with visible progress. You'll see your app come to life every single week.",
+            },
+            {
+                title: "Production-Ready Security",
+                description: "Authentication, authorization, and data protection built in from day one.",
+            },
+        ],
+        faqs: [
+            {
+                question: "What's your tech stack for web apps?",
+                answer: "I primarily use Next.js with TypeScript, Tailwind CSS for styling, and PostgreSQL or Firebase for the database. I can adapt based on your needs.",
+            },
+            {
+                question: "Can you work with an existing codebase?",
+                answer: "Absolutely. I regularly take over projects, refactor codebases, and add new features to existing applications.",
+            },
+            {
+                question: "How do you handle project management?",
+                answer: "I work in weekly sprints using Linear or your preferred tool. You get daily updates and weekly demos of progress.",
+            },
+            {
+                question: "What about ongoing maintenance?",
+                answer: "I offer retainer packages for ongoing development and maintenance. We can discuss this after the initial build.",
+            },
+        ],
+        relatedTechnologies: ["nextjs", "react", "typescript"],
+        relatedServices: ["landing-pages", "mobile-apps"],
+        priceRange: "$9,500+",
+    },
+    {
+        slug: "mobile-apps",
+        title: "Mobile App Development",
+        shortTitle: "Mobile Apps",
+        description: "Cross-platform mobile apps for iOS and Android. Built with React Native/Expo or Flutter for native performance.",
+        metaDescription: "Cross-platform mobile app development with React Native & Flutter. Native performance on iOS & Android. Freelance developer with 50+ apps delivered.",
+        heroHeadline: "Mobile Apps, Native Feel",
+        heroSubheadline: "One codebase, two platforms. I build iOS and Android apps that feel truly native.",
+        features: [
+            "Cross-platform (iOS & Android)",
+            "Native performance",
+            "Push notifications",
+            "Offline support",
+            "App Store deployment",
+            "Analytics & crash reporting",
+        ],
+        benefits: [
+            {
+                title: "One Codebase, Two Platforms",
+                description: "Save 40% on development costs by building for iOS and Android simultaneously.",
+            },
+            {
+                title: "Native User Experience",
+                description: "Platform-specific UI patterns that feel natural to both iOS and Android users.",
+            },
+            {
+                title: "App Store Success",
+                description: "I handle the entire submission process to get your app approved and live.",
+            },
+            {
+                title: "Future-Proof Technology",
+                description: "React Native and Flutter are backed by Meta and Google, ensuring long-term support.",
+            },
+        ],
+        faqs: [
+            {
+                question: "React Native or Flutter—which should I choose?",
+                answer: "React Native is my go-to for most projects due to its mature ecosystem. Flutter is excellent for highly custom UIs or when you need identical designs across platforms.",
+            },
+            {
+                question: "Do you handle App Store submissions?",
+                answer: "Yes, I manage the entire process—from setting up developer accounts to navigating the review process and getting your app live.",
+            },
+            {
+                question: "Can you integrate with our existing backend?",
+                answer: "Absolutely. I can work with any REST or GraphQL API, or build a new backend if needed.",
+            },
+            {
+                question: "What about app updates after launch?",
+                answer: "I offer maintenance packages for ongoing updates, bug fixes, and OS compatibility.",
+            },
+        ],
+        relatedTechnologies: ["expo", "flutter", "react"],
+        relatedServices: ["web-applications"],
+        priceRange: "$8,900+",
+    },
+    {
+        slug: "framer-development",
+        title: "Framer Website Development",
+        shortTitle: "Framer Sites",
+        description: "Beautiful, no-code websites built with Framer. Perfect for startups and marketing teams who need to move fast.",
+        metaDescription: "Expert Framer developer for stunning websites. No-code platform, infinite flexibility. Marketing teams and startups love working with me.",
+        heroHeadline: "Framer Sites That Wow",
+        heroSubheadline: "The no-code platform with infinite flexibility. I build Framer websites that your team can actually update.",
+        features: [
+            "No-code platform",
+            "CMS integration",
+            "Custom interactions",
+            "Team collaboration",
+            "Built-in analytics",
+            "Easy content updates",
+        ],
+        benefits: [
+            {
+                title: "Your Team Can Update It",
+                description: "Unlike traditional development, your marketing team can make changes without calling a developer.",
+            },
+            {
+                title: "Lightning-Fast Launches",
+                description: "Framer sites typically launch 50% faster than custom-coded alternatives.",
+            },
+            {
+                title: "World-Class Design",
+                description: "Framer's design tools enable interactions and animations that feel premium and polished.",
+            },
+            {
+                title: "SEO-Optimized Output",
+                description: "Framer generates clean, semantic HTML that search engines love.",
+            },
+        ],
+        faqs: [
+            {
+                question: "Is Framer really no-code?",
+                answer: "For your team, yes! I handle any custom logic or advanced features during the build, then hand you a site you can update without code.",
+            },
+            {
+                question: "Can Framer handle complex sites?",
+                answer: "Yes! Framer now supports CMS, localization, and advanced logic. It's perfect for marketing sites with up to 100+ pages.",
+            },
+            {
+                question: "What about blog functionality?",
+                answer: "Framer has a built-in CMS perfect for blogs, portfolio items, team pages, and any repeating content.",
+            },
+            {
+                question: "How does Framer compare to Webflow?",
+                answer: "Framer is more designer-friendly with better animation capabilities. I recommend it for teams who prioritize design quality.",
+            },
+        ],
+        relatedTechnologies: ["framer", "figma"],
+        relatedServices: ["landing-pages", "figma-to-code"],
+        priceRange: "$3,900+",
+    },
+    {
+        slug: "figma-to-code",
+        title: "Figma to Code Conversion",
+        shortTitle: "Figma to Code",
+        description: "Pixel-perfect conversion of your Figma designs to production-ready code. React, Next.js, or plain HTML/CSS.",
+        metaDescription: "Convert Figma designs to pixel-perfect code. React, Next.js, and HTML/CSS expert. Fast turnaround, clean code, responsive design.",
+        heroHeadline: "Figma Designs, Brought to Life",
+        heroSubheadline: "Your pixel-perfect Figma designs converted to clean, responsive, production-ready code.",
+        features: [
+            "Pixel-perfect accuracy",
+            "Responsive implementation",
+            "Clean, semantic code",
+            "Component architecture",
+            "Animation recreation",
+            "Design system setup",
+        ],
+        benefits: [
+            {
+                title: "100% Design Accuracy",
+                description: "I match your Figma designs down to the pixel. Designers love working with me.",
+            },
+            {
+                title: "Clean Component Code",
+                description: "Organized, reusable components that follow best practices and are easy to maintain.",
+            },
+            {
+                title: "Responsive by Default",
+                description: "I implement proper responsive behavior, even if your Figma only shows one breakpoint.",
+            },
+            {
+                title: "Ready for Production",
+                description: "Code that's optimized, accessible, and ready to deploy—not just a prototype.",
+            },
+        ],
+        faqs: [
+            {
+                question: "What format will I receive?",
+                answer: "I can deliver React components, Next.js pages, or plain HTML/CSS—whatever works best for your project.",
+            },
+            {
+                question: "Do you set up a design system?",
+                answer: "Yes! I configure your colors, typography, and spacing as reusable variables for consistency.",
+            },
+            {
+                question: "What if my Figma is only desktop?",
+                answer: "I'll implement sensible responsive behavior and can add mobile/tablet breakpoints at an additional cost.",
+            },
+            {
+                question: "How do you handle Figma auto-layout?",
+                answer: "Auto-layout translates beautifully to CSS Flexbox. I maintain the same flexible behavior in code.",
+            },
+        ],
+        relatedTechnologies: ["react", "nextjs", "figma"],
+        relatedServices: ["landing-pages", "framer-development"],
+        priceRange: "$2,500+",
+    },
+];
+
+// ============================================================================
+// Locations Data
+// ============================================================================
+
+export const LOCATIONS: Location[] = [
+    {
+        slug: "pakistan",
+        region: "South Asia",
+        country: "Pakistan",
+        title: "Hire a Developer from Pakistan",
+        metaDescription: "Hire an expert freelance web developer from Pakistan. Next.js, Framer, React Native specialist. Competitive rates, world-class quality.",
+        heroHeadline: "Your Developer in Pakistan",
+        heroSubheadline: "Top-tier development skills at competitive rates. I'm based in Pakistan, serving clients worldwide.",
+        timezone: "PKT (UTC+5)",
+        availability: "4-5 hours overlap with US/EU working hours",
+        localBenefits: [
+            "Highly competitive rates compared to Western developers",
+            "Strong English communication skills",
+            "5+ years of international client experience",
+            "Flexible working hours for timezone overlap",
+        ],
+    },
+    {
+        slug: "united-states",
+        region: "North America",
+        country: "United States",
+        title: "Hire a Developer for US Projects",
+        metaDescription: "Looking for a freelance developer for your US-based project? I serve clients across America with flexible hours and proven expertise.",
+        heroHeadline: "Development for US Clients",
+        heroSubheadline: "I work with US startups and agencies, providing quality development with flexible timezone overlap.",
+        timezone: "Flexible hours",
+        availability: "Morning meetings (US time) or async communication",
+        localBenefits: [
+            "Experience with US startup ecosystem",
+            "Familiar with American business practices",
+            "Flexible scheduling for US timezone",
+            "Portfolio of successful US client projects",
+        ],
+        testimonialRegion: "US",
+    },
+    {
+        slug: "united-kingdom",
+        region: "Europe",
+        country: "United Kingdom",
+        title: "Hire a Developer for UK Projects",
+        metaDescription: "Freelance web developer serving UK clients. Expert in Next.js, Framer, and React. Excellent timezone overlap with British working hours.",
+        heroHeadline: "Development for UK Clients",
+        heroSubheadline: "I work with UK agencies and startups, with excellent timezone overlap for British working hours.",
+        timezone: "PKT overlaps with UK afternoon",
+        availability: "Afternoon meetings (UK time) or async communication",
+        localBenefits: [
+            "5-hour timezone offset enables same-day collaboration",
+            "Experience with UK agencies and startups",
+            "Familiar with British business culture",
+            "Proven track record with UK clients",
+        ],
+        testimonialRegion: "UK",
+    },
+    {
+        slug: "canada",
+        region: "North America",
+        country: "Canada",
+        title: "Hire a Developer for Canadian Projects",
+        metaDescription: "Expert freelance web developer for Canadian businesses. Next.js, React, and mobile app specialist. Quality development at competitive rates.",
+        heroHeadline: "Development for Canadian Clients",
+        heroSubheadline: "Serving Canadian startups and agencies with high-quality development and flexible timezone availability.",
+        timezone: "Flexible hours",
+        availability: "Morning meetings (EST/PST) or async communication",
+        localBenefits: [
+            "Experience with Canadian tech companies",
+            "Flexible scheduling for multiple Canadian timezones",
+            "Competitive rates for quality development",
+            "Strong portfolio of North American projects",
+        ],
+    },
+    {
+        slug: "australia",
+        region: "Asia Pacific",
+        country: "Australia",
+        title: "Hire a Developer for Australian Projects",
+        metaDescription: "Freelance developer serving Australia. React, Next.js, and mobile development expert. Similar timezone for seamless collaboration.",
+        heroHeadline: "Development for Australian Clients",
+        heroSubheadline: "Close timezone alignment makes real-time collaboration easy with Australian businesses.",
+        timezone: "3-5 hours offset",
+        availability: "Excellent real-time collaboration potential",
+        localBenefits: [
+            "Minimal timezone difference (3-5 hours)",
+            "Real-time collaboration during business hours",
+            "Experience with Australian startups",
+            "APAC market understanding",
+        ],
+        testimonialRegion: "APAC",
+    },
+    {
+        slug: "remote",
+        region: "Worldwide",
+        country: "Remote",
+        title: "Hire a Remote Freelance Developer",
+        metaDescription: "100% remote freelance developer available worldwide. Expert in Next.js, React, and mobile development. Async-first communication.",
+        heroHeadline: "Remote Development, Done Right",
+        heroSubheadline: "I've been remote-first since day one. Async communication, daily updates, and consistent delivery.",
+        timezone: "Async-first",
+        availability: "Daily updates, flexible meeting times",
+        localBenefits: [
+            "5+ years of fully remote work experience",
+            "Mastered async communication",
+            "Daily written updates and weekly video calls",
+            "Works with any timezone, any country",
+        ],
+    },
+];
+
+// ============================================================================
+// Technologies Data
+// ============================================================================
+
+export const TECHNOLOGIES: Technology[] = [
+    {
+        slug: "nextjs",
+        name: "Next.js",
+        title: "Next.js Developer for Hire",
+        metaDescription: "Hire an expert Next.js developer. 5+ years of React & Next.js experience. App Router, Server Components, and full-stack development.",
+        heroHeadline: "Next.js Development Expert",
+        heroSubheadline: "I've been building with Next.js since version 9. From landing pages to complex web apps, I know this framework inside out.",
+        expertise: [
+            "App Router & Server Components",
+            "API Routes & Server Actions",
+            "Static Site Generation (SSG)",
+            "Incremental Static Regeneration (ISR)",
+            "Middleware & Edge Functions",
+            "Vercel Deployment & Optimization",
+        ],
+        useCases: [
+            "High-performance marketing websites",
+            "Full-stack SaaS applications",
+            "E-commerce storefronts",
+            "Content-heavy blogs and publications",
+            "Dashboard applications",
+        ],
+        relatedServices: ["landing-pages", "web-applications"],
+    },
+    {
+        slug: "react",
+        name: "React",
+        title: "React Developer for Hire",
+        metaDescription: "Expert React developer available for freelance projects. Component architecture, state management, and modern React patterns.",
+        heroHeadline: "React Development Specialist",
+        heroSubheadline: "React is my bread and butter. I build scalable component architectures that your team will love maintaining.",
+        expertise: [
+            "Hooks & Custom Hooks",
+            "Context & State Management",
+            "Component Architecture",
+            "Performance Optimization",
+            "Testing with React Testing Library",
+            "TypeScript Integration",
+        ],
+        useCases: [
+            "Interactive web applications",
+            "Dashboard interfaces",
+            "Component libraries",
+            "Single-page applications",
+            "Complex form systems",
+        ],
+        relatedServices: ["web-applications", "figma-to-code"],
+        certification: {
+            name: "Meta Certified React Developer",
+            issuer: "Meta",
+        },
+    },
+    {
+        slug: "framer",
+        name: "Framer",
+        title: "Framer Developer for Hire",
+        metaDescription: "Expert Framer developer for stunning websites. Custom components, CMS setup, and team training. No-code platform, limitless possibilities.",
+        heroHeadline: "Framer Development Expert",
+        heroSubheadline: "I push Framer to its limits. From simple landing pages to complex multi-page sites with CMS—I've built it all.",
+        expertise: [
+            "Custom Code Components",
+            "CMS & Collections",
+            "Advanced Interactions",
+            "Design System Setup",
+            "SEO Optimization",
+            "Team Training & Handoff",
+        ],
+        useCases: [
+            "Marketing websites",
+            "Portfolio sites",
+            "Company websites with CMS",
+            "Product launch pages",
+            "Startup landing pages",
+        ],
+        relatedServices: ["framer-development", "landing-pages"],
+        certification: {
+            name: "Official Framer Expert",
+            issuer: "Framer",
+            link: "https://www.framer.com/@rashidiqbal",
+        },
+    },
+    {
+        slug: "expo",
+        name: "Expo / React Native",
+        title: "Expo & React Native Developer for Hire",
+        metaDescription: "Hire an Expo & React Native developer. Cross-platform mobile apps for iOS and Android. Fast development, native performance.",
+        heroHeadline: "Expo & React Native Expert",
+        heroSubheadline: "I build cross-platform mobile apps that feel native. One codebase, two platforms, zero compromises.",
+        expertise: [
+            "Expo SDK & Managed Workflow",
+            "EAS Build & Submit",
+            "Push Notifications",
+            "Navigation (React Navigation)",
+            "Offline-first Architecture",
+            "Native Module Integration",
+        ],
+        useCases: [
+            "Consumer mobile apps",
+            "Enterprise mobile solutions",
+            "MVP mobile apps",
+            "Social networking apps",
+            "E-commerce mobile apps",
+        ],
+        relatedServices: ["mobile-apps"],
+    },
+    {
+        slug: "flutter",
+        name: "Flutter",
+        title: "Flutter Developer for Hire",
+        metaDescription: "Expert Flutter developer for cross-platform mobile apps. Beautiful UIs, native performance on iOS and Android. Dart specialist.",
+        heroHeadline: "Flutter Development Expert",
+        heroSubheadline: "When pixel-perfect custom UIs are the priority, Flutter delivers. I build beautiful apps that perform flawlessly.",
+        expertise: [
+            "Custom Widget Development",
+            "State Management (Riverpod, BLoC)",
+            "Platform Channels",
+            "Firebase Integration",
+            "App Store Deployment",
+            "Performance Optimization",
+        ],
+        useCases: [
+            "Highly custom UI applications",
+            "Cross-platform with identical design",
+            "Animation-heavy apps",
+            "Fintech mobile apps",
+            "Health & fitness apps",
+        ],
+        relatedServices: ["mobile-apps"],
+    },
+];
+
+// ============================================================================
+// Helper Functions
+// ============================================================================
+
+export function getServiceBySlug(slug: string): Service | undefined {
+    return SERVICES.find((service) => service.slug === slug);
+}
+
+export function getLocationBySlug(slug: string): Location | undefined {
+    return LOCATIONS.find((location) => location.slug === slug);
+}
+
+export function getTechnologyBySlug(slug: string): Technology | undefined {
+    return TECHNOLOGIES.find((tech) => tech.slug === slug);
+}
+
+export function getAllServiceSlugs(): string[] {
+    return SERVICES.map((service) => service.slug);
+}
+
+export function getAllLocationSlugs(): string[] {
+    return LOCATIONS.map((location) => location.slug);
+}
+
+export function getAllTechnologySlugs(): string[] {
+    return TECHNOLOGIES.map((tech) => tech.slug);
+}

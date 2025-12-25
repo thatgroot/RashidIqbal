@@ -11,9 +11,10 @@ import { FAQV2 as FAQ } from "@/components/v2/faq";
 import { CTASectionV2 as CTASection } from "@/components/v2/cta";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { SectionSpacer } from "@/components/section-spacer";
+import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
+
 
 export const metadata: Metadata = {
   title: "Rashid Iqbal | High-Performance Web & Mobile Developer",

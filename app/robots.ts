@@ -1,8 +1,7 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL as siteUrl } from '@/lib/constants';
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aestho.xyz';
-  
   return {
     rules: [
       // Default rules for all crawlers
