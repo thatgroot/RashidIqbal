@@ -138,14 +138,6 @@ const schemas = [
         },
       ],
     },
-    // Aggregate rating placeholder
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "50",
-      bestRating: "5",
-      worstRating: "1",
-    },
   },
   {
     "@context": "https://schema.org",

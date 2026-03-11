@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     html: `<iframe src="${url}" width="${maxwidth || '800'}" height="${maxheight || '600'}" frameborder="0" allowfullscreen></iframe>`,
     width: maxwidth ? parseInt(maxwidth) : 800,
     height: maxheight ? parseInt(maxheight) : 600,
-    thumbnail_url: `${siteUrl}/og-image.jpg`,
+    thumbnail_url: `${siteUrl}/api/og`,
     thumbnail_width: 1200,
     thumbnail_height: 630,
   };

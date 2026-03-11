@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { HeroV2 as Hero } from "@/components/v2/hero";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
+import { WorkV2 as Work } from "@/components/v2/work";
 import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
 import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
 import { ProcessV2 as Process } from "@/components/v2/process";
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Rashid Iqbal",
     images: [
       {
-        url: `${siteUrl}/opengraph-image`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: "Rashid Iqbal - Your Vision, Built Right",
@@ -39,13 +40,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@rashidiqbal",
-    creator: "@rashidiqbal",
+    site: "@rashidrealme",
+    creator: "@rashidrealme",
     title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
     description: "Turn your vision into a polished product with expert web and mobile development.",
     images: [
       {
-        url: `${siteUrl}/twitter-image`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: "Rashid Iqbal - Your Vision, Built Right",
@@ -83,6 +84,8 @@ export default function Page() {
         <Comparison />
         <SectionSpacer />
         <ServicesGrid />
+        <SectionSpacer />
+        <Work />
         <SectionSpacer />
         <Process />
         <SectionSpacer />

@@ -10,6 +10,7 @@ import { RelatedServices } from "@/components/seo/internal-links";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 import { Calendar, Clock, ArrowLeft, Tag, Share2 } from "lucide-react";
 import { SiX, SiLinkedin } from "react-icons/si";
+import { CopyLinkButton } from "@/components/blog/copy-link";
 
 
 
@@ -111,11 +112,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const ogParams = new URLSearchParams({
+    title: post.title,
+    description: post.description,
+  });
+
+  const dynamicOgUrl = `${siteUrl}/api/og?${ogParams.toString()}`;
+
   const imageUrl = post.coverImage
     ? post.coverImage.startsWith("http")
       ? post.coverImage
       : `${siteUrl}${post.coverImage}`
-    : `${siteUrl}/opengraph-image`;
+    : dynamicOgUrl;
 
   return {
     title: post.seoTitle || post.title,
@@ -310,6 +318,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <SiLinkedin className="w-4 h-4" aria-hidden="true" />
                 LinkedIn
               </a>
+              <CopyLinkButton url={postUrl} />
             </div>
           </div>
 

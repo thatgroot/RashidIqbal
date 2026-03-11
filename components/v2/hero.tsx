@@ -76,7 +76,7 @@ export function HeroV2() {
                             </div>
                         </motion.div>
 
-                        <div
+                        <article
                             className="relative z-10 w-full px-6 py-12 md:px-12 md:py-16 flex flex-col items-center text-center"
                             onMouseMove={handleMouseMove}
                         >
@@ -128,9 +128,9 @@ export function HeroV2() {
                                 transition={{ delay: 0.2 }}
                                 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[0.9]"
                             >
-                                High-Performance <br />
+                                AI-Powered <br />
                                 <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Web & Mobile Apps.</span> <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">Shipped Fast.</span>
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">Production-Ready.</span>
                             </motion.h1>
 
                             {/* Description - Improved copy */}
@@ -140,7 +140,7 @@ export function HeroV2() {
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
                             >
-                                Expert design and development in one package. From Figma prototypes to scalable Next.js & Apps. Ship your MVP in <span className="font-semibold text-zinc-900">weeks, not months</span>.
+                                Expert AI agent development and Next.js engineering. I build <span className="font-semibold text-zinc-900">production-ready applications</span>, rescue broken prototypes, and <span className="font-semibold text-zinc-900">automate workflows</span> so you can scale.
                             </motion.p>
 
                             {/* CTA - Improved hierarchy */}
@@ -209,7 +209,7 @@ export function HeroV2() {
                                     <ArrowDown className="w-4 h-4 text-zinc-500" aria-hidden="true" />
                                 </motion.div>
                             </motion.div>
-                        </div>
+                        </article>
 
                         {/* Visual Background Element - Only visible when NOT hovering lens area to avoid clutter */}
                         <div className="absolute inset-0 z-0 opacity-40 md:opacity-100 pointer-events-none mix-blend-multiply">
@@ -233,21 +233,21 @@ export function HeroV2() {
                             <div className="text-lg font-medium text-zinc-900">Framer</div>
                         </div>
                     </ToolGridItem>
-                    <ToolGridItem label="Framework" delay={0.7}>
+                    <ToolGridItem label="Ecosystem" delay={0.7}>
                         <div className="flex flex-col gap-3">
                             <div className="flex items-center gap-4">
                                 <NextIcon />
-                                <ExpoIcon />
-                                <FlutterIcon />
+                                <CursorIcon />
+                                <BoltIcon />
                             </div>
                             <div className="flex items-center gap-4 pt-2 border-t border-zinc-100">
                                 <div className="flex items-center gap-2">
-                                    <CursorIcon />
-                                    <span className="text-sm font-medium text-zinc-900">Cursor</span>
+                                    <ClaudeIcon />
+                                    <span className="text-sm font-medium text-zinc-900">Claude</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <BoltIcon />
-                                    <span className="text-sm font-medium text-zinc-900">Bolt</span>
+                                    <N8nIcon />
+                                    <span className="text-sm font-medium text-zinc-900">n8n</span>
                                 </div>
                             </div>
                         </div>
@@ -290,6 +290,7 @@ function ToolGridItem({ label, delay, children }: { label: string; delay: number
             viewport={{ once: true }}
             transition={{ delay, duration: 0.5 }}
             className="h-full"
+            role="figure"
         >
             <GridItem className="h-full flex flex-col">
                 {/* Label row - aligned to top-right */}
@@ -373,6 +374,24 @@ function BoltIcon() {
     return (
         <svg width="16" height="16" viewBox="0 0 12 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" d="M6.64 12.866c-1.035 0-2.051-.368-2.635-1.158l-.206.932L0 14.61l.41-1.97L3.177.39h3.388l-.979 4.318c.79-.846 1.525-1.158 2.466-1.158 2.032 0 3.388 1.305 3.388 3.693 0 2.462-1.563 5.623-4.8 5.623ZM7.94 7.94c0 1.14-.828 2.003-1.901 2.003-.602 0-1.148-.22-1.506-.606l.527-2.26c.395-.386.847-.607 1.374-.607.81 0 1.506.588 1.506 1.47Z" clipRule="evenodd" />
+        </svg>
+    )
+}
+
+function ClaudeIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" />
+        </svg>
+    )
+}
+
+function N8nIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 2L2 6V18L10 22L18 18V6L10 2Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="10" cy="12" r="3" fill="currentColor" />
+            <path d="M22 12A10 10 0 0 1 12 22" fill="none" stroke="currentColor" strokeWidth="2" />
         </svg>
     )
 }

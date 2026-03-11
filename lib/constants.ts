@@ -36,8 +36,8 @@ export const SOCIAL_HANDLES = {
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-BZT67TX18E";
 
 // SEO defaults
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/opengraph-image`;
-export const DEFAULT_TWITTER_IMAGE = `${SITE_URL}/twitter-image`;
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/api/og`;
+export const DEFAULT_TWITTER_IMAGE = `${SITE_URL}/api/og`;
 
 // Structured data identifiers
 export const SCHEMA_IDS = {

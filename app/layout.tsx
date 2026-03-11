@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     description: "Hire a freelance Next.js and Framer developer from Pakistan. High-converting landing pages, web apps, and mobile apps. 50+ projects delivered.",
     images: [
       {
-        url: `${siteUrl}/og-image.jpg`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: "Rashid Iqbal - Next.js & Framer Developer from Pakistan",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rashid Iqbal — Next.js & Framer Developer | Pakistan",
     description: "Hire a freelance Next.js and Framer developer. High-converting landing pages, web apps, mobile apps. Based in Pakistan, serving clients worldwide.",
-    images: [`${siteUrl}/og-image.jpg`],
+    images: [`${siteUrl}/api/og`],
     creator: "@rashidrealme",
   },
   robots: {
@@ -89,6 +89,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
+    canonical: siteUrl,
     languages: {
       'en-US': siteUrl,
     },
@@ -140,6 +141,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://framerusercontent.com" />
         {/* AI/LLM & oEmbed Discovery (dynamic links) */}
+        <link rel="alternate" type="application/json" href="/api/llms-context" title="Machine-Readable Context API" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
         <link rel="author" href="/humans.txt" />
         <OEmbedLinks />

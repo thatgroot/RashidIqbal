@@ -15,11 +15,11 @@ export function CTASectionV2() {
             <div className="border-b border-r border-zinc-100 p-12 lg:p-24 flex flex-col justify-center">
               <div className="flex items-center gap-3 text-orange-700 mb-8 font-mono text-xs">
                 <Terminal className="w-4 h-4" />
-                <span>READY_TO_SHIP</span>
+                <span>FREE_AUDIT_OFFER</span>
               </div>
               <h2 className="text-4xl md:text-6xl font-semibold text-zinc-900 tracking-tight">
-                Ready To Launch? <br />
-                <span className="text-zinc-500">Let&apos;s build something amazing.</span>
+                Want More Clients? <br />
+                <span className="text-zinc-500">Claim your free technical audit.</span>
               </h2>
             </div>
 
@@ -29,15 +29,15 @@ export function CTASectionV2() {
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center gap-3 text-sm text-zinc-600">
                     <Check className="w-4 h-4 text-orange-500" />
-                    <span>Free 30-minute discovery call</span>
+                    <span>Comprehensive Lighthouse & SEO review</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-zinc-600">
                     <Check className="w-4 h-4 text-orange-500" />
-                    <span>No commitment required</span>
+                    <span>UX/UI and conversion rate analysis</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-zinc-600">
                     <Clock className="w-4 h-4 text-orange-500" />
-                    <span>Quick response time</span>
+                    <span>30-minute strategic consultation</span>
                   </div>
                 </div>
 

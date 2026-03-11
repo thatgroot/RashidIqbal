@@ -109,12 +109,12 @@ export function NavbarV2() {
   }, [isHomePage, router]);
 
   return (
-    <motion.nav
+    <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       className="fixed top-0 left-0 right-0 z-50 h-16 bg-white/80 backdrop-blur-md border-b border-zinc-100 dotted-bg dotted-bg-opacity-30"
     >
-      <div className="max-w-container h-full border-x border-zinc-100 flex items-center justify-between px-8 relative z-10">
+      <nav className="max-w-container h-full border-x border-zinc-100 flex items-center justify-between px-8 relative z-10" aria-label="Main navigation">
         <button
           onClick={handleLogoClick}
           className="flex items-center gap-3 hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded-sm"
@@ -130,7 +130,7 @@ export function NavbarV2() {
           <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
         </button>
 
-        <div className="hidden md:flex items-center gap-1 text-sm font-medium shrink-0">
+        <div className="hidden md:flex items-center gap-1 text-sm font-medium shrink-0" role="menubar">
           {NAV_SECTIONS.map((section) => {
             const isActive = currentActiveSection === section.id;
             return (
@@ -142,17 +142,32 @@ export function NavbarV2() {
                   ? "text-orange-600 font-semibold bg-orange-50"
                   : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
                   }`}
+                role="menuitem"
+                aria-current={isActive ? "page" : undefined}
               >
                 {section.label}
               </Link>
             );
           })}
           <Link
+            href="/services/ai-agents"
+            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${pathname.startsWith("/services")
+              ? "text-orange-600 font-semibold bg-orange-50"
+              : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
+              }`}
+            role="menuitem"
+            aria-current={pathname.startsWith("/services") ? "page" : undefined}
+          >
+            AI Agents
+          </Link>
+          <Link
             href="/blog"
             className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isBlogPage
               ? "text-orange-600 font-semibold bg-orange-50"
               : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
               }`}
+            role="menuitem"
+            aria-current={isBlogPage ? "page" : undefined}
           >
             Blog
           </Link>
@@ -208,7 +223,7 @@ export function NavbarV2() {
             )}
           </AnimatePresence>
         </div>
-      </div>
-    </motion.nav>
+      </nav>
+    </motion.header>
   );
 }
