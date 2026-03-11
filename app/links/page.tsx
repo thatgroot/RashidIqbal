@@ -4,7 +4,7 @@ import Image from "next/image";
 import { MoveRight } from "lucide-react";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 import { FaGithub, FaLinkedinIn, FaXTwitter, FaBehance, FaWhatsapp } from "react-icons/fa6";
-import { SiUpwork } from "react-icons/si";
+import { SiUpwork, SiFramer } from "react-icons/si";
 
 export const metadata: Metadata = {
     title: "Links | Rashid Iqbal",
@@ -16,10 +16,15 @@ export const metadata: Metadata = {
 
 const links = [
     {
+        name: "Framer Expert Profile",
+        url: "https://www.framer.com/@rashidiqbal",
+        icon: <SiFramer className="w-5 h-5" />,
+        featured: true,
+    },
+    {
         name: "Portfolio & Services",
         url: "/",
         icon: <MoveRight className="w-5 h-5" />,
-        featured: true,
     },
     {
         name: "Read My Latest Articles",
