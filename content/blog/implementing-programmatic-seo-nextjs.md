@@ -9,7 +9,7 @@ author:
 coverImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=630&fit=crop&q=80"
 tags: ["Next.js", "TypeScript", "SEO", "Architecture", "Engineering"]
 category: "Engineering"
-published: true
+published: false
 featured: false
 seoTitle: "Implementing Programmatic SEO with Next.js & TS | Tutorial"
 seoDescription: "Step-by-step technical guide to building an automated SEO page generator with Next.js. Learn generateStaticParams, dynamic metadata, and more."

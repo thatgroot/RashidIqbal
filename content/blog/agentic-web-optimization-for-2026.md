@@ -9,7 +9,7 @@ author:
 coverImage: "/blog/agentic-web-cover-2026.png"
 tags: ["Next.js", "AI Agents", "MCP", "WebMCP", "AEO", "GEO"]
 category: "Engineering"
-published: true
+published: false
 featured: true
 seoTitle: "Agentic Web Optimization 2026: Optimization for AI Agents"
 seoDescription: "A technical guide to Answer Engine Optimization (AEO) and WebMCP. Learn how to use the Model Context Protocol and structured context to make your site agent-ready."

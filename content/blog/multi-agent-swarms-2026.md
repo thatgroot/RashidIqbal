@@ -9,7 +9,7 @@ author:
 coverImage: "/multi-agent-swarms-2026.png"
 tags: ["CrewAI", "LangGraph", "Multi-Agent", "AI Swarms", "Enterprise"]
 category: "Engineering"
-published: true
+published: false
 featured: true
 seoTitle: "Building Multi-Agent Swarms with CrewAI & LangGraph | 2026"
 seoDescription: "Examine the architecture of multi-agent AI systems. Learn how to orchestrate specialized agents using CrewAI and LangGraph for complex business processes."

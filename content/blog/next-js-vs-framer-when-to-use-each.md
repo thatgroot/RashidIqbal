@@ -4,8 +4,8 @@ description: "Stop wasting money on the wrong platform. Here's exactly when Next
 date: "2025-01-05"
 author:
   name: "Rashid Iqbal"
-  twitter: "@rashidiqbal"
-  linkedin: "rashidiqbal"
+  twitter: "@rashidrealme"
+  linkedin: "callmerashidiqbal"
 coverImage: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&h=630&fit=crop&q=80"
 tags: ["Next.js", "Framer", "web development", "comparison", "strategy"]
 category: "Technology"

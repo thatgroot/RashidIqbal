@@ -9,7 +9,7 @@ author:
 coverImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=630&fit=crop&q=80"
 tags: ["cursor", "AI development", "web development", "accessibility", "SEO", "performance", "Next.js"]
 category: "Development"
-published: true
+published: false
 featured: true
 seoTitle: "Cursor Rules for Web Development | Performance, A11y & SEO Guide"
 seoDescription: "Master Cursor rules to build faster, more accessible websites. Complete guide with real-world examples for Next.js projects."

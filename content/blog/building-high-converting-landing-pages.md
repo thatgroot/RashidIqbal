@@ -4,8 +4,8 @@ description: "Discover the exact strategies and psychological triggers that tran
 date: "2025-01-15"
 author:
   name: "Rashid Iqbal"
-  twitter: "@rashidiqbal"
-  linkedin: "rashidiqbal"
+  twitter: "@rashidrealme"
+  linkedin: "callmerashidiqbal"
 coverImage: "/blog/building-high-converting-landing-pages.png"
 tags: ["landing pages", "conversion optimization", "web development", "Next.js", "copywriting"]
 category: "Development"

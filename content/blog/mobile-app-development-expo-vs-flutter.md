@@ -9,7 +9,7 @@ author:
 coverImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&h=630&fit=crop&q=80"
 tags: ["mobile development", "Expo", "Flutter", "React Native", "cross-platform"]
 category: "Mobile"
-published: true
+published: false
 featured: false
 seoTitle: "Expo vs Flutter: Which Cross-Platform Framework Wins?"
 seoDescription: "Real-world comparison of Expo and Flutter for mobile app development. Performance benchmarks, development experience, and honest recommendations."

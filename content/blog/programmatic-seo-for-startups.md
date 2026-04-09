@@ -9,7 +9,7 @@ author:
 coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80"
 tags: ["SEO", "Startup", "Growth", "Marketing", "Strategy"]
 category: "Marketing"
-published: true
+published: false
 featured: true
 seoTitle: "Programmatic SEO Strategy for Startups | Growth Guide"
 seoDescription: "Scale your organic traffic with programmatic SEO. Learn how to build hundreds of targeted pages automatically. Perfect for SaaS and marketplaces."
