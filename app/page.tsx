@@ -17,19 +17,19 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
 export const metadata: Metadata = {
-  title: "Rashid Iqbal | Figma & Framer Expert — Chrome Extensions, UX Copy & Conversion",
-  description: "Figma and Framer expert specializing in high-converting landing pages, UX copywriting, and Chrome extensions for the Figma/Framer ecosystem. Design, build, convert.",
+  title: "Figma & Framer Expert | Websites That Convert",
+  description: "I design in Figma, build in Framer, and develop Chrome extensions. High-converting landing pages and websites with UX copy baked in. 50+ projects.",
   keywords: ["Figma expert", "Framer expert", "Chrome extensions Figma", "UX copywriting", "landing page designer", "Framer developer", "Figma to Framer", "conversion optimization", "Chrome extension developer", "landing page conversion"],
   openGraph: {
-    title: "Rashid Iqbal | Figma & Framer Expert — Chrome Extensions & Conversion",
-    description: "Figma and Framer expert. I design, write conversion copy, build pixel-perfect Framer sites, and create Chrome extensions for the design ecosystem.",
+    title: "Figma & Framer Expert | Websites That Convert",
+    description: "Figma design, Framer builds, Chrome extensions. Websites that convert with UX copy baked in. 50+ projects shipped.",
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: "Rashid Iqbal",
     images: [
       {
-        url: `${siteUrl}/api/og`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Rashid Iqbal — Figma & Framer Expert",
@@ -41,11 +41,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@rashidrealme",
     creator: "@rashidrealme",
-    title: "Rashid Iqbal | Figma & Framer Expert — Chrome Extensions & Conversion",
-    description: "Figma and Framer expert building high-converting sites with strategic UX copy. Plus Chrome extensions for the design ecosystem.",
+    title: "Figma & Framer Expert | Websites That Convert",
+    description: "Figma design, Framer builds, Chrome extensions. Websites that convert with UX copy baked in.",
     images: [
       {
-        url: `${siteUrl}/api/og`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
         alt: "Rashid Iqbal — Figma & Framer Expert",

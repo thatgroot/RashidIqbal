@@ -28,10 +28,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Rashid Iqbal — Figma & Framer Expert | Chrome Extensions, UX Copy & Conversion",
-    template: "%s | Rashid Iqbal — Figma & Framer Expert",
+    default: "Rashid Iqbal | Figma & Framer Expert",
+    template: "%s | Rashid Iqbal",
   },
-  description: "Hire Rashid Iqbal — a Figma & Framer expert who designs high-converting landing pages, writes UX copy, and builds Chrome extensions for the Figma/Framer ecosystem. 50+ projects delivered.",
+  description: "Figma design, Framer development, and Chrome extensions. I build websites that convert, write UX copy, and ship browser tools. 50+ projects delivered.",
   keywords: [
     "Figma expert",
     "Framer expert",
@@ -61,22 +61,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Rashid Iqbal",
-    title: "Rashid Iqbal — Figma & Framer Expert | Chrome Extensions & Conversion",
-    description: "Figma & Framer expert. I design high-converting pages, write UX copy, and build Chrome extensions for the design ecosystem.",
+    title: "Rashid Iqbal | Figma & Framer Expert",
+    description: "Figma design, Framer development, and Chrome extensions. Websites that convert. 50+ projects shipped.",
     images: [
       {
-        url: `${siteUrl}/api/og`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal — Figma & Framer Expert",
+        alt: "Rashid Iqbal - Figma & Framer Expert. Book a Free Call.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rashid Iqbal — Figma & Framer Expert | Chrome Extensions & Conversion",
-    description: "Figma & Framer expert building high-converting pages with strategic UX copy. Plus Chrome extensions for the design ecosystem.",
-    images: [`${siteUrl}/api/og`],
+    title: "Rashid Iqbal | Figma & Framer Expert",
+    description: "Figma design, Framer development, and Chrome extensions. Websites that convert. 50+ projects shipped.",
+    images: [`${siteUrl}/opengraph-image`],
     creator: "@rashidrealme",
   },
   robots: {

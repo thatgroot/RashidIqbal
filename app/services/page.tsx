@@ -9,8 +9,8 @@ import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Services — Figma Design, Framer Development & Chrome Extensions",
-    description: "Expert Figma design, Framer development, UX copywriting, and Chrome extension development. High-converting landing pages and tools for the Figma/Framer ecosystem.",
+    title: "Services | Figma, Framer & Chrome Extensions",
+    description: "Figma design with UX copy, Framer development, and Chrome extension builds. Landing pages from $1K, websites from $2K.",
     keywords: [
         "Figma design services",
         "Framer development",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
         "conversion optimization",
     ],
     openGraph: {
-        title: "Services — Figma, Framer & Chrome Extensions",
+        title: "Services | Figma, Framer & Chrome Extensions",
         description: "Figma design, Framer development, UX copywriting, and Chrome extensions for the design ecosystem.",
         type: "website",
         url: `${SITE_URL}/services`,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Services — Figma, Framer & Chrome Extensions",
+        title: "Services | Figma, Framer & Chrome Extensions",
         description: "Figma design, Framer development, and Chrome extensions for UX and conversion.",
     },
     alternates: {

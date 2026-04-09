@@ -9,11 +9,11 @@ export async function GET(req: NextRequest) {
 
         const title = searchParams.has('title')
             ? searchParams.get('title')?.slice(0, 100)
-            : 'Rashid Iqbal | Next.js & Framer Developer';
+            : 'Figma & Framer Expert';
 
         const description = searchParams.has('description')
             ? searchParams.get('description')?.slice(0, 150)
-            : 'High-converting landing pages, scalable web apps, and native mobile apps.';
+            : 'High-converting landing pages, websites, and Chrome extensions. 50+ projects shipped.';
 
         return new ImageResponse(
             (
@@ -137,7 +137,7 @@ export async function GET(req: NextRequest) {
                                 fontSize: '20px',
                             }}
                         >
-                            Next.js
+                            Figma
                         </div>
                         <div
                             style={{
@@ -161,7 +161,7 @@ export async function GET(req: NextRequest) {
                                 fontSize: '20px',
                             }}
                         >
-                            Web Dev Pakistan
+                            Chrome Extensions
                         </div>
                     </div>
                 </div>

@@ -10,9 +10,9 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
 export const metadata: Metadata = {
-  title: "Blog — Figma, Framer, UX Copy & Conversion Insights",
+  title: "Blog | Figma, Framer & Conversion Insights",
   description:
-    "Articles on Figma design, Framer development, UX copywriting, Chrome extensions, and conversion optimization. Real insights from 50+ projects.",
+    "Articles on Figma design, Framer development, UX copy, and conversion optimization. Real insights from 50+ projects shipped.",
   keywords: [
     "Figma blog",
     "Framer tutorials",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: `${siteUrl}/blog`,
     siteName: "Rashid Iqbal",
-    title: "Blog — Figma, Framer & Conversion Insights",
+    title: "Blog | Figma, Framer & Conversion Insights",
     description:
       "Articles on Figma design, Framer development, UX copywriting, and conversion optimization.",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@rashidrealme",
     creator: "@rashidrealme",
-    title: "Blog — Figma, Framer & Conversion Insights",
+    title: "Blog | Figma, Framer & Conversion Insights",
     description:
       "Figma design, Framer development, UX copywriting, and conversion optimization insights.",
     images: [

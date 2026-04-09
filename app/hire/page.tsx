@@ -9,8 +9,8 @@ import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { ArrowRight, MapPin, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Hire a Figma & Framer Expert — Worldwide Availability",
-    description: "Hire a Figma and Framer expert for your next project. Conversion-focused design, UX copywriting, and Chrome extensions. Serving clients worldwide.",
+    title: "Hire a Figma & Framer Expert | Worldwide",
+    description: "Hire a Figma and Framer expert for landing pages, websites, and Chrome extensions. Worldwide availability, flexible timezone.",
     keywords: [
         "hire Framer expert",
         "hire Figma expert",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         "UX copywriter",
     ],
     openGraph: {
-        title: "Hire a Figma & Framer Expert — Worldwide",
+        title: "Hire a Figma & Framer Expert | Worldwide",
         description: "Hire a Figma and Framer expert. Conversion-focused design, UX copywriting, and Chrome extensions.",
         type: "website",
         url: `${SITE_URL}/hire`,

@@ -9,8 +9,8 @@ import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { ArrowRight, Code2 } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Expertise — Figma, Framer, Chrome Extensions & UX Copy",
-    description: "Explore my expertise in Figma design, Framer development, Chrome extension development, and UX copywriting for conversion optimization.",
+    title: "Expertise | Figma, Framer & Chrome Extensions",
+    description: "Deep expertise in Figma design, Framer development, Chrome extensions, and UX copywriting. See what I can do for your project.",
     keywords: [
         "Figma expert",
         "Framer expert",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         "conversion optimization",
     ],
     openGraph: {
-        title: "Expertise — Figma, Framer & Chrome Extensions",
+        title: "Expertise | Figma, Framer & Chrome Extensions",
         description: "Figma design, Framer development, Chrome extensions, and UX copywriting expertise.",
         type: "website",
         url: `${SITE_URL}/developer`,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Expertise — Figma, Framer & Chrome Extensions",
+        title: "Expertise | Figma, Framer & Chrome Extensions",
         description: "Figma design, Framer development, and Chrome extension expertise.",
     },
     alternates: {
