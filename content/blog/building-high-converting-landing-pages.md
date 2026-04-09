@@ -6,7 +6,7 @@ author:
   name: "Rashid Iqbal"
   twitter: "@rashidiqbal"
   linkedin: "rashidiqbal"
-coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop&q=80"
+coverImage: "/blog/building-high-converting-landing-pages.png"
 tags: ["landing pages", "conversion optimization", "web development", "Next.js", "copywriting"]
 category: "Development"
 published: true
@@ -26,7 +26,7 @@ After building over 100 landing pages across SaaS, e-commerce, and service busin
 
 ## The Brutal Truth About Conversion
 
-Here's what nobody tells you: **design doesn't convert—strategy does**.
+Here's what nobody tells you: **design doesn't convert - strategy does**.
 
 I've seen beautiful landing pages with 0.5% conversion rates and "ugly" pages converting at 20%+. The difference? Understanding what makes people take action.
 
@@ -35,7 +35,7 @@ I've seen beautiful landing pages with 0.5% conversion rates and "ugly" pages co
 Before a single pixel is designed, understand these conversion triggers:
 
 1. **Instant Clarity**: Visitors must understand your value proposition in under 3 seconds
-2. **Credibility Stack**: Layer trust signals—logos, testimonials, numbers, guarantees
+2. **Credibility Stack**: Layer trust signals - logos, testimonials, numbers, guarantees
 3. **Anxiety Reduction**: Remove every objection before they think it
 4. **Urgency Architecture**: Create genuine reasons to act now
 
@@ -71,7 +71,7 @@ This is where battles are won or lost:
 
 ### The Trust Stack
 
-Social proof isn't optional—it's the backbone of conversion:
+Social proof isn't optional - it's the backbone of conversion:
 
 ```tsx
 // Strategic testimonial placement
@@ -100,7 +100,7 @@ const TrustStack = () => (
 
 ### The Value Ladder
 
-Don't just list features—engineer desire:
+Don't just list features - engineer desire:
 
 | ❌ Feature | ✅ Benefit | 🎯 Transformation |
 |-----------|-----------|-------------------|
@@ -189,7 +189,7 @@ Your CTA button is the most important element on the page:
 
 ## Testing: The Compound Effect
 
-The best landing pages are never "finished"—they're continuously optimized:
+The best landing pages are never "finished" - they're continuously optimized:
 
 **What to A/B test (in order of impact):**
 1. **Headlines**: A 10-word change can double conversions
@@ -212,4 +212,4 @@ Ready to transform your landing page into a conversion machine? [See how I can h
 
 ---
 
-*P.S. The average landing page converts at 2.35%. The difference isn't magic—it's methodology.*
+*P.S. The average landing page converts at 2.35%. The difference isn't magic - it's methodology.*
