@@ -12,6 +12,7 @@ import { CTASectionV2 as CTASection } from "@/components/v2/cta";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { SectionSpacer } from "@/components/section-spacer";
 import { ScrollCTA } from "@/components/v2/scroll-cta";
+import { AvailabilityBadge } from "@/components/v2/availability-badge";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
@@ -96,6 +97,7 @@ export default function Page() {
         <CTASection />
         <Footer />
         <ScrollCTA />
+        <AvailabilityBadge variant="floating" spotsLeft={2} />
       </main>
     </>
   );
