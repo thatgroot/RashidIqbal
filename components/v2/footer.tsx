@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SERVICES, LOCATIONS, TECHNOLOGIES } from "@/lib/seo-data";
+import { SERVICES, LOCATIONS } from "@/lib/seo-data";
 import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 
 export function FooterV2() {
@@ -19,8 +19,8 @@ export function FooterV2() {
               <span className="font-bold text-lg">Rashid Iqbal</span>
             </div>
             <p className="text-zinc-400 text-sm mb-6 max-w-xs">
-              Freelance developer specializing in high-converting landing pages,
-              web applications, and mobile apps.
+              Figma design, Framer development, and Chrome extensions.
+              I build things that convert.
             </p>
             <a
               href={`mailto:${AUTHOR.email}`}
@@ -68,22 +68,44 @@ export function FooterV2() {
             </ul>
           </div>
 
-          {/* Technologies */}
+          {/* Pages */}
           <div>
             <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
-              Technologies
+              Pages
             </h4>
             <ul className="space-y-3">
-              {TECHNOLOGIES.map((tech) => (
-                <li key={tech.slug}>
-                  <Link
-                    href={`/developer/${tech.slug}`}
-                    className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
-                  >
-                    {tech.name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/work"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Portfolio
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/hire"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Hire Me
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/links"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Links
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -125,10 +147,12 @@ export function FooterV2() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="https://www.framer.com/@rashidiqbal"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Blog
+                  Framer
                 </Link>
               </li>
             </ul>
@@ -148,10 +172,10 @@ export function FooterV2() {
               Services
             </Link>
             <Link
-              href="/hire"
+              href="/work"
               className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
             >
-              Hire Me
+              Portfolio
             </Link>
             <Link
               href="/blog"

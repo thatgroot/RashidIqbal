@@ -150,7 +150,7 @@ export function NavbarV2() {
             );
           })}
           <Link
-            href="/services/ai-agents"
+            href="/services"
             className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${pathname.startsWith("/services")
               ? "text-orange-600 font-semibold bg-orange-50"
               : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
@@ -158,7 +158,7 @@ export function NavbarV2() {
             role="menuitem"
             aria-current={pathname.startsWith("/services") ? "page" : undefined}
           >
-            AI Agents
+            Services
           </Link>
           <Link
             href="/blog"

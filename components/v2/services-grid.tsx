@@ -2,26 +2,26 @@
 
 import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "./grid-system";
-import { Figma, Zap, Layout } from "lucide-react";
+import { Figma, Chrome, Layout } from "lucide-react";
 
 const services = [
     {
-        title: "Landing Pages",
-        desc: "I design landing pages in Figma that convert. Every layout, button, and visual element is crafted to guide visitors toward action. What you get is a design that looks great and works even better.",
+        title: "Figma Design + UX Copy",
+        desc: "I design your pages in Figma and write the UX copy that makes people act. Headlines, CTAs, page flow, microcopy. Every layout decision is tied to a conversion goal.",
         icon: Figma,
-        stat: "Figma • Framer • Next.js"
+        stat: "Design + Copywriting + CRO"
     },
     {
-        title: "Marketing Sites",
-        desc: "High converting Framer sites shipped fast. I build marketing pages that load instantly, look stunning, and turn visitors into customers. No code required, just results.",
+        title: "Framer Development",
+        desc: "Pixel-perfect Framer builds from your Figma design. Your team can update content without touching code. Fast, responsive, SEO-ready.",
         icon: Layout,
         stat: "2 Week Delivery"
     },
     {
-        title: "Web Applications",
-        desc: "Complex Next.js apps built right. I handle the full stack from database design to API integration, ensuring your app is fast, secure, and ready to scale when you need it.",
-        icon: Zap,
-        stat: "99/100 Performance"
+        title: "Chrome Extensions",
+        desc: "Standalone Chrome extensions built from scratch. Whether it's a productivity tool, a SaaS companion, or a workflow automation, I design and ship it to the Chrome Web Store.",
+        icon: Chrome,
+        stat: "Manifest V3 + React"
     }
 ];
 
@@ -39,10 +39,10 @@ export function ServicesGridV2() {
                             transition={{ duration: 0.6 }}
                         >
                             <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
-                                From Idea to Impact.
+                                Three Things I Do Really Well.
                             </h2>
                             <p className="text-lg text-zinc-500 leading-relaxed">
-                                It starts with a simple idea and a clear vision. You want something that looks great, works perfectly, and tells your story with purpose. We explore directions, test concepts, and refine each part until everything begins to align.
+                                Figma design with UX copy and CRO baked in. Framer builds that are fast, responsive, and your team can manage. And Chrome extensions that solve real business problems.
                             </p>
                         </motion.div>
                     </GridItem>

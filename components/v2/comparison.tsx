@@ -5,17 +5,17 @@ import { GridContainer, GridItem } from "./grid-system";
 import { Check, X } from "lucide-react";
 
 const agencyProblems = [
-    "Ghosting & poor communication",
-    "Design doesn't match code",
-    "Bloated, slow websites",
-    "Surprise invoices"
+    "Figma designs that don't translate to Framer",
+    "Generic templates with no conversion strategy",
+    "Slow sites that tank your bounce rate",
+    "No UX copy or CRO thinking"
 ];
 
 const myApproach = [
-    "Direct access to me (Slack/WhatsApp)",
-    "Pixel-perfect implementation",
-    "Lightning fast performance",
-    "Flat, transparent pricing"
+    "Figma-to-Framer pixel-perfect builds",
+    "UX copy and CRO baked into every page",
+    "Sub-2s load times, every time",
+    "Direct access to me via Slack or WhatsApp"
 ];
 
 export function ComparisonV2() {
@@ -32,10 +32,10 @@ export function ComparisonV2() {
                     transition={{ duration: 0.6 }}
                 >
                     <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
-                        Stop Gambling With Freelancers.
+                        Stop Settling for Pretty but Empty.
                     </h2>
                     <p className="text-lg text-zinc-500">
-                        Work with a partner who cares about your business, not just the code.
+                        Work with someone who obsesses over UX, copy, and what actually makes people click.
                     </p>
                 </motion.div>
             </GridItem>

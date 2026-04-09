@@ -8,27 +8,27 @@ import { useState, useEffect } from "react";
 const steps = [
   {
     num: "01",
-    title: "Discovery Call",
+    title: "Strategy & Copy",
     verb: "Discover",
-    desc: "Every great project starts with a conversation. We dive into your vision, goals, and what success looks like for you."
+    desc: "We define your conversion goals, target audience, and messaging. I draft the UX copy and page flow before touching any design tool."
   },
   {
     num: "02",
-    title: "Design Sprint", 
+    title: "Figma Design",
     verb: "Design",
-    desc: "Wireframes, mockups, and prototypes. You see the direction before a single line of code is written."
+    desc: "High-fidelity Figma designs with strategic layouts, compelling copy, and conversion-focused UX. You review and approve before build."
   },
   {
     num: "03",
-    title: "Development",
+    title: "Framer Build",
     verb: "Build",
-    desc: "Your project comes alive. Pixel-perfect implementation with clean, scalable code that performs."
+    desc: "Pixel-perfect Framer implementation. Responsive, fast, SEO-ready. Every interaction and micro-copy optimized to convert."
   },
   {
     num: "04",
-    title: "Launch Day",
+    title: "Launch & Optimize",
     verb: "Launch",
-    desc: "Polished, tested, and deployed. Your product is live and ready to make an impact."
+    desc: "Your site goes live. I set up analytics, monitor conversions, and iterate on copy and UX based on real data."
   }
 ];
 

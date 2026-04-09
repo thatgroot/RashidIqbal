@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { HeroV2 as Hero } from "@/components/v2/hero";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
-import { WorkV2 as Work } from "@/components/v2/work";
 import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
 import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
 import { ProcessV2 as Process } from "@/components/v2/process";
@@ -18,12 +17,12 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
 export const metadata: Metadata = {
-  title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
-  description: "Expert freelance developer specializing in high-converting landing pages, scalable Next.js web apps, and native mobile applications. Turn your vision into a polished product.",
-  keywords: ["Freelance Developer", "Next.js Expert", "React Native Developer", "Web Design", "Framer Developer", "High Performance Web", "Landing Pages", "Mobile Apps", "Expo Developer", "Flutter Developer"],
+  title: "Rashid Iqbal | Figma & Framer Expert — Chrome Extensions, UX Copy & Conversion",
+  description: "Figma and Framer expert specializing in high-converting landing pages, UX copywriting, and Chrome extensions for the Figma/Framer ecosystem. Design, build, convert.",
+  keywords: ["Figma expert", "Framer expert", "Chrome extensions Figma", "UX copywriting", "landing page designer", "Framer developer", "Figma to Framer", "conversion optimization", "Chrome extension developer", "landing page conversion"],
   openGraph: {
-    title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
-    description: "Expert freelance developer specializing in high-converting landing pages, scalable Next.js web apps, and native mobile applications.",
+    title: "Rashid Iqbal | Figma & Framer Expert — Chrome Extensions & Conversion",
+    description: "Figma and Framer expert. I design, write conversion copy, build pixel-perfect Framer sites, and create Chrome extensions for the design ecosystem.",
     type: "website",
     locale: "en_US",
     url: siteUrl,
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal - Your Vision, Built Right",
+        alt: "Rashid Iqbal — Figma & Framer Expert",
         type: "image/png",
       },
     ],
@@ -42,14 +41,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@rashidrealme",
     creator: "@rashidrealme",
-    title: "Rashid Iqbal | High-Performance Web & Mobile Developer",
-    description: "Turn your vision into a polished product with expert web and mobile development.",
+    title: "Rashid Iqbal | Figma & Framer Expert — Chrome Extensions & Conversion",
+    description: "Figma and Framer expert building high-converting sites with strategic UX copy. Plus Chrome extensions for the design ecosystem.",
     images: [
       {
         url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal - Your Vision, Built Right",
+        alt: "Rashid Iqbal — Figma & Framer Expert",
       },
     ],
   },
@@ -84,8 +83,6 @@ export default function Page() {
         <Comparison />
         <SectionSpacer />
         <ServicesGrid />
-        <SectionSpacer />
-        <Work />
         <SectionSpacer />
         <Process />
         <SectionSpacer />

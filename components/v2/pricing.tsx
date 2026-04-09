@@ -13,34 +13,40 @@ import Image from "next/image";
 const plans = [
     {
         name: "Landing Page",
-        tagline: "Figma & Framer",
-        desc: "High-converting landing pages designed in Figma and built in Framer. Perfect for marketing and capturing leads.",
+        tagline: "Figma + Framer",
+        price: "$1,000",
+        priceSuffix: "– $1,600",
+        desc: "A high-converting landing page designed in Figma with UX copy, built pixel-perfect in Framer. 3-4 pages, responsive, SEO-ready.",
         idealFor: "Marketing & Lead Gen",
-        baseFeatures: ["Figma Design", "Framer Development", "Responsive Layouts", "SEO Optimized"],
+        baseFeatures: ["Figma Design + UX Copy", "Framer Development (3-4 pages)", "Responsive + Mobile-First", "SEO + Analytics Setup"],
 
         deliveryTime: "2 weeks",
         highlight: null
     },
     {
-        name: "Custom Website",
-        tagline: "Figma, Next.js & Framer",
-        desc: "Complete websites designed in Figma and built with Next.js or Framer. Scalable, fast, and manageable.",
+        name: "Multi-Page Website",
+        tagline: "Figma + Framer + CMS",
+        price: "$2,000",
+        priceSuffix: "– $5,000",
+        desc: "Full website with 5-8+ pages, CMS, blog, and dynamic content. Designed in Figma with conversion-focused UX copy, built in Framer.",
         idealFor: "Business & Startups",
-        baseFeatures: ["Figma Design", "Next.js / Framer Dev", "CMS Integration", "Performance Optimized"],
+        baseFeatures: ["Figma Design System + UX Copy", "Framer CMS + Dynamic Pages", "Blog + Content Management", "Performance + CRO Optimized"],
 
-        deliveryTime: "4 weeks",
+        deliveryTime: "3-4 weeks",
         popular: true,
         highlight: "Best Value"
     },
     {
-        name: "Mobile Application",
-        tagline: "Expo & Flutter",
-        desc: "Native mobile applications built with Expo and Flutter. Deploy to both iOS and Android from a single codebase.",
-        idealFor: "iOS & Android",
-        baseFeatures: ["iOS & Android Deployment", "Expo / Flutter Dev", "Native Features", "App Store Submission"],
+        name: "Chrome Extension",
+        tagline: "React + Manifest V3",
+        price: "Custom",
+        priceSuffix: "",
+        desc: "A standalone Chrome extension built from scratch. Productivity tools, SaaS companions, workflow automations. Designed, developed, and shipped.",
+        idealFor: "SaaS & Productivity",
+        baseFeatures: ["Chrome Extension Development", "React UI + Manifest V3", "API Integrations", "Chrome Web Store Launch"],
 
-        deliveryTime: "Custom",
-        highlight: "White Glove"
+        deliveryTime: "2-4 weeks",
+        highlight: "New"
     }
 ];
 
@@ -113,7 +119,7 @@ export function PricingV2() {
                                         {plan.name}
                                     </motion.h3>
                                     <motion.div
-                                        className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-2"
+                                        className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-3"
                                         variants={{
                                             hidden: { opacity: 0, y: 10 },
                                             visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
@@ -122,7 +128,17 @@ export function PricingV2() {
                                         {plan.tagline}
                                     </motion.div>
 
-
+                                    {/* Price */}
+                                    <motion.div
+                                        className="mb-4"
+                                        variants={{
+                                            hidden: { opacity: 0, y: 10 },
+                                            visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                                        }}
+                                    >
+                                        <span className="text-3xl font-bold text-zinc-900">{plan.price}</span>
+                                        {plan.priceSuffix && <span className="text-lg text-zinc-500 font-medium">{plan.priceSuffix}</span>}
+                                    </motion.div>
 
                                     {/* Value Prop */}
                                     <motion.p

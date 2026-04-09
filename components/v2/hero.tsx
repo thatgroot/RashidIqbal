@@ -118,7 +118,7 @@ export function HeroV2() {
                                     AVAILABLE NOW
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
-                                <span className="relative text-zinc-600 z-10">Accepting 2 new projects this month</span>
+                                <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
                             </motion.div>
 
                             {/* Headline */}
@@ -126,11 +126,11 @@ export function HeroV2() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[0.9]"
+                                className="text-3xl md:text-4xl lg:text-6xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[0.9]"
                             >
-                                AI-Powered <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Web & Mobile Apps.</span> <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">Production-Ready.</span>
+                                Websites That <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Look Incredible</span> <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">and Actually Convert.</span>
                             </motion.h1>
 
                             {/* Description - Improved copy */}
@@ -140,7 +140,7 @@ export function HeroV2() {
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
                             >
-                                Expert AI agent development and Next.js engineering. I build <span className="font-semibold text-zinc-900">production-ready applications</span>, rescue broken prototypes, and <span className="font-semibold text-zinc-900">automate workflows</span> so you can scale.
+                                I design in Figma with <span className="font-semibold text-zinc-900">conversion-focused UX and copy</span>, build pixel-perfect Framer sites, and develop <span className="font-semibold text-zinc-900">Chrome extensions</span> that solve real problems.
                             </motion.p>
 
                             {/* CTA - Improved hierarchy */}
@@ -158,24 +158,12 @@ export function HeroV2() {
                                 >
                                     Book a Strategy Call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </a>
-                                <button
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        const element = document.querySelector("#work");
-                                        if (element) {
-                                            const offset = 64;
-                                            const elementPosition = element.getBoundingClientRect().top;
-                                            const offsetPosition = elementPosition + window.pageYOffset - offset;
-                                            window.scrollTo({
-                                                top: offsetPosition,
-                                                behavior: "smooth"
-                                            });
-                                        }
-                                    }}
+                                <a
+                                    href="/work"
                                     className="px-6 sm:px-8 py-3 sm:py-4 bg-white border border-zinc-200 text-zinc-700 text-sm font-bold hover:border-zinc-900 hover:text-zinc-900 transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
                                 >
                                     View Portfolio
-                                </button>
+                                </a>
                             </motion.div>
 
                             {/* Social Proof - Above fold */}
@@ -221,35 +209,22 @@ export function HeroV2() {
 
                 {/* Tools Grid */}
                 <GridContainer cols={3}>
-                    <ToolGridItem label="Tool" delay={0.5}>
+                    <ToolGridItem label="Design" delay={0.5}>
                         <div className="flex items-center gap-3">
                             <FigmaIcon />
                             <div className="text-lg font-medium text-zinc-900">Figma</div>
                         </div>
                     </ToolGridItem>
-                    <ToolGridItem label="Builder" delay={0.6}>
+                    <ToolGridItem label="Build" delay={0.6}>
                         <div className="flex items-center gap-3">
                             <FramerIcon />
                             <div className="text-lg font-medium text-zinc-900">Framer</div>
                         </div>
                     </ToolGridItem>
-                    <ToolGridItem label="Ecosystem" delay={0.7}>
-                        <div className="flex flex-col gap-3">
-                            <div className="flex items-center gap-4">
-                                <NextIcon />
-                                <CursorIcon />
-                                <BoltIcon />
-                            </div>
-                            <div className="flex items-center gap-4 pt-2 border-t border-zinc-100">
-                                <div className="flex items-center gap-2">
-                                    <ClaudeIcon />
-                                    <span className="text-sm font-medium text-zinc-900">Claude</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <N8nIcon />
-                                    <span className="text-sm font-medium text-zinc-900">n8n</span>
-                                </div>
-                            </div>
+                    <ToolGridItem label="Ship" delay={0.7}>
+                        <div className="flex items-center gap-3">
+                            <ChromeIcon />
+                            <div className="text-lg font-medium text-zinc-900">Chrome Extensions</div>
                         </div>
                     </ToolGridItem>
                 </GridContainer>
@@ -334,45 +309,14 @@ function FramerIcon() {
     )
 }
 
-function NextIcon() {
+function ChromeIcon() {
     return (
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.9521 0.00861131C14.8833 0.0148665 14.6643 0.0367597 14.4673 0.0523976C9.92219 0.462113 5.66491 2.91415 2.96852 6.6829C1.46706 8.77839 0.506745 11.1554 0.143891 13.6731C0.0156403 14.5519 0 14.8115 0 16.0031C0 17.1947 0.0156403 17.4543 0.143891 18.3332C1.01349 24.3413 5.28954 29.3892 11.089 31.2595C12.1275 31.5942 13.2223 31.8225 14.4673 31.9601C14.9521 32.0133 17.0479 32.0133 17.5327 31.9601C19.6817 31.7224 21.5022 31.1907 23.2978 30.2743C23.573 30.1336 23.6262 30.0961 23.5887 30.0648C23.5636 30.046 22.3906 28.4729 20.983 26.5713L18.4242 23.1153L15.218 18.3707C13.4538 15.7623 12.0023 13.6293 11.9898 13.6293C11.9773 13.6262 11.9648 15.7342 11.9586 18.3082C11.9492 22.815 11.946 22.9964 11.8897 23.1028C11.8084 23.256 11.7458 23.3186 11.6145 23.3874C11.5144 23.4374 11.4268 23.4468 10.9544 23.4468H10.4133L10.2694 23.3561C10.1756 23.2967 10.1067 23.2185 10.0598 23.1278L9.99413 22.9871L10.0004 16.7162L10.0098 10.4423L10.1067 10.3203C10.1568 10.2546 10.2631 10.1702 10.3382 10.1295C10.4665 10.067 10.5165 10.0607 11.0577 10.0607C11.6958 10.0607 11.8022 10.0857 11.9679 10.2671C12.0149 10.3172 13.7509 12.9318 15.828 16.0813C17.905 19.2308 20.7453 23.5313 22.1404 25.6424L24.6741 29.4799L24.8023 29.3955C25.9378 28.6574 27.139 27.6065 28.0899 26.5119C30.1138 24.188 31.4182 21.3544 31.8561 18.3332C31.9844 17.4543 32 17.1947 32 16.0031C32 14.8115 31.9844 14.5519 31.8561 13.6731C30.9865 7.66496 26.7105 2.61703 20.911 0.746724C19.8882 0.415199 18.7996 0.186884 17.5797 0.0492701C17.2794 0.0179941 15.2117 -0.0164094 14.9521 0.00861131ZM21.5022 9.68539C21.6524 9.76045 21.7744 9.90432 21.8182 10.0544C21.8432 10.1358 21.8495 11.8747 21.8432 15.7936L21.8338 21.417L20.8422 19.897L19.8475 18.377V14.2892C19.8475 11.6464 19.86 10.1608 19.8788 10.0889C19.9288 9.9137 20.0383 9.77609 20.1885 9.69477C20.3167 9.62909 20.3636 9.62284 20.8547 9.62284C21.3177 9.62284 21.399 9.62909 21.5022 9.68539Z" fill="black" />
-        </svg>
-    )
-}
-
-
-function CursorIcon() {
-    return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.106 5.68L12.5.135a.998.998 0 00-.998 0L1.893 5.68a.84.84 0 00-.419.726v11.186c0 .3.16.577.42.727l9.607 5.547a.999.999 0 00.998 0l9.608-5.547a.84.84 0 00.42-.727V6.407a.84.84 0 00-.42-.726zm-.603 1.176L12.228 22.92c-.063.108-.228.064-.228-.061V12.34a.59.59 0 00-.295-.51l-9.11-5.26c-.107-.062-.063-.228.062-.228h18.55c.264 0 .428.286.296.514z" />
-        </svg>
-    )
-}
-
-function BoltIcon() {
-    return (
-        <svg width="16" height="16" viewBox="0 0 12 15" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" d="M6.64 12.866c-1.035 0-2.051-.368-2.635-1.158l-.206.932L0 14.61l.41-1.97L3.177.39h3.388l-.979 4.318c.79-.846 1.525-1.158 2.466-1.158 2.032 0 3.388 1.305 3.388 3.693 0 2.462-1.563 5.623-4.8 5.623ZM7.94 7.94c0 1.14-.828 2.003-1.901 2.003-.602 0-1.148-.22-1.506-.606l.527-2.26c.395-.386.847-.607 1.374-.607.81 0 1.506.588 1.506 1.47Z" clipRule="evenodd" />
-        </svg>
-    )
-}
-
-function ClaudeIcon() {
-    return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0C12 6.627 17.373 12 24 12C17.373 12 12 17.373 12 24C12 17.373 6.627 12 0 12C6.627 12 12 6.627 12 0Z" />
-        </svg>
-    )
-}
-
-function N8nIcon() {
-    return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 2L2 6V18L10 22L18 18V6L10 2Z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="10" cy="12" r="3" fill="currentColor" />
-            <path d="M22 12A10 10 0 0 1 12 22" fill="none" stroke="currentColor" strokeWidth="2" />
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+            <circle cx="12" cy="12" r="4" fill="currentColor" />
+            <path d="M12 8L21.5 8" stroke="currentColor" strokeWidth="2" />
+            <path d="M7.5 16L3 8.5" stroke="currentColor" strokeWidth="2" />
+            <path d="M16.5 16L12 24" stroke="currentColor" strokeWidth="2" />
         </svg>
     )
 }

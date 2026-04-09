@@ -8,20 +8,20 @@ import { FAQStructuredData } from "@/components/seo/faq-structured-data";
 
 const faqs = [
   {
-    q: "Do you work with early-stage startups?",
-    a: "Yes, that's my specialty. I help founders go from zero to one. I provide not just code, but product strategy and design direction to help you launch."
+    q: "What exactly do you do?",
+    a: "Three things. I design pages in Figma with UX copy and conversion strategy baked in. I build them pixel-perfect in Framer. And I develop standalone Chrome extensions for businesses that need custom browser tools."
   },
   {
-    q: "What tools do you use?",
-    a: "I use Figma for design, Framer for marketing sites, and Next.js (React) for web apps. For mobile, I build with React Native and Expo."
+    q: "Do you write the copy too, or just design?",
+    a: "Both. I write the headlines, CTAs, value props, and page flow as part of the Figma design. Good design without good copy doesn't convert."
   },
   {
-    q: "How do we handle the handoff?",
-    a: "You get everything. I provide docs, organized Figma files, and clean, type-safe code. I can even help onboard your future team."
+    q: "What kind of Chrome extensions do you build?",
+    a: "Standalone tools for businesses. Productivity extensions, SaaS companion apps, workflow automation tools. If you have an idea for a Chrome extension, I can design, build, and ship it to the Web Store."
   },
   {
-    q: "How long does it take?",
-    a: "Usually 2-6 weeks. I work in weekly sprints, so you'll see progress every single week."
+    q: "How long does a typical project take?",
+    a: "A 3-4 page Framer site takes about 2 weeks. Larger multi-page sites with CMS run 3-4 weeks. Chrome extensions depend on complexity but usually 2-4 weeks. You see progress every week."
   }
 ];
 

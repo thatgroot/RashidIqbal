@@ -18,8 +18,8 @@ export function CTASectionV2() {
                 <span>FREE_AUDIT_OFFER</span>
               </div>
               <h2 className="text-4xl md:text-6xl font-semibold text-zinc-900 tracking-tight">
-                Want More Clients? <br />
-                <span className="text-zinc-500">Claim your free technical audit.</span>
+                Your Site Looks Good. <br />
+                <span className="text-zinc-500">But Does It Convert?</span>
               </h2>
             </div>
 
@@ -29,15 +29,15 @@ export function CTASectionV2() {
                 <div className="space-y-3 mb-4">
                   <div className="flex items-center gap-3 text-sm text-zinc-600">
                     <Check className="w-4 h-4 text-orange-500" />
-                    <span>Comprehensive Lighthouse & SEO review</span>
+                    <span>UX copy & conversion audit of your site</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-zinc-600">
                     <Check className="w-4 h-4 text-orange-500" />
-                    <span>UX/UI and conversion rate analysis</span>
+                    <span>Figma/Framer redesign recommendations</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-zinc-600">
                     <Clock className="w-4 h-4 text-orange-500" />
-                    <span>30-minute strategic consultation</span>
+                    <span>30-minute strategy call</span>
                   </div>
                 </div>
 

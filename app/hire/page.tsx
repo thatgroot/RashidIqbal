@@ -9,26 +9,26 @@ import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { ArrowRight, MapPin, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Hire a Freelance Developer - Worldwide Availability",
-    description: "Hire a freelance web developer for your next project. Serving clients worldwide from Pakistan with flexible timezone availability. Next.js, React, mobile apps.",
+    title: "Hire a Figma & Framer Expert — Worldwide Availability",
+    description: "Hire a Figma and Framer expert for your next project. Conversion-focused design, UX copywriting, and Chrome extensions. Serving clients worldwide.",
     keywords: [
-        "hire freelance developer",
-        "remote developer",
-        "web developer for hire",
-        "Next.js developer",
-        "React developer",
+        "hire Framer expert",
+        "hire Figma expert",
+        "Framer developer for hire",
+        "freelance Figma designer",
+        "UX copywriter",
     ],
     openGraph: {
-        title: "Hire a Freelance Developer - Worldwide Availability",
-        description: "Hire a freelance web developer for your next project. Serving clients worldwide.",
+        title: "Hire a Figma & Framer Expert — Worldwide",
+        description: "Hire a Figma and Framer expert. Conversion-focused design, UX copywriting, and Chrome extensions.",
         type: "website",
         url: `${SITE_URL}/hire`,
         siteName: SITE_NAME,
     },
     twitter: {
         card: "summary_large_image",
-        title: "Hire a Freelance Developer",
-        description: "Serving clients worldwide with flexible timezone availability.",
+        title: "Hire a Figma & Framer Expert",
+        description: "Conversion-focused Figma design, Framer development, and Chrome extensions. Worldwide availability.",
     },
     alternates: {
         canonical: `${SITE_URL}/hire`,
@@ -65,11 +65,11 @@ export default function HirePage() {
                             Worldwide
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 mb-6 tracking-tight">
-                            Hire a Developer
+                            Hire a Figma &amp; Framer Expert
                         </h1>
                         <p className="text-lg md:text-xl text-zinc-500 leading-relaxed mb-8">
-                            I work with clients worldwide, providing high-quality web and mobile
-                            development with flexible scheduling to match your timezone.
+                            I work with clients worldwide — designing in Figma, building in Framer,
+                            writing conversion copy, and creating Chrome extensions for the design ecosystem.
                         </p>
                         <a
                             href={SOCIAL_LINKS.calcom}

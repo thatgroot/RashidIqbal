@@ -28,23 +28,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Rashid Iqbal — Next.js & Framer Developer | Pakistan",
-    template: "%s | Rashid Iqbal"
+    default: "Rashid Iqbal — Figma & Framer Expert | Chrome Extensions, UX Copy & Conversion",
+    template: "%s | Rashid Iqbal — Figma & Framer Expert",
   },
-  description: "Hire a freelance Next.js and Framer developer from Pakistan. I build high-converting landing pages, web applications, and mobile apps. Fast delivery, pixel-perfect design.",
+  description: "Hire Rashid Iqbal — a Figma & Framer expert who designs high-converting landing pages, writes UX copy, and builds Chrome extensions for the Figma/Framer ecosystem. 50+ projects delivered.",
   keywords: [
-    "Next.js developer Pakistan",
-    "Framer developer",
-    "freelance web developer Pakistan",
-    "hire Next.js developer",
-    "landing page developer",
-    "React developer Pakistan",
-    "Figma to code",
+    "Figma expert",
     "Framer expert",
-    "mobile app developer Expo Flutter",
-    "web application developer",
-    "freelance developer for hire",
-    "Pakistan web developer",
+    "Chrome extension developer",
+    "UX copywriting",
+    "landing page designer",
+    "Framer developer",
+    "Figma to Framer",
+    "conversion optimization",
+    "hire Framer expert",
+    "hire Figma designer",
+    "Figma Chrome extension",
+    "Framer Chrome extension",
+    "landing page conversion",
+    "UX design",
   ],
   authors: [{ name: "Rashid Iqbal", url: siteUrl }],
   creator: "Rashid Iqbal",
@@ -59,21 +61,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Rashid Iqbal",
-    title: "Rashid Iqbal — Next.js & Framer Developer | Pakistan",
-    description: "Hire a freelance Next.js and Framer developer from Pakistan. High-converting landing pages, web apps, and mobile apps. 50+ projects delivered.",
+    title: "Rashid Iqbal — Figma & Framer Expert | Chrome Extensions & Conversion",
+    description: "Figma & Framer expert. I design high-converting pages, write UX copy, and build Chrome extensions for the design ecosystem.",
     images: [
       {
         url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal - Next.js & Framer Developer from Pakistan",
+        alt: "Rashid Iqbal — Figma & Framer Expert",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rashid Iqbal — Next.js & Framer Developer | Pakistan",
-    description: "Hire a freelance Next.js and Framer developer. High-converting landing pages, web apps, mobile apps. Based in Pakistan, serving clients worldwide.",
+    title: "Rashid Iqbal — Figma & Framer Expert | Chrome Extensions & Conversion",
+    description: "Figma & Framer expert building high-converting pages with strategic UX copy. Plus Chrome extensions for the design ecosystem.",
     images: [`${siteUrl}/api/og`],
     creator: "@rashidrealme",
   },
@@ -145,10 +147,31 @@ export default function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
         <link rel="author" href="/humans.txt" />
         <OEmbedLinks />
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WTKJ9XZF');`,
+          }}
+        />
+        {/* TODO: Add Facebook/Meta Pixel <script> here once you have the Pixel ID
+            See: https://business.facebook.com/events_manager → Create Pixel for aestho.xyz */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-WTKJ9XZF"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {/* Skip Link for Accessibility */}
         <a
           href="#main-content"

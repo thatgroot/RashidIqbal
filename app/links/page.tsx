@@ -5,8 +5,6 @@ import Image from "next/image";
 import { MoveRight, Check, Copy } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaXTwitter, FaBehance, FaWhatsapp } from "react-icons/fa6";
 import { SiUpwork, SiFramer } from "react-icons/si";
-import AppF from "@/components/imb-flow";
-import { ReactFlowProvider } from "reactflow";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -26,6 +24,11 @@ const links = [
     name: "Read My Latest Articles",
     url: "/blog",
     icon: <MoveRight className="w-5 h-5" />,
+  },
+  {
+    name: "Hire me on Contra",
+    url: "https://contra.com/rashidiqbal",
+    icon: <SiFramer className="w-5 h-5" />,
   },
   {
     name: "Hire Me on Upwork",
@@ -70,18 +73,7 @@ export default function LinksPage() {
 
   return (
     <main className="min-h-screen bg-zinc-950 flex flex-col items-center relative overflow-x-hidden font-sans pb-24">
-      {/* Interactive Flow Header */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full h-screen relative border-b border-zinc-800/50 shadow-2xl overflow-hidden"
-      >
-        <ReactFlowProvider>
-          <AppF />
-        </ReactFlowProvider>
-        <div className="absolute inset-x-0 bottom-0 h-40 pointer-events-none bg-gradient-to-b from-transparent to-zinc-950" />
-      </motion.div>
+
 
       <div className="w-full max-w-md mx-auto px-6 z-10">
         {/* Profile Section */}
@@ -111,10 +103,10 @@ export default function LinksPage() {
             </h1>
             <p className="text-blue-400/90 font-mono text-sm tracking-widest uppercase flex items-center gap-2 justify-center">
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              Next.js & Framer Architect
+              Figma & Framer Expert
             </p>
             <p className="text-zinc-500 text-[15px] leading-relaxed max-w-[300px] mx-auto pt-2">
-              Engineering high-performance agent-native experiences for the web.
+              Designing in Figma. Building in Framer. Creating Chrome extensions that convert.
             </p>
           </div>
         </motion.div>

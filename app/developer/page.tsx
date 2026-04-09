@@ -9,27 +9,27 @@ import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { ArrowRight, Code2 } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Technologies & Expertise - Developer Skills",
-    description: "Explore my expertise in Next.js, React, Framer, Flutter, and Expo. Hire a developer with proven skills in modern web and mobile technologies.",
+    title: "Expertise — Figma, Framer, Chrome Extensions & UX Copy",
+    description: "Explore my expertise in Figma design, Framer development, Chrome extension development, and UX copywriting for conversion optimization.",
     keywords: [
-        "developer expertise",
-        "Next.js developer",
-        "React developer",
+        "Figma expert",
+        "Framer expert",
+        "Chrome extension developer",
+        "UX copywriting",
         "Framer developer",
-        "Flutter developer",
-        "Expo developer",
+        "conversion optimization",
     ],
     openGraph: {
-        title: "Technologies & Expertise - Developer Skills",
-        description: "Explore my expertise in modern web and mobile technologies.",
+        title: "Expertise — Figma, Framer & Chrome Extensions",
+        description: "Figma design, Framer development, Chrome extensions, and UX copywriting expertise.",
         type: "website",
         url: `${SITE_URL}/developer`,
         siteName: SITE_NAME,
     },
     twitter: {
         card: "summary_large_image",
-        title: "Technologies & Expertise",
-        description: "Explore my expertise in modern web and mobile technologies.",
+        title: "Expertise — Figma, Framer & Chrome Extensions",
+        description: "Figma design, Framer development, and Chrome extension expertise.",
     },
     alternates: {
         canonical: `${SITE_URL}/developer`,
@@ -59,11 +59,11 @@ export default function DeveloperPage() {
                             Technologies
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 mb-6 tracking-tight">
-                            Technologies I Work With
+                            Tools &amp; Expertise
                         </h1>
                         <p className="text-lg md:text-xl text-zinc-500 leading-relaxed mb-8">
-                            I specialize in modern web and mobile technologies. Explore my
-                            expertise and find the right fit for your project.
+                            Figma for design, Framer for builds, Chrome extensions for the ecosystem,
+                            and UX copywriting that converts. Explore my expertise.
                         </p>
                         <a
                             href={SOCIAL_LINKS.calcom}
@@ -121,11 +121,11 @@ export default function DeveloperPage() {
             <section className="py-20 bg-zinc-900 text-white">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                        Need a Specific Technology?
+                        Have a Figma or Framer Project?
                     </h2>
                     <p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
-                        If you don&apos;t see your required technology listed, let&apos;s talk.
-                        I&apos;m always learning and may already have experience with your stack.
+                        Whether it&apos;s a landing page, full website, or a Chrome extension
+                        for your design workflow — let&apos;s talk about what you need.
                     </p>
                     <a
                         href={SOCIAL_LINKS.calcom}

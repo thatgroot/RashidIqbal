@@ -9,28 +9,29 @@ import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Services - Web Development & Design",
-    description: "Expert freelance development services: landing pages, web applications, mobile apps, Framer websites, and Figma to code conversion. High-quality, fast delivery.",
+    title: "Services — Figma Design, Framer Development & Chrome Extensions",
+    description: "Expert Figma design, Framer development, UX copywriting, and Chrome extension development. High-converting landing pages and tools for the Figma/Framer ecosystem.",
     keywords: [
-        "web development services",
-        "freelance developer",
-        "landing page development",
-        "web application development",
-        "mobile app development",
-        "Framer developer",
-        "Figma to code",
+        "Figma design services",
+        "Framer development",
+        "Chrome extension development",
+        "UX copywriting",
+        "landing page design",
+        "Framer expert",
+        "Figma to Framer",
+        "conversion optimization",
     ],
     openGraph: {
-        title: "Services - Web Development & Design",
-        description: "Expert freelance development services for startups and businesses. Landing pages, web apps, mobile apps, and more.",
+        title: "Services — Figma, Framer & Chrome Extensions",
+        description: "Figma design, Framer development, UX copywriting, and Chrome extensions for the design ecosystem.",
         type: "website",
         url: `${SITE_URL}/services`,
         siteName: SITE_NAME,
     },
     twitter: {
         card: "summary_large_image",
-        title: "Services - Web Development & Design",
-        description: "Expert freelance development services for startups and businesses.",
+        title: "Services — Figma, Framer & Chrome Extensions",
+        description: "Figma design, Framer development, and Chrome extensions for UX and conversion.",
     },
     alternates: {
         canonical: `${SITE_URL}/services`,
@@ -60,11 +61,11 @@ export default function ServicesPage() {
                             Services
                         </span>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 mb-6 tracking-tight">
-                            Development Services
+                            Figma, Framer &amp; Chrome Extensions
                         </h1>
                         <p className="text-lg md:text-xl text-zinc-500 leading-relaxed">
-                            From landing pages to full-stack applications, I offer comprehensive
-                            development services tailored to your business needs.
+                            I design in Figma, build in Framer, write conversion-focused UX copy,
+                            and create Chrome extensions that supercharge the design workflow.
                         </p>
                     </div>
                 </div>
@@ -110,11 +111,11 @@ export default function ServicesPage() {
             <section className="py-20 bg-zinc-900 text-white">
                 <div className="max-w-4xl mx-auto px-6 text-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                        Not Sure Which Service You Need?
+                        Not Sure Where to Start?
                     </h2>
                     <p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
-                        Book a free consultation and I&apos;ll help you figure out the best
-                        approach for your project.
+                        Book a free call and I&apos;ll audit your current site for UX, copy,
+                        and conversion opportunities.
                     </p>
                     <a
                         href={SOCIAL_LINKS.calcom}

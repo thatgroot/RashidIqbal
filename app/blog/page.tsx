@@ -10,49 +10,49 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
 export const metadata: Metadata = {
-  title: "Blog - Web Development Insights & Tutorials",
+  title: "Blog — Figma, Framer, UX Copy & Conversion Insights",
   description:
-    "Expert articles on web development, mobile apps, design systems, and conversion optimization. Learn from real project experiences and industry best practices.",
+    "Articles on Figma design, Framer development, UX copywriting, Chrome extensions, and conversion optimization. Real insights from 50+ projects.",
   keywords: [
-    "web development blog",
-    "Next.js tutorials",
-    "React development",
-    "mobile app development",
-    "conversion optimization",
+    "Figma blog",
     "Framer tutorials",
-    "freelance developer blog",
+    "UX copywriting",
+    "conversion optimization",
+    "Chrome extension development",
+    "Figma to Framer",
+    "landing page design",
   ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: `${siteUrl}/blog`,
     siteName: "Rashid Iqbal",
-    title: "Blog - Web Development Insights & Tutorials",
+    title: "Blog — Figma, Framer & Conversion Insights",
     description:
-      "Expert articles on web development, mobile apps, design systems, and conversion optimization.",
+      "Articles on Figma design, Framer development, UX copywriting, and conversion optimization.",
     images: [
       {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal - Web Development Blog",
+        alt: "Rashid Iqbal — Figma & Framer Blog",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@rashidiqbal",
-    creator: "@rashidiqbal",
-    title: "Blog - Web Development Insights & Tutorials",
+    site: "@rashidrealme",
+    creator: "@rashidrealme",
+    title: "Blog — Figma, Framer & Conversion Insights",
     description:
-      "Expert articles on web development, mobile apps, and conversion optimization.",
+      "Figma design, Framer development, UX copywriting, and conversion optimization insights.",
     images: [
       {
         url: `${siteUrl}/twitter-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal - Web Development Blog",
+        alt: "Rashid Iqbal — Figma & Framer Blog",
       },
     ],
   },
@@ -93,10 +93,10 @@ export default function BlogPage() {
               Blog
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 mb-6 tracking-tight">
-              Insights & Tutorials
+              Insights &amp; Tutorials
             </h1>
             <p className="text-lg md:text-xl text-zinc-500 leading-relaxed">
-              Deep dives into web development, mobile apps, design systems, and the strategies that help businesses convert more visitors into customers.
+              Deep dives into Figma design, Framer development, UX copywriting, Chrome extensions, and the strategies that turn visitors into customers.
             </p>
           </div>
         </div>
@@ -274,7 +274,7 @@ export default function BlogPage() {
                 About the Author
               </h3>
               <p className="text-zinc-500 text-sm leading-relaxed">
-                I&apos;m Rashid, a freelance web developer specializing in high-converting landing pages, web applications, and mobile apps. I write about what I learn building products for clients.
+                I&apos;m Rashid, a Figma &amp; Framer expert specializing in high-converting landing pages, UX copywriting, and Chrome extensions for the design ecosystem. I write about what I learn.
               </p>
               <Link
                 href="/"
