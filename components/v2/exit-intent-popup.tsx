@@ -34,9 +34,16 @@ export function ExitIntentPopup() {
   };
 
   useEffect(() => {
-    // Desktop only
     if (typeof window === "undefined") return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    // Desktop only - check for fine pointer (mouse)
+    try {
+      const mql = window.matchMedia("(pointer: fine)");
+      if (!mql.matches) return;
+    } catch {
+      // matchMedia not supported, skip
+      return;
+    }
 
     // Check if already dismissed
     try {
@@ -47,7 +54,7 @@ export function ExitIntentPopup() {
     let activated = false;
     const activationDelay = setTimeout(() => {
       activated = true;
-    }, 5000); // 5 second delay
+    }, 5000);
 
     function handleMouseLeave(e: MouseEvent) {
       if (!activated) return;
@@ -56,15 +63,15 @@ export function ExitIntentPopup() {
         try {
           sessionStorage.setItem("exit-popup-shown", "true");
         } catch {}
-        document.removeEventListener("mouseleave", handleMouseLeave);
+        document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
       }
     }
 
-    document.addEventListener("mouseleave", handleMouseLeave);
+    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       clearTimeout(activationDelay);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 

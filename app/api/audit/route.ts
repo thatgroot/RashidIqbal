@@ -47,13 +47,13 @@ export async function POST(req: NextRequest) {
     const categories = ["performance", "seo", "accessibility", "best-practices"];
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(cleanUrl)}&strategy=mobile&${categories.map((c) => `category=${c}`).join("&")}`;
 
-    const response = await fetch(apiUrl, { signal: AbortSignal.timeout(30000) });
+    const response = await fetch(apiUrl, { signal: AbortSignal.timeout(60000) });
 
     if (!response.ok) {
       const text = await response.text();
-      console.error("PSI API error:", text);
+      console.error("PSI API error:", response.status, text.slice(0, 500));
       return NextResponse.json(
-        { error: "Could not analyze this URL. Make sure the site is publicly accessible." },
+        { error: "Could not analyze this URL. Make sure the site is publicly accessible and try again." },
         { status: 422 }
       );
     }

@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Send lead to Web3Forms (free, sends to your email)
-    const webhookKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    const webhookKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "4b1bc50d-dffc-462f-9da4-564f12322121";
 
     if (webhookKey) {
       await fetch("https://api.web3forms.com/submit", {
