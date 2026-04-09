@@ -2,20 +2,21 @@
 
 import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "./grid-system";
+import { ProjectCounter } from "./project-counter";
 
 const brands = [
-  { name: "UpdateAI", highlight: true },
-  { name: "Lean Scale", highlight: false },
-  { name: "Funnel Labs", highlight: true },
-  { name: "Melissa Ambrosini", highlight: false },
+  { name: "Crezco", highlight: true },
+  { name: "UpdateAI", highlight: false },
+  { name: "Composio", highlight: true },
+  { name: "Titan Gatequity", highlight: false },
+  { name: "Melissa Ambrosini", highlight: true },
   { name: "Nick Broadhurst", highlight: false },
-  { name: "uToura", highlight: true },
-  { name: "SkarduApp", highlight: false },
-  { name: "ROAD iD", highlight: true },
-  { name: "Deals Finders", highlight: false },
-  { name: "Saku Monsters", highlight: false },
-  { name: "Scorch Token", highlight: true },
-  { name: "Pedro Token", highlight: false },
+  { name: "Vanos AI", highlight: true },
+  { name: "Giga AI", highlight: false },
+  { name: "AAKP", highlight: true },
+  { name: "Tandem BI", highlight: false },
+  { name: "Space Dome", highlight: true },
+  { name: "Ask Dialog", highlight: false },
 ];
 
 export function TrustedByV2() {
@@ -64,6 +65,9 @@ export function TrustedByV2() {
             </div>
           </GridItem>
         </GridContainer>
+
+        {/* Project Stats Counter */}
+        <ProjectCounter />
       </div>
     </section>
   );

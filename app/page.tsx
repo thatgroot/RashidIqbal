@@ -11,6 +11,7 @@ import { FAQV2 as FAQ } from "@/components/v2/faq";
 import { CTASectionV2 as CTASection } from "@/components/v2/cta";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { SectionSpacer } from "@/components/section-spacer";
+import { ScrollCTA } from "@/components/v2/scroll-cta";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
@@ -94,6 +95,7 @@ export default function Page() {
         <SectionSpacer />
         <CTASection />
         <Footer />
+        <ScrollCTA />
       </main>
     </>
   );

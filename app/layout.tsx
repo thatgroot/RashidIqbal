@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
+import { ExitIntentPopup } from "@/components/v2/exit-intent-popup";
 import { OEmbedLinks } from "@/components/seo/oembed-links";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
@@ -180,7 +181,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           Skip to main content
         </a>
         <StructuredData />
+        <ExitIntentPopup />
         {children}
+        {/* Tidio Chat Widget */}
+        {process.env.NEXT_PUBLIC_TIDIO_KEY && (
+          <Script
+            src={`//code.tidio.co/${process.env.NEXT_PUBLIC_TIDIO_KEY}.js`}
+            strategy="lazyOnload"
+          />
+        )}
         {/* Service Worker Registration - loads after page is interactive */}
         <Script
           id="sw-registration"

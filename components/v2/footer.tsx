@@ -100,6 +100,14 @@ export function FooterV2() {
               </li>
               <li>
                 <Link
+                  href="/audit"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Free Audit
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/links"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >

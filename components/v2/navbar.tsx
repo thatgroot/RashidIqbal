@@ -171,6 +171,16 @@ export function NavbarV2() {
           >
             Blog
           </Link>
+          <Link
+            href="/audit"
+            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${pathname === "/audit"
+              ? "text-orange-600 font-semibold bg-orange-50"
+              : "text-orange-600 hover:text-orange-700 hover:bg-orange-50"
+              }`}
+            role="menuitem"
+          >
+            Free Audit
+          </Link>
         </div>
 
         <div className="relative flex items-center gap-3">

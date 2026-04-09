@@ -10,48 +10,12 @@ import Image from "next/image";
 
 
 
-const plans = [
-    {
-        name: "Landing Page",
-        tagline: "Figma + Framer",
-        price: "$1,000",
-        priceSuffix: "– $1,600",
-        desc: "A high-converting landing page designed in Figma with UX copy, built pixel-perfect in Framer. 3-4 pages, responsive, SEO-ready.",
-        idealFor: "Marketing & Lead Gen",
-        baseFeatures: ["Figma Design + UX Copy", "Framer Development (3-4 pages)", "Responsive + Mobile-First", "SEO + Analytics Setup"],
-
-        deliveryTime: "2 weeks",
-        highlight: null
-    },
-    {
-        name: "Multi-Page Website",
-        tagline: "Figma + Framer + CMS",
-        price: "$2,000",
-        priceSuffix: "– $5,000",
-        desc: "Full website with 5-8+ pages, CMS, blog, and dynamic content. Designed in Figma with conversion-focused UX copy, built in Framer.",
-        idealFor: "Business & Startups",
-        baseFeatures: ["Figma Design System + UX Copy", "Framer CMS + Dynamic Pages", "Blog + Content Management", "Performance + CRO Optimized"],
-
-        deliveryTime: "3-4 weeks",
-        popular: true,
-        highlight: "Best Value"
-    },
-    {
-        name: "Chrome Extension",
-        tagline: "React + Manifest V3",
-        price: "Custom",
-        priceSuffix: "",
-        desc: "A standalone Chrome extension built from scratch. Productivity tools, SaaS companions, workflow automations. Designed, developed, and shipped.",
-        idealFor: "SaaS & Productivity",
-        baseFeatures: ["Chrome Extension Development", "React UI + Manifest V3", "API Integrations", "Chrome Web Store Launch"],
-
-        deliveryTime: "2-4 weeks",
-        highlight: "New"
-    }
-];
+import { ONE_TIME_PLANS, RETAINER_PLANS } from "@/lib/pricing-data";
 
 export function PricingV2() {
     const [openPlan, setOpenPlan] = useState<number | null>(null);
+    const [mode, setMode] = useState<"one-time" | "retainer">("one-time");
+    const plans = mode === "one-time" ? ONE_TIME_PLANS : RETAINER_PLANS;
 
     return (
         <section className="bg-white" id="pricing">
@@ -73,6 +37,29 @@ export function PricingV2() {
                                 No hourly billing. No hidden fees. Just high-quality results delivered on time.
                             </p>
 
+                            {/* Pricing Mode Toggle */}
+                            <div className="inline-flex items-center p-1 bg-zinc-100 rounded-sm">
+                                <button
+                                    onClick={() => { setMode("one-time"); setOpenPlan(null); }}
+                                    className={`px-5 py-2.5 text-sm font-bold transition-all rounded-sm ${
+                                        mode === "one-time"
+                                            ? "bg-zinc-900 text-white shadow-sm"
+                                            : "text-zinc-500 hover:text-zinc-700"
+                                    }`}
+                                >
+                                    One-Time
+                                </button>
+                                <button
+                                    onClick={() => { setMode("retainer"); setOpenPlan(null); }}
+                                    className={`px-5 py-2.5 text-sm font-bold transition-all rounded-sm relative ${
+                                        mode === "retainer"
+                                            ? "bg-zinc-900 text-white shadow-sm"
+                                            : "text-zinc-500 hover:text-zinc-700"
+                                    }`}
+                                >
+                                    Monthly Retainer
+                                </button>
+                            </div>
 
                         </motion.div>
                     </GridItem>
