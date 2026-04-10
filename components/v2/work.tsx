@@ -19,30 +19,6 @@ const projects = [
         imageAlt: "Crezco open banking payments platform website"
     },
     {
-        id: "updateai",
-        name: "UpdateAI",
-        desc: "AI meeting assistant SaaS. Full Framer redesign that supported customer acquisition before their exit to Gainsight.",
-        category: "SaaS",
-        stack: ["Figma", "Framer"],
-        year: "2024",
-        link: "https://update.ai/",
-        color: "bg-zinc-500",
-        imageSrc: "/work-screenshots/updateai.png",
-        imageAlt: "UpdateAI SaaS website redesigned in Framer"
-    },
-    {
-        id: "titan-gatequity",
-        name: "Titan Gatequity",
-        desc: "Private equity firm. Clean, trust-building design in Figma with strategic UX copy. Built on Framer with CMS for portfolio updates.",
-        category: "Finance",
-        stack: ["Figma", "Framer"],
-        year: "2025",
-        link: "https://titangatequity.com/",
-        color: "bg-zinc-500",
-        imageSrc: "/work-screenshots/titan-gatequity.png",
-        imageAlt: "Titan Gatequity private equity firm website"
-    },
-    {
         id: "composio",
         name: "Composio",
         desc: "YC-backed AI agent infrastructure platform. Designed the marketing site with clear positioning across their MCP tools, Platform SDK, and CLI products.",
@@ -65,6 +41,66 @@ const projects = [
         color: "bg-zinc-500",
         imageSrc: "/work-screenshots/relace-ai.png",
         imageAlt: "Relace AI coding models platform website"
+    },
+    {
+        id: "ask-dialog",
+        name: "Ask Dialog",
+        desc: "Conversational AI platform. Clean SaaS marketing site designed in Figma with clear feature messaging and strong CTAs.",
+        category: "SaaS",
+        stack: ["Figma", "Framer"],
+        year: "2025",
+        link: "https://www.askdialog.com/",
+        color: "bg-zinc-500",
+        imageSrc: "/work-screenshots/ask-dialog.png",
+        imageAlt: "Ask Dialog conversational AI platform website"
+    },
+    {
+        id: "giga-ai",
+        name: "Giga AI",
+        desc: "AI automation platform. Designed and built a bold, high-converting SaaS landing page on Framer.",
+        category: "AI / SaaS",
+        stack: ["Figma", "Framer"],
+        year: "2025",
+        link: "https://giga.ai/",
+        color: "bg-zinc-500",
+        imageSrc: "/work-screenshots/giga-ai.png",
+        imageAlt: "Giga AI automation platform website"
+    },
+    {
+        id: "updateai",
+        name: "UpdateAI",
+        desc: "AI meeting assistant SaaS. Full Framer redesign that supported customer acquisition before their exit to Gainsight.",
+        category: "SaaS",
+        stack: ["Figma", "Framer"],
+        year: "2024",
+        link: "https://update.ai/",
+        color: "bg-zinc-500",
+        imageSrc: "/work-screenshots/updateai.png",
+        imageAlt: "UpdateAI SaaS website redesigned in Framer"
+    },
+    {
+        id: "vanos-ai",
+        name: "Vanos AI",
+        desc: "Voice AI platform for enterprise. Built a Framer site showcasing real-time voice agents with sub-200ms latency features.",
+        category: "AI / SaaS",
+        stack: ["Figma", "Framer"],
+        year: "2024",
+        link: "https://vanos.ai/",
+        color: "bg-zinc-500",
+        imageSrc: "/work-screenshots/vanos-ai.png",
+        imageAlt: "Vanos AI voice agent platform website"
+    },
+    {
+        id: "titan-gatequity",
+        name: "Titan Gatequity",
+        desc: "Private equity firm. Clean, trust-building design in Figma with strategic UX copy. Built on Framer with CMS for portfolio updates.",
+        category: "Finance",
+        stack: ["Figma", "Framer"],
+        year: "2025",
+        link: "https://titangatequity.com/",
+        color: "bg-zinc-500",
+        imageSrc: "/work-screenshots/titan-gatequity.png",
+        imageAlt: "Titan Gatequity private equity firm website"
     },
     {
         id: "nick-broadhurst",
@@ -103,18 +139,6 @@ const projects = [
         imageAlt: "Melissa Ambrosini author and meditation platform website"
     },
     {
-        id: "vanos-ai",
-        name: "Vanos AI",
-        desc: "Voice AI platform for enterprise. Built a Framer site showcasing real-time voice agents with sub-200ms latency features.",
-        category: "AI / SaaS",
-        stack: ["Figma", "Framer"],
-        year: "2024",
-        link: "https://vanos.ai/",
-        color: "bg-zinc-500",
-        imageSrc: "/work-screenshots/vanos-ai.png",
-        imageAlt: "Vanos AI voice agent platform website"
-    },
-    {
         id: "space-dome",
         name: "Space Dome",
         desc: "AI-powered space technology platform. Designed a futuristic, immersive landing page in Figma and built it on Framer.",
@@ -125,18 +149,6 @@ const projects = [
         color: "bg-zinc-500",
         imageSrc: "/work-screenshots/space-dome.png",
         imageAlt: "Space Dome AI space technology platform website"
-    },
-    {
-        id: "ask-dialog",
-        name: "Ask Dialog",
-        desc: "Conversational AI platform. Clean SaaS marketing site designed in Figma with clear feature messaging and strong CTAs.",
-        category: "SaaS",
-        stack: ["Figma", "Framer"],
-        year: "2025",
-        link: "https://www.askdialog.com/",
-        color: "bg-zinc-500",
-        imageSrc: "/work-screenshots/ask-dialog.png",
-        imageAlt: "Ask Dialog conversational AI platform website"
     },
     {
         id: "deep-see",
@@ -161,18 +173,6 @@ const projects = [
         color: "bg-zinc-500",
         imageSrc: "/work-screenshots/gte-exchange.png",
         imageAlt: "GTE Exchange pre-IPO equity marketplace website"
-    },
-    {
-        id: "giga-ai",
-        name: "Giga AI",
-        desc: "AI automation platform. Designed and built a bold, high-converting SaaS landing page on Framer.",
-        category: "AI / SaaS",
-        stack: ["Figma", "Framer"],
-        year: "2025",
-        link: "https://giga.ai/",
-        color: "bg-zinc-500",
-        imageSrc: "/work-screenshots/giga-ai.png",
-        imageAlt: "Giga AI automation platform website"
     },
     {
         id: "tandem-bi",
