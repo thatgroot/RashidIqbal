@@ -12,7 +12,37 @@ import { FooterV2 as Footer } from "@/components/v2/footer";
 import { PageBackground } from "@/components/ui/page-background";
 import { Breadcrumb } from "@/components/seo/breadcrumb";
 import { TechnologyBadges } from "@/components/seo/internal-links";
+import { RelatedContent } from "@/components/seo/related-content";
 import { Check, ArrowRight, Plus, Minus } from "lucide-react";
+
+// Hub-and-spoke: cross-links from service pages to blog posts and other pages
+const SERVICE_RELATED_CONTENT: Record<string, { title: string; href: string; description: string }[]> = {
+  "landing-pages": [
+    { title: "What Does a Landing Page Actually Cost in 2026?", href: "/blog/landing-page-design-development-pricing", description: "Transparent pricing breakdown from DIY to agency, with what you get at each tier." },
+    { title: "The Complete Blueprint for High-Converting Landing Pages", href: "/blog/building-high-converting-landing-pages", description: "Strategies and psychological triggers that transform visitors into customers." },
+    { title: "Free Website Audit", href: "/audit", description: "Enter your URL and get instant performance, SEO, and accessibility scores." },
+  ],
+  "framer-development": [
+    { title: "How to Hire a Framer Expert in 2026", href: "/blog/hiring-framer-expert-2026", description: "What to look for, what to avoid, and what a real Framer expert costs." },
+    { title: "Next.js vs Framer: The Strategic Choice", href: "/blog/next-js-vs-framer-when-to-use-each", description: "When Framer wins, when Next.js makes sense, and when you need both." },
+    { title: "View Portfolio", href: "/work", description: "53 Figma + Framer projects for SaaS, fintech, and personal brands." },
+  ],
+  "figma-to-code": [
+    { title: "Figma to Code: The Complete Guide", href: "/blog/figma-to-code-complete-guide", description: "How to turn Figma designs into production websites without losing fidelity." },
+    { title: "How to Hire a Framer Expert in 2026", href: "/blog/hiring-framer-expert-2026", description: "What separates a real Framer expert from someone who watched a few tutorials." },
+    { title: "Free Website Audit", href: "/audit", description: "See how your current site scores on performance, SEO, and accessibility." },
+  ],
+  "chrome-extensions": [
+    { title: "View Portfolio", href: "/work", description: "Chrome extensions and Framer sites shipped for SaaS and productivity companies." },
+    { title: "For Agencies", href: "/partners", description: "White-label Figma and Framer development for agencies. Your brand, my execution." },
+    { title: "Book a Free Call", href: "https://cal.com/rashid.iqbal", description: "Discuss your Chrome extension idea. No commitment." },
+  ],
+  "ux-copywriting": [
+    { title: "The Complete Blueprint for High-Converting Landing Pages", href: "/blog/building-high-converting-landing-pages", description: "Copy frameworks and conversion triggers from 50+ real projects." },
+    { title: "What Does a Landing Page Actually Cost in 2026?", href: "/blog/landing-page-design-development-pricing", description: "Why underspending on copy is the biggest mistake." },
+    { title: "Free Website Audit", href: "/audit", description: "Get an instant UX and conversion audit of your current site." },
+  ],
+};
 
 interface PageProps {
     params: Promise<{ service: string }>;
@@ -289,6 +319,18 @@ export default async function ServicePage({ params }: PageProps) {
                         </a>
                     </div>
                 </section>
+
+                {/* Related Content (hub-and-spoke cross-linking) */}
+                {SERVICE_RELATED_CONTENT[slug] && (
+                    <section className="py-16 border-b border-zinc-100">
+                        <div className="max-w-7xl mx-auto px-6">
+                            <RelatedContent
+                                title="Related Reading"
+                                links={SERVICE_RELATED_CONTENT[slug]}
+                            />
+                        </div>
+                    </section>
+                )}
 
                 {/* Related Services */}
                 <section className="py-16">
