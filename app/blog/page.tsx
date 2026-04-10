@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { getAllPosts, getFeaturedPosts, getAllTags } from "@/lib/blog";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
@@ -117,22 +116,10 @@ export default function BlogPage() {
                   className="group block"
                 >
                   <article className="h-full border border-zinc-200 rounded-lg overflow-hidden hover:border-orange-500 transition-colors">
-                    {post.coverImage && (
-                      <div className="relative aspect-video bg-zinc-100">
-                        <Image
-                          src={post.coverImage}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                        <div className="absolute inset-0 bg-linear-to-t from-zinc-900/50 to-transparent" />
-                        <span className="absolute bottom-4 left-4 px-2 py-1 bg-orange-500 text-white text-xs font-medium rounded">
-                          Featured
-                        </span>
-                      </div>
-                    )}
                     <div className="p-6">
+                      <span className="px-2 py-1 bg-orange-500 text-white text-xs font-medium rounded">
+                        Featured
+                      </span>
                       <div className="flex items-center gap-4 text-sm text-zinc-500 mb-4">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" aria-hidden="true" />
@@ -183,19 +170,8 @@ export default function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="group block"
                 >
-                  <article className="flex gap-6 p-6 border border-zinc-100 rounded-lg hover:border-orange-500/50 hover:bg-zinc-50/50 transition-all">
-                    {post.coverImage && (
-                      <div className="hidden sm:block relative w-48 h-32 rounded overflow-hidden bg-zinc-100 shrink-0">
-                        <Image
-                          src={post.coverImage}
-                          alt=""
-                          fill
-                          className="object-cover"
-                          sizes="192px"
-                        />
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0">
+                  <article className="p-6 border border-zinc-100 rounded-lg hover:border-orange-500/50 hover:bg-zinc-50/50 transition-all">
+                    <div>
                       <div className="flex items-center gap-4 text-sm text-zinc-500 mb-3">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" aria-hidden="true" />

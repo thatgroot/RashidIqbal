@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { getPostBySlug, getPostSlugs, getRelatedPosts, BlogPost } from "@/lib/blog";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
@@ -257,20 +256,6 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
           </header>
 
-          {/* Cover Image */}
-          {post.coverImage && (
-            <div className="relative aspect-video mb-12 rounded-lg overflow-hidden">
-              <Image
-                src={post.coverImage}
-                alt={post.title}
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 800px"
-              />
-            </div>
-          )}
-
           {/* Content */}
           <div className="prose prose-lg max-w-none">
             <MarkdownRenderer content={post.content} />
@@ -339,19 +324,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <Link
                   key={relatedPost.slug}
                   href={`/blog/${relatedPost.slug}`}
-                  className="group"
+                  className="group p-4 border border-zinc-100 hover:border-orange-200 transition-colors"
                 >
-                  {relatedPost.coverImage && (
-                    <div className="relative aspect-video mb-3 rounded-lg overflow-hidden bg-zinc-100">
-                      <Image
-                        src={relatedPost.coverImage}
-                        alt={relatedPost.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    </div>
-                  )}
                   <h3 className="font-medium text-zinc-900 group-hover:text-orange-600 transition-colors line-clamp-2">
                     {relatedPost.title}
                   </h3>
