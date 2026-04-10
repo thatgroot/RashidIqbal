@@ -9,20 +9,28 @@ interface FAQStructuredDataProps {
 
 const DEFAULT_FAQS: FAQ[] = [
   {
-    question: "Do you work with early-stage startups?",
-    answer: "Yes, that's my specialty. I help founders go from zero to one. I provide not just code, but product strategy and design direction to help you launch."
+    question: "What exactly do you do?",
+    answer: "Three things. I design pages in Figma with UX copy and conversion strategy baked in. I build them pixel-perfect in Framer. And I develop standalone Chrome extensions for businesses that need custom browser tools."
   },
   {
-    question: "What tools do you use?",
-    answer: "I use Figma for design, Framer for marketing sites, and Next.js (React) for web apps. For mobile, I build with React Native and Expo."
+    question: "Do you write the copy too, or just design?",
+    answer: "Both. I write the headlines, CTAs, value props, and page flow as part of the Figma design. Good design without good copy doesn't convert."
   },
   {
-    question: "How do we handle the handoff?",
-    answer: "You get everything. I provide docs, organized Figma files, and clean, type-safe code. I can even help onboard your future team."
+    question: "What kind of Chrome extensions do you build?",
+    answer: "Standalone tools for businesses. Productivity apps, SaaS companion extensions, workflow automation tools. If it runs in Chrome, I can build it."
   },
   {
-    question: "How long does it take?",
-    answer: "Usually 2-6 weeks. I work in weekly sprints, so you'll see progress every single week."
+    question: "How long does a typical project take?",
+    answer: "A 3-4 page Framer site takes about 2 weeks. Larger multi-page sites with CMS run 3-4 weeks. Chrome extensions depend on complexity but usually 2-4 weeks."
+  },
+  {
+    question: "What if I'm not happy with the design?",
+    answer: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction isn't right after the first round, I refund your deposit."
+  },
+  {
+    question: "How much does a landing page cost?",
+    answer: "A 3-4 page landing page with Figma design, UX copy, and Framer build runs $1,000 to $1,600. Larger multi-page websites with CMS land between $2,000 and $5,000."
   }
 ];
 

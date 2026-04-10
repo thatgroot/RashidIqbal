@@ -1,0 +1,45 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+interface RelatedLink {
+  title: string;
+  href: string;
+  description: string;
+}
+
+interface RelatedContentProps {
+  title?: string;
+  links: RelatedLink[];
+}
+
+// Hub-and-spoke internal linking component
+// Place on service pages, blog posts, and technology pages
+// to create dense internal link graphs that signal topical authority
+export function RelatedContent({ title = "Related", links }: RelatedContentProps) {
+  if (links.length === 0) return null;
+
+  return (
+    <nav aria-label={title} className="border-t border-zinc-100 pt-8 mt-12">
+      <h3 className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-6">
+        {title}
+      </h3>
+      <div className="grid md:grid-cols-2 gap-4">
+        {links.map((link, i) => (
+          <Link
+            key={i}
+            href={link.href}
+            className="group flex items-start gap-3 p-4 border border-zinc-100 hover:border-orange-200 hover:bg-orange-50/30 transition-colors"
+          >
+            <div className="flex-1">
+              <span className="text-sm font-medium text-zinc-900 group-hover:text-orange-600 transition-colors">
+                {link.title}
+              </span>
+              <p className="text-xs text-zinc-500 mt-1 line-clamp-2">{link.description}</p>
+            </div>
+            <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-orange-500 mt-0.5 shrink-0 transition-colors" />
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
+}
