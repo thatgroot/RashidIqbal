@@ -22,6 +22,14 @@ const faqs = [
   {
     q: "How long does a typical project take?",
     a: "A 3-4 page Framer site takes about 2 weeks. Larger multi-page sites with CMS run 3-4 weeks. Chrome extensions depend on complexity but usually 2-4 weeks. You see progress every week."
+  },
+  {
+    q: "What if I'm not happy with the design?",
+    a: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction isn't right after the first round, I refund your deposit. That's happened once in 53 projects."
+  },
+  {
+    q: "Do you work with agencies?",
+    a: "Yes. I white-label for several agencies as their Framer department. Your brand on everything, NDA signed before we start. Check aestho.xyz/partners for details."
   }
 ];
 

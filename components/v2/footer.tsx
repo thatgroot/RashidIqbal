@@ -168,29 +168,37 @@ export function FooterV2() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-zinc-500">
-            © {new Date().getFullYear()} Rashid Iqbal. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/services"
-              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
-            >
-              Services
-            </Link>
-            <Link
-              href="/work"
-              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="/blog"
-              className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
-            >
-              Blog
-            </Link>
+        <div className="pt-8 border-t border-zinc-800 flex flex-col gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-zinc-500">
+              © {new Date().getFullYear()} Rashid Iqbal. Based in Pakistan, working worldwide.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/services"
+                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+              >
+                Services
+              </Link>
+              <Link
+                href="/work"
+                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+              >
+                Portfolio
+              </Link>
+              <Link
+                href="/blog"
+                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/partners"
+                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+              >
+                For Agencies
+              </Link>
+            </div>
           </div>
         </div>
       </div>

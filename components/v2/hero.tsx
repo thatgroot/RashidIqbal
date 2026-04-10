@@ -128,9 +128,9 @@ export function HeroV2() {
                                 transition={{ delay: 0.2 }}
                                 className="text-3xl md:text-4xl lg:text-6xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[0.9]"
                             >
-                                Websites That <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Look Incredible</span> <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">and Actually Convert.</span>
+                                I&apos;ve Built 53 <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Framer Sites.</span> <br />
+                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">They Convert.</span>
                             </motion.h1>
 
                             {/* Description - Improved copy */}
@@ -140,7 +140,7 @@ export function HeroV2() {
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
                             >
-                                I design in Figma with <span className="font-semibold text-zinc-900">conversion-focused UX and copy</span>, build pixel-perfect Framer sites, and develop <span className="font-semibold text-zinc-900">Chrome extensions</span> that solve real problems.
+                                Figma design with conversion copy. Framer builds in 2 weeks. Chrome extensions that ship to the Web Store. Working with <span className="font-semibold text-zinc-900">startups and brands since 2019</span>.
                             </motion.p>
 
                             {/* CTA - Improved hierarchy */}
@@ -175,11 +175,11 @@ export function HeroV2() {
                             >
                                 <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-50 border border-zinc-100 rounded-full">
                                     <Users className="w-4 h-4 text-zinc-600" aria-hidden="true" />
-                                    <span className="font-medium text-zinc-700">50+ companies</span>
-                                    <span>trusted</span>
+                                    <span className="font-medium text-zinc-700">53 projects</span>
+                                    <span>shipped</span>
                                 </div>
                                 <span className="hidden sm:inline">•</span>
-                                <span className="hidden sm:inline">12% avg. conversion lift</span>
+                                <span className="hidden sm:inline">Avg. 2.4x conversion improvement</span>
                             </motion.div>
 
                             {/* Scroll Indicator */}

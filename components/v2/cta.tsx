@@ -56,7 +56,7 @@ export function CTASectionV2() {
 
                 {/* Secondary CTA */}
                 <p className="text-xs text-zinc-500 text-center">
-                  Scroll down to see available times
+                  No credit card. No commitment. Just a conversation. I respond within 24 hours.
                 </p>
               </div>
             </div>

@@ -3,7 +3,8 @@ import { HeroV2 as Hero } from "@/components/v2/hero";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
 import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
-import { ComparisonV2 as Comparison } from "@/components/v2/comparison";
+import { CaseStudies } from "@/components/v2/case-studies";
+import { AboutSection } from "@/components/v2/about-section";
 import { ProcessV2 as Process } from "@/components/v2/process";
 import { TestimonialsV2 as Testimonials } from "@/components/v2/testimonials";
 import { PricingV2 as Pricing } from "@/components/v2/pricing";
@@ -82,9 +83,11 @@ export default function Page() {
         <Hero />
         <TrustedBy />
         <SectionSpacer />
-        <Comparison />
+        <CaseStudies />
         <SectionSpacer />
         <ServicesGrid />
+        <SectionSpacer />
+        <AboutSection />
         <SectionSpacer />
         <Process />
         <SectionSpacer />

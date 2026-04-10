@@ -10,7 +10,7 @@ const steps = [
     num: "01",
     title: "Strategy & Copy",
     verb: "Discover",
-    desc: "We define your conversion goals, target audience, and messaging. I draft the UX copy and page flow before touching any design tool."
+    desc: "I start with copy, not design. Most designers do it backwards. We define your conversion goals, target audience, and messaging before I open Figma."
   },
   {
     num: "02",
@@ -28,7 +28,7 @@ const steps = [
     num: "04",
     title: "Launch & Optimize",
     verb: "Launch",
-    desc: "Your site goes live. I set up analytics, monitor conversions, and iterate on copy and UX based on real data."
+    desc: "Your site goes live. I set up GA4, heatmaps, and conversion tracking so you know exactly what's working. Then we iterate based on real data, not guesses."
   }
 ];
 

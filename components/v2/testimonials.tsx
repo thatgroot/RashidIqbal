@@ -127,6 +127,20 @@ export function TestimonialsV2() {
           ))}
         </GridContainer>
 
+        {/* Upwork Reviews Link */}
+        <GridContainer>
+          <GridItem className="py-6 text-center">
+            <a
+              href="https://www.upwork.com/freelancers/~01b24c107f5b5af596"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-zinc-500 hover:text-orange-500 transition-colors"
+            >
+              Read more reviews on Upwork (4.9/5 from 30+ projects) &rarr;
+            </a>
+          </GridItem>
+        </GridContainer>
+
         {/* Senja Video Testimonials Wall
             To set up: go to senja.io, create a project, send collection links
             to clients, then paste your Senja widget ID below */}

@@ -9,19 +9,19 @@ const services = [
         title: "Figma Design + UX Copy",
         desc: "I design your pages in Figma and write the UX copy that makes people act. Headlines, CTAs, page flow, microcopy. Every layout decision is tied to a conversion goal.",
         icon: Figma,
-        stat: "Design + Copywriting + CRO"
+        stat: "Designing since 2019"
     },
     {
         title: "Framer Development",
         desc: "Pixel-perfect Framer builds from your Figma design. Your team can update content without touching code. Fast, responsive, SEO-ready.",
         icon: Layout,
-        stat: "2 Week Delivery"
+        stat: "53 sites shipped"
     },
     {
         title: "Chrome Extensions",
         desc: "Standalone Chrome extensions built from scratch. Whether it's a productivity tool, a SaaS companion, or a workflow automation, I design and ship it to the Chrome Web Store.",
         icon: Chrome,
-        stat: "Manifest V3 + React"
+        stat: "Published on Web Store"
     }
 ];
 

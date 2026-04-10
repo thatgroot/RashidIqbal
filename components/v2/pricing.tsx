@@ -61,6 +61,10 @@ export function PricingV2() {
                                 </button>
                             </div>
 
+                            <p className="text-xs text-zinc-400 mt-4">
+                                No contracts. No lock-in. Cancel retainers anytime. Money-back guarantee if you&apos;re not happy with the design direction.
+                            </p>
+
                         </motion.div>
                     </GridItem>
                 </GridContainer>
