@@ -45,14 +45,26 @@ const projects = [
     {
         id: "composio",
         name: "Composio",
-        desc: "Developer tools platform. Designed and built a high-converting landing page for their integration platform.",
-        category: "DevTools",
+        desc: "YC-backed AI agent infrastructure platform. Designed the marketing site with clear positioning across their MCP tools, Platform SDK, and CLI products.",
+        category: "DevTools / AI",
         stack: ["Figma", "Framer"],
         year: "2025",
         link: "https://composio.dev/",
         color: "bg-zinc-500",
         imageSrc: "/work-screenshots/composio.png",
-        imageAlt: "Composio developer tools platform website"
+        imageAlt: "Composio AI agent infrastructure platform website"
+    },
+    {
+        id: "relace-ai",
+        name: "Relace AI",
+        desc: "AI coding models company. Designed and built a developer-focused site for their code retrieval, merging, and source control infrastructure.",
+        category: "AI / DevTools",
+        stack: ["Figma", "Framer"],
+        year: "2025",
+        link: "https://relace.ai/",
+        color: "bg-zinc-500",
+        imageSrc: "/work-screenshots/relace-ai.png",
+        imageAlt: "Relace AI coding models platform website"
     },
     {
         id: "nick-broadhurst",
