@@ -16,6 +16,7 @@ const profiles = [
   { name: "LinkedIn", href: SOCIAL_LINKS.linkedin },
   { name: "Framer", href: "https://www.framer.com/@rashidiqbal" },
   { name: "Upwork", href: SOCIAL_LINKS.upwork },
+  { name: "Contra", href: SOCIAL_LINKS.contra },
   { name: "GitHub", href: SOCIAL_LINKS.github },
 ];
 

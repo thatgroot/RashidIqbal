@@ -163,6 +163,16 @@ export function FooterV2() {
                   Framer
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="https://contra.com/rashidiqbal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Contra
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
