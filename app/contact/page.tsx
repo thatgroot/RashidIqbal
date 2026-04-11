@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { InquiryForm } from "@/components/v2/inquiry-form";
-import { PageBackground } from "@/components/ui/page-background";
+import { GridContainer, GridItem } from "@/components/v2/grid-system";
 import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 import { Mail, Phone, Calendar } from "lucide-react";
 
@@ -26,19 +26,18 @@ export default function ContactPage() {
             id="main-content"
             className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
         >
-            <PageBackground />
             <Navbar />
 
-            <div className="pt-32 pb-20">
-                <div className="max-w-5xl mx-auto px-6">
-                    <div className="grid lg:grid-cols-5 gap-16 items-start">
+            <section className="pt-16 bg-white">
+                <div className="max-w-container border-l border-zinc-100">
+                    <GridContainer cols={2}>
                         {/* Left: Contact info */}
-                        <div className="lg:col-span-2">
+                        <GridItem className="py-24">
                             <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded text-xs font-mono uppercase tracking-wider mb-6">
                                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                                 Available Now
                             </span>
-                            <h1 className="text-4xl font-bold text-zinc-900 mb-4 tracking-tight">
+                            <h1 className="text-4xl font-semibold text-zinc-900 mb-4 tracking-tight">
                                 Start a Project
                             </h1>
                             <p className="text-zinc-500 leading-relaxed mb-10">
@@ -91,15 +90,15 @@ export default function ContactPage() {
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </GridItem>
 
                         {/* Right: Form */}
-                        <div className="lg:col-span-3 border border-zinc-200 p-8">
+                        <GridItem className="py-24 bg-zinc-50/30">
                             <InquiryForm variant="inline" />
-                        </div>
-                    </div>
+                        </GridItem>
+                    </GridContainer>
                 </div>
-            </div>
+            </section>
 
             <Footer />
         </main>
