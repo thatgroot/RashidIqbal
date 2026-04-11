@@ -81,11 +81,28 @@ export function InquiryForm({
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center py-16"
+        className="py-12"
       >
         <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-zinc-900 mb-2">Got it!</h3>
-        <p className="text-zinc-500">I'll review your project and get back within 24 hours.</p>
+        <h3 className="text-2xl font-bold text-zinc-900 mb-2 text-center">Got it!</h3>
+        <p className="text-zinc-500 text-center mb-8">Here&apos;s what happens next:</p>
+        <div className="space-y-4 max-w-sm mx-auto">
+          {[
+            { num: "1", text: "I review your project details (today)" },
+            { num: "2", text: "I send questions or a rough scope within 24 hours" },
+            { num: "3", text: "We hop on a quick call if it's a fit" },
+          ].map((step) => (
+            <div key={step.num} className="flex items-start gap-3">
+              <span className="w-6 h-6 bg-orange-100 text-orange-600 text-xs font-bold flex items-center justify-center shrink-0 rounded-full">
+                {step.num}
+              </span>
+              <span className="text-sm text-zinc-700">{step.text}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-zinc-400 text-center mt-6">
+          Trusted by 53+ companies including Composio, Crezco, and UpdateAI.
+        </p>
       </motion.div>
     );
   }
@@ -102,6 +119,19 @@ export function InquiryForm({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Honeypot field - hidden from humans, bots fill it */}
+        <div className="absolute -left-[9999px]" aria-hidden="true">
+          <input
+            type="text"
+            name="website_url_confirm"
+            tabIndex={-1}
+            autoComplete="off"
+            onChange={(e) => {
+              if (e.target.value) setStatus("error");
+            }}
+          />
+        </div>
+
         {/* Row: Name + Email */}
         <div className="grid md:grid-cols-2 gap-4">
           <div>
@@ -235,13 +265,15 @@ export function InquiryForm({
             </>
           ) : (
             <>
-              Submit Inquiry <ArrowRight className="w-4 h-4" />
+              Send My Project Details <ArrowRight className="w-4 h-4" />
             </>
           )}
         </button>
 
         <p className="text-xs text-zinc-400 text-center">
           I respond within 24 hours. No spam, no sales calls.
+          <br />
+          <span className="text-zinc-500">Trusted by Composio, Crezco, UpdateAI, and 50+ others.</span>
         </p>
       </form>
     </div>

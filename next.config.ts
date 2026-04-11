@@ -66,11 +66,11 @@ const nextConfig: NextConfig = {
 
 // PostHog source maps configuration for error tracking
 export default withPostHogConfig(nextConfig, {
-  personalApiKey: process.env.NEXT_PUBLIC_PH_PERSONAL_API_KEY || "",
+  personalApiKey: process.env.POSTHOG_PERSONAL_API_KEY || "",
   envId: "265682",
   host: "https://us.i.posthog.com",
   sourcemaps: {
-    enabled: !!process.env.NEXT_PUBLIC_PH_PERSONAL_API_KEY,
+    enabled: !!process.env.POSTHOG_PERSONAL_API_KEY,
     deleteAfterUpload: true,
   },
 });

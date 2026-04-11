@@ -6,10 +6,10 @@ import { SOCIAL_LINKS, SITE_URL } from "@/lib/constants";
 import { ArrowRight, Check, Shield, Clock, Users, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Agency Partners",
+    title: "White-Label Figma & Framer for Agencies",
     description: "White-label Figma design and Framer development for agencies. I become your design and dev department. Your brand, my execution.",
     openGraph: {
-        title: "Agency Partners",
+        title: "White-Label Figma & Framer for Agencies",
         description: "White-label Figma and Framer services for agencies.",
         url: `${SITE_URL}/partners`,
     },

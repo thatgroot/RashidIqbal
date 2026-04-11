@@ -105,9 +105,9 @@ export async function POST(req: NextRequest) {
       }
 
       // If PSI API failed (rate limited, etc.), log it
-      console.log("PSI API unavailable, using lightweight check. Status:", response.status);
+      // PSI API unavailable, falling back to lightweight check
     } catch (psiError) {
-      console.log("PSI API error, using lightweight check:", psiError);
+      // PSI API error, using lightweight check
     }
 
     // Fallback: Do a lightweight check ourselves

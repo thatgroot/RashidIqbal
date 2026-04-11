@@ -7,10 +7,10 @@ import { SITE_URL } from "@/lib/constants";
 import { Check } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Free Website Audit",
+    title: "Free Website UX, Performance & Conversion Audit",
     description: "Request a free UX, performance, and conversion audit of your website. I'll record a personalized Loom walkthrough of what's working and what's costing you conversions.",
     openGraph: {
-        title: "Free Website Audit",
+        title: "Free Website UX & Conversion Audit",
         description: "Get a personalized video audit of your website. UX, performance, and conversion analysis.",
         type: "website",
         url: `${SITE_URL}/audit`,

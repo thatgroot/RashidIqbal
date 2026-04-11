@@ -240,7 +240,7 @@ export default function BlogPage() {
                 rel="noopener noreferrer"
                 className="block w-full py-2 bg-orange-700 text-white text-center text-sm font-medium rounded hover:bg-orange-800 transition-colors"
               >
-                Let&apos;s Connect
+                Book a Free Strategy Call
               </a>
             </div>
 

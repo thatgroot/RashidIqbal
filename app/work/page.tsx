@@ -8,7 +8,7 @@ import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Work & Portfolio",
+    title: "53 Figma & Framer Projects | Portfolio",
     description: "53 Figma design and Framer development projects. Landing pages, marketing sites, and full websites for SaaS, fintech, and personal brands.",
     keywords: [
         "Framer portfolio",

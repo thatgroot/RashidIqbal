@@ -64,6 +64,9 @@ export function PricingV2() {
                             <p className="text-xs text-zinc-400 mt-4">
                                 No contracts. No lock-in. Cancel retainers anytime. Money-back guarantee if you&apos;re not happy with the design direction.
                             </p>
+                            <p className="text-xs text-orange-600 font-medium mt-2">
+                                Currently accepting 2 new projects this month.
+                            </p>
 
                         </motion.div>
                     </GridItem>

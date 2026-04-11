@@ -7,10 +7,10 @@ import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 import { Mail, Phone, Calendar } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Start a Project",
-    description: "Tell me about your project. Figma design, Framer development, or Chrome extensions. I respond within 24 hours.",
+    title: "Start a Figma, Framer, or Chrome Extension Project",
+    description: "Tell me about your project. Figma design, Framer development, or Chrome extensions. I respond within 24 hours with a scope and quote.",
     openGraph: {
-        title: "Start a Project",
+        title: "Start a Figma, Framer, or Chrome Extension Project",
         description: "Describe your project and get a response within 24 hours.",
         type: "website",
         url: `${SITE_URL}/contact`,
