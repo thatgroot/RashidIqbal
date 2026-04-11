@@ -32,9 +32,9 @@ export function FooterV2() {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
               Services
-            </h4>
+            </p>
             <ul className="space-y-3">
               {SERVICES.map((service) => (
                 <li key={service.slug}>
@@ -51,9 +51,9 @@ export function FooterV2() {
 
           {/* Locations */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
               Locations
-            </h4>
+            </p>
             <ul className="space-y-3">
               {LOCATIONS.map((location) => (
                 <li key={location.slug}>
@@ -70,9 +70,9 @@ export function FooterV2() {
 
           {/* Pages */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
               Pages
-            </h4>
+            </p>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -119,9 +119,9 @@ export function FooterV2() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
               Connect
-            </h4>
+            </p>
             <ul className="space-y-3">
               <li>
                 <Link
@@ -180,31 +180,31 @@ export function FooterV2() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-zinc-800 flex flex-col gap-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-zinc-400">
               © {new Date().getFullYear()} Rashid Iqbal. Based in Pakistan, working worldwide.
             </p>
             <div className="flex items-center gap-6">
               <Link
                 href="/services"
-                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
               >
                 Services
               </Link>
               <Link
                 href="/work"
-                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
               >
                 Portfolio
               </Link>
               <Link
                 href="/blog"
-                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
               >
                 Blog
               </Link>
               <Link
                 href="/partners"
-                className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors"
+                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
               >
                 For Agencies
               </Link>

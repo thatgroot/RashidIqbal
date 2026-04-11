@@ -59,6 +59,7 @@ export function HeroV2() {
                                             fill
                                             className="object-cover grayscale"
                                             sizes="20vw"
+                                            priority={i < 4}
                                         />
                                     </div>
                                 ))}
@@ -66,10 +67,11 @@ export function HeroV2() {
                                     <div key={`dup-${i}`} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
                                         <Image
                                             src={src}
-                                            alt={`Showcase of previous project ${i + 1}`}
+                                            alt=""
                                             fill
                                             className="object-cover grayscale"
                                             sizes="20vw"
+                                            loading="lazy"
                                         />
                                     </div>
                                 ))}

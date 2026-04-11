@@ -139,10 +139,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Performance: Preconnect to external origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://framerusercontent.com" />
+        {/* Performance: Preconnect to critical third-party origins */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         {/* AI/LLM & oEmbed Discovery (dynamic links) */}
         <link rel="alternate" type="application/json" href="/api/llms-context" title="Machine-Readable Context API" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Information" />
