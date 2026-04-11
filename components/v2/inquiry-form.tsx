@@ -101,7 +101,11 @@ export function InquiryForm({
           ))}
         </div>
         <p className="text-xs text-zinc-400 text-center mt-6">
-          Trusted by 53+ companies including Composio, Crezco, and UpdateAI.
+          Trusted by 53+ companies including{" "}
+          <a href="https://composio.dev" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Composio</a>,{" "}
+          <a href="https://www.crezco.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Crezco</a>,{" "}
+          <a href="https://relace.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Relace AI</a>, and{" "}
+          <a href="https://update.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">UpdateAI</a>.
         </p>
       </motion.div>
     );
@@ -273,7 +277,13 @@ export function InquiryForm({
         <p className="text-xs text-zinc-400 text-center">
           I respond within 24 hours. No spam, no sales calls.
           <br />
-          <span className="text-zinc-500">Trusted by Composio, Crezco, UpdateAI, and 50+ others.</span>
+          <span className="text-zinc-500">Trusted by{" "}
+            <a href="https://composio.dev" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-orange-500 underline">Composio</a>,{" "}
+            <a href="https://www.crezco.com" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-orange-500 underline">Crezco</a>,{" "}
+            <a href="https://relace.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-orange-500 underline">Relace AI</a>,{" "}
+            <a href="https://update.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-orange-500 underline">UpdateAI</a>,{" "}
+            and 50+ others.
+          </span>
         </p>
       </form>
     </div>
