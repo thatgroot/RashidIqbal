@@ -6,17 +6,17 @@ import { GridContainer, GridItem } from "./grid-system";
 
 const reviews = [
   {
-    text: "Rashid redesigned our entire marketing site in Framer. The new design loads fast, converts better, and our team can actually update it without pinging a developer. Onboarding signups went up by half.",
+    text: "Rashid redesigned our entire marketing site. The new design is clean, loads fast, and converts way better than what we had before. Our team can update copy without waiting on a developer. Onboarding signups went up by half.",
     author: "Josh Schachter",
     role: "Founder & CEO @ UpdateAI",
   },
   {
-    text: "We needed a site that made open banking feel simple and trustworthy. Rashid nailed the Figma design and the Framer build was pixel-perfect. Our sales team finally has a site they're proud to send prospects to.",
+    text: "We needed a site that made open banking feel simple and trustworthy. Rashid nailed the design and the copy. Every page communicates exactly what we do without the usual fintech jargon. Our sales team finally has a site they're proud to send prospects to.",
     author: "Crezco Team",
     role: "Crezco",
   },
   {
-    text: "Rashid built my personal brand site on Framer and it scored 90+ on Lighthouse right out of the gate. The design feels premium and the whole thing was done in under two weeks.",
+    text: "The design feels premium and the communication was excellent throughout. Rashid delivered a polished site in under two weeks, scored 90+ on Lighthouse, and the whole experience was smooth from start to finish.",
     author: "Nick Broadhurst",
     role: "Musician & Creator",
   },
@@ -58,9 +58,10 @@ export function TestimonialsV2() {
                   transition: { staggerChildren: 0.1, delayChildren: i * 0.15 },
                 },
               }}
+              className="h-full"
             >
-              <GridItem className="dotted-bg dotted-bg-opacity-30">
-                <div className="relative z-10">
+              <GridItem className="dotted-bg dotted-bg-opacity-30 h-full">
+                <div className="relative z-10 h-full flex flex-col">
                   <motion.div
                     className="flex gap-1 mb-8"
                     role="img"
@@ -94,7 +95,7 @@ export function TestimonialsV2() {
                     ))}
                   </motion.div>
                   <motion.p
-                    className="text-lg text-zinc-900 leading-relaxed mb-8 font-medium"
+                    className="text-lg text-zinc-900 leading-relaxed mb-8 font-medium flex-1"
                     variants={{
                       hidden: { opacity: 0, y: 15 },
                       visible: {
