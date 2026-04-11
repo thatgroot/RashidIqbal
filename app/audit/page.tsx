@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
-import { InquiryForm } from "@/components/v2/inquiry-form";
+import { AuditForm } from "@/components/v2/audit-form";
 import { PageBackground } from "@/components/ui/page-background";
 import { SITE_URL } from "@/lib/constants";
 import { Check } from "lucide-react";
@@ -75,11 +75,7 @@ export default function AuditPage() {
 
                         {/* Right: Form */}
                         <div className="border border-zinc-200 p-8">
-                            <InquiryForm
-                                variant="inline"
-                                heading="Request Your Free Audit"
-                                subheading="I'll review your site and send a Loom within 48 hours."
-                            />
+                            <AuditForm />
                         </div>
                     </div>
                 </div>
