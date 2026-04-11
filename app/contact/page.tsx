@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
-import { InquiryForm } from "@/components/v2/inquiry-form";
-import { GridContainer, GridItem } from "@/components/v2/grid-system";
+import { ServiceBuilder } from "@/components/v2/service-builder";
 import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 import { Mail, Phone, Calendar } from "lucide-react";
 
@@ -30,21 +29,21 @@ export default function ContactPage() {
 
             <section className="pt-16 bg-white">
                 <div className="max-w-container border-l border-zinc-100">
-                    <GridContainer cols={2}>
-                        {/* Left: Contact info */}
-                        <GridItem className="py-24">
+                    <div className="grid lg:grid-cols-[1fr_340px] gap-0 border-b border-zinc-100">
+                        {/* Main: Service Builder */}
+                        <div className="py-24 px-6 md:px-12 lg:px-16">
                             <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded text-xs font-mono uppercase tracking-wider mb-6">
                                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                                Available Now
+                                Accepting New Projects
                             </span>
-                            <h1 className="text-4xl font-semibold text-zinc-900 mb-4 tracking-tight">
-                                Start a Project
-                            </h1>
-                            <p className="text-zinc-500 leading-relaxed mb-10">
-                                Describe your project in as much detail as you can.
-                                I&apos;ll get back to you within 24 hours with questions
-                                or a rough scope.
-                            </p>
+                            <ServiceBuilder />
+                        </div>
+
+                        {/* Sidebar: Contact Info */}
+                        <div className="py-24 px-6 lg:px-8 border-l border-zinc-100 bg-zinc-50/30">
+                            <h3 className="text-lg font-bold text-zinc-900 mb-6">
+                                Prefer to talk first?
+                            </h3>
 
                             <div className="space-y-6">
                                 <a
@@ -90,13 +89,27 @@ export default function ContactPage() {
                                     </div>
                                 </a>
                             </div>
-                        </GridItem>
 
-                        {/* Right: Form */}
-                        <GridItem className="py-24 bg-zinc-50/30">
-                            <InquiryForm variant="inline" />
-                        </GridItem>
-                    </GridContainer>
+                            <div className="mt-10 p-4 bg-white border border-zinc-200">
+                                <h4 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-3">
+                                    Why work with me?
+                                </h4>
+                                <ul className="space-y-2.5">
+                                    {[
+                                        "Direct communication",
+                                        "High-quality delivery",
+                                        "24hr response guarantee",
+                                        "Transparent pricing",
+                                    ].map((item) => (
+                                        <li key={item} className="flex items-center gap-2 text-sm text-zinc-600">
+                                            <span className="w-1 h-1 rounded-full bg-orange-500 shrink-0" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

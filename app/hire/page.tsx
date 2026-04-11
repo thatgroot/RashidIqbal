@@ -6,6 +6,7 @@ import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
 import { PageBackground } from "@/components/ui/page-background";
 import { Breadcrumb } from "@/components/seo/breadcrumb";
+import { GridContainer, GridItem } from "@/components/v2/grid-system";
 import { ArrowRight, MapPin, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -52,98 +53,111 @@ export default function HirePage() {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="pt-32 pb-16 border-b border-zinc-100">
-                <div className="max-w-7xl mx-auto px-6">
-                    <Breadcrumb
-                        items={[{ label: "Hire", href: "/hire" }]}
-                        className="mb-8"
-                    />
-
-                    <div className="max-w-3xl">
-                        <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded text-xs font-mono uppercase tracking-wider mb-6">
-                            <Globe className="w-3.5 h-3.5" />
-                            Worldwide
-                        </span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 mb-6 tracking-tight">
-                            Hire a Figma &amp; Framer Expert
-                        </h1>
-                        <p className="text-lg md:text-xl text-zinc-500 leading-relaxed mb-8">
-                            I work with clients worldwide — designing in Figma, building in Framer,
-                            writing conversion copy, and creating Chrome extensions for the design ecosystem.
-                        </p>
-                        <a
-                            href={SOCIAL_LINKS.calcom}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 text-white font-medium rounded hover:bg-zinc-800 transition-colors"
-                        >
-                            Book a Free Call
-                            <ArrowRight className="w-4 h-4" />
-                        </a>
-                    </div>
+            <section className="pt-16 bg-white relative">
+                <div className="max-w-container border-l border-zinc-100 relative">
+                    <GridContainer cols={1}>
+                        <GridItem className="border-t pt-16 pb-12" padding={false}>
+                            <div className="px-8 sm:px-12">
+                                <Breadcrumb
+                                    items={[{ label: "Hire", href: "/hire" }]}
+                                    className="mb-8"
+                                />
+                                <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 text-xs font-mono uppercase tracking-widest mb-6">
+                                    <Globe className="w-3.5 h-3.5" aria-hidden="true" />
+                                    Worldwide
+                                </span>
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-zinc-900 mb-6 tracking-tight leading-[0.95]">
+                                    Hire a Figma &amp; Framer Expert
+                                </h1>
+                                <p className="text-lg md:text-xl text-zinc-500 leading-relaxed mb-8 max-w-2xl">
+                                    I work with clients worldwide — designing in Figma, building in Framer,
+                                    writing conversion copy, and creating Chrome extensions for the design ecosystem.
+                                </p>
+                                <a
+                                    href={SOCIAL_LINKS.calcom}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-orange-700 text-white font-bold text-sm hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+                                >
+                                    Book a Free Call
+                                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                                </a>
+                            </div>
+                        </GridItem>
+                    </GridContainer>
                 </div>
             </section>
 
             {/* Locations Grid */}
-            <section className="py-20">
-                <div className="max-w-7xl mx-auto px-6">
+            <section className="bg-white">
+                <div className="max-w-container border-l border-zinc-100">
                     {Object.entries(locationsByRegion).map(([region, locations]) => (
-                        <div key={region} className="mb-16 last:mb-0">
-                            <h2 className="text-sm font-mono text-zinc-500 uppercase tracking-widest mb-6">
-                                {region}
-                            </h2>
-                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div key={region}>
+                            {/* Region Label Row */}
+                            <GridContainer cols={1}>
+                                <GridItem padding={false} className="py-6 px-8 sm:px-12">
+                                    <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                                        {region}
+                                    </span>
+                                </GridItem>
+                            </GridContainer>
+
+                            {/* Location Cards using Grid */}
+                            <GridContainer cols={3}>
                                 {locations.map((location) => (
                                     <Link
                                         key={location.slug}
                                         href={`/hire/${location.slug}`}
-                                        className="group block p-6 border border-zinc-100 rounded-xl hover:border-orange-200 hover:shadow-lg transition-all"
+                                        className="block group"
+                                        aria-label={`Hire in ${location.country}`}
                                     >
-                                        <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-10 h-10 bg-zinc-100 rounded-lg flex items-center justify-center group-hover:bg-orange-100 transition-colors">
-                                                <MapPin className="w-5 h-5 text-zinc-600 group-hover:text-orange-600 transition-colors" />
+                                        <GridItem className="h-full flex flex-col min-h-[200px]">
+                                            <div className="flex items-center gap-3 mb-4">
+                                                <div className="w-9 h-9 bg-zinc-50 border border-zinc-100 flex items-center justify-center group-hover:bg-orange-50 group-hover:border-orange-100 transition-colors">
+                                                    <MapPin className="w-4 h-4 text-zinc-500 group-hover:text-orange-600 transition-colors" aria-hidden="true" />
+                                                </div>
+                                                <div>
+                                                    <h3 className="font-semibold text-zinc-900 group-hover:text-orange-600 transition-colors">
+                                                        {location.country}
+                                                    </h3>
+                                                    <p className="text-xs font-mono text-zinc-500">{location.timezone}</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h3 className="font-semibold text-zinc-900 group-hover:text-orange-600 transition-colors">
-                                                    {location.country}
-                                                </h3>
-                                                <p className="text-sm text-zinc-500">{location.timezone}</p>
-                                            </div>
-                                        </div>
-                                        <p className="text-sm text-zinc-600 mb-4 line-clamp-2">
-                                            {location.availability}
-                                        </p>
-                                        <span className="inline-flex items-center gap-1 text-sm font-medium text-orange-600">
-                                            Learn more
-                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                        </span>
+                                            <p className="text-sm text-zinc-500 leading-relaxed mb-6 flex-1 line-clamp-2">
+                                                {location.availability}
+                                            </p>
+                                            <span className="inline-flex items-center gap-1 text-sm font-medium text-orange-600">
+                                                Learn more
+                                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                                            </span>
+                                        </GridItem>
                                     </Link>
                                 ))}
-                            </div>
+                            </GridContainer>
                         </div>
                     ))}
-                </div>
-            </section>
 
-            {/* CTA Section */}
-            <section className="py-20 bg-zinc-900 text-white">
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                        Don&apos;t See Your Location?
-                    </h2>
-                    <p className="text-lg text-zinc-400 mb-8 max-w-2xl mx-auto">
-                        I work with clients from any country. Book a call to discuss your
-                        project and timezone requirements.
-                    </p>
-                    <a
-                        href={SOCIAL_LINKS.calcom}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-500 transition-colors"
-                    >
-                        Schedule Your Free Call
-                        <ArrowRight className="w-5 h-5" />
-                    </a>
+                    {/* CTA Row */}
+                    <GridContainer cols={1}>
+                        <GridItem className="py-20 text-center">
+                            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-6">
+                                Don&apos;t See Your Location?
+                            </h2>
+                            <p className="text-lg text-zinc-500 mb-8 max-w-2xl mx-auto">
+                                I work with clients from any country. Book a call to discuss your
+                                project and timezone requirements.
+                            </p>
+                            <a
+                                href={SOCIAL_LINKS.calcom}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-orange-700 text-white font-bold text-sm hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+                            >
+                                Schedule Your Free Call
+                                <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                            </a>
+                        </GridItem>
+                    </GridContainer>
                 </div>
             </section>
 

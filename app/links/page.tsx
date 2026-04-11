@@ -12,53 +12,63 @@ const links = [
   {
     name: "Framer Expert Profile",
     url: "https://www.framer.com/@rashidiqbal",
-    icon: <SiFramer className="w-5 h-5" />,
+    icon: <SiFramer className="w-4 h-4" />,
     featured: true,
+    label: "Design · Build",
   },
   {
     name: "Portfolio & Services",
     url: "/",
-    icon: <MoveRight className="w-5 h-5" />,
+    icon: <MoveRight className="w-4 h-4" />,
+    label: "Work",
   },
   {
     name: "Read My Latest Articles",
     url: "/blog",
-    icon: <MoveRight className="w-5 h-5" />,
+    icon: <MoveRight className="w-4 h-4" />,
+    label: "Blog",
   },
   {
     name: "Hire me on Contra",
     url: "https://contra.com/rashidiqbal",
-    icon: <SiFramer className="w-5 h-5" />,
+    icon: <SiFramer className="w-4 h-4" />,
+    label: "Freelance",
   },
   {
     name: "Hire Me on Upwork",
     url: "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
-    icon: <SiUpwork className="w-5 h-5" />,
+    icon: <SiUpwork className="w-4 h-4" />,
+    label: "Freelance",
   },
   {
     name: "Follow on LinkedIn",
     url: "https://www.linkedin.com/in/callmerashidiqbal/",
-    icon: <FaLinkedinIn className="w-5 h-5" />,
+    icon: <FaLinkedinIn className="w-4 h-4" />,
+    label: "Social",
   },
   {
-    name: "Follow on X/Twitter",
+    name: "Follow on X / Twitter",
     url: "https://x.com/rashidrealme",
-    icon: <FaXTwitter className="w-5 h-5" />,
+    icon: <FaXTwitter className="w-4 h-4" />,
+    label: "Social",
   },
   {
     name: "View Designs on Behance",
     url: "https://www.behance.net/thatgroot",
-    icon: <FaBehance className="w-5 h-5" />,
+    icon: <FaBehance className="w-4 h-4" />,
+    label: "Portfolio",
   },
   {
     name: "GitHub Open Source",
     url: "https://github.com/thatgroot",
-    icon: <FaGithub className="w-5 h-5" />,
+    icon: <FaGithub className="w-4 h-4" />,
+    label: "Code",
   },
   {
     name: "Chat on WhatsApp",
     url: "https://wa.me/923554665643",
-    icon: <FaWhatsapp className="w-5 h-5" />,
+    icon: <FaWhatsapp className="w-4 h-4" />,
+    label: "Contact",
   },
 ];
 
@@ -72,60 +82,60 @@ export default function LinksPage() {
   };
 
   return (
-    <main className="min-h-screen bg-zinc-950 flex flex-col items-center relative overflow-x-hidden font-sans pb-24">
+    <main className="min-h-screen bg-zinc-950 font-sans relative overflow-x-hidden pb-24">
+      {/* Grid background — matches landing page grid but inverted */}
+      <div className="fixed inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-size-[40px_40px] opacity-40" />
+        <div className="absolute inset-0 bg-linear-to-b from-zinc-950 via-transparent to-zinc-950" />
+        <div className="absolute top-1/4 -right-40 w-[500px] h-[500px] bg-orange-600/5 blur-[140px]" />
+        <div className="absolute bottom-1/4 -left-40 w-[400px] h-[400px] bg-orange-500/5 blur-[120px]" />
+      </div>
 
-
-      <div className="w-full max-w-md mx-auto px-6 z-10">
-        {/* Profile Section */}
+      <div className="w-full max-w-md mx-auto px-6 z-10 relative">
+        {/* Profile */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-col items-center text-center space-y-6 pt-16 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-col items-center text-center pt-16 mb-12"
         >
-          <div className="relative group">
-            <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/30 to-emerald-600/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition duration-1000" />
-            <div className="w-28 h-28 rounded-full bg-zinc-900 shadow-2xl flex items-center justify-center p-5 border border-zinc-800/50 relative overflow-hidden backdrop-blur-3xl ring-1 ring-white/10 group-hover:ring-white/20 transition-all duration-500">
+          <div className="relative mb-6 group">
+            <div className="absolute -inset-px bg-linear-to-br from-orange-500/30 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+            <div className="w-20 h-20 border border-zinc-800 bg-zinc-900 flex items-center justify-center p-4 relative">
               <Image
                 src="/favicon.svg"
                 alt="Rashid Iqbal Logo"
-                width={80}
-                height={80}
+                width={64}
+                height={64}
                 priority
-                className="brightness-125 grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+                className="brightness-125 group-hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
-          <div className="space-y-2">
-            <h1 className="text-3xl font-bold tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-zinc-400">
-              Rashid Iqbal
-            </h1>
-            <p className="text-blue-400/90 font-mono text-sm tracking-widest uppercase flex items-center gap-2 justify-center">
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              Figma & Framer Expert
-            </p>
-            <p className="text-zinc-500 text-[15px] leading-relaxed max-w-[300px] mx-auto pt-2">
-              Designing in Figma. Building in Framer. Creating Chrome extensions that convert.
-            </p>
-          </div>
+
+          <h1 className="text-2xl font-semibold tracking-tight text-white mb-2">
+            Rashid Iqbal
+          </h1>
+          <p className="text-orange-500/90 font-mono text-xs tracking-widest uppercase flex items-center gap-2 justify-center mb-3">
+            <span className="w-1.5 h-1.5 bg-orange-500 animate-pulse" aria-hidden="true" />
+            Figma &amp; Framer Expert
+          </p>
+          <p className="text-zinc-500 text-sm leading-relaxed max-w-[280px]">
+            Designing in Figma. Building in Framer. Creating Chrome extensions that convert.
+          </p>
         </motion.div>
 
-        {/* Links Section */}
+        {/* Links */}
         <motion.div
-          className="space-y-4 w-full"
+          className="space-y-px w-full border border-zinc-800"
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
+          animate="show"
           variants={{
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
-              transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.4
-              }
-            }
+              transition: { staggerChildren: 0.07, delayChildren: 0.3 },
+            },
           }}
         >
           {links.map((link, index) => {
@@ -136,8 +146,8 @@ export default function LinksPage() {
               <motion.div
                 key={link.name}
                 variants={{
-                  hidden: { opacity: 0, x: -10 },
-                  show: { opacity: 1, x: 0 }
+                  hidden: { opacity: 0, x: -8 },
+                  show: { opacity: 1, x: 0 },
                 }}
                 className="relative group"
               >
@@ -146,30 +156,35 @@ export default function LinksPage() {
                   target={isExternal ? "_blank" : undefined}
                   rel={isExternal ? "noopener noreferrer" : undefined}
                   className={`
-                    relative flex items-center justify-between p-4.5 w-full
-                    rounded-2xl transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-                    border backdrop-blur-md overflow-hidden
+                    relative flex items-center justify-between px-5 py-4 w-full
+                    transition-colors duration-200 border-b border-zinc-800 last:border-b-0
                     ${link.featured
-                      ? "bg-white text-zinc-950 border-white shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] scale-100 hover:scale-[1.02]"
-                      : "bg-zinc-900/40 text-zinc-200 border-zinc-800/50 hover:border-zinc-600/50 shadow-lg hover:shadow-blue-500/10 scale-100 hover:scale-[1.01]"}
+                      ? "bg-orange-700 text-white hover:bg-orange-800"
+                      : "bg-zinc-900/60 text-zinc-300 hover:bg-zinc-800/80 hover:text-white"
+                    }
                   `}
                 >
-                  {/* Subtle hover gradient for non-featured */}
-                  {!link.featured && (
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-blue-500/5 via-transparent to-transparent pointer-events-none" />
-                  )}
-
                   <div className="flex items-center gap-4 relative z-10">
                     <div className={`
-                      p-2.5 rounded-xl transition-all duration-500
-                      ${link.featured ? "bg-zinc-100 group-hover:bg-zinc-200" : "bg-zinc-800/50 group-hover:bg-zinc-800 group-hover:text-blue-400 group-hover:scale-110 shadow-inner"}
+                      w-8 h-8 flex items-center justify-center shrink-0 transition-colors duration-200
+                      ${link.featured
+                        ? "bg-orange-600 text-white"
+                        : "bg-zinc-800 text-zinc-400 group-hover:bg-zinc-700 group-hover:text-zinc-200"
+                      }
                     `}>
                       {link.icon}
                     </div>
-                    <span className="font-semibold text-base tracking-tight">{link.name}</span>
+                    <div>
+                      <span className="font-medium text-sm block leading-none mb-1">{link.name}</span>
+                      {link.label && (
+                        <span className={`text-[10px] font-mono uppercase tracking-widest ${link.featured ? "text-orange-200" : "text-zinc-600"}`}>
+                          {link.label}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-3 relative z-10">
+                  <div className="flex items-center gap-2 relative z-10">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -177,38 +192,30 @@ export default function LinksPage() {
                         copyToClipboard(link.url, index);
                       }}
                       className={`
-                        p-2 rounded-lg transition-all duration-300 opacity-0 group-hover:opacity-100
-                        ${link.featured ? "text-zinc-400 hover:text-zinc-950" : "text-zinc-600 hover:text-white hover:bg-zinc-800/50"}
+                        w-7 h-7 flex items-center justify-center transition-all duration-200
+                        opacity-0 group-hover:opacity-100
+                        ${link.featured ? "text-orange-200 hover:text-white" : "text-zinc-600 hover:text-zinc-300"}
                       `}
                       title="Copy link"
+                      aria-label={`Copy link for ${link.name}`}
                     >
                       <AnimatePresence mode="wait">
                         {copiedIndex === index ? (
-                          <motion.div
-                            key="check"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0 }}
-                          >
-                            <Check className="w-4 h-4 text-emerald-500" />
+                          <motion.div key="check" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                            <Check className="w-3.5 h-3.5 text-green-400" />
                           </motion.div>
                         ) : (
-                          <motion.div
-                            key="copy"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0 }}
-                          >
-                            <Copy className="w-4 h-4" />
+                          <motion.div key="copy" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                            <Copy className="w-3.5 h-3.5" />
                           </motion.div>
                         )}
                       </AnimatePresence>
                     </button>
                     <MoveRight className={`
-                      w-4 h-4 transition-all duration-500
-                      ${link.featured ? "text-zinc-400 group-hover:text-zinc-950" : "text-zinc-600 group-hover:text-zinc-300"}
+                      w-4 h-4 transition-all duration-300
+                      ${link.featured ? "text-orange-200" : "text-zinc-600 group-hover:text-zinc-400"}
                       group-hover:translate-x-1
-                    `} />
+                    `} aria-hidden="true" />
                   </div>
                 </LinkComponent>
               </motion.div>
@@ -216,27 +223,18 @@ export default function LinksPage() {
           })}
         </motion.div>
 
-        {/* Footer Section */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 1 }}
-          className="pt-16 text-center space-y-6"
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="pt-12 text-center"
         >
-          <div className="h-px w-12 bg-linear-to-r from-transparent via-zinc-800 to-transparent mx-auto" />
-          <p className="text-[10px] text-zinc-600 font-bold tracking-[0.3em] uppercase">
-            © {new Date().getFullYear()} AESTHO · Dubai / Remote
+          <div className="h-px w-8 bg-zinc-800 mx-auto mb-6" />
+          <p className="text-[10px] text-zinc-700 font-mono tracking-[0.3em] uppercase">
+            © {new Date().getFullYear()} Rashid Iqbal · Dubai / Remote
           </p>
         </motion.div>
-      </div>
-
-      {/* Advanced Ambient Background */}
-      <div className="fixed inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-1/4 -right-40 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] opacity-20 animate-pulse" />
-        <div className="absolute bottom-1/4 -left-40 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[140px] opacity-10" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#18181b_1px,transparent_1px),linear-gradient(to_bottom,#18181b_1px,transparent_1px)] bg-size-[64px_64px] opacity-[0.15]" />
-        <div className="absolute inset-0 bg-radial-at-t from-zinc-900/50 to-transparent" />
       </div>
     </main>
   );

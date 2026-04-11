@@ -4,5 +4,4 @@
  * without requiring explicit imports
  */
 
-/// <reference path="./blog.d.ts" />
-
+import "./blog.d.ts";

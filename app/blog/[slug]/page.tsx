@@ -4,10 +4,12 @@ import Link from "next/link";
 import { getPostBySlug, getPostSlugs, getRelatedPosts, BlogPost } from "@/lib/blog";
 import { NavbarV2 as Navbar } from "@/components/v2/navbar";
 import { FooterV2 as Footer } from "@/components/v2/footer";
+import { PageBackground } from "@/components/ui/page-background";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { RelatedServices } from "@/components/seo/internal-links";
-import { SITE_URL as siteUrl } from "@/lib/constants";
-import { Calendar, Clock, ArrowLeft, Tag, Share2 } from "lucide-react";
+import { GridContainer, GridItem } from "@/components/v2/grid-system";
+import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from "lucide-react";
 import { SiX, SiLinkedin } from "react-icons/si";
 import { CopyLinkButton } from "@/components/blog/copy-link";
 
@@ -187,153 +189,222 @@ export default async function BlogPostPage({ params }: PageProps) {
     <>
       <ArticleStructuredData post={post} slug={slug} />
       <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
-        {/* Background */}
-        <div className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-size-[40px_40px]" />
-          <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-zinc-50/50" />
-        </div>
-
+        <PageBackground />
         <Navbar />
 
-        {/* Article */}
-        <article className="max-w-4xl mx-auto px-6 pt-24">
-          {/* Breadcrumb */}
-          <nav className="py-6" aria-label="Breadcrumb">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-orange-600 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Blog
-            </Link>
-          </nav>
+        {/* Article Header */}
+        <section className="pt-16 bg-white relative">
+          <div className="max-w-container border-l border-zinc-100 relative">
+            <GridContainer cols={1}>
+              <GridItem className="border-t pt-10 pb-12" padding={false}>
+                <div className="px-8 sm:px-12">
+                  {/* Back nav */}
+                  <nav className="mb-8" aria-label="Breadcrumb">
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-orange-600 transition-colors font-mono"
+                    >
+                      <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+                      Back to Blog
+                    </Link>
+                  </nav>
 
-          {/* Header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-3 text-sm text-zinc-500 mb-4">
-              <span className="px-2 py-1 bg-orange-100 text-orange-600 rounded font-medium">
-                {post.category}
-              </span>
-              <span className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" aria-hidden="true" />
-                {new Date(post.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" aria-hidden="true" />
-                {post.readingTime}
-              </span>
-            </div>
+                  {/* Meta row */}
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    <span className="text-[10px] font-mono text-orange-600 uppercase tracking-widest border border-orange-100 bg-orange-50 px-2 py-1">
+                      {post.category}
+                    </span>
+                    <span className="flex items-center gap-1 text-xs text-zinc-400 font-mono">
+                      <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                      {new Date(post.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </span>
+                    <span className="text-zinc-200" aria-hidden="true">•</span>
+                    <span className="flex items-center gap-1 text-xs text-zinc-400 font-mono">
+                      <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                      {post.readingTime}
+                    </span>
+                  </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900 mb-4">
-              {post.title}
-            </h1>
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-zinc-900 mb-4 tracking-tight leading-[1.1]">
+                    {post.title}
+                  </h1>
+                  <p className="text-lg text-zinc-500 leading-relaxed mb-8 max-w-2xl">
+                    {post.description}
+                  </p>
 
-            <p className="text-lg text-zinc-600 mb-6">{post.description}</p>
+                  {/* Author */}
+                  <div className="flex items-center gap-4 pt-6 border-t border-zinc-100">
+                    <div className="w-10 h-10 bg-orange-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      {post.author.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-medium text-zinc-900 text-sm">{post.author.name}</p>
+                      {post.author.twitter && (
+                        <a
+                          href={`https://twitter.com/${post.author.twitter.replace("@", "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-zinc-400 font-mono hover:text-orange-600 transition-colors"
+                        >
+                          {post.author.twitter}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </GridItem>
+            </GridContainer>
+          </div>
+        </section>
 
-            {/* Author */}
-            <div className="flex items-center gap-4 pb-6 border-b border-zinc-200">
-              <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold">
-                {post.author.name.charAt(0)}
+        {/* Article Content + Sidebar */}
+        <section className="bg-white">
+          <div className="max-w-container border-l border-zinc-100">
+            <div className="grid desktop:grid-cols-3 border-b border-zinc-100">
+
+              {/* Main content — 2 cols */}
+              <div className="desktop:col-span-2 border-r border-zinc-100 p-8 sm:p-12">
+                <div className="prose prose-lg max-w-none">
+                  <MarkdownRenderer content={post.content} />
+                </div>
+
+                {/* Tags */}
+                {post.tags.length > 0 && (
+                  <div className="flex items-center gap-2 flex-wrap pt-8 mt-8 border-t border-zinc-100">
+                    <Tag className="w-4 h-4 text-zinc-400 shrink-0" aria-hidden="true" />
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs text-zinc-600 px-3 py-1 border border-zinc-100 font-mono hover:border-orange-200 hover:text-orange-600 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Share */}
+                <div className="pt-8 mt-8 border-t border-zinc-100">
+                  <h2 className="flex items-center gap-2 text-xs font-mono text-zinc-500 uppercase tracking-widest mb-5">
+                    <Share2 className="w-3.5 h-3.5" aria-hidden="true" />
+                    Share this article
+                  </h2>
+                  <div className="flex gap-3 flex-wrap">
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
+                      aria-label="Share on X (Twitter)"
+                    >
+                      <SiX className="w-4 h-4" aria-hidden="true" />
+                      X / Twitter
+                    </a>
+                    <a
+                      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#0077B5] text-white text-sm font-medium hover:bg-[#006699] transition-colors"
+                      aria-label="Share on LinkedIn"
+                    >
+                      <SiLinkedin className="w-4 h-4" aria-hidden="true" />
+                      LinkedIn
+                    </a>
+                    <CopyLinkButton url={postUrl} />
+                  </div>
+                </div>
+
+                {/* Related Services */}
+                <div className="pt-10 mt-10 border-t border-zinc-100">
+                  <RelatedServices className="bg-zinc-50/50" />
+                </div>
               </div>
-              <div>
-                <p className="font-medium text-zinc-900">{post.author.name}</p>
-                {post.author.twitter && (
+
+              {/* Sidebar */}
+              <aside>
+                {/* CTA */}
+                <div className="border-b border-zinc-100 p-8 sm:p-10">
+                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest block mb-4">
+                    Work Together
+                  </span>
+                  <h3 className="text-lg font-semibold text-zinc-900 mb-3 leading-snug">
+                    Have a project in mind?
+                  </h3>
+                  <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
+                    I design in Figma, build in Framer, and ship Chrome extensions that convert.
+                  </p>
                   <a
-                    href={`https://twitter.com/${post.author.twitter.replace("@", "")}`}
+                    href={SOCIAL_LINKS.calcom}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-zinc-500 hover:text-orange-600 transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-700 text-white font-bold text-sm hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
                   >
-                    {post.author.twitter}
+                    Book a Free Call
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </a>
-                )}
-              </div>
-            </div>
-          </header>
+                </div>
 
-          {/* Content */}
-          <div className="prose prose-lg max-w-none">
-            <MarkdownRenderer content={post.content} />
-          </div>
-
-          {/* Tags */}
-          {post.tags.length > 0 && (
-            <div className="flex items-center gap-3 flex-wrap pt-8 mt-8 border-t border-zinc-200">
-              <Tag className="w-4 h-4 text-zinc-400" aria-hidden="true" />
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-sm text-zinc-600 px-3 py-1 bg-zinc-100 rounded-full hover:bg-orange-100 hover:text-orange-600 transition-colors"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Share */}
-          <div className="py-8 mt-8 border-t border-zinc-200">
-            <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-zinc-500 mb-4">
-              <Share2 className="w-4 h-4" aria-hidden="true" />
-              Share this article
-            </h2>
-            <div className="flex gap-3">
-              <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white rounded hover:bg-zinc-800 transition-colors"
-                aria-label="Share on X (Twitter)"
-              >
-                <SiX className="w-4 h-4" aria-hidden="true" />
-                X
-              </a>
-              <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 bg-[#0077B5] text-white rounded hover:bg-[#006699] transition-colors"
-                aria-label="Share on LinkedIn"
-              >
-                <SiLinkedin className="w-4 h-4" aria-hidden="true" />
-                LinkedIn
-              </a>
-              <CopyLinkButton url={postUrl} />
+                {/* About */}
+                <div className="p-8 sm:p-10">
+                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest block mb-4">
+                    About the Author
+                  </span>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-9 h-9 bg-orange-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                      {post.author.name.charAt(0)}
+                    </div>
+                    <p className="font-medium text-zinc-900 text-sm">{post.author.name}</p>
+                  </div>
+                  <p className="text-sm text-zinc-500 leading-relaxed">
+                    Figma &amp; Framer expert specializing in high-converting landing pages, UX copywriting, and Chrome extensions.
+                  </p>
+                  <Link
+                    href="/"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-orange-600 mt-5 hover:text-orange-500 transition-colors"
+                  >
+                    View portfolio
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </Link>
+                </div>
+              </aside>
             </div>
           </div>
-
-          {/* Recommended Services */}
-          <div className="py-12 border-t border-zinc-200">
-            <RelatedServices className="bg-zinc-50/50" />
-          </div>
-        </article>
+        </section>
 
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
-          <section className="max-w-4xl mx-auto px-6 py-16 border-t border-zinc-200">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 mb-6">
-              Related Articles
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {relatedPosts.map((relatedPost) => (
-                <Link
-                  key={relatedPost.slug}
-                  href={`/blog/${relatedPost.slug}`}
-                  className="group p-4 border border-zinc-100 hover:border-orange-200 transition-colors"
-                >
-                  <h3 className="font-medium text-zinc-900 group-hover:text-orange-600 transition-colors line-clamp-2">
-                    {relatedPost.title}
-                  </h3>
-                  <p className="text-sm text-zinc-500 mt-1">
-                    {relatedPost.readingTime}
-                  </p>
-                </Link>
-              ))}
+          <section className="bg-white">
+            <div className="max-w-container border-l border-zinc-100">
+              <GridContainer cols={1}>
+                <GridItem padding={false} className="py-6 px-8 sm:px-12">
+                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                    Related Articles
+                  </span>
+                </GridItem>
+              </GridContainer>
+              <GridContainer cols={3}>
+                {relatedPosts.map((relatedPost) => (
+                  <Link
+                    key={relatedPost.slug}
+                    href={`/blog/${relatedPost.slug}`}
+                    className="block group"
+                  >
+                    <GridItem className="h-full flex flex-col min-h-[160px]">
+                      <h3 className="font-medium text-zinc-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug flex-1 mb-4">
+                        {relatedPost.title}
+                      </h3>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-zinc-400 font-mono">{relatedPost.readingTime}</span>
+                        <ArrowRight className="w-4 h-4 text-orange-600 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                      </div>
+                    </GridItem>
+                  </Link>
+                ))}
+              </GridContainer>
             </div>
           </section>
         )}
@@ -343,4 +414,3 @@ export default async function BlogPostPage({ params }: PageProps) {
     </>
   );
 }
-

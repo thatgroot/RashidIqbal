@@ -171,8 +171,8 @@ export async function GET(req: NextRequest) {
                 height: 630,
             }
         );
-    } catch (e: any) {
-        console.error(`OG generation failed: ${e.message}`);
+    } catch (e) {
+        console.error(`OG generation failed: ${e instanceof Error ? e.message : String(e)}`);
         return new Response('Failed to generate image', { status: 500 });
     }
 }
