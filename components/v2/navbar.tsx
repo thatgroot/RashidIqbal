@@ -9,8 +9,6 @@ import { useState, useEffect, useCallback } from "react";
 
 // Navigation sections for the home page
 const NAV_SECTIONS = [
-  { id: "process", label: "Process", href: "/#process" },
-  { id: "testimonials", label: "Reviews", href: "/#testimonials" },
   { id: "pricing", label: "Pricing", href: "/#pricing" },
   { id: "resources", label: "FAQ", href: "/#resources" },
 ] as const;
@@ -22,7 +20,6 @@ export function NavbarV2() {
   const router = useRouter();
 
   const isHomePage = pathname === "/";
-  const isBlogPage = pathname.startsWith("/blog");
 
   // Reset active section when navigating away from home page
   const currentActiveSection = isHomePage ? activeSection : null;
@@ -150,26 +147,26 @@ export function NavbarV2() {
             );
           })}
           <Link
-            href="/services"
-            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${pathname.startsWith("/services")
+            href="/contact"
+            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${pathname === "/contact"
               ? "text-orange-600 font-semibold bg-orange-50"
               : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
               }`}
             role="menuitem"
-            aria-current={pathname.startsWith("/services") ? "page" : undefined}
+            aria-current={pathname === "/contact" ? "page" : undefined}
           >
-            Services
+            Contact
           </Link>
           <Link
-            href="/blog"
-            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isBlogPage
+            href="/hire"
+            className={`px-3 py-2 transition-all rounded-sm whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${pathname.startsWith("/hire")
               ? "text-orange-600 font-semibold bg-orange-50"
               : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
               }`}
             role="menuitem"
-            aria-current={isBlogPage ? "page" : undefined}
+            aria-current={pathname.startsWith("/hire") ? "page" : undefined}
           >
-            Blog
+            Hire Me
           </Link>
           <Link
             href="/audit"
