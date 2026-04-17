@@ -135,7 +135,7 @@ export function ServiceBuilder() {
     e.preventDefault();
     setStatus("sending");
 
-    const accessKey = "4b1bc50d-dffc-462f-9da4-564f12322121";
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "4b1bc50d-dffc-462f-9da4-564f12322121";
 
     try {
       const projectTypes = formData.selectedServices
