@@ -68,7 +68,7 @@ ${performance ? `Performance: ${performance}` : ""}
 ${seo ? `SEO: ${seo}` : ""}`;
 
     // Server-only env var. Fall back to legacy NEXT_PUBLIC_ name during transition.
-    const webhookKey = process.env.WEB3FORMS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    const webhookKey = process.env.WEB3FORMS_KEY || process.env.WEB3FORMS_KEY;
 
     if (!webhookKey) {
       console.error("[lead] WEB3FORMS_KEY not configured; cannot send email.");

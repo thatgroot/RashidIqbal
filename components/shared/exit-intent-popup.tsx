@@ -14,36 +14,26 @@ export function ExitIntentPopup() {
     setIsOpen(false);
     try {
       localStorage.setItem("exit-popup-dismissed", "true");
-    } catch {}
+    } catch { }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim() || !url.trim()) return;
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (accessKey) {
-      try {
-        await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            access_key: accessKey,
-            to: "rashidiqbal.freelance@gmail.com",
-            subject: `New Audit Request: ${url.trim()}`,
-            from_name: "Aestho",
-            email: email.trim(),
-            replyto: email.trim(),
-            message: `New audit request.\n\nEmail: ${email.trim()}\nWebsite: ${url.trim()}`,
-            botcheck: "",
-          }),
-        });
-      } catch (err) {
-        console.error("[ExitIntent] Submit failed:", err);
-      }
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          website: url.trim(),
+          subject: `New Audit Request: ${url.trim()}`,
+          source: "exit-intent"
+        }),
+      });
+    } catch (err) {
+      console.error("[ExitIntent] Submit failed:", err);
     }
 
     setSubmitted(true);
@@ -66,7 +56,7 @@ export function ExitIntentPopup() {
     try {
       if (localStorage.getItem("exit-popup-dismissed")) return;
       if (sessionStorage.getItem("exit-popup-shown")) return;
-    } catch {}
+    } catch { }
 
     let activated = false;
     const activationDelay = setTimeout(() => {
@@ -79,7 +69,7 @@ export function ExitIntentPopup() {
         setIsOpen(true);
         try {
           sessionStorage.setItem("exit-popup-shown", "true");
-        } catch {}
+        } catch { }
         document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
       }
     }

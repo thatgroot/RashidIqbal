@@ -135,55 +135,34 @@ export function ServiceBuilder() {
     e.preventDefault();
     setStatus("sending");
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "4b1bc50d-dffc-462f-9da4-564f12322121";
-
     try {
       const projectTypes = formData.selectedServices
         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
         .join(", ");
 
-      const messageContent = `New project inquiry from ${formData.name}.
-
-Name: ${formData.name}
-Email: ${formData.email}
-Website: ${formData.website || "N/A"}
-Location: ${formData.location || "N/A"}
-Services: ${projectTypes}
-${formData.pageCount ? `Approximate Pages: ${formData.pageCount}\n` : ""}Budget: ${formData.budget}
-Timeline: ${formData.timeline}
-
-Description:
-${formData.description}`;
-
-      // Build FormData manually to include all multi-step state values
-      const submitData = new FormData();
-      submitData.append("access_key", accessKey);
-      submitData.append("name", formData.name);
-      submitData.append("email", formData.email);
-      submitData.append("location", formData.location);
-      if (formData.pageCount) submitData.append("page_count", formData.pageCount);
-      submitData.append("subject", `New Inquiry: ${projectTypes} from ${formData.name}`);
-      submitData.append("from_name", "Aestho");
-      submitData.append("message", messageContent);
-      
-      // Use the provided recipient email
-      submitData.append("to", "rashidiqbal.framer@gmail.com");
-      
-      // CC the client for better conversion and record-keeping
-      submitData.append("cc", formData.email);
-      
-      // Honeypot
-      submitData.append("botcheck", "");
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: submitData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          website: formData.website,
+          location: formData.location,
+          pageCount: formData.pageCount,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          description: formData.description,
+          services: projectTypes,
+          subject: `New Inquiry: ${projectTypes} from ${formData.name}`,
+          cc: formData.email,
+          source: "service-builder"
+        }),
       });
 
-      const body = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
+      const body = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
 
       if (!res.ok || body.success === false) {
-        console.error("[ServiceBuilder] Web3Forms error:", res.status, body);
+        console.error("[ServiceBuilder] API error:", res.status, body);
         setStatus("error");
         return;
       }

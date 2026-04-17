@@ -9,7 +9,7 @@ Everything below requires your hands, a browser, and some hustle. The code side 
 ### Set Up Environment Variables on Vercel
 Go to vercel.com > your project > Settings > Environment Variables. Add these:
 ```
-NEXT_PUBLIC_WEB3FORMS_KEY=4b1bc50d-dffc-462f-9da4-564f12322121
+WEB3FORMS_KEY=4b1bc50d-dffc-462f-9da4-564f12322121
 NEXT_PUBLIC_TIDIO_KEY=<get from tidio.com after signup>
 NEXT_PUBLIC_SENJA_WIDGET_ID=<get from senja.io after signup>
 GOOGLE_PSI_API_KEY=<get from console.cloud.google.com, enable PageSpeed Insights API>
