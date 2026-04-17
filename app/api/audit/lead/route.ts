@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// Where inquiry/lead emails should land
+const RECIPIENT_EMAIL = "rashidiqbal.framer@gmail.com";
+
 // Rate limiting for lead submissions
 const leadRateMap = new Map<string, { count: number; timestamp: number }>();
 const LEAD_RATE_LIMIT = 5;
@@ -64,27 +67,50 @@ Website: ${url}
 ${performance ? `Performance: ${performance}` : ""}
 ${seo ? `SEO: ${seo}` : ""}`;
 
-    // Send lead to Web3Forms
-    const webhookKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    // Server-only env var. Fall back to legacy NEXT_PUBLIC_ name during transition.
+    const webhookKey = process.env.WEB3FORMS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
-    if (webhookKey) {
-      await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: webhookKey,
-          subject: isInquiryForm
-            ? `New Inquiry: ${projectType} from ${name}`
-            : `New Audit Request: ${url}`,
-          from_name: "Aestho",
-          email,
-          message: message.trim(),
-        }),
-      });
+    if (!webhookKey) {
+      console.error("[lead] WEB3FORMS_KEY not configured; cannot send email.");
+      return NextResponse.json(
+        { error: "Email delivery not configured on the server." },
+        { status: 500 }
+      );
+    }
+
+    // Send lead to Web3Forms
+    // `to` overrides the default account recipient. The target address must be
+    // verified in the Web3Forms dashboard for this access key; if not verified,
+    // Web3Forms falls back to the account's primary email.
+    const w3Res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: webhookKey,
+        to: RECIPIENT_EMAIL,
+        subject: isInquiryForm
+          ? `New Inquiry: ${projectType} from ${name}`
+          : `New Audit Request: ${url}`,
+        from_name: "Aestho",
+        email,
+        replyto: email,
+        message: message.trim(),
+      }),
+    });
+
+    const w3Body = await w3Res.json().catch(() => ({}));
+
+    if (!w3Res.ok || w3Body?.success === false) {
+      console.error("[lead] Web3Forms returned an error:", w3Res.status, w3Body);
+      return NextResponse.json(
+        { error: "Failed to deliver the message. Please email directly." },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("[lead] Unexpected error:", err);
     return NextResponse.json({ error: "Failed to send. Try again." }, { status: 500 });
   }
 }

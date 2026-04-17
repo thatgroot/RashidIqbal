@@ -1,19 +1,19 @@
 import { Metadata } from "next";
-import { HeroV2 as Hero } from "@/components/v2/hero";
-import { NavbarV2 as Navbar } from "@/components/v2/navbar";
-import { ServicesGridV2 as ServicesGrid } from "@/components/v2/services-grid";
-import { TrustedByV2 as TrustedBy } from "@/components/v2/trusted-by";
-import { CaseStudies } from "@/components/v2/case-studies";
-import { AboutSection } from "@/components/v2/about-section";
-import { ProcessV2 as Process } from "@/components/v2/process";
-import { TestimonialsV2 as Testimonials } from "@/components/v2/testimonials";
-import { PricingV2 as Pricing } from "@/components/v2/pricing";
-import { FAQV2 as FAQ } from "@/components/v2/faq";
-import { CTASectionV2 as CTASection } from "@/components/v2/cta";
-import { FooterV2 as Footer } from "@/components/v2/footer";
-import { SectionSpacer } from "@/components/section-spacer";
-import { ScrollCTA } from "@/components/v2/scroll-cta";
-import { AvailabilityBadge } from "@/components/v2/availability-badge";
+import { Hero } from "@/components/landing/hero";
+import { Navbar } from "@/components/layout/navbar";
+import { ServicesGrid } from "@/components/landing/services-grid";
+import { TrustedBy } from "@/components/landing/trusted-by";
+import { CaseStudies } from "@/components/landing/case-studies";
+import { AboutSection } from "@/components/landing/about-section";
+import { ValueProp } from "@/components/landing/value-prop";
+import { Testimonials } from "@/components/landing/testimonials";
+import { Pricing } from "@/components/landing/pricing";
+import { FAQ } from "@/components/landing/faq";
+import { CTASection } from "@/components/landing/cta";
+import { Footer } from "@/components/layout/footer";
+import { SectionSpacer } from "@/components/shared/section-spacer";
+import { ScrollCTA } from "@/components/shared/scroll-cta";
+import { AvailabilityBadge } from "@/components/shared/availability-badge";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal — Figma & Framer Expert",
+        alt: "Rashid Iqbal. Figma & Framer Expert",
         type: "image/png",
       },
     ],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal — Figma & Framer Expert",
+        alt: "Rashid Iqbal. Figma & Framer Expert",
       },
     ],
   },
@@ -79,8 +79,12 @@ export default function Page() {
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/2 rounded-full blur-3xl" />
         </div>
 
-        <Navbar />
+        <Navbar variant="homepage" />
+        {/* HOOK */}
         <Hero />
+        {/* VALUE PROP */}
+        <ValueProp />
+        {/* CREDIBILITY: trust strip + proof via case studies + about */}
         <TrustedBy />
         <SectionSpacer />
         <CaseStudies />
@@ -88,8 +92,6 @@ export default function Page() {
         <ServicesGrid />
         <SectionSpacer />
         <AboutSection />
-        <SectionSpacer />
-        <Process />
         <SectionSpacer />
         <Testimonials />
         <SectionSpacer />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { ProjectCounter } from "./project-counter";
 
 const brands = [
@@ -19,9 +19,9 @@ const brands = [
   { name: "Ask Dialog", highlight: false },
 ];
 
-export function TrustedByV2() {
+export function TrustedBy() {
   return (
-    <section className="bg-zinc-50/50">
+    <section id="work" className="bg-zinc-50/50 scroll-mt-16">
       <div className="max-w-container border-x border-zinc-100">
         <GridContainer>
           <GridItem className="py-6 md:py-8" padding={false}>
@@ -30,7 +30,7 @@ export function TrustedByV2() {
               <div className="flex items-center gap-2 shrink-0">
                 <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
                 <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
-                  Trusted by 50+ companies
+                  Shipped for YC startups &amp; indie creators
                 </p>
               </div>
 

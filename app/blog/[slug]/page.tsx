@@ -2,12 +2,11 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getPostBySlug, getPostSlugs, getRelatedPosts, BlogPost } from "@/lib/blog";
-import { NavbarV2 as Navbar } from "@/components/v2/navbar";
-import { FooterV2 as Footer } from "@/components/v2/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
-import { RelatedServices } from "@/components/seo/internal-links";
-import { GridContainer, GridItem } from "@/components/v2/grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from "lucide-react";
 import { SiX, SiLinkedin } from "react-icons/si";
@@ -318,10 +317,6 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </div>
                 </div>
 
-                {/* Related Services */}
-                <div className="pt-10 mt-10 border-t border-zinc-100">
-                  <RelatedServices className="bg-zinc-50/50" />
-                </div>
               </div>
 
               {/* Sidebar */}

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 
 const reviews = [
   {
@@ -22,7 +22,7 @@ const reviews = [
   },
 ];
 
-export function TestimonialsV2() {
+export function Testimonials() {
   return (
     <section className="bg-white" id="testimonials">
       <div className="max-w-container border-l border-zinc-100">
@@ -35,11 +35,11 @@ export function TestimonialsV2() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
-                What Clients Say.
+              <h2 className="text-4xl font-semibold text-zinc-900 mb-6 leading-[1.1]">
+                From the founders who hired me.
               </h2>
               <p className="text-lg text-zinc-500">
-                Real feedback from founders and teams I&apos;ve worked with.
+                Named people. Real companies. Live sites you can visit.
               </p>
             </motion.div>
           </GridItem>
@@ -128,7 +128,7 @@ export function TestimonialsV2() {
           ))}
         </GridContainer>
 
-        {/* Upwork Reviews Link */}
+        {/* Aggregate proof */}
         <GridContainer>
           <GridItem className="py-6 text-center">
             <a
@@ -137,7 +137,7 @@ export function TestimonialsV2() {
               rel="noopener noreferrer"
               className="text-sm text-zinc-500 hover:text-orange-500 transition-colors"
             >
-              Read more reviews on Upwork (4.9/5 from 30+ projects) &rarr;
+              Rated 4.9 on Upwork across 30+ reviews &rarr;
             </a>
           </GridItem>
         </GridContainer>

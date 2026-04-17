@@ -1,15 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { SERVICES, LOCATIONS } from "@/lib/seo-data";
 import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 
-export function FooterV2() {
+export function Footer() {
   return (
     <footer className="bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-4">
@@ -30,44 +29,6 @@ export function FooterV2() {
             </a>
           </div>
 
-          {/* Services */}
-          <div>
-            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
-              Services
-            </p>
-            <ul className="space-y-3">
-              {SERVICES.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
-                  >
-                    {service.shortTitle}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Locations */}
-          <div>
-            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
-              Locations
-            </p>
-            <ul className="space-y-3">
-              {LOCATIONS.map((location) => (
-                <li key={location.slug}>
-                  <Link
-                    href={`/hire/${location.slug}`}
-                    className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
-                  >
-                    {location.country}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Pages */}
           <div>
             <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
@@ -76,10 +37,10 @@ export function FooterV2() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/work"
+                  href="/"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Portfolio
+                  Home
                 </Link>
               </li>
               <li>
@@ -92,18 +53,10 @@ export function FooterV2() {
               </li>
               <li>
                 <Link
-                  href="/hire"
+                  href="/contact"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Hire Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/audit"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
-                >
-                  Free Audit
+                  Contact
                 </Link>
               </li>
               <li>
@@ -165,12 +118,12 @@ export function FooterV2() {
               </li>
               <li>
                 <Link
-                  href="https://contra.com/rashidiqbal"
+                  href={SOCIAL_LINKS.upwork}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Contra
+                  Upwork
                 </Link>
               </li>
             </ul>
@@ -185,28 +138,22 @@ export function FooterV2() {
             </p>
             <div className="flex items-center gap-6">
               <Link
-                href="/services"
-                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                href="/work"
-                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
-              >
-                Portfolio
-              </Link>
-              <Link
                 href="/blog"
                 className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
               >
                 Blog
               </Link>
               <Link
-                href="/partners"
+                href="/contact"
                 className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
               >
-                For Agencies
+                Contact
+              </Link>
+              <Link
+                href="/links"
+                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
+              >
+                Links
               </Link>
             </div>
           </div>

@@ -18,8 +18,8 @@ const AI_SEARCH_CRAWLERS = [
   'Applebot-Extended', // Apple Intelligence
 ];
 
-const aiCrawlerAllow = ['/', '/blog/', '/work/', '/services/', '/hire/', '/developer/', '/llms.txt', '/llms-full.txt', '/api/llms-context', '/api/oembed'];
-const aiCrawlerDisallow = ['/_next/', '/api/og', '/api/audit'];
+const aiCrawlerAllow = ['/', '/blog/', '/contact', '/links', '/llms.txt', '/llms-full.txt', '/api/llms-context', '/api/oembed'];
+const aiCrawlerDisallow = ['/_next/', '/api/og'];
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -28,7 +28,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/_next/', '/api/og', '/api/audit'],
+        disallow: ['/_next/', '/api/og'],
       },
       // All AI search crawlers get full access
       ...AI_SEARCH_CRAWLERS.map((bot) => ({

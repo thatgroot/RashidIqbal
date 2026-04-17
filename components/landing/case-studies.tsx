@@ -1,34 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { ArrowUpRight } from "lucide-react";
 
 const cases = [
   {
     client: "Composio",
-    problem: "AI agent infrastructure platform needed a site that explains a complex developer product clearly and converts visitors into signups.",
-    solution: "Designed the full marketing site in Figma with clear product messaging for their three offerings (MCP tools, Platform SDK, CLI). Built on Framer with developer-focused UX.",
-    result: "Clean product positioning across 3 product lines",
-    detail: "YC-backed platform connecting AI agents to 1,000+ apps. Used by teams building with Claude, Cursor, and OpenAI.",
+    problem: "Complex AI agent infrastructure needed to feel simple enough for developers to sign up on first visit.",
+    solution: "Designed the full site in Figma with tight product messaging across three offerings. Built on Framer.",
+    result: "Clean positioning across 3 product lines",
+    detail: "YC-backed platform connecting AI agents to 1,000+ apps.",
     link: "https://composio.dev",
     tags: ["Figma", "Framer", "DevTools"],
   },
   {
     client: "Crezco",
-    problem: "FCA-regulated embedded payments API needed a marketing site that makes complex fintech feel simple and builds trust with enterprise prospects.",
-    solution: "Designed the full site in Figma with copy that translates technical payment infrastructure into clear business benefits. Built on Framer with product demo sections.",
+    problem: "FCA-regulated payments API needed a site that made complex fintech feel simple and trustworthy.",
+    solution: "Wrote copy that translates payment infrastructure into clear business benefits. Built on Framer with product demos.",
     result: "Sales team confident sending prospects to the site",
-    detail: "UK-regulated Electronic Money Institution. Their API lets platforms embed payables so users move money without leaving the product.",
+    detail: "UK-regulated Electronic Money Institution with embedded payables.",
     link: "https://www.crezco.com",
     tags: ["Figma", "Framer", "Fintech"],
   },
   {
     client: "Vanos AI",
-    problem: "Enterprise voice AI startup needed a site that showcases sub-200ms voice agents for government, defense, and healthcare clients.",
-    solution: "Designed a high-fidelity platform showcase in Figma. Built on Framer with sections for their V2V (voice-to-voice) and V2A (voice-to-action) products.",
+    problem: "Enterprise voice AI startup needed a site for government, defense, and healthcare buyers.",
+    solution: "Designed a high-fidelity platform showcase in Figma. Built on Framer with V2V and V2A sections.",
     result: "Enterprise-grade site that secured early leads",
-    detail: "San Francisco-based voice AI company building agents for mission-critical enterprise workflows with compliance and audit trails.",
+    detail: "San Francisco voice AI company for mission-critical workflows.",
     link: "https://vanos.ai",
     tags: ["Figma", "Framer", "AI / Enterprise"],
   },
@@ -47,11 +47,11 @@ export function CaseStudies() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
-                Real Projects. Real Results.
+              <h2 className="text-4xl font-semibold text-zinc-900 mb-6 leading-[1.1]">
+                Proof, not pitches.
               </h2>
               <p className="text-lg text-zinc-500">
-                Not mockups. Not concepts. These are live sites I designed, wrote the copy for, and built. Here&apos;s what happened.
+                Three live sites I designed, wrote the copy for, and built. Click through and see the work yourself.
               </p>
             </motion.div>
           </GridItem>

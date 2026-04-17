@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { NavbarV2 as Navbar } from "@/components/v2/navbar";
-import { FooterV2 as Footer } from "@/components/v2/footer";
-import { ServiceBuilder } from "@/components/v2/service-builder";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { ServiceBuilder } from "@/components/shared/service-builder";
 import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 import { Mail, Phone, Calendar } from "lucide-react";
 

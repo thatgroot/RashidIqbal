@@ -1,6 +1,6 @@
 "use client";
 
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { Plus, Minus } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,32 +8,20 @@ import { FAQStructuredData } from "@/components/seo/faq-structured-data";
 
 const faqs = [
   {
-    q: "What exactly do you do?",
-    a: "Three things. I design pages in Figma with UX copy and conversion strategy baked in. I build them pixel-perfect in Framer. And I develop standalone Chrome extensions for businesses that need custom browser tools."
+    q: "What does it cost and how long does it take?",
+    a: "Landing pages start at $1,600 and ship in 2 weeks. Multi-page sites with CMS start at $3,500 and ship in 3-5 weeks. Chrome extensions start at $2,500 and run 3-4 weeks. You see progress every week."
   },
   {
-    q: "Do you write the copy too, or just design?",
-    a: "Both. I write the headlines, CTAs, value props, and page flow as part of the Figma design. Good design without good copy doesn't convert."
+    q: "What happens if I am not happy with the design?",
+    a: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction is not right after the first round, I refund your deposit. That has happened once in 53 projects."
   },
   {
-    q: "What kind of Chrome extensions do you build?",
-    a: "Standalone tools for businesses. Productivity extensions, SaaS companion apps, workflow automation tools. If you have an idea for a Chrome extension, I can design, build, and ship it to the Web Store."
-  },
-  {
-    q: "How long does a typical project take?",
-    a: "A 3-4 page Framer site takes about 2 weeks. Larger multi-page sites with CMS run 3-4 weeks. Chrome extensions depend on complexity but usually 2-4 weeks. You see progress every week."
-  },
-  {
-    q: "What if I'm not happy with the design?",
-    a: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction isn't right after the first round, I refund your deposit. That's happened once in 53 projects."
-  },
-  {
-    q: "Do you work with agencies?",
-    a: "Yes. I white-label for several agencies as their Framer department. Your brand on everything, NDA signed before we start. Check aestho.xyz/partners for details."
+    q: "Do you work with my stack (Framer, Webflow, custom)?",
+    a: "Framer is where I ship fastest and what my clients get the most value from. I also work in Webflow and handcoded Next.js when the project calls for it. Tell me what you have and I will tell you honestly if it is a fit."
   }
 ];
 
-export function FAQV2() {
+export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -41,16 +29,16 @@ export function FAQV2() {
       <FAQStructuredData
         faqs={faqs.map(f => ({ question: f.q, answer: f.a }))}
       />
-      <section className="bg-white" id="resources">
+      <section className="bg-white scroll-mt-16" id="faq">
         <div className="max-w-7xl mx-auto border-l border-zinc-100">
           <GridContainer cols={2}  >
             <GridItem className="py-24">
               <div className="max-w-md">
-                <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
-                  Got Questions? <br /> I Have Answers.
+                <h2 className="text-4xl font-semibold text-zinc-900 mb-6 leading-[1.1]">
+                  The three questions founders ask before hiring.
                 </h2>
                 <p className="text-lg text-zinc-500">
-                  Everything you need to know about how we&apos;ll work together.
+                  Straight answers. No marketing fluff.
                 </p>
               </div>
             </GridItem>

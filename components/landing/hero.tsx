@@ -5,7 +5,7 @@ import { ArrowRight, ArrowDown, Users } from "lucide-react";
 
 import { useRef } from "react";
 import Image from "next/image";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 const projectImages = [
@@ -19,7 +19,7 @@ const projectImages = [
     "/work-screenshots/saku-monsters.png",
 ];
 
-export function HeroV2() {
+export function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
 
     // Mouse tracking for lens effect
@@ -123,34 +123,45 @@ export function HeroV2() {
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
                             </motion.div>
 
-                            {/* Headline */}
+                            {/* Frustration hook - question that teases the headline's answer */}
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.15 }}
+                                className="text-base md:text-xl font-bold tracking-tight mb-5"
+                            >
+                                <span className="text-zinc-900">Why is your site</span>{" "}
+                                <span className="text-orange-600">not converting?</span>
+                            </motion.p>
+
+                            {/* Answer headline - 7 words, completes the question with a concrete diagnosis */}
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                className="text-3xl md:text-4xl lg:text-6xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[0.9]"
+                                className="text-3xl md:text-4xl lg:text-6xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[1.1] pb-1"
                             >
-                                I&apos;ve Built 53 <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900">Framer Sites.</span> <br />
-                                <span className="text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600">They Convert.</span>
+                                <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900 pb-1">Because your page</span>{" "}
+                                <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900 pb-1">isn&rsquo;t built to</span>{" "}
+                                <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600 pb-1">sell.</span>
                             </motion.h1>
 
-                            {/* Description - Improved copy */}
+                            {/* Sub-heading - what the buyer gets, not which tools I use */}
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
                             >
-                                Figma design with conversion copy. Framer builds in 2 weeks. Chrome extensions that ship to the Web Store. Working with <span className="font-semibold text-zinc-900">startups and brands since 2019</span>.
+                                I audit what is losing you visitors, rewrite the copy, and rebuild the page around conversion. <span className="font-semibold text-zinc-900">Measurable lift in two weeks.</span>
                             </motion.p>
 
-                            {/* CTA - Improved hierarchy */}
+                            {/* Single CTA - one offer, one action */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
-                                className="flex flex-row items-center gap-3 sm:gap-4 mb-8"
+                                className="flex flex-col items-center gap-3 mb-8"
                             >
                                 <a
                                     href={SOCIAL_LINKS.calcom}
@@ -158,30 +169,40 @@ export function HeroV2() {
                                     rel="noopener noreferrer"
                                     className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
                                 >
-                                    Book a Strategy Call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                                    Book my strategy call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                 </a>
                                 <a
-                                    href="/work"
-                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-white border border-zinc-200 text-zinc-700 text-sm font-bold hover:border-zinc-900 hover:text-zinc-900 transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+                                    href="#work"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const el = document.getElementById("work");
+                                        if (el) {
+                                            const offset = 64;
+                                            const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                                            window.scrollTo({ top: pos, behavior: "smooth" });
+                                        }
+                                    }}
+                                    className="text-sm text-zinc-500 hover:text-orange-600 transition-colors underline underline-offset-4 decoration-zinc-300 hover:decoration-orange-400"
                                 >
-                                    View Portfolio
+                                    See recent work
                                 </a>
                             </motion.div>
 
-                            {/* Social Proof - Above fold */}
+                            {/* Distributed trust band - answers "can I trust it?" next to the CTA */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="flex items-center gap-3 text-sm text-zinc-500"
+                                className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-zinc-500"
                             >
                                 <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-50 border border-zinc-100 rounded-full">
                                     <Users className="w-4 h-4 text-zinc-600" aria-hidden="true" />
-                                    <span className="font-medium text-zinc-700">53 projects</span>
-                                    <span>shipped</span>
+                                    <span className="font-medium text-zinc-700">53 projects shipped</span>
                                 </div>
-                                <span className="hidden sm:inline">•</span>
-                                <span className="hidden sm:inline">Avg. 2.4x conversion improvement</span>
+                                <span className="hidden sm:inline text-zinc-300">•</span>
+                                <span className="hidden sm:inline">Avg. 2.4x conversion lift</span>
+                                <span className="hidden sm:inline text-zinc-300">•</span>
+                                <span className="hidden sm:inline">Certified Framer Expert</span>
                             </motion.div>
 
                             {/* Scroll Indicator */}

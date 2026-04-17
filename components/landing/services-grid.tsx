@@ -1,33 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { Figma, Chrome, Layout } from "lucide-react";
 
 const services = [
     {
         title: "Figma Design + UX Copy",
-        desc: "I design your pages in Figma and write the UX copy that makes people act. Headlines, CTAs, page flow, microcopy. Every layout decision is tied to a conversion goal.",
+        desc: "Pages designed in Figma with headlines, CTAs, and microcopy tied to a conversion goal.",
         icon: Figma,
-        stat: "Designing since 2019"
+        expertise: "7+ years. 100+ interfaces designed."
     },
     {
         title: "Framer Development",
-        desc: "Pixel-perfect Framer builds from your Figma design. Your team can update content without touching code. Fast, responsive, SEO-ready.",
+        desc: "Pixel-perfect Framer builds from your Figma design. Fast, responsive, and your team can update content without code.",
         icon: Layout,
-        stat: "53 sites shipped"
+        expertise: "Certified Framer Expert. 53 sites shipped."
     },
     {
         title: "Chrome Extensions",
-        desc: "Standalone Chrome extensions built from scratch. Whether it's a productivity tool, a SaaS companion, or a workflow automation, I design and ship it to the Chrome Web Store.",
+        desc: "Standalone Chrome extensions built from scratch. Productivity tools, SaaS companions, workflow automations.",
         icon: Chrome,
-        stat: "Published on Web Store"
+        expertise: "Published on the Chrome Web Store."
     }
 ];
 
-export function ServicesGridV2() {
+export function ServicesGrid() {
     return (
-        <section className="bg-white" id="services">
+        <section className="bg-white scroll-mt-16" id="services">
             <div className="max-w-7xl mx-auto border-l border-zinc-100">
                 <GridContainer  >
                     <GridItem className="py-24">
@@ -38,11 +38,11 @@ export function ServicesGridV2() {
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6 }}
                         >
-                            <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
-                                Three Things I Do Really Well.
+                            <h2 className="text-4xl font-semibold text-zinc-900 mb-6 leading-[1.1]">
+                                Everything your page needs, from one person.
                             </h2>
                             <p className="text-lg text-zinc-500 leading-relaxed">
-                                Figma design with UX copy and CRO baked in. Framer builds that are fast, responsive, and your team can manage. And Chrome extensions that solve real business problems.
+                                Designer, copywriter, and developer. Same person. No agency telephone game.
                             </p>
                         </motion.div>
                     </GridItem>
@@ -99,8 +99,8 @@ export function ServicesGridV2() {
                                             visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
                                         }}
                                     >
-                                        <span className="text-xs font-mono text-zinc-500 uppercase">Metric</span>
-                                        <span className="text-xs font-bold text-zinc-900">{service.stat}</span>
+                                        <span className="text-xs font-mono text-zinc-500 uppercase">Proof</span>
+                                        <span className="text-xs font-bold text-zinc-900">{service.expertise}</span>
                                     </motion.div>
                                 </article>
                             </GridItem>

@@ -131,28 +131,62 @@ export function ServiceBuilder() {
     e.preventDefault();
     setStatus("sending");
 
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      console.error("[ServiceBuilder] NEXT_PUBLIC_WEB3FORMS_KEY is not set.");
+      setStatus("error");
+      return;
+    }
+
     try {
       const projectTypes = formData.selectedServices
-        .map(slug => AVAILABLE_SERVICES.find(s => s.slug === slug)?.name || slug)
+        .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
         .join(", ");
 
-      await fetch("/api/audit/lead", {
+      const message = `New project inquiry from ${formData.name}.
+
+Name: ${formData.name}
+Email: ${formData.email}
+Website: ${formData.website || "N/A"}
+Project Type: ${projectTypes}
+Budget: ${formData.budget}
+Timeline: ${formData.timeline}
+
+Description:
+${formData.description}`;
+
+      // Submit directly from the browser. Web3Forms' free tier blocks
+      // server-originated requests; client-side is the intended pattern.
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
+          access_key: accessKey,
+          to: "rashidiqbal.framer@gmail.com",
+          subject: `New Inquiry: ${projectTypes} from ${formData.name}`,
+          from_name: "Aestho",
           email: formData.email,
-          url: formData.website || "N/A",
-          scores: {
-            name: formData.name,
-            projectType: projectTypes,
-            budget: formData.budget,
-            timeline: formData.timeline,
-            description: formData.description,
-          },
+          replyto: formData.email,
+          message,
+          // Honeypot (empty = human). Web3Forms drops the submission if filled.
+          botcheck: "",
         }),
       });
+
+      const body = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
+
+      if (!res.ok || body.success === false) {
+        console.error("[ServiceBuilder] Web3Forms error:", res.status, body);
+        setStatus("error");
+        return;
+      }
+
       setStatus("sent");
-    } catch {
+    } catch (err) {
+      console.error("[ServiceBuilder] Submit failed:", err);
       setStatus("error");
     }
   }

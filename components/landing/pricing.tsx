@@ -1,7 +1,7 @@
 "use client";
 
 import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { Check, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,13 +12,13 @@ import Image from "next/image";
 
 import { ONE_TIME_PLANS, RETAINER_PLANS } from "@/lib/pricing-data";
 
-export function PricingV2() {
+export function Pricing() {
     const [openPlan, setOpenPlan] = useState<number | null>(null);
     const [mode, setMode] = useState<"one-time" | "retainer">("one-time");
     const plans = mode === "one-time" ? ONE_TIME_PLANS : RETAINER_PLANS;
 
     return (
-        <section className="bg-white" id="pricing">
+        <section className="bg-white scroll-mt-16" id="pricing">
             <div className="max-w-container border-l border-zinc-100">
                 {/* Header with Inline Selector */}
                 <GridContainer>
@@ -30,11 +30,11 @@ export function PricingV2() {
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6 }}
                         >
-                            <h2 className="text-4xl md:text-5xl font-semibold text-zinc-900 mb-6 tracking-tight">
-                                Simple, Transparent Pricing
+                            <h2 className="text-4xl md:text-5xl font-semibold text-zinc-900 mb-6 tracking-tight leading-[1.1]">
+                                What it costs to get a website that actually works.
                             </h2>
                             <p className="text-lg text-zinc-500 mb-8">
-                                No hourly billing. No hidden fees. Just high-quality results delivered on time.
+                                This pricing gives you an idea. Your final cost depends on your specific requirements.
                             </p>
 
                             {/* Pricing Mode Toggle */}
@@ -62,7 +62,7 @@ export function PricingV2() {
                             </div>
 
                             <p className="text-xs text-zinc-400 mt-4">
-                                No contracts. No lock-in. Cancel retainers anytime. Money-back guarantee if you&apos;re not happy with the design direction.
+                                No contracts. Cancel retainers anytime. Money-back on the first design round.
                             </p>
                             <p className="text-xs text-orange-600 font-medium mt-2">
                                 Currently accepting 2 new projects this month.

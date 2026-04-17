@@ -1,15 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GridContainer, GridItem } from "./grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { SOCIAL_LINKS } from "@/lib/constants";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 const credentials = [
   { label: "Certified Framer Expert", link: "https://www.framer.com/@rashidiqbal" },
-  { label: "Upwork Top Rated", link: SOCIAL_LINKS.upwork },
-  { label: "53 Projects Shipped", link: "/work" },
+  { label: "Upwork Top Rated (4.9 / 5)", link: SOCIAL_LINKS.upwork },
+  { label: "53 Projects Shipped", link: SOCIAL_LINKS.upwork },
 ];
 
 const profiles = [
@@ -24,8 +24,33 @@ export function AboutSection() {
   return (
     <section className="bg-white" id="about">
       <div className="max-w-container border-l border-zinc-100">
+        {/* Credibility headline stat - answers "is this person credible?" at a glance */}
+        <GridContainer>
+          <GridItem className="py-10 bg-zinc-50/40" padding={false}>
+            <div className="px-8 sm:px-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+              <div>
+                <span className="text-[10px] font-mono text-orange-600 uppercase tracking-[0.2em] block mb-3">
+                  Credibility
+                </span>
+                <p className="text-2xl md:text-3xl font-semibold text-zinc-900 leading-tight max-w-3xl">
+                  Across <span className="text-orange-600">53 projects</span>, clients report an average <span className="text-orange-600">2.4x conversion lift</span> and rate the work <span className="text-orange-600">4.9 / 5</span> on Upwork.
+                </p>
+              </div>
+              <a
+                href={SOCIAL_LINKS.upwork}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-orange-600 transition-colors whitespace-nowrap"
+              >
+                Verify on Upwork
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
+          </GridItem>
+        </GridContainer>
+
         <GridContainer cols={2}>
-          {/* Left: Bio */}
+          {/* Left: Who + What + How (Bio) */}
           <GridItem className="py-24">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -33,8 +58,9 @@ export function AboutSection() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
+              {/* Who? */}
               <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mb-6 block">
-                Who&apos;s Behind This
+                Who
               </span>
 
               <div className="flex items-center gap-4 mb-6">
@@ -49,24 +75,41 @@ export function AboutSection() {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold text-zinc-900">Rashid Iqbal</h2>
-                  <p className="text-sm text-zinc-500">Figma &amp; Framer Expert</p>
+                  <p className="text-sm text-zinc-500">Figma &amp; Framer Expert, since 2019</p>
                 </div>
               </div>
 
-              <p className="text-zinc-600 leading-relaxed mb-6">
-                I&apos;ve been building conversion-focused websites since 2019. 53 projects
-                shipped for clients across 12 countries. I design in Figma, write the UX copy,
-                and build pixel-perfect in Framer. I also develop Chrome extensions for
-                businesses that need custom browser tools.
-              </p>
-
+              {/* What? */}
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                What
+              </span>
               <p className="text-zinc-600 leading-relaxed mb-8">
-                Based in Pakistan, working remotely with startups and brands worldwide.
-                Most of my clients are in the US, UK, Australia, and Europe. I respond
-                within 24 hours and ship on time.
+                I design in Figma, write the UX copy, and build in Framer. I also ship Chrome extensions for teams that need custom browser tools. 53 projects for clients in 12 countries.
               </p>
 
-              {/* Verify me */}
+              {/* How I work - methodology */}
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                How
+              </span>
+              <ul className="space-y-2.5 text-sm text-zinc-700 mb-8">
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2 shrink-0" />
+                  <span>Copy first. Design after. Most people do it backwards.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2 shrink-0" />
+                  <span>Figma to Framer in two weeks, not two months.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 mt-2 shrink-0" />
+                  <span>GA4, heatmaps, and conversion tracking on every launch.</span>
+                </li>
+              </ul>
+
+              {/* Verify me (research-backed profiles) */}
+              <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mb-3 block">
+                Verify
+              </span>
               <div className="flex flex-wrap gap-3">
                 {profiles.map((p, i) => (
                   <a
@@ -84,7 +127,7 @@ export function AboutSection() {
             </motion.div>
           </GridItem>
 
-          {/* Right: Credentials */}
+          {/* Right: Research / Credentials / Proof */}
           <GridItem className="py-24 bg-zinc-50/30">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -93,7 +136,7 @@ export function AboutSection() {
               transition={{ duration: 0.6, delay: 0.15 }}
             >
               <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mb-8 block">
-                Credentials
+                Research / Proof
               </span>
 
               <div className="space-y-6 mb-10">

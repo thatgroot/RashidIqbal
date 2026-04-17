@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
-import { ExitIntentPopup } from "@/components/v2/exit-intent-popup";
+import { ExitIntentPopup } from "@/components/shared/exit-intent-popup";
 import { OEmbedLinks } from "@/components/seo/oembed-links";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 

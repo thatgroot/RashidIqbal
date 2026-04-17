@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts, getFeaturedPosts, getAllTags } from "@/lib/blog";
-import { NavbarV2 as Navbar } from "@/components/v2/navbar";
-import { FooterV2 as Footer } from "@/components/v2/footer";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
-import { GridContainer, GridItem } from "@/components/v2/grid-system";
+import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
 

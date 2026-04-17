@@ -21,13 +21,30 @@ export function ExitIntentPopup() {
     e.preventDefault();
     if (!email.trim() || !url.trim()) return;
 
-    try {
-      await fetch("/api/audit/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), url: url.trim(), scores: null }),
-      });
-    } catch {}
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (accessKey) {
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            to: "rashidiqbal.framer@gmail.com",
+            subject: `New Audit Request: ${url.trim()}`,
+            from_name: "Aestho",
+            email: email.trim(),
+            replyto: email.trim(),
+            message: `New audit request.\n\nEmail: ${email.trim()}\nWebsite: ${url.trim()}`,
+            botcheck: "",
+          }),
+        });
+      } catch (err) {
+        console.error("[ExitIntent] Submit failed:", err);
+      }
+    }
 
     setSubmitted(true);
     setTimeout(() => handleClose(), 2500);
