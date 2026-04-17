@@ -256,6 +256,7 @@ export function StructuredData() {
           key={index}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          suppressHydrationWarning
         />
       ))}
     </>

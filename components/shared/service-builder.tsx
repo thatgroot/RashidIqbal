@@ -29,6 +29,8 @@ interface ServiceBuilderFormData {
   name: string;
   email: string;
   website: string;
+  location: string;
+  pageCount: string;
   budget: string;
   timeline: string;
   description: string;
@@ -103,6 +105,8 @@ export function ServiceBuilder() {
     name: "",
     email: "",
     website: "",
+    location: "",
+    pageCount: "",
     budget: "",
     timeline: "",
     description: "",
@@ -131,49 +135,49 @@ export function ServiceBuilder() {
     e.preventDefault();
     setStatus("sending");
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (!accessKey) {
-      console.error("[ServiceBuilder] NEXT_PUBLIC_WEB3FORMS_KEY is not set.");
-      setStatus("error");
-      return;
-    }
+    const accessKey = "4b1bc50d-dffc-462f-9da4-564f12322121";
 
     try {
       const projectTypes = formData.selectedServices
         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
         .join(", ");
 
-      const message = `New project inquiry from ${formData.name}.
+      const messageContent = `New project inquiry from ${formData.name}.
 
 Name: ${formData.name}
 Email: ${formData.email}
 Website: ${formData.website || "N/A"}
-Project Type: ${projectTypes}
-Budget: ${formData.budget}
+Location: ${formData.location || "N/A"}
+Services: ${projectTypes}
+${formData.pageCount ? `Approximate Pages: ${formData.pageCount}\n` : ""}Budget: ${formData.budget}
 Timeline: ${formData.timeline}
 
 Description:
 ${formData.description}`;
 
-      // Submit directly from the browser. Web3Forms' free tier blocks
-      // server-originated requests; client-side is the intended pattern.
+      // Build FormData manually to include all multi-step state values
+      const submitData = new FormData();
+      submitData.append("access_key", accessKey);
+      submitData.append("name", formData.name);
+      submitData.append("email", formData.email);
+      submitData.append("location", formData.location);
+      if (formData.pageCount) submitData.append("page_count", formData.pageCount);
+      submitData.append("subject", `New Inquiry: ${projectTypes} from ${formData.name}`);
+      submitData.append("from_name", "Aestho");
+      submitData.append("message", messageContent);
+      
+      // Use the provided recipient email
+      submitData.append("to", "rashidiqbal.framer@gmail.com");
+      
+      // CC the client for better conversion and record-keeping
+      submitData.append("cc", formData.email);
+      
+      // Honeypot
+      submitData.append("botcheck", "");
+
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          to: "rashidiqbal.framer@gmail.com",
-          subject: `New Inquiry: ${projectTypes} from ${formData.name}`,
-          from_name: "Aestho",
-          email: formData.email,
-          replyto: formData.email,
-          message,
-          // Honeypot (empty = human). Web3Forms drops the submission if filled.
-          botcheck: "",
-        }),
+        body: submitData,
       });
 
       const body = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
@@ -404,6 +408,28 @@ ${formData.description}`;
                   ))}
                 </div>
               </div>
+
+              {/* Conditional Field: Number of Pages */}
+              {(formData.selectedServices.includes("multi-page") || formData.selectedServices.includes("website-redesign")) && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="pt-2"
+                >
+                  <label htmlFor="pkg-pages" className="block text-sm font-medium text-zinc-700 mb-2">
+                    Approximate Number of Pages
+                  </label>
+                  <input
+                    id="pkg-pages"
+                    type="text"
+                    required
+                    value={formData.pageCount}
+                    onChange={(e) => setFormData({ ...formData, pageCount: e.target.value })}
+                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 bg-white"
+                    placeholder="e.g. 5-10 pages"
+                  />
+                </motion.div>
+              )}
             </div>
 
             <div className="flex justify-between mt-8">
@@ -416,7 +442,11 @@ ${formData.description}`;
               </button>
               <button
                 type="button"
-                disabled={!formData.budget || !formData.timeline}
+                disabled={
+                  !formData.budget || 
+                  !formData.timeline || 
+                  ((formData.selectedServices.includes("multi-page") || formData.selectedServices.includes("website-redesign")) && !formData.pageCount.trim())
+                }
                 onClick={() => setStep(3)}
                 className="px-6 py-3 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
               >
@@ -476,19 +506,35 @@ ${formData.description}`;
                 </div>
               </div>
 
-              <div>
-                <label htmlFor="pkg-website" className="block text-sm font-medium text-zinc-700 mb-1.5">
-                  Website
-                </label>
-                <input
-                  id="pkg-website"
-                  type="text"
-                  required
-                  value={formData.website}
-                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
-                  placeholder="yourcompany.com"
-                />
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="pkg-website" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                    Website
+                  </label>
+                  <input
+                    id="pkg-website"
+                    type="text"
+                    required
+                    value={formData.website}
+                    onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                    placeholder="yourcompany.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="pkg-location" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                    Location
+                  </label>
+                  <input
+                    id="pkg-location"
+                    type="text"
+                    required
+                    value={formData.location}
+                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                    placeholder="City, Country"
+                  />
+                </div>
               </div>
 
               <div>
