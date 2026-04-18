@@ -5,8 +5,18 @@ import { ArrowRight, ArrowDown, Users } from "lucide-react";
 
 import { useRef } from "react";
 import Image from "next/image";
+import posthog from "posthog-js";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { SOCIAL_LINKS } from "@/lib/constants";
+
+// Read the A/B cohort cookie set by middleware so homepage and LP events
+// can be compared in PostHog by `variant`.
+function readAbVariant(): "A" | "B" {
+    if (typeof document === "undefined") return "A";
+    const match = document.cookie.match(/(?:^|; )ab_home=([^;]*)/);
+    const v = match ? decodeURIComponent(match[1]) : "A";
+    return v === "B" ? "B" : "A";
+}
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -167,6 +177,17 @@ export function Hero() {
                                     href={SOCIAL_LINKS.calcom}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => {
+                                        try {
+                                            posthog.capture("cta_clicked", {
+                                                source: "homepage",
+                                                variant: readAbVariant(),
+                                                cta: "book_strategy_call",
+                                            });
+                                        } catch {
+                                            /* no-op if posthog not ready */
+                                        }
+                                    }}
                                     className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
                                 >
                                     Book my strategy call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />

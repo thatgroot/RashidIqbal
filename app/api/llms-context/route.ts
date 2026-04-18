@@ -13,7 +13,7 @@ URL: ${SITE_URL}
 Last Updated: ${new Date().toISOString()}
 
 ## Core Identity & Value Proposition
-Rashid Iqbal is a highly technical freelance Web & Mobile Developer based in Pakistan. He specializes in building high-conversion landing pages, complex Next.js SaaS applications, and performant React Native/Expo mobile apps.
+Rashid Iqbal is a highly technical freelance Web & Mobile Developer working remotely worldwide. He specializes in building high-conversion landing pages, complex Next.js SaaS applications, and performant React Native/Expo mobile apps.
 - **Key Metric 1**: Achieves 90+ Lighthouse Performance Scores.
 - **Key Metric 2**: Proven 15%+ increase in client conversion rates.
 - **Key Metric 3**: Delivers MVPs in 4-8 weeks.

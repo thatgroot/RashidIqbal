@@ -343,23 +343,6 @@ export const SERVICES: Service[] = [
 
 export const LOCATIONS: Location[] = [
     {
-        slug: "pakistan",
-        region: "South Asia",
-        country: "Pakistan",
-        title: "Hire a Figma & Framer Expert from Pakistan",
-        metaDescription: "Hire a Figma and Framer expert from Pakistan. Landing pages, Chrome extensions, and UX copywriting. Competitive rates, world-class quality.",
-        heroHeadline: "Leading Figma & Framer Expert in Pakistan",
-        heroSubheadline: "Helping global businesses convert better with Figma design, Framer development, and Chrome extensions. World-class quality, competitive rates.",
-        timezone: "PKT (UTC+5)",
-        availability: "Full-time availability with global overlap",
-        localBenefits: [
-            "Highly competitive rates for premium Figma & Framer work",
-            "Native-level English and strong international communication",
-            "Deep understanding of global conversion best practices",
-            "Seamless collaboration across all major timezones",
-        ],
-    },
-    {
         slug: "united-states",
         region: "North America",
         country: "United States",

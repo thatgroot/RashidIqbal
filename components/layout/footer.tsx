@@ -134,7 +134,7 @@ export function Footer() {
         <div className="pt-8 border-t border-zinc-800 flex flex-col gap-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-zinc-400">
-              © {new Date().getFullYear()} Rashid Iqbal. Based in Pakistan, working worldwide.
+              © {new Date().getFullYear()} Rashid Iqbal. Remote, working worldwide.
             </p>
             <div className="flex items-center gap-6">
               <Link

@@ -18,11 +18,6 @@ const schemas = [
     address: {
       "@type": "PostalAddress",
       addressCountry: "PK",
-      addressRegion: "Pakistan",
-    },
-    nationality: {
-      "@type": "Country",
-      name: "Pakistan",
     },
     // Entity disambiguation - connect all profiles
     sameAs: [
@@ -102,7 +97,6 @@ const schemas = [
     address: {
       "@type": "PostalAddress",
       addressCountry: "PK",
-      addressRegion: "Pakistan",
     },
     geo: {
       "@type": "GeoCoordinates",

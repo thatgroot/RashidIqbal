@@ -3,7 +3,7 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 
 export const metadata: Metadata = {
     title: "Links | Rashid Iqbal",
-    description: "Connect with Rashid Iqbal across the web. Freelance Next.js & Framer Developer from Pakistan.",
+    description: "Connect with Rashid Iqbal across the web. Freelance Figma & Framer Expert.",
     alternates: {
         canonical: `${siteUrl}/links`,
     },

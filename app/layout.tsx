@@ -116,9 +116,6 @@ export const metadata: Metadata = {
     'msapplication-TileColor': '#18181b',
     'msapplication-tap-highlight': 'no',
     'mobile-web-app-capable': 'yes',
-    // Geo Tags
-    'geo.region': 'PK',
-    'geo.placename': 'Pakistan',
     // Social Media
     'fb:app_id': '',
     'linkedin:owner': 'rashidiqbal',

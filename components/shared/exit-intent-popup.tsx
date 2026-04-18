@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight } from "lucide-react";
 
 export function ExitIntentPopup() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [url, setUrl] = useState("");
@@ -81,6 +83,11 @@ export function ExitIntentPopup() {
       document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
+
+  // Never show on the stripped A/B landing page — the whole /offer route
+  // is the conversion experience. An exit-intent popup there breaks the
+  // one-offer rule.
+  if (pathname === "/offer") return null;
 
   return (
     <AnimatePresence>
