@@ -73,10 +73,10 @@ export function OfferBanner() {
             >
               <Sparkles className="w-4 h-4 shrink-0 hidden sm:inline" aria-hidden="true" />
               <span>
-                <span className="font-bold">Free 30-min strategy call</span>
+                <span className="font-bold">Free 15-min page audit (worth $497)</span>
                 <span className="hidden sm:inline">
                   {" "}
-                  — I&rsquo;ll tell you exactly what is losing you visitors
+                  — 2 spots left this week
                 </span>
               </span>
               <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
