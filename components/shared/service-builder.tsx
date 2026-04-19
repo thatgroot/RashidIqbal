@@ -171,6 +171,7 @@ ${formData.description || "N/A"}`;
         body: JSON.stringify({
           access_key: accessKey,
           to: "rashid@founderfist.com",
+          cc: formData.email,
           subject: `New Inquiry: ${projectTypes} from ${formData.name || "Client"}`,
           from_name: "Aestho Portfolio",
           email: formData.email,

@@ -36,6 +36,7 @@ export function ExitIntentPopup() {
           body: JSON.stringify({
             access_key: accessKey,
             to: "rashid@founderfist.com",
+            cc: email.trim(),
             subject: `New Audit Request: ${url.trim()}`,
             from_name: "Aestho Portfolio",
             email: email.trim(),

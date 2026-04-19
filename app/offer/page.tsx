@@ -65,6 +65,7 @@ Action: send audit video within 48 hours to ${email.trim()}.`;
         body: JSON.stringify({
           access_key: accessKey,
           to: "rashid@founderfist.com",
+          cc: email.trim(),
           subject: `Free Audit Claim: ${url.trim()}`,
           from_name: "Aestho — Offer LP",
           email: email.trim(),
