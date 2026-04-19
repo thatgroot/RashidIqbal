@@ -40,45 +40,23 @@ export default function OfferPage() {
     e.preventDefault();
     setStatus("sending");
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-    if (!accessKey) {
-      console.error("[offer-lp] NEXT_PUBLIC_WEB3FORMS_KEY is not set.");
-      setStatus("error");
-      return;
-    }
-
     try {
-      const message = `Free audit claim from /offer landing page.
-
-Email: ${email.trim()}
-Website: ${url.trim()}
-Biggest concern: ${concern.trim() || "N/A"}
-
-Action: send audit video within 48 hours to ${email.trim()}.`;
-
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/lead", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: accessKey,
-          to: "rashid@founderfist.com",
-          cc: email.trim(),
-          subject: `Free Audit Claim: ${url.trim()}`,
-          from_name: "Aestho — Offer LP",
+          source: "offer-lp",
           email: email.trim(),
-          replyto: email.trim(),
-          message,
-          botcheck: "",
+          website: url.trim(),
+          concern: concern.trim(),
+          botcheck: "", // honeypot
         }),
       });
 
-      const body = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
+      const body = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
 
       if (!res.ok || body.success === false) {
-        console.error("[offer-lp] Web3Forms error:", res.status, body);
+        console.error("[offer-lp] API error:", res.status, body);
         setStatus("error");
         return;
       }
