@@ -13,7 +13,7 @@ const schemas = [
     image: `${siteUrl}/logo.svg`,
     jobTitle: "Figma & Framer Expert, Chrome Extension Developer",
     description: "Figma and Framer expert who has built 53 websites since 2019. Specializing in high-converting landing pages with UX copywriting, and Chrome extension development.",
-    email: "rashidiqbal.freelance@gmail.com",
+    email: "rashid@founderfist.com",
     telephone: "+923554665643",
     address: {
       "@type": "PostalAddress",
@@ -92,7 +92,7 @@ const schemas = [
     url: siteUrl,
     image: `${siteUrl}/logo.svg`,
     telephone: "+923554665643",
-    email: "rashidiqbal.freelance@gmail.com",
+    email: "rashid@founderfist.com",
     foundingDate: "2019",
     address: {
       "@type": "PostalAddress",
@@ -224,7 +224,7 @@ const schemas = [
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
-      email: "rashidiqbal.freelance@gmail.com",
+      email: "rashid@founderfist.com",
       telephone: "+923554665643",
       availableLanguage: ["English", "Urdu"],
       areaServed: "Worldwide",

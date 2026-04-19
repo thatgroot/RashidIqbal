@@ -416,10 +416,10 @@ export function buildClientEmailHtml(fields: ClientAckFields): string {
             <td style="padding: 22px 32px 10px;">
               <span style="font-family: 'SFMono-Regular', ui-monospace, Menlo, monospace; font-size: 10px; color: #71717a; text-transform: uppercase; letter-spacing: 0.18em;">Recent work</span>
               <p style="margin: 8px 0 0; font-size: 13px; color: #52525b; line-height: 1.7;">
-                <a href="https://composio.dev" style="color: #c2410c; text-decoration: none;">Composio</a> ·
-                <a href="https://www.crezco.com" style="color: #c2410c; text-decoration: none;">Crezco</a> ·
+                <a href="https://update.ai" style="color: #c2410c; text-decoration: none;">UpdateAI</a> ·
                 <a href="https://vanos.ai" style="color: #c2410c; text-decoration: none;">Vanos AI</a> ·
-                <a href="https://update.ai" style="color: #c2410c; text-decoration: none;">UpdateAI</a>
+                <a href="https://leanscale.team" style="color: #c2410c; text-decoration: none;">Leanscale</a> ·
+                <a href="https://founderfist.com" style="color: #c2410c; text-decoration: none;">FounderFist</a>
               </p>
             </td>
           </tr>

@@ -23,9 +23,10 @@ export function Footer() {
             </p>
             <a
               href={`mailto:${AUTHOR.email}`}
-              className="text-orange-500 hover:text-orange-400 transition-colors text-sm"
+              className="inline-flex items-center gap-1.5 text-orange-500 hover:text-orange-400 transition-colors text-sm font-medium"
             >
-              {AUTHOR.email}
+              Email me
+              <span aria-hidden="true">→</span>
             </a>
           </div>
 

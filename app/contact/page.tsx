@@ -54,8 +54,8 @@ export default function ContactPage() {
                                         <Mail className="w-4 h-4 text-zinc-600 group-hover:text-orange-600" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-medium text-zinc-900">{AUTHOR.email}</p>
-                                        <p className="text-xs text-zinc-500">Email directly</p>
+                                        <p className="text-sm font-medium text-zinc-900 group-hover:text-orange-600 transition-colors">Email me</p>
+                                        <p className="text-xs text-zinc-500">Direct to my inbox</p>
                                     </div>
                                 </a>
 

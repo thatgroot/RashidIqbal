@@ -9,7 +9,7 @@ export const SITE_DESCRIPTION = "Figma design, Framer development, and Chrome ex
 
 export const AUTHOR = {
     name: "Rashid Iqbal",
-    email: "rashidiqbal.freelance@gmail.com",
+    email: "rashid@founderfist.com",
     phone: "+923554665643",
     title: "Freelance Web Developer & Designer",
     location: "Remote",
