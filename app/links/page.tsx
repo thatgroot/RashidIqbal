@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Check, Copy } from "lucide-react";
-import { FaGithub, FaLinkedinIn, FaXTwitter, FaBehance, FaWhatsapp } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn, FaXTwitter, FaBehance, FaWhatsapp, FaDribbble } from "react-icons/fa6";
 import { SiUpwork, SiFramer } from "react-icons/si";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -66,6 +66,13 @@ const links = [
     name: "Behance Portfolio",
     url: "https://www.behance.net/thatgroot",
     icon: <FaBehance className="w-4 h-4" />,
+    label: "Design",
+    isExternal: true,
+  },
+  {
+    name: "Dribbble Shots",
+    url: "https://dribbble.com/thatgroot",
+    icon: <FaDribbble className="w-4 h-4" />,
     label: "Design",
     isExternal: true,
   },
