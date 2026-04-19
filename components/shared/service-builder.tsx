@@ -35,6 +35,7 @@ interface ServiceBuilderFormData {
   timeline: string;
   description: string;
   selectedServices: string[];
+  stack: string[];
 }
 
 // ============================================================================
@@ -80,6 +81,17 @@ const AVAILABLE_SERVICES: ServiceOption[] = [
   },
 ];
 
+// Stack / discipline the visitor actually needs. Decoupled from deliverable
+// type: they may want design only (Figma), dev only (Framer/Webflow/Next.js),
+// or both. Multi-select so the common "Figma + Framer" pair is expressible.
+const STACK_OPTIONS: { value: string; label: string; kind: "design" | "build" }[] = [
+  { value: "figma", label: "Figma (design)", kind: "design" },
+  { value: "framer", label: "Framer", kind: "build" },
+  { value: "webflow", label: "Webflow", kind: "build" },
+  { value: "nextjs", label: "Next.js / custom", kind: "build" },
+  { value: "unsure", label: "Not sure yet", kind: "design" },
+];
+
 const BUDGET_RANGES = [
   "$500 - $1,000",
   "$1,000 - $2,000",
@@ -111,6 +123,7 @@ export function ServiceBuilder() {
     timeline: "",
     description: "",
     selectedServices: [],
+    stack: [],
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -131,6 +144,24 @@ export function ServiceBuilder() {
     });
   }
 
+  function toggleStack(value: string) {
+    setFormData((prev) => {
+      // "Not sure yet" is exclusive — picking it clears others, and picking
+      // another tool clears "Not sure yet".
+      if (value === "unsure") {
+        return {
+          ...prev,
+          stack: prev.stack.includes("unsure") ? [] : ["unsure"],
+        };
+      }
+      const nextStack = prev.stack.filter((s) => s !== "unsure");
+      if (nextStack.includes(value)) {
+        return { ...prev, stack: nextStack.filter((s) => s !== value) };
+      }
+      return { ...prev, stack: [...nextStack, value] };
+    });
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("sending");
@@ -138,6 +169,10 @@ export function ServiceBuilder() {
     try {
       const projectTypes = formData.selectedServices
         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
+        .join(", ");
+
+      const stackLabels = formData.stack
+        .map((v) => STACK_OPTIONS.find((o) => o.value === v)?.label || v)
         .join(", ");
 
       const res = await fetch("/api/lead", {
@@ -150,6 +185,7 @@ export function ServiceBuilder() {
           website: formData.website,
           location: formData.location,
           services: projectTypes,
+          stack: stackLabels,
           pageCount: formData.pageCount,
           budget: formData.budget,
           timeline: formData.timeline,
@@ -235,9 +271,24 @@ export function ServiceBuilder() {
               type="button"
               onClick={() => {
                 if (s.num === 2 && formData.selectedServices.length === 0) return;
-                if (s.num === 3 && (formData.selectedServices.length === 0 || !formData.budget || !formData.timeline)) return;
-                
-                if (s.num <= step || (s.num === 2 && formData.selectedServices.length > 0) || (s.num === 3 && formData.budget && formData.timeline)) {
+                if (
+                  s.num === 3 &&
+                  (formData.selectedServices.length === 0 ||
+                    formData.stack.length === 0 ||
+                    !formData.budget ||
+                    !formData.timeline)
+                ) {
+                  return;
+                }
+
+                if (
+                  s.num <= step ||
+                  (s.num === 2 && formData.selectedServices.length > 0) ||
+                  (s.num === 3 &&
+                    formData.stack.length > 0 &&
+                    formData.budget &&
+                    formData.timeline)
+                ) {
                   setStep(s.num);
                 }
               }}
@@ -344,9 +395,42 @@ export function ServiceBuilder() {
             exit={{ opacity: 0, x: 20 }}
           >
             <h2 className="text-2xl font-bold text-zinc-900 mb-2">Project Scope</h2>
-            <p className="text-zinc-500 mb-6">Let me know your budget and timeline.</p>
+            <p className="text-zinc-500 mb-6">Let me know your stack, budget, and timeline.</p>
 
             <div className="space-y-6">
+              <div>
+                <label className="text-sm font-medium text-zinc-700 mb-1 block">Stack / Discipline</label>
+                <p className="text-xs text-zinc-500 mb-3">
+                  Pick the tools you need. Most projects pair Figma (design) with Framer (build).
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {STACK_OPTIONS.map((option) => {
+                    const selected = formData.stack.includes(option.value);
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => toggleStack(option.value)}
+                        className={`relative py-3 px-4 border text-left text-sm font-medium transition-all ${
+                          selected
+                            ? "border-orange-500 bg-orange-50 text-orange-700 ring-1 ring-orange-500"
+                            : "border-zinc-200 text-zinc-700 hover:border-zinc-300 bg-white"
+                        }`}
+                      >
+                        <span
+                          className={`block text-[10px] font-mono uppercase tracking-widest mb-1 ${
+                            selected ? "text-orange-600" : "text-zinc-400"
+                          }`}
+                        >
+                          {option.kind === "design" ? "Design" : "Build"}
+                        </span>
+                        {option.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
               <div>
                 <label className="text-sm font-medium text-zinc-700 mb-3 block">Budget Range</label>
                 <div className="grid grid-cols-2 gap-3">
@@ -421,8 +505,9 @@ export function ServiceBuilder() {
               <button
                 type="button"
                 disabled={
-                  !formData.budget || 
-                  !formData.timeline || 
+                  formData.stack.length === 0 ||
+                  !formData.budget ||
+                  !formData.timeline ||
                   ((formData.selectedServices.includes("multi-page") || formData.selectedServices.includes("website-redesign")) && !formData.pageCount.trim())
                 }
                 onClick={() => setStep(3)}

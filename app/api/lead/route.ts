@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  buildLeadEmailHtml,
+  buildLeadEmailText,
+  buildClientEmailHtml,
+  buildClientEmailText,
+} from "./email-template";
 
 // ============================================================================
 // Constants
@@ -7,12 +13,20 @@ import { Resend } from "resend";
 
 const RECIPIENT = "rashid@founderfist.com";
 
-// Sender address. In prod, set RESEND_FROM_EMAIL to a verified-domain
-// mailbox (e.g. "contact@aestho.xyz"). During setup, Resend lets you send
-// from `onboarding@resend.dev` *only* to your signup email — useful for
-// smoke-testing before domain verification.
-const SENDER =
-  process.env.RESEND_FROM_EMAIL || "Aestho <onboarding@resend.dev>";
+// Two distinct sender identities so Rashid's inbox and the client's inbox
+// each show a sensible "from" line. Same underlying mailbox — just a display
+// name difference on the envelope.
+//
+// RESEND_FROM_EMAIL should be a verified-domain mailbox like
+// "mail@aestho.xyz". If unset (e.g. before domain verification in dev), we
+// fall back to Resend's sandbox `onboarding@resend.dev`, which delivers only
+// to your Resend signup email — useful for smoke tests.
+const SENDER_BASE =
+  process.env.RESEND_FROM_EMAIL?.replace(/^[^<]*<|>$/g, "").trim() ||
+  "onboarding@resend.dev";
+
+const SENDER_INTERNAL = `Aestho Leads <${SENDER_BASE}>`;
+const SENDER_CLIENT = `Rashid Iqbal <${SENDER_BASE}>`;
 
 // Simple in-memory rate limit: 5 submissions per IP per hour.
 const rateMap = new Map<string, { count: number; timestamp: number }>();
@@ -34,10 +48,7 @@ function isRateLimited(ip: string): boolean {
 // ============================================================================
 // POST /api/lead
 // ============================================================================
-// Accepts every lead form in the site: /offer page, /contact ServiceBuilder,
-// ExitIntentPopup. Discriminates by `source` in the request body.
-//
-// All fields optional except `email`.
+
 type LeadPayload = {
   source?: "offer-lp" | "service-builder" | "exit-intent" | string;
   email?: string;
@@ -46,6 +57,7 @@ type LeadPayload = {
   concern?: string;
   location?: string;
   services?: string;
+  stack?: string;
   pageCount?: string | number;
   budget?: string;
   timeline?: string;
@@ -70,7 +82,7 @@ export async function POST(req: NextRequest) {
 
     const body = (await req.json()) as LeadPayload;
 
-    // Honeypot — silently 200 so bots don't retry, but don't send anything.
+    // Honeypot — silently 200 so bots don't retry.
     if (body.botcheck) {
       return NextResponse.json({ success: true });
     }
@@ -92,55 +104,114 @@ export async function POST(req: NextRequest) {
     const website = body.website?.trim();
     const name = body.name?.trim();
 
-    // Subject routing — keep inbox signals readable at a glance.
-    let subject: string;
-    if (source === "offer-lp") {
-      subject = `Free Audit Claim: ${website || email}`;
-    } else if (source === "exit-intent") {
-      subject = `New Audit Request: ${website || email}`;
-    } else if (source === "service-builder") {
-      subject = `New Inquiry: ${body.services || "General"} from ${name || email}`;
-    } else {
-      subject = `New Lead from ${name || email}`;
-    }
+    // -------------------------------------------------------------------- //
+    // Subjects
+    // -------------------------------------------------------------------- //
+    // Pipe separator keeps the type prefix readable when the inbox list
+    // truncates. Internal and client subjects are deliberately different
+    // so Rashid can grep his inbox by "New Inquiry |" / "Free Audit |".
 
-    // Build a plain-text message body dynamically from whichever fields the
-    // form actually submitted. Avoids empty "N/A" lines.
-    const lines = [
-      `Source: ${source}`,
-      `Email: ${email}`,
-      website ? `Website: ${website}` : null,
-      name ? `Name: ${name}` : null,
-      body.location ? `Location: ${body.location}` : null,
-      body.services ? `Services: ${body.services}` : null,
-      body.pageCount ? `Approximate pages: ${body.pageCount}` : null,
-      body.budget ? `Budget: ${body.budget}` : null,
-      body.timeline ? `Timeline: ${body.timeline}` : null,
-      body.concern ? `\nBiggest concern:\n${body.concern}` : null,
-      body.description ? `\nDescription:\n${body.description}` : null,
-    ]
-      .filter(Boolean)
-      .join("\n");
+    const displayName = name || email;
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const { data, error } = await resend.emails.send({
-      from: SENDER,
-      to: RECIPIENT,
-      cc: email, // submitter gets a copy for their records
-      replyTo: email,
-      subject,
-      text: lines,
+    const internalSubjectByType: Record<string, string> = {
+      "service-builder": `New Inquiry | ${body.services || "Project"} from ${displayName}`,
+      "offer-lp": `Free Audit | ${website || displayName}`,
+      "exit-intent": `Audit Request | ${website || displayName}`,
+    };
+    const internalSubject =
+      internalSubjectByType[source] || `New Lead | ${displayName}`;
+
+    const clientSubjectByType: Record<string, string> = {
+      "service-builder": `Got your project inquiry — here's what's next`,
+      "offer-lp": `Your free audit is on the way`,
+      "exit-intent": `Audit request received`,
+    };
+    const clientSubject =
+      clientSubjectByType[source] || `Got your message — here's what's next`;
+
+    // -------------------------------------------------------------------- //
+    // Build both emails
+    // -------------------------------------------------------------------- //
+
+    const sharedFields = {
+      email,
+      name,
+      website,
+      concern: body.concern?.trim(),
+      location: body.location?.trim(),
+      services: body.services?.trim(),
+      stack: body.stack?.trim(),
+      pageCount: body.pageCount,
+      budget: body.budget?.trim(),
+      timeline: body.timeline?.trim(),
+      description: body.description?.trim(),
+    };
+
+    const internalHtml = buildLeadEmailHtml({
+      ...sharedFields,
+      source,
+      subject: internalSubject,
+    });
+    const internalText = buildLeadEmailText({
+      ...sharedFields,
+      source,
+      subject: internalSubject,
     });
 
-    if (error) {
-      console.error("[lead-api] Resend error:", error);
+    const clientHtml = buildClientEmailHtml({ ...sharedFields, source });
+    const clientText = buildClientEmailText({ ...sharedFields, source });
+
+    // -------------------------------------------------------------------- //
+    // Send in parallel
+    // -------------------------------------------------------------------- //
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const [internalRes, clientRes] = await Promise.all([
+      resend.emails.send({
+        from: SENDER_INTERNAL,
+        to: RECIPIENT,
+        replyTo: email, // reply-all threads back to the submitter
+        subject: internalSubject,
+        html: internalHtml,
+        text: internalText,
+      }),
+      resend.emails.send({
+        from: SENDER_CLIENT,
+        to: email,
+        replyTo: RECIPIENT, // submitter's reply lands in Rashid's inbox
+        subject: clientSubject,
+        html: clientHtml,
+        text: clientText,
+      }),
+    ]);
+
+    if (internalRes.error) {
+      // Internal send is the critical one. If it fails, surface an error so
+      // the visitor knows to try again or email directly.
+      console.error("[lead-api] Internal send failed:", internalRes.error);
       return NextResponse.json(
-        { error: error.message || "Failed to send. Please email directly." },
+        {
+          error:
+            internalRes.error.message ||
+            "Failed to send. Please email directly.",
+        },
         { status: 502 }
       );
     }
 
-    return NextResponse.json({ success: true, id: data?.id });
+    if (clientRes.error) {
+      // Client ack failure isn't fatal — the lead still landed with Rashid.
+      // Log it so we can notice if Resend is flaky for outbound mail to
+      // certain providers.
+      console.error("[lead-api] Client ack send failed:", clientRes.error);
+    }
+
+    return NextResponse.json({
+      success: true,
+      internalId: internalRes.data?.id,
+      clientAckId: clientRes.data?.id ?? null,
+    });
   } catch (err) {
     console.error("[lead-api] Unexpected error:", err);
     return NextResponse.json({ error: "Failed to send. Try again." }, { status: 500 });
