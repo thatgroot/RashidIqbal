@@ -2,7 +2,11 @@
 // Site Constants - Single Source of Truth for Site-wide Configuration
 // ============================================================================
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://aestho.xyz";
+// Must match Vercel's canonical domain for this project. The apex
+// (aestho.xyz) 307-redirects to www, which breaks Google Search Console
+// sitemap ingestion — so every URL we emit (sitemap, robots, canonical
+// metadata, structured data, OG) must be www-prefixed.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.aestho.xyz";
 export const SITE_NAME = "Rashid Iqbal";
 export const SITE_TITLE = "Rashid Iqbal — Figma & Framer Expert";
 export const SITE_DESCRIPTION = "Figma design, Framer development, and Chrome extensions. I build high-converting landing pages and websites. Fast delivery, pixel-perfect execution.";
