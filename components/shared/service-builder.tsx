@@ -12,7 +12,10 @@ import {
   Globe,
   Puzzle,
   Search,
+  Mail,
+  Figma,
 } from "lucide-react";
+import { AUTHOR } from "@/lib/constants";
 
 // ============================================================================
 // Types
@@ -43,6 +46,12 @@ interface ServiceBuilderFormData {
 // ============================================================================
 
 const AVAILABLE_SERVICES: ServiceOption[] = [
+  {
+    slug: "figma-design",
+    name: "Figma Design",
+    description: "UI design, UX copy, and interactive prototype in Figma.",
+    icon: <Figma className="w-5 h-5" />,
+  },
   {
     slug: "landing-page",
     name: "Landing Page",
@@ -108,22 +117,93 @@ const TIMELINES = [
 ];
 
 // ============================================================================
+// Mailto builder
+// ============================================================================
+// Construct a `mailto:` URL that pre-fills a plain-text summary of the form.
+// Used by the "Open in your email app" fallback next to Submit. When the
+// visitor sends from their real inbox, it lands in Rashid's inbox like a
+// regular personal email — bypassing Resend and the spam classifiers that
+// sometimes flag automated mail from new domains.
+//
+// Note: `mailto:` is plain-text only per RFC 2368 — the HTML client template
+// cannot ride along here. We mirror its structure (sectioned labels, warm
+// sign-off) in plain text instead.
+//
+// Spaces MUST encode as %20 (not + as URLSearchParams does). Gmail, Apple
+// Mail, and Outlook all treat literal + in the body as the character +,
+// which produces the "Name:+Jane" artifact visible in some clients.
+
+function buildMailtoHref(form: ServiceBuilderFormData, servicesLabel: string, stackLabel: string): string {
+  const firstName = form.name.trim().split(/\s+/)[0] || "there";
+
+  const subject = `Project inquiry${form.name ? ` from ${form.name}` : ""}${
+    servicesLabel ? ` — ${servicesLabel}` : ""
+  }`;
+
+  const section = (title: string, rows: (string | null | undefined)[]): string => {
+    const filled = rows.filter(Boolean) as string[];
+    if (filled.length === 0) return "";
+    return `— ${title.toUpperCase()} —\n${filled.join("\n")}`;
+  };
+
+  const body = [
+    `Hey Rashid,`,
+    ``,
+    `I'd like to talk about a project. Emailing you directly in case the form lands in spam. Here are the details I entered:`,
+    ``,
+    section("Project", [
+      servicesLabel ? `Services:  ${servicesLabel}` : null,
+      stackLabel ? `Stack:     ${stackLabel}` : null,
+      form.budget ? `Budget:    ${form.budget}` : null,
+      form.timeline ? `Timeline:  ${form.timeline}` : null,
+      form.pageCount ? `Pages:     ${form.pageCount}` : null,
+    ]),
+    ``,
+    section("About me", [
+      form.name ? `Name:      ${form.name}` : null,
+      form.email ? `Email:     ${form.email}` : null,
+      form.website ? `Website:   ${form.website}` : null,
+      form.location ? `Location:  ${form.location}` : null,
+    ]),
+    form.description
+      ? `\n— WHAT I'M THINKING —\n${form.description}`
+      : ``,
+    ``,
+    `Looking forward to hearing back.`,
+    ``,
+    `Thanks,`,
+    firstName,
+  ]
+    .filter((line) => line !== undefined && line !== null)
+    .join("\n");
+
+  // encodeURIComponent uses %20 for spaces — the only encoding every mail
+  // client handles correctly. URLSearchParams uses `+`, which some clients
+  // render literally.
+  return `mailto:${AUTHOR.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+// ============================================================================
 // Component
 // ============================================================================
 
 export function ServiceBuilder() {
   const [step, setStep] = useState(1);
+  // Sensible defaults for the most common inquiry shape (Figma Design + CRO
+  // Audit done in Figma, ~$2–5k, within a month). Visitors land on step 1
+  // with both Figma Design and CRO Audit already selected, so they can just
+  // click through if that's what they want, or uncheck/swap as needed.
   const [formData, setFormData] = useState<ServiceBuilderFormData>({
     name: "",
     email: "",
     website: "",
     location: "",
     pageCount: "",
-    budget: "",
-    timeline: "",
+    budget: "$2,000 - $5,000",
+    timeline: "This month",
     description: "",
-    selectedServices: [],
-    stack: [],
+    selectedServices: ["figma-design", "ux-audit"],
+    stack: ["figma"],
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -640,34 +720,51 @@ export function ServiceBuilder() {
                 </p>
               </div>
 
-              <div className="flex justify-between">
+              <div className="flex flex-col sm:flex-row sm:justify-between gap-3">
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-zinc-400 transition-colors flex items-center gap-2"
+                  className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-zinc-400 transition-colors flex items-center justify-center gap-2 sm:w-auto"
                 >
                   <ArrowLeft className="w-4 h-4" /> Back
                 </button>
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="px-6 py-3 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 disabled:opacity-50"
-                >
-                  {status === "sending" ? (
-                    <>
-                      <Loader2 className="w-4 h-4 animate-spin" /> Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Details <ArrowRight className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
+                <div className="flex flex-col sm:flex-row gap-3 sm:ml-auto">
+                  <a
+                    href={buildMailtoHref(
+                      formData,
+                      formData.selectedServices
+                        .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
+                        .join(", "),
+                      formData.stack
+                        .map((v) => STACK_OPTIONS.find((o) => o.value === v)?.label || v)
+                        .join(", ")
+                    )}
+                    className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-orange-300 hover:text-orange-600 transition-colors flex items-center justify-center gap-2"
+                    title="Opens your email app with the form pre-filled — useful if automated mail ends up in your spam folder."
+                  >
+                    <Mail className="w-4 h-4" /> Open in email app
+                  </a>
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="px-6 py-3 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                  >
+                    {status === "sending" ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" /> Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Details <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
               {status === "error" && (
                 <p className="text-sm text-red-600 text-center">
-                  Something went wrong. Please try again or email me directly.
+                  Something went wrong. Try &ldquo;Open in email app&rdquo; above, or email me directly.
                 </p>
               )}
 
