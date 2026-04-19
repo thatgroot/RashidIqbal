@@ -135,34 +135,56 @@ export function ServiceBuilder() {
     e.preventDefault();
     setStatus("sending");
 
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (!accessKey) {
+      console.error("[ServiceBuilder] NEXT_PUBLIC_WEB3FORMS_KEY is not set.");
+      setStatus("error");
+      return;
+    }
+
     try {
       const projectTypes = formData.selectedServices
         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
         .join(", ");
 
-      const res = await fetch("/api/contact", {
+      const message = `New project inquiry from ${formData.name || "Client"}.
+
+Name: ${formData.name || "N/A"}
+Email: ${formData.email}
+Website: ${formData.website || "N/A"}
+Location: ${formData.location || "N/A"}
+Services: ${projectTypes || "N/A"}
+${formData.pageCount ? `Approximate Pages: ${formData.pageCount}\n` : ""}Budget: ${formData.budget || "N/A"}
+Timeline: ${formData.timeline || "N/A"}
+
+Description:
+${formData.description || "N/A"}`;
+
+      // Web3Forms free tier blocks server-side POSTs (Cloudflare-gated). Submit
+      // directly from the browser — their intended pattern on the free plan.
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
-          name: formData.name,
+          access_key: accessKey,
+          to: "rashid@founderfist.com",
+          subject: `New Inquiry: ${projectTypes} from ${formData.name || "Client"}`,
+          from_name: "Aestho Portfolio",
           email: formData.email,
-          website: formData.website,
-          location: formData.location,
-          pageCount: formData.pageCount,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          description: formData.description,
-          services: projectTypes,
-          subject: `New Inquiry: ${projectTypes} from ${formData.name}`,
-          cc: formData.email,
-          source: "service-builder"
+          replyto: formData.email,
+          message,
+          // Honeypot — empty = human, filled = Web3Forms drops the submission.
+          botcheck: "",
         }),
       });
 
-      const body = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
+      const body = (await res.json().catch(() => ({}))) as { success?: boolean; message?: string };
 
       if (!res.ok || body.success === false) {
-        console.error("[ServiceBuilder] API error:", res.status, body);
+        console.error("[ServiceBuilder] Web3Forms error:", res.status, body);
         setStatus("error");
         return;
       }

@@ -7,16 +7,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import posthog from "posthog-js";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
+import { OfferBanner } from "@/components/shared/offer-banner";
 import { SOCIAL_LINKS } from "@/lib/constants";
-
-// Read the A/B cohort cookie set by middleware so homepage and LP events
-// can be compared in PostHog by `variant`.
-function readAbVariant(): "A" | "B" {
-    if (typeof document === "undefined") return "A";
-    const match = document.cookie.match(/(?:^|; )ab_home=([^;]*)/);
-    const v = match ? decodeURIComponent(match[1]) : "A";
-    return v === "B" ? "B" : "A";
-}
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -46,6 +38,8 @@ export function Hero() {
 
     return (
         <section ref={sectionRef} className="pt-16 bg-white relative overflow-hidden">
+            {/* Promotional strip, directly below the fixed navbar */}
+            <OfferBanner />
             <div className="max-w-container border-l border-zinc-100 relative">
                 <GridContainer cols={1}>
                     {/* Main Hero Content */}
@@ -181,7 +175,6 @@ export function Hero() {
                                         try {
                                             posthog.capture("cta_clicked", {
                                                 source: "homepage",
-                                                variant: readAbVariant(),
                                                 cta: "book_strategy_call",
                                             });
                                         } catch {

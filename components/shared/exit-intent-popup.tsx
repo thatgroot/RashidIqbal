@@ -23,19 +23,30 @@ export function ExitIntentPopup() {
     e.preventDefault();
     if (!email.trim() || !url.trim()) return;
 
-    try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email.trim(),
-          website: url.trim(),
-          subject: `New Audit Request: ${url.trim()}`,
-          source: "exit-intent"
-        }),
-      });
-    } catch (err) {
-      console.error("[ExitIntent] Submit failed:", err);
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (accessKey) {
+      try {
+        // Web3Forms free tier blocks server-side POSTs, so submit from the browser.
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            to: "rashid@founderfist.com",
+            subject: `New Audit Request: ${url.trim()}`,
+            from_name: "Aestho Portfolio",
+            email: email.trim(),
+            replyto: email.trim(),
+            message: `New audit request from exit intent popup.\n\nEmail: ${email.trim()}\nWebsite: ${url.trim()}`,
+            botcheck: "",
+          }),
+        });
+      } catch (err) {
+        console.error("[ExitIntent] Submit failed:", err);
+      }
     }
 
     setSubmitted(true);
