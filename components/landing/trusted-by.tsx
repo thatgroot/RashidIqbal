@@ -5,18 +5,19 @@ import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { ProjectCounter } from "./project-counter";
 
 const brands = [
-  { name: "Crezco", highlight: true },
+  { name: "Relace", highlight: true },
+  { name: "Equals", highlight: false },
+  { name: "Hevn", highlight: true },
   { name: "UpdateAI", highlight: false },
-  { name: "Composio", highlight: true },
-  { name: "Titan Gatequity", highlight: false },
-  { name: "Melissa Ambrosini", highlight: true },
-  { name: "Nick Broadhurst", highlight: false },
-  { name: "Vanos AI", highlight: true },
+  { name: "Crezco", highlight: true },
+  { name: "Composio", highlight: false },
+  { name: "Titan Gatequity", highlight: true },
+  { name: "Melissa Ambrosini", highlight: false },
+  { name: "Nick Broadhurst", highlight: true },
   { name: "Giga AI", highlight: false },
   { name: "AAKP", highlight: true },
-  { name: "Tandem BI", highlight: false },
-  { name: "Space Dome", highlight: true },
-  { name: "Ask Dialog", highlight: false },
+  { name: "Space Dome", highlight: false },
+  { name: "Ask Dialog", highlight: true },
 ];
 
 export function TrustedBy() {

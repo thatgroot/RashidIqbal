@@ -322,10 +322,9 @@ export function ServiceBuilder() {
         </div>
         <p className="text-xs text-zinc-400 text-center mt-8">
           Trusted by 53+ companies including{" "}
-          <a href="https://update.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">UpdateAI</a>,{" "}
-          <a href="https://vanos.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Vanos AI</a>,{" "}
-          <a href="https://leanscale.team" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Leanscale</a>, and{" "}
-          <a href="https://founderfist.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">FounderFist</a>.
+          <a href="https://relace.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Relace</a>,{" "}
+          <a href="https://equals.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Equals</a>, and{" "}
+          <a href="https://gethevn.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Hevn</a>.
         </p>
       </motion.div>
     );

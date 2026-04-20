@@ -8,10 +8,10 @@ import posthog from "posthog-js";
 
 // Small client list shown as logo strip — echoes components/landing/trusted-by.tsx
 const CLIENT_BRANDS = [
+  "Relace",
+  "Equals",
+  "Hevn",
   "UpdateAI",
-  "Vanos AI",
-  "Space Dome",
-  "Leanscale",
 ] as const;
 
 // What the visitor gets when they claim the offer
