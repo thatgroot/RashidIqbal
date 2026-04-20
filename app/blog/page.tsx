@@ -1,64 +1,43 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { getAllPosts, getFeaturedPosts, getAllTags } from "@/lib/blog";
+import {
+  getAllPosts,
+  getFeaturedPosts,
+  getPostsByTag,
+  getAllTags,
+} from "@/lib/blog";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  Tag,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
 
-export const metadata: Metadata = {
-  title: "Blog | Figma, Framer & Conversion Insights",
-  description:
-    "Articles on Figma design, Framer development, UX copy, and conversion optimization. Real insights from 50+ projects shipped.",
-  keywords: [
-    "Figma blog",
-    "Framer tutorials",
-    "UX copywriting",
-    "conversion optimization",
-    "Chrome extension development",
-    "Figma to Framer",
-    "landing page design",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: `${siteUrl}/blog`,
-    siteName: "Rashid Iqbal",
-    title: "Blog | Figma, Framer & Conversion Insights",
-    description:
-      "Articles on Figma design, Framer development, UX copywriting, and conversion optimization.",
-    images: [
-      {
-        url: `${siteUrl}/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "Rashid Iqbal — Figma & Framer Blog",
-        type: "image/png",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@rashidrealme",
-    creator: "@rashidrealme",
-    title: "Blog | Figma, Framer & Conversion Insights",
-    description:
-      "Figma design, Framer development, UX copywriting, and conversion optimization insights.",
-    images: [
-      {
-        url: `${siteUrl}/twitter-image`,
-        width: 1200,
-        height: 630,
-        alt: "Rashid Iqbal — Figma & Framer Blog",
-      },
-    ],
-  },
-  alternates: {
-    canonical: `${siteUrl}/blog`,
-  },
+// ============================================================================
+// Constants
+// ============================================================================
+
+const POSTS_PER_PAGE = 6;
+
+// ============================================================================
+// Types
+// ============================================================================
+
+type BlogPageProps = {
+  searchParams: Promise<{ tag?: string; page?: string }>;
 };
+
+// ============================================================================
+// Helpers
+// ============================================================================
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {
@@ -68,13 +47,167 @@ function formatDate(dateString: string): string {
   });
 }
 
-export default function BlogPage() {
-  const posts = getAllPosts();
-  const featuredPosts = getFeaturedPosts();
-  const tags = getAllTags().slice(0, 8);
+function parsePage(raw: string | undefined): number {
+  const n = parseInt(raw ?? "1", 10);
+  if (!Number.isFinite(n) || n < 1) return 1;
+  return n;
+}
+
+function normalizeTag(raw: string | undefined): string | null {
+  const t = raw?.trim();
+  return t ? t : null;
+}
+
+// Build a `/blog` URL preserving/overriding current tag + page
+function buildBlogUrl(
+  currentTag: string | null,
+  currentPage: number,
+  overrides: { tag?: string | null; page?: number } = {}
+): string {
+  const finalTag =
+    overrides.tag !== undefined ? overrides.tag : currentTag;
+  const finalPage = overrides.page !== undefined ? overrides.page : currentPage;
+  const params = new URLSearchParams();
+  if (finalTag) params.set("tag", finalTag);
+  if (finalPage && finalPage > 1) params.set("page", String(finalPage));
+  const qs = params.toString();
+  return qs ? `/blog?${qs}` : "/blog";
+}
+
+// Produce a compact pagination range with ellipsis, e.g. [1, "…", 4, 5, 6, "…", 12]
+function paginationRange(current: number, total: number): (number | "…")[] {
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+  const out: (number | "…")[] = [];
+  const around = [current - 1, current, current + 1].filter(
+    (n) => n > 1 && n < total
+  );
+  out.push(1);
+  if (around[0] && around[0] > 2) out.push("…");
+  out.push(...around);
+  if (around[around.length - 1] && around[around.length - 1] < total - 1) {
+    out.push("…");
+  }
+  out.push(total);
+  return out;
+}
+
+// ============================================================================
+// Metadata (dynamic: reflects tag + page)
+// ============================================================================
+
+export async function generateMetadata(
+  props: BlogPageProps
+): Promise<Metadata> {
+  const sp = await props.searchParams;
+  const tag = normalizeTag(sp.tag);
+  const page = parsePage(sp.page);
+
+  const baseTitle = "Blog | Figma, Framer & Conversion Insights";
+  const baseDesc =
+    "Articles on Figma design, Framer development, UX copy, and conversion optimization. Real insights from 50+ projects shipped.";
+
+  let title = baseTitle;
+  let description = baseDesc;
+  let canonical = `${siteUrl}/blog`;
+
+  if (tag) {
+    title = `${tag} articles | Rashid Iqbal Blog`;
+    description = `Articles tagged "${tag}" from Rashid Iqbal's blog on Figma, Framer, and conversion-focused design.`;
+    canonical = `${siteUrl}${buildBlogUrl(tag, 1)}`;
+  }
+
+  if (page > 1) {
+    title = `${title} — Page ${page}`;
+    canonical = `${siteUrl}${buildBlogUrl(tag, page)}`;
+  }
+
+  return {
+    title,
+    description,
+    keywords: [
+      "Figma blog",
+      "Framer tutorials",
+      "UX copywriting",
+      "conversion optimization",
+      "Chrome extension development",
+      "Figma to Framer",
+      "landing page design",
+    ],
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: canonical,
+      siteName: "Rashid Iqbal",
+      title,
+      description,
+      images: [
+        {
+          url: `${siteUrl}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "Rashid Iqbal — Figma & Framer Blog",
+          type: "image/png",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@rashidrealme",
+      creator: "@rashidrealme",
+      title,
+      description,
+      images: [
+        {
+          url: `${siteUrl}/twitter-image`,
+          width: 1200,
+          height: 630,
+          alt: "Rashid Iqbal — Figma & Framer Blog",
+        },
+      ],
+    },
+    alternates: {
+      canonical,
+    },
+  };
+}
+
+// ============================================================================
+// Page
+// ============================================================================
+
+export default async function BlogPage(props: BlogPageProps) {
+  const sp = await props.searchParams;
+  const activeTag = normalizeTag(sp.tag);
+  const rawPage = parsePage(sp.page);
+
+  // Filter posts
+  const filteredPosts = activeTag ? getPostsByTag(activeTag) : getAllPosts();
+
+  // Pagination
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
+  );
+  const currentPage = Math.min(Math.max(1, rawPage), totalPages);
+  const pagePosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  );
+
+  // Featured posts only render on page 1 of the unfiltered list
+  const showFeatured = !activeTag && currentPage === 1;
+  const featuredPosts = showFeatured ? getFeaturedPosts() : [];
+
+  // All tags for the filter sidebar
+  const tags = getAllTags();
 
   return (
-    <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
+    <main
+      id="main-content"
+      className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
+    >
       <PageBackground />
       <Navbar />
 
@@ -85,14 +218,19 @@ export default function BlogPage() {
             <GridItem className="border-t pt-16 pb-12" padding={false}>
               <div className="px-8 sm:px-12">
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 text-xs font-mono uppercase tracking-widest mb-6">
-                  <span className="w-1.5 h-1.5 bg-orange-500 animate-pulse" aria-hidden="true" />
+                  <span
+                    className="w-1.5 h-1.5 bg-orange-500 animate-pulse"
+                    aria-hidden="true"
+                  />
                   Blog
                 </span>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-zinc-900 mb-6 tracking-tight leading-[0.95]">
                   Insights &amp; Tutorials
                 </h1>
                 <p className="text-lg md:text-xl text-zinc-500 leading-relaxed max-w-2xl">
-                  Deep dives into Figma design, Framer development, UX copywriting, Chrome extensions, and the strategies that turn visitors into customers.
+                  Deep dives into Figma design, Framer development, UX
+                  copywriting, Chrome extensions, and the strategies that turn
+                  visitors into customers.
                 </p>
               </div>
             </GridItem>
@@ -100,7 +238,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Featured Posts */}
+      {/* Featured Posts — only on page 1, unfiltered */}
       {featuredPosts.length > 0 && (
         <section className="bg-white">
           <div className="max-w-container border-l border-zinc-100">
@@ -113,13 +251,19 @@ export default function BlogPage() {
             </GridContainer>
             <GridContainer cols={2}>
               {featuredPosts.slice(0, 2).map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="block group"
+                >
                   <GridItem className="h-full flex flex-col min-h-[260px]">
                     <div className="flex items-center gap-3 mb-5">
                       <span className="px-2 py-1 bg-orange-500 text-white text-[10px] font-mono uppercase tracking-widest">
                         Featured
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">{post.category}</span>
+                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">
+                        {post.category}
+                      </span>
                     </div>
                     <h2 className="text-xl font-semibold text-zinc-900 mb-3 group-hover:text-orange-600 transition-colors flex-1 leading-snug">
                       {post.title}
@@ -140,7 +284,10 @@ export default function BlogPage() {
                       </div>
                       <span className="inline-flex items-center gap-1 text-sm font-medium text-orange-600">
                         Read
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                        <ArrowRight
+                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          aria-hidden="true"
+                        />
                       </span>
                     </div>
                   </GridItem>
@@ -156,23 +303,56 @@ export default function BlogPage() {
         <div className="max-w-container border-l border-zinc-100">
           <GridContainer cols={1}>
             <GridItem padding={false} className="py-6 px-8 sm:px-12">
-              <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-                All Articles
-              </span>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                  {activeTag
+                    ? `Tagged "${activeTag}" · ${filteredPosts.length} article${
+                        filteredPosts.length === 1 ? "" : "s"
+                      }`
+                    : "All Articles"}
+                </span>
+                {activeTag && (
+                  <Link
+                    href={buildBlogUrl(activeTag, currentPage, {
+                      tag: null,
+                      page: 1,
+                    })}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-orange-600 hover:text-orange-700 transition-colors"
+                  >
+                    <X className="w-3.5 h-3.5" aria-hidden="true" />
+                    Clear filter
+                  </Link>
+                )}
+              </div>
             </GridItem>
           </GridContainer>
 
           {/* Main + Sidebar grid — 2col: articles take 2, sidebar takes 1 */}
           <div className="grid desktop:grid-cols-3 border-b border-zinc-100">
-
             {/* Articles list — spans 2 cols */}
             <div className="desktop:col-span-2 border-r border-zinc-100">
-              {posts.length === 0 && (
+              {pagePosts.length === 0 && (
                 <div className="p-12 text-center border-b border-zinc-100">
-                  <p className="text-zinc-500 font-mono text-sm">No posts yet. Check back soon!</p>
+                  <p className="text-zinc-500 font-mono text-sm mb-4">
+                    {activeTag
+                      ? `No posts tagged "${activeTag}" yet.`
+                      : "No posts yet. Check back soon!"}
+                  </p>
+                  {activeTag && (
+                    <Link
+                      href="/blog"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-orange-600 hover:text-orange-700"
+                    >
+                      <ArrowRight
+                        className="w-4 h-4 rotate-180"
+                        aria-hidden="true"
+                      />
+                      Back to all articles
+                    </Link>
+                  )}
                 </div>
               )}
-              {posts.map((post) => (
+              {pagePosts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
@@ -200,30 +380,159 @@ export default function BlogPage() {
                     </p>
                     <span className="inline-flex items-center gap-1 text-sm font-medium text-orange-600">
                       Read article
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                      <ArrowRight
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        aria-hidden="true"
+                      />
                     </span>
                   </article>
                 </Link>
               ))}
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <nav
+                  className="flex items-center justify-between gap-3 p-6 sm:p-8"
+                  aria-label="Blog pagination"
+                >
+                  {/* Prev */}
+                  {currentPage > 1 ? (
+                    <Link
+                      href={buildBlogUrl(activeTag, currentPage, {
+                        page: currentPage - 1,
+                      })}
+                      rel="prev"
+                      aria-label="Previous page"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-200 text-sm font-medium text-zinc-700 hover:border-orange-300 hover:text-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    >
+                      <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+                      Prev
+                    </Link>
+                  ) : (
+                    <span
+                      aria-disabled="true"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-100 text-sm font-medium text-zinc-300 cursor-not-allowed"
+                    >
+                      <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+                      Prev
+                    </span>
+                  )}
+
+                  {/* Page numbers */}
+                  <ol className="flex items-center gap-1.5">
+                    {paginationRange(currentPage, totalPages).map((p, i) =>
+                      p === "…" ? (
+                        <li
+                          key={`gap-${i}`}
+                          className="px-2 text-xs font-mono text-zinc-300"
+                          aria-hidden="true"
+                        >
+                          …
+                        </li>
+                      ) : (
+                        <li key={p}>
+                          {p === currentPage ? (
+                            <span
+                              aria-current="page"
+                              className="inline-flex items-center justify-center w-9 h-9 text-sm font-bold text-white bg-zinc-900"
+                            >
+                              {p}
+                            </span>
+                          ) : (
+                            <Link
+                              href={buildBlogUrl(activeTag, currentPage, {
+                                page: p,
+                              })}
+                              aria-label={`Page ${p}`}
+                              className="inline-flex items-center justify-center w-9 h-9 text-sm font-medium text-zinc-600 border border-zinc-100 hover:border-orange-300 hover:text-orange-600 transition-colors"
+                            >
+                              {p}
+                            </Link>
+                          )}
+                        </li>
+                      )
+                    )}
+                  </ol>
+
+                  {/* Next */}
+                  {currentPage < totalPages ? (
+                    <Link
+                      href={buildBlogUrl(activeTag, currentPage, {
+                        page: currentPage + 1,
+                      })}
+                      rel="next"
+                      aria-label="Next page"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-200 text-sm font-medium text-zinc-700 hover:border-orange-300 hover:text-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    >
+                      Next
+                      <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                    </Link>
+                  ) : (
+                    <span
+                      aria-disabled="true"
+                      className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-100 text-sm font-medium text-zinc-300 cursor-not-allowed"
+                    >
+                      Next
+                      <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                    </span>
+                  )}
+                </nav>
+              )}
             </div>
 
             {/* Sidebar */}
             <aside>
-              {/* Topics */}
+              {/* Topics — now clickable filters */}
               <div className="border-b border-zinc-100 p-8 sm:p-10">
-                <h3 className="flex items-center gap-2 text-xs font-mono text-zinc-500 uppercase tracking-widest mb-6">
-                  <Tag className="w-3.5 h-3.5" aria-hidden="true" />
-                  Topics
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {tags.map(({ tag, count }) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1.5 border border-zinc-100 text-zinc-600 text-xs font-mono hover:border-orange-200 hover:text-orange-600 transition-colors cursor-default"
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="flex items-center gap-2 text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                    <Tag className="w-3.5 h-3.5" aria-hidden="true" />
+                    Topics
+                  </h3>
+                  {activeTag && (
+                    <Link
+                      href="/blog"
+                      className="text-[10px] font-mono text-orange-600 hover:text-orange-700 uppercase tracking-widest"
                     >
-                      {tag} ({count})
+                      Reset
+                    </Link>
+                  )}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {/* "All" pill */}
+                  {activeTag ? (
+                    <Link
+                      href="/blog"
+                      className="px-3 py-1.5 border border-zinc-200 text-zinc-600 text-xs font-mono hover:border-orange-200 hover:text-orange-600 transition-colors"
+                    >
+                      All
+                    </Link>
+                  ) : (
+                    <span className="px-3 py-1.5 border border-orange-500 bg-orange-500 text-white text-xs font-mono">
+                      All
                     </span>
-                  ))}
+                  )}
+                  {tags.map(({ tag, count }) => {
+                    const isActive =
+                      activeTag?.toLowerCase() === tag.toLowerCase();
+                    return isActive ? (
+                      <span
+                        key={tag}
+                        aria-current="true"
+                        className="px-3 py-1.5 border border-orange-500 bg-orange-500 text-white text-xs font-mono"
+                      >
+                        {tag} ({count})
+                      </span>
+                    ) : (
+                      <Link
+                        key={tag}
+                        href={buildBlogUrl(null, 1, { tag, page: 1 })}
+                        className="px-3 py-1.5 border border-zinc-100 text-zinc-600 text-xs font-mono hover:border-orange-200 hover:text-orange-600 transition-colors"
+                      >
+                        {tag} ({count})
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -236,7 +545,8 @@ export default function BlogPage() {
                   Have a project in mind?
                 </h3>
                 <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
-                  I design in Figma, build in Framer, and ship Chrome extensions. Book a free call to get started.
+                  I design in Figma, build in Framer, and ship Chrome
+                  extensions. Book a free call to get started.
                 </p>
                 <a
                   href={SOCIAL_LINKS.calcom}
@@ -255,7 +565,9 @@ export default function BlogPage() {
                   About the Author
                 </span>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  I&apos;m Rashid, a Figma &amp; Framer expert specializing in high-converting landing pages, UX copywriting, and Chrome extensions. I write about what I learn.
+                  I&apos;m Rashid, a Figma &amp; Framer expert specializing in
+                  high-converting landing pages, UX copywriting, and Chrome
+                  extensions. I write about what I learn.
                 </p>
                 <Link
                   href="/"
