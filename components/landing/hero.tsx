@@ -150,14 +150,15 @@ export function Hero() {
                                 <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600 pb-1">sell.</span>
                             </motion.h1>
 
-                            {/* Sub-heading - what the buyer gets, not which tools I use */}
+                            {/* Sub-heading - positions the service around design + build +
+                                 convert, not audit. Figma/Framer mentioned as the "how". */}
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
                             >
-                                I audit what is losing you visitors, rewrite the copy, and rebuild the page around conversion. <span className="font-semibold text-zinc-900">Measurable lift in two weeks.</span>
+                                I design and build landing pages and websites that turn visitors into customers. Figma design, Framer builds, UX copy baked in. <span className="font-semibold text-zinc-900">Live in two weeks.</span>
                             </motion.p>
 
                             {/* Trust band doubles as the primary CTA. Each expert badge
