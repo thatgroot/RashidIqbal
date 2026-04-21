@@ -12,10 +12,10 @@ const services = [
         expertise: "7+ years. 100+ interfaces designed."
     },
     {
-        title: "Framer Development",
-        desc: "Pixel-perfect Framer builds from your Figma design. Fast, responsive, and your team can update content without code.",
+        title: "Framer & Replit Builds",
+        desc: "Pixel-perfect Framer marketing sites and Replit app prototypes from your Figma design. Fast, responsive, and your team can update content without code.",
         icon: Layout,
-        expertise: "Certified Framer Expert. 53 sites shipped."
+        expertise: "Certified Framer & Official Replit Expert."
     },
     {
         title: "Chrome Extensions",

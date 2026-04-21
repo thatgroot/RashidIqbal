@@ -1,13 +1,13 @@
 "use client";
 
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowRight, ArrowDown, Users } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 
 import { useRef } from "react";
 import Image from "next/image";
-import posthog from "posthog-js";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
+import { ExpertBadges } from "@/components/landing/expert-badges";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
 const projectImages = [
@@ -160,63 +160,28 @@ export function Hero() {
                                 I audit what is losing you visitors, rewrite the copy, and rebuild the page around conversion. <span className="font-semibold text-zinc-900">Measurable lift in two weeks.</span>
                             </motion.p>
 
-                            {/* Single CTA - one offer, one action */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
-                                className="flex flex-col items-center gap-3 mb-8"
-                            >
-                                <a
-                                    href={SOCIAL_LINKS.calcom}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => {
-                                        try {
-                                            posthog.capture("cta_clicked", {
-                                                source: "homepage",
-                                                cta: "book_strategy_call",
-                                            });
-                                        } catch {
-                                            /* no-op if posthog not ready */
-                                        }
-                                    }}
-                                    className="px-6 sm:px-8 py-3 sm:py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
-                                >
-                                    Book my strategy call <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                                </a>
-                                <a
-                                    href="#work"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        const el = document.getElementById("work");
-                                        if (el) {
-                                            const offset = 64;
-                                            const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                                            window.scrollTo({ top: pos, behavior: "smooth" });
-                                        }
-                                    }}
-                                    className="text-sm text-zinc-500 hover:text-orange-600 transition-colors underline underline-offset-4 decoration-zinc-300 hover:decoration-orange-400"
-                                >
-                                    See recent work
-                                </a>
-                            </motion.div>
-
-                            {/* Distributed trust band - answers "can I trust it?" next to the CTA */}
+                            {/* Trust band doubles as the primary CTA. Each expert badge
+                                 links to Cal.com so the click intent is tied to a credibility
+                                 signal instead of a generic "book a call" button. */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
-                                className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-zinc-500"
+                                className="flex flex-col items-center gap-3 text-sm text-zinc-500 mb-4"
                             >
-                                <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-50 border border-zinc-100 rounded-full">
-                                    <Users className="w-4 h-4 text-zinc-600" aria-hidden="true" />
-                                    <span className="font-medium text-zinc-700">53 projects shipped</span>
+                                <ExpertBadges
+                                    variant="pill"
+                                    href={SOCIAL_LINKS.calcom}
+                                    hrefLabel="Book my strategy call"
+                                    className="justify-center"
+                                />
+                                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
+                                    <span>Shipping since 2019</span>
+                                    <span className="text-zinc-300">•</span>
+                                    <span>Avg. 2.4x conversion lift</span>
+                                    <span className="text-zinc-300">•</span>
+                                    <span>Top Rated on Upwork</span>
                                 </div>
-                                <span className="hidden sm:inline text-zinc-300">•</span>
-                                <span className="hidden sm:inline">Avg. 2.4x conversion lift</span>
-                                <span className="hidden sm:inline text-zinc-300">•</span>
-                                <span className="hidden sm:inline">Certified Framer Expert</span>
                             </motion.div>
 
                             {/* Scroll Indicator */}

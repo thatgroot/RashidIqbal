@@ -97,6 +97,7 @@ const STACK_OPTIONS: { value: string; label: string; kind: "design" | "build" }[
   { value: "figma", label: "Figma (design)", kind: "design" },
   { value: "framer", label: "Framer", kind: "build" },
   { value: "webflow", label: "Webflow", kind: "build" },
+  { value: "replit", label: "Replit", kind: "build" },
   { value: "nextjs", label: "Next.js / custom", kind: "build" },
   { value: "unsure", label: "Not sure yet", kind: "design" },
 ];
@@ -321,7 +322,7 @@ export function ServiceBuilder() {
           ))}
         </div>
         <p className="text-xs text-zinc-400 text-center mt-8">
-          Trusted by 53+ companies including{" "}
+          Trusted by founders and teams including{" "}
           <a href="https://relace.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Relace</a>,{" "}
           <a href="https://equals.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Equals</a>, and{" "}
           <a href="https://gethevn.com" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Hevn</a>.

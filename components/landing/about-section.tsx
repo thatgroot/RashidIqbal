@@ -8,8 +8,9 @@ import { ArrowUpRight } from "lucide-react";
 
 const credentials = [
   { label: "Certified Framer Expert", link: "https://www.framer.com/@rashidiqbal" },
-  { label: "Upwork Top Rated (4.9 / 5)", link: SOCIAL_LINKS.upwork },
-  { label: "53 Projects Shipped", link: SOCIAL_LINKS.upwork },
+  { label: "Official Replit Expert on Contra", link: SOCIAL_LINKS.contra },
+  { label: "Top Rated on Upwork", link: SOCIAL_LINKS.upwork },
+  { label: "Shipping for clients since 2019", link: SOCIAL_LINKS.upwork },
 ];
 
 const profiles = [
@@ -33,7 +34,7 @@ export function AboutSection() {
                   Credibility
                 </span>
                 <p className="text-2xl md:text-3xl font-semibold text-zinc-900 leading-tight max-w-3xl">
-                  Across <span className="text-orange-600">53 projects</span>, clients report an average <span className="text-orange-600">2.4x conversion lift</span> and rate the work <span className="text-orange-600">4.9 / 5</span> on Upwork.
+                  Across <span className="text-orange-600">years of client work</span>, founders report an average <span className="text-orange-600">2.4x conversion lift</span>. <span className="text-orange-600">Top Rated on Upwork</span> and <span className="text-orange-600">Official Replit Expert</span> on Contra.
                 </p>
               </div>
               <a
@@ -84,7 +85,7 @@ export function AboutSection() {
                 What
               </span>
               <p className="text-zinc-600 leading-relaxed mb-8">
-                I design in Figma, write the UX copy, and build in Framer. I also ship Chrome extensions for teams that need custom browser tools. 53 projects for clients in 12 countries.
+                I design in Figma, write the UX copy, and build in Framer. I also ship Chrome extensions for teams that need custom browser tools. Shipping for clients in 12 countries since 2019.
               </p>
 
               {/* How I work - methodology */}

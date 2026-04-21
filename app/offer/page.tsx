@@ -241,11 +241,11 @@ export default function OfferPage() {
           transition={{ delay: 0.3 }}
           className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-zinc-500 mb-12"
         >
-          <span className="font-medium text-zinc-700">53 audits delivered</span>
+          <span className="font-medium text-zinc-700">Audits delivered since 2019</span>
           <span className="text-zinc-300">•</span>
           <span>Avg. 2.4x conversion lift</span>
           <span className="text-zinc-300">•</span>
-          <span>Rated 4.9 on Upwork</span>
+          <span>Top Rated on Upwork</span>
         </motion.div>
 
         {/* Testimonial */}

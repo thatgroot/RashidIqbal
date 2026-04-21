@@ -2,6 +2,8 @@
 // strip <style> blocks. Tables for layout — flexbox/grid unreliable in email.
 // Palette matches the aestho.xyz site: zinc neutrals + orange accent.
 
+import type { PricingPlan } from "@/lib/pricing-data";
+
 export interface LeadFields {
   source: string;
   subject: string;
@@ -16,6 +18,14 @@ export interface LeadFields {
   budget?: string | undefined;
   timeline?: string | undefined;
   description?: string | undefined;
+  /** Pricing-inquiry only: the plan the visitor picked (e.g. "Landing Page"). */
+  plan?: string | undefined;
+  /** Pricing-inquiry only: "one-time" or "retainer". */
+  mode?: string | undefined;
+  /** Pricing-inquiry only: full plan object looked up from pricing-data by
+   *  the server so Rashid sees the exact tier in-inbox without opening the
+   *  site. When set, the email renders a pricing card after the details rows. */
+  planSnapshot?: PricingPlan | undefined;
 }
 
 // Rotate a short, CRO-flavored reminder so the inbox doesn't feel boilerplate.
@@ -64,6 +74,104 @@ function link(url: string | undefined, display?: string): string {
   return `<a href="${esc(href)}" style="color: #c2410c; text-decoration: none;">${esc(display || url)}</a>`;
 }
 
+// Render the pricing tier the visitor picked as a compact email-safe card so
+// the inbox carries full context without Rashid opening the site.
+function buildPricingCardHtml(plan: PricingPlan, mode: string | undefined): string {
+  const billing = mode === "retainer" ? "Monthly retainer" : "One-time";
+  const features = plan.baseFeatures
+    .map(
+      (f) => `
+        <tr>
+          <td style="padding: 5px 0; width: 20px; vertical-align: top;">
+            <span style="display: inline-block; color: #ea580c; font-weight: 700;">&#10003;</span>
+          </td>
+          <td style="padding: 5px 0 5px 10px; font-size: 13px; color: #27272a; line-height: 1.55;">
+            ${esc(f)}
+          </td>
+        </tr>`
+    )
+    .join("");
+
+  const highlightPill = plan.highlight
+    ? `<span style="display: inline-block; padding: 4px 9px; background: ${
+        plan.popular ? "#c2410c" : "#18181b"
+      }; color: #ffffff; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;">${esc(
+        plan.highlight
+      )}</span>`
+    : "";
+
+  return `
+    <tr>
+      <td style="padding: 8px 32px 4px;">
+        <span style="font-family: 'SFMono-Regular', ui-monospace, Menlo, monospace; font-size: 10px; color: #ea580c; text-transform: uppercase; letter-spacing: 0.22em;">Pricing tier picked</span>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 10px; border: 1px solid #f4f4f5; background: #ffffff;">
+          <tr>
+            <td style="padding: 20px 20px 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="vertical-align: top;">
+                    <div style="font-size: 20px; font-weight: 700; color: #18181b; letter-spacing: -0.01em; line-height: 1.25;">
+                      ${esc(plan.name)}
+                    </div>
+                    <div style="font-family: 'SFMono-Regular', ui-monospace, Menlo, monospace; font-size: 10px; color: #ea580c; text-transform: uppercase; letter-spacing: 0.18em; margin-top: 6px;">
+                      ${esc(plan.tagline)}
+                    </div>
+                  </td>
+                  <td align="right" style="vertical-align: top;">
+                    ${highlightPill}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 16px 20px 0;">
+              <span style="font-size: 24px; font-weight: 700; color: #18181b;">${esc(plan.price)}</span>${
+    plan.priceSuffix
+      ? `<span style="font-size: 14px; color: #71717a; font-weight: 500;"> ${esc(plan.priceSuffix)}</span>`
+      : ""
+  }
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 20px 0;">
+              <p style="margin: 0; font-size: 13px; color: #52525b; line-height: 1.55;">${esc(plan.desc)}</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 20px 0;">
+              <span style="display: inline-block; padding: 4px 10px; background: #fff7ed; border: 1px solid #fed7aa; color: #c2410c; font-size: 11px; font-weight: 600;">
+                ${esc(plan.idealFor)}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 20px 20px 0;">
+              <span style="font-family: 'SFMono-Regular', ui-monospace, Menlo, monospace; font-size: 10px; color: #71717a; text-transform: uppercase; letter-spacing: 0.18em;">What&rsquo;s included</span>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 8px;">
+                ${features}
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 20px 18px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #f4f4f5;">
+                <tr>
+                  <td style="padding-top: 12px; font-size: 12px; color: #71717a;">
+                    <strong style="color: #27272a;">Delivery:</strong> ${esc(plan.deliveryTime)}
+                  </td>
+                  <td align="right" style="padding-top: 12px; font-size: 12px; color: #71717a;">
+                    <strong style="color: #27272a;">Billing:</strong> ${esc(billing)}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>`;
+}
+
 export function buildLeadEmailHtml(fields: LeadFields): string {
   const year = new Date().getFullYear();
   const cro = pickReminder();
@@ -72,6 +180,8 @@ export function buildLeadEmailHtml(fields: LeadFields): string {
   const detailsRows = [
     row("Email", link(`mailto:${fields.email}`, fields.email)),
     row("Name", fields.name),
+    row("Plan", fields.plan),
+    row("Billing", fields.mode ? (fields.mode === "retainer" ? "Monthly retainer" : "One-time") : undefined),
     row("Website", fields.website ? link(fields.website) : undefined),
     row("Location", fields.location),
     row("Services", fields.services),
@@ -142,6 +252,9 @@ export function buildLeadEmailHtml(fields: LeadFields): string {
             </td>
           </tr>
 
+          <!-- Pricing tier card (only when the visitor came from the pricing section) -->
+          ${fields.planSnapshot ? buildPricingCardHtml(fields.planSnapshot, fields.mode) : ""}
+
           <!-- CRO reminder strip -->
           <tr>
             <td style="padding: 18px 32px; background: #fff7ed; border-top: 1px solid #f4f4f5;">
@@ -200,12 +313,32 @@ export function buildLeadEmailHtml(fields: LeadFields): string {
 
 // Plain-text fallback for mail clients that don't render HTML.
 export function buildLeadEmailText(fields: LeadFields): string {
+  const planBlock: string[] = [];
+  if (fields.planSnapshot) {
+    const p = fields.planSnapshot;
+    planBlock.push(
+      "",
+      "— PRICING TIER PICKED —",
+      `${p.name}  (${p.tagline})${p.highlight ? `  [${p.highlight}]` : ""}`,
+      `${p.price}${p.priceSuffix || ""}`,
+      p.desc,
+      `Ideal for: ${p.idealFor}`,
+      "",
+      "What's included:",
+      ...p.baseFeatures.map((f) => `  \u2713 ${f}`),
+      "",
+      `Delivery: ${p.deliveryTime}    Billing: ${fields.mode === "retainer" ? "Monthly retainer" : "One-time"}`
+    );
+  }
+
   const lines = [
     `Source: ${fields.source}`,
     fields.subject ? `Subject: ${fields.subject}` : null,
     "",
     `Email: ${fields.email}`,
     fields.name ? `Name: ${fields.name}` : null,
+    fields.plan ? `Plan: ${fields.plan}` : null,
+    fields.mode ? `Billing: ${fields.mode === "retainer" ? "Monthly retainer" : "One-time"}` : null,
     fields.website ? `Website: ${fields.website}` : null,
     fields.location ? `Location: ${fields.location}` : null,
     fields.services ? `Services: ${fields.services}` : null,
@@ -215,6 +348,7 @@ export function buildLeadEmailText(fields: LeadFields): string {
     fields.timeline ? `Timeline: ${fields.timeline}` : null,
     fields.concern ? `\nConcern:\n${fields.concern}` : null,
     fields.description ? `\nDescription:\n${fields.description}` : null,
+    ...planBlock,
     "",
     "--",
     "Rashid Iqbal — aestho.xyz",
@@ -241,6 +375,9 @@ export interface ClientAckFields {
   budget?: string | undefined;
   timeline?: string | undefined;
   description?: string | undefined;
+  plan?: string | undefined;
+  mode?: string | undefined;
+  planSnapshot?: PricingPlan | undefined;
 }
 
 // Returns first name only for a warmer greeting. Falls back to "there" when
@@ -276,6 +413,17 @@ function nextStepsFor(source: string): { heading: string; steps: string[]; ctaTi
       ctaTitle: "Audit request confirmed",
     };
   }
+  if (source === "pricing") {
+    return {
+      heading: "Your pricing inquiry is in.",
+      steps: [
+        "I will review the plan you picked and sketch a scope tailored to your project.",
+        "Within 24 hours I will reply with a detailed proposal, including deliverables and a firm price.",
+        "If the proposal looks right, we set up a 30-minute call to finalize the details and kick off.",
+      ],
+      ctaTitle: "Pricing inquiry confirmed",
+    };
+  }
   // service-builder / default
   return {
     heading: "Your project inquiry is in.",
@@ -292,6 +440,10 @@ function nextStepsFor(source: string): { heading: string; steps: string[]; ctaTi
 // void. Only renders fields that actually exist.
 function clientSummaryRows(fields: ClientAckFields): string {
   const rows = [
+    fields.plan ? row("Plan", fields.plan) : "",
+    fields.mode
+      ? row("Billing", fields.mode === "retainer" ? "Monthly retainer" : "One-time")
+      : "",
     fields.website ? row("Website", link(fields.website)) : "",
     fields.services ? row("Services", fields.services) : "",
     fields.stack ? row("Stack", fields.stack) : "",
@@ -394,6 +546,9 @@ export function buildClientEmailHtml(fields: ClientAckFields): string {
             </td>
           </tr>
 
+          <!-- Pricing tier card (only when picked from the pricing section) -->
+          ${fields.planSnapshot ? buildPricingCardHtml(fields.planSnapshot, fields.mode) : ""}
+
           <!-- Submission recap (only if fields present) -->
           ${clientSummaryRows(fields)}
 
@@ -456,6 +611,8 @@ export function buildClientEmailText(fields: ClientAckFields): string {
   const greeting = firstName(fields.name);
   const next = nextStepsFor(fields.source);
   const submissionSummary = [
+    fields.plan ? `Plan: ${fields.plan}` : null,
+    fields.mode ? `Billing: ${fields.mode === "retainer" ? "Monthly retainer" : "One-time"}` : null,
     fields.website ? `Website: ${fields.website}` : null,
     fields.services ? `Services: ${fields.services}` : null,
     fields.stack ? `Stack: ${fields.stack}` : null,
@@ -465,6 +622,22 @@ export function buildClientEmailText(fields: ClientAckFields): string {
     fields.description ? `\nDescription:\n${fields.description}` : null,
   ].filter(Boolean);
 
+  const planBlock: string[] = [];
+  if (fields.planSnapshot) {
+    const p = fields.planSnapshot;
+    planBlock.push(
+      "Pricing tier picked:",
+      `  ${p.name}  (${p.tagline})${p.highlight ? `  [${p.highlight}]` : ""}`,
+      `  ${p.price}${p.priceSuffix || ""}`,
+      `  ${p.desc}`,
+      `  Ideal for: ${p.idealFor}`,
+      `  Delivery: ${p.deliveryTime}    Billing: ${fields.mode === "retainer" ? "Monthly retainer" : "One-time"}`,
+      "  What's included:",
+      ...p.baseFeatures.map((f) => `    \u2713 ${f}`),
+      ""
+    );
+  }
+
   const lines = [
     `Hey ${greeting},`,
     "",
@@ -473,6 +646,7 @@ export function buildClientEmailText(fields: ClientAckFields): string {
     "What happens next:",
     ...next.steps.map((step, i) => `  ${i + 1}. ${step}`),
     "",
+    ...planBlock,
     ...(submissionSummary.length
       ? ["Your submission:", ...submissionSummary.map((line) => `  ${line}`), ""]
       : []),

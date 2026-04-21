@@ -6,6 +6,24 @@ import {
   buildClientEmailHtml,
   buildClientEmailText,
 } from "./email-template";
+import {
+  ONE_TIME_PLANS,
+  RETAINER_PLANS,
+  type PricingPlan,
+} from "@/lib/pricing-data";
+
+// Look up the full plan object from the pricing catalog by display name +
+// billing mode. Returns undefined when no match — the email template then
+// skips the pricing card block gracefully.
+function findPricingPlan(
+  planName: string | undefined,
+  mode: string | undefined
+): PricingPlan | undefined {
+  if (!planName) return undefined;
+  const catalog = mode === "retainer" ? RETAINER_PLANS : ONE_TIME_PLANS;
+  const needle = planName.trim().toLowerCase();
+  return catalog.find((p) => p.name.toLowerCase() === needle);
+}
 
 // ============================================================================
 // Constants
@@ -50,7 +68,7 @@ function isRateLimited(ip: string): boolean {
 // ============================================================================
 
 type LeadPayload = {
-  source?: "offer-lp" | "service-builder" | "exit-intent" | string;
+  source?: "offer-lp" | "service-builder" | "exit-intent" | "pricing" | string;
   email?: string;
   name?: string;
   website?: string;
@@ -62,6 +80,9 @@ type LeadPayload = {
   budget?: string;
   timeline?: string;
   description?: string;
+  // Pricing-inquiry only
+  plan?: string;
+  mode?: string;
   // Honeypot — must be empty. Bots fill it, humans don't.
   botcheck?: string;
 };
@@ -113,10 +134,17 @@ export async function POST(req: NextRequest) {
 
     const displayName = name || email;
 
+    const planLabel = body.plan?.trim();
+    const modeLabel =
+      body.mode === "retainer" ? "Retainer" : body.mode === "one-time" ? "One-time" : undefined;
+
     const internalSubjectByType: Record<string, string> = {
       "service-builder": `New Inquiry | ${body.services || "Project"} from ${displayName}`,
       "offer-lp": `Free Audit | ${website || displayName}`,
       "exit-intent": `Audit Request | ${website || displayName}`,
+      "pricing": `Pricing Inquiry | ${planLabel || "Plan"}${
+        modeLabel ? ` (${modeLabel})` : ""
+      } from ${displayName}`,
     };
     const internalSubject =
       internalSubjectByType[source] || `New Lead | ${displayName}`;
@@ -125,6 +153,7 @@ export async function POST(req: NextRequest) {
       "service-builder": `Got your project inquiry — here's what's next`,
       "offer-lp": `Your free audit is on the way`,
       "exit-intent": `Audit request received`,
+      "pricing": `Got your pricing inquiry — here's what's next`,
     };
     const clientSubject =
       clientSubjectByType[source] || `Got your message — here's what's next`;
@@ -145,6 +174,11 @@ export async function POST(req: NextRequest) {
       budget: body.budget?.trim(),
       timeline: body.timeline?.trim(),
       description: body.description?.trim(),
+      plan: body.plan?.trim(),
+      mode: body.mode?.trim(),
+      // Resolve the full pricing-catalog entry on the server so the email
+      // renders the complete tier card without trusting client-supplied data.
+      planSnapshot: findPricingPlan(body.plan, body.mode),
     };
 
     const internalHtml = buildLeadEmailHtml({

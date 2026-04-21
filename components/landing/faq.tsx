@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "What happens if I am not happy with the design?",
-    a: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction is not right after the first round, I refund your deposit. That has happened once in 53 projects."
+    a: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction is not right after the first round, I refund your deposit. That has happened exactly once in years of projects."
   },
   {
     q: "Do you work with my stack (Framer, Webflow, custom)?",

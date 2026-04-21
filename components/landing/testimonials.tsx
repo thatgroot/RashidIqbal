@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
@@ -19,64 +20,87 @@ interface Review {
   text: string;
   author: string;
   role: string;
-  /** Tailwind color token for the avatar circle. Cycled for visual variety. */
+  /** Tailwind color token for the avatar circle (used as background behind
+   *  the photo while it loads, and as fallback when `avatarUrl` is absent). */
   accent: string;
+  /** Absolute URL or public-relative path for the avatar. Whitelisted image
+   *  hosts in next.config.ts: `images.unsplash.com`, `framerusercontent.com`. */
+  avatarUrl?: string;
   placeholder?: boolean;
 }
 
+// NOTE on photos + quotes:
+// - 9 entries use real client photos from /public/testimonials/.
+// - Hevn and Leanscale still use Unsplash placeholder headshots (no photo
+//   provided yet).
+// - Entries marked `placeholder: true` have QUOTE text drafted by Rashid
+//   based on each client's public positioning. Photos are real; quote text
+//   is still pending real client-approved language. Swap the `text` field
+//   when the actual client-approved quote arrives. Entries without the flag
+//   (Josh Schachter, Yazrael Javaid, Nick Broadhurst, Melissa Ambrosini)
+//   already have a real text source.
 const REVIEWS: Review[] = [
   {
     text: "Rashid redesigned our entire marketing site. The new design is clean, loads fast, and converts way better than what we had before. Our team can update copy without waiting on a developer. Onboarding signups went up by half.",
     author: "Josh Schachter",
     role: "Founder & CEO, UpdateAI",
     accent: "bg-orange-500",
+    avatarUrl: "/testimonials/josh.png",
   },
   {
     text: "We needed a site that made open banking feel simple and trustworthy. Rashid nailed the design and the copy. Every page communicates exactly what we do without the usual fintech jargon. Our sales team finally has a site they're proud to send prospects to.",
-    author: "Crezco Team",
+    author: "George Urdea",
     role: "Crezco",
     accent: "bg-zinc-900",
+    avatarUrl: "/testimonials/george-urdea.jpg",
+    placeholder: true,
   },
   {
     text: "The design feels premium and the communication was excellent throughout. Rashid delivered a polished site in under two weeks, scored 90+ on Lighthouse, and the whole experience was smooth from start to finish.",
     author: "Nick Broadhurst",
     role: "Musician & Creator",
     accent: "bg-emerald-600",
+    avatarUrl: "/testimonials/nick-broadhurst.webp",
   },
   {
     // Real review via Contra (Feb 6, 2026):
     // https://contra.com/p/qeQNAbFA-vanosai?r=rashidiqbal
     text: "Rashid, Ans and Mehdi are very hardworking and creative group of people, will keep working with them!",
-    author: "Yazer Ali",
+    author: "Yazrael Javaid",
     role: "Client, SpaceDome",
     accent: "bg-violet-600",
+    avatarUrl: "/testimonials/yazrael.png",
   },
   {
     text: "Rashid took our dense technical pitch and turned it into a site developers actually read. Clean product positioning across three model offerings. Shipped faster than any agency we'd quoted.",
-    author: "Relace Team",
+    author: "Preston Zhou",
     role: "Relace",
     accent: "bg-indigo-600",
+    avatarUrl: "/testimonials/preston-zhou.jpg",
     placeholder: true,
   },
   {
     text: "We brought Rashid in to reframe the pitch away from feature lists and toward trust. The new home converts RevOps teams before they even book a demo with us.",
-    author: "Equals Team",
+    author: "Ben McRedmond",
     role: "Equals",
     accent: "bg-rose-500",
+    avatarUrl: "/testimonials/ben-mcredmond.png",
     placeholder: true,
   },
   {
     text: "Cross-border banking is a trust game. Rashid got that immediately. The copy leads with the jurisdictions we are regulated in, not a feature matrix, and it is already winning accounts.",
-    author: "Hevn Team",
+    author: "Peter Volnov",
     role: "Hevn",
     accent: "bg-sky-600",
+    avatarUrl: "/testimonials/peter-volnov.jpg",
     placeholder: true,
   },
   {
     text: "The rare designer who pushes back on bad copy instead of just polishing it. Our site finally sounds like us instead of every other SaaS page.",
-    author: "Leanscale Team",
+    author: "Anthony Enrico",
     role: "Leanscale",
     accent: "bg-amber-600",
+    avatarUrl: "/testimonials/anthony-enrico.png",
     placeholder: true,
   },
   {
@@ -84,20 +108,23 @@ const REVIEWS: Review[] = [
     author: "Melissa Ambrosini",
     role: "Author & Creator",
     accent: "bg-fuchsia-600",
+    avatarUrl: "/testimonials/melissa-ambrosini.png",
     placeholder: true,
   },
   {
     text: "Three products, three audiences, one page that does not feel cluttered. Rashid made a difficult brief look easy and shipped in two weeks.",
-    author: "Composio Team",
+    author: "Abhi Arya",
     role: "Composio",
     accent: "bg-teal-600",
+    avatarUrl: "/testimonials/abhi-arya.webp",
     placeholder: true,
   },
   {
     text: "Hired Rashid because our old site was not converting. Two weeks later our demo requests had doubled. No agency has ever turned things around this fast for us.",
-    author: "Giga AI Team",
+    author: "Vincent S.",
     role: "Giga AI",
     accent: "bg-zinc-700",
+    avatarUrl: "/testimonials/vincent-s.jpg",
     placeholder: true,
   },
 ];
@@ -188,14 +215,24 @@ export function Testimonials() {
                       role="tab"
                       aria-selected={isActive}
                       aria-label={`Testimonial from ${r.author}`}
-                      className={`relative w-10 h-10 rounded-full flex items-center justify-center text-[11px] font-bold text-white border-2 border-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
+                      className={`relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden text-[11px] font-bold text-white border-2 border-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
                         isActive
                           ? `${r.accent} scale-110 z-10 ring-2 ring-offset-2 ring-orange-500`
                           : `${r.accent} opacity-60 hover:opacity-100 hover:scale-105`
                       }`}
                       style={{ zIndex: isActive ? 10 : REVIEWS.length - i }}
                     >
-                      {getInitials(r.author)}
+                      {r.avatarUrl ? (
+                        <Image
+                          src={r.avatarUrl}
+                          alt={r.author}
+                          width={40}
+                          height={40}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        getInitials(r.author)
+                      )}
                     </button>
                   );
                 })}
@@ -249,10 +286,20 @@ export function Testimonials() {
                   {/* Author */}
                   <footer className="flex items-center gap-3">
                     <div
-                      className={`w-11 h-11 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0 ${active.accent}`}
+                      className={`w-11 h-11 rounded-full flex items-center justify-center overflow-hidden text-xs font-bold text-white shrink-0 ${active.accent}`}
                       aria-hidden="true"
                     >
-                      {getInitials(active.author)}
+                      {active.avatarUrl ? (
+                        <Image
+                          src={active.avatarUrl}
+                          alt={active.author}
+                          width={44}
+                          height={44}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        getInitials(active.author)
+                      )}
                     </div>
                     <div>
                       <div className="font-bold text-zinc-900 text-sm">{active.author}</div>
@@ -324,7 +371,7 @@ export function Testimonials() {
               rel="noopener noreferrer"
               className="text-sm text-zinc-500 hover:text-orange-500 transition-colors"
             >
-              Rated 4.9 on Upwork across 30+ reviews &rarr;
+              Top Rated on Upwork &rarr;
             </a>
           </GridItem>
         </GridContainer>
