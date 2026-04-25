@@ -179,6 +179,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <StructuredData />
         <ExitIntentPopup />
         {children}
+        {/* Microsoft Clarity — session replays + heatmaps. Loads after the
+             page is interactive so it never delays first paint. Project ID
+             is read from env so we can rotate or swap properties without
+             touching code. */}
+        {process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
+          <Script id="clarity-tracking" strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");`}
+          </Script>
+        )}
         {/* Tidio Chat Widget */}
         {process.env.NEXT_PUBLIC_TIDIO_KEY && (
           <Script
