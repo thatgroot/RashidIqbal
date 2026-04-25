@@ -125,13 +125,27 @@ export function Hero() {
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
-                                <a
+                                <motion.a
                                     href={`mailto:${AUTHOR.email}?subject=New%20Framer%20project`}
                                     aria-label={`Email Rashid at ${AUTHOR.email}`}
-                                    className="relative z-10 ml-1 inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                                    title="Email me"
+                                    initial={{ scale: 0.9, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 18 }}
+                                    whileHover={{ scale: 1.08 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="relative z-10 ml-1 inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 group"
                                 >
-                                    <Mail className="w-3 h-3" aria-hidden="true" />
-                                </a>
+                                    {/* Ping ring — same pattern as availability dot, telegraphs clickability */}
+                                    <span
+                                        className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-60"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20">
+                                        <Mail className="w-3 h-3" aria-hidden="true" />
+                                    </span>
+                                    <span className="relative">Email me</span>
+                                </motion.a>
                             </motion.div>
 
                             {/* Frustration hook - question that teases the headline's answer */}
