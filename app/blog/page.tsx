@@ -104,7 +104,7 @@ export async function generateMetadata(
   const tag = normalizeTag(sp.tag);
   const page = parsePage(sp.page);
 
-  const baseTitle = "Blog | Figma, Framer & Conversion Insights";
+  const baseTitle = "Blog: Figma, Framer & Conversion Insights";
   const baseDesc =
     "Articles on Figma design, Framer development, UX copy, and conversion optimization. Real insights from 50+ projects shipped.";
 
@@ -113,13 +113,13 @@ export async function generateMetadata(
   let canonical = `${siteUrl}/blog`;
 
   if (tag) {
-    title = `${tag} articles | Rashid Iqbal Blog`;
+    title = `${tag} articles`;
     description = `Articles tagged "${tag}" from Rashid Iqbal's blog on Figma, Framer, and conversion-focused design.`;
     canonical = `${siteUrl}${buildBlogUrl(tag, 1)}`;
   }
 
   if (page > 1) {
-    title = `${title} — Page ${page}`;
+    title = `${title} (page ${page})`;
     canonical = `${siteUrl}${buildBlogUrl(tag, page)}`;
   }
 

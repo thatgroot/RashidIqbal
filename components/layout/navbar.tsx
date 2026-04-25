@@ -121,10 +121,9 @@ export function Navbar({ variant = "default" }: NavbarProps) {
         >
           <Image
             src="/favicon.svg"
-            alt=""
+            alt="Rashid Iqbal logo"
             width={28}
             height={28}
-            aria-hidden="true"
           />
           <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
         </button>

@@ -11,7 +11,7 @@ tags: ["AI", "developer productivity", "code review", "software engineering", "L
 category: "Development"
 published: true
 featured: false
-seoTitle: "AI Code Review in 2026: Why Most Developers Stopped Checking"
+seoTitle: "AI Code Review 2026: Devs Stopped Checking"
 seoDescription: "AI-generated code has 1.7x more bugs than human-written code, and 43% still breaks in production. Why most developers stopped reading what AI writes — and how to fix it."
 twitterCard: "summary_large_image"
 linkedinTitle: "90% of Developers Use AI. Most Stopped Reading the Code."

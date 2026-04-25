@@ -11,7 +11,7 @@ tags: ["landing pages", "conversion optimization", "UX copywriting", "CRO", "dec
 category: "Landing Pages"
 published: true
 featured: true
-seoTitle: "What Your Landing Page Actually Needs (Data-Backed, 2026)"
+seoTitle: "What Landing Pages Actually Need (2026)"
 seoDescription: "Design doesn't convert. Copy alone doesn't convert. What works is a decision sequence: the four questions every visitor asks — and the order they need to be answered."
 twitterCard: "summary_large_image"
 linkedinTitle: "Your Landing Page Does Not Need Better Design"

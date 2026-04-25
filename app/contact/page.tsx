@@ -36,6 +36,12 @@ export default function ContactPage() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
                                 Accepting New Projects
                             </span>
+                            <h1 className="text-3xl md:text-4xl font-semibold tracking-tighter text-zinc-900 mb-3 leading-[1.1]">
+                                Start a project with Rashid
+                            </h1>
+                            <p className="text-base text-zinc-600 leading-relaxed max-w-xl mb-10">
+                                Figma design, Framer development, or Chrome extensions. Tell me about your project below and I will respond within 24 hours with a scope and quote.
+                            </p>
                             <ServiceBuilder />
                         </div>
 

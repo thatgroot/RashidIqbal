@@ -11,7 +11,7 @@ tags: ["founders", "web design", "landing pages", "conversion optimization", "UX
 category: "Business"
 published: true
 featured: false
-seoTitle: "7 Mistakes Every Founder Makes Before Hiring a Web Designer"
+seoTitle: "7 Mistakes Founders Make Before Hiring"
 seoDescription: "After 50+ founder websites, the mistakes are always the same. The seven patterns I see every time, and what a conversion-focused designer builds instead."
 twitterCard: "summary_large_image"
 linkedinTitle: "7 Mistakes Every Founder Makes Before Hiring a Web Designer"

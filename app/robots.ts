@@ -18,8 +18,11 @@ const AI_SEARCH_CRAWLERS = [
   'Applebot-Extended', // Apple Intelligence
 ];
 
+// /offer is intentionally noindex,nofollow via page metadata, but we
+// no longer block it in robots.txt. Bing flags robots-blocked pages as
+// crawl errors; letting bots crawl + see the noindex tag is cleaner.
 const aiCrawlerAllow = ['/', '/blog/', '/contact', '/links', '/llms.txt', '/llms-full.txt', '/api/llms-context', '/api/oembed'];
-const aiCrawlerDisallow = ['/_next/', '/api/og', '/offer'];
+const aiCrawlerDisallow = ['/_next/', '/api/og'];
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -28,7 +31,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/_next/', '/api/og', '/offer'],
+        disallow: ['/_next/', '/api/og'],
       },
       // All AI search crawlers get full access
       ...AI_SEARCH_CRAWLERS.map((bot) => ({

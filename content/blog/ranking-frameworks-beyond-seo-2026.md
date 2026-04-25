@@ -10,7 +10,7 @@ tags: ["SEO", "GEO", "EEAT", "AI search", "content strategy"]
 category: "Strategy"
 published: true
 featured: true
-seoTitle: "Ranking Frameworks That Matter in 2026: E-E-A-T, GEO, Entity SEO"
+seoTitle: "Ranking Frameworks for 2026: E-E-A-T, GEO, Entity"
 seoDescription: "The complete guide to ranking on Google, ChatGPT, Gemini, and Perplexity in 2026. From a developer who implemented all of them."
 twitterCard: "summary_large_image"
 linkedinTitle: "Every Ranking Framework That Matters in 2026"

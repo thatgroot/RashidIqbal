@@ -11,7 +11,7 @@ tags: ["design philosophy", "conversion optimization", "UX copywriting", "landin
 category: "Design"
 published: true
 featured: false
-seoTitle: "Design Decisions, Not Websites: A Designer's Process Shift"
+seoTitle: "Design Decisions, Not Websites"
 seoDescription: "53 projects. 12 countries. 7 years. The single biggest lesson: design does not convert. Decisions do. The process shift that changes outcomes."
 twitterCard: "summary_large_image"
 linkedinTitle: "I Stopped Designing Websites. I Design Decisions Now."

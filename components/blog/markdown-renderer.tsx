@@ -54,11 +54,12 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
             </span>
           );
         },
-        // Custom heading styles
+        // Custom heading styles. Demote markdown `#` to <h2> so the
+        // page-level <h1> (from frontmatter title) stays unique.
         h1: ({ children }) => (
-          <h1 className="text-3xl md:text-4xl font-bold mt-12 mb-6 text-zinc-900">
+          <h2 className="text-3xl md:text-4xl font-bold mt-12 mb-6 text-zinc-900 border-b border-zinc-200 pb-2">
             {children}
-          </h1>
+          </h2>
         ),
         h2: ({ children }) => (
           <h2 className="text-2xl md:text-3xl font-bold mt-10 mb-4 text-zinc-900 border-b border-zinc-200 pb-2">
