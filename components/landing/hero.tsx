@@ -1,14 +1,14 @@
 "use client";
 
 import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Mail } from "lucide-react";
 
 import { useRef } from "react";
 import Image from "next/image";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
 import { ExpertBadges } from "@/components/landing/expert-badges";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -125,6 +125,13 @@ export function Hero() {
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
+                                <a
+                                    href={`mailto:${AUTHOR.email}?subject=New%20Framer%20project`}
+                                    aria-label={`Email Rashid at ${AUTHOR.email}`}
+                                    className="relative z-10 ml-1 inline-flex items-center justify-center w-6 h-6 rounded-full bg-orange-500 text-white hover:bg-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                                >
+                                    <Mail className="w-3 h-3" aria-hidden="true" />
+                                </a>
                             </motion.div>
 
                             {/* Frustration hook - question that teases the headline's answer */}
