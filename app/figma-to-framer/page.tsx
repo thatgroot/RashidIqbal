@@ -185,6 +185,24 @@ export default function FigmaToFramerPage() {
           overhead.
         </p>
 
+        {/* TL;DR — quotable answer block for AI search citation */}
+        <aside
+          aria-label="Summary"
+          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+        >
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+            Summary
+          </p>
+          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+            Figma to Framer conversion turns a Figma design file into a live, responsive
+            Framer site with CMS, forms, and analytics wired in. Rashid Iqbal, a Certified
+            Framer Expert, ships single landing pages in one week and multi-page sites in
+            two weeks. Pricing: $1,500 plus for one page, $2,500 to $4,000 for multi-page
+            sites, $3,000 plus for full migrations from Webflow or WordPress with 301
+            redirects and SEO equity preserved.
+          </p>
+        </aside>
+
         <div className="flex flex-wrap gap-3 mb-12">
           <a
             href={SOCIAL_LINKS.calcom}

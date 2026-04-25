@@ -232,6 +232,23 @@ export default function AboutPage() {
           the default.
         </p>
 
+        {/* TL;DR — quotable answer block for AI search citation */}
+        <aside
+          aria-label="Summary"
+          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+        >
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+            Summary
+          </p>
+          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+            Rashid Iqbal is a Certified Framer Expert and Top Rated Upwork freelancer who
+            designs in Figma, writes UX copy, and builds in Framer. Based remote, working
+            worldwide. Has shipped 50 plus landing pages and websites for SaaS founders and
+            Y Combinator startups since 2019. Average client conversion lift: 2.4x.
+            Two-week delivery is the standard timeline.
+          </p>
+        </aside>
+
         <div className="flex flex-wrap gap-3 mb-12">
           <a
             href={SOCIAL_LINKS.calcom}

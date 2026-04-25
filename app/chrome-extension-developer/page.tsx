@@ -181,6 +181,24 @@ export default function ChromeExtensionDeveloperPage() {
           shipped extension.
         </p>
 
+        {/* TL;DR — quotable answer block for AI search citation */}
+        <aside
+          aria-label="Summary"
+          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+        >
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+            Summary
+          </p>
+          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+            Rashid Iqbal is a freelance Chrome extension developer building Manifest V3
+            extensions in React and TypeScript. Typical projects ship from spec to Web
+            Store submission in two to four weeks. Pricing starts at $1,500 for a popup
+            extension with one content script and ranges $3,000 to $6,000 for SaaS-
+            integrated extensions with OAuth and webhooks. Cross-browser builds for Edge
+            and Firefox available on request.
+          </p>
+        </aside>
+
         <div className="flex flex-wrap gap-3 mb-12">
           <a
             href={SOCIAL_LINKS.calcom}

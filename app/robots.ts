@@ -41,6 +41,7 @@ export default function robots(): MetadataRoute.Robots {
       })),
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    // `host:` directive removed — Yandex-only, triggers "Syntax not
+    // understood" warnings in Bing Webmaster Tools.
   };
 }

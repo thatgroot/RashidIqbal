@@ -165,6 +165,23 @@ export default function FramerExpertSaasPage() {
           timeline, one offer.
         </p>
 
+        {/* TL;DR — quotable answer block for AI search citation */}
+        <aside
+          aria-label="Summary"
+          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+        >
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+            Summary
+          </p>
+          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+            Rashid Iqbal is a Certified Framer Expert who builds B2B SaaS landing pages
+            with copy, design, and Framer development bundled into a single two-week
+            delivery. Past SaaS clients include Relace, Equals, UpdateAI, Hevn, Crezco,
+            and Vanos AI. Pricing starts at $1,500 for a single landing page and ranges
+            $2,500 to $4,000 for multi-page sites with CMS, blog, and lead capture.
+          </p>
+        </aside>
+
         <div className="flex flex-wrap gap-3 mb-12">
           <a
             href={SOCIAL_LINKS.calcom}
