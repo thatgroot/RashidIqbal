@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowDown, Mail } from "lucide-react";
+import { motion, useMotionValue, useMotionTemplate, AnimatePresence } from "framer-motion";
+import { ArrowDown, Mail, Calendar, Briefcase } from "lucide-react";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
@@ -27,6 +27,23 @@ export function Hero() {
     // Mouse tracking for lens effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+
+    // Rotating CTA — cycles through three high-intent options every
+    // 3.2s. Resets if the user is hovering the pill so the option they
+    // see is the option they click.
+    const ctaOptions = [
+        { label: "Book a call", href: SOCIAL_LINKS.calcom, Icon: Calendar, external: true },
+        { label: "Email me", href: `mailto:${AUTHOR.email}?subject=New%20Framer%20project`, Icon: Mail, external: false },
+        { label: "Hire me", href: "https://framer.link/rashidiqbal", Icon: Briefcase, external: true },
+    ] as const;
+    const [ctaIdx, setCtaIdx] = useState(0);
+    const [ctaPaused, setCtaPaused] = useState(false);
+    useEffect(() => {
+        if (ctaPaused) return;
+        const id = setInterval(() => setCtaIdx((i) => (i + 1) % ctaOptions.length), 3200);
+        return () => clearInterval(id);
+    }, [ctaPaused, ctaOptions.length]);
+    const cta = ctaOptions[ctaIdx]!;
 
     function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
         const { left, top } = currentTarget.getBoundingClientRect();
@@ -126,25 +143,53 @@ export function Hero() {
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
                                 <motion.a
-                                    href={`mailto:${AUTHOR.email}?subject=New%20Framer%20project`}
-                                    aria-label={`Email Rashid at ${AUTHOR.email}`}
-                                    title="Email me"
+                                    key={cta.label}
+                                    href={cta.href}
+                                    {...(cta.external
+                                        ? { target: "_blank", rel: "noopener noreferrer" }
+                                        : {})}
+                                    aria-label={cta.label}
+                                    title={cta.label}
+                                    onMouseEnter={() => setCtaPaused(true)}
+                                    onMouseLeave={() => setCtaPaused(false)}
+                                    onFocus={() => setCtaPaused(true)}
+                                    onBlur={() => setCtaPaused(false)}
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
                                     transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 18 }}
                                     whileHover={{ scale: 1.08 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="relative z-10 ml-1 inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 group"
+                                    className="relative z-10 ml-1 inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
                                 >
-                                    {/* Ping ring — same pattern as availability dot, telegraphs clickability */}
+                                    {/* Ping ring — telegraphs clickability */}
                                     <span
                                         className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-60"
                                         aria-hidden="true"
                                     />
-                                    <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20">
-                                        <Mail className="w-3 h-3" aria-hidden="true" />
-                                    </span>
-                                    <span className="relative">Email me</span>
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        <motion.span
+                                            key={`icon-${ctaIdx}`}
+                                            initial={{ y: 14, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            exit={{ y: -14, opacity: 0 }}
+                                            transition={{ duration: 0.25, ease: "easeOut" }}
+                                            className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20"
+                                        >
+                                            <cta.Icon className="w-3 h-3" aria-hidden="true" />
+                                        </motion.span>
+                                    </AnimatePresence>
+                                    <AnimatePresence mode="wait" initial={false}>
+                                        <motion.span
+                                            key={`label-${ctaIdx}`}
+                                            initial={{ y: 14, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            exit={{ y: -14, opacity: 0 }}
+                                            transition={{ duration: 0.25, ease: "easeOut" }}
+                                            className="relative whitespace-nowrap"
+                                        >
+                                            {cta.label}
+                                        </motion.span>
+                                    </AnimatePresence>
                                 </motion.a>
                             </motion.div>
 
