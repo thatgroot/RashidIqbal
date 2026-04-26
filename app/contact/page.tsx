@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { ServiceBuilder } from "@/components/shared/service-builder";
-import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
+import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { Mail, Phone, Calendar } from "lucide-react";
+import { EmailMeButton } from "@/components/shared/email-me-toast";
 
 export const metadata: Metadata = {
     title: "Start a Figma, Framer, or Chrome Extension Project",
@@ -52,12 +53,7 @@ export default function ContactPage() {
                             </h3>
 
                             <div className="space-y-6">
-                                <a
-                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(AUTHOR.email)}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-4 group"
-                                >
+                                <EmailMeButton className="flex items-center gap-4 group w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2">
                                     <div className="w-10 h-10 bg-zinc-100 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
                                         <Mail className="w-4 h-4 text-zinc-600 group-hover:text-orange-600" />
                                     </div>
@@ -65,7 +61,7 @@ export default function ContactPage() {
                                         <p className="text-sm font-medium text-zinc-900 group-hover:text-orange-600 transition-colors">Email me</p>
                                         <p className="text-xs text-zinc-500">Direct to my inbox</p>
                                     </div>
-                                </a>
+                                </EmailMeButton>
 
                                 <a
                                     href={SOCIAL_LINKS.whatsapp}

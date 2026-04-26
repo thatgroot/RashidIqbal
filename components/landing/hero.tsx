@@ -9,6 +9,7 @@ import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
 import { ExpertBadges } from "@/components/landing/expert-badges";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import { triggerEmailMe } from "@/components/shared/email-me-toast";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -31,15 +32,15 @@ export function Hero() {
     // Rotating CTA — cycles through three high-intent options every
     // 3.2s. Resets if the user is hovering the pill so the option they
     // see is the option they click.
-    // Gmail compose URL beats mailto: here — it works even when the
-    // visitor has no default mail handler (common on Windows/Chrome and
-    // managed laptops). Opens Gmail web compose in a new tab.
-    const EMAIL_HREF =
-        "https://mail.google.com/mail/?view=cm&fs=1&to=rashidiqbal.freelance@gmail.com&su=New+Framer+project";
+    // For "Email me", clicking dispatches a window event that summons
+    // the EmailMeToast (mounted in app/layout.tsx). The toast copies
+    // the address to the clipboard and offers Gmail / Outlook / Yahoo /
+    // native-app launchers — works for every visitor regardless of how
+    // they actually do email.
     const ctaOptions = [
-        { label: "Book a call", href: SOCIAL_LINKS.calcom, Icon: Calendar, external: true },
-        { label: "Email me", href: EMAIL_HREF, Icon: Mail, external: true },
-        { label: "Hire me", href: SOCIAL_LINKS.upwork, Icon: Briefcase, external: true },
+        { label: "Book a call", href: SOCIAL_LINKS.calcom, Icon: Calendar, kind: "link" as const },
+        { label: "Email me", href: "#email", Icon: Mail, kind: "email" as const },
+        { label: "Hire me", href: SOCIAL_LINKS.upwork, Icon: Briefcase, kind: "link" as const },
     ] as const;
     const [ctaIdx, setCtaIdx] = useState(0);
     const [ctaPaused, setCtaPaused] = useState(false);
@@ -187,11 +188,17 @@ export function Hero() {
                                 <motion.a
                                     layout
                                     href={cta.href}
-                                    {...(cta.external
+                                    {...(cta.kind === "link"
                                         ? { target: "_blank", rel: "noopener noreferrer" }
                                         : {})}
                                     aria-label={cta.label}
                                     title={cta.label}
+                                    onClick={(e) => {
+                                        if (cta.kind === "email") {
+                                            e.preventDefault();
+                                            triggerEmailMe();
+                                        }
+                                    }}
                                     onMouseEnter={() => setCtaPaused(true)}
                                     onMouseLeave={() => setCtaPaused(false)}
                                     onFocus={() => setCtaPaused(true)}

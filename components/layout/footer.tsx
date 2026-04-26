@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
+import { SOCIAL_LINKS } from "@/lib/constants";
+import { triggerEmailMe } from "@/components/shared/email-me-toast";
 
 export function Footer() {
   return (
@@ -21,15 +22,14 @@ export function Footer() {
               Figma design, Framer development, and Chrome extensions.
               I build things that convert.
             </p>
-            <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(AUTHOR.email)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-orange-500 hover:text-orange-400 transition-colors text-sm font-medium"
+            <button
+              type="button"
+              onClick={triggerEmailMe}
+              className="inline-flex items-center gap-1.5 text-orange-500 hover:text-orange-400 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
             >
               Email me
               <span aria-hidden="true">→</span>
-            </a>
+            </button>
           </div>
 
           {/* Pages */}
