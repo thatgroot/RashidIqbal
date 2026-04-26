@@ -14,7 +14,7 @@ const CAL_URL = "https://cal.com/rashid.iqbal";
 // Decoy / contrast: 1-page vs 4-page — the 4-page tier is positioned as
 //   "Most popular" so the $1,500 feels like the obvious upgrade.
 // Specificity: "3 days" / "5 days" beats "fast".
-// Scarcity: "Only 2 slots left this week" stated up top and again at close.
+// Scarcity: "Only 2 slots left this month" stated up top and again at close.
 // Risk reversal: "Don't love it? Full refund. No drama."
 // Social proof: 4 client brand names + Josh testimonial near the CTA.
 // Single decision: every CTA leads to the same Cal.com booking link.
@@ -126,7 +126,7 @@ export default function OfferPage() {
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-[11px] md:text-xs font-semibold text-orange-700 mb-6"
         >
           <Clock className="w-3.5 h-3.5" aria-hidden="true" />
-          Only 2 slots left this week
+          Only 2 slots left this month
         </motion.div>
 
         {/* Frustration eyebrow */}
@@ -377,7 +377,7 @@ export default function OfferPage() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-[11px] md:text-xs font-semibold text-orange-700 mb-5">
             <Clock className="w-3.5 h-3.5" aria-hidden="true" />
-            Slots refresh Monday. This week is full after 2 more bookings.
+            Slots refresh next month. This month is full after 2 more bookings.
           </div>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-3">
             By Friday, your competitor&rsquo;s landing page is shipping.

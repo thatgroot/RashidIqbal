@@ -76,7 +76,7 @@ export function OfferBanner() {
                 <span className="font-bold">Landing page in 3 days for $1,000</span>
                 <span className="hidden sm:inline">
                   {" "}
-                  · 4-page site for $1,500 · only 2 slots left this week
+                  · 4-page site for $1,500 · only 2 slots left this month
                 </span>
               </span>
               <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />

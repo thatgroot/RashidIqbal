@@ -31,9 +31,14 @@ export function Hero() {
     // Rotating CTA — cycles through three high-intent options every
     // 3.2s. Resets if the user is hovering the pill so the option they
     // see is the option they click.
+    // Gmail compose URL beats mailto: here — it works even when the
+    // visitor has no default mail handler (common on Windows/Chrome and
+    // managed laptops). Opens Gmail web compose in a new tab.
+    const EMAIL_HREF =
+        "https://mail.google.com/mail/?view=cm&fs=1&to=rashidiqbal.freelance@gmail.com&su=New+Framer+project";
     const ctaOptions = [
         { label: "Book a call", href: SOCIAL_LINKS.calcom, Icon: Calendar, external: true },
-        { label: "Email me", href: "mailto:rashidiqbal.freelance@gmail.com?subject=New%20Framer%20project", Icon: Mail, external: false },
+        { label: "Email me", href: EMAIL_HREF, Icon: Mail, external: true },
         { label: "Hire me", href: SOCIAL_LINKS.upwork, Icon: Briefcase, external: true },
     ] as const;
     const [ctaIdx, setCtaIdx] = useState(0);
