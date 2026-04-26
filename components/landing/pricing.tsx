@@ -57,7 +57,7 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
       }
       setStatus("sent");
     } catch {
-      setErrorMsg("Network error. Try again or email rashid@founderfist.com directly.");
+      setErrorMsg("Network error. Try again or email rashidiqbal.freelance@gmail.com directly.");
       setStatus("error");
     }
   }
@@ -143,7 +143,7 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
         <p className="text-xs text-red-600 text-center">{errorMsg}</p>
       )}
       <p className="text-[11px] text-zinc-400 text-center">
-        Lands at rashid@founderfist.com. You&apos;ll get a copy too. Reply within 24h.
+        Lands at rashidiqbal.freelance@gmail.com. You&apos;ll get a copy too. Reply within 24h.
       </p>
       <p className="text-[10px] font-mono text-zinc-400 text-center uppercase tracking-wider">
         {planName} · {mode === "retainer" ? "Monthly retainer" : "One-time"} · {planPrice}

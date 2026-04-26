@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Where inquiry/lead emails should land
-const RECIPIENT_EMAIL = "rashid@founderfist.com";
+const RECIPIENT_EMAIL = "rashidiqbal.freelance@gmail.com";
 
 // Rate limiting for lead submissions
 const leadRateMap = new Map<string, { count: number; timestamp: number }>();

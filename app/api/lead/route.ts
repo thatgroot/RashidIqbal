@@ -29,7 +29,7 @@ function findPricingPlan(
 // Constants
 // ============================================================================
 
-const RECIPIENT = "rashid@founderfist.com";
+const RECIPIENT = "rashidiqbal.freelance@gmail.com";
 
 // Two distinct sender identities so Rashid's inbox and the client's inbox
 // each show a sensible "from" line. Same underlying mailbox — just a display
@@ -145,6 +145,7 @@ export async function POST(req: NextRequest) {
       "pricing": `Pricing Inquiry | ${planLabel || "Plan"}${
         modeLabel ? ` (${modeLabel})` : ""
       } from ${displayName}`,
+      "offer-paid": `New Booking | ${planLabel || "Offer"} from ${displayName}`,
     };
     const internalSubject =
       internalSubjectByType[source] || `New Lead | ${displayName}`;
@@ -154,6 +155,7 @@ export async function POST(req: NextRequest) {
       "offer-lp": `Your free audit is on the way`,
       "exit-intent": `Audit request received`,
       "pricing": `Got your pricing inquiry — here's what's next`,
+      "offer-paid": `Booking received — kickoff details inside`,
     };
     const clientSubject =
       clientSubjectByType[source] || `Got your message — here's what's next`;

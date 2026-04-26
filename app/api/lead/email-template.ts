@@ -424,6 +424,17 @@ function nextStepsFor(source: string): { heading: string; steps: string[]; ctaTi
       ctaTitle: "Pricing inquiry confirmed",
     };
   }
+  if (source === "offer-paid") {
+    return {
+      heading: "Your booking is in. Kickoff is the next step.",
+      steps: [
+        "I will reply within 24 hours with a kickoff link to lock in your slot for this month.",
+        "On the kickoff call we confirm scope, copy direction, brand assets, and the launch date.",
+        "Once we kick off, design starts the next day and you see a live URL inside 48 hours.",
+      ],
+      ctaTitle: "Booking confirmed",
+    };
+  }
   // service-builder / default
   return {
     heading: "Your project inquiry is in.",

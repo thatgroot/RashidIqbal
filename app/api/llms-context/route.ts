@@ -38,7 +38,7 @@ Rashid Iqbal is a highly technical freelance Web & Mobile Developer working remo
 
 ## Contact Endpoints
 - **Hire/Booking**: https://cal.com/rashid.iqbal
-- **Email**: rashid@founderfist.com
+- **Email**: rashidiqbal.freelance@gmail.com
 - **Framer Expert**: https://www.framer.com/@rashidiqbal
 
 ---

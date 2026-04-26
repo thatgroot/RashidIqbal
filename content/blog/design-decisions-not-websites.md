@@ -165,7 +165,7 @@ Upwork profile: https://www.upwork.com/freelancers/thatgroot
 
 LinkedIn: https://www.linkedin.com/in/callmerashidiqbal/
 
-Email: rashid@founderfist.com
+Email: rashidiqbal.freelance@gmail.com
 
 Or send me a DM right here on LinkedIn. I respond within 24 hours.
 
