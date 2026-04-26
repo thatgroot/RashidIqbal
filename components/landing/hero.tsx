@@ -142,8 +142,15 @@ export function Hero() {
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
+                                {/*
+                                    Rotating CTA. The <motion.a> itself stays mounted —
+                                    no `key` on it — so the click target never disappears.
+                                    Only the icon + label inside swap via AnimatePresence.
+                                    `layout` morphs the pill width smoothly across the
+                                    three labels (Book a call / Email me / Hire me).
+                                */}
                                 <motion.a
-                                    key={cta.label}
+                                    layout
                                     href={cta.href}
                                     {...(cta.external
                                         ? { target: "_blank", rel: "noopener noreferrer" }
@@ -156,40 +163,44 @@ export function Hero() {
                                     onBlur={() => setCtaPaused(false)}
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 18 }}
-                                    whileHover={{ scale: 1.08 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ layout: { duration: 0.35, ease: [0.32, 0.72, 0, 1] }, scale: { delay: 0.4, type: "spring", stiffness: 260, damping: 18 }, opacity: { delay: 0.4 } }}
+                                    whileHover={{ scale: 1.06 }}
+                                    whileTap={{ scale: 0.96 }}
                                     className="relative z-10 ml-1 inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
                                 >
-                                    {/* Ping ring — telegraphs clickability */}
+                                    {/* Ping ring — telegraphs clickability, never unmounts */}
                                     <span
-                                        className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-60"
+                                        className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-60 pointer-events-none"
                                         aria-hidden="true"
                                     />
-                                    <AnimatePresence mode="wait" initial={false}>
-                                        <motion.span
-                                            key={`icon-${ctaIdx}`}
-                                            initial={{ y: 14, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            exit={{ y: -14, opacity: 0 }}
-                                            transition={{ duration: 0.25, ease: "easeOut" }}
-                                            className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20"
-                                        >
-                                            <cta.Icon className="w-3 h-3" aria-hidden="true" />
-                                        </motion.span>
-                                    </AnimatePresence>
-                                    <AnimatePresence mode="wait" initial={false}>
-                                        <motion.span
-                                            key={`label-${ctaIdx}`}
-                                            initial={{ y: 14, opacity: 0 }}
-                                            animate={{ y: 0, opacity: 1 }}
-                                            exit={{ y: -14, opacity: 0 }}
-                                            transition={{ duration: 0.25, ease: "easeOut" }}
-                                            className="relative whitespace-nowrap"
-                                        >
-                                            {cta.label}
-                                        </motion.span>
-                                    </AnimatePresence>
+                                    <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20 overflow-hidden shrink-0">
+                                        <AnimatePresence mode="popLayout" initial={false}>
+                                            <motion.span
+                                                key={`icon-${ctaIdx}`}
+                                                initial={{ y: 12, opacity: 0 }}
+                                                animate={{ y: 0, opacity: 1 }}
+                                                exit={{ y: -12, opacity: 0 }}
+                                                transition={{ duration: 0.22, ease: "easeOut" }}
+                                                className="flex items-center justify-center"
+                                            >
+                                                <cta.Icon className="w-3 h-3" aria-hidden="true" />
+                                            </motion.span>
+                                        </AnimatePresence>
+                                    </span>
+                                    <span className="relative inline-block overflow-hidden">
+                                        <AnimatePresence mode="popLayout" initial={false}>
+                                            <motion.span
+                                                key={`label-${ctaIdx}`}
+                                                initial={{ y: 12, opacity: 0 }}
+                                                animate={{ y: 0, opacity: 1 }}
+                                                exit={{ y: -12, opacity: 0 }}
+                                                transition={{ duration: 0.22, ease: "easeOut" }}
+                                                className="block whitespace-nowrap"
+                                            >
+                                                {cta.label}
+                                            </motion.span>
+                                        </AnimatePresence>
+                                    </span>
                                 </motion.a>
                             </motion.div>
 
