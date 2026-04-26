@@ -166,7 +166,7 @@ export function Hero() {
                                     transition={{ layout: { duration: 0.35, ease: [0.32, 0.72, 0, 1] }, scale: { delay: 0.4, type: "spring", stiffness: 260, damping: 18 }, opacity: { delay: 0.4 } }}
                                     whileHover={{ scale: 1.06 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className="relative z-10 ml-1 inline-flex items-center gap-1.5 pl-1.5 pr-2.5 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
+                                    className="relative z-10 ml-1 inline-flex items-center justify-center gap-1.5 pl-1.5 pr-2.5 py-1 min-w-[104px] rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
                                 >
                                     {/* Ping ring — telegraphs clickability, never unmounts */}
                                     <span
