@@ -38,6 +38,9 @@ export function Hero() {
     ] as const;
     const [ctaIdx, setCtaIdx] = useState(0);
     const [ctaPaused, setCtaPaused] = useState(false);
+    // Hero unblur overlay — mounted on first paint, unmounted once the
+    // 1.2s reveal animation finishes so backdrop-filter stops painting.
+    const [showBlurOverlay, setShowBlurOverlay] = useState(true);
     useEffect(() => {
         if (ctaPaused) return;
         const id = setInterval(() => setCtaIdx((i) => (i + 1) % ctaOptions.length), 4000);
@@ -99,9 +102,33 @@ export function Hero() {
                             </div>
                         </motion.div>
 
+                        {/*
+                            Backdrop-filter overlay: blurs the hero on first
+                            paint, then fades to opacity 0 over 1.2s. Once the
+                            animation finishes we unmount it so the browser
+                            stops painting backdrop-filter every frame. This
+                            avoids the iOS Safari `filter: blur()` step-tween
+                            issue and the GPU cost of animating filters
+                            directly on the content layer.
+                        */}
+                        {showBlurOverlay && (
+                            <motion.div
+                                initial={{ opacity: 1 }}
+                                animate={{ opacity: 0 }}
+                                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                                onAnimationComplete={() => setShowBlurOverlay(false)}
+                                aria-hidden="true"
+                                className="absolute inset-0 z-20 pointer-events-none"
+                                style={{
+                                    backdropFilter: "blur(16px)",
+                                    WebkitBackdropFilter: "blur(16px)",
+                                }}
+                            />
+                        )}
+
                         <motion.article
-                            initial={{ filter: "blur(16px)", opacity: 0 }}
-                            animate={{ filter: "blur(0px)", opacity: 1 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                             className="relative z-10 w-full px-6 py-12 md:px-12 md:py-16 flex flex-col items-center text-center"
                             onMouseMove={handleMouseMove}
