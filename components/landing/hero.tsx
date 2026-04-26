@@ -8,7 +8,7 @@ import Image from "next/image";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
 import { ExpertBadges } from "@/components/landing/expert-badges";
-import { SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -33,8 +33,8 @@ export function Hero() {
     // see is the option they click.
     const ctaOptions = [
         { label: "Book a call", href: SOCIAL_LINKS.calcom, Icon: Calendar, external: true },
-        { label: "Email me", href: `mailto:${AUTHOR.email}?subject=New%20Framer%20project`, Icon: Mail, external: false },
-        { label: "Hire me", href: "https://framer.link/rashidiqbal", Icon: Briefcase, external: true },
+        { label: "Email me", href: "mailto:rashidiqbal.freelance@gmail.com?subject=New%20Framer%20project", Icon: Mail, external: false },
+        { label: "Hire me", href: SOCIAL_LINKS.upwork, Icon: Briefcase, external: true },
     ] as const;
     const [ctaIdx, setCtaIdx] = useState(0);
     const [ctaPaused, setCtaPaused] = useState(false);
