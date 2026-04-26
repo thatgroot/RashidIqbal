@@ -53,7 +53,9 @@ export default function ContactPage() {
 
                             <div className="space-y-6">
                                 <a
-                                    href={`mailto:${AUTHOR.email}`}
+                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(AUTHOR.email)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex items-center gap-4 group"
                                 >
                                     <div className="w-10 h-10 bg-zinc-100 flex items-center justify-center group-hover:bg-orange-100 transition-colors">

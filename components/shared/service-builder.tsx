@@ -118,23 +118,20 @@ const TIMELINES = [
 ];
 
 // ============================================================================
-// Mailto builder
+// Compose-URL builder
 // ============================================================================
-// Construct a `mailto:` URL that pre-fills a plain-text summary of the form.
-// Used by the "Open in your email app" fallback next to Submit. When the
-// visitor sends from their real inbox, it lands in Rashid's inbox like a
-// regular personal email — bypassing Resend and the spam classifiers that
-// sometimes flag automated mail from new domains.
+// Build a Gmail compose URL pre-filled with a plain-text summary of the form.
+// Used by the "Open in Gmail" fallback next to Submit. When the visitor sends
+// from their real inbox the message lands in Rashid's inbox like a regular
+// personal email — bypassing Resend and the spam classifiers that sometimes
+// flag automated mail from new domains.
 //
-// Note: `mailto:` is plain-text only per RFC 2368 — the HTML client template
-// cannot ride along here. We mirror its structure (sectioned labels, warm
-// sign-off) in plain text instead.
-//
-// Spaces MUST encode as %20 (not + as URLSearchParams does). Gmail, Apple
-// Mail, and Outlook all treat literal + in the body as the character +,
-// which produces the "Name:+Jane" artifact visible in some clients.
+// Why Gmail compose instead of mailto: ?  mailto: silently no-ops on machines
+// without a native mail handler (common on Windows + Chrome and managed
+// laptops). Gmail compose works in any browser and still triggers the OS
+// handler on devices that map Gmail to their default app.
 
-function buildMailtoHref(form: ServiceBuilderFormData, servicesLabel: string, stackLabel: string): string {
+function buildComposeHref(form: ServiceBuilderFormData, servicesLabel: string, stackLabel: string): string {
   const firstName = form.name.trim().split(/\s+/)[0] || "there";
 
   const subject = `Project inquiry${form.name ? ` from ${form.name}` : ""}${
@@ -178,10 +175,10 @@ function buildMailtoHref(form: ServiceBuilderFormData, servicesLabel: string, st
     .filter((line) => line !== undefined && line !== null)
     .join("\n");
 
-  // encodeURIComponent uses %20 for spaces — the only encoding every mail
-  // client handles correctly. URLSearchParams uses `+`, which some clients
-  // render literally.
-  return `mailto:${AUTHOR.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // Gmail compose URL. `view=cm&fs=1` opens the full compose window
+  // (instead of the small popup). Spaces encode as %20 via
+  // encodeURIComponent — Gmail handles both %20 and + in URLs cleanly.
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(AUTHOR.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 // ============================================================================
@@ -730,7 +727,7 @@ export function ServiceBuilder() {
                 </button>
                 <div className="flex flex-col sm:flex-row gap-3 sm:ml-auto">
                   <a
-                    href={buildMailtoHref(
+                    href={buildComposeHref(
                       formData,
                       formData.selectedServices
                         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
@@ -739,10 +736,12 @@ export function ServiceBuilder() {
                         .map((v) => STACK_OPTIONS.find((o) => o.value === v)?.label || v)
                         .join(", ")
                     )}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-orange-300 hover:text-orange-600 transition-colors flex items-center justify-center gap-2"
-                    title="Opens your email app with the form pre-filled — useful if automated mail ends up in your spam folder."
+                    title="Opens Gmail compose with the form pre-filled — useful if automated mail ends up in your spam folder."
                   >
-                    <Mail className="w-4 h-4" /> Open in email app
+                    <Mail className="w-4 h-4" /> Open in Gmail
                   </a>
                   <button
                     type="submit"
@@ -764,7 +763,7 @@ export function ServiceBuilder() {
 
               {status === "error" && (
                 <p className="text-sm text-red-600 text-center">
-                  Something went wrong. Try &ldquo;Open in email app&rdquo; above, or email me directly.
+                  Something went wrong. Try &ldquo;Open in Gmail&rdquo; above, or email me directly.
                 </p>
               )}
 

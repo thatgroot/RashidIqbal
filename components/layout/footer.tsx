@@ -22,7 +22,9 @@ export function Footer() {
               I build things that convert.
             </p>
             <a
-              href={`mailto:${AUTHOR.email}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(AUTHOR.email)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-orange-500 hover:text-orange-400 transition-colors text-sm font-medium"
             >
               Email me
