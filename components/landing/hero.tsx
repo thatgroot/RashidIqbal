@@ -40,7 +40,7 @@ export function Hero() {
     const [ctaPaused, setCtaPaused] = useState(false);
     useEffect(() => {
         if (ctaPaused) return;
-        const id = setInterval(() => setCtaIdx((i) => (i + 1) % ctaOptions.length), 3200);
+        const id = setInterval(() => setCtaIdx((i) => (i + 1) % ctaOptions.length), 4000);
         return () => clearInterval(id);
     }, [ctaPaused, ctaOptions.length]);
     const cta = ctaOptions[ctaIdx]!;
