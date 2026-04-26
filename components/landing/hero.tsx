@@ -99,7 +99,10 @@ export function Hero() {
                             </div>
                         </motion.div>
 
-                        <article
+                        <motion.article
+                            initial={{ filter: "blur(16px)", opacity: 0 }}
+                            animate={{ filter: "blur(0px)", opacity: 1 }}
+                            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                             className="relative z-10 w-full px-6 py-12 md:px-12 md:py-16 flex flex-col items-center text-center"
                             onMouseMove={handleMouseMove}
                         >
@@ -277,7 +280,7 @@ export function Hero() {
                                     <ArrowDown className="w-4 h-4 text-zinc-500" aria-hidden="true" />
                                 </motion.div>
                             </motion.div>
-                        </article>
+                        </motion.article>
 
                         {/* Visual Background Element - Only visible when NOT hovering lens area to avoid clutter */}
                         <div className="absolute inset-0 z-0 opacity-40 md:opacity-100 pointer-events-none mix-blend-multiply">
