@@ -6,6 +6,8 @@ import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
 import { ExitIntentPopup } from "@/components/shared/exit-intent-popup";
 import { EmailMeToast } from "@/components/shared/email-me-toast";
+import { Tracker } from "@/components/analytics/tracker";
+import { Suspense } from "react";
 import { OEmbedLinks } from "@/components/seo/oembed-links";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
@@ -180,6 +182,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <StructuredData />
         <ExitIntentPopup />
         <EmailMeToast />
+        <Suspense fallback={null}>
+          <Tracker />
+        </Suspense>
         {children}
         {/* Microsoft Clarity — session replays + heatmaps. Loads after the
              page is interactive so it never delays first paint. Project ID
