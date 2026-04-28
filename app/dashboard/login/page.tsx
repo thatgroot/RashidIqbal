@@ -3,12 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Loader2, Mail, ShieldCheck } from "lucide-react";
 
-type Step = "email" | "code";
+type Step = "request" | "code";
 type Status = "idle" | "sending" | "verifying" | "error";
 
 export default function DashboardLoginPage() {
-  const [step, setStep] = useState<Step>("email");
-  const [email, setEmail] = useState("");
+  const [step, setStep] = useState<Step>("request");
   const [code, setCode] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -18,15 +17,15 @@ export default function DashboardLoginPage() {
     if (step === "code") codeInputRef.current?.focus();
   }, [step]);
 
-  async function sendCode(e?: React.FormEvent) {
-    e?.preventDefault();
+  async function sendCode() {
     setError(null);
     setStatus("sending");
     try {
+      // No email in the body — server uses the allowlist's primary entry.
       const res = await fetch("/api/dashboard/auth/otp/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({}),
       });
       const body = (await res.json().catch(() => ({}))) as {
         success?: boolean;
@@ -53,7 +52,7 @@ export default function DashboardLoginPage() {
       const res = await fetch("/api/dashboard/auth/otp/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), code: code.trim() }),
+        body: JSON.stringify({ code: code.trim() }),
       });
       const body = (await res.json().catch(() => ({}))) as {
         success?: boolean;
@@ -83,50 +82,40 @@ export default function DashboardLoginPage() {
         </div>
 
         <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-2 leading-[1.1]">
-          {step === "email" ? "Sign in" : "Enter your code"}
+          {step === "request" ? "Sign in" : "Enter your code"}
         </h1>
         <p className="text-sm text-zinc-500 mb-8 leading-relaxed">
-          {step === "email"
-            ? "I'll email you a 6-digit code. The code expires in 10 minutes."
-            : `Sent to ${email}. Check spam if it's not in your inbox.`}
+          {step === "request" ? (
+            <>
+              Click below to email a 6-digit code to your inbox. Code expires
+              in 10 minutes.
+            </>
+          ) : (
+            <>
+              Sent. Check your inbox (and spam). Code expires in 10 minutes.
+            </>
+          )}
         </p>
 
-        {step === "email" ? (
-          <form onSubmit={sendCode} className="space-y-3">
-            <div className="relative">
-              <Mail
-                className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2"
-                aria-hidden="true"
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-                autoComplete="email"
-                autoFocus
-                className="w-full pl-10 pr-4 py-3 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="w-full py-3 bg-zinc-900 text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-zinc-800 transition-colors disabled:opacity-60"
-            >
-              {status === "sending" ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-                  Sending code…
-                </>
-              ) : (
-                <>
-                  Send code
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </>
-              )}
-            </button>
-          </form>
+        {step === "request" ? (
+          <button
+            type="button"
+            onClick={sendCode}
+            disabled={status === "sending"}
+            className="w-full py-3 bg-zinc-900 text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-zinc-800 transition-colors disabled:opacity-60"
+          >
+            {status === "sending" ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+                Sending code…
+              </>
+            ) : (
+              <>
+                <Mail className="w-4 h-4" aria-hidden="true" />
+                Send my login code
+              </>
+            )}
+          </button>
         ) : (
           <form onSubmit={verifyCode} className="space-y-3">
             <input
@@ -159,21 +148,10 @@ export default function DashboardLoginPage() {
                 </>
               )}
             </button>
-            <div className="flex items-center justify-between pt-2 text-xs text-zinc-500">
+            <div className="flex items-center justify-end pt-2 text-xs text-zinc-500">
               <button
                 type="button"
-                onClick={() => {
-                  setStep("email");
-                  setCode("");
-                  setError(null);
-                }}
-                className="hover:text-zinc-900"
-              >
-                ← Change email
-              </button>
-              <button
-                type="button"
-                onClick={() => sendCode()}
+                onClick={sendCode}
                 disabled={status === "sending"}
                 className="hover:text-zinc-900 disabled:opacity-50"
               >

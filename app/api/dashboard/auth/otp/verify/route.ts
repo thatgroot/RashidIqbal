@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isEmailAllowed } from "@/lib/auth/allowlist";
+import { getPrimaryEmail, isEmailAllowed } from "@/lib/auth/allowlist";
 import { verifyOtpCode } from "@/lib/auth/otp";
 import { buildSessionCookie, createSession } from "@/lib/auth/session";
 
@@ -29,12 +29,15 @@ export async function POST(req: NextRequest) {
     email?: string;
     code?: string;
   };
-  const email = body.email?.trim().toLowerCase();
+  // Single-admin login: email defaults to the primary allowlisted address
+  // when the client omits it.
+  const passed = body.email?.trim().toLowerCase();
+  const email = passed || getPrimaryEmail();
   const code = body.code?.trim();
 
-  if (!email || !email.includes("@") || !code || !/^\d{6}$/.test(code)) {
+  if (!email.includes("@") || !code || !/^\d{6}$/.test(code)) {
     return NextResponse.json(
-      { error: "Email and 6-digit code required." },
+      { error: "6-digit code required." },
       { status: 400 }
     );
   }

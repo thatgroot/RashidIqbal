@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { isEmailAllowed } from "@/lib/auth/allowlist";
+import { getPrimaryEmail, isEmailAllowed } from "@/lib/auth/allowlist";
 import { createOtpCode } from "@/lib/auth/otp";
 import { buildOtpEmail } from "@/lib/auth/otp-email";
 
@@ -42,14 +42,16 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // The login UI doesn't ask for an email — there's only one admin. If the
+  // client passes one, validate it; otherwise fall back to the primary
+  // allowlisted address. Either way, never leak whether a passed email is
+  // allowed by varying the response shape.
   const body = (await req.json().catch(() => ({}))) as { email?: string };
-  const email = body.email?.trim().toLowerCase();
-  if (!email || !email.includes("@")) {
-    return NextResponse.json({ error: "Email required." }, { status: 400 });
+  const passed = body.email?.trim().toLowerCase();
+  if (passed && !passed.includes("@")) {
+    return NextResponse.json({ error: "Invalid email." }, { status: 400 });
   }
-
-  // Always 200 even if not allowed — don't leak the allowlist via response
-  // shape. Just skip the actual send.
+  const email = passed || getPrimaryEmail();
   if (!isEmailAllowed(email)) {
     return NextResponse.json({ success: true });
   }

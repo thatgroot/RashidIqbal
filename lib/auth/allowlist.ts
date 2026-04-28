@@ -14,3 +14,9 @@ export function getAllowedEmails(): string[] {
 export function isEmailAllowed(email: string): boolean {
   return getAllowedEmails().includes(email.trim().toLowerCase());
 }
+
+// First entry on the allowlist. Used when the client omits the email
+// (single-admin login: the UI doesn't ask, the server already knows).
+export function getPrimaryEmail(): string {
+  return getAllowedEmails()[0] ?? FALLBACK_EMAIL;
+}
