@@ -1,5 +1,19 @@
 import { db, schema } from "@/db/client";
-import { and, count, desc, eq, gte, inArray, isNotNull, sql } from "drizzle-orm";
+import { and, count, desc, eq, gte, isNotNull, sql } from "drizzle-orm";
+import type { AnyColumn, SQL } from "drizzle-orm";
+
+// drizzle's `inArray` emits SQL that some driver paths (notably postgres-js
+// targeting Neon) end up rendering as `= ANY(($1, $2))` — Postgres rejects
+// that as a row constructor. Manually building `col in ($1, $2, ...)` with
+// each element bound as its own parameter avoids the issue entirely. Use
+// this anywhere we need to filter on a JS array of ids.
+function inListSql(col: AnyColumn, values: readonly (string | number)[]): SQL {
+  if (values.length === 0) return sql`false`;
+  const placeholders = values.map((v, i) =>
+    i === 0 ? sql`${v}` : sql`, ${v}`
+  );
+  return sql`${col} in (${sql.join(placeholders)})`;
+}
 
 // All read paths for the admin dashboard. Each helper accepts a `sinceMs`
 // window so callers can render today / 7d / 30d the same way.
@@ -305,7 +319,7 @@ export async function listVisitors(opts: {
           totalEvents: sql<number>`coalesce(sum(${schema.analyticsSessions.eventCount}), 0)`,
         })
         .from(schema.analyticsSessions)
-        .where(inArray(schema.analyticsSessions.visitorId, ids))
+        .where(inListSql(schema.analyticsSessions.visitorId, ids))
         .groupBy(schema.analyticsSessions.visitorId)
     : [];
   const byId = new Map(counts.map((c) => [c.visitorId, c]));
@@ -350,7 +364,7 @@ export async function getVisitorDetail(visitorRowId: string): Promise<VisitorDet
     ? await db
         .select()
         .from(schema.analyticsEvents)
-        .where(inArray(schema.analyticsEvents.sessionId, sessionIds))
+        .where(inListSql(schema.analyticsEvents.sessionId, sessionIds))
         .orderBy(desc(schema.analyticsEvents.createdAt))
         .limit(500)
     : [];
@@ -432,7 +446,7 @@ export async function computeFunnel(
         out.push({ label: step.label, count: 0, pct: 0 });
         continue;
       }
-      conds.push(inArray(schema.analyticsEvents.visitorId, cohortVisitors));
+      conds.push(inListSql(schema.analyticsEvents.visitorId, cohortVisitors));
     }
     const rows = await db
       .selectDistinct({ visitorId: schema.analyticsEvents.visitorId })
