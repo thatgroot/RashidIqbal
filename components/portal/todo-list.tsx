@@ -2,64 +2,93 @@
 
 import { useState } from "react";
 import { Check, Loader2, Plus, Trash2 } from "lucide-react";
-
-export type Todo = {
-  id: string;
-  body: string;
-  completedAt: string | null;
-  addedBy: string;
-  createdAt: string;
-};
+import type { SnapshotTodo } from "@/lib/portal/use-realtime-project";
 
 export function TodoList({
   projectId,
-  initial,
+  todos,
   viewer,
+  onLocalUpsert,
+  onLocalRemove,
+  onRevalidate,
 }: {
   projectId: string;
-  initial: Todo[];
+  todos: SnapshotTodo[];
   viewer: "admin" | "client";
+  onLocalUpsert: (t: SnapshotTodo) => void;
+  onLocalRemove: (id: string) => void;
+  onRevalidate: () => void;
 }) {
-  const [todos, setTodos] = useState<Todo[]>(initial);
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function add(e: React.FormEvent) {
     e.preventDefault();
     const body = draft.trim();
     if (!body || busy) return;
     setBusy(true);
+    setError(null);
     try {
       const res = await fetch(`/api/projects/${projectId}/todos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ body }),
       });
-      if (!res.ok) return;
-      const j = (await res.json()) as { todo: Todo };
-      setTodos((t) => [...t, j.todo]);
+      if (!res.ok) {
+        setError("Couldn't add — try again.");
+        return;
+      }
+      const j = (await res.json()) as { todo: SnapshotTodo };
+      onLocalUpsert(j.todo);
+      onRevalidate();
       setDraft("");
     } finally {
       setBusy(false);
     }
   }
 
-  async function toggle(id: string, next: boolean) {
-    setTodos((t) =>
-      t.map((x) =>
-        x.id === id ? { ...x, completedAt: next ? new Date().toISOString() : null } : x
-      )
-    );
-    await fetch(`/api/projects/${projectId}/todos/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ completed: next }),
-    });
+  async function toggle(t: SnapshotTodo, next: boolean) {
+    // Optimistic + rollback (A4): snapshot, mutate, then revert on failure.
+    const before = t;
+    onLocalUpsert({ ...t, completedAt: next ? new Date().toISOString() : null });
+    setError(null);
+    try {
+      const res = await fetch(`/api/projects/${projectId}/todos/${t.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completed: next }),
+      });
+      if (!res.ok) {
+        onLocalUpsert(before);
+        setError("Couldn't save — try again.");
+        return;
+      }
+      onRevalidate();
+    } catch {
+      onLocalUpsert(before);
+      setError("Network error — try again.");
+    }
   }
 
-  async function remove(id: string) {
-    setTodos((t) => t.filter((x) => x.id !== id));
-    await fetch(`/api/projects/${projectId}/todos/${id}`, { method: "DELETE" });
+  async function remove(t: SnapshotTodo) {
+    const before = t;
+    onLocalRemove(t.id);
+    setError(null);
+    try {
+      const res = await fetch(`/api/projects/${projectId}/todos/${t.id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        onLocalUpsert(before);
+        setError("Couldn't delete — try again.");
+        return;
+      }
+      onRevalidate();
+    } catch {
+      onLocalUpsert(before);
+      setError("Network error — try again.");
+    }
   }
 
   const open = todos.filter((t) => !t.completedAt);
@@ -72,6 +101,7 @@ export function TodoList({
           {open.length} open
           {done.length > 0 ? ` · ${done.length} done` : ""}
         </p>
+        {error && <p className="text-[10px] text-red-600">{error}</p>}
       </div>
 
       <ul className="divide-y divide-zinc-100">
@@ -91,7 +121,7 @@ export function TodoList({
             >
               <button
                 type="button"
-                onClick={() => toggle(t.id, !isDone)}
+                onClick={() => toggle(t, !isDone)}
                 aria-label={isDone ? "Mark incomplete" : "Mark complete"}
                 className={`mt-0.5 w-4 h-4 shrink-0 border flex items-center justify-center transition-colors ${
                   isDone
@@ -113,7 +143,7 @@ export function TodoList({
               </span>
               <button
                 type="button"
-                onClick={() => remove(t.id)}
+                onClick={() => remove(t)}
                 aria-label="Delete"
                 className="text-zinc-300 hover:text-red-600 transition-colors mt-0.5 shrink-0"
               >

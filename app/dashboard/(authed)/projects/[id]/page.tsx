@@ -7,14 +7,9 @@ import {
   listMessages,
   listTodos,
   markMessagesRead,
-  TIER_LABELS,
 } from "@/lib/portal/queries";
-import { StatusPill } from "@/components/portal/status-pill";
 import { ProjectEditor } from "@/components/dashboard/project-editor";
-import { MessageThread } from "@/components/portal/message-thread";
-import { TodoList } from "@/components/portal/todo-list";
-import { NotesPanel } from "@/components/portal/notes-panel";
-import { AssetGrid } from "@/components/portal/asset-grid";
+import { ProjectWorkspace } from "@/components/portal/project-workspace";
 
 export const dynamic = "force-dynamic";
 
@@ -56,18 +51,6 @@ export default async function AdminProjectDetail({
         </Link>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 mb-3">
-        <StatusPill status={project.status} />
-        {project.tier && (
-          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
-            {TIER_LABELS[project.tier] || project.tier}
-          </span>
-        )}
-        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
-          Updated {new Date(project.updatedAt).toLocaleDateString()}
-        </span>
-      </div>
-
       <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 leading-tight mb-1">
         {project.title}
       </h1>
@@ -103,7 +86,7 @@ export default async function AdminProjectDetail({
         )}
       </p>
 
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-[420px_1fr] gap-6 items-start">
         <section>
           <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
             Manage
@@ -126,59 +109,42 @@ export default async function AdminProjectDetail({
           />
         </section>
 
-        <section>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-            Conversation
-          </p>
-          <MessageThread
-            projectId={project.id}
-            initialMessages={messages.map((m) => ({
-              ...m,
-              createdAt: m.createdAt.toISOString(),
-            }))}
-            viewer="admin"
-            viewerName="Rashid"
-          />
-        </section>
-      </div>
-
-      {/* Assets */}
-      <section className="mt-10">
-        <AssetGrid
+        {/* Realtime workspace — assets, todos, notes, conversation */}
+        <ProjectWorkspace
           projectId={project.id}
-          initial={assets.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }))}
           viewer="admin"
+          viewerName="Rashid"
+          initialProject={{
+            id: project.id,
+            title: project.title,
+            status: project.status,
+            tier: project.tier,
+            targetLaunchDate: project.targetLaunchDate?.toISOString() ?? null,
+            launchedAt: project.launchedAt?.toISOString() ?? null,
+            links: (project.links as Record<string, string> | null) ?? {},
+            brief: (project.brief as Record<string, unknown>) ?? {},
+            notesShared: project.notesShared ?? "",
+            notesInternal: project.notesInternal ?? "",
+            updatedAt: project.updatedAt.toISOString(),
+            createdAt: project.createdAt.toISOString(),
+          }}
+          initialMessages={messages.map((m) => ({
+            ...m,
+            createdAt: m.createdAt.toISOString(),
+            readByAdminAt: m.readByAdminAt?.toISOString() ?? null,
+            readByClientAt: m.readByClientAt?.toISOString() ?? null,
+          }))}
+          initialTodos={todos.map((t) => ({
+            ...t,
+            completedAt: t.completedAt?.toISOString() ?? null,
+            createdAt: t.createdAt.toISOString(),
+          }))}
+          initialAssets={assets.map((a) => ({
+            ...a,
+            createdAt: a.createdAt.toISOString(),
+          }))}
         />
-      </section>
-
-      {/* Todo + notes */}
-      <section className="mt-10 grid lg:grid-cols-2 gap-6">
-        <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-            Todo list
-          </p>
-          <TodoList
-            projectId={project.id}
-            viewer="admin"
-            initial={todos.map((t) => ({
-              ...t,
-              completedAt: t.completedAt ? t.completedAt.toISOString() : null,
-              createdAt: t.createdAt.toISOString(),
-            }))}
-          />
-        </div>
-        <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-            Notes
-          </p>
-          <NotesPanel
-            projectId={project.id}
-            viewer="admin"
-            initialShared={project.notesShared ?? ""}
-            initialInternal={project.notesInternal ?? ""}
-          />
-        </div>
-      </section>
+      </div>
 
       {project.brief && Object.keys(project.brief).length > 0 && (
         <section className="mt-10">

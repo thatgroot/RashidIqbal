@@ -55,7 +55,7 @@ export async function createSession(opts: {
     userAgent: opts.userAgent ?? null,
   });
 
-  const jwt = await new SignJWT({ t: token })
+  const jwt = await new SignJWT({ t: token, k: "admin" })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(Math.floor(expiresAt.getTime() / 1000))
@@ -75,6 +75,10 @@ export async function readSession(jwt: string | undefined): Promise<{ email: str
   let token: string;
   try {
     const { payload } = await jwtVerify(jwt, secretKey());
+    // Reject tokens minted for the client portal (k: "client") even though
+    // they're signed with the same secret — defense in depth so a portal
+    // session can't be replayed against admin endpoints.
+    if (payload.k && payload.k !== "admin") return null;
     token = payload.t as string;
     if (!token) return null;
   } catch {

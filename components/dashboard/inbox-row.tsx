@@ -78,40 +78,61 @@ export function InboxListRow({ row }: { row: InboxRow }) {
     };
   }, [menu]);
 
-  async function patch(patchBody: Record<string, boolean>) {
+  async function patch(patchBody: Record<string, boolean>): Promise<boolean> {
     setBusy(true);
     try {
-      await fetch(`/api/dashboard/inbox/${row.id}`, {
+      const res = await fetch(`/api/dashboard/inbox/${row.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patchBody),
       });
+      return res.ok;
+    } catch {
+      return false;
     } finally {
       setBusy(false);
     }
   }
 
+  // Optimistic-with-rollback pattern (Phase A4): snapshot, mutate, then
+  // restore on failure so the row never silently lies about its real state.
+
   async function toggleRead() {
-    const next = !unread;
+    const before = unread;
+    const next = !before;
     setUnread(next);
-    await patch({ read: !next });
     setMenu(null);
+    const ok = await patch({ read: !next });
+    if (!ok) {
+      setUnread(before);
+      return;
+    }
     router.refresh();
   }
 
   async function toggleStar() {
-    const next = !starred;
+    const before = starred;
+    const next = !before;
     setStarred(next);
-    await patch({ starred: next });
     setMenu(null);
+    const ok = await patch({ starred: next });
+    if (!ok) {
+      setStarred(before);
+      return;
+    }
     router.refresh();
   }
 
   async function toggleArchive() {
-    const next = !archived;
+    const before = archived;
+    const next = !before;
     setArchived(next);
-    await patch({ archived: next });
     setMenu(null);
+    const ok = await patch({ archived: next });
+    if (!ok) {
+      setArchived(before);
+      return;
+    }
     router.refresh();
   }
 

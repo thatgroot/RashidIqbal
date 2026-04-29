@@ -12,11 +12,7 @@ import {
   markMessagesRead,
   TIER_LABELS,
 } from "@/lib/portal/queries";
-import { StatusPill } from "@/components/portal/status-pill";
-import { MessageThread } from "@/components/portal/message-thread";
-import { TodoList } from "@/components/portal/todo-list";
-import { NotesPanel } from "@/components/portal/notes-panel";
-import { AssetGrid } from "@/components/portal/asset-grid";
+import { ProjectWorkspace } from "@/components/portal/project-workspace";
 
 export const dynamic = "force-dynamic";
 
@@ -29,8 +25,8 @@ export default async function PortalProjectDetail({
   const viewer = (await getCurrentPortalViewer())!;
   const isPreview = viewer.kind === "admin-preview";
 
-  // Real clients are scoped to their own projects; admin preview can open
-  // any project in the system.
+  // Real clients are scoped to their own projects; admin preview can open any
+  // project in the system.
   let project: typeof schema.projects.$inferSelect | null = null;
   if (isPreview) {
     const rows = await db
@@ -49,8 +45,6 @@ export default async function PortalProjectDetail({
     listTodos(project.id),
     listAssets(project.id),
   ]);
-  // Mark as read on detail open. Admin preview marks the admin side so the
-  // dashboard's unread counter clears.
   markMessagesRead({
     projectId: project.id,
     reader: isPreview ? "admin" : "client",
@@ -70,18 +64,14 @@ export default async function PortalProjectDetail({
         All projects
       </Link>
 
-      <div className="flex flex-wrap items-center gap-3 mb-3">
-        <StatusPill status={project.status} />
-        {project.tier && (
-          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
-            {TIER_LABELS[project.tier] || project.tier}
-          </span>
-        )}
-      </div>
-
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-6 leading-tight">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-3 leading-tight">
         {project.title}
       </h1>
+      {project.tier && (
+        <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] mb-6">
+          {TIER_LABELS[project.tier] || project.tier}
+        </p>
+      )}
 
       {/* Quick facts */}
       <div className="grid sm:grid-cols-3 gap-3 mb-8">
@@ -108,47 +98,44 @@ export default async function PortalProjectDetail({
         </Card>
       </div>
 
-      {/* Assets */}
-      <section className="mb-8">
-        <AssetGrid
-          projectId={project.id}
-          initial={assets.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }))}
-          viewer={viewerKind}
-        />
-      </section>
+      {/* Live, realtime workspace — assets, todos, notes, conversation */}
+      <ProjectWorkspace
+        projectId={project.id}
+        viewer={viewerKind}
+        viewerName={viewerName}
+        initialProject={{
+          id: project.id,
+          title: project.title,
+          status: project.status,
+          tier: project.tier,
+          targetLaunchDate: project.targetLaunchDate?.toISOString() ?? null,
+          launchedAt: project.launchedAt?.toISOString() ?? null,
+          links: (project.links as Record<string, string> | null) ?? {},
+          brief,
+          notesShared: project.notesShared ?? "",
+          updatedAt: project.updatedAt.toISOString(),
+          createdAt: project.createdAt.toISOString(),
+        }}
+        initialMessages={messages.map((m) => ({
+          ...m,
+          createdAt: m.createdAt.toISOString(),
+          readByAdminAt: m.readByAdminAt?.toISOString() ?? null,
+          readByClientAt: m.readByClientAt?.toISOString() ?? null,
+        }))}
+        initialTodos={todos.map((t) => ({
+          ...t,
+          completedAt: t.completedAt?.toISOString() ?? null,
+          createdAt: t.createdAt.toISOString(),
+        }))}
+        initialAssets={assets.map((a) => ({
+          ...a,
+          createdAt: a.createdAt.toISOString(),
+        }))}
+      />
 
-      {/* Todo + notes side-by-side on desktop */}
-      <section className="grid lg:grid-cols-2 gap-6 mb-8">
-        <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-            Todo list
-          </p>
-          <TodoList
-            projectId={project.id}
-            viewer={viewerKind}
-            initial={todos.map((t) => ({
-              ...t,
-              completedAt: t.completedAt ? t.completedAt.toISOString() : null,
-              createdAt: t.createdAt.toISOString(),
-            }))}
-          />
-        </div>
-        <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-            Notes
-          </p>
-          <NotesPanel
-            projectId={project.id}
-            viewer={viewerKind}
-            initialShared={project.notesShared ?? ""}
-            initialInternal=""
-          />
-        </div>
-      </section>
-
-      {/* Brief */}
+      {/* Brief renders below the workspace */}
       {Object.keys(brief).length > 0 && (
-        <section className="mb-8">
+        <section className="mt-10">
           <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
             Project brief
           </p>
@@ -170,22 +157,6 @@ export default async function PortalProjectDetail({
           </dl>
         </section>
       )}
-
-      {/* Messages */}
-      <section>
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-          Conversation with Rashid
-        </p>
-        <MessageThread
-          projectId={project.id}
-          initialMessages={messages.map((m) => ({
-            ...m,
-            createdAt: m.createdAt.toISOString(),
-          }))}
-          viewer={viewerKind}
-          viewerName={viewerName}
-        />
-      </section>
     </div>
   );
 }

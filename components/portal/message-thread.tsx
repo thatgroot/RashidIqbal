@@ -2,15 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Send, Loader2 } from "lucide-react";
+import type { SnapshotMessage } from "@/lib/portal/use-realtime-project";
 
-type Message = {
-  id: string;
-  senderType: string;
-  body: string;
-  createdAt: string;
-};
-
-const POLL_MS = 30_000;
+const SUGGESTION_CHIPS = [
+  "Hi! Ready to kick off.",
+  "Quick question about the brief.",
+  "Sharing some assets with you.",
+] as const;
 
 function timeStamp(iso: string) {
   const d = new Date(iso);
@@ -31,51 +29,40 @@ function timeStamp(iso: string) {
 
 export function MessageThread({
   projectId,
-  initialMessages,
+  messages,
   viewer,
   viewerName,
+  onLocalMessage,
+  onRevalidate,
 }: {
   projectId: string;
-  initialMessages: Message[];
+  messages: SnapshotMessage[];
   viewer: "admin" | "client";
   viewerName: string;
+  onLocalMessage: (m: SnapshotMessage) => void;
+  onRevalidate: () => void;
 }) {
-  const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [body, setBody] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const lastCountRef = useRef<number>(messages.length);
 
-  // Poll for new messages every 30 s
+  // Auto-focus the input on mount when the thread is empty (first-message
+  // friction reduction from B4).
   useEffect(() => {
-    let cancelled = false;
-    async function poll() {
-      try {
-        const url =
-          viewer === "client"
-            ? `/api/portal/messages?projectId=${projectId}`
-            : `/api/dashboard/projects/${projectId}/messages`;
-        const res = await fetch(url, { cache: "no-store" });
-        if (!res.ok) return;
-        const next = (await res.json()) as { messages: Message[] };
-        if (!cancelled && Array.isArray(next.messages)) {
-          setMessages(next.messages);
-        }
-      } catch {
-        /* swallow */
+    if (messages.length === 0) textareaRef.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Scroll to bottom when a new message arrives.
+  useEffect(() => {
+    if (messages.length !== lastCountRef.current) {
+      lastCountRef.current = messages.length;
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
       }
-    }
-    const id = window.setInterval(poll, POLL_MS);
-    return () => {
-      cancelled = true;
-      window.clearInterval(id);
-    };
-  }, [projectId, viewer]);
-
-  // Scroll to bottom whenever the message list changes
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages.length]);
 
@@ -99,8 +86,9 @@ export function MessageThread({
         setError(j.error || "Could not send. Try again.");
         return;
       }
-      const out = (await res.json()) as { message: Message };
-      setMessages((prev) => [...prev, out.message]);
+      const out = (await res.json()) as { message: SnapshotMessage };
+      onLocalMessage(out.message);
+      onRevalidate();
       setBody("");
     } catch {
       setError("Network error. Try again.");
@@ -116,11 +104,30 @@ export function MessageThread({
         className="flex-1 px-5 py-5 max-h-[480px] overflow-auto space-y-4"
       >
         {messages.length === 0 ? (
-          <p className="text-sm text-zinc-500 text-center py-8">
-            {viewer === "client"
-              ? "No messages yet. Drop a note below to start the conversation."
-              : "No messages yet. Send the first note to kick off communication."}
-          </p>
+          <div className="text-center py-8 space-y-4">
+            <p className="text-sm text-zinc-500">
+              {viewer === "client"
+                ? "No messages yet. Drop a note below to start the conversation."
+                : "No messages yet. Send the first note to kick off communication."}
+            </p>
+            {viewer === "client" && (
+              <div className="flex flex-wrap justify-center gap-2">
+                {SUGGESTION_CHIPS.map((chip) => (
+                  <button
+                    key={chip}
+                    type="button"
+                    onClick={() => {
+                      setBody(chip);
+                      textareaRef.current?.focus();
+                    }}
+                    className="text-xs px-3 py-1.5 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+                  >
+                    {chip}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         ) : (
           messages.map((m) => {
             const fromMe = m.senderType === viewer;
@@ -156,6 +163,7 @@ export function MessageThread({
       <form onSubmit={send} className="border-t border-zinc-100 p-3 bg-zinc-50/40">
         <div className="flex items-end gap-2">
           <textarea
+            ref={textareaRef}
             value={body}
             onChange={(e) => setBody(e.target.value)}
             onKeyDown={(e) => {
@@ -185,8 +193,8 @@ export function MessageThread({
         {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
         <p className="text-[10px] text-zinc-400 mt-1.5">
           {viewer === "client"
-            ? "Rashid gets an email when you send. He replies in this thread."
-            : "The client gets an email when you reply. ⌘/Ctrl + Enter to send."}
+            ? "Rashid gets an email when you send. Replies appear here in seconds. ⌘/Ctrl + Enter to send."
+            : "The client gets an email when you reply. Replies appear here in seconds. ⌘/Ctrl + Enter to send."}
         </p>
       </form>
     </div>

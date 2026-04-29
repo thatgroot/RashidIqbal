@@ -15,17 +15,12 @@ import {
   Box,
   PenTool,
 } from "lucide-react";
+import type { SnapshotAsset } from "@/lib/portal/use-realtime-project";
 
-export type Asset = {
-  id: string;
-  name: string;
-  url: string;
-  kind: string;
-  addedBy: string;
-  createdAt: string;
-};
-
-const KIND_META: Record<string, { label: string; Icon: React.ComponentType<{ className?: string }>; tone: string }> = {
+const KIND_META: Record<
+  string,
+  { label: string; Icon: React.ComponentType<{ className?: string }>; tone: string }
+> = {
   figma: { label: "Figma", Icon: PenTool, tone: "bg-purple-50 text-purple-700 border-purple-200" },
   framer: { label: "Framer", Icon: Box, tone: "bg-zinc-900 text-white border-zinc-900" },
   notion: { label: "Notion", Icon: BookOpen, tone: "bg-zinc-50 text-zinc-700 border-zinc-200" },
@@ -38,14 +33,19 @@ const KIND_META: Record<string, { label: string; Icon: React.ComponentType<{ cla
 
 export function AssetGrid({
   projectId,
-  initial,
+  assets,
   viewer,
+  onLocalUpsert,
+  onLocalRemove,
+  onRevalidate,
 }: {
   projectId: string;
-  initial: Asset[];
+  assets: SnapshotAsset[];
   viewer: "admin" | "client";
+  onLocalUpsert: (a: SnapshotAsset) => void;
+  onLocalRemove: (id: string) => void;
+  onRevalidate: () => void;
 }) {
-  const [assets, setAssets] = useState<Asset[]>(initial);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
@@ -62,12 +62,16 @@ export function AssetGrid({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), url: url.trim() }),
       });
-      const j = (await res.json().catch(() => ({}))) as { asset?: Asset; error?: string };
+      const j = (await res.json().catch(() => ({}))) as {
+        asset?: SnapshotAsset;
+        error?: string;
+      };
       if (!res.ok || !j.asset) {
         setError(j.error || "Could not add. Try again.");
         return;
       }
-      setAssets((a) => [j.asset!, ...a]);
+      onLocalUpsert(j.asset);
+      onRevalidate();
       setName("");
       setUrl("");
       setOpen(false);
@@ -76,10 +80,22 @@ export function AssetGrid({
     }
   }
 
-  async function remove(id: string) {
+  async function remove(a: SnapshotAsset) {
     if (!confirm("Remove this asset?")) return;
-    setAssets((a) => a.filter((x) => x.id !== id));
-    await fetch(`/api/projects/${projectId}/assets/${id}`, { method: "DELETE" });
+    const before = a;
+    onLocalRemove(a.id);
+    try {
+      const res = await fetch(`/api/projects/${projectId}/assets/${a.id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        onLocalUpsert(before);
+        return;
+      }
+      onRevalidate();
+    } catch {
+      onLocalUpsert(before);
+    }
   }
 
   return (
@@ -153,7 +169,7 @@ export function AssetGrid({
           </p>
         </div>
       ) : (
-        <ul className="grid sm:grid-cols-2 gap-2">
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {assets.map((a) => {
             const meta = KIND_META[a.kind] || KIND_META.link!;
             return (
@@ -194,7 +210,7 @@ export function AssetGrid({
                   </a>
                   <button
                     type="button"
-                    onClick={() => remove(a.id)}
+                    onClick={() => remove(a)}
                     className="p-1 text-zinc-400 hover:text-red-600"
                     aria-label="Remove asset"
                   >

@@ -1,5 +1,5 @@
 import { db, schema } from "@/db/client";
-import { and, asc, desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq, isNull } from "drizzle-orm";
 
 // Re-exported for server-component convenience. Client components must
 // import these from `@/lib/portal/constants` directly so the bundler
@@ -94,10 +94,18 @@ export async function markMessagesRead(opts: {
   projectId: string;
   reader: "admin" | "client";
 }) {
-  const col =
+  // Only mark messages authored by the OTHER side as read. An admin
+  // opening a thread shouldn't restamp their own outbound messages, and
+  // we skip already-read rows so the timestamp records the first read,
+  // not the most recent open. (Phase A3 fix.)
+  const otherSender = opts.reader === "admin" ? "client" : "admin";
+  const conds = [
+    eq(schema.projectMessages.projectId, opts.projectId),
+    eq(schema.projectMessages.senderType, otherSender),
     opts.reader === "admin"
-      ? schema.projectMessages.readByAdminAt
-      : schema.projectMessages.readByClientAt;
+      ? isNull(schema.projectMessages.readByAdminAt)
+      : isNull(schema.projectMessages.readByClientAt),
+  ];
   await db
     .update(schema.projectMessages)
     .set(
@@ -105,8 +113,5 @@ export async function markMessagesRead(opts: {
         ? { readByAdminAt: new Date() }
         : { readByClientAt: new Date() }
     )
-    .where(
-      and(eq(schema.projectMessages.projectId, opts.projectId))
-    );
-  void col;
+    .where(and(...conds));
 }
