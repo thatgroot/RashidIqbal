@@ -84,8 +84,10 @@ const schemas = [
     "@type": "ProfilePage",
     "@id": `${siteUrl}#profilepage`,
     mainEntity: { "@id": `${siteUrl}#person` },
-    dateCreated: "2019-01-01",
-    dateModified: new Date().toISOString().split("T")[0],
+    // Full ISO 8601 datetime (Google's rich-results validator rejects
+    // bare YYYY-MM-DD dates with "Invalid datetime value").
+    dateCreated: "2019-01-01T00:00:00Z",
+    dateModified: new Date().toISOString(),
   },
   // ProfessionalService - for local/service search
   {
@@ -191,8 +193,9 @@ const schemas = [
     description: "Figma and Framer expert building high-converting landing pages, websites, and Chrome extensions. Shipping for founders and teams since 2019.",
     inLanguage: "en-US",
     publisher: { "@id": `${siteUrl}#person` },
-    datePublished: "2019-01-01",
-    dateModified: new Date().toISOString().split("T")[0],
+    // Full ISO 8601 datetime (validators reject bare YYYY-MM-DD).
+    datePublished: "2019-01-01T00:00:00Z",
+    dateModified: new Date().toISOString(),
     potentialAction: {
       "@type": "SearchAction",
       target: {
