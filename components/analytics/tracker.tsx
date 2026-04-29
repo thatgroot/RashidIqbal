@@ -84,10 +84,21 @@ function getClarityId(): string | undefined {
   return c.split("|")[0] || undefined;
 }
 
+// Paths the tracker never reports on. Admin's own dashboard activity is
+// noise — Rashid is not a real visitor. /portal stays trackable so we can
+// still see what clients are doing in their own space (counts as real
+// visitor behavior).
+const NEVER_TRACK_PREFIXES = ["/dashboard"] as const;
+
+function isPathTrackable(path: string): boolean {
+  return !NEVER_TRACK_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`));
+}
+
 function shouldOptOut(): boolean {
   try {
     if (navigator.doNotTrack === "1") return true;
     if (localStorage.getItem("aestho_track_off") === "1") return true;
+    if (!isPathTrackable(location.pathname)) return true;
   } catch {
     // localStorage may throw in iframes / privacy modes — fall through to track.
   }
@@ -171,6 +182,10 @@ export function Tracker() {
     }
 
     function enqueue(ev: QueuedEvent) {
+      // Drop everything fired from never-track paths (admin's /dashboard).
+      // Click + scroll + form listeners are attached once at mount, so a
+      // visitor navigating into /dashboard wouldn't otherwise be excluded.
+      if (!isPathTrackable(location.pathname)) return;
       ev.ts = Date.now();
       ev.path = ev.path ?? location.pathname;
       queueRef.current.push(ev);
