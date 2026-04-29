@@ -1,6 +1,4 @@
 import {
-  getAllPosts as getAllFsPosts,
-  getPostBySlug as getFsPostBySlug,
   type BlogPost,
   type BlogPostMeta,
 } from "@/lib/blog";
@@ -8,13 +6,11 @@ import readingTime from "reading-time";
 import { db, schema } from "@/db/client";
 import { and, desc, eq, isNotNull } from "drizzle-orm";
 
-// Hybrid blog reader. Filesystem posts (content/blog/*.md) keep working
-// exactly as before; DB-managed posts (cms_blog_posts) get merged in.
-// Both render at the same /blog/[slug] URL pattern using the same
-// MarkdownRenderer.
-//
-// Conflict rule: DB wins on slug collision. The CMS is the newer surface;
-// admins editing in the dashboard expect their copy to be authoritative.
+// CMS-backed blog reader. Originally merged filesystem markdown with
+// DB-managed posts; the filesystem source has since been migrated into
+// the DB and removed (see scripts/migrate-blog-to-cms.ts), so this is
+// effectively a thin DB wrapper now. The "Hybrid" suffix is kept on the
+// exported names so existing call sites don't have to churn.
 
 function dbRowToPost(row: typeof schema.cmsBlogPosts.$inferSelect): BlogPost {
   const stats = readingTime(row.body || "");
@@ -40,7 +36,6 @@ function dbRowToPost(row: typeof schema.cmsBlogPosts.$inferSelect): BlogPost {
 }
 
 export async function getAllPostsHybrid(): Promise<BlogPostMeta[]> {
-  const fsPosts = getAllFsPosts();
   let dbPosts: BlogPost[] = [];
   try {
     const rows = await db
@@ -50,25 +45,16 @@ export async function getAllPostsHybrid(): Promise<BlogPostMeta[]> {
       .orderBy(desc(schema.cmsBlogPosts.publishedAt));
     dbPosts = rows.map(dbRowToPost);
   } catch (e) {
-    // DB unreachable — fall back to filesystem-only.
-    console.error("[blog-hybrid] DB read failed, returning filesystem only", e);
+    console.error("[blog] DB read failed", e);
+    return [];
   }
 
-  // DB wins on slug collision.
-  const dbSlugs = new Set(dbPosts.map((p) => p.slug));
-  const merged: BlogPostMeta[] = [
-    ...dbPosts.map(({ content: _content, ...meta }) => meta),
-    ...fsPosts.filter((p) => !dbSlugs.has(p.slug)),
-  ];
-
-  merged.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-  return merged;
+  return dbPosts
+    .map(({ content: _content, ...meta }) => meta)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export async function getPostBySlugHybrid(slug: string): Promise<BlogPost | null> {
-  // DB first — overrides filesystem when both have the slug.
   try {
     const [row] = await db
       .select()
@@ -82,9 +68,9 @@ export async function getPostBySlugHybrid(slug: string): Promise<BlogPost | null
       .limit(1);
     if (row) return dbRowToPost(row);
   } catch (e) {
-    console.error("[blog-hybrid] DB lookup failed, falling back", e);
+    console.error("[blog] DB lookup failed for slug", slug, e);
   }
-  return getFsPostBySlug(slug);
+  return null;
 }
 
 export async function getPostSlugsHybrid(): Promise<string[]> {

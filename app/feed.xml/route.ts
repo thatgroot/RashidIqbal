@@ -1,8 +1,8 @@
-import { getAllPosts } from '@/lib/blog';
+import { getAllPostsHybrid } from '@/lib/blog-hybrid';
 import { SITE_URL as siteUrl } from '@/lib/constants';
 
 export async function GET() {
-  const posts = getAllPosts();
+  const posts = await getAllPostsHybrid();
 
   const feedItems = posts
     .map((post) => {
