@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Target, Sparkles } from "lucide-react";
-import { getCurrentClientSession } from "@/lib/portal/auth";
+import { getCurrentPortalViewer } from "@/lib/portal/auth";
+import { db, schema } from "@/db/client";
+import { eq } from "drizzle-orm";
 import {
   getProjectForClient,
   listAssets,
@@ -24,8 +26,22 @@ export default async function PortalProjectDetail({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const session = (await getCurrentClientSession())!;
-  const project = await getProjectForClient({ projectId: id, clientId: session.client.id });
+  const viewer = (await getCurrentPortalViewer())!;
+  const isPreview = viewer.kind === "admin-preview";
+
+  // Real clients are scoped to their own projects; admin preview can open
+  // any project in the system.
+  let project: typeof schema.projects.$inferSelect | null = null;
+  if (isPreview) {
+    const rows = await db
+      .select()
+      .from(schema.projects)
+      .where(eq(schema.projects.id, id))
+      .limit(1);
+    project = rows[0] ?? null;
+  } else {
+    project = await getProjectForClient({ projectId: id, clientId: viewer.client.id });
+  }
   if (!project) notFound();
 
   const [messages, todos, assets] = await Promise.all([
@@ -33,10 +49,16 @@ export default async function PortalProjectDetail({
     listTodos(project.id),
     listAssets(project.id),
   ]);
-  // Mark as read on detail open (best-effort)
-  markMessagesRead({ projectId: project.id, reader: "client" }).catch(() => {});
+  // Mark as read on detail open. Admin preview marks the admin side so the
+  // dashboard's unread counter clears.
+  markMessagesRead({
+    projectId: project.id,
+    reader: isPreview ? "admin" : "client",
+  }).catch(() => {});
 
   const brief = (project.brief || {}) as Record<string, unknown>;
+  const viewerKind = isPreview ? "admin" : "client";
+  const viewerName = isPreview ? "Rashid" : viewer.client.name || viewer.client.email;
 
   return (
     <div>
@@ -91,7 +113,7 @@ export default async function PortalProjectDetail({
         <AssetGrid
           projectId={project.id}
           initial={assets.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }))}
-          viewer="client"
+          viewer={viewerKind}
         />
       </section>
 
@@ -103,7 +125,7 @@ export default async function PortalProjectDetail({
           </p>
           <TodoList
             projectId={project.id}
-            viewer="client"
+            viewer={viewerKind}
             initial={todos.map((t) => ({
               ...t,
               completedAt: t.completedAt ? t.completedAt.toISOString() : null,
@@ -117,7 +139,7 @@ export default async function PortalProjectDetail({
           </p>
           <NotesPanel
             projectId={project.id}
-            viewer="client"
+            viewer={viewerKind}
             initialShared={project.notesShared ?? ""}
             initialInternal=""
           />
@@ -160,8 +182,8 @@ export default async function PortalProjectDetail({
             ...m,
             createdAt: m.createdAt.toISOString(),
           }))}
-          viewer="client"
-          viewerName={session.client.name || session.client.email}
+          viewer={viewerKind}
+          viewerName={viewerName}
         />
       </section>
     </div>

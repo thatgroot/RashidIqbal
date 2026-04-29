@@ -1,38 +1,61 @@
 import Link from "next/link";
 import { ArrowRight, FolderOpen } from "lucide-react";
-import { getCurrentClientSession } from "@/lib/portal/auth";
-import { listClientProjects, TIER_LABELS } from "@/lib/portal/queries";
+import { getCurrentPortalViewer } from "@/lib/portal/auth";
+import {
+  listAllProjectsAdmin,
+  listClientProjects,
+  TIER_LABELS,
+} from "@/lib/portal/queries";
 import { StatusPill } from "@/components/portal/status-pill";
 
 export const dynamic = "force-dynamic";
 
 export default async function PortalHome() {
-  const session = (await getCurrentClientSession())!;
-  const projects = await listClientProjects(session.client.id);
+  const viewer = (await getCurrentPortalViewer())!;
+  const isPreview = viewer.kind === "admin-preview";
+
+  // Admin previewing → see every project with the client name on the card.
+  // Real client → see only their own projects.
+  const items = isPreview
+    ? (await listAllProjectsAdmin()).map(({ project, client }) => ({
+        ...project,
+        clientName: client.name || client.email,
+      }))
+    : (await listClientProjects(viewer.client.id)).map((p) => ({
+        ...p,
+        clientName: null as string | null,
+      }));
+
+  const greetingName = isPreview
+    ? "Rashid"
+    : viewer.client.name?.split(" ")[0] || "there";
 
   return (
     <div>
       <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
-        Welcome
+        {isPreview ? "All projects" : "Welcome"}
       </p>
       <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
-        Hi, {session.client.name?.split(" ")[0] || "there"}.
+        {isPreview ? "Every active project" : `Hi, ${greetingName}.`}
       </h1>
       <p className="text-sm text-zinc-500 mb-8">
-        Every project we&rsquo;re working on lives here. Click any card to see
-        timeline, links, and the full conversation.
+        {isPreview
+          ? "Browsing as the owner. Each card opens the same view your client sees."
+          : "Every project we’re working on lives here. Click any card to see timeline, links, and the full conversation."}
       </p>
 
-      {projects.length === 0 ? (
+      {items.length === 0 ? (
         <div className="border border-zinc-200 bg-white p-10 text-center">
           <FolderOpen className="w-8 h-8 text-zinc-300 mx-auto mb-3" aria-hidden="true" />
           <p className="text-sm text-zinc-500">
-            No active projects yet. Once Rashid kicks one off, it shows up here.
+            {isPreview
+              ? "No projects in the system yet. Convert a form submission from /dashboard/inbox to provision the first one."
+              : "No active projects yet. Once Rashid kicks one off, it shows up here."}
           </p>
         </div>
       ) : (
         <ul className="space-y-3">
-          {projects.map((p) => (
+          {items.map((p) => (
             <li key={p.id}>
               <Link
                 href={`/portal/projects/${p.id}`}
@@ -53,6 +76,12 @@ export default async function PortalHome() {
                   {p.title}
                 </p>
                 <p className="text-xs text-zinc-500">
+                  {p.clientName && (
+                    <>
+                      <span className="text-zinc-700 font-semibold">{p.clientName}</span>
+                      <span className="text-zinc-300 mx-1.5">·</span>
+                    </>
+                  )}
                   Started {new Date(p.createdAt).toLocaleDateString()} ·{" "}
                   Updated {new Date(p.updatedAt).toLocaleDateString()}
                   {p.targetLaunchDate && (

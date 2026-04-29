@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, Mail } from "lucide-react";
+import { ArrowLeft, Eye, ExternalLink, Mail } from "lucide-react";
 import {
   getProjectAdmin,
   listAssets,
@@ -36,13 +36,25 @@ export default async function AdminProjectDetail({
 
   return (
     <div>
-      <Link
-        href="/dashboard/projects"
-        className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
-      >
-        <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
-        Back to projects
-      </Link>
+      <div className="flex items-center justify-between gap-3 mb-6">
+        <Link
+          href="/dashboard/projects"
+          className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
+          Back to projects
+        </Link>
+        <Link
+          href={`/portal/projects/${project.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-zinc-600 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+          title="Open the portal view in a new tab"
+        >
+          <Eye className="w-3.5 h-3.5" aria-hidden="true" />
+          Preview as client
+        </Link>
+      </div>
 
       <div className="flex flex-wrap items-center gap-3 mb-3">
         <StatusPill status={project.status} />

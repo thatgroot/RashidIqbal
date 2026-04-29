@@ -180,6 +180,29 @@ export async function getCurrentClientSession() {
   return readClientSession(jwt);
 }
 
+// Unified portal viewer. Returns either a real client session or an
+// admin-preview tag if the request has a valid /dashboard session
+// instead. Lets the owner browse any client portal without provisioning
+// a fake client row.
+export type PortalViewer =
+  | { kind: "client"; client: typeof clients.$inferSelect }
+  | { kind: "admin-preview"; adminEmail: string };
+
+export async function getCurrentPortalViewer(): Promise<PortalViewer | null> {
+  const clientSession = await getCurrentClientSession();
+  if (clientSession) {
+    return { kind: "client", client: clientSession.client };
+  }
+  // Lazy-import so the admin-auth module doesn't get pulled into routes
+  // that only need client auth.
+  const { getCurrentSession } = await import("@/lib/auth/session");
+  const adminSession = await getCurrentSession();
+  if (adminSession) {
+    return { kind: "admin-preview", adminEmail: adminSession.email };
+  }
+  return null;
+}
+
 export function buildPortalCookie(jwt: string, expiresAt: Date) {
   return {
     name: PORTAL_COOKIE,
