@@ -1,13 +1,13 @@
 import { MetadataRoute } from 'next';
-import { getAllPosts } from '@/lib/blog';
+import { getAllPostsHybrid } from '@/lib/blog-hybrid';
 import { SITE_URL as siteUrl } from '@/lib/constants';
 import { listPublishedCaseStudies, listAllResearchReports } from '@/lib/cms/queries';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString();
 
-  // Get all blog posts for sitemap
-  const posts = getAllPosts();
+  // Hybrid blog reader picks up filesystem markdown AND CMS-published rows.
+  const posts = await getAllPostsHybrid();
   const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date).toISOString(),
@@ -131,6 +131,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/offer`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     ...caseEntries,
     ...researchEntries,
