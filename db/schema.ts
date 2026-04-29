@@ -179,12 +179,135 @@ export const formSubmissions = pgTable(
   })
 );
 
+// ----------------------------------------------------------------------------
+// Client portal — separate auth space + project + thread.
+// Admin and clients share the data via the same Postgres tables; auth state
+// distinguishes who's looking. Clients are auto-provisioned the first time
+// an admin converts a form_submissions row into a project.
+// ----------------------------------------------------------------------------
+
+export const clients = pgTable(
+  "clients",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: text("email").notNull().unique(),
+    name: text("name"),
+    company: text("company"),
+    timezone: text("timezone"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+  },
+  (t) => ({
+    emailIdx: index("clients_email_idx").on(t.email),
+  })
+);
+
+export const clientOtpCodes = pgTable(
+  "client_otp_codes",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: text("email").notNull(),
+    codeHash: text("code_hash").notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    usedAt: timestamp("used_at", { withTimezone: true }),
+    ip: text("ip"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    emailExpiresIdx: index("client_otp_codes_email_expires_idx").on(t.email, t.expiresAt),
+  })
+);
+
+export const clientSessions = pgTable(
+  "client_sessions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    clientId: uuid("client_id")
+      .notNull()
+      .references(() => clients.id, { onDelete: "cascade" }),
+    tokenHash: text("token_hash").notNull().unique(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    lastSeenAt: timestamp("last_seen_at", { withTimezone: true }).notNull().defaultNow(),
+    ip: text("ip"),
+    userAgent: text("user_agent"),
+  },
+  (t) => ({
+    expiresIdx: index("client_sessions_expires_idx").on(t.expiresAt),
+  })
+);
+
+export const projects = pgTable(
+  "projects",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    clientId: uuid("client_id")
+      .notNull()
+      .references(() => clients.id, { onDelete: "cascade" }),
+    title: text("title").notNull(),
+    // Optional link back to the inbox row that started this project
+    sourceFormId: uuid("source_form_id").references(() => formSubmissions.id, {
+      onDelete: "set null",
+    }),
+    // landing-page | four-page-site | custom
+    tier: text("tier"),
+    // kickoff | design | build | review | launch | live | paused | cancelled
+    status: text("status").notNull().default("kickoff"),
+    startDate: timestamp("start_date", { withTimezone: true }),
+    targetLaunchDate: timestamp("target_launch_date", { withTimezone: true }),
+    launchedAt: timestamp("launched_at", { withTimezone: true }),
+    // Onboarding answers + brief (positioning, ICP, references, copy notes)
+    brief: jsonb("brief").$type<Record<string, unknown>>(),
+    // Quick-jump links: { figma, staging, live, notion, drive, ... }
+    links: jsonb("links").$type<Record<string, string>>(),
+    notesInternal: text("notes_internal"), // admin-only
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    clientIdx: index("projects_client_idx").on(t.clientId),
+    statusIdx: index("projects_status_idx").on(t.status),
+  })
+);
+
+export const projectMessages = pgTable(
+  "project_messages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    projectId: uuid("project_id")
+      .notNull()
+      .references(() => projects.id, { onDelete: "cascade" }),
+    // 'admin' | 'client'
+    senderType: text("sender_type").notNull(),
+    // null when senderType = 'admin' (single-admin world); set to clients.id when 'client'
+    senderClientId: uuid("sender_client_id").references(() => clients.id, {
+      onDelete: "set null",
+    }),
+    body: text("body").notNull(),
+    // Future: file uploads. For MVP, links: [{ name, url }]
+    attachments: jsonb("attachments").$type<{ name: string; url: string }[]>(),
+    readByAdminAt: timestamp("read_by_admin_at", { withTimezone: true }),
+    readByClientAt: timestamp("read_by_client_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    projectCreatedIdx: index("project_messages_project_created_idx").on(
+      t.projectId,
+      t.createdAt
+    ),
+  })
+);
+
 // Type helpers consumed across the app
 export type Visitor = typeof analyticsVisitors.$inferSelect;
 export type Session = typeof analyticsSessions.$inferSelect;
 export type Event = typeof analyticsEvents.$inferSelect;
 export type AuthSession = typeof authSessions.$inferSelect;
 export type FormSubmission = typeof formSubmissions.$inferSelect;
+export type Client = typeof clients.$inferSelect;
+export type ClientSession = typeof clientSessions.$inferSelect;
+export type Project = typeof projects.$inferSelect;
+export type ProjectMessage = typeof projectMessages.$inferSelect;
 
 // Suppress unused-import warning when sql isn't used; kept for future raw migrations.
 void sql;

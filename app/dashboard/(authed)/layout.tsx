@@ -1,16 +1,32 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LogOut, BarChart3, Users, Globe2, Activity, Filter, Inbox } from "lucide-react";
+import {
+  LogOut,
+  BarChart3,
+  Users,
+  Globe2,
+  Activity,
+  Filter,
+  Inbox,
+  FolderKanban,
+  UserSquare2,
+} from "lucide-react";
 import { getCurrentSession } from "@/lib/auth/session";
 import { inboxCounts } from "@/lib/dashboard/inbox-queries";
 
 const NAV = [
-  { href: "/dashboard", label: "Overview", Icon: BarChart3 },
-  { href: "/dashboard/inbox", label: "Inbox", Icon: Inbox, badgeKey: "unread" as const },
-  { href: "/dashboard/visitors", label: "Visitors", Icon: Users },
-  { href: "/dashboard/pages", label: "Pages", Icon: Globe2 },
-  { href: "/dashboard/funnels", label: "Funnels", Icon: Filter },
-  { href: "/dashboard/realtime", label: "Realtime", Icon: Activity },
+  { group: "Analytics", items: [
+    { href: "/dashboard", label: "Overview", Icon: BarChart3 },
+    { href: "/dashboard/visitors", label: "Visitors", Icon: Users },
+    { href: "/dashboard/pages", label: "Pages", Icon: Globe2 },
+    { href: "/dashboard/funnels", label: "Funnels", Icon: Filter },
+    { href: "/dashboard/realtime", label: "Realtime", Icon: Activity },
+  ] },
+  { group: "Work", items: [
+    { href: "/dashboard/inbox", label: "Inbox", Icon: Inbox, badgeKey: "unread" as const },
+    { href: "/dashboard/projects", label: "Projects", Icon: FolderKanban },
+    { href: "/dashboard/clients", label: "Clients", Icon: UserSquare2 },
+  ] },
 ] as const;
 
 export default async function AuthedLayout({
@@ -40,26 +56,35 @@ export default async function AuthedLayout({
           </p>
           <p className="text-sm font-bold text-zinc-900 mt-0.5">Dashboard</p>
         </div>
-        <nav className="flex-1 px-2 py-3 space-y-0.5">
-          {NAV.map((item) => {
-            const showBadge =
-              "badgeKey" in item && item.badgeKey === "unread" && unread > 0;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors rounded-sm"
-              >
-                <item.Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span className="flex-1">{item.label}</span>
-                {showBadge && (
-                  <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold tabular-nums bg-orange-500 text-white rounded">
-                    {unread}
-                  </span>
-                )}
-              </Link>
-            );
-          })}
+        <nav className="flex-1 px-2 py-3 space-y-4 overflow-auto">
+          {NAV.map((g) => (
+            <div key={g.group}>
+              <p className="text-[9px] font-mono text-zinc-400 uppercase tracking-[0.2em] px-3 mb-1.5">
+                {g.group}
+              </p>
+              <div className="space-y-0.5">
+                {g.items.map((item) => {
+                  const showBadge =
+                    "badgeKey" in item && item.badgeKey === "unread" && unread > 0;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors rounded-sm"
+                    >
+                      <item.Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <span className="flex-1">{item.label}</span>
+                      {showBadge && (
+                        <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold tabular-nums bg-orange-500 text-white rounded">
+                          {unread}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
         </nav>
         <div className="p-3 border-t border-zinc-100">
           <p className="text-[10px] text-zinc-400 mb-2 truncate" title={session.email}>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, FolderPlus } from "lucide-react";
 import { getInboxItem, markRead } from "@/lib/dashboard/inbox-queries";
 import { InboxToolbar } from "@/components/dashboard/inbox-toolbar";
 
@@ -85,12 +85,22 @@ export default async function InboxDetailPage({
             </span>
           </p>
         </div>
-        <InboxToolbar
-          id={row.id}
-          starred={row.starred}
-          archived={!!row.archivedAt}
-          email={row.email}
-        />
+        <div className="flex items-center gap-2 shrink-0">
+          <Link
+            href={`/dashboard/projects/new?from=${row.id}`}
+            className="inline-flex items-center gap-1.5 px-3 py-2 bg-orange-700 text-white text-xs font-bold hover:bg-orange-800 transition-colors"
+            title="Convert this submission into a portal project"
+          >
+            <FolderPlus className="w-3.5 h-3.5" aria-hidden="true" />
+            Convert to project
+          </Link>
+          <InboxToolbar
+            id={row.id}
+            starred={row.starred}
+            archived={!!row.archivedAt}
+            email={row.email}
+          />
+        </div>
       </div>
 
       {/* Quick fields summary */}
