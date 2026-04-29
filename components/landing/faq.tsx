@@ -22,7 +22,20 @@ const faqs = [
 ];
 
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // Every FAQ open by default. Click toggles a single one closed/open
+  // independently — no accordion behavior. Open set is the ground truth.
+  const [openSet, setOpenSet] = useState<Set<number>>(
+    () => new Set(faqs.map((_, i) => i))
+  );
+
+  function toggle(i: number) {
+    setOpenSet((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  }
 
   return (
     <>
@@ -44,31 +57,35 @@ export function FAQ() {
             </GridItem>
 
             <div className="bg-white">
-              {faqs.map((faq, i) => (
-                <div key={i} className="border-b border-r border-zinc-100">
-                  <button
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="w-full flex items-center justify-between p-8 text-left hover:bg-zinc-50 transition-colors"
-                  >
-                    <span className="font-medium text-zinc-900 pr-8">{faq.q}</span>
-                    {openIndex === i ? <Minus className="w-5 h-5 text-zinc-500" /> : <Plus className="w-5 h-5 text-zinc-500" />}
-                  </button>
-                  <AnimatePresence>
-                    {openIndex === i && (
-                      <motion.div
-                        initial={{ height: 0 }}
-                        animate={{ height: "auto" }}
-                        exit={{ height: 0 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-8 pb-8 text-zinc-500 leading-relaxed text-sm">
-                          {faq.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+              {faqs.map((faq, i) => {
+                const isOpen = openSet.has(i);
+                return (
+                  <div key={i} className="border-b border-r border-zinc-100">
+                    <button
+                      onClick={() => toggle(i)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center justify-between p-8 text-left hover:bg-zinc-50 transition-colors"
+                    >
+                      <span className="font-medium text-zinc-900 pr-8">{faq.q}</span>
+                      {isOpen ? <Minus className="w-5 h-5 text-zinc-500" /> : <Plus className="w-5 h-5 text-zinc-500" />}
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0 }}
+                          animate={{ height: "auto" }}
+                          exit={{ height: 0 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-8 pb-8 text-zinc-500 leading-relaxed text-sm">
+                            {faq.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </div>
           </GridContainer>
         </div>
