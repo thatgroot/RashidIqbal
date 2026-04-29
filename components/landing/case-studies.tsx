@@ -143,7 +143,7 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
                   }}
                 >
                   <span className="text-[10px] font-mono text-orange-500 uppercase tracking-wider">Result</span>
-                  <p className="text-base font-bold text-zinc-900 mt-1">{c.result}</p>
+                  <p className="text-base text-zinc-700 leading-relaxed mt-1">{c.result}</p>
                   {c.detail && <p className="text-xs text-zinc-500 mt-1">{c.detail}</p>}
                 </motion.div>
               </GridItem>
