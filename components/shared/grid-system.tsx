@@ -52,9 +52,9 @@ export function GridItem({ children, className, title, label, padding = true }: 
       ref={itemRef}
       onMouseMove={!isVisual ? handleMouseMove : undefined}
       className={cn(
-        "relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden transition-colors duration-200",
+        "relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden transition-colors duration-200 flex flex-col",
         !isVisual && "grid-item-hover",
-        padding ? "p-8 sm:p-12" : "", 
+        padding ? "p-8 sm:p-12" : "",
         className
       )}
     >
@@ -68,7 +68,7 @@ export function GridItem({ children, className, title, label, padding = true }: 
           )}
         </div>
       )}
-      <div className={cn(isVisual && "h-full flex items-center justify-center")}>
+      <div className={cn("flex-1 flex flex-col", isVisual && "items-center justify-center")}>
         {children}
       </div>
     </div>

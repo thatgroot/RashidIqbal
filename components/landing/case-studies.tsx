@@ -76,6 +76,7 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
           {cases.map((c, i) => (
             <motion.div
               key={i}
+              className="h-full"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
@@ -135,7 +136,7 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
 
                 {/* Result */}
                 <motion.div
-                  className="mb-6 flex-1"
+                  className="flex-1"
                   variants={{
                     hidden: { opacity: 0, y: 10 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
@@ -144,21 +145,6 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
                   <span className="text-[10px] font-mono text-orange-500 uppercase tracking-wider">Result</span>
                   <p className="text-base font-bold text-zinc-900 mt-1">{c.result}</p>
                   {c.detail && <p className="text-xs text-zinc-500 mt-1">{c.detail}</p>}
-                </motion.div>
-
-                {/* Tags */}
-                <motion.div
-                  className="flex gap-2 pt-4 border-t border-zinc-100"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                  }}
-                >
-                  {c.tags.map((tag, j) => (
-                    <span key={j} className="px-2 py-1 bg-zinc-50 text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
-                      {tag}
-                    </span>
-                  ))}
                 </motion.div>
               </GridItem>
             </motion.div>

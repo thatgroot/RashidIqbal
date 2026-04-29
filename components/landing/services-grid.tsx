@@ -52,6 +52,7 @@ export function ServicesGrid() {
                     {services.map((service, i) => (
                         <motion.div
                             key={i}
+                            className="h-full"
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
@@ -60,7 +61,7 @@ export function ServicesGrid() {
                                 visible: { transition: { staggerChildren: 0.1, delayChildren: i * 0.15 } }
                             }}
                         >
-                            <GridItem label={`0${i + 1}`}>
+                            <GridItem label={`0${i + 1}`} className="h-full">
                                 <article className="h-full flex flex-col">
                                     <motion.div
                                         className="w-10 h-10 bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-8 text-zinc-900"
