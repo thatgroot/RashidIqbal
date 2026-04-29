@@ -42,22 +42,18 @@ function FramerLogo({ className = "w-6 h-6" }: { className?: string }) {
 }
 
 function Base44Logo({ className = "w-6 h-6" }: { className?: string }) {
-  // Stylized "44" mark on a deep-indigo tile so the badge reads as
-  // distinct from Framer (black) and Replit (#001021). Rashid is a
-  // listed Base44 partner — https://app.base44.com/@rashid-iqbal
+  // Sourced from /public/brands/base44.svg so the asset ships with the
+  // build and never depends on Base44's CDN. Replace the file if Base44
+  // ever rotates the mark — no code change needed.
   return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/brands/base44.svg"
+      alt=""
       aria-hidden="true"
-    >
-      <rect width="24" height="24" rx="5" fill="#3b2ae0" />
-      <path
-        d="M9.6 6h-1.7L4.8 11.7v1.6h3.5v2.7h1.3v-2.7h1V12h-1V6Zm-1.3 6H6.1l2.2-4.1V12Zm10.9-6h-1.7L14.4 11.7v1.6h3.5v2.7h1.3v-2.7h1V12h-1V6Zm-1.3 6h-2.2l2.2-4.1V12Z"
-        fill="#fff"
-      />
-    </svg>
+      className={className}
+      style={{ borderRadius: 5 }}
+    />
   );
 }
 

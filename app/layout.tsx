@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
-import { ExitIntentPopup } from "@/components/shared/exit-intent-popup";
+import { StickyAuditRail } from "@/components/shared/sticky-audit-rail";
 import { EmailMeToast } from "@/components/shared/email-me-toast";
 import { Tracker } from "@/components/analytics/tracker";
 import { Suspense } from "react";
@@ -180,7 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           Skip to main content
         </a>
         <StructuredData />
-        <ExitIntentPopup />
+        <StickyAuditRail />
         <EmailMeToast />
         <Suspense fallback={null}>
           <Tracker />

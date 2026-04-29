@@ -58,6 +58,11 @@ export function ProjectEditor({
     });
   }
 
+  // After save, when the status changed, surface a one-click "send the
+  // client an update" composer so admin doesn't silently change state.
+  const [statusBefore, setStatusBefore] = useState(initial.status);
+  const [showStatusUpdate, setShowStatusUpdate] = useState(false);
+
   async function save(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -82,6 +87,11 @@ export function ProjectEditor({
         return;
       }
       setSavedAt(new Date().toLocaleTimeString());
+      // Status changed → invite admin to broadcast
+      if (state.status !== statusBefore) {
+        setShowStatusUpdate(true);
+      }
+      setStatusBefore(state.status);
       router.refresh();
     } catch {
       setError("Network error. Try again.");
@@ -227,7 +237,113 @@ export function ProjectEditor({
           {error}
         </p>
       )}
+
+      {showStatusUpdate && (
+        <StatusUpdateComposer
+          projectId={projectId}
+          status={state.status}
+          onClose={() => setShowStatusUpdate(false)}
+        />
+      )}
     </form>
+  );
+}
+
+// Small inline composer that drafts a status-change message for the
+// client and posts it via the existing /api/dashboard/projects/[id]/
+// messages route. The thread is realtime via Pusher, the client also
+// receives an email via Resend — same pipeline as a manual reply.
+function StatusUpdateComposer({
+  projectId,
+  status,
+  onClose,
+}: {
+  projectId: string;
+  status: string;
+  onClose: () => void;
+}) {
+  const [body, setBody] = useState(
+    `Quick update — we just moved this project to "${status}". I'll follow up with the next concrete step shortly.`
+  );
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function send() {
+    if (!body.trim() || sending) return;
+    setSending(true);
+    setErr(null);
+    try {
+      const res = await fetch(`/api/dashboard/projects/${projectId}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ body: body.trim() }),
+      });
+      if (!res.ok) {
+        setErr("Couldn't send. Try again.");
+        return;
+      }
+      setSent(true);
+      window.setTimeout(onClose, 1500);
+    } catch {
+      setErr("Network error. Try again.");
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <div className="border border-orange-200 bg-orange-50/30 p-4 mt-2 space-y-3">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.18em] mb-0.5">
+            Status changed → send the client an update?
+          </p>
+          <p className="text-xs text-zinc-600">
+            One click drafts a message into the project thread + sends an
+            email via Resend.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Skip"
+          className="text-zinc-400 hover:text-zinc-700"
+        >
+          ✕
+        </button>
+      </div>
+      <textarea
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        rows={3}
+        className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+      />
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={send}
+          disabled={!body.trim() || sending || sent}
+          className="inline-flex items-center gap-1.5 px-3 py-2 bg-orange-700 text-white text-xs font-bold hover:bg-orange-800 transition-colors disabled:opacity-60"
+        >
+          {sending ? (
+            <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
+          ) : sent ? (
+            "Sent ✓"
+          ) : (
+            "Send update"
+          )}
+        </button>
+        <button
+          type="button"
+          onClick={onClose}
+          className="text-xs text-zinc-500 hover:text-zinc-900"
+        >
+          Skip
+        </button>
+        {err && <span className="text-[11px] text-red-600 ml-auto">{err}</span>}
+      </div>
+    </div>
   );
 }
 

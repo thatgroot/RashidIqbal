@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
+import { NewsletterForm } from "@/components/shared/newsletter-form";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
 import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from "lucide-react";
@@ -270,6 +271,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <div className="prose prose-lg max-w-none">
                   <MarkdownRenderer content={post.content} />
                 </div>
+
+                {/* Newsletter signup — every blog post */}
+                <NewsletterForm source={`blog:${slug}`} />
 
                 {/* Tags */}
                 {post.tags.length > 0 && (
