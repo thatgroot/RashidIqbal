@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useProjectChannel, type TypingPayload } from "./use-project-channel";
 
 // Types must stay in sync with the snapshot endpoint payload.
 
@@ -65,7 +66,11 @@ type Initial = {
   assets: SnapshotAsset[];
 };
 
-const FOCUSED_INTERVAL_MS = 2500;
+// When Pusher is connected, polling drops to a slow safety-net cadence
+// — the WS pushes mutations within milliseconds; the poll only catches
+// missed events after a reconnect.
+const FOCUSED_INTERVAL_MS_FAST = 2500;
+const FOCUSED_INTERVAL_MS_WS = 60_000;
 const BLURRED_INTERVAL_MS = 30_000;
 
 /**
@@ -80,9 +85,11 @@ const BLURRED_INTERVAL_MS = 30_000;
  */
 export function useRealtimeProject(projectId: string, initial: Initial) {
   const [state, setState] = useState<Initial>(initial);
+  const [remoteTyping, setRemoteTyping] = useState<TypingPayload | null>(null);
   const etagRef = useRef<string | null>(null);
   const inFlightRef = useRef<AbortController | null>(null);
   const timerRef = useRef<number | null>(null);
+  const typingClearRef = useRef<number | null>(null);
 
   const fetchSnapshot = useCallback(async () => {
     inFlightRef.current?.abort();
@@ -112,57 +119,10 @@ export function useRealtimeProject(projectId: string, initial: Initial) {
     }
   }, [projectId]);
 
-  // Poll loop with visibility awareness.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+  // ---- Pusher subscription ----------------------------------------------
+  // Mutations from the other side push directly into local state with no
+  // wait. The polling loop below stays as a safety net.
 
-    function schedule() {
-      if (timerRef.current !== null) window.clearTimeout(timerRef.current);
-      const delay =
-        document.visibilityState === "visible" ? FOCUSED_INTERVAL_MS : BLURRED_INTERVAL_MS;
-      timerRef.current = window.setTimeout(async () => {
-        await fetchSnapshot();
-        schedule();
-      }, delay);
-    }
-
-    function onVisibility() {
-      if (document.visibilityState === "visible") {
-        // Immediate refresh on refocus.
-        fetchSnapshot();
-      }
-      schedule();
-    }
-    function onOnline() {
-      fetchSnapshot();
-      schedule();
-    }
-
-    // Kick off the first poll quickly so the initial server render
-    // catches any change that happened in the few ms before mount.
-    timerRef.current = window.setTimeout(async () => {
-      await fetchSnapshot();
-      schedule();
-    }, 100);
-
-    document.addEventListener("visibilitychange", onVisibility);
-    window.addEventListener("online", onOnline);
-    return () => {
-      if (timerRef.current !== null) window.clearTimeout(timerRef.current);
-      inFlightRef.current?.abort();
-      document.removeEventListener("visibilitychange", onVisibility);
-      window.removeEventListener("online", onOnline);
-    };
-  }, [fetchSnapshot]);
-
-  // Public revalidate — components call after their own mutations.
-  const revalidate = useCallback(() => {
-    fetchSnapshot();
-  }, [fetchSnapshot]);
-
-  // Imperative state-merging helpers. Components call these for optimistic
-  // local mutations (add a message, toggle a todo) without waiting for a
-  // round trip. The next poll naturally reconciles.
   const upsertLocalMessage = useCallback((m: SnapshotMessage) => {
     setState((s) => ({
       ...s,
@@ -202,7 +162,86 @@ export function useRealtimeProject(projectId: string, initial: Initial) {
     setState((s) => ({ ...s, project: { ...s.project, ...patch } }));
   }, []);
 
+  const { connected: wsConnected, triggerTyping } = useProjectChannel(projectId, {
+    onMessage: (raw) => upsertLocalMessage(raw as SnapshotMessage),
+    onTodoUpsert: (raw) => upsertLocalTodo(raw as SnapshotTodo),
+    onTodoDelete: (id) => removeLocalTodo(id),
+    onAssetUpsert: (raw) => upsertLocalAsset(raw as SnapshotAsset),
+    onAssetDelete: (id) => removeLocalAsset(id),
+    onNotesUpdate: (raw) => {
+      const p = raw as { notesShared?: string; notesInternal?: string; updatedAt?: string };
+      patchLocalProject({
+        ...(p.notesShared !== undefined ? { notesShared: p.notesShared } : {}),
+        ...(p.notesInternal !== undefined ? { notesInternal: p.notesInternal } : {}),
+        ...(p.updatedAt ? { updatedAt: p.updatedAt } : {}),
+      });
+    },
+    onProjectUpdate: (raw) => patchLocalProject(raw as Partial<SnapshotProject>),
+    onTyping: (p) => {
+      setRemoteTyping(p);
+      if (typingClearRef.current !== null) window.clearTimeout(typingClearRef.current);
+      // WhatsApp behavior: fade out 4s after the last typing event.
+      typingClearRef.current = window.setTimeout(() => setRemoteTyping(null), 4000);
+    },
+  });
+
+  // Poll loop with visibility awareness.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    function schedule() {
+      if (timerRef.current !== null) window.clearTimeout(timerRef.current);
+      const focused = document.visibilityState === "visible";
+      const delay = !focused
+        ? BLURRED_INTERVAL_MS
+        : wsConnected
+          ? FOCUSED_INTERVAL_MS_WS
+          : FOCUSED_INTERVAL_MS_FAST;
+      timerRef.current = window.setTimeout(async () => {
+        await fetchSnapshot();
+        schedule();
+      }, delay);
+    }
+
+    function onVisibility() {
+      if (document.visibilityState === "visible") {
+        // Immediate refresh on refocus.
+        fetchSnapshot();
+      }
+      schedule();
+    }
+    function onOnline() {
+      fetchSnapshot();
+      schedule();
+    }
+
+    // Kick off the first poll quickly so the initial server render
+    // catches any change that happened in the few ms before mount.
+    timerRef.current = window.setTimeout(async () => {
+      await fetchSnapshot();
+      schedule();
+    }, 100);
+
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("online", onOnline);
+    return () => {
+      if (timerRef.current !== null) window.clearTimeout(timerRef.current);
+      inFlightRef.current?.abort();
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("online", onOnline);
+    };
+  }, [fetchSnapshot]);
+
+  // Public revalidate — components call after their own mutations to make
+  // sure the WS event raced ahead doesn't leave the local view stale.
+  const revalidate = useCallback(() => {
+    fetchSnapshot();
+  }, [fetchSnapshot]);
+
   return {
+    wsConnected,
+    triggerTyping,
+    remoteTyping,
     project: state.project,
     messages: state.messages,
     todos: state.todos,

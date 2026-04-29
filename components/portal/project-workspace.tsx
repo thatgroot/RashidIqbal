@@ -61,8 +61,17 @@ export function ProjectWorkspace({
 
       {/* Conversation lifted up — the primary surface for clients */}
       <section>
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3 flex items-center gap-2">
           Conversation
+          {live.wsConnected && (
+            <span
+              className="inline-flex items-center gap-1 normal-case tracking-normal text-emerald-600 font-mono text-[9px]"
+              title="Realtime connection active"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Live
+            </span>
+          )}
         </p>
         <MessageThread
           projectId={projectId}
@@ -71,6 +80,8 @@ export function ProjectWorkspace({
           viewerName={viewerName}
           onLocalMessage={live.upsertLocalMessage}
           onRevalidate={live.revalidate}
+          remoteTyping={live.remoteTyping}
+          onTyping={live.triggerTyping}
         />
       </section>
 

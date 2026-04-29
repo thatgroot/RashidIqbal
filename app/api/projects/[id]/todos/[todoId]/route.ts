@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { eq, and } from "drizzle-orm";
 import { db, schema } from "@/db/client";
 import { resolveProjectActor, touchProject } from "@/lib/portal/access";
+import { triggerProjectEvent } from "@/lib/pusher/server";
+import { EV } from "@/lib/pusher/channels";
 
 export async function PATCH(
   req: NextRequest,
@@ -34,6 +36,19 @@ export async function PATCH(
       and(eq(schema.projectTodos.id, todoId), eq(schema.projectTodos.projectId, id))
     );
   await touchProject(id);
+  // Re-read so the broadcast carries the full row in its current shape.
+  const [refreshed] = await db
+    .select()
+    .from(schema.projectTodos)
+    .where(eq(schema.projectTodos.id, todoId))
+    .limit(1);
+  if (refreshed) {
+    triggerProjectEvent(id, EV.TODO_UPSERT, {
+      ...refreshed,
+      completedAt: refreshed.completedAt?.toISOString() ?? null,
+      createdAt: refreshed.createdAt.toISOString(),
+    }).catch(() => {});
+  }
   return NextResponse.json({ ok: true });
 }
 
@@ -50,5 +65,6 @@ export async function DELETE(
       and(eq(schema.projectTodos.id, todoId), eq(schema.projectTodos.projectId, id))
     );
   await touchProject(id);
+  triggerProjectEvent(id, EV.TODO_DELETE, { id: todoId }).catch(() => {});
   return NextResponse.json({ ok: true });
 }

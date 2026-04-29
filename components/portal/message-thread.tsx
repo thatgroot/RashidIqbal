@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Send, Loader2 } from "lucide-react";
 import type { SnapshotMessage } from "@/lib/portal/use-realtime-project";
+import type { TypingPayload } from "@/lib/portal/use-project-channel";
+import { TypingIndicator } from "./typing-indicator";
 
 const SUGGESTION_CHIPS = [
   "Hi! Ready to kick off.",
@@ -34,6 +36,8 @@ export function MessageThread({
   viewerName,
   onLocalMessage,
   onRevalidate,
+  remoteTyping,
+  onTyping,
 }: {
   projectId: string;
   messages: SnapshotMessage[];
@@ -41,6 +45,8 @@ export function MessageThread({
   viewerName: string;
   onLocalMessage: (m: SnapshotMessage) => void;
   onRevalidate: () => void;
+  remoteTyping: TypingPayload | null;
+  onTyping: (p: TypingPayload) => void;
 }) {
   const [body, setBody] = useState("");
   const [sending, setSending] = useState(false);
@@ -160,12 +166,27 @@ export function MessageThread({
           })
         )}
       </div>
+      {remoteTyping && remoteTyping.who !== viewer && (
+        <div className="px-5 border-t border-zinc-100 bg-zinc-50/40">
+          <TypingIndicator
+            name={
+              remoteTyping.name ||
+              (remoteTyping.who === "admin" ? "Rashid" : "Client")
+            }
+          />
+        </div>
+      )}
       <form onSubmit={send} className="border-t border-zinc-100 p-3 bg-zinc-50/40">
         <div className="flex items-end gap-2">
           <textarea
             ref={textareaRef}
             value={body}
-            onChange={(e) => setBody(e.target.value)}
+            onChange={(e) => {
+              setBody(e.target.value);
+              if (e.target.value.trim()) {
+                onTyping({ who: viewer, name: viewerName });
+              }
+            }}
             onKeyDown={(e) => {
               if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
                 send(e as unknown as React.FormEvent);

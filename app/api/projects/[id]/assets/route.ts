@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { desc, eq } from "drizzle-orm";
 import { db, schema } from "@/db/client";
 import { resolveProjectActor, touchProject } from "@/lib/portal/access";
+import { triggerProjectEvent } from "@/lib/pusher/server";
+import { EV } from "@/lib/pusher/channels";
 
 export const ASSET_KINDS = [
   "figma",
@@ -100,7 +102,7 @@ export async function POST(
     .returning();
   await touchProject(id);
   if (!row) return NextResponse.json({ error: "insert failed" }, { status: 500 });
-  return NextResponse.json({
-    asset: { ...row, createdAt: row.createdAt.toISOString() },
-  });
+  const wire = { ...row, createdAt: row.createdAt.toISOString() };
+  triggerProjectEvent(id, EV.ASSET_UPSERT, wire).catch(() => {});
+  return NextResponse.json({ asset: wire });
 }

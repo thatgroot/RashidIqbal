@@ -5,6 +5,8 @@ import { getCurrentClientSession } from "@/lib/portal/auth";
 import { emailNewMessage } from "@/lib/portal/message-email";
 import { SITE_URL } from "@/lib/constants";
 import { getPrimaryEmail } from "@/lib/auth/allowlist";
+import { triggerProjectEvent } from "@/lib/pusher/server";
+import { EV } from "@/lib/pusher/channels";
 
 async function requireClientForProject(projectId: string) {
   const session = await getCurrentClientSession();
@@ -75,6 +77,14 @@ export async function POST(req: NextRequest) {
     .update(schema.projects)
     .set({ updatedAt: new Date() })
     .where(eq(schema.projects.id, project.id));
+
+  const wirePayload = {
+    ...row,
+    createdAt: row.createdAt.toISOString(),
+    readByAdminAt: row.readByAdminAt?.toISOString() ?? null,
+    readByClientAt: row.readByClientAt?.toISOString() ?? null,
+  };
+  triggerProjectEvent(project.id, EV.MESSAGE_NEW, wirePayload).catch(() => {});
 
   // Notify admin (fire-and-forget).
   emailNewMessage({

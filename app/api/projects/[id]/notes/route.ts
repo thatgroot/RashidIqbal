@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";
 import { db, schema } from "@/db/client";
 import { resolveProjectActor, touchProject } from "@/lib/portal/access";
+import { triggerProjectEvent } from "@/lib/pusher/server";
+import { EV } from "@/lib/pusher/channels";
 
 // PATCH /api/projects/[id]/notes
 //   { sharedNotes?: string, internalNotes?: string, baseUpdatedAt?: ISO }
@@ -57,5 +59,14 @@ export async function PATCH(
   }
   await db.update(schema.projects).set(update).where(eq(schema.projects.id, id));
   await touchProject(id);
+  // Only broadcast the field that actually moved. The internal note never
+  // leaves the server when the actor isn't admin (the access guard above
+  // dropped it from `update`).
+  const broadcast: Record<string, unknown> = { updatedAt: new Date().toISOString() };
+  if ("notesShared" in body) broadcast.notesShared = body.sharedNotes ?? "";
+  if ("internalNotes" in body && access.actor.kind === "admin") {
+    broadcast.notesInternal = body.internalNotes ?? "";
+  }
+  triggerProjectEvent(id, EV.NOTES_UPDATE, broadcast).catch(() => {});
   return NextResponse.json({ ok: true });
 }

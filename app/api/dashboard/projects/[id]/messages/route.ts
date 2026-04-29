@@ -4,6 +4,8 @@ import { db, schema } from "@/db/client";
 import { requireAuth } from "@/lib/auth/require";
 import { emailNewMessage } from "@/lib/portal/message-email";
 import { SITE_URL } from "@/lib/constants";
+import { triggerProjectEvent } from "@/lib/pusher/server";
+import { EV } from "@/lib/pusher/channels";
 
 async function loadProject(projectId: string) {
   const [row] = await db
@@ -66,6 +68,13 @@ export async function POST(
     .update(schema.projects)
     .set({ updatedAt: new Date() })
     .where(eq(schema.projects.id, id));
+
+  triggerProjectEvent(id, EV.MESSAGE_NEW, {
+    ...row,
+    createdAt: row.createdAt.toISOString(),
+    readByAdminAt: row.readByAdminAt?.toISOString() ?? null,
+    readByClientAt: row.readByClientAt?.toISOString() ?? null,
+  }).catch(() => {});
 
   // Email the client (fire-and-forget).
   emailNewMessage({

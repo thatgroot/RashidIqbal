@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { asc, eq } from "drizzle-orm";
 import { db, schema } from "@/db/client";
 import { resolveProjectActor, touchProject } from "@/lib/portal/access";
+import { triggerProjectEvent } from "@/lib/pusher/server";
+import { EV } from "@/lib/pusher/channels";
 
 // Both admin and client can list / add / toggle / delete todos. The
 // resolver checks whichever cookie is present and confirms the project
@@ -53,11 +55,11 @@ export async function POST(
     .returning();
   await touchProject(id);
   if (!row) return NextResponse.json({ error: "insert failed" }, { status: 500 });
-  return NextResponse.json({
-    todo: {
-      ...row,
-      completedAt: null,
-      createdAt: row.createdAt.toISOString(),
-    },
-  });
+  const wire = {
+    ...row,
+    completedAt: null,
+    createdAt: row.createdAt.toISOString(),
+  };
+  triggerProjectEvent(id, EV.TODO_UPSERT, wire).catch(() => {});
+  return NextResponse.json({ todo: wire });
 }
