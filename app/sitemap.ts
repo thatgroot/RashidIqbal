@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { SITE_URL as siteUrl } from '@/lib/constants';
+import { listPublishedCaseStudies, listAllResearchReports } from '@/lib/cms/queries';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date().toISOString();
 
   // Get all blog posts for sitemap
@@ -13,6 +14,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'weekly',
     priority: 0.7,
   }));
+
+  // CMS-driven entries: case studies + research reports.
+  const [cases, reports] = await Promise.all([
+    listPublishedCaseStudies().catch(() => []),
+    listAllResearchReports().catch(() => []),
+  ]);
+  const caseEntries: MetadataRoute.Sitemap = cases.map((c) => ({
+    url: `${siteUrl}/work/${c.slug}`,
+    lastModified: c.updatedAt.toISOString(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+  const researchEntries: MetadataRoute.Sitemap = reports
+    .filter((r) => !!r.publishedAt)
+    .map((r) => ({
+      url: `${siteUrl}/research/${r.slug}`,
+      lastModified: r.updatedAt.toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    }));
 
   return [
     {
@@ -105,6 +126,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.85,
     },
+    {
+      url: `${siteUrl}/work`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    ...caseEntries,
+    ...researchEntries,
     ...blogEntries,
   ];
 }

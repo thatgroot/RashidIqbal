@@ -1,7 +1,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getPostBySlug, getPostSlugs, getRelatedPosts, BlogPost } from "@/lib/blog";
+import type { BlogPost } from "@/lib/blog";
+import {
+  getPostBySlugHybrid,
+  getPostSlugsHybrid,
+  getRelatedPostsHybrid,
+} from "@/lib/blog-hybrid";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
@@ -99,13 +104,13 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const slugs = getPostSlugs();
+  const slugs = await getPostSlugsHybrid();
   return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlugHybrid(slug);
 
   if (!post) {
     return {
@@ -176,13 +181,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlugHybrid(slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = getRelatedPosts(slug, post.tags);
+  const relatedPosts = await getRelatedPostsHybrid(slug, post.tags);
   const postUrl = `${siteUrl}/blog/${slug}`;
 
   return (

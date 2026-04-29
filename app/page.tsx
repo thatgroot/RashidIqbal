@@ -68,14 +68,20 @@ export const metadata: Metadata = {
 // Pull CMS-managed sections at SSR. Each query is best-effort and
 // silently empty when the CMS is empty (the components fall back to
 // their hardcoded defaults).
-import { listPublishedTestimonials, listPublishedFaqs } from "@/lib/cms/queries";
+import {
+  listPublishedTestimonials,
+  listPublishedFaqs,
+  listPublishedCaseStudies,
+} from "@/lib/cms/queries";
+import type { CaseStudyCard } from "@/components/landing/case-studies";
 
 export const dynamic = "force-dynamic";
 
 export default async function Page() {
-  const [cmsTestimonials, cmsFaqs] = await Promise.all([
+  const [cmsTestimonials, cmsFaqs, cmsCases] = await Promise.all([
     listPublishedTestimonials().catch(() => []),
     listPublishedFaqs("landing").catch(() => []),
+    listPublishedCaseStudies().catch(() => []),
   ]);
 
   const testimonialItems = cmsTestimonials.map((t) => ({
@@ -88,15 +94,29 @@ export default async function Page() {
 
   const faqItems = cmsFaqs.map((f) => ({ q: f.question, a: f.answer }));
 
-  return _renderPage({ testimonialItems, faqItems });
+  // Map CMS case-study rows onto the homepage card shape. The CMS row
+  // doesn't carry separate problem/solution columns yet — only summary
+  // + body — so the card renders summary as the "result" line and the
+  // body deep-dive lives at /work/<slug>.
+  const caseItems: CaseStudyCard[] = cmsCases.map((c) => ({
+    client: c.clientName,
+    result: c.summary || c.title,
+    ...(c.metrics?.[0] ? { detail: `${c.metrics[0].value} · ${c.metrics[0].label}` } : {}),
+    link: c.liveUrl || `/work/${c.slug}`,
+    tags: c.tags ?? [],
+  }));
+
+  return _renderPage({ testimonialItems, faqItems, caseItems });
 }
 
 function _renderPage({
   testimonialItems,
   faqItems,
+  caseItems,
 }: {
   testimonialItems: Array<{ text: string; author: string; role: string; accent: string; avatarUrl?: string }>;
   faqItems: Array<{ q: string; a: string }>;
+  caseItems: CaseStudyCard[];
 }) {
   return (
     <>
@@ -119,7 +139,7 @@ function _renderPage({
         {/* CREDIBILITY: trust strip + proof via case studies + about */}
         <TrustedBy />
         <SectionSpacer />
-        <CaseStudies />
+        <CaseStudies {...(caseItems.length > 0 ? { items: caseItems } : {})} />
         <SectionSpacer />
         <ServicesGrid />
         <SectionSpacer />

@@ -13,6 +13,7 @@ import {
 } from "@/lib/pricing-data";
 import { attachEmailIds, logFormSubmission } from "@/lib/forms/log-submission";
 import { logAnalyticsFormSubmit } from "@/lib/forms/log-analytics-event";
+import { scheduleDrip } from "@/lib/email-drip/sequencer";
 
 // Look up the full plan object from the pricing catalog by display name +
 // billing mode. Returns undefined when no match — the email template then
@@ -282,6 +283,13 @@ export async function POST(req: NextRequest) {
         internalEmailId: internalRes.data?.id ?? null,
         clientAckEmailId: clientRes.data?.id ?? null,
       }).catch(() => {});
+
+      // Schedule the 5-step onboarding drip. Fire-and-forget — drip rows
+      // are inserted with future due_at timestamps; the hourly cron picks
+      // them up. A failure here doesn't break the lead flow.
+      scheduleDrip({ submissionId, email }).catch((e) => {
+        console.error("[lead-api] scheduleDrip failed:", e);
+      });
     }
 
     // Belt-and-suspenders: also write a form_submit event into the

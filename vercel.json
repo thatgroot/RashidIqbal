@@ -4,6 +4,10 @@
     {
       "path": "/api/indexnow/sync-sitemap",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/email-drip",
+      "schedule": "0 * * * *"
     }
   ]
 }

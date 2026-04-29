@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import {
-  getAllPosts,
-  getFeaturedPosts,
-  getPostsByTag,
-  getAllTags,
-} from "@/lib/blog";
+  getAllPostsHybrid,
+  getFeaturedPostsHybrid,
+  getPostsByTagHybrid,
+  getAllTagsHybrid,
+} from "@/lib/blog-hybrid";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
@@ -183,7 +183,9 @@ export default async function BlogPage(props: BlogPageProps) {
   const rawPage = parsePage(sp.page);
 
   // Filter posts
-  const filteredPosts = activeTag ? getPostsByTag(activeTag) : getAllPosts();
+  const filteredPosts = activeTag
+    ? await getPostsByTagHybrid(activeTag)
+    : await getAllPostsHybrid();
 
   // Pagination
   const totalPages = Math.max(
@@ -198,10 +200,10 @@ export default async function BlogPage(props: BlogPageProps) {
 
   // Featured posts only render on page 1 of the unfiltered list
   const showFeatured = !activeTag && currentPage === 1;
-  const featuredPosts = showFeatured ? getFeaturedPosts() : [];
+  const featuredPosts = showFeatured ? await getFeaturedPostsHybrid() : [];
 
   // All tags for the filter sidebar
-  const tags = getAllTags();
+  const tags = await getAllTagsHybrid();
 
   return (
     <main

@@ -4,7 +4,9 @@ import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { ArrowUpRight } from "lucide-react";
 
-const cases = [
+// Default fallback. CMS-published case studies (passed via the `items`
+// prop) override this list when present.
+const DEFAULT_CASES = [
   {
     client: "Relace",
     problem: "AI-infrastructure startup needed a site developers could skim in 30 seconds and instantly grok what the product does.",
@@ -34,7 +36,20 @@ const cases = [
   },
 ];
 
-export function CaseStudies() {
+export type CaseStudyCard = {
+  client: string;
+  problem?: string;
+  solution?: string;
+  result: string;
+  detail?: string;
+  link: string;
+  tags: string[];
+};
+
+export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
+  // Use CMS rows when present; otherwise fall back to hardcoded so the
+  // homepage never goes empty during a deploy.
+  const cases = items && items.length > 0 ? items : DEFAULT_CASES;
   return (
     <section className="bg-white" id="case-studies">
       <div className="max-w-container border-l border-zinc-100">
@@ -91,28 +106,32 @@ export function CaseStudies() {
                 </motion.div>
 
                 {/* Problem */}
-                <motion.div
-                  className="mb-4"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                  }}
-                >
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Problem</span>
-                  <p className="text-sm text-zinc-600 mt-1">{c.problem}</p>
-                </motion.div>
+                {c.problem && (
+                  <motion.div
+                    className="mb-4"
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                    }}
+                  >
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Problem</span>
+                    <p className="text-sm text-zinc-600 mt-1">{c.problem}</p>
+                  </motion.div>
+                )}
 
                 {/* What I Did */}
-                <motion.div
-                  className="mb-4"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                  }}
-                >
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">What I Did</span>
-                  <p className="text-sm text-zinc-600 mt-1">{c.solution}</p>
-                </motion.div>
+                {c.solution && (
+                  <motion.div
+                    className="mb-4"
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+                    }}
+                  >
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">What I Did</span>
+                    <p className="text-sm text-zinc-600 mt-1">{c.solution}</p>
+                  </motion.div>
+                )}
 
                 {/* Result */}
                 <motion.div
@@ -124,7 +143,7 @@ export function CaseStudies() {
                 >
                   <span className="text-[10px] font-mono text-orange-500 uppercase tracking-wider">Result</span>
                   <p className="text-base font-bold text-zinc-900 mt-1">{c.result}</p>
-                  <p className="text-xs text-zinc-500 mt-1">{c.detail}</p>
+                  {c.detail && <p className="text-xs text-zinc-500 mt-1">{c.detail}</p>}
                 </motion.div>
 
                 {/* Tags */}
