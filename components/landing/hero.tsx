@@ -70,7 +70,7 @@ export function Hero() {
                 <GridContainer cols={1}>
                     {/* Main Hero Content */}
                     <GridItem
-                        className="border-t min-h-[65vh] flex flex-col justify-center relative overflow-hidden group"
+                        className="border-t relative overflow-hidden group"
                         padding={false}
                     >
                         {/* Lens Effect Layer - Visible on Hover */}
