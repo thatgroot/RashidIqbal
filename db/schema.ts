@@ -132,11 +132,59 @@ export const authSessions = pgTable(
   })
 );
 
+// ----------------------------------------------------------------------------
+// Forms inbox — every lead / contact / pricing / offer submission lands
+// here in addition to the email dispatch, so the dashboard has a queryable
+// inbox.
+// ----------------------------------------------------------------------------
+
+export const formSubmissions = pgTable(
+  "form_submissions",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    // Where the submission came from. Mirrors the `source` field in /api/lead
+    // (offer-paid, pricing, offer-lp, exit-intent, service-builder, contact, ...)
+    source: text("source").notNull(),
+    // Identity
+    email: text("email").notNull(),
+    name: text("name"),
+    website: text("website"),
+    // Pre-rendered subject so the inbox table doesn't need to recompute it
+    subject: text("subject").notNull(),
+    // Full payload (description, plan, mode, services, stack, budget,
+    // timeline, concern, location, page count, etc.)
+    body: jsonb("body").$type<Record<string, unknown>>(),
+    // Optional analytics correlation. We store the aestho_v cookie value;
+    // the dashboard joins to analytics_visitors at read time when needed.
+    visitorCookie: text("visitor_cookie"),
+    sessionCookie: text("session_cookie"),
+    // Inbox state
+    readAt: timestamp("read_at", { withTimezone: true }),
+    starred: boolean("starred").notNull().default(false),
+    archivedAt: timestamp("archived_at", { withTimezone: true }),
+    // Resend message handles for traceability
+    internalEmailId: text("internal_email_id"),
+    clientAckEmailId: text("client_ack_email_id"),
+    // Network meta
+    ip: text("ip"),
+    userAgent: text("user_agent"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => ({
+    createdIdx: index("form_submissions_created_idx").on(t.createdAt),
+    inboxIdx: index("form_submissions_inbox_idx").on(t.archivedAt, t.readAt),
+    sourceIdx: index("form_submissions_source_idx").on(t.source),
+  })
+);
+
 // Type helpers consumed across the app
 export type Visitor = typeof analyticsVisitors.$inferSelect;
 export type Session = typeof analyticsSessions.$inferSelect;
 export type Event = typeof analyticsEvents.$inferSelect;
 export type AuthSession = typeof authSessions.$inferSelect;
+export type FormSubmission = typeof formSubmissions.$inferSelect;
 
 // Suppress unused-import warning when sql isn't used; kept for future raw migrations.
 void sql;

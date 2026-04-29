@@ -11,6 +11,7 @@ import {
   RETAINER_PLANS,
   type PricingPlan,
 } from "@/lib/pricing-data";
+import { attachEmailIds, logFormSubmission } from "@/lib/forms/log-submission";
 
 // Look up the full plan object from the pricing catalog by display name +
 // billing mode. Returns undefined when no match — the email template then
@@ -198,6 +199,37 @@ export async function POST(req: NextRequest) {
     const clientText = buildClientEmailText({ ...sharedFields, source });
 
     // -------------------------------------------------------------------- //
+    // Persist to the dashboard inbox before sending. Failure here doesn't
+    // block the email — the row id (if returned) is patched with Resend
+    // message ids after dispatch so the inbox surfaces traceable handles.
+    // -------------------------------------------------------------------- //
+
+    const submissionId = await logFormSubmission({
+      source,
+      email,
+      subject: internalSubject,
+      name,
+      website,
+      body: {
+        concern: sharedFields.concern,
+        location: sharedFields.location,
+        services: sharedFields.services,
+        stack: sharedFields.stack,
+        pageCount: sharedFields.pageCount,
+        budget: sharedFields.budget,
+        timeline: sharedFields.timeline,
+        description: sharedFields.description,
+        plan: sharedFields.plan,
+        mode: sharedFields.mode,
+        planSnapshot: sharedFields.planSnapshot,
+      },
+      visitorCookie: req.cookies.get("aestho_v")?.value,
+      sessionCookie: req.cookies.get("aestho_s")?.value,
+      ip,
+      userAgent: req.headers.get("user-agent") || undefined,
+    });
+
+    // -------------------------------------------------------------------- //
     // Send in parallel
     // -------------------------------------------------------------------- //
 
@@ -241,6 +273,14 @@ export async function POST(req: NextRequest) {
       // Log it so we can notice if Resend is flaky for outbound mail to
       // certain providers.
       console.error("[lead-api] Client ack send failed:", clientRes.error);
+    }
+
+    if (submissionId) {
+      // Fire-and-forget — patch the inbox row with Resend ids for traceability.
+      attachEmailIds(submissionId, {
+        internalEmailId: internalRes.data?.id ?? null,
+        clientAckEmailId: clientRes.data?.id ?? null,
+      }).catch(() => {});
     }
 
     return NextResponse.json({

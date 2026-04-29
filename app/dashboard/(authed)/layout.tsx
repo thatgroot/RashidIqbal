@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { LogOut, BarChart3, Users, Globe2, Activity, Filter } from "lucide-react";
+import { LogOut, BarChart3, Users, Globe2, Activity, Filter, Inbox } from "lucide-react";
 import { getCurrentSession } from "@/lib/auth/session";
+import { inboxCounts } from "@/lib/dashboard/inbox-queries";
 
 const NAV = [
   { href: "/dashboard", label: "Overview", Icon: BarChart3 },
+  { href: "/dashboard/inbox", label: "Inbox", Icon: Inbox, badgeKey: "unread" as const },
   { href: "/dashboard/visitors", label: "Visitors", Icon: Users },
   { href: "/dashboard/pages", label: "Pages", Icon: Globe2 },
   { href: "/dashboard/funnels", label: "Funnels", Icon: Filter },
@@ -19,6 +21,16 @@ export default async function AuthedLayout({
   const session = await getCurrentSession();
   if (!session) redirect("/dashboard/login");
 
+  // Cheap read — feeds the unread badge on the Inbox nav entry. Fails open
+  // to 0 so a transient DB blip doesn't 500 the whole layout.
+  let unread = 0;
+  try {
+    const c = await inboxCounts();
+    unread = c.unread;
+  } catch (err) {
+    console.error("[dashboard/layout] inboxCounts failed", err);
+  }
+
   return (
     <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans flex">
       <aside className="w-56 shrink-0 border-r border-zinc-200 bg-white flex flex-col">
@@ -29,16 +41,25 @@ export default async function AuthedLayout({
           <p className="text-sm font-bold text-zinc-900 mt-0.5">Dashboard</p>
         </div>
         <nav className="flex-1 px-2 py-3 space-y-0.5">
-          {NAV.map(({ href, label, Icon }) => (
-            <Link
-              key={href}
-              href={href}
-              className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors rounded-sm"
-            >
-              <Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
-              <span>{label}</span>
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            const showBadge =
+              "badgeKey" in item && item.badgeKey === "unread" && unread > 0;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors rounded-sm"
+              >
+                <item.Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
+                <span className="flex-1">{item.label}</span>
+                {showBadge && (
+                  <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold tabular-nums bg-orange-500 text-white rounded">
+                    {unread}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
         </nav>
         <div className="p-3 border-t border-zinc-100">
           <p className="text-[10px] text-zinc-400 mb-2 truncate" title={session.email}>

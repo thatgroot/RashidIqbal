@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { logFormSubmission } from "@/lib/forms/log-submission";
 
 // Where inquiry/lead emails should land
 const RECIPIENT_EMAIL = "rashidiqbal.freelance@gmail.com";
@@ -11,6 +12,25 @@ export async function POST(req: NextRequest) {
     if (!email || typeof email !== "string" || !email.includes("@")) {
       return NextResponse.json({ error: "Valid email is required" }, { status: 400 });
     }
+
+    // Persist to the inbox before the dispatch. Logging is best-effort and
+    // never blocks the email send.
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      undefined;
+    await logFormSubmission({
+      source: source || "contact",
+      email,
+      subject: subject || "New Portfolio Inquiry",
+      name,
+      website,
+      body: { location, pageCount, budget, timeline, description, services, to, cc },
+      visitorCookie: req.cookies.get("aestho_v")?.value,
+      sessionCookie: req.cookies.get("aestho_s")?.value,
+      ip,
+      userAgent: req.headers.get("user-agent") || undefined,
+    });
 
     // Server-only environment variable
     const accessKey = process.env.WEB3FORMS_KEY;
