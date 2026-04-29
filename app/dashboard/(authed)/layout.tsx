@@ -10,6 +10,7 @@ import {
   Inbox,
   FolderKanban,
   UserSquare2,
+  FileText,
 } from "lucide-react";
 import { getCurrentSession } from "@/lib/auth/session";
 import { inboxCounts } from "@/lib/dashboard/inbox-queries";
@@ -26,6 +27,9 @@ const NAV = [
     { href: "/dashboard/inbox", label: "Inbox", Icon: Inbox, badgeKey: "unread" as const },
     { href: "/dashboard/projects", label: "Projects", Icon: FolderKanban },
     { href: "/dashboard/clients", label: "Clients", Icon: UserSquare2 },
+  ] },
+  { group: "Content", items: [
+    { href: "/dashboard/cms", label: "CMS", Icon: FileText },
   ] },
 ] as const;
 

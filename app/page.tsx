@@ -65,7 +65,39 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page() {
+// Pull CMS-managed sections at SSR. Each query is best-effort and
+// silently empty when the CMS is empty (the components fall back to
+// their hardcoded defaults).
+import { listPublishedTestimonials, listPublishedFaqs } from "@/lib/cms/queries";
+
+export const dynamic = "force-dynamic";
+
+export default async function Page() {
+  const [cmsTestimonials, cmsFaqs] = await Promise.all([
+    listPublishedTestimonials().catch(() => []),
+    listPublishedFaqs("landing").catch(() => []),
+  ]);
+
+  const testimonialItems = cmsTestimonials.map((t) => ({
+    text: t.quote,
+    author: t.author,
+    role: t.title || "",
+    accent: t.accent || "bg-orange-500",
+    ...(t.avatarUrl ? { avatarUrl: t.avatarUrl } : {}),
+  }));
+
+  const faqItems = cmsFaqs.map((f) => ({ q: f.question, a: f.answer }));
+
+  return _renderPage({ testimonialItems, faqItems });
+}
+
+function _renderPage({
+  testimonialItems,
+  faqItems,
+}: {
+  testimonialItems: Array<{ text: string; author: string; role: string; accent: string; avatarUrl?: string }>;
+  faqItems: Array<{ q: string; a: string }>;
+}) {
   return (
     <>
 
@@ -93,11 +125,13 @@ export default function Page() {
         <SectionSpacer />
         <AboutSection />
         <SectionSpacer />
-        <Testimonials />
+        <Testimonials
+          {...(testimonialItems.length > 0 ? { items: testimonialItems } : {})}
+        />
         <SectionSpacer />
         <Pricing />
         <SectionSpacer />
-        <FAQ />
+        <FAQ {...(faqItems.length > 0 ? { items: faqItems } : {})} />
         <SectionSpacer />
         <CTASection />
         <Footer />

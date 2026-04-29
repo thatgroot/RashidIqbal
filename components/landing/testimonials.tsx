@@ -144,7 +144,11 @@ const AUTOPLAY_MS = 7000;
 // Component
 // ============================================================================
 
-export function Testimonials() {
+export function Testimonials({ items }: { items?: Review[] }) {
+  // CMS-supplied items override the hardcoded REVIEWS when present. The
+  // fallback keeps the carousel populated during a fresh deploy or when
+  // the DB is unreachable.
+  const reviews = items && items.length > 0 ? items : REVIEWS;
   const [activeIndex, setActiveIndex] = useState(0);
   const intervalRef = useRef<number | null>(null);
 
@@ -156,9 +160,9 @@ export function Testimonials() {
       window.clearInterval(intervalRef.current);
     }
     intervalRef.current = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % REVIEWS.length);
+      setActiveIndex((prev) => (prev + 1) % reviews.length);
     }, AUTOPLAY_MS);
-  }, []);
+  }, [reviews.length]);
 
   useEffect(() => {
     scheduleAdvance();
@@ -173,14 +177,14 @@ export function Testimonials() {
   }
 
   function goNext() {
-    select((activeIndex + 1) % REVIEWS.length);
+    select((activeIndex + 1) % reviews.length);
   }
 
   function goPrev() {
-    select((activeIndex - 1 + REVIEWS.length) % REVIEWS.length);
+    select((activeIndex - 1 + reviews.length) % reviews.length);
   }
 
-  const active = REVIEWS[activeIndex];
+  const active = reviews[activeIndex];
 
   return (
     <section className="bg-white" id="testimonials">
@@ -205,7 +209,7 @@ export function Testimonials() {
                 role="tablist"
                 aria-label="Client testimonials"
               >
-                {REVIEWS.map((r, i) => {
+                {reviews.map((r, i) => {
                   const isActive = i === activeIndex;
                   return (
                     <button
@@ -220,7 +224,7 @@ export function Testimonials() {
                           ? `${r.accent} scale-110 z-10 ring-2 ring-offset-2 ring-orange-500`
                           : `${r.accent} opacity-60 hover:opacity-100 hover:scale-105`
                       }`}
-                      style={{ zIndex: isActive ? 10 : REVIEWS.length - i }}
+                      style={{ zIndex: isActive ? 10 : reviews.length - i }}
                     >
                       {r.avatarUrl ? (
                         <Image
@@ -330,7 +334,7 @@ export function Testimonials() {
                 role="tablist"
                 aria-label="Testimonial pagination"
               >
-                {REVIEWS.map((_, i) => {
+                {reviews.map((_, i) => {
                   const isActive = i === activeIndex;
                   return (
                     <button

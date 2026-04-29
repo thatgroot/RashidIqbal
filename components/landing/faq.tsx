@@ -6,7 +6,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FAQStructuredData } from "@/components/seo/faq-structured-data";
 
-const faqs = [
+// Default fallback set. Used whenever the CMS has no published FAQs.
+const DEFAULT_FAQS = [
   {
     q: "Will this actually move my conversion rate?",
     a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Equals' homepage demo-request rate doubled. I won't promise your specific number — every market is different — but on the kickoff call I'll walk you through the conversion principle behind each lift so you know what's changing and why."
@@ -29,7 +30,12 @@ const faqs = [
   }
 ];
 
-export function FAQ() {
+type FaqItem = { q: string; a: string };
+
+export function FAQ({ items }: { items?: FaqItem[] }) {
+  // Use the CMS-supplied list if present; otherwise fall back to the
+  // hardcoded set so the section never goes empty during a deploy.
+  const faqs = items && items.length > 0 ? items : DEFAULT_FAQS;
   // Every FAQ open by default. Click toggles a single one closed/open
   // independently — no accordion behavior. Open set is the ground truth.
   const [openSet, setOpenSet] = useState<Set<number>>(

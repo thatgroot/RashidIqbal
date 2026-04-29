@@ -341,6 +341,194 @@ export const projectMessages = pgTable(
   })
 );
 
+// ----------------------------------------------------------------------------
+// CMS — content collections managed by the admin from /dashboard/cms.
+// All eight tables share the same row shape: a primary key, a sort_order
+// for explicit ordering, and a published_at nullable so admin can stage
+// drafts. Type-specific columns differ per collection.
+// ----------------------------------------------------------------------------
+
+export const cmsTestimonials = pgTable(
+  "cms_testimonials",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    quote: text("quote").notNull(),
+    author: text("author").notNull(),
+    title: text("title"), // "Founder & CEO, UpdateAI"
+    avatarUrl: text("avatar_url"),
+    accent: text("accent"), // tailwind color token, e.g. "bg-orange-500"
+    rating: integer("rating").default(5),
+    sortOrder: integer("sort_order").notNull().default(0),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    sortIdx: index("cms_testimonials_sort_idx").on(t.sortOrder),
+  })
+);
+
+export const cmsFaqs = pgTable(
+  "cms_faqs",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    question: text("question").notNull(),
+    answer: text("answer").notNull(),
+    // Where the FAQ shows: "landing", "offer", "pricing", "comparison", "all"
+    surface: text("surface").notNull().default("landing"),
+    sortOrder: integer("sort_order").notNull().default(0),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    surfaceSortIdx: index("cms_faqs_surface_sort_idx").on(t.surface, t.sortOrder),
+  })
+);
+
+export const cmsCaseStudies = pgTable(
+  "cms_case_studies",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    slug: text("slug").notNull().unique(),
+    title: text("title").notNull(),
+    clientName: text("client_name").notNull(),
+    summary: text("summary"), // 1-2 sentence card description
+    body: text("body"), // markdown
+    coverImage: text("cover_image"),
+    heroImage: text("hero_image"),
+    metrics: jsonb("metrics").$type<{ label: string; value: string }[]>(),
+    tags: jsonb("tags").$type<string[]>(),
+    liveUrl: text("live_url"),
+    sortOrder: integer("sort_order").notNull().default(0),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    slugIdx: index("cms_case_studies_slug_idx").on(t.slug),
+    sortIdx: index("cms_case_studies_sort_idx").on(t.sortOrder),
+  })
+);
+
+export const cmsBlogPosts = pgTable(
+  "cms_blog_posts",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    slug: text("slug").notNull().unique(),
+    title: text("title").notNull(),
+    description: text("description"),
+    body: text("body").notNull(), // markdown
+    coverImage: text("cover_image"),
+    seoTitle: text("seo_title"),
+    seoDescription: text("seo_description"),
+    tags: jsonb("tags").$type<string[]>(),
+    category: text("category"),
+    featured: boolean("featured").notNull().default(false),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    slugIdx: index("cms_blog_posts_slug_idx").on(t.slug),
+    publishedIdx: index("cms_blog_posts_published_idx").on(t.publishedAt),
+  })
+);
+
+export const cmsIndustryPages = pgTable(
+  "cms_industry_pages",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    slug: text("slug").notNull().unique(),
+    industry: text("industry").notNull(), // "fintech", "ai-startups"
+    headline: text("headline").notNull(),
+    subheadline: text("subheadline"),
+    body: text("body"), // markdown
+    namedClients: jsonb("named_clients").$type<string[]>(),
+    metrics: jsonb("metrics").$type<{ label: string; value: string }[]>(),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    slugIdx: index("cms_industry_pages_slug_idx").on(t.slug),
+  })
+);
+
+export const cmsResearchReports = pgTable(
+  "cms_research_reports",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    slug: text("slug").notNull().unique(),
+    title: text("title").notNull(),
+    summary: text("summary"),
+    body: text("body"), // markdown
+    pdfUrl: text("pdf_url"),
+    coverImage: text("cover_image"),
+    findings: jsonb("findings").$type<{ stat: string; context: string }[]>(),
+    publishedAt: timestamp("published_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    slugIdx: index("cms_research_reports_slug_idx").on(t.slug),
+  })
+);
+
+export const cmsSubscribers = pgTable(
+  "cms_subscribers",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    email: text("email").notNull().unique(),
+    name: text("name"),
+    source: text("source"), // "blog-footer", "homepage-sticky", "research-report"
+    confirmedAt: timestamp("confirmed_at", { withTimezone: true }),
+    unsubscribedAt: timestamp("unsubscribed_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    emailIdx: index("cms_subscribers_email_idx").on(t.email),
+  })
+);
+
+export const cmsNewsletterIssues = pgTable(
+  "cms_newsletter_issues",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    subject: text("subject").notNull(),
+    body: text("body").notNull(), // markdown
+    sentAt: timestamp("sent_at", { withTimezone: true }),
+    sentToCount: integer("sent_to_count"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  }
+);
+
+// ----------------------------------------------------------------------------
+// Email drip — onboarding sequence kicked off by every form submission.
+// One job row per (submission × step). The hourly cron picks up due steps.
+// ----------------------------------------------------------------------------
+
+export const emailDripJobs = pgTable(
+  "email_drip_jobs",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    submissionId: uuid("submission_id")
+      .notNull()
+      .references(() => formSubmissions.id, { onDelete: "cascade" }),
+    email: text("email").notNull(),
+    step: integer("step").notNull(), // 1..5
+    dueAt: timestamp("due_at", { withTimezone: true }).notNull(),
+    sentAt: timestamp("sent_at", { withTimezone: true }),
+    skipReason: text("skip_reason"), // "unsubscribed", "replied", "manual-cancel"
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    dueIdx: index("email_drip_jobs_due_idx").on(t.dueAt, t.sentAt),
+    submissionIdx: index("email_drip_jobs_submission_idx").on(t.submissionId),
+  })
+);
+
 // Type helpers consumed across the app
 export type Visitor = typeof analyticsVisitors.$inferSelect;
 export type Session = typeof analyticsSessions.$inferSelect;
@@ -353,6 +541,15 @@ export type Project = typeof projects.$inferSelect;
 export type ProjectMessage = typeof projectMessages.$inferSelect;
 export type ProjectTodo = typeof projectTodos.$inferSelect;
 export type ProjectAsset = typeof projectAssets.$inferSelect;
+export type CmsTestimonial = typeof cmsTestimonials.$inferSelect;
+export type CmsFaq = typeof cmsFaqs.$inferSelect;
+export type CmsCaseStudy = typeof cmsCaseStudies.$inferSelect;
+export type CmsBlogPost = typeof cmsBlogPosts.$inferSelect;
+export type CmsIndustryPage = typeof cmsIndustryPages.$inferSelect;
+export type CmsResearchReport = typeof cmsResearchReports.$inferSelect;
+export type CmsSubscriber = typeof cmsSubscribers.$inferSelect;
+export type CmsNewsletterIssue = typeof cmsNewsletterIssues.$inferSelect;
+export type EmailDripJob = typeof emailDripJobs.$inferSelect;
 
 // Suppress unused-import warning when sql isn't used; kept for future raw migrations.
 void sql;
