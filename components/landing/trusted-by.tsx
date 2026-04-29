@@ -4,17 +4,22 @@ import { motion } from "framer-motion";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { ProjectCounter } from "./project-counter";
 
-const brands = [
-  { name: "Relace", highlight: true },
-  { name: "Equals", highlight: false },
-  { name: "Hevn", highlight: true },
-  { name: "UpdateAI", highlight: false },
+// Concrete conversion deltas next to brand names — research says
+// data-driven proof beats logo-only strips by ~15% on lift. The `delta`
+// field renders inline with the brand: "UpdateAI · signups +50%".
+type Brand = { name: string; highlight: boolean; delta?: string };
+
+const brands: Brand[] = [
+  { name: "UpdateAI", highlight: true, delta: "signups +50%" },
+  { name: "Equals", highlight: false, delta: "demo requests 2x" },
+  { name: "Hevn", highlight: true, delta: "bounce −34%" },
+  { name: "Relace", highlight: false, delta: "shipped in 9 days" },
   { name: "Crezco", highlight: true },
   { name: "Composio", highlight: false },
   { name: "Titan Gatequity", highlight: true },
   { name: "Melissa Ambrosini", highlight: false },
   { name: "Nick Broadhurst", highlight: true },
-  { name: "Giga AI", highlight: false },
+  { name: "Giga AI", highlight: false, delta: "demos doubled in 2 weeks" },
   { name: "AAKP", highlight: true },
   { name: "Space Dome", highlight: false },
   { name: "Ask Dialog", highlight: true },
@@ -52,13 +57,18 @@ export function TrustedBy() {
                   {[...brands, ...brands].map((brand, i) => (
                     <span
                       key={i}
-                      className={`text-sm font-semibold whitespace-nowrap transition-colors cursor-default ${
+                      className={`text-sm whitespace-nowrap transition-colors cursor-default ${
                         brand.highlight
                           ? "text-zinc-700"
                           : "text-zinc-400"
                       } hover:text-zinc-900`}
                     >
-                      {brand.name}
+                      <span className="font-semibold">{brand.name}</span>
+                      {brand.delta && (
+                        <span className="ml-2 text-orange-600 text-[12px] font-mono">
+                          · {brand.delta}
+                        </span>
+                      )}
                     </span>
                   ))}
                 </motion.div>

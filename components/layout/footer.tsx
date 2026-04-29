@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-4">
@@ -30,6 +30,47 @@ export function Footer() {
               Email me
               <span aria-hidden="true">→</span>
             </button>
+          </div>
+
+          {/* Industries */}
+          <div>
+            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+              Industries
+            </p>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/framer-expert-for-saas"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  SaaS
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/framer-expert-for-fintech"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Fintech
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/framer-expert-for-ai-startups"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  AI startups
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/framer-expert-for-yc-startups"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Y Combinator
+                </Link>
+              </li>
+            </ul>
           </div>
 
           {/* Pages */}

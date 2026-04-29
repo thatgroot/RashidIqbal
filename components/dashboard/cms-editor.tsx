@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Save, Trash2 } from "lucide-react";
+import { RichEditor } from "./rich-editor";
 
 // Generic field schema. Renders a form for any CMS collection.
 // `kind` drives the input type; `key` matches the column on the row.
@@ -208,19 +209,15 @@ function Field({
       );
     case "markdown":
       return (
-        <label className="block">
+        <div className="block">
           {labelEl}
-          <textarea
+          <RichEditor
             value={(value as string) ?? ""}
-            onChange={(e) => onChange(e.target.value)}
-            rows={field.rows ?? 12}
-            placeholder={field.placeholder ?? "Markdown supported. # Heading, **bold**, [link](url)…"}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-mono leading-relaxed"
+            onChange={onChange}
+            {...(field.placeholder !== undefined ? { placeholder: field.placeholder } : {})}
+            {...(field.rows !== undefined ? { rows: field.rows } : {})}
           />
-          <p className="text-[10px] text-zinc-400 mt-1">
-            Markdown supported · headings, lists, links, code blocks
-          </p>
-        </label>
+        </div>
       );
     case "select":
       return (
