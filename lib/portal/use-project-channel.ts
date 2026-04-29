@@ -7,27 +7,31 @@ import { EV, PROJECT_CHANNEL } from "@/lib/pusher/channels";
 // Singleton Pusher client. Multiple components on the same page share
 // one connection. Initialized lazily so SSR + Pusher-not-configured
 // never throws.
+//
+// Stored on `globalThis` (NOT `global` — that's Node-only and is
+// undefined in the browser bundle, which crashed the whole page when
+// React tried to mount).
 
-declare global {
-  // eslint-disable-next-line no-var
-  var __pusherClient: Pusher | null | undefined;
-}
+type PusherCacheKey = "__aestho_pusher_client";
+const CACHE_KEY: PusherCacheKey = "__aestho_pusher_client";
+type Cache = { [CACHE_KEY]?: Pusher | null };
 
 function getPusherClient(): Pusher | null {
   if (typeof window === "undefined") return null;
-  if (global.__pusherClient !== undefined) return global.__pusherClient;
+  const slot = globalThis as unknown as Cache;
+  if (CACHE_KEY in slot) return slot[CACHE_KEY] ?? null;
   const key = process.env.NEXT_PUBLIC_PUSHER_KEY;
   const cluster = process.env.NEXT_PUBLIC_PUSHER_CLUSTER;
   if (!key || !cluster) {
-    global.__pusherClient = null;
+    slot[CACHE_KEY] = null;
     return null;
   }
-  global.__pusherClient = new Pusher(key, {
+  slot[CACHE_KEY] = new Pusher(key, {
     cluster,
     authEndpoint: "/api/pusher/auth",
     forceTLS: true,
   });
-  return global.__pusherClient;
+  return slot[CACHE_KEY] ?? null;
 }
 
 export type TypingPayload = { who: "admin" | "client"; name?: string };

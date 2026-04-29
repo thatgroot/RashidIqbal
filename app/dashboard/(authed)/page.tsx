@@ -9,7 +9,7 @@ import {
   getDeviceMix,
 } from "@/lib/dashboard/queries";
 import { TrendChart } from "@/components/dashboard/trend-chart";
-import { Sparkles } from "lucide-react";
+import { ExternalLink, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -140,18 +140,12 @@ export default async function OverviewPage() {
             value: c.sessions,
           }))}
         />
-        <RankTable
-          title="Top referrers"
-          subtitle="7 days · AI sources highlighted"
-          rows={topReferrers.map((r) => ({
-            primary: cleanReferrer(r.referrer),
-            secondary: r.isAi ? "AI search" : "",
-            value: r.sessions,
-            accent: r.isAi,
-          }))}
-          icon={<Sparkles className="w-3 h-3 text-orange-500" aria-hidden="true" />}
-        />
       </div>
+
+      {/* Top referrers — full-width section so each row has room to breathe */}
+      <section className="mb-10">
+        <ReferrersTable rows={topReferrers} />
+      </section>
 
       {/* Device mix */}
       <section>
@@ -257,11 +251,97 @@ function countryName(iso2: string): string {
   }
 }
 
-function cleanReferrer(ref: string): string {
+function ReferrersTable({
+  rows,
+}: {
+  rows: { referrer: string; sessions: number; isAi: boolean }[];
+}) {
+  const total = rows.reduce((acc, r) => acc + r.sessions, 0) || 1;
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-3">
+        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em]">
+          Top referrers
+        </p>
+        <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
+          7 days · AI sources highlighted
+        </p>
+      </div>
+      <div className="border border-zinc-200 bg-white">
+        {rows.length === 0 ? (
+          <p className="text-sm text-zinc-500 px-4 py-8 text-center">No data yet.</p>
+        ) : (
+          <ul className="divide-y divide-zinc-100">
+            {rows.map((r, i) => {
+              const parsed = parseReferrer(r.referrer);
+              const pct = ((r.sessions / total) * 100).toFixed(1);
+              return (
+                <li
+                  key={i}
+                  className={`flex items-start gap-3 px-4 py-3 ${
+                    r.isAi ? "bg-orange-50/40" : ""
+                  }`}
+                >
+                  <span className="text-[10px] font-mono text-zinc-400 w-6 mt-0.5">
+                    {(i + 1).toString().padStart(2, "0")}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-bold text-zinc-900 truncate flex items-center gap-1.5">
+                      {r.isAi && (
+                        <Sparkles
+                          className="w-3 h-3 text-orange-500 shrink-0"
+                          aria-hidden="true"
+                        />
+                      )}
+                      {parsed.host || "Direct"}
+                      {parsed.path && (
+                        <span className="text-zinc-400 font-mono font-normal">
+                          {parsed.path}
+                        </span>
+                      )}
+                    </p>
+                    <a
+                      href={r.referrer}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[11px] font-mono text-zinc-500 hover:text-orange-700 transition-colors truncate inline-flex items-center gap-1 max-w-full"
+                      title={r.referrer}
+                    >
+                      <ExternalLink
+                        className="w-2.5 h-2.5 shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span className="truncate">{r.referrer}</span>
+                    </a>
+                    {r.isAi && (
+                      <p className="text-[10px] font-mono text-orange-600 uppercase tracking-[0.18em] mt-0.5">
+                        AI search
+                      </p>
+                    )}
+                  </div>
+                  <div className="text-right shrink-0">
+                    <p className="text-sm font-bold text-zinc-900 tabular-nums">
+                      {r.sessions.toLocaleString()}
+                    </p>
+                    <p className="text-[11px] text-zinc-400 tabular-nums">{pct}%</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function parseReferrer(ref: string): { host: string | null; path: string | null } {
   try {
     const u = new URL(ref);
-    return u.hostname.replace(/^www\./, "") + (u.pathname !== "/" ? u.pathname : "");
+    const host = u.hostname.replace(/^www\./, "");
+    const path = u.pathname && u.pathname !== "/" ? u.pathname : null;
+    return { host, path };
   } catch {
-    return ref;
+    return { host: ref || null, path: null };
   }
 }
