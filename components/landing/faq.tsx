@@ -8,16 +8,24 @@ import { FAQStructuredData } from "@/components/seo/faq-structured-data";
 
 const faqs = [
   {
-    q: "What does it cost and how long does it take?",
-    a: "Landing pages start at $1,600 and ship in 2 weeks. Multi-page sites with CMS start at $3,500 and ship in 3-5 weeks. Chrome extensions start at $2,500 and run 3-4 weeks. You see progress every week."
+    q: "Will this actually move my conversion rate?",
+    a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Equals' homepage demo-request rate doubled. I won't promise your specific number — every market is different — but on the kickoff call I'll walk you through the conversion principle behind each lift so you know what's changing and why."
   },
   {
-    q: "What happens if I am not happy with the design?",
-    a: "You get unlimited revisions on the Figma design before I build anything in Framer. If the direction is not right after the first round, I refund your deposit. That has happened exactly once in years of projects."
+    q: "What if the design isn't right?",
+    a: "You get unlimited revisions on the Figma design before I touch Framer. If the direction is still wrong after the first review, I refund your deposit. That has happened exactly once in years of projects."
   },
   {
-    q: "Do you work with my stack (Framer, Webflow, custom)?",
-    a: "Framer is where I ship fastest and what my clients get the most value from. I also work in Webflow and handcoded Next.js when the project calls for it. Tell me what you have and I will tell you honestly if it is a fit."
+    q: "What happens after we go live? Will I need you for every change?",
+    a: "You walk away with a 15-minute Loom showing how to update copy, swap images, and add blog posts yourself. If you'd rather not touch it, monthly retainers cover edits, A/B tests, and new pages. Most clients pick the retainer for the first 3 months, then go DIY."
+  },
+  {
+    q: "Who owns the design and code? Can I move it later?",
+    a: "You do, from day one. The Figma file transfers to your team, the Framer project transfers to your Framer account, and any Chrome extension or custom code ships to your GitHub. No licensing fee, no 'works only while you're on retainer' clause. If you fire me tomorrow, you keep everything."
+  },
+  {
+    q: "Can you work with my existing brand, Figma, or in-house team?",
+    a: "Yes. I work inside your designer's Figma file when there is one, follow your brand guide, and pair with your developer on backend or API integration. Stack-wise I ship fastest in Framer but also work in Webflow and hand-coded Next.js when the project needs it. Tell me what you have and I'll be honest about fit."
   }
 ];
 
@@ -48,10 +56,11 @@ export function FAQ() {
             <GridItem className="py-24">
               <div className="max-w-md">
                 <h2 className="text-4xl font-semibold text-zinc-900 mb-6 leading-[1.1]">
-                  The three questions founders ask before hiring.
+                  What SaaS founders ask before hiring.
                 </h2>
                 <p className="text-lg text-zinc-500">
-                  Straight answers. No marketing fluff.
+                  Straight answers. No marketing fluff. Pricing and timelines
+                  live in the section above — these are the harder questions.
                 </p>
               </div>
             </GridItem>
