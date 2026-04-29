@@ -3,13 +3,18 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Mail } from "lucide-react";
 import {
   getProjectAdmin,
+  listAssets,
   listMessages,
+  listTodos,
   markMessagesRead,
   TIER_LABELS,
 } from "@/lib/portal/queries";
 import { StatusPill } from "@/components/portal/status-pill";
 import { ProjectEditor } from "@/components/dashboard/project-editor";
 import { MessageThread } from "@/components/portal/message-thread";
+import { TodoList } from "@/components/portal/todo-list";
+import { NotesPanel } from "@/components/portal/notes-panel";
+import { AssetGrid } from "@/components/portal/asset-grid";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +27,11 @@ export default async function AdminProjectDetail({
   const ctx = await getProjectAdmin(id);
   if (!ctx) notFound();
   const { project, client } = ctx;
-  const messages = await listMessages(project.id);
+  const [messages, todos, assets] = await Promise.all([
+    listMessages(project.id),
+    listTodos(project.id),
+    listAssets(project.id),
+  ]);
   markMessagesRead({ projectId: project.id, reader: "admin" }).catch(() => {});
 
   return (
@@ -120,6 +129,44 @@ export default async function AdminProjectDetail({
           />
         </section>
       </div>
+
+      {/* Assets */}
+      <section className="mt-10">
+        <AssetGrid
+          projectId={project.id}
+          initial={assets.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }))}
+          viewer="admin"
+        />
+      </section>
+
+      {/* Todo + notes */}
+      <section className="mt-10 grid lg:grid-cols-2 gap-6">
+        <div>
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+            Todo list
+          </p>
+          <TodoList
+            projectId={project.id}
+            viewer="admin"
+            initial={todos.map((t) => ({
+              ...t,
+              completedAt: t.completedAt ? t.completedAt.toISOString() : null,
+              createdAt: t.createdAt.toISOString(),
+            }))}
+          />
+        </div>
+        <div>
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+            Notes
+          </p>
+          <NotesPanel
+            projectId={project.id}
+            viewer="admin"
+            initialShared={project.notesShared ?? ""}
+            initialInternal={project.notesInternal ?? ""}
+          />
+        </div>
+      </section>
 
       {project.brief && Object.keys(project.brief).length > 0 && (
         <section className="mt-10">

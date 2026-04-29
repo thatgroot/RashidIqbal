@@ -56,6 +56,22 @@ export async function listMessages(projectId: string) {
     .orderBy(asc(schema.projectMessages.createdAt));
 }
 
+export async function listTodos(projectId: string) {
+  return db
+    .select()
+    .from(schema.projectTodos)
+    .where(eq(schema.projectTodos.projectId, projectId))
+    .orderBy(asc(schema.projectTodos.sortOrder), asc(schema.projectTodos.createdAt));
+}
+
+export async function listAssets(projectId: string) {
+  return db
+    .select()
+    .from(schema.projectAssets)
+    .where(eq(schema.projectAssets.projectId, projectId))
+    .orderBy(desc(schema.projectAssets.createdAt));
+}
+
 export async function listAllProjectsAdmin() {
   return db
     .select({

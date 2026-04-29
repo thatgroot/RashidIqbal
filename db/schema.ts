@@ -261,12 +261,55 @@ export const projects = pgTable(
     // Quick-jump links: { figma, staging, live, notion, drive, ... }
     links: jsonb("links").$type<Record<string, string>>(),
     notesInternal: text("notes_internal"), // admin-only
+    notesShared: text("notes_shared"), // visible + editable by client and admin
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
   (t) => ({
     clientIdx: index("projects_client_idx").on(t.clientId),
     statusIdx: index("projects_status_idx").on(t.status),
+  })
+);
+
+// ----------------------------------------------------------------------------
+// Per-project todos and assets — shared between admin and client.
+// ----------------------------------------------------------------------------
+
+export const projectTodos = pgTable(
+  "project_todos",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    projectId: uuid("project_id")
+      .notNull()
+      .references(() => projects.id, { onDelete: "cascade" }),
+    body: text("body").notNull(),
+    completedAt: timestamp("completed_at", { withTimezone: true }),
+    // 'admin' | 'client'
+    addedBy: text("added_by").notNull(),
+    sortOrder: integer("sort_order").notNull().default(0),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    projectIdx: index("project_todos_project_idx").on(t.projectId, t.sortOrder),
+  })
+);
+
+export const projectAssets = pgTable(
+  "project_assets",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    projectId: uuid("project_id")
+      .notNull()
+      .references(() => projects.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    url: text("url").notNull(),
+    // figma | framer | notion | google | github | video | image | link
+    kind: text("kind").notNull().default("link"),
+    addedBy: text("added_by").notNull(), // 'admin' | 'client'
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    projectIdx: index("project_assets_project_idx").on(t.projectId, t.createdAt),
   })
 );
 
@@ -308,6 +351,8 @@ export type Client = typeof clients.$inferSelect;
 export type ClientSession = typeof clientSessions.$inferSelect;
 export type Project = typeof projects.$inferSelect;
 export type ProjectMessage = typeof projectMessages.$inferSelect;
+export type ProjectTodo = typeof projectTodos.$inferSelect;
+export type ProjectAsset = typeof projectAssets.$inferSelect;
 
 // Suppress unused-import warning when sql isn't used; kept for future raw migrations.
 void sql;

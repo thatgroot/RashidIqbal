@@ -1,15 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink, Calendar, Target, Sparkles } from "lucide-react";
+import { ArrowLeft, Calendar, Target, Sparkles } from "lucide-react";
 import { getCurrentClientSession } from "@/lib/portal/auth";
 import {
   getProjectForClient,
+  listAssets,
   listMessages,
+  listTodos,
   markMessagesRead,
   TIER_LABELS,
 } from "@/lib/portal/queries";
 import { StatusPill } from "@/components/portal/status-pill";
 import { MessageThread } from "@/components/portal/message-thread";
+import { TodoList } from "@/components/portal/todo-list";
+import { NotesPanel } from "@/components/portal/notes-panel";
+import { AssetGrid } from "@/components/portal/asset-grid";
 
 export const dynamic = "force-dynamic";
 
@@ -23,14 +28,15 @@ export default async function PortalProjectDetail({
   const project = await getProjectForClient({ projectId: id, clientId: session.client.id });
   if (!project) notFound();
 
-  const messages = await listMessages(project.id);
+  const [messages, todos, assets] = await Promise.all([
+    listMessages(project.id),
+    listTodos(project.id),
+    listAssets(project.id),
+  ]);
   // Mark as read on detail open (best-effort)
   markMessagesRead({ projectId: project.id, reader: "client" }).catch(() => {});
 
-  const links = (project.links || {}) as Record<string, string>;
   const brief = (project.brief || {}) as Record<string, unknown>;
-
-  const linkChips = Object.entries(links).filter(([, v]) => typeof v === "string" && v);
 
   return (
     <div>
@@ -80,28 +86,43 @@ export default async function PortalProjectDetail({
         </Card>
       </div>
 
-      {/* Quick links */}
-      {linkChips.length > 0 && (
-        <section className="mb-8">
+      {/* Assets */}
+      <section className="mb-8">
+        <AssetGrid
+          projectId={project.id}
+          initial={assets.map((a) => ({ ...a, createdAt: a.createdAt.toISOString() }))}
+          viewer="client"
+        />
+      </section>
+
+      {/* Todo + notes side-by-side on desktop */}
+      <section className="grid lg:grid-cols-2 gap-6 mb-8">
+        <div>
           <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-            Project links
+            Todo list
           </p>
-          <div className="flex flex-wrap gap-2">
-            {linkChips.map(([k, v]) => (
-              <a
-                key={k}
-                href={v}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-zinc-700 border border-zinc-200 bg-white hover:border-orange-300 hover:text-orange-700 transition-colors"
-              >
-                <span className="capitalize">{k}</span>
-                <ExternalLink className="w-3 h-3" aria-hidden="true" />
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
+          <TodoList
+            projectId={project.id}
+            viewer="client"
+            initial={todos.map((t) => ({
+              ...t,
+              completedAt: t.completedAt ? t.completedAt.toISOString() : null,
+              createdAt: t.createdAt.toISOString(),
+            }))}
+          />
+        </div>
+        <div>
+          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+            Notes
+          </p>
+          <NotesPanel
+            projectId={project.id}
+            viewer="client"
+            initialShared={project.notesShared ?? ""}
+            initialInternal=""
+          />
+        </div>
+      </section>
 
       {/* Brief */}
       {Object.keys(brief).length > 0 && (

@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Star, Archive, Mail, Inbox } from "lucide-react";
+import { Mail, Inbox } from "lucide-react";
 import { listInbox, inboxCounts, type InboxFolder } from "@/lib/dashboard/inbox-queries";
+import { InboxListRow } from "@/components/dashboard/inbox-row";
 
 export const dynamic = "force-dynamic";
 
@@ -11,27 +12,6 @@ const FOLDERS: { key: InboxFolder; label: string }[] = [
   { key: "archived", label: "Archived" },
 ];
 
-const SOURCE_LABELS: Record<string, string> = {
-  "offer-paid": "Offer · Booking",
-  "offer-lp": "Free Audit",
-  "exit-intent": "Exit-Intent Audit",
-  "service-builder": "Project Inquiry",
-  pricing: "Pricing Inquiry",
-  contact: "Contact",
-};
-
-function timeAgo(d: Date): string {
-  const ms = Date.now() - new Date(d).getTime();
-  const s = Math.floor(ms / 1000);
-  if (s < 60) return `${s}s`;
-  const m = Math.floor(s / 60);
-  if (m < 60) return `${m}m`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h`;
-  const days = Math.floor(h / 24);
-  if (days < 7) return `${days}d`;
-  return new Date(d).toLocaleDateString();
-}
 
 export default async function InboxPage({
   searchParams,
@@ -123,64 +103,17 @@ export default async function InboxPage({
           </div>
         ) : (
           <ul className="divide-y divide-zinc-100">
-            {inbox.rows.map((r) => {
-              const unread = !r.readAt && !r.archivedAt;
-              return (
-                <li key={r.id}>
-                  <Link
-                    href={`/dashboard/inbox/${r.id}`}
-                    className={`flex items-center gap-3 px-4 py-3 hover:bg-zinc-50/60 transition-colors ${
-                      unread ? "bg-orange-50/30" : ""
-                    }`}
-                  >
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                        unread ? "bg-orange-500" : "bg-transparent"
-                      }`}
-                      aria-hidden="true"
-                    />
-                    {r.starred ? (
-                      <Star
-                        className="w-3.5 h-3.5 text-orange-500 fill-orange-500 shrink-0"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <span className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-                    )}
-                    <div className="w-44 shrink-0 flex flex-col">
-                      <span
-                        className={`text-sm truncate ${
-                          unread ? "font-bold text-zinc-900" : "text-zinc-700"
-                        }`}
-                      >
-                        {r.name || r.email.split("@")[0]}
-                      </span>
-                      <span className="text-[10px] font-mono text-zinc-400 truncate">
-                        {SOURCE_LABELS[r.source] || r.source}
-                      </span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p
-                        className={`text-sm truncate ${
-                          unread ? "text-zinc-900 font-medium" : "text-zinc-600"
-                        }`}
-                      >
-                        {r.subject}
-                      </p>
-                      {r.preview && (
-                        <p className="text-[12px] text-zinc-400 truncate">{r.preview}</p>
-                      )}
-                    </div>
-                    {r.archivedAt && (
-                      <Archive className="w-3.5 h-3.5 text-zinc-300 shrink-0" aria-hidden="true" />
-                    )}
-                    <span className="text-[11px] text-zinc-400 font-mono tabular-nums shrink-0 w-12 text-right">
-                      {timeAgo(r.createdAt)}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
+            {inbox.rows.map((r) => (
+              <InboxListRow
+                key={r.id}
+                row={{
+                  ...r,
+                  createdAt: r.createdAt.toISOString(),
+                  readAt: r.readAt ? r.readAt.toISOString() : null,
+                  archivedAt: r.archivedAt ? r.archivedAt.toISOString() : null,
+                }}
+              />
+            ))}
           </ul>
         )}
       </div>

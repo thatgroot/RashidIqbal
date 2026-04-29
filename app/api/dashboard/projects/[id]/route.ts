@@ -30,6 +30,9 @@ export async function PATCH(
   if ("notesInternal" in body)
     update.notesInternal =
       typeof body.notesInternal === "string" ? body.notesInternal : null;
+  if ("notesShared" in body)
+    update.notesShared =
+      typeof body.notesShared === "string" ? body.notesShared : null;
   if (body.links && typeof body.links === "object") update.links = body.links;
   if (body.brief && typeof body.brief === "object") update.brief = body.brief;
 
