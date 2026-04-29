@@ -37,7 +37,7 @@ Rashid Iqbal is a highly technical freelance Web & Mobile Developer working remo
 - **Mobile Turnaround**: Built and deployed complex Expo fitness applications to iOS and Android within 8 weeks.
 
 ## Contact Endpoints
-- **Hire/Booking**: https://cal.com/rashid.iqbal
+- **Hire/Booking**: https://dribbble.com/thatgroot/schedule
 - **Email**: rashidiqbal.freelance@gmail.com
 - **Framer Expert**: https://www.framer.com/@rashidiqbal
 

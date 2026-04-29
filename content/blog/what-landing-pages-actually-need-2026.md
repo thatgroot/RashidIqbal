@@ -191,6 +191,6 @@ Everything else is decoration.
 
 If your landing page is not converting, do not redesign it. Rewrite the headline. Shorten the form. Remove the distracting links. Match the copy to your traffic source. Test one change at a time.
 
-If you need a [landing page or GTM website](https://www.upwork.com/freelancers/thatgroot) built on this framework, designed for conversion, not for awards, [book a call](https://cal.com/rashid.iqbal).
+If you need a [landing page or GTM website](https://www.upwork.com/freelancers/thatgroot) built on this framework, designed for conversion, not for awards, [book a call](https://dribbble.com/thatgroot/schedule).
 
 Connect on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/) or check my [portfolio](https://framer.com/@rashidiqbal).

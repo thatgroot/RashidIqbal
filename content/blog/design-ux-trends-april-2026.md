@@ -156,4 +156,4 @@ The professionals who win are the ones who go deeper. Deeper research. Deeper st
 
 If you need a [designer who builds high-converting landing pages and GTM websites](https://framer.com/@rashidiqbal) with this depth of thinking, or a [freelance partner for your next project](https://www.upwork.com/freelancers/thatgroot), start a conversation.
 
-[Book a call](https://cal.com/rashid.iqbal) to discuss your project. Connect on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/).
+[Book a call](https://dribbble.com/thatgroot/schedule) to discuss your project. Connect on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/).

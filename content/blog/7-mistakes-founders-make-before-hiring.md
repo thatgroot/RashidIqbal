@@ -148,7 +148,7 @@ Does the page have one offer, not three?
 
 If you answered "no" to any of those, you do not need a new design. You need a new approach.
 
-If you want to discuss your project, [book a call](https://cal.com/rashid.iqbal). I will review your current page and tell you where the leaks are.
+If you want to discuss your project, [book a call](https://dribbble.com/thatgroot/schedule). I will review your current page and tell you where the leaks are.
 
 Find me on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/). Check my work on [Framer](https://framer.com/@rashidiqbal) or [Behance](https://www.behance.net/thatgroot). Or reach out on [Upwork](https://www.upwork.com/freelancers/thatgroot).
 

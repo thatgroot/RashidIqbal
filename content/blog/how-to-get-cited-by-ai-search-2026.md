@@ -214,7 +214,7 @@ Repeat monthly. AI citation is not a one-time project. It is a system that compo
 
 ---
 
-[Book a call to discuss your project](https://cal.com/rashid.iqbal)
+[Book a call to discuss your project](https://dribbble.com/thatgroot/schedule)
 
 [See my work](https://framer.com/@rashidiqbal)
 

@@ -104,9 +104,9 @@ Copy sits seventh on purpose. Not because writing does not matter, but because t
 
 If your conversion rate is stuck, audit in reverse order. Fix traffic quality, speed, and message match before rewriting a single headline. If those three are dialed, then copy earns its place as the final multiplier.
 
-I build landing pages where all seven variables work together. If you want a [high-converting landing page](https://framer.com/@rashidiqbal) for a funded product or a [designer who builds](https://framer.com/@rashidiqbal) your full funnel end to end, [book a strategy call](https://cal.com/rashid.iqbal) or reach me on [Upwork](https://www.upwork.com/freelancers/thatgroot).
+I build landing pages where all seven variables work together. If you want a [high-converting landing page](https://framer.com/@rashidiqbal) for a funded product or a [designer who builds](https://framer.com/@rashidiqbal) your full funnel end to end, [book a strategy call](https://dribbble.com/thatgroot/schedule) or reach me on [Upwork](https://www.upwork.com/freelancers/thatgroot).
 
-Book a call: https://cal.com/rashid.iqbal
+Book a call: https://dribbble.com/thatgroot/schedule
 See my work: https://framer.com/@rashidiqbal
 Hire me: https://www.upwork.com/freelancers/thatgroot
 Connect: https://www.linkedin.com/in/callmerashidiqbal/

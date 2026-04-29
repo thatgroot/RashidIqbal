@@ -244,7 +244,7 @@ If you want a senior pair of eyes on your Framer site, or want me to build it fr
 
 **Want a high-converting Framer site in two weeks?**
 
-- Book a call: [cal.com/rashidiqbal](https://cal.com/rashidiqbal)
+- Book a call: [dribbble.com/thatgroot/schedule](https://dribbble.com/thatgroot/schedule)
 - Hire on Framer: [framer.link/rashidiqbal](https://framer.link/rashidiqbal)
 - Hire on Upwork: [upwork.com/freelancers/thatgroot](https://www.upwork.com/freelancers/thatgroot)
 - Connect on LinkedIn: [linkedin.com/in/callmerashidiqbal](https://linkedin.com/in/callmerashidiqbal)

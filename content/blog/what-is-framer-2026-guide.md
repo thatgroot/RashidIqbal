@@ -274,7 +274,7 @@ If you decide it is for you and want to skip the learning curve, hire someone wh
 
 ---
 
-Book a call: [https://cal.com/rashid.iqbal](https://cal.com/rashid.iqbal)
+Book a call: [https://dribbble.com/thatgroot/schedule](https://dribbble.com/thatgroot/schedule)
 
 See my work: [https://framer.com/@rashidiqbal](https://framer.com/@rashidiqbal)
 

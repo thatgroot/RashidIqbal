@@ -81,6 +81,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      url: `${siteUrl}/framer-vs-webflow-for-saas`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/framer-vs-wordpress-for-startups`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/hire-framer-expert-vs-agency`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/figma-to-framer-cost-2026`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
     ...blogEntries,
   ];
 }

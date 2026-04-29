@@ -155,7 +155,7 @@ If your page is not converting and you do not know why, I offer a free 15-minute
 
 If any of this resonated, here is how to reach me:
 
-Book a strategy call: https://cal.com/rashid.iqbal
+Book a strategy call: https://dribbble.com/thatgroot/schedule
 
 See my work: https://framer.com/@rashidiqbal
 

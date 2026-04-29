@@ -1,10 +1,8 @@
 "use client";
 
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { Check, Clock } from "lucide-react";
+import { ArrowUpRight, Check, Clock } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/constants";
-import Cal, { getCalApi } from "@calcom/embed-react";
-import { useEffect } from "react";
 
 export function CTASection() {
   return (
@@ -78,20 +76,35 @@ export function CTASection() {
   );
 }
 
+// Booking happens on Dribbble's scheduling surface now. Dribbble doesn't
+// expose an iframe-friendly embed, so we render a styled card with a
+// single big CTA that opens the schedule page in a new tab.
 function BookingCalendar() {
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ "namespace": "30min" });
-      cal("ui", { "hideEventTypeDetails": false, "layout": "month_view" });
-    })();
-  }, [])
-
   return (
-    <Cal
-      namespace="30min"
-      calLink={SOCIAL_LINKS.calcom.replace("https://cal.com/", "") + "/30min"}
-      config={{ "layout": "month_view", "embedType": "team.event.booking.slots", "theme": "light", }}
-
-    />
+    <div className="h-full w-full flex flex-col items-center justify-center text-center px-6 py-10">
+      <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        Pick a time on Dribbble
+      </p>
+      <h3 className="text-2xl md:text-3xl font-semibold text-zinc-900 tracking-tight leading-tight max-w-md mb-4">
+        30-minute strategy call.
+      </h3>
+      <p className="text-sm text-zinc-500 max-w-md mb-7">
+        Book directly through my Dribbble scheduling page. You will pick a
+        time that works for both of us; I will reply with a Google Meet link
+        and a short pre-call form.
+      </p>
+      <a
+        href={SOCIAL_LINKS.calcom}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 px-6 py-3.5 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+      >
+        Open scheduling page
+        <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+      </a>
+      <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] mt-5">
+        dribbble.com/thatgroot/schedule
+      </p>
+    </div>
   );
 }

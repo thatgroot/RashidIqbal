@@ -92,9 +92,9 @@ Three moves shift numbers faster than any copy tweak:
 
 If reply rates sit below 2% after those changes, the problem is list fit, not copy. Start over with a tighter ICP.
 
-Cold email fills the top of the pipeline. The bottom still needs a place to convert replies into booked revenue. If you want a second set of eyes on your outbound copy or a [high-converting landing page](https://framer.com/@rashidiqbal) to send replies to, [book a strategy call](https://cal.com/rashid.iqbal) or reach me on [Upwork](https://www.upwork.com/freelancers/thatgroot). I work with founders on landing pages and conversion systems matching the quality of traffic they pay for.
+Cold email fills the top of the pipeline. The bottom still needs a place to convert replies into booked revenue. If you want a second set of eyes on your outbound copy or a [high-converting landing page](https://framer.com/@rashidiqbal) to send replies to, [book a strategy call](https://dribbble.com/thatgroot/schedule) or reach me on [Upwork](https://www.upwork.com/freelancers/thatgroot). I work with founders on landing pages and conversion systems matching the quality of traffic they pay for.
 
-Book a call: https://cal.com/rashid.iqbal
+Book a call: https://dribbble.com/thatgroot/schedule
 See my work: https://framer.com/@rashidiqbal
 Hire me: https://www.upwork.com/freelancers/thatgroot
 Connect: https://www.linkedin.com/in/callmerashidiqbal/

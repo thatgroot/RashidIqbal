@@ -27,7 +27,9 @@ export const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/callmerashidiqbal/",
     twitter: "https://x.com/rashidrealme",
     whatsapp: "https://wa.me/923554665643",
-    calcom: "https://cal.com/rashid.iqbal",
+    // Booking link rotated from Cal.com to Dribbble's scheduling page.
+    // Key kept as `calcom` to avoid touching every call site.
+    calcom: "https://dribbble.com/thatgroot/schedule",
     framerExpert: "https://www.framer.com/@rashidiqbal",
 } as const;
 

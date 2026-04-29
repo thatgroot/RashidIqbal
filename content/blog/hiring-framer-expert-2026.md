@@ -86,7 +86,7 @@ Hourly rates for solid Framer developers range from $20 to $45 per hour dependin
 
 I design in Figma with UX copy and conversion strategy built into the layout. Then I build pixel-perfect in Framer. Every page I ship loads under 2 seconds, scores 90+ on Lighthouse, and comes with a handoff doc so your team can manage content independently.
 
-I've done this for clients like UpdateAI (acquired by Gainsight), Crezco, Composio, and Melissa Ambrosini. If you want to see the work, check out my [portfolio](/work) or [book a call](https://cal.com/rashid.iqbal).
+I've done this for clients like UpdateAI (acquired by Gainsight), Crezco, Composio, and Melissa Ambrosini. If you want to see the work, check out my [portfolio](/work) or [book a call](https://dribbble.com/thatgroot/schedule).
 
 ## Quick Checklist
 

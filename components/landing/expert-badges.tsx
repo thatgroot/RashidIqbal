@@ -41,6 +41,26 @@ function FramerLogo({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
+function Base44Logo({ className = "w-6 h-6" }: { className?: string }) {
+  // Stylized "44" mark on a deep-indigo tile so the badge reads as
+  // distinct from Framer (black) and Replit (#001021). Rashid is a
+  // listed Base44 partner — https://app.base44.com/@rashid-iqbal
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <rect width="24" height="24" rx="5" fill="#3b2ae0" />
+      <path
+        d="M9.6 6h-1.7L4.8 11.7v1.6h3.5v2.7h1.3v-2.7h1V12h-1V6Zm-1.3 6H6.1l2.2-4.1V12Zm10.9-6h-1.7L14.4 11.7v1.6h3.5v2.7h1.3v-2.7h1V12h-1V6Zm-1.3 6h-2.2l2.2-4.1V12Z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
 function ReplitLogo({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg
@@ -82,15 +102,13 @@ function BrandLogo({
   icon,
   size = "md",
 }: {
-  icon: "framer" | "replit";
+  icon: "framer" | "replit" | "base44";
   size?: TileSize;
 }) {
   const className = LOGO_SIZE[size];
-  return icon === "framer" ? (
-    <FramerLogo className={className} />
-  ) : (
-    <ReplitLogo className={className} />
-  );
+  if (icon === "framer") return <FramerLogo className={className} />;
+  if (icon === "base44") return <Base44Logo className={className} />;
+  return <ReplitLogo className={className} />;
 }
 
 // ============================================================================
@@ -102,11 +120,19 @@ const BADGES = [
     icon: "framer" as const,
     title: "Framer Expert",
     description: "Certified by Framer as highly skilled.",
+    href: "https://framer.link/rashidiqbal",
   },
   {
     icon: "replit" as const,
     title: "Replit Expert",
     description: "Certified by Replit as highly skilled.",
+    href: "https://contra.com/rashidiqbal",
+  },
+  {
+    icon: "base44" as const,
+    title: "Base44 Partner",
+    description: "Verified Base44 build partner.",
+    href: "https://app.base44.com/@rashid-iqbal",
   },
 ];
 

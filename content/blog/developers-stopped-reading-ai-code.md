@@ -136,4 +136,4 @@ Quality is not a luxury. It is the only thing that ships.
 
 ---
 
-Need a [landing page or GTM website](https://framer.com/@rashidiqbal) built with attention to detail? [Book a call](https://cal.com/rashid.iqbal) or connect on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/).
+Need a [landing page or GTM website](https://framer.com/@rashidiqbal) built with attention to detail? [Book a call](https://dribbble.com/thatgroot/schedule) or connect on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/).

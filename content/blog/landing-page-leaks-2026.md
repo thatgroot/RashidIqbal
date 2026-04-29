@@ -192,6 +192,6 @@ Your landing page does not need a redesign. It needs a leak audit. The data says
 
 Fix the leaks in order of impact. Speed first. Headline second. Form third. Everything else after.
 
-If you need a [landing page or GTM website](https://www.upwork.com/freelancers/thatgroot) built to stop leaking visitors from day one, [book a call](https://cal.com/rashid.iqbal).
+If you need a [landing page or GTM website](https://www.upwork.com/freelancers/thatgroot) built to stop leaking visitors from day one, [book a call](https://dribbble.com/thatgroot/schedule).
 
 Check my [portfolio](https://framer.com/@rashidiqbal) or connect on [LinkedIn](https://www.linkedin.com/in/callmerashidiqbal/).

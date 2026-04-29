@@ -123,4 +123,4 @@ They don't work for: production websites, responsive layouts, accessible markup,
 
 Total: about 2 weeks for a 3-5 page site. Larger sites scale linearly.
 
-If you have a Figma design that needs to become a real website, I can help. I specialize in Figma-to-Framer conversion with UX copy review built into the process. Check my [services](/services/figma-to-code) or [book a call](https://cal.com/rashid.iqbal).
+If you have a Figma design that needs to become a real website, I can help. I specialize in Figma-to-Framer conversion with UX copy review built into the process. Check my [services](/services/figma-to-code) or [book a call](https://dribbble.com/thatgroot/schedule).
