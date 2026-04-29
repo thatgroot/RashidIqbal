@@ -25,11 +25,27 @@ import { CopyLinkButton } from "@/components/blog/copy-link";
  * Implements schema.org Article markup for rich search results
  */
 function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string }) {
+  // Word count + ISO-8601 reading-time so AI search engines and Google
+  // can surface "5-minute read" badges and pick the right snippet.
+  const wordCount = post.content.split(/\s+/).filter(Boolean).length;
+  const minutes = Math.max(1, Math.round(wordCount / 230));
+  const timeRequired = `PT${minutes}M`;
+
+  // First non-heading paragraph used as a citation-friendly excerpt.
+  const firstParagraph =
+    post.content
+      .split(/\n{2,}/)
+      .map((b) => b.trim())
+      .find((b) => b && !b.startsWith("#") && !b.startsWith("```")) || post.description;
+  const articleBodyExcerpt = firstParagraph.slice(0, 600);
+
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
+    alternativeHeadline: post.seoTitle && post.seoTitle !== post.title ? post.seoTitle : undefined,
     description: post.description,
+    abstract: post.description,
     image: post.coverImage
       ? post.coverImage.startsWith("http")
         ? post.coverImage
@@ -37,14 +53,25 @@ function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string })
       : `${siteUrl}/opengraph-image`,
     datePublished: post.date,
     dateModified: post.date,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    isFamilyFriendly: true,
     author: {
       "@type": "Person",
       name: post.author.name,
       url: siteUrl,
+      sameAs: [
+        "https://framer.link/rashidiqbal",
+        "https://www.upwork.com/freelancers/thatgroot",
+        "https://contra.com/rashidiqbal",
+        "https://www.linkedin.com/in/callmerashidiqbal/",
+        "https://x.com/rashidrealme",
+        "https://github.com/thatgroot",
+      ],
     },
     publisher: {
-      "@type": "Person",
-      name: "Rashid Iqbal",
+      "@type": "Organization",
+      name: "Rashid Iqbal · aestho.xyz",
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
@@ -55,9 +82,17 @@ function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string })
       "@type": "WebPage",
       "@id": `${siteUrl}/blog/${slug}`,
     },
+    url: `${siteUrl}/blog/${slug}`,
     keywords: post.tags.join(", "),
+    about: post.tags,
     articleSection: post.category,
-    wordCount: post.content.split(/\s+/).length,
+    wordCount,
+    timeRequired,
+    articleBody: articleBodyExcerpt,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2", ".prose p:first-of-type"],
+    },
   };
 
   const breadcrumbSchema = {
