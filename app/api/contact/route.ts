@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { logFormSubmission } from "@/lib/forms/log-submission";
+import { logAnalyticsFormSubmit } from "@/lib/forms/log-analytics-event";
 
 // Where inquiry/lead emails should land
 const RECIPIENT_EMAIL = "rashidiqbal.freelance@gmail.com";
@@ -90,6 +91,16 @@ ${description || "N/A"}`;
         { status: 502 }
       );
     }
+
+    // Belt-and-suspenders form_submit event so funnels reflect the
+    // conversion even if the client tracker missed it.
+    logAnalyticsFormSubmit({
+      visitorCookie: req.cookies.get("aestho_v")?.value,
+      sessionCookie: req.cookies.get("aestho_s")?.value,
+      path: req.headers.get("referer") || undefined,
+      target: `server.contact.${source || "contact"}`,
+      properties: { services, budget, timeline },
+    }).catch(() => {});
 
     return NextResponse.json({ success: true });
   } catch (err) {

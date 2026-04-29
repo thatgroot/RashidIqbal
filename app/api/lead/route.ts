@@ -12,6 +12,7 @@ import {
   type PricingPlan,
 } from "@/lib/pricing-data";
 import { attachEmailIds, logFormSubmission } from "@/lib/forms/log-submission";
+import { logAnalyticsFormSubmit } from "@/lib/forms/log-analytics-event";
 
 // Look up the full plan object from the pricing catalog by display name +
 // billing mode. Returns undefined when no match — the email template then
@@ -282,6 +283,18 @@ export async function POST(req: NextRequest) {
         clientAckEmailId: clientRes.data?.id ?? null,
       }).catch(() => {});
     }
+
+    // Belt-and-suspenders: also write a form_submit event into the
+    // analytics stream so funnels + realtime reflect this conversion
+    // even if the client tracker missed it (DNT, ad-blocker, tab closed
+    // before the flush). Resolves visitor + session by cookie value.
+    logAnalyticsFormSubmit({
+      visitorCookie: req.cookies.get("aestho_v")?.value,
+      sessionCookie: req.cookies.get("aestho_s")?.value,
+      path: req.headers.get("referer") || undefined,
+      target: `server.lead.${source}`,
+      properties: { plan: body.plan, mode: body.mode, services: body.services },
+    }).catch(() => {});
 
     return NextResponse.json({
       success: true,
