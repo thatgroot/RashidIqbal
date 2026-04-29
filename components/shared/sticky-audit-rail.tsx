@@ -124,7 +124,11 @@ export function StickyAuditRail() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ type: "spring", stiffness: 240, damping: 26 }}
-          className="fixed bottom-4 right-4 z-50 w-[min(360px,calc(100vw-2rem))] bg-white border border-zinc-200 shadow-2xl shadow-black/15"
+          // Hidden on small screens — on a 360px viewport, the rail covers
+          // ~12% of the screen and overlaps the in-page primary CTA. Mobile
+          // visitors get the OfferBanner + the in-page booking form
+          // instead, which are already optimized for thumb-reach.
+          className="hidden sm:flex fixed bottom-4 right-4 z-50 w-[min(360px,calc(100vw-2rem))] bg-white border border-zinc-200 shadow-2xl shadow-black/15 flex-col"
           role="region"
           aria-label="Free 60-second audit Loom"
         >

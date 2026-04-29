@@ -5,7 +5,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { listPublishedCaseStudies } from "@/lib/cms/queries";
 import { SITE_URL } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
+// ISR: regenerate every 30 minutes; CMS edits propagate without losing static delivery.
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: "Case Studies · Rashid Iqbal",
@@ -30,11 +31,42 @@ export const metadata: Metadata = {
 export default async function WorkIndexPage() {
   const cases = await listPublishedCaseStudies();
 
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Case studies — Rashid Iqbal",
+    description:
+      "Live SaaS sites I designed, wrote copy for, and shipped on Framer. Real outcomes, named clients, public URLs.",
+    numberOfItems: cases.length,
+    itemListElement: cases.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE_URL}/work/${c.slug}`,
+      name: `${c.title} · ${c.clientName}`,
+    })),
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Case studies", item: `${SITE_URL}/work` },
+    ],
+  };
+
   return (
     <main
       id="main-content"
       className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <header className="max-w-5xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/favicon.svg" alt="Rashid Iqbal logo" width={28} height={28} />

@@ -410,7 +410,7 @@ export default function AboutPage() {
           <div className="space-y-6">
             {FAQS.map((f) => (
               <div key={f.q}>
-                <p className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</p>
+                <h3 className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</h3>
                 <p className="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
               </div>
             ))}

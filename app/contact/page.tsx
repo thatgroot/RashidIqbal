@@ -14,6 +14,21 @@ export const metadata: Metadata = {
         description: "Describe your project and get a response within 24 hours.",
         type: "website",
         url: `${SITE_URL}/contact`,
+        images: [
+            {
+                url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Start a project · 24-hour quote")}`,
+                width: 1200,
+                height: 630,
+            },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Start a Figma, Framer, or Chrome Extension Project",
+        description: "Describe your project and get a response within 24 hours.",
+        images: [
+            `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Start a project · 24-hour quote")}`,
+        ],
     },
     alternates: {
         canonical: `${SITE_URL}/contact`,

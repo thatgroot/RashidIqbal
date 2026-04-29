@@ -9,7 +9,7 @@ export function Footer() {
     <footer className="bg-zinc-900 text-white">
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-36">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-4">
@@ -73,18 +73,67 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Pages */}
+          {/* Compare — decision-stage SEO pages */}
           <div>
             <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
-              Pages
+              Compare
             </p>
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/"
+                  href="/framer-vs-webflow-for-saas"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Home
+                  Framer vs Webflow
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/framer-vs-wordpress-for-startups"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Framer vs WordPress
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/hire-framer-expert-vs-agency"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Expert vs agency
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/figma-to-framer-cost-2026"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Figma → Framer cost
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/figma-to-framer"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Figma to Framer service
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Proof — case studies, research, and free audit */}
+          <div>
+            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+              Proof
+            </p>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/work"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Case studies
                 </Link>
               </li>
               <li>
@@ -97,18 +146,26 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/about"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Contact
+                  About
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/links"
+                  href="/offer"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
                 >
-                  Links
+                  Free audit
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                >
+                  Start a project
                 </Link>
               </li>
             </ul>

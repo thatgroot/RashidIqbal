@@ -75,7 +75,9 @@ import {
 } from "@/lib/cms/queries";
 import type { CaseStudyCard } from "@/components/landing/case-studies";
 
-export const dynamic = "force-dynamic";
+// ISR: regenerate every 30 minutes so CMS edits propagate without
+// giving up static delivery (force-dynamic killed TTFB + Core Web Vitals).
+export const revalidate = 1800;
 
 export default async function Page() {
   const [cmsTestimonials, cmsFaqs, cmsCases] = await Promise.all([

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Check, X, Minus } from "lucide-react";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 
 // Shared layout for /framer-vs-* and /hire-*-vs-* pages. GEO-optimal
 // pattern: question H1, direct answer in the first paragraph,
@@ -49,11 +49,62 @@ export function ComparisonPage({ config }: { config: ComparisonConfig }) {
     })),
   };
 
+  // Article + Breadcrumb schemas — gives AI search engines a citable
+  // article URL and tells Google where this page lives in the site map.
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: config.h1,
+    description: config.directAnswer,
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    url: config.pageUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": config.pageUrl },
+    author: {
+      "@type": "Person",
+      name: "Rashid Iqbal",
+      url: SITE_URL,
+      sameAs: [
+        "https://framer.link/rashidiqbal",
+        "https://www.upwork.com/freelancers/thatgroot",
+        "https://contra.com/rashidiqbal",
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Rashid Iqbal · aestho.xyz",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.svg` },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: config.eyebrow || "Compare",
+        item: config.pageUrl,
+      },
+    ],
+  };
+
   return (
     <main
       id="main-content"
       className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -167,7 +218,7 @@ export function ComparisonPage({ config }: { config: ComparisonConfig }) {
           <div className="space-y-6">
             {config.faqs.map((f) => (
               <div key={f.q}>
-                <p className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</p>
+                <h3 className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</h3>
                 <p className="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
               </div>
             ))}

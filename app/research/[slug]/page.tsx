@@ -8,7 +8,7 @@ import { db, schema } from "@/db/client";
 import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 1800;
 
 async function getReport(slug: string) {
   const [row] = await db
@@ -66,12 +66,57 @@ export default async function ResearchReportPage({
   if (!r) notFound();
 
   const findings = (r.findings ?? []) as { stat: string; context: string }[];
+  const url = `${SITE_URL}/research/${r.slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: r.title,
+    description: r.summary || undefined,
+    image:
+      r.coverImage ||
+      `${SITE_URL}/api/blog-og?title=${encodeURIComponent(r.title)}`,
+    datePublished: (r.publishedAt ?? r.createdAt).toISOString(),
+    dateModified: r.updatedAt.toISOString(),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    author: {
+      "@type": "Person",
+      name: "Rashid Iqbal",
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Rashid Iqbal · aestho.xyz",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.svg` },
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Research", item: `${SITE_URL}/research` },
+      { "@type": "ListItem", position: 3, name: r.title, item: url },
+    ],
+  };
 
   return (
     <main
       id="main-content"
       className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <header className="max-w-3xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/favicon.svg" alt="Rashid Iqbal logo" width={28} height={28} />

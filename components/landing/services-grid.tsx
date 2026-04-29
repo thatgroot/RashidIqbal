@@ -6,20 +6,20 @@ import { Figma, Chrome, Layout } from "lucide-react";
 
 const services = [
     {
-        title: "Figma Design + UX Copy",
-        desc: "Pages designed in Figma with headlines, CTAs, and microcopy tied to a conversion goal.",
+        title: "Landing pages that convert",
+        desc: "I write the copy first, then design around it in Figma. Every headline, CTA, and form field is tuned to your buyer's exact objections. Design in 5 days, live in 7.",
         icon: Figma,
-        expertise: "7+ years. 100+ interfaces designed."
+        expertise: "100+ SaaS pages. Avg. 2.4× lift in 60 days."
     },
     {
-        title: "Framer & Replit Builds",
-        desc: "Pixel-perfect Framer marketing sites and Replit app prototypes from your Figma design. Fast, responsive, and your team can update content without code.",
+        title: "Built to sell, not just look good",
+        desc: "Framer build that's fast and conversion-instrumented. PostHog, GA4, and form tracking installed before launch. Your team updates copy without code — no Webflow or WordPress bottleneck.",
         icon: Layout,
-        expertise: "Certified Framer & Official Replit Expert."
+        expertise: "Certified Framer Expert. 14-day average."
     },
     {
-        title: "Chrome Extensions",
-        desc: "Standalone Chrome extensions built from scratch. Productivity tools, SaaS companions, workflow automations.",
+        title: "Chrome extensions for SaaS",
+        desc: "React + TypeScript + Manifest V3. Productivity tools, SaaS companions, OAuth-integrated dashboards. Shipped to Chrome Web Store with the client owning every line of code.",
         icon: Chrome,
         expertise: "Published on the Chrome Web Store."
     }

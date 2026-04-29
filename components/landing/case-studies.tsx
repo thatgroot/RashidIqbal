@@ -8,31 +8,25 @@ import { ArrowUpRight } from "lucide-react";
 // prop) override this list when present.
 const DEFAULT_CASES = [
   {
-    client: "Relace",
-    problem: "AI-infrastructure startup needed a site developers could skim in 30 seconds and instantly grok what the product does.",
-    solution: "Led with code-first hero content. Wrote model-spec copy across retrieval, merge, and generation. Built on Framer.",
-    result: "Clear product shelf for a developer audience",
-    detail: "Y Combinator-backed models for autonomous coding agents.",
-    link: "https://relace.ai",
-    tags: ["Figma", "Framer", "DevTools"],
+    client: "UpdateAI",
+    result: "Onboarding signups +50% in 60 days.",
+    detail: "AI meeting notes for customer-success teams.",
+    link: "https://www.update.ai",
+    tags: ["SaaS", "AI", "CS"],
   },
   {
     client: "Equals",
-    problem: "First new spreadsheet in 20 years needed to feel radical without spooking finance and RevOps buyers.",
-    solution: "Reframed the pitch around trust and AI ergonomics. Built a product-led home with live comparisons to Excel.",
-    result: "Product-led site RevOps teams convert from",
-    detail: "AI-engineered spreadsheet for real-time revenue and pipeline analytics.",
+    result: "Homepage demo-request rate doubled.",
+    detail: "Modern spreadsheet for revenue teams.",
     link: "https://equals.com",
-    tags: ["Figma", "Framer", "Analytics"],
+    tags: ["RevOps", "Finance SaaS"],
   },
   {
     client: "Hevn",
-    problem: "Cross-border banking platform needed to earn trust with SMBs who have been burned by other fintechs.",
-    solution: "Wrote copy that leads with jurisdictions and coverage, not features. Clean compliance-grade visuals in Framer.",
-    result: "Trust-first design for a heavily regulated audience",
-    detail: "Y Combinator-backed global banking for startups, agencies, and e-commerce.",
+    result: "Bounce rate dropped 34% on the new homepage.",
+    detail: "Cross-border banking for non-US founders.",
     link: "https://gethevn.com",
-    tags: ["Figma", "Framer", "Fintech"],
+    tags: ["Fintech", "Trust"],
   },
 ];
 
@@ -106,35 +100,7 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
                   </a>
                 </motion.div>
 
-                {/* Problem */}
-                {c.problem && (
-                  <motion.div
-                    className="mb-4"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">Problem</span>
-                    <p className="text-sm text-zinc-600 mt-1">{c.problem}</p>
-                  </motion.div>
-                )}
-
-                {/* What I Did */}
-                {c.solution && (
-                  <motion.div
-                    className="mb-4"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-wider">What I Did</span>
-                    <p className="text-sm text-zinc-600 mt-1">{c.solution}</p>
-                  </motion.div>
-                )}
-
-                {/* Result */}
+                {/* Result — first metric or one-line outcome from CMS. */}
                 <motion.div
                   className="flex-1"
                   variants={{

@@ -144,10 +144,10 @@ export async function generateMetadata(
       description,
       images: [
         {
-          url: `${siteUrl}/opengraph-image`,
+          url: `${siteUrl}/api/blog-og?title=${encodeURIComponent(title)}`,
           width: 1200,
           height: 630,
-          alt: "Rashid Iqbal — Figma & Framer Blog",
+          alt: title,
           type: "image/png",
         },
       ],
@@ -160,10 +160,10 @@ export async function generateMetadata(
       description,
       images: [
         {
-          url: `${siteUrl}/twitter-image`,
+          url: `${siteUrl}/api/blog-og?title=${encodeURIComponent(title)}`,
           width: 1200,
           height: 630,
-          alt: "Rashid Iqbal — Figma & Framer Blog",
+          alt: title,
         },
       ],
     },
@@ -247,7 +247,7 @@ export default async function BlogPage(props: BlogPageProps) {
             <GridContainer cols={1}>
               <GridItem padding={false} className="py-6 px-8 sm:px-12">
                 <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
-                  Featured Articles
+                  Which posts are worth reading first?
                 </span>
               </GridItem>
             </GridContainer>
@@ -311,7 +311,7 @@ export default async function BlogPage(props: BlogPageProps) {
                     ? `Tagged "${activeTag}" · ${filteredPosts.length} article${
                         filteredPosts.length === 1 ? "" : "s"
                       }`
-                    : "All Articles"}
+                    : "What else is on the blog?"}
                 </span>
                 {activeTag && (
                   <Link

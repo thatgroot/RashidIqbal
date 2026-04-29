@@ -9,7 +9,7 @@ import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { getCaseStudyBySlug } from "@/lib/cms/queries";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 1800;
 
 export async function generateMetadata({
   params,
@@ -62,11 +62,62 @@ export default async function CaseStudyPage({
   void db;
   void eq;
 
+  const url = `${SITE_URL}/work/${c.slug}`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: c.title,
+    alternativeHeadline: `${c.clientName} case study`,
+    description: c.summary || undefined,
+    image: c.coverImage || c.heroImage || `${SITE_URL}/api/blog-og?title=${encodeURIComponent(c.title)}`,
+    datePublished: (c.publishedAt ?? c.createdAt).toISOString(),
+    dateModified: c.updatedAt.toISOString(),
+    inLanguage: "en-US",
+    isAccessibleForFree: true,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    author: {
+      "@type": "Person",
+      name: "Rashid Iqbal",
+      url: SITE_URL,
+      sameAs: [
+        "https://framer.link/rashidiqbal",
+        "https://www.upwork.com/freelancers/thatgroot",
+        "https://contra.com/rashidiqbal",
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Rashid Iqbal · aestho.xyz",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.svg` },
+    },
+    about: tags,
+    keywords: tags.join(", "),
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Case studies", item: `${SITE_URL}/work` },
+      { "@type": "ListItem", position: 3, name: c.title, item: url },
+    ],
+  };
+
   return (
     <main
       id="main-content"
       className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <header className="max-w-3xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/favicon.svg" alt="Rashid Iqbal logo" width={28} height={28} />

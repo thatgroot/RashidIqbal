@@ -147,8 +147,11 @@ const AUTOPLAY_MS = 7000;
 export function Testimonials({ items }: { items?: Review[] }) {
   // CMS-supplied items override the hardcoded REVIEWS when present. The
   // fallback keeps the carousel populated during a fresh deploy or when
-  // the DB is unreachable.
-  const reviews = items && items.length > 0 ? items : REVIEWS;
+  // the DB is unreachable. The fallback strips entries marked
+  // `placeholder: true` (drafted-but-not-client-approved) so the public
+  // site never shows them, even if the DB read fails.
+  const verifiedFallback = REVIEWS.filter((r) => !r.placeholder);
+  const reviews = items && items.length > 0 ? items : verifiedFallback;
   const [activeIndex, setActiveIndex] = useState(0);
   const intervalRef = useRef<number | null>(null);
 

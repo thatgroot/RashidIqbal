@@ -1,15 +1,13 @@
 "use client";
 
-import { motion, useMotionValue, useMotionTemplate, AnimatePresence } from "framer-motion";
-import { ArrowDown, Mail, Calendar, Briefcase } from "lucide-react";
+import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
+import { ArrowDown, Calendar } from "lucide-react";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
 import { ExpertBadges } from "@/components/landing/expert-badges";
-import { SOCIAL_LINKS } from "@/lib/constants";
-import { triggerEmailMe } from "@/components/shared/email-me-toast";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -29,30 +27,19 @@ export function Hero() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    // Rotating CTA — cycles through three high-intent options every
-    // 3.2s. Resets if the user is hovering the pill so the option they
-    // see is the option they click.
-    // For "Email me", clicking dispatches a window event that summons
-    // the EmailMeToast (mounted in app/layout.tsx). The toast copies
-    // the address to the clipboard and offers Gmail / Outlook / Yahoo /
-    // native-app launchers — works for every visitor regardless of how
-    // they actually do email.
-    const ctaOptions = [
-        { label: "Book a call", href: SOCIAL_LINKS.calcom, Icon: Calendar, kind: "link" as const },
-        { label: "Email me", href: "#email", Icon: Mail, kind: "email" as const },
-        { label: "Hire me", href: SOCIAL_LINKS.upwork, Icon: Briefcase, kind: "link" as const },
-    ] as const;
-    const [ctaIdx, setCtaIdx] = useState(0);
-    const [ctaPaused, setCtaPaused] = useState(false);
+    // Single stable CTA. The previous rotating pill (Book a call /
+    // Email me / Hire me) split intent and made the click target
+    // ambiguous — if the visitor saw "Book a call" but clicked while
+    // "Email me" was on screen, they ended up where they didn't intend.
+    // Now: one verb, one destination, predictable.
+    const cta = {
+        label: "Book a strategy call",
+        href: "#booking-calendar",
+        Icon: Calendar,
+    };
     // Hero unblur overlay — mounted on first paint, unmounted once the
     // 1.2s reveal animation finishes so backdrop-filter stops painting.
     const [showBlurOverlay, setShowBlurOverlay] = useState(true);
-    useEffect(() => {
-        if (ctaPaused) return;
-        const id = setInterval(() => setCtaIdx((i) => (i + 1) % ctaOptions.length), 4000);
-        return () => clearInterval(id);
-    }, [ctaPaused, ctaOptions.length]);
-    const cta = ctaOptions[ctaIdx]!;
 
     function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
         const { left, top } = currentTarget.getBoundingClientRect();
@@ -178,71 +165,34 @@ export function Hero() {
                                 </span>
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
-                                {/*
-                                    Rotating CTA. The <motion.a> itself stays mounted —
-                                    no `key` on it — so the click target never disappears.
-                                    Only the icon + label inside swap via AnimatePresence.
-                                    `layout` morphs the pill width smoothly across the
-                                    three labels (Book a call / Email me / Hire me).
-                                */}
+                                {/* Stable primary CTA — single verb, single
+                                    destination. Anchors to in-page booking
+                                    section; no offsite redirects. */}
                                 <motion.a
-                                    layout
                                     href={cta.href}
-                                    {...(cta.kind === "link"
-                                        ? { target: "_blank", rel: "noopener noreferrer" }
-                                        : {})}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document
+                                            .querySelector("#booking-calendar")
+                                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                                    }}
                                     aria-label={cta.label}
                                     title={cta.label}
-                                    onClick={(e) => {
-                                        if (cta.kind === "email") {
-                                            e.preventDefault();
-                                            triggerEmailMe();
-                                        }
-                                    }}
-                                    onMouseEnter={() => setCtaPaused(true)}
-                                    onMouseLeave={() => setCtaPaused(false)}
-                                    onFocus={() => setCtaPaused(true)}
-                                    onBlur={() => setCtaPaused(false)}
                                     initial={{ scale: 0.9, opacity: 0 }}
                                     animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ layout: { duration: 0.35, ease: [0.32, 0.72, 0, 1] }, scale: { delay: 0.4, type: "spring", stiffness: 260, damping: 18 }, opacity: { delay: 0.4 } }}
+                                    transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 18 }}
                                     whileHover={{ scale: 1.06 }}
                                     whileTap={{ scale: 0.96 }}
-                                    className="relative z-10 ml-1 inline-flex items-center justify-center gap-1.5 pl-1.5 pr-2.5 py-1 min-w-[104px] rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
+                                    className="relative z-10 ml-1 inline-flex items-center justify-center gap-1.5 pl-2 pr-3 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
                                 >
-                                    {/* Ping ring — telegraphs clickability, never unmounts */}
                                     <span
                                         className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-60 pointer-events-none"
                                         aria-hidden="true"
                                     />
-                                    <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20 overflow-hidden shrink-0">
-                                        <AnimatePresence mode="popLayout" initial={false}>
-                                            <motion.span
-                                                key={`icon-${ctaIdx}`}
-                                                initial={{ y: 12, opacity: 0 }}
-                                                animate={{ y: 0, opacity: 1 }}
-                                                exit={{ y: -12, opacity: 0 }}
-                                                transition={{ duration: 0.22, ease: "easeOut" }}
-                                                className="flex items-center justify-center"
-                                            >
-                                                <cta.Icon className="w-3 h-3" aria-hidden="true" />
-                                            </motion.span>
-                                        </AnimatePresence>
+                                    <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20 shrink-0">
+                                        <cta.Icon className="w-3 h-3" aria-hidden="true" />
                                     </span>
-                                    <span className="relative inline-block overflow-hidden">
-                                        <AnimatePresence mode="popLayout" initial={false}>
-                                            <motion.span
-                                                key={`label-${ctaIdx}`}
-                                                initial={{ y: 12, opacity: 0 }}
-                                                animate={{ y: 0, opacity: 1 }}
-                                                exit={{ y: -12, opacity: 0 }}
-                                                transition={{ duration: 0.22, ease: "easeOut" }}
-                                                className="block whitespace-nowrap"
-                                            >
-                                                {cta.label}
-                                            </motion.span>
-                                        </AnimatePresence>
-                                    </span>
+                                    <span className="relative whitespace-nowrap">{cta.label}</span>
                                 </motion.a>
                             </motion.div>
 
@@ -269,20 +219,22 @@ export function Hero() {
                                 <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600 pb-1">sell.</span>
                             </motion.h1>
 
-                            {/* Sub-heading - positions the service around design + build +
-                                 convert, not audit. Figma/Framer mentioned as the "how". */}
+                            {/* Sub-heading — names the buyer's actual outcome
+                                 ("more demos in 60 days") and the named clients
+                                 who got it. Specificity beats abstract claims. */}
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="text-lg md:text-xl text-zinc-600 max-w-xl mx-auto leading-relaxed mb-8"
+                                className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-8"
                             >
-                                I design and build landing pages and websites that turn visitors into customers. Figma design, Framer builds, UX copy baked in. <span className="font-semibold text-zinc-900">Live in two weeks.</span>
+                                I rewrite the copy and rebuild your page in Framer with headlines and CTAs that close deals. UpdateAI: signups +50%. Equals: demos 2×. Hevn: bounce −34%. <span className="font-semibold text-zinc-900">Live in two weeks. Refund if the design is wrong.</span>
                             </motion.p>
 
-                            {/* Trust band doubles as the primary CTA. Each expert badge
-                                 links to Cal.com so the click intent is tied to a credibility
-                                 signal instead of a generic "book a call" button. */}
+                            {/* Trust band + secondary CTA. Both primary
+                                 CTAs (status pill above, this band) point to
+                                 the same in-page booking anchor — no offsite
+                                 redirects, single conversion path. */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -291,14 +243,17 @@ export function Hero() {
                             >
                                 <ExpertBadges
                                     variant="pill"
-                                    href={SOCIAL_LINKS.calcom}
+                                    href="#booking-calendar"
                                     hrefLabel="Book my strategy call"
                                     className="justify-center"
                                 />
+                                <p className="text-xs text-zinc-500">
+                                    Free 30-min audit · No credit card · Refund if the design is wrong
+                                </p>
                                 <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
                                     <span>Shipping since 2019</span>
                                     <span className="text-zinc-300">•</span>
-                                    <span>Avg. 2.4x conversion lift</span>
+                                    <span>Avg. 2.4x conversion lift in 60 days</span>
                                     <span className="text-zinc-300">•</span>
                                     <span>Top Rated on Upwork</span>
                                 </div>

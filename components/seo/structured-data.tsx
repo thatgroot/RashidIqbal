@@ -7,12 +7,18 @@ const schemas = [
     "@type": "Person",
     "@id": `${siteUrl}#person`,
     name: "Rashid Iqbal",
+    // Brand-name aliases so Google's Knowledge Graph merges queries for
+    // "aestho", "aestho.xyz", and "thatgroot" (his Upwork / GitHub /
+    // Dribbble handle) with this Person entity.
+    alternateName: ["Aestho", "aestho.xyz", "thatgroot"],
     givenName: "Rashid",
     familyName: "Iqbal",
     url: siteUrl,
     image: `${siteUrl}/logo.svg`,
-    jobTitle: "Figma & Framer Expert, Chrome Extension Developer",
-    description: "Figma and Framer expert shipping high-converting websites for founders and teams since 2019. Specializes in landing pages with UX copywriting and Chrome extension development. Certified Framer Expert and Official Replit Expert on Contra.",
+    jobTitle:
+      "Certified Framer Expert · Replit Expert · Base44 Partner · Figma + Framer freelancer",
+    description:
+      "Certified Framer Expert and Replit Expert (via Contra), verified Base44 partner. Top Rated on Upwork. 50+ projects since 2019 for SaaS founders, YC startups, fintech, and AI/ML companies. Specializes in conversion-focused Figma + Framer landing pages and Chrome extensions.",
     email: "rashidiqbal.freelance@gmail.com",
     telephone: "+923554665643",
     address: {

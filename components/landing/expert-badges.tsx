@@ -195,6 +195,9 @@ export function ExpertBadges({
   }
 
   // pill variant — compact, inline, used in the hero trust band
+  // In-page anchors (href starts with "#") are treated as internal and
+  // smooth-scrolled. External URLs open in a new tab.
+  const isInPageAnchor = !!href && href.startsWith("#");
   return (
     <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {BADGES.map((b) => {
@@ -214,8 +217,16 @@ export function ExpertBadges({
           <a
             key={b.title}
             href={href}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(isInPageAnchor
+              ? {
+                  onClick: (e) => {
+                    e.preventDefault();
+                    document
+                      .querySelector(href)
+                      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  },
+                }
+              : { target: "_blank", rel: "noopener noreferrer" })}
             aria-label={`${b.title} — ${hrefLabel}`}
             className={`${pillBase} hover:border-orange-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500`}
           >

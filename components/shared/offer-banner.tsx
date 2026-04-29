@@ -6,22 +6,31 @@ import { ArrowRight, Sparkles, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import posthog from "posthog-js";
 
-const DISMISS_KEY = "offer-banner-dismissed";
+const DISMISS_KEY = "offer-banner-dismissed-at";
+const DISMISS_DAYS = 7; // expire dismiss after a week so returning visitors see the offer again
 
 /**
  * Thin promotional strip that sits at the top of the homepage hero,
  * directly below the fixed navbar. Links to the conversion-focused
- * landing page at /offer. Dismissible; dismissal is remembered in
- * localStorage across sessions.
+ * landing page at /offer.
+ *
+ * Dismissal stores a timestamp instead of a boolean — the banner
+ * reappears 7 days later. Previous behaviour was permanent dismiss,
+ * so a first-time visitor who closed it never saw the $1,000 hook
+ * again on a return visit.
  */
 export function OfferBanner() {
   // Default to visible so SSR renders the banner and first-paint shows it.
-  // useEffect will hide it if the visitor previously dismissed.
+  // useEffect will hide it if the visitor previously dismissed within window.
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     try {
-      if (localStorage.getItem(DISMISS_KEY) === "true") {
+      const raw = localStorage.getItem(DISMISS_KEY);
+      if (!raw) return;
+      const ts = parseInt(raw, 10);
+      if (!Number.isFinite(ts)) return;
+      if (Date.now() - ts < DISMISS_DAYS * 24 * 60 * 60 * 1000) {
         setVisible(false);
       }
     } catch {
@@ -33,7 +42,7 @@ export function OfferBanner() {
     e.preventDefault();
     e.stopPropagation();
     try {
-      localStorage.setItem(DISMISS_KEY, "true");
+      localStorage.setItem(DISMISS_KEY, String(Date.now()));
     } catch {
       /* no-op */
     }
