@@ -17,7 +17,7 @@
 - Stack: Figma + Framer (default), Webflow, hand-coded Next.js, React + TypeScript + Manifest V3 (Chrome extensions)
 - Location: Remote, working worldwide (overlaps with US, EU, APAC)
 - Email: rashidiqbal.freelance@gmail.com
-- Booking: https://dribbble.com/thatgroot/schedule
+- Booking: https://cal.com/rashid.iqbal
 
 ## What I Build
 
@@ -117,7 +117,7 @@ Nick Broadhurst · Leanscale
 ## Contact
 
 - Email: rashidiqbal.freelance@gmail.com
-- Book a 30-min call: https://dribbble.com/thatgroot/schedule
+- Book a 30-min call: https://cal.com/rashid.iqbal
 - Free 60-second audit: https://www.aestho.xyz/offer
 
 ## Keywords

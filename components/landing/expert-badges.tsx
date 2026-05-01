@@ -82,6 +82,24 @@ function ReplitLogo({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
+function DribbbleLogo({ className = "w-6 h-6" }: { className?: string }) {
+  // Dribbble brand mark — pink basketball-style circle.
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <rect width="24" height="24" rx="5" fill="#EA4C89" />
+      <path
+        d="M12 5.6c-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4S15.5 5.6 12 5.6zm4.2 2.95a5.5 5.5 0 0 1 1.25 3.46c-.18-.04-1.96-.4-3.74-.18-.04-.09-.07-.18-.11-.27-.11-.25-.22-.5-.34-.74 1.97-.8 2.87-1.95 2.94-2.27zm-.71-.61c-.05.07-.86 1.18-2.76 1.88-.87-1.6-1.83-2.91-1.97-3.1 1.62-.39 3.32-.04 4.73 1.22zm-5.7-.94c.13.18 1.07 1.5 1.95 3.07-2.5.66-4.7.65-4.94.65a5.45 5.45 0 0 1 2.99-3.72zm-3.07 4.4c.25 0 2.84.03 5.51-.77.16.31.31.62.45.93l-.21.06c-2.74.88-4.18 3.39-4.3 3.6a5.5 5.5 0 0 1-1.45-3.82zm2.07 4.55c.09-.16 1.16-2.25 4.15-3.29.01 0 .02 0 .03-.01.74 1.93 1.05 3.55 1.13 4.01-1.79.78-3.85.59-5.31-.71zm6.06.37c-.06-.33-.34-1.88-1.03-3.78 1.68-.27 3.15.18 3.34.24a5.5 5.5 0 0 1-2.31 3.54z"
+        fill="#fff"
+      />
+    </svg>
+  );
+}
+
 // ============================================================================
 // Shared logo size map
 // ============================================================================
@@ -98,12 +116,13 @@ function BrandLogo({
   icon,
   size = "md",
 }: {
-  icon: "framer" | "replit" | "base44";
+  icon: "framer" | "replit" | "base44" | "dribbble";
   size?: TileSize;
 }) {
   const className = LOGO_SIZE[size];
   if (icon === "framer") return <FramerLogo className={className} />;
   if (icon === "base44") return <Base44Logo className={className} />;
+  if (icon === "dribbble") return <DribbbleLogo className={className} />;
   return <ReplitLogo className={className} />;
 }
 
@@ -116,7 +135,7 @@ const BADGES = [
     icon: "framer" as const,
     title: "Framer Expert",
     description: "Certified by Framer as highly skilled.",
-    href: "https://framer.link/rashidiqbal",
+    href: "https://www.framer.com/@rashidiqbal",
   },
   {
     icon: "replit" as const,
@@ -129,6 +148,12 @@ const BADGES = [
     title: "Base44 Partner",
     description: "Verified Base44 build partner.",
     href: "https://app.base44.com/@rashid-iqbal",
+  },
+  {
+    icon: "dribbble" as const,
+    title: "Framer Expert on Dribbble",
+    description: "Verified Framer Expert profile on Dribbble.",
+    href: "https://dribbble.com/thatgroot/about",
   },
 ];
 
@@ -171,14 +196,19 @@ export function ExpertBadges({
                 </div>
               </>
             );
+            // Per-badge link points to that badge's own profile by
+            // default. If a parent passes `href`, every row is
+            // overridden (used by some legacy "book a call" surfaces).
+            const linkHref = href || b.href;
+            const linkLabel = href ? `${b.title} — ${hrefLabel}` : b.title;
             return (
               <li key={b.title}>
-                {href ? (
+                {linkHref ? (
                   <a
-                    href={href}
+                    href={linkHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`${b.title} — ${hrefLabel}`}
+                    aria-label={linkLabel}
                     className="flex items-start gap-4 rounded-lg -m-1 p-1 hover:bg-zinc-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                   >
                     {content}
@@ -194,10 +224,15 @@ export function ExpertBadges({
     );
   }
 
-  // pill variant — compact, inline, used in the hero trust band
-  // In-page anchors (href starts with "#") are treated as internal and
-  // smooth-scrolled. External URLs open in a new tab.
-  const isInPageAnchor = !!href && href.startsWith("#");
+  // pill variant — compact, inline, used in the hero trust band.
+  // Default behaviour: each pill links to its OWN profile (Framer →
+  // framer.com/@rashidiqbal, Replit → contra.com/rashidiqbal,
+  // Base44 → app.base44.com, Dribbble → dribbble.com/thatgroot/about).
+  // When a parent passes `href`, every pill is overridden — used by
+  // some surfaces to make the whole row a "Book a call" CTA. Hash
+  // anchors (e.g. "#booking-calendar") are smooth-scrolled in-page.
+  const overrideHref = href;
+  const isInPageAnchor = !!overrideHref && overrideHref.startsWith("#");
   return (
     <div className={`flex flex-wrap items-center gap-2 ${className}`}>
       {BADGES.map((b) => {
@@ -213,29 +248,30 @@ export function ExpertBadges({
         const pillBase =
           "inline-flex items-center gap-2 pl-1.5 pr-3 py-1 border border-zinc-200 bg-white rounded-full transition-all";
 
-        return href ? (
+        const pillHref = overrideHref ?? b.href;
+        const pillLabel = overrideHref
+          ? `${b.title} — ${hrefLabel}`
+          : `Visit ${b.title} profile`;
+
+        return (
           <a
             key={b.title}
-            href={href}
+            href={pillHref}
             {...(isInPageAnchor
               ? {
                   onClick: (e) => {
                     e.preventDefault();
                     document
-                      .querySelector(href)
+                      .querySelector(overrideHref)
                       ?.scrollIntoView({ behavior: "smooth", block: "start" });
                   },
                 }
               : { target: "_blank", rel: "noopener noreferrer" })}
-            aria-label={`${b.title} — ${hrefLabel}`}
+            aria-label={pillLabel}
             className={`${pillBase} hover:border-orange-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500`}
           >
             {inner}
           </a>
-        ) : (
-          <span key={b.title} className={pillBase}>
-            {inner}
-          </span>
         );
       })}
     </div>

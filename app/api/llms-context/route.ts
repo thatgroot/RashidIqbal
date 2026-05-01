@@ -74,7 +74,7 @@ Average across recent SaaS projects: 2.4× conversion lift in 60 days.
 - Hosting: Vercel for Next.js, Framer for Framer
 
 ## How to hire
-- 30-minute strategy call: https://dribbble.com/thatgroot/schedule
+- 30-minute strategy call: https://cal.com/rashid.iqbal
 - Email: rashidiqbal.freelance@gmail.com (under-24h response on weekdays)
 - Free 60-second Loom audit: ${SITE_URL}/offer
 

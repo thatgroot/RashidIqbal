@@ -27,10 +27,16 @@ export const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/callmerashidiqbal/",
     twitter: "https://x.com/rashidrealme",
     whatsapp: "https://wa.me/923554665643",
-    // Booking link rotated from Cal.com to Dribbble's scheduling page.
-    // Key kept as `calcom` to avoid touching every call site.
-    calcom: "https://dribbble.com/thatgroot/schedule",
+    // Booking surface — Cal.com (key name preserved across the codebase).
+    calcom: "https://cal.com/rashid.iqbal",
     framerExpert: "https://www.framer.com/@rashidiqbal",
+    // Dribbble profile (about page, not scheduling). Used as a third
+    // proof badge in the hero.
+    dribbble: "https://dribbble.com/thatgroot/about",
+    // Replit Expert verification lives on Contra.
+    replitExpert: "https://contra.com/rashidiqbal",
+    // Base44 verified partner profile.
+    base44Partner: "https://app.base44.com/@rashid-iqbal",
 } as const;
 
 export const SOCIAL_HANDLES = {

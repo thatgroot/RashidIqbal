@@ -6,7 +6,7 @@ import { ArrowRight, Check, Star, Clock, Shield, Zap, Loader2 } from "lucide-rea
 import { motion } from "framer-motion";
 import posthog from "posthog-js";
 
-const CAL_URL = "https://dribbble.com/thatgroot/schedule";
+const CAL_URL = "https://cal.com/rashid.iqbal";
 
 // Conversion-psychology copy notes
 // ---------------------------------

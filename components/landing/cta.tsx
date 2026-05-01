@@ -60,7 +60,7 @@ export function CTASection() {
 
       {/* Inline booking — single primary path. Submits to /api/lead so the
           drip + dashboard inbox both pick it up. Secondary "pick a time on
-          Dribbble" link is below for visitors who want to self-schedule. */}
+          Cal.com" link is below for visitors who want to self-schedule. */}
       <section id="booking-calendar" className="bg-white border-b border-zinc-100 scroll-mt-16">
         <div className="max-w-container border-l border-r border-zinc-100">
           <GridContainer cols={1}>
@@ -130,8 +130,8 @@ function BookingForm() {
         </h3>
         <p className="text-sm text-zinc-500 mb-6">
           You&rsquo;ll get a calendar slot, a Google Meet link, and a short
-          pre-call form. If it&rsquo;s urgent, you can also pick a time
-          directly on my Dribbble page.
+          pre-call form. If it&rsquo;s urgent, you can also self-serve a
+          time on my Cal.com page.
         </p>
         <a
           href={SOCIAL_LINKS.calcom}
@@ -139,7 +139,7 @@ function BookingForm() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-3 border border-zinc-200 text-sm font-bold text-zinc-700 hover:border-orange-300 hover:text-orange-700 transition-colors"
         >
-          Pick a time now on Dribbble
+          Pick a time now on Cal.com
           <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
         </a>
       </div>
@@ -210,7 +210,7 @@ function BookingForm() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-orange-700 transition-colors"
         >
-          Or self-serve a slot on Dribbble
+          Or self-serve a slot on Cal.com
           <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
         </a>
       </div>

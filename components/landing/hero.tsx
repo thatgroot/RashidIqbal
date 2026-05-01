@@ -241,10 +241,11 @@ export function Hero() {
                                 transition={{ delay: 0.5 }}
                                 className="flex flex-col items-center gap-3 text-sm text-zinc-500 mb-4"
                             >
+                                {/* Each badge links to its own profile so the
+                                    visitor can verify the credential directly
+                                    on Framer / Contra / Base44 / Dribbble. */}
                                 <ExpertBadges
                                     variant="pill"
-                                    href="#booking-calendar"
-                                    hrefLabel="Book my strategy call"
                                     className="justify-center"
                                 />
                                 <p className="text-xs text-zinc-500">

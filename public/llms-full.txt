@@ -131,7 +131,7 @@ UTC. Async communication on Slack, Linear, or email between meetings.
 
 ## How do I hire Rashid?
 
-Book a 30-minute call at https://dribbble.com/thatgroot/schedule. He
+Book a 30-minute call at https://cal.com/rashid.iqbal. He
 quotes a fixed scope and price within 24 hours of the call. Email:
 rashidiqbal.freelance@gmail.com. Direct profiles: Framer
 (https://framer.link/rashidiqbal), Upwork
@@ -517,4 +517,4 @@ Each is a stable, indexed page on https://www.aestho.xyz.
 - https://www.linkedin.com/in/callmerashidiqbal/ — LinkedIn
 - https://github.com/thatgroot — GitHub
 - https://x.com/rashidrealme — X / Twitter
-- https://dribbble.com/thatgroot/schedule — booking page
+- https://cal.com/rashid.iqbal — booking page
