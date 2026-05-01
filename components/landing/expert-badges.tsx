@@ -151,7 +151,7 @@ const BADGES = [
   },
   {
     icon: "dribbble" as const,
-    title: "Framer Expert on Dribbble",
+    title: "Dribbble | Framer Expert",
     description: "Verified Framer Expert profile on Dribbble.",
     href: "https://dribbble.com/thatgroot/about",
   },
