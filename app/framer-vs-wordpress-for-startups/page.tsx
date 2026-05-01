@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Framer vs WordPress for Startups (2026)",
-    description: "Direct answer + comparison.",
+    description:
+      "Framer for speed, performance, and zero maintenance. WordPress only when you need a deep plugin ecosystem. Side-by-side breakdown for startup founders.",
     url: PAGE_URL,
     type: "article",
   },

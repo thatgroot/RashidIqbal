@@ -8,7 +8,7 @@ const PAGE_PATH = "/figma-to-framer";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Figma to Framer Conversion | Two-Week Delivery | Rashid Iqbal",
+  title: "Figma to Framer Conversion · 2-week delivery",
   description:
     "Convert your Figma design into a live Framer site in two weeks. Pixel-perfect, responsive, fast. CMS, forms, analytics included. Certified Framer Expert, Top Rated on Upwork.",
   keywords: [

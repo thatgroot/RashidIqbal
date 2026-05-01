@@ -4,8 +4,7 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 export const metadata: Metadata = {
   // /offer is the highest-intent page on the site — *do* index it so
   // Google + Perplexity can route "free landing-page audit" queries here.
-  title:
-    "Free landing-page audit + Framer rebuild from $1,000 | Rashid Iqbal",
+  title: "Free landing-page audit + Framer rebuild from $1,000",
   description:
     "Drop your URL, get a 60-second Loom audit. Or book the rebuild: 1-page landing in 3 days from $1,000, 4-page site in 5 days from $1,500. Refund if the design is wrong.",
   keywords: [

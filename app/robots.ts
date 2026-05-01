@@ -18,11 +18,26 @@ const AI_SEARCH_CRAWLERS = [
   'Applebot-Extended', // Apple Intelligence
 ];
 
-// /offer is intentionally noindex,nofollow via page metadata, but we
-// no longer block it in robots.txt. Bing flags robots-blocked pages as
-// crawl errors; letting bots crawl + see the noindex tag is cleaner.
-const aiCrawlerAllow = ['/', '/blog/', '/contact', '/links', '/llms.txt', '/llms-full.txt', '/api/llms-context', '/api/oembed'];
-const aiCrawlerDisallow = ['/_next/', '/api/og', '/dashboard/', '/api/dashboard/', '/api/track'];
+// Crawl policy:
+// - /_next/ is INTENTIONALLY allowed. Googlebot needs /_next/static/*
+//   JS + CSS to render the page; blocking it hides the SSR-hydrated
+//   content from indexing. Semrush also flags blocked /_next/ as
+//   "disallowed internal resources" (was 1,500+ failures on the audit).
+// - /api/og + /api/blog-og are allowed because they back Open Graph
+//   images referenced from meta tags; social-card crawlers must fetch
+//   them. Same logic as /_next/.
+// - /dashboard, /api/dashboard, /portal, /api/portal, /api/track are
+//   blocked — admin / portal / first-party tracking, not for indexing.
+const COMMON_DISALLOW = [
+  '/dashboard/',
+  '/api/dashboard/',
+  '/portal/',
+  '/api/portal/',
+  '/api/track',
+  '/api/lead',
+  '/api/auth/',
+  '/api/cron/',
+];
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -31,17 +46,17 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/_next/', '/api/og', '/dashboard/', '/api/dashboard/', '/api/track'],
+        disallow: COMMON_DISALLOW,
       },
-      // All AI search crawlers get full access
+      // AI search crawlers get the same policy. (Previously listed
+      // explicit allow paths, but `allow: /` already covers them and
+      // an explicit list misses any new public route.)
       ...AI_SEARCH_CRAWLERS.map((bot) => ({
         userAgent: bot,
-        allow: aiCrawlerAllow,
-        disallow: aiCrawlerDisallow,
+        allow: '/',
+        disallow: COMMON_DISALLOW,
       })),
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
-    // `host:` directive removed — Yandex-only, triggers "Syntax not
-    // understood" warnings in Bing Webmaster Tools.
   };
 }

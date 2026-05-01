@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Links | Rashid Iqbal — Framer Expert · Replit Expert · Base44 Partner",
+    title: "Links | Rashid Iqbal — Framer + Replit + Base44",
     description:
         "All my profiles in one place: Framer Experts directory, Upwork (Top Rated), Contra, Base44, LinkedIn, GitHub, X. Rashid Iqbal · aestho.xyz.",
     alternates: {

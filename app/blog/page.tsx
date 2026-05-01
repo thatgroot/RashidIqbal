@@ -113,19 +113,30 @@ export async function generateMetadata(
   let canonical = `${siteUrl}/blog`;
 
   if (tag) {
-    title = `${tag} articles`;
-    description = `Articles tagged "${tag}" from Rashid Iqbal's blog on Figma, Framer, and conversion-focused design.`;
-    canonical = `${siteUrl}${buildBlogUrl(tag, 1)}`;
+    title = `${tag} articles · Rashid Iqbal`;
+    description = `Articles tagged "${tag}" — covering ${tag.toLowerCase()} for Figma, Framer, and conversion-focused web design.`;
+    // Canonical uses LOWERCASE tag so /blog?tag=Design and
+    // /blog?tag=design collapse to one URL in Google's index. Case
+    // variants were producing 4 duplicate-content pairs in the audit.
+    canonical = `${siteUrl}${buildBlogUrl(tag.toLowerCase(), 1)}`;
   }
 
   if (page > 1) {
-    title = `${title} (page ${page})`;
-    canonical = `${siteUrl}${buildBlogUrl(tag, page)}`;
+    title = `${title} · page ${page}`;
+    // Paginated canonical also lowercases the tag for the same reason.
+    canonical = `${siteUrl}${buildBlogUrl(tag ? tag.toLowerCase() : null, page)}`;
   }
+
+  // Noindex paginated views (page > 1) — they otherwise duplicate the
+  // canonical /blog?tag=… page's title + description in Google's eyes.
+  // Search results should always land on page 1; pagination is for the
+  // visitor, not the search engine.
+  const isPaginated = page > 1;
 
   return {
     title,
     description,
+    ...(isPaginated ? { robots: { index: false, follow: true } } : {}),
     keywords: [
       "Figma blog",
       "Framer tutorials",

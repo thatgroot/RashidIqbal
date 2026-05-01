@@ -23,12 +23,36 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // SEO: 301 redirects for old/dead URLs found in Google's index
+  // SEO: 301 redirects for old/dead URLs found in Google's index.
+  // Targets must be live routes — a 301 to a 404 still counts as a
+  // broken internal link in Semrush.
   async redirects() {
     return [
+      // Apex → www (permanent). Vercel's default platform redirect is
+      // 307 (temporary) which Semrush flags as "temporary redirect".
+      // Setting `permanent: true` here returns 308 and de-flags it.
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "aestho.xyz" }],
+        destination: "https://www.aestho.xyz/:path*",
+        permanent: true,
+      },
+      // Old singular path → live work index
       {
         source: "/service/:path*",
-        destination: "/services/:path*",
+        destination: "/work",
+        permanent: true,
+      },
+      // Old plural path that was never built → live work index
+      {
+        source: "/services/:path*",
+        destination: "/work",
+        permanent: true,
+      },
+      // /hire → /contact (legacy URL referenced in old llms.txt)
+      {
+        source: "/hire",
+        destination: "/contact",
         permanent: true,
       },
     ];

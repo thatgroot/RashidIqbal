@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Figma to Framer Cost in 2026",
-    description: "Direct answer + tier-by-tier pricing.",
+    description:
+      "Figma to Framer pricing in 2026: $1k–$3k for a single page in 1 week, $1.5k–$5k for a 4-page site in 2 weeks. Tier-by-tier breakdown.",
     url: PAGE_URL,
     type: "article",
   },

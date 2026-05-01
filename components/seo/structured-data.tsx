@@ -108,8 +108,8 @@ const schemas = [
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: "30.3753",
-      longitude: "69.3451",
+      latitude: 30.3753,
+      longitude: 69.3451,
     },
     areaServed: [
       { "@type": "Country", name: "Worldwide" },
@@ -127,10 +127,11 @@ const schemas = [
     // Aggregate rating from Upwork
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.9",
-      bestRating: "5",
-      ratingCount: "30",
-      reviewCount: "30",
+      ratingValue: 4.9,
+      bestRating: 5,
+      worstRating: 1,
+      ratingCount: 30,
+      reviewCount: 30,
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -144,12 +145,12 @@ const schemas = [
             description: "High-converting landing pages designed in Figma with UX copy, built pixel-perfect in Framer. 3-4 pages, responsive, SEO-ready. Delivered in 2 weeks.",
             url: `${siteUrl}/#services`,
           },
-          price: "1000",
+          price: 1000,
           priceCurrency: "USD",
           priceSpecification: {
             "@type": "PriceSpecification",
-            minPrice: "1000",
-            maxPrice: "1600",
+            minPrice: 1000,
+            maxPrice: 1600,
             priceCurrency: "USD",
           },
         },
@@ -161,12 +162,12 @@ const schemas = [
             description: "Full website with 5-8+ pages, CMS, blog, and dynamic content. Designed in Figma with conversion-focused UX copy. Delivered in 3-4 weeks.",
             url: `${siteUrl}/#services`,
           },
-          price: "2000",
+          price: 2000,
           priceCurrency: "USD",
           priceSpecification: {
             "@type": "PriceSpecification",
-            minPrice: "2000",
-            maxPrice: "5000",
+            minPrice: 2000,
+            maxPrice: 5000,
             priceCurrency: "USD",
           },
         },
@@ -177,6 +178,16 @@ const schemas = [
             name: "Chrome Extension Development",
             description: "Standalone Chrome extensions built from scratch with React and Manifest V3. Design, development, and Chrome Web Store publishing.",
             url: `${siteUrl}/#services`,
+          },
+          // Chrome extension scope-dependent — give a starting price so the
+          // Offer is valid (Schema.org Offer requires price OR priceSpecification).
+          price: 2500,
+          priceCurrency: "USD",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            minPrice: 1500,
+            maxPrice: 6000,
+            priceCurrency: "USD",
           },
         },
       ],
@@ -216,8 +227,8 @@ const schemas = [
     logo: {
       "@type": "ImageObject",
       url: `${siteUrl}/logo.svg`,
-      width: "512",
-      height: "512",
+      width: 512,
+      height: 512,
     },
     founder: { "@id": `${siteUrl}#person` },
     foundingDate: "2019",

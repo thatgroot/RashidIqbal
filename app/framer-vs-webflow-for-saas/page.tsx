@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Framer vs Webflow for SaaS Landing Pages (2026)",
-    description: "Direct answer + side-by-side comparison.",
+    description:
+      "Framer ships faster and converts higher; Webflow has a deeper CMS. When to pick which, with a side-by-side comparison and FAQs.",
     url: PAGE_URL,
     type: "article",
     images: [
