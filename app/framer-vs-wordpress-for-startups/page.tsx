@@ -75,7 +75,7 @@ const config: ComparisonConfig = {
     },
     {
       q: "What about cost?",
-      a: "Framer Basic is $10/month with no infra. WordPress is technically free but realistically $25–$50/month for managed hosting (Kinsta, WP Engine) plus plugin licenses. Net: Framer is cheaper for most startup marketing sites.",
+      a: "Framer is a single monthly hosting fee with no infra. WordPress is technically free but realistically requires managed hosting (Kinsta, WP Engine) plus plugin licenses. Net: Framer is cheaper for most startup marketing sites.",
     },
     {
       q: "Is Framer overkill for a tiny site?",

@@ -12,15 +12,14 @@ export interface PricingPlan {
 }
 
 // One-time tiers — buyer-stage names instead of generic deliverable
-// labels. "Audit + Rewrite" tells a Series A founder this is the
-// scope they want; "Marketing Site" tells a growth lead this is the
-// 4-page bundle. Each tier names the founder/team stage that should
-// pick it.
+// labels. Pricing intentionally not surfaced on the site; quotes are
+// scoped on the kickoff call so the buyer sees the price tied to the
+// scope rather than as a sticker number.
 export const ONE_TIME_PLANS: PricingPlan[] = [
   {
     name: "Audit + Rewrite",
-    tagline: "1-page landing, 5 days, $1,200",
-    price: "From $1,200",
+    tagline: "1-page landing, 5 days",
+    price: "Quote on call",
     priceSuffix: "",
     desc: "Audit your current page, rewrite the copy, rebuild it in Framer. You get the Figma file, the Framer project, and a 15-min Loom walkthrough. Refund if the design direction is wrong.",
     idealFor: "Pre-PMF / seed-stage SaaS",
@@ -36,8 +35,8 @@ export const ONE_TIME_PLANS: PricingPlan[] = [
   },
   {
     name: "Marketing Site",
-    tagline: "4–8 pages with CMS, $3,500, 3 weeks",
-    price: "From $3,500",
+    tagline: "4–8 pages with CMS, 3 weeks",
+    price: "Quote on call",
     priceSuffix: "",
     desc: "4–8 page marketing site with blog/case-study CMS, lead capture, and analytics wired. You own Figma + Framer + your data. Agency lead times: 6+ weeks. Ours: 21 days.",
     idealFor: "Series A+ B2B SaaS",
@@ -54,8 +53,8 @@ export const ONE_TIME_PLANS: PricingPlan[] = [
   },
   {
     name: "Custom Tool",
-    tagline: "Chrome extension, $2,500, 3 weeks",
-    price: "From $2,500",
+    tagline: "Chrome extension, 3 weeks",
+    price: "Quote on call",
     priceSuffix: "",
     desc: "Standalone Chrome extension in React + TypeScript + Manifest V3. SaaS companion, productivity tool, internal admin panel. Shipped to the Chrome Web Store; client owns the GitHub.",
     idealFor: "SaaS + productivity teams",
@@ -71,14 +70,13 @@ export const ONE_TIME_PLANS: PricingPlan[] = [
   },
 ];
 
-// Retainer tiers — buyer-stage names. "Marketing Ops" / "Growth
-// Partner" / "Embedded Designer" each name the role being filled,
-// not a vague tier label.
+// Retainer tiers — buyer-stage names. Same no-sticker-pricing rule as
+// the one-time plans above.
 export const RETAINER_PLANS: PricingPlan[] = [
   {
     name: "Marketing Ops",
     tagline: "Pages + campaigns, 48-hour turnaround",
-    price: "$2,000",
+    price: "Quote",
     priceSuffix: "/mo",
     desc: "Ongoing Figma + Framer for new pages, hero refreshes, and campaign landings. No waitlist. 48-hour turnaround on every brief.",
     idealFor: "Scaling startups shipping weekly",
@@ -94,7 +92,7 @@ export const RETAINER_PLANS: PricingPlan[] = [
   {
     name: "Growth Partner",
     tagline: "Everything in Ops + monthly CRO",
-    price: "$2,500",
+    price: "Quote",
     priceSuffix: "/mo",
     desc: "Everything in Marketing Ops plus conversion-rate optimization. Monthly A/B tests, full conversion audits, priority Slack support.",
     idealFor: "Series B+, serious about CAC payback",
@@ -111,7 +109,7 @@ export const RETAINER_PLANS: PricingPlan[] = [
   {
     name: "Embedded Designer",
     tagline: "Same-day responses, design-system ownership",
-    price: "$3,000",
+    price: "Quote",
     priceSuffix: "/mo",
     desc: "I show up in your Slack like an in-house designer. Unlimited requests, same-day responses, full ownership of the design system.",
     idealFor: "Funded startups, in-house team capacity",

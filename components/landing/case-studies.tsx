@@ -104,7 +104,6 @@ const TRUST_BRANDS = [
   { name: "Pageloop", domain: "pageloop.ai" },
   { name: "ATQLeads", domain: "atqleads.com" },
   { name: "Localyzer", domain: "localyzer.io" },
-  { name: "Crezco", domain: "crezco.co.uk" },
   { name: "Melissa Ambrosini", domain: "melissaambrosini.com" },
   { name: "Nick Broadhurst", domain: "nickbroadhurst.com" },
 ];
@@ -132,7 +131,7 @@ export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
                 .querySelector("#booking-calendar")
                 ?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 bg-white text-zinc-900 text-sm font-semibold shadow-sm hover:border-orange-300 hover:shadow-md transition-all"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 bg-white text-zinc-900 text-sm font-semibold hover:border-orange-300 transition-colors"
           >
             <Calendar className="w-4 h-4 text-orange-500" aria-hidden="true" />
             Book a FREE 30 minute call

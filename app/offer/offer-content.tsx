@@ -33,10 +33,10 @@ const TIERS: readonly Tier[] = [
   {
     id: "landing-page",
     name: "Landing Page",
-    price: "$1,000",
-    priceLabel: "$1,000 · 3 days",
+    price: "Quote on call",
+    priceLabel: "Quote · 3 days",
     days: "3 days",
-    anchor: "$5,000+",
+    anchor: "Agency-grade scope",
     blurb: "For one focused offer or product.",
     features: [
       "1 high-converting landing page (hero, features, pricing, FAQ, CTA)",
@@ -50,10 +50,10 @@ const TIERS: readonly Tier[] = [
   {
     id: "four-page-site",
     name: "4-Page Website",
-    price: "$1,500",
-    priceLabel: "$1,500 · 5 days",
+    price: "Quote on call",
+    priceLabel: "Quote · 5 days",
     days: "5 days",
-    anchor: "$8,000+",
+    anchor: "Agency-grade scope",
     blurb: "A full marketing site. Best value.",
     features: [
       "Home + 3 inner pages (about, pricing, contact, blog, etc.)",
@@ -101,7 +101,7 @@ const FAQS = [
   },
   {
     q: "Can the price scale up?",
-    a: "Only if scope grows beyond what is listed. The $1,000 / $1,500 prices are fixed for the scope on this page. If you need 8 pages, e-commerce, or a custom Stripe flow, that gets a separate quote.",
+    a: "Only if scope grows beyond what is listed. Prices are fixed for the scope on this page. If you need 8 pages, e-commerce, or a custom Stripe flow, that gets a separate quote on the kickoff call.",
   },
   {
     q: "Why is this so much cheaper than an agency?",
@@ -384,7 +384,7 @@ export default function OfferPage() {
           Figma design plus Framer build plus UX copy. One specialist, one timeline, one
           fixed price.{" "}
           <span className="font-semibold text-zinc-900">Don&rsquo;t love it? Full refund.</span>{" "}
-          <span className="text-zinc-500">Agencies charge $5,000+ for the same scope.</span>
+          <span className="text-zinc-500">Agencies charge multiples for the same scope.</span>
         </motion.p>
 
         {/* Trust strip */}

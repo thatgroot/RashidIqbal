@@ -284,28 +284,6 @@ export function Hero() {
                     </GridItem>
 
                 </GridContainer>
-
-                {/* Tools Grid */}
-                <GridContainer cols={3}>
-                    <ToolGridItem label="Design" delay={0.5}>
-                        <div className="flex items-center gap-3">
-                            <FigmaIcon />
-                            <div className="text-lg font-medium text-zinc-900">Figma</div>
-                        </div>
-                    </ToolGridItem>
-                    <ToolGridItem label="Build" delay={0.6}>
-                        <div className="flex items-center gap-3">
-                            <FramerIcon />
-                            <div className="text-lg font-medium text-zinc-900">Framer</div>
-                        </div>
-                    </ToolGridItem>
-                    <ToolGridItem label="Ship" delay={0.7}>
-                        <div className="flex items-center gap-3">
-                            <ChromeIcon />
-                            <div className="text-lg font-medium text-zinc-900">Chrome Extensions</div>
-                        </div>
-                    </ToolGridItem>
-                </GridContainer>
             </div>
         </section>
     );
@@ -335,66 +313,3 @@ function VisualBackground() {
     )
 }
 
-function ToolGridItem({ label, delay, children }: { label: string; delay: number; children: React.ReactNode }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay, duration: 0.5 }}
-            className="h-full"
-            role="figure"
-        >
-            <GridItem className="h-full flex flex-col">
-                {/* Label row - aligned to top-right */}
-                <div className="flex justify-start">
-                    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] group-hover:text-orange-500 transition-colors duration-300">
-                        {label}
-                    </span>
-                </div>
-                {/* Content - centered in remaining space */}
-                <div className="flex-1 flex items-center justify-center">
-                    {children}
-                </div>
-            </GridItem>
-        </motion.div>
-    );
-}
-
-
-// Icons
-function FigmaIcon() {
-    return (
-        <svg width="21" height="32" viewBox="0 0 21 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.4004 16C10.4004 13.0537 12.7295 10.6674 15.6003 10.6674C18.4734 10.6674 20.8002 13.0514 20.8002 16C20.8002 18.9463 18.4734 21.3326 15.6003 21.3326C12.7318 21.3326 10.4004 18.9486 10.4004 16Z" fill="#1ABCFE" />
-            <path d="M0 26.6674C0 23.7211 2.3291 21.3326 5.19989 21.3326H10.3998V26.6674C10.3998 29.6114 8.07069 32 5.19989 32C2.3291 32 0 29.6114 0 26.6674Z" fill="#0ACF83" />
-            <path d="M10.4004 0V10.6674H15.6003C18.4734 10.6674 20.8002 8.27885 20.8002 5.33257C20.8002 2.38857 18.4734 0 15.6003 0H10.4004Z" fill="#FF7262" />
-            <path d="M0 5.33257C0 8.27885 2.3291 10.6674 5.19989 10.6674H10.3998V0H5.19989C2.3291 0 0 2.38857 0 5.33257Z" fill="#F24E1E" />
-            <path d="M0 16C0 18.9463 2.3291 21.3326 5.19989 21.3326H10.3998V10.6674H5.19989C2.3291 10.6674 0 13.0514 0 16Z" fill="#A259FF" />
-        </svg>
-
-    )
-}
-
-function FramerIcon() {
-    return (
-        <svg width="23" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd" d="M0 21.3334H11.1999V32L0 21.3334Z" fill="#0055FF" />
-            <path d="M11.1999 10.6663H0V21.3329H22.3998L11.1999 10.6663Z" fill="#00AAFF" />
-            <path d="M0 0L11.1999 10.6666H22.3998V0H0Z" fill="#88DDFF" />
-        </svg>
-
-    )
-}
-
-function ChromeIcon() {
-    return (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
-            <circle cx="12" cy="12" r="4" fill="currentColor" />
-            <path d="M12 8L21.5 8" stroke="currentColor" strokeWidth="2" />
-            <path d="M7.5 16L3 8.5" stroke="currentColor" strokeWidth="2" />
-            <path d="M16.5 16L12 24" stroke="currentColor" strokeWidth="2" />
-        </svg>
-    )
-}

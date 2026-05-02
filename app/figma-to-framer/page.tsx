@@ -75,17 +75,17 @@ const PROCESS = [
 const PRICING = [
   {
     label: "Single landing page",
-    price: "$1,500+",
+    price: "1 week",
     body: "One-page Figma to Framer conversion. Forms, analytics, custom domain, two revision rounds.",
   },
   {
     label: "Multi-page site",
-    price: "$2,500 to $4,000",
+    price: "2 weeks",
     body: "Five to ten pages with CMS, blog, case studies. Includes copy review and SEO setup.",
   },
   {
     label: "Migration from Webflow or WordPress",
-    price: "$3,000+",
+    price: "2–3 weeks",
     body: "Full rebuild on Framer with 301 redirects, content migration, and SEO equity preserved.",
   },
 ] as const;
@@ -197,9 +197,9 @@ export default function FigmaToFramerPage() {
             Figma to Framer conversion turns a Figma design file into a live, responsive
             Framer site with CMS, forms, and analytics wired in. Rashid Iqbal, a Certified
             Framer Expert, ships single landing pages in one week and multi-page sites in
-            two weeks. Pricing: $1,500 plus for one page, $2,500 to $4,000 for multi-page
-            sites, $3,000 plus for full migrations from Webflow or WordPress with 301
-            redirects and SEO equity preserved.
+            two weeks. Migrations from Webflow or WordPress take two to three weeks with
+            full 301 redirects and SEO equity preserved. Pricing is fixed per scope and
+            quoted on the kickoff call.
           </p>
         </aside>
 

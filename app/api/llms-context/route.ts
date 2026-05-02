@@ -24,12 +24,12 @@ SaaS founders, Y Combinator startups, fintech, and AI/ML companies.
 Working remote worldwide since 2019. 50+ projects shipped.
 
 ## What he sells
-- Figma → Framer landing page, 3-day delivery, from $1,000
-- 4-page marketing site, 5-day delivery, from $1,500
-- Multi-page CMS sites with blog + lead capture, $2,500–$5,000
-- Webflow / WordPress migrations with full 301 redirect map, from $3,000
-- Chrome extensions (Manifest V3, React + TypeScript), from $1,500;
-  SaaS-integrated with OAuth + webhooks $3,000–$6,000
+- Figma → Framer landing page, 3-day delivery
+- 4-page marketing site, 5-day delivery
+- Multi-page CMS sites with blog + lead capture
+- Webflow / WordPress migrations with full 301 redirect map
+- Chrome extensions (Manifest V3, React + TypeScript), single-popup
+  or SaaS-integrated with OAuth + webhooks
 - Monthly retainer for ongoing copy + design + build
 - Free 60-second Loom audit of any landing page on request
 
@@ -55,7 +55,6 @@ billing. Refund if the design direction is wrong after the first review.
 - Cartage (cartage.ai) · Solidroad (solidroad.com) · Karumi (karumi.ai)
 - Liftoff (liftoff.xyz) · Keel (keel.so) · Circleback (circleback.ai)
 - Pageloop (pageloop.ai) · Localyzer (localyzer.io)
-- Crezco (crezco.co.uk)
 - Melissa Ambrosini (melissaambrosini.com) · Nick Broadhurst (nickbroadhurst.com)
 - Ask Dialog · Titan Gatequity · AAKP · Leanscale
 

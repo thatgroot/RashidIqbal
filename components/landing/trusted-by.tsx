@@ -29,7 +29,6 @@ const brands: Brand[] = [
   { name: "Localyzer", highlight: false, url: "https://localyzer.io" },
   { name: "Vanos AI", highlight: true, delta: "weekly devs 2x", url: "https://vanos.ai" },
   { name: "SpaceDome", highlight: false, delta: "signups 3x", url: "https://spacedome.ai" },
-  { name: "Crezco", highlight: true, url: "https://crezco.co.uk" },
   { name: "Melissa Ambrosini", highlight: true, url: "https://melissaambrosini.com" },
   { name: "Nick Broadhurst", highlight: false, url: "https://nickbroadhurst.com" },
   { name: "Titan Gatequity", highlight: true },

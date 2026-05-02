@@ -112,7 +112,6 @@ const CLIENTS = [
   "Circleback",
   "Pageloop",
   "Localyzer",
-  "Crezco",
   "Leanscale",
 ] as const;
 

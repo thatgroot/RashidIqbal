@@ -32,14 +32,14 @@ const config: ComparisonConfig = {
   eyebrow: "Comparison · 2026",
   h1: "Hiring a Framer expert vs hiring an agency",
   directAnswer:
-    "For a marketing site under 20 pages, hire a solo Framer expert. You ship in 2 weeks at $1.5k–$5k. Agencies quote 6–12 weeks at $20k–$80k for the same scope, mostly because layered roles (creative director, project manager, account exec, junior designer) all bill against your invoice.",
+    "For a marketing site under 20 pages, hire a solo Framer expert. You ship in 2 weeks. Agencies quote 6–12 weeks for the same scope, mostly because layered roles (creative director, project manager, account exec, junior designer) all bill against your invoice — the multiplier on cost is roughly 4×.",
   intro:
     "Agencies make sense when scope is large, the brand work is deep, or multiple stakeholders need wrangling. Solo specialists make sense for a fast-moving marketing site where speed and clarity matter more than process.",
   leftLabel: "Solo Framer Expert",
   rightLabel: "Creative Agency",
   rows: [
     { feature: "Typical timeline (single-page site)", left: "1–2 weeks", right: "4–8 weeks" },
-    { feature: "Typical cost (single-page site)", left: "$1.5k–$3k", right: "$15k–$40k" },
+    { feature: "Typical timeline (single-page site)", left: "1–2 weeks", right: "6–12 weeks" },
     { feature: "Number of people on the project", left: "1", right: "3–7" },
     { feature: "Daily standups / status calls", left: "no", right: "yes" },
     { feature: "Account-management overhead", left: "no", right: "yes" },
@@ -56,7 +56,7 @@ const config: ComparisonConfig = {
       bullets: [
         "You have a marketing site under 20 pages",
         "You need to ship before a launch / demo day",
-        "Budget is $5k or less",
+        "Timeline matters more than committee approval",
         "You want to talk directly to the person doing the work",
       ],
     },
@@ -66,7 +66,7 @@ const config: ComparisonConfig = {
         "You need a full brand identity (logo, type, color, guidelines)",
         "Stakeholder count is 5+ on the buy side",
         "Project includes complex motion / 3D / interactive components",
-        "Budget is $20k+ and timeline is flexible",
+        "Timeline is flexible and stakeholder count is high",
       ],
     },
   ],
@@ -81,7 +81,7 @@ const config: ComparisonConfig = {
     },
     {
       q: "Can a solo person actually handle a SaaS-grade site?",
-      a: "Yes for marketing sites. UpdateAI, Vanos AI, SpaceDome, ATQLeads, Crezco — all funded SaaS companies, all shipped by a solo specialist (me). The constraint isn't capacity; it's scope. If your project needs 50 pages, dozens of stakeholders, and a brand strategist, hire an agency.",
+      a: "Yes for marketing sites. UpdateAI, Vanos AI, SpaceDome, ATQLeads, Karumi, Keel — all funded SaaS companies, all shipped by a solo specialist (me). The constraint isn't capacity; it's scope. If your project needs 50 pages, dozens of stakeholders, and a brand strategist, hire an agency.",
     },
     {
       q: "What about quality?",

@@ -109,7 +109,7 @@ export const SERVICES: Service[] = [
         ],
         relatedTechnologies: ["framer", "figma"],
         relatedServices: ["framer-development", "figma-to-code"],
-        priceRange: "$1,000 – $1,600",
+        priceRange: "Quote on call",
     },
     {
         slug: "framer-development",
@@ -165,7 +165,7 @@ export const SERVICES: Service[] = [
         ],
         relatedTechnologies: ["framer", "figma"],
         relatedServices: ["landing-pages", "figma-to-code"],
-        priceRange: "$2,000 – $5,000",
+        priceRange: "Quote on call",
     },
     {
         slug: "figma-to-code",
@@ -221,7 +221,7 @@ export const SERVICES: Service[] = [
         ],
         relatedTechnologies: ["figma", "framer"],
         relatedServices: ["landing-pages", "framer-development"],
-        priceRange: "$1,000 – $2,500",
+        priceRange: "Quote on call",
     },
     {
         slug: "chrome-extensions",
@@ -333,7 +333,7 @@ export const SERVICES: Service[] = [
         ],
         relatedTechnologies: ["figma", "framer"],
         relatedServices: ["landing-pages", "framer-development"],
-        priceRange: "$1,500+",
+        priceRange: "Quote on call",
     },
 ];
 

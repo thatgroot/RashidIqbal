@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CLIENTS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads", "Keel", "Cartage", "Crezco"] as const;
+const CLIENTS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads", "Keel", "Cartage", "Karumi"] as const;
 
 const DELIVERABLES = [
   "Conversion-focused information architecture for the funnel",
@@ -81,11 +81,11 @@ const FAQS = [
   },
   {
     q: "Do you work with Y Combinator startups?",
-    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, ATQLeads, and Crezco. Two-week timeline fits launch and demo-day cycles.",
+    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, ATQLeads, Karumi, and Keel. Two-week timeline fits launch and demo-day cycles.",
   },
   {
     q: "How much does a SaaS landing page cost?",
-    a: "Single landing page projects start at $1,500. Full multi-page marketing sites with CMS sit between $2,500 and $4,000. Pricing tiers are listed at /#pricing.",
+    a: "Single landing page projects ship in one week. Full multi-page marketing sites with CMS ship in two to three weeks. Pricing is fixed per scope and quoted on the kickoff call.",
   },
   {
     q: "Do you write the copy?",
@@ -176,9 +176,10 @@ export default function FramerExpertSaasPage() {
           <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
             Rashid Iqbal is a Certified Framer Expert who builds B2B SaaS landing pages
             with copy, design, and Framer development bundled into a single two-week
-            delivery. Past SaaS clients include UpdateAI, Vanos AI, SpaceDome, ATQLeads, Crezco, Keel,
-            and Vanos AI. Pricing starts at $1,500 for a single landing page and ranges
-            $2,500 to $4,000 for multi-page sites with CMS, blog, and lead capture.
+            delivery. Past SaaS clients include UpdateAI, Vanos AI, SpaceDome, ATQLeads, Keel,
+            and Vanos AI. Single landing pages ship in one week; multi-page sites with
+            CMS, blog, and lead capture ship in two to three weeks. Pricing is fixed per
+            scope and quoted on the kickoff call.
           </p>
         </aside>
 

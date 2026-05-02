@@ -4,7 +4,6 @@ import { Navbar } from "@/components/layout/navbar";
 import { ServicesGrid } from "@/components/landing/services-grid";
 import { CaseStudies } from "@/components/landing/case-studies";
 import { ServiceList } from "@/components/landing/service-list";
-import { ValueProp } from "@/components/landing/value-prop";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Pricing } from "@/components/landing/pricing";
 import { FAQ } from "@/components/landing/faq";
@@ -149,12 +148,7 @@ function _renderPage({
             scroll into anything else. */}
         <CaseStudies {...(caseItems.length > 0 ? { items: caseItems } : {})} />
         <SectionSpacer />
-        {/* VALUE PROP — three-bullet pitch ("Why founders pick this over
-            an agency"). Kept after proof so the framing argues from
-            evidence, not assertion. */}
-        <ValueProp />
-        <SectionSpacer />
-        {/* SERVICES — dark My Services grid. */}
+        {/* SERVICES — My Services grid. */}
         <ServicesGrid />
         <SectionSpacer />
         {/* SERVICE LIST — typographic numbered services + client outcomes

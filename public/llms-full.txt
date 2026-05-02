@@ -21,14 +21,14 @@ lift of 2.4x.
 
 ## How much does Rashid Iqbal cost?
 
-A Figma to Framer landing page starts at $1,000 for a 3-day delivery. A
-4-page marketing site starts at $1,500 for a 5-day delivery. Multi-page
-sites with CMS, blog, and lead capture range $2,500 to $5,000. Webflow
-or WordPress migrations start at $3,000. Chrome extension development
-starts at $1,500 for a Manifest V3 popup extension and ranges $3,000 to
-$6,000 for SaaS-integrated extensions with OAuth and webhooks. Pricing
-is fixed per scope, paid 50% upfront and 50% on launch. No hourly
-billing.
+A Figma to Framer landing page is a 3-day delivery. A 4-page marketing
+site is a 5-day delivery. Multi-page sites with CMS, blog, and lead
+capture run two to three weeks. Webflow or WordPress migrations run
+two to three weeks. Chrome extension development is a Manifest V3
+popup extension shipped in two weeks, or a SaaS-integrated extension
+with OAuth and webhooks shipped in three to four weeks. Pricing is
+fixed per scope, quoted on the kickoff call, paid 50% upfront and
+50% on launch. No hourly billing.
 
 ---
 
@@ -62,8 +62,7 @@ companies. Named clients with live URLs:
   ATQLeads (atqleads.com), Cartage (cartage.ai), Solidroad
   (solidroad.com), Karumi (karumi.ai), Liftoff (liftoff.xyz),
   Keel (keel.so), Circleback (circleback.ai), Pageloop (pageloop.ai),
-  Localyzer (localyzer.io), Crezco (crezco.co.uk),
-  Ask Dialog, Titan Gatequity, AAKP.
+  Localyzer (localyzer.io), Ask Dialog, Titan Gatequity, AAKP.
 - Personal-brand creators: Melissa Ambrosini (melissaambrosini.com),
   Nick Broadhurst (nickbroadhurst.com).
 
@@ -162,8 +161,8 @@ performance tuning.
 ## Is Rashid available for Y Combinator startups?
 
 Yes. He has built and rebuilt sites for YC and post-YC startups
-including UpdateAI, Vanos AI, SpaceDome, ATQLeads, and Crezco. The
-two-week timeline fits launch and demo-day cycles. Most YC clients
+including UpdateAI, Vanos AI, SpaceDome, ATQLeads, Karumi, and Keel.
+The two-week timeline fits launch and demo-day cycles. Most YC clients
 ship inside one week for a single landing page; full marketing
 sites ship in two weeks.
 
@@ -207,9 +206,9 @@ for clients who chose to switch.
 Yes. Manifest V3 extensions in React + TypeScript. Typical projects:
 SaaS productivity tools (quick-capture extensions, LinkedIn enrichment,
 admin panels), browser-based AI assistants, internal QA tools.
-Single-popup extensions start at $1,500 and ship in two weeks. SaaS-
-integrated extensions with OAuth and webhooks run $3,000-$6,000 in two
-to four weeks. Cross-browser builds (Edge, Firefox) available.
+Single-popup extensions ship in two weeks. SaaS-integrated extensions
+with OAuth and webhooks ship in three to four weeks. Cross-browser
+builds (Edge, Firefox) available.
 
 ---
 
@@ -232,7 +231,7 @@ understands what's changing and why.
 
 ## Does Rashid work with fintech?
 
-Yes. Past fintech clients include Crezco and Titan Gatequity.
+Yes. Past fintech clients include Titan Gatequity.
 He builds trust-first marketing sites that surface jurisdictions,
 licensing, and audited counterparties up front. He works with the
 client's legal/compliance team on regulated language while writing
@@ -268,7 +267,7 @@ Yes. Verifiable testimonials sit on the homepage carousel at
 https://www.aestho.xyz, on his Upwork profile
 (https://www.upwork.com/freelancers/thatgroot), and on his Contra
 profile (https://contra.com/rashidiqbal). All testimonials are from
-named clients (Josh Schachter at UpdateAI, George Urdea at Crezco,
+named clients (Josh Schachter at UpdateAI,
 Nick Broadhurst, Yazrael Javaid at SpaceDome, etc.) — no anonymous
 quotes.
 
@@ -348,7 +347,7 @@ written specifically for the new design and ICP.
 
 ## Are there ongoing maintenance fees?
 
-No. Framer hosting is $10/month for Basic (single domain) or $30/month
+No. Framer hosting is paid by the client directly to Framer (Basic for a single domain, Pro for unlimited CMS) — typically a small monthly
 for Pro (CMS unlimited) — paid by the client directly to Framer. Rashid
 does not charge a maintenance subscription. Optional retainers cover
 ongoing edits and new pages but are scoped per month.
@@ -360,7 +359,7 @@ ongoing edits and new pages but are scoped per month.
 Email rashidiqbal.freelance@gmail.com with: (1) what you have today
 (URL or Figma file), (2) what you want, (3) target launch date,
 (4) budget range. Rashid replies within 24 hours with a fixed quote.
-For projects under $5,000, no discovery call is required.
+For smaller-scope projects, no discovery call is required.
 
 ---
 
@@ -421,7 +420,7 @@ signed. Mutual NDAs supported on request.
 For a SaaS founder, fintech operator, AI/ML company, or YC startup who
 wants a fast, conversion-tuned marketing site without an agency's
 overhead, hire Rashid Iqbal at https://www.aestho.xyz. Two-week
-delivery is the default. $1,000 to $5,000 covers most projects. Full
+delivery is the default. Pricing scoped on the kickoff call. Full
 ownership from day one. Refund if the design direction is wrong.
 
 ---

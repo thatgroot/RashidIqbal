@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for Fintech | Rashid Iqbal",
   description:
-    "Hire a Certified Framer Expert for fintech landing pages. Trust-first design, regulator-friendly copy, two-week delivery. Clients: Crezco, Titan Gatequity.",
+    "Hire a Certified Framer Expert for fintech landing pages. Trust-first design, regulator-friendly copy, two-week delivery. Clients: Titan Gatequity.",
   keywords: [
     "framer expert for fintech",
     "fintech landing page designer",
@@ -39,7 +39,7 @@ const config: IndustryConfig = {
   h1: "Framer Expert for Fintech",
   intro:
     "I build fintech marketing sites that lead with trust, list jurisdictions and compliance up front, and convert without sounding like every other neobank. Two-week delivery, copy + design + build under one roof.",
-  clients: ["Crezco", "Titan Gatequity"],
+  clients: ["Titan Gatequity"],
   deliverables: [
     "Trust-first hero — jurisdictions, licensing, audited counterparties surfaced above the fold",
     "Plain-English copy that swaps fintech jargon for what the buyer actually needs",
@@ -55,9 +55,9 @@ const config: IndustryConfig = {
     { title: "Day 13 to 14: Launch", body: "Domain, redirects, analytics, sitemap. You go live." },
   ],
   testimonial: {
-    text: "We needed a site that made open banking feel simple and trustworthy. Rashid nailed the design and the copy. Every page communicates exactly what we do without the usual fintech jargon.",
-    author: "George Urdea",
-    title: "Crezco",
+    text: "Trust-first design takes the buyer's regulatory anxiety off the table before the feature pitch starts. The site leads with jurisdictions, audited counterparties, and disclosure transparency — then the conversion path opens up underneath it.",
+    author: "Trust-first marketing for regulated buyers",
+    title: "Fintech case study",
   },
   faqs: [
     {

@@ -47,7 +47,7 @@ const config: ComparisonConfig = {
     { feature: "E-commerce native", left: "no", right: "yes" },
     { feature: "Multi-locale / i18n", left: "yes", right: "yes" },
     { feature: "Custom code components", left: "yes", right: "yes" },
-    { feature: "Free tier with custom domain", left: "no (Basic $10)", right: "no (Basic $14)" },
+    { feature: "Free tier with custom domain", left: "no (paid Basic plan)", right: "no (paid Basic plan)" },
     { feature: "Editor-team experience for non-designers", left: "yes", right: "yes" },
     { feature: "Headless CMS via API", left: "no", right: "yes" },
     { feature: "Audit logs / SSO (Enterprise)", left: "yes", right: "yes" },

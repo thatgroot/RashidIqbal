@@ -31,21 +31,17 @@ const serviceJsonLd = {
   areaServed: { "@type": "Place", name: "Worldwide (remote)" },
   url: OFFER_URL,
   description:
-    "Free 60-second Loom audit of any landing page. Or book the rebuild: 1-page in 3 days from $1,000, 4-page site in 5 days from $1,500.",
+    "Free 60-second Loom audit of any landing page. Or book the rebuild: 1-page in 3 days, 4-page site in 5 days. Quote returned same day.",
   offers: [
     {
       "@type": "Offer",
       name: "Landing page (Figma to Framer, 3 days)",
-      price: "1000",
-      priceCurrency: "USD",
       availability: "https://schema.org/LimitedAvailability",
       url: OFFER_URL,
     },
     {
       "@type": "Offer",
       name: "4-page marketing site (5 days)",
-      price: "1500",
-      priceCurrency: "USD",
       availability: "https://schema.org/LimitedAvailability",
       url: OFFER_URL,
     },

@@ -30,7 +30,7 @@ const DEFAULT_FAQS: FAQ[] = [
   },
   {
     question: "How much does a landing page cost?",
-    answer: "A 3-4 page landing page with Figma design, UX copy, and Framer build runs $1,000 to $1,600. Larger multi-page websites with CMS land between $2,000 and $5,000."
+    answer: "Pricing is fixed per scope and quoted on the kickoff call. Single landing pages and multi-page marketing sites both ship inside two weeks. The quote is returned same day."
   }
 ];
 

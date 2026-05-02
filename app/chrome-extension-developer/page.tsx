@@ -101,7 +101,7 @@ const FAQS = [
   },
   {
     q: "How much does a Chrome extension cost?",
-    a: "Simple extensions with a popup and one content script start at $1,500. SaaS-integrated extensions with auth and webhooks run $3,000 to $6,000. Enterprise builds are quoted after spec.",
+    a: "Simple extensions with a popup and one content script ship in two weeks. SaaS-integrated extensions with auth and webhooks ship in three to four weeks. Enterprise builds are quoted after spec. Pricing is fixed per scope and quoted on the kickoff call.",
   },
   {
     q: "Do you support Firefox and Edge too?",
@@ -192,10 +192,11 @@ export default function ChromeExtensionDeveloperPage() {
           <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
             Rashid Iqbal is a freelance Chrome extension developer building Manifest V3
             extensions in React and TypeScript. Typical projects ship from spec to Web
-            Store submission in two to four weeks. Pricing starts at $1,500 for a popup
-            extension with one content script and ranges $3,000 to $6,000 for SaaS-
-            integrated extensions with OAuth and webhooks. Cross-browser builds for Edge
-            and Firefox available on request.
+            Store submission in two to four weeks. Single-popup extensions with one
+            content script ship in two weeks; SaaS-integrated extensions with OAuth and
+            webhooks ship in three to four weeks. Cross-browser builds for Edge and
+            Firefox available on request. Pricing is fixed per scope and quoted on the
+            kickoff call.
           </p>
         </aside>
 

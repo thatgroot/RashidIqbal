@@ -16,7 +16,7 @@ const DISMISS_DAYS = 7; // expire dismiss after a week so returning visitors see
  *
  * Dismissal stores a timestamp instead of a boolean — the banner
  * reappears 7 days later. Previous behaviour was permanent dismiss,
- * so a first-time visitor who closed it never saw the $1,000 hook
+ * so a first-time visitor who closed it never saw the offer hook
  * again on a return visit.
  */
 export function OfferBanner() {
@@ -82,10 +82,10 @@ export function OfferBanner() {
             >
               <Sparkles className="w-4 h-4 shrink-0 hidden sm:inline" aria-hidden="true" />
               <span>
-                <span className="font-bold">Landing page in 3 days for $1,000</span>
+                <span className="font-bold">Landing page in 3 days · free 60-sec audit</span>
                 <span className="hidden sm:inline">
                   {" "}
-                  · 4-page site for $1,500 · only 2 slots left this month
+                  · 4-page site in 5 days · only 2 slots left this month
                 </span>
               </span>
               <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />

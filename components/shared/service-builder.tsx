@@ -103,10 +103,10 @@ const STACK_OPTIONS: { value: string; label: string; kind: "design" | "build" }[
 ];
 
 const BUDGET_RANGES = [
-  "$500 - $1,000",
-  "$1,000 - $2,000",
-  "$2,000 - $5,000",
-  "$5,000+",
+  "Single landing page",
+  "Multi-page marketing site",
+  "Site + CMS + blog",
+  "Larger / custom scope",
   "Not sure yet",
 ];
 
@@ -188,8 +188,8 @@ function buildComposeHref(form: ServiceBuilderFormData, servicesLabel: string, s
 export function ServiceBuilder() {
   const [step, setStep] = useState(1);
   // Sensible defaults for the most common inquiry shape (Figma Design + CRO
-  // Audit done in Figma, ~$2–5k, within a month). Visitors land on step 1
-  // with both Figma Design and CRO Audit already selected, so they can just
+  // audit, multi-page scope, within a month). Visitors land on step 1 with
+  // both Figma Design and CRO Audit already selected, so they can just
   // click through if that's what they want, or uncheck/swap as needed.
   const [formData, setFormData] = useState<ServiceBuilderFormData>({
     name: "",
@@ -197,7 +197,7 @@ export function ServiceBuilder() {
     website: "",
     location: "",
     pageCount: "",
-    budget: "$2,000 - $5,000",
+    budget: "Multi-page marketing site",
     timeline: "This month",
     description: "",
     selectedServices: ["figma-design", "ux-audit"],
