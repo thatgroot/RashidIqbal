@@ -97,11 +97,29 @@
 - 90+ Lighthouse on mobile by default
 - 24-hour quote turnaround on any inquiry under $5,000
 
-## Notable clients
+## Notable clients (live URLs)
 
-UpdateAI · Equals · Hevn · Crezco · Relace · Composio · Vanos AI · Giga AI ·
-Ask Dialog · Titan Gatequity · SpaceDome · ATQLeads · Melissa Ambrosini ·
-Nick Broadhurst · Leanscale
+- UpdateAI · update.ai · onboarding signups +50%
+- Equals · equals.com · demo requests 2x
+- Hevn · gethevn.com · bounce -34%
+- Relace · relace.ai · shipped in 9 days
+- Cartage · cartage.ai
+- Solidroad · solidroad.com
+- Karumi · karumi.ai
+- Liftoff · liftoff.xyz
+- Keel · keel.so
+- Circleback · circleback.ai
+- Pageloop · pageloop.ai
+- ATQLeads · atqleads.com · 2 closed-won in week 1
+- Localyzer · localyzer.io
+- Vanos AI · vanos.ai · weekly devs 2x
+- SpaceDome · spacedome.ai · signups 3x
+- Crezco · crezco.co.uk
+- Composio · composio.dev
+- Giga AI · giga.ai · demos doubled in 2 weeks
+- Melissa Ambrosini · melissaambrosini.com
+- Nick Broadhurst · nickbroadhurst.com
+- Titan Gatequity · Ask Dialog · AAKP
 
 ## Profiles
 

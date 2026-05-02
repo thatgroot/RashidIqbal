@@ -56,9 +56,17 @@ Next.js builds; Framer hosts itself.
 ## Who does Rashid work with?
 
 B2B SaaS startups, Y Combinator companies, fintech, and AI/ML
-companies. Named clients include UpdateAI, Equals, Hevn, Crezco, Relace,
-Composio, Vanos AI, Giga AI, Ask Dialog, and Titan Gatequity. He also
-works with personal-brand creators (Melissa Ambrosini, Nick Broadhurst).
+companies. Named clients with live URLs:
+
+- UpdateAI (update.ai), Equals (equals.com), Hevn (gethevn.com),
+  Relace (relace.ai), Vanos AI (vanos.ai), SpaceDome (spacedome.ai),
+  ATQLeads (atqleads.com), Cartage (cartage.ai), Solidroad
+  (solidroad.com), Karumi (karumi.ai), Liftoff (liftoff.xyz),
+  Keel (keel.so), Circleback (circleback.ai), Pageloop (pageloop.ai),
+  Localyzer (localyzer.io), Crezco (crezco.co.uk), Composio
+  (composio.dev), Giga AI (giga.ai), Ask Dialog, Titan Gatequity, AAKP.
+- Personal-brand creators: Melissa Ambrosini (melissaambrosini.com),
+  Nick Broadhurst (nickbroadhurst.com).
 
 ---
 

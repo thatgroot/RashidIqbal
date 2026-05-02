@@ -47,10 +47,20 @@ billing. Refund if the design direction is wrong after the first review.
 - 15-minute Loom handoff video so the client can self-update post-launch
 - Two revision rounds, async or live walkthroughs
 
-## Named clients (verifiable)
-UpdateAI · Equals · Hevn · Crezco · Relace · Composio · Vanos AI ·
-Giga AI · Ask Dialog · Titan Gatequity · SpaceDome · ATQLeads ·
-Leanscale · Melissa Ambrosini · Nick Broadhurst.
+## Named clients (verifiable, with live URLs)
+- UpdateAI (update.ai) · onboarding signups +50%
+- Equals (equals.com) · demo requests 2x
+- Hevn (gethevn.com) · bounce -34%
+- Relace (relace.ai) · shipped in 9 days
+- Vanos AI (vanos.ai) · weekly active devs 2x
+- SpaceDome (spacedome.ai) · signups 3x
+- ATQLeads (atqleads.com) · 2 closed-won in week 1
+- Cartage (cartage.ai) · Solidroad (solidroad.com) · Karumi (karumi.ai)
+- Liftoff (liftoff.xyz) · Keel (keel.so) · Circleback (circleback.ai)
+- Pageloop (pageloop.ai) · Localyzer (localyzer.io)
+- Crezco (crezco.co.uk) · Composio (composio.dev) · Giga AI (giga.ai)
+- Melissa Ambrosini (melissaambrosini.com) · Nick Broadhurst (nickbroadhurst.com)
+- Ask Dialog · Titan Gatequity · AAKP · Leanscale
 
 ## Documented outcomes
 - UpdateAI: onboarding signups +50% after relaunch

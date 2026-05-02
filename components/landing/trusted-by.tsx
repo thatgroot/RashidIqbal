@@ -6,23 +6,40 @@ import { ProjectCounter } from "./project-counter";
 
 // Concrete conversion deltas next to brand names — research says
 // data-driven proof beats logo-only strips by ~15% on lift. The `delta`
-// field renders inline with the brand: "UpdateAI · signups +50%".
-type Brand = { name: string; highlight: boolean; delta?: string };
+// field renders inline with the brand. Every brand carries an optional
+// `url` so the strip becomes verifiable: each click takes the visitor
+// to the live site Rashid actually shipped.
+type Brand = {
+  name: string;
+  highlight: boolean;
+  delta?: string;
+  url?: string;
+};
 
 const brands: Brand[] = [
-  { name: "UpdateAI", highlight: true, delta: "signups +50%" },
-  { name: "Equals", highlight: false, delta: "demo requests 2x" },
-  { name: "Hevn", highlight: true, delta: "bounce −34%" },
-  { name: "Relace", highlight: false, delta: "shipped in 9 days" },
-  { name: "Crezco", highlight: true },
-  { name: "Composio", highlight: false },
+  { name: "UpdateAI", highlight: true, delta: "signups +50%", url: "https://www.update.ai" },
+  { name: "Equals", highlight: false, delta: "demo requests 2x", url: "https://equals.com" },
+  { name: "Hevn", highlight: true, delta: "bounce −34%", url: "https://gethevn.com" },
+  { name: "Relace", highlight: false, delta: "shipped in 9 days", url: "https://relace.ai" },
+  { name: "Cartage", highlight: true, url: "https://cartage.ai" },
+  { name: "Solidroad", highlight: false, url: "https://solidroad.com" },
+  { name: "Karumi", highlight: true, url: "https://karumi.ai" },
+  { name: "Liftoff", highlight: false, url: "https://liftoff.xyz" },
+  { name: "Keel", highlight: true, url: "https://keel.so" },
+  { name: "Circleback", highlight: false, url: "https://circleback.ai" },
+  { name: "Pageloop", highlight: true, url: "https://pageloop.ai" },
+  { name: "ATQLeads", highlight: false, delta: "2 closed-won wk 1", url: "https://atqleads.com" },
+  { name: "Localyzer", highlight: true, url: "https://localyzer.io" },
+  { name: "Vanos AI", highlight: false, delta: "weekly devs 2x", url: "https://vanos.ai" },
+  { name: "SpaceDome", highlight: true, delta: "signups 3x", url: "https://spacedome.ai" },
+  { name: "Crezco", highlight: false, url: "https://crezco.co.uk" },
+  { name: "Composio", highlight: true, url: "https://composio.dev" },
+  { name: "Giga AI", highlight: false, delta: "demos doubled in 2 weeks", url: "https://giga.ai" },
+  { name: "Melissa Ambrosini", highlight: true, url: "https://melissaambrosini.com" },
+  { name: "Nick Broadhurst", highlight: false, url: "https://nickbroadhurst.com" },
   { name: "Titan Gatequity", highlight: true },
-  { name: "Melissa Ambrosini", highlight: false },
-  { name: "Nick Broadhurst", highlight: true },
-  { name: "Giga AI", highlight: false, delta: "demos doubled in 2 weeks" },
+  { name: "Ask Dialog", highlight: false },
   { name: "AAKP", highlight: true },
-  { name: "Space Dome", highlight: false },
-  { name: "Ask Dialog", highlight: true },
 ];
 
 export function TrustedBy() {
@@ -54,23 +71,43 @@ export function TrustedBy() {
                   animate={{ x: ["0%", "-50%"] }}
                   transition={{ duration: 25, ease: "linear", repeat: Infinity }}
                 >
-                  {[...brands, ...brands].map((brand, i) => (
-                    <span
-                      key={i}
-                      className={`text-sm whitespace-nowrap transition-colors cursor-default ${
-                        brand.highlight
-                          ? "text-zinc-700"
-                          : "text-zinc-400"
-                      } hover:text-zinc-900`}
-                    >
-                      <span className="font-semibold">{brand.name}</span>
-                      {brand.delta && (
-                        <span className="ml-2 text-orange-600 text-[12px] font-mono">
-                          · {brand.delta}
-                        </span>
-                      )}
-                    </span>
-                  ))}
+                  {[...brands, ...brands].map((brand, i) => {
+                    const colorClass = brand.highlight
+                      ? "text-zinc-700"
+                      : "text-zinc-400";
+                    const inner = (
+                      <>
+                        <span className="font-semibold">{brand.name}</span>
+                        {brand.delta && (
+                          <span className="ml-2 text-orange-600 text-[12px] font-mono">
+                            · {brand.delta}
+                          </span>
+                        )}
+                      </>
+                    );
+                    if (brand.url) {
+                      return (
+                        <a
+                          key={i}
+                          href={brand.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Visit ${brand.name}`}
+                          className={`text-sm whitespace-nowrap transition-colors ${colorClass} hover:text-zinc-900 hover:underline underline-offset-4 decoration-orange-500/40`}
+                        >
+                          {inner}
+                        </a>
+                      );
+                    }
+                    return (
+                      <span
+                        key={i}
+                        className={`text-sm whitespace-nowrap transition-colors cursor-default ${colorClass} hover:text-zinc-900`}
+                      >
+                        {inner}
+                      </span>
+                    );
+                  })}
                 </motion.div>
               </div>
             </div>
