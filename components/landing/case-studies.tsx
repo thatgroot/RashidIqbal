@@ -158,7 +158,7 @@ export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
                 aria-label={`Visit ${b.name}`}
                 className="group inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-900 transition-colors"
               >
-                <span className="w-5 h-5 rounded-sm bg-zinc-50 border border-zinc-100 flex items-center justify-center overflow-hidden shrink-0 group-hover:border-zinc-200 transition-colors">
+                <span className="w-5 h-5 bg-zinc-50 border border-zinc-100 flex items-center justify-center overflow-hidden shrink-0 group-hover:border-zinc-200 transition-colors">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={faviconUrl(b.domain, 64)}
@@ -222,7 +222,7 @@ function ProjectCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[440px] rounded-2xl overflow-hidden border border-zinc-200 bg-white snap-start hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 transition-all"
+      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[440px] overflow-hidden border border-zinc-200 bg-white snap-start hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 transition-all"
     >
       <div className="relative aspect-[4/3] bg-zinc-50 overflow-hidden">
         <Image

@@ -154,14 +154,14 @@ function TestimonialCard({
       }}
       whileHover={{ rotate: 0, scale: 1.015 }}
       style={{ rotate: `${rotate}deg` }}
-      className="group relative mb-5 md:mb-7 break-inside-avoid bg-white text-zinc-900 rounded-lg p-5 md:p-6 border border-zinc-100 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.18)] transition-shadow duration-300 hover:shadow-[0_14px_36px_-12px_rgba(0,0,0,0.22)]"
+      className="group relative mb-5 md:mb-7 break-inside-avoid bg-white text-zinc-900 p-5 md:p-6 border border-zinc-100 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.18)] transition-shadow duration-300 hover:shadow-[0_14px_36px_-12px_rgba(0,0,0,0.22)]"
     >
       {/* Avatar polaroid — small portrait pinned to the top-left corner.
           Rotated counter-direction so the photo doesn't tilt the same
           way as the card. */}
       <div className="flex items-start gap-4 mb-5">
         <div
-          className="relative w-14 h-14 md:w-16 md:h-16 shrink-0 rounded-md overflow-hidden ring-1 ring-zinc-200 shadow-sm"
+          className="relative w-14 h-14 md:w-16 md:h-16 shrink-0 overflow-hidden ring-1 ring-zinc-200 shadow-sm"
           style={{ rotate: `${-rotate * 0.6}deg`, backgroundColor: accentHex }}
         >
           {hasPhoto ? (

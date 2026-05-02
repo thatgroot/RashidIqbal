@@ -82,7 +82,7 @@ export function ServiceList() {
           {SERVICES.map((s) => (
             <li
               key={s.n}
-              className="grid grid-cols-12 gap-4 md:gap-6 py-5 md:py-7 group hover:bg-zinc-50/60 transition-colors -mx-2 px-2 rounded-lg"
+              className="grid grid-cols-12 gap-4 md:gap-6 py-5 md:py-7 group hover:bg-zinc-50/60 transition-colors"
             >
               <div className="col-span-2 md:col-span-1 text-xs md:text-sm font-mono text-zinc-400">
                 ({s.n})
