@@ -36,55 +36,57 @@ type FeaturedProject = {
   outcome?: string;
 };
 
+// Subtext on each card mirrors the live product's actual positioning,
+// fetched from each domain's own hero copy. Update if a client pivots.
 const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     client: "Vanos AI",
     domain: "vanos.ai",
     href: "/work/vanos-ai",
     screenshot: "/work-screenshots/vanos-ai.png",
-    outcome: "Weekly active devs 2×",
+    outcome: "Voice agents for enterprise workflows",
   },
   {
     client: "Circleback",
     domain: "circleback.ai",
     href: "https://circleback.ai",
     screenshot: "/work-screenshots/circleback.png",
-    outcome: "AI meeting intelligence",
+    outcome: "Unbelievably good meeting notes",
   },
   {
     client: "Karumi",
     domain: "karumi.ai",
     href: "https://karumi.ai",
     screenshot: "/work-screenshots/karumi.png",
-    outcome: "Code-AI / dev tooling",
+    outcome: "Instant personalized product demos",
   },
   {
     client: "Keel",
     domain: "keel.so",
     href: "https://keel.so",
     screenshot: "/work-screenshots/keel.png",
-    outcome: "Backend platform for builders",
+    outcome: "Operations platform for fast-moving teams",
   },
   {
     client: "Liftoff",
-    domain: "liftoff.xyz",
-    href: "https://liftoff.xyz",
+    domain: "onliftoff.com",
+    href: "https://www.onliftoff.com",
     screenshot: "/work-screenshots/liftoff.png",
-    outcome: "Launch-grade marketing site",
+    outcome: "Find people, through people you trust",
   },
   {
-    client: "Page Loop",
+    client: "Pageloop",
     domain: "pageloop.ai",
     href: "https://pageloop.ai",
     screenshot: "/work-screenshots/pageloop.png",
-    outcome: "AI for landing pages",
+    outcome: "AI agent for help-center operations",
   },
   {
     client: "Solidroad",
     domain: "solidroad.com",
     href: "https://solidroad.com",
     screenshot: "/work-screenshots/solidroad.png",
-    outcome: "Sales coaching SaaS",
+    outcome: "AI optimization for human and AI agents",
   },
 ];
 
@@ -98,7 +100,7 @@ const TRUST_BRANDS = [
   { name: "Cartage", domain: "cartage.ai" },
   { name: "Solidroad", domain: "solidroad.com" },
   { name: "Karumi", domain: "karumi.ai" },
-  { name: "Liftoff", domain: "liftoff.xyz" },
+  { name: "Liftoff", domain: "onliftoff.com" },
   { name: "Keel", domain: "keel.so" },
   { name: "Circleback", domain: "circleback.ai" },
   { name: "Pageloop", domain: "pageloop.ai" },
