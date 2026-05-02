@@ -129,7 +129,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "The design feels premium and the communication was excellent throughout. Rashid delivered a polished site in under two weeks, scored 90+ on Lighthouse, and the whole experience was smooth from start to finish.",
+      "The design feels premium and the communication was excellent throughout. Rashid delivered a polished site in under two weeks, and the whole experience was smooth from start to finish.",
     author: "Nick Broadhurst",
     title: "Musician & Creator",
     avatarUrl: "/testimonials/nick-broadhurst.webp",

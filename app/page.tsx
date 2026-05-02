@@ -2,9 +2,8 @@ import { Metadata } from "next";
 import { Hero } from "@/components/landing/hero";
 import { Navbar } from "@/components/layout/navbar";
 import { ServicesGrid } from "@/components/landing/services-grid";
-import { TrustedBy } from "@/components/landing/trusted-by";
 import { CaseStudies } from "@/components/landing/case-studies";
-import { AboutSection } from "@/components/landing/about-section";
+import { ServiceList } from "@/components/landing/service-list";
 import { ValueProp } from "@/components/landing/value-prop";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Pricing } from "@/components/landing/pricing";
@@ -100,12 +99,21 @@ export default async function Page() {
   // doesn't carry separate problem/solution columns yet — only summary
   // + body — so the card renders summary as the "result" line and the
   // body deep-dive lives at /work/<slug>.
+  // Slug → screenshot path. Mirrors files in public/work-screenshots/.
+  const screenshotForSlug: Record<string, string> = {
+    updateai: "/work-screenshots/updateai.png",
+    "vanos-ai": "/work-screenshots/vanos-ai.png",
+    "spacedome-ai": "/work-screenshots/space-dome.png",
+    atqleads: "/work-screenshots/funnel-labs.png",
+  };
+
   const caseItems: CaseStudyCard[] = cmsCases.map((c) => ({
     client: c.clientName,
     result: c.summary || c.title,
     ...(c.metrics?.[0] ? { detail: `${c.metrics[0].value} · ${c.metrics[0].label}` } : {}),
     link: c.liveUrl || `/work/${c.slug}`,
     tags: c.tags ?? [],
+    ...(c.coverImage ? { screenshot: c.coverImage } : screenshotForSlug[c.slug] ? { screenshot: screenshotForSlug[c.slug]! } : {}),
   }));
 
   return _renderPage({ testimonialItems, faqItems, caseItems });
@@ -136,16 +144,22 @@ function _renderPage({
         <Navbar variant="homepage" />
         {/* HOOK */}
         <Hero />
-        {/* VALUE PROP */}
-        <ValueProp />
-        {/* CREDIBILITY: trust strip + proof via case studies + about */}
-        <TrustedBy />
-        <SectionSpacer />
+        {/* PROOF — case studies showcase + trust strip moved directly
+            below the hero so the visitor sees real outcomes before they
+            scroll into anything else. */}
         <CaseStudies {...(caseItems.length > 0 ? { items: caseItems } : {})} />
         <SectionSpacer />
+        {/* VALUE PROP — three-bullet pitch ("Why founders pick this over
+            an agency"). Kept after proof so the framing argues from
+            evidence, not assertion. */}
+        <ValueProp />
+        <SectionSpacer />
+        {/* SERVICES — dark My Services grid. */}
         <ServicesGrid />
         <SectionSpacer />
-        <AboutSection />
+        {/* SERVICE LIST — typographic numbered services + client outcomes
+            (replaces the old credibility / about block). */}
+        <ServiceList />
         <SectionSpacer />
         <Testimonials
           {...(testimonialItems.length > 0 ? { items: testimonialItems } : {})}

@@ -113,7 +113,6 @@ const CLIENTS = [
   "Pageloop",
   "Localyzer",
   "Crezco",
-  "Giga AI",
   "Leanscale",
 ] as const;
 

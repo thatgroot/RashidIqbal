@@ -30,7 +30,6 @@ const brands: Brand[] = [
   { name: "Vanos AI", highlight: true, delta: "weekly devs 2x", url: "https://vanos.ai" },
   { name: "SpaceDome", highlight: false, delta: "signups 3x", url: "https://spacedome.ai" },
   { name: "Crezco", highlight: true, url: "https://crezco.co.uk" },
-  { name: "Giga AI", highlight: false, delta: "demos doubled in 2 weeks", url: "https://giga.ai" },
   { name: "Melissa Ambrosini", highlight: true, url: "https://melissaambrosini.com" },
   { name: "Nick Broadhurst", highlight: false, url: "https://nickbroadhurst.com" },
   { name: "Titan Gatequity", highlight: true },

@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for AI Startups | Rashid Iqbal",
   description:
-    "Hire a Framer expert who designs and writes for AI/ML buyers. Two-week delivery. Clients: UpdateAI, Vanos AI, Karumi, Circleback, Pageloop, Giga AI.",
+    "Hire a Framer expert who designs and writes for AI/ML buyers. Two-week delivery. Clients: UpdateAI, Vanos AI, Karumi, Circleback, Pageloop.",
   keywords: [
     "framer expert for ai startups",
     "ai startup landing page designer",
@@ -39,7 +39,7 @@ const config: IndustryConfig = {
   h1: "Framer Expert for AI Startups",
   intro:
     "I build sites for AI/ML companies that read as serious to engineers and credible to budget holders. Pricing copy that handles tokens, eval results that actually look trustworthy, and demos that load in <1s. Two-week delivery, copy + design + build.",
-  clients: ["UpdateAI", "Vanos AI", "Karumi", "Circleback", "Pageloop", "Giga AI", "Ask Dialog"],
+  clients: ["UpdateAI", "Vanos AI", "Karumi", "Circleback", "Pageloop", "Ask Dialog"],
   deliverables: [
     "Hero positioning: model, capability, eval signal — not 'AI-powered' platitudes",
     "Pricing copy that handles per-token, seat-based, and usage-based without confusing buyers",
@@ -62,7 +62,7 @@ const config: IndustryConfig = {
   faqs: [
     {
       q: "Do you understand the AI buyer?",
-      a: "I've built for autonomous orchestration tooling (Vanos AI), workflow AI for customer-success teams (UpdateAI), AI meeting intelligence (Circleback), code-AI / dev tooling (Karumi, Pageloop), and generative consumer AI (Giga AI). The buyer voice is different in each segment. We pick one on the kickoff call and tune copy specifically.",
+      a: "I've built for autonomous orchestration tooling (Vanos AI), workflow AI for customer-success teams (UpdateAI), AI meeting intelligence (Circleback), and code-AI / dev tooling (Karumi, Pageloop). The buyer voice is different in each segment. We pick one on the kickoff call and tune copy specifically.",
     },
     {
       q: "Can you handle live demos and interactive components?",

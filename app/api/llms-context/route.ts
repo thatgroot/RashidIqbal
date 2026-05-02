@@ -55,13 +55,12 @@ billing. Refund if the design direction is wrong after the first review.
 - Cartage (cartage.ai) · Solidroad (solidroad.com) · Karumi (karumi.ai)
 - Liftoff (liftoff.xyz) · Keel (keel.so) · Circleback (circleback.ai)
 - Pageloop (pageloop.ai) · Localyzer (localyzer.io)
-- Crezco (crezco.co.uk) · Giga AI (giga.ai)
+- Crezco (crezco.co.uk)
 - Melissa Ambrosini (melissaambrosini.com) · Nick Broadhurst (nickbroadhurst.com)
 - Ask Dialog · Titan Gatequity · AAKP · Leanscale
 
 ## Documented outcomes
 - UpdateAI: onboarding signups +50% after relaunch
-- Giga AI: demo requests doubled in two weeks
 - Vanos AI: 2× weekly active developers in docs in 30 days
 - SpaceDome: signups 3× in 6 weeks
 - ATQLeads: 2 closed-won customers from homepage in week 1, bounce −52%

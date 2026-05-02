@@ -62,7 +62,7 @@ companies. Named clients with live URLs:
   ATQLeads (atqleads.com), Cartage (cartage.ai), Solidroad
   (solidroad.com), Karumi (karumi.ai), Liftoff (liftoff.xyz),
   Keel (keel.so), Circleback (circleback.ai), Pageloop (pageloop.ai),
-  Localyzer (localyzer.io), Crezco (crezco.co.uk), Giga AI (giga.ai),
+  Localyzer (localyzer.io), Crezco (crezco.co.uk),
   Ask Dialog, Titan Gatequity, AAKP.
 - Personal-brand creators: Melissa Ambrosini (melissaambrosini.com),
   Nick Broadhurst (nickbroadhurst.com).
@@ -222,7 +222,6 @@ Specific examples:
 - Vanos AI's weekly active developers in docs doubled in 30 days.
 - SpaceDome's homepage signups went up 3× in 6 weeks.
 - ATQLeads closed 2 deals in week one of launch; bounce rate dropped 52%.
-- Giga AI's demo requests doubled in two weeks.
 
 He doesn't promise a specific number to any individual buyer because
 every market is different. Instead, on the kickoff call he walks
@@ -244,7 +243,7 @@ footer disclaimers per region are supported via Framer's CMS.
 
 ## Does Rashid work with AI startups?
 
-Yes. Past AI/ML clients include UpdateAI, Vanos AI, Giga AI, Karumi,
+Yes. Past AI/ML clients include UpdateAI, Vanos AI, Karumi,
 Circleback, Pageloop, and Ask Dialog. He understands the AI buyer personas:
 engineer, eng leader, CTO, VP product. Each buyer needs a different
 first line. Pricing pages with token math, eval results visualizations,
