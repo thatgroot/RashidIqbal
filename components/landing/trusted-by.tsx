@@ -31,7 +31,6 @@ const brands: Brand[] = [
   { name: "SpaceDome", highlight: false, delta: "signups 3x", url: "https://spacedome.ai" },
   { name: "Melissa Ambrosini", highlight: true, url: "https://melissaambrosini.com" },
   { name: "Nick Broadhurst", highlight: false, url: "https://nickbroadhurst.com" },
-  { name: "Titan Gatequity", highlight: true },
   { name: "Ask Dialog", highlight: false },
   { name: "AAKP", highlight: true },
 ];

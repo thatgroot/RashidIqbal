@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { ArrowRight, ArrowUpRight, Check, Clock, Loader2 } from "lucide-react";
+import { Check, Clock } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/constants";
+
+// Cal.com handle — last segment of cal.com/<handle>. Sourced from
+// SOCIAL_LINKS.calcom so the embed and the external links never drift.
+const CAL_HANDLE = SOCIAL_LINKS.calcom.replace(/^https?:\/\/cal\.com\//, "");
 
 export function CTASection() {
   return (
@@ -41,14 +46,10 @@ export function CTASection() {
                 </div>
 
                 <a
-                  href="#booking-calendar"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document
-                      .querySelector("#booking-calendar")
-                      ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
-                  className="px-8 py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 w-full shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+                  href={SOCIAL_LINKS.calcom}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
                 >
                   Book my strategy call
                 </a>
@@ -58,16 +59,38 @@ export function CTASection() {
         </div>
       </section>
 
-      {/* Inline booking — single primary path. Submits to /api/lead so the
-          drip + dashboard inbox both pick it up. Secondary "pick a time on
-          Cal.com" link is below for visitors who want to self-schedule. */}
-      <section id="booking-calendar" className="bg-white border-b border-zinc-100 scroll-mt-16">
+      {/* Cal.com inline embed — replaces the previous lead form. The
+          Cal API is initialised once on mount; the iframe owns the rest
+          of the booking flow (slot picker, form, confirmation). */}
+      <section
+        id="booking-calendar"
+        className="bg-white border-b border-zinc-100 scroll-mt-16"
+      >
         <div className="max-w-container border-l border-r border-zinc-100">
           <GridContainer cols={1}>
-            <GridItem className="relative overflow-hidden dotted-bg" padding={false}>
-              <div className="relative z-10 px-6 md:px-12 py-12 md:py-16">
-                <BookingForm />
+            <GridItem className="relative" padding={false}>
+              <div className="px-6 md:px-12 pt-10 md:pt-14 pb-2 max-w-3xl">
+                <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+                  Pick a time
+                </p>
+                <h3 className="text-2xl md:text-4xl font-semibold text-zinc-900 tracking-tight leading-tight mb-3">
+                  Book a 30-minute strategy call.
+                </h3>
+                <p className="text-sm md:text-base text-zinc-500">
+                  Free. No credit card. You&rsquo;ll get a Google Meet link
+                  and a short pre-call form. If self-scheduling is broken,{" "}
+                  <a
+                    href={SOCIAL_LINKS.calcom}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-orange-300 underline-offset-4 hover:text-orange-700 transition-colors"
+                  >
+                    open the page on cal.com
+                  </a>
+                  .
+                </p>
               </div>
+              <CalEmbed />
             </GridItem>
           </GridContainer>
         </div>
@@ -76,144 +99,35 @@ export function CTASection() {
   );
 }
 
-function BookingForm() {
-  const [email, setEmail] = useState("");
-  const [url, setUrl] = useState("");
-  const [problem, setProblem] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [error, setError] = useState<string | null>(null);
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!email.trim() || !email.includes("@")) {
-      setError("Email required.");
-      return;
-    }
-    setStatus("sending");
-    setError(null);
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          source: "homepage-booking",
-          email: email.trim(),
-          website: url.trim() || undefined,
-          description: problem.trim() || "Wants to book a 30-min strategy call.",
-          botcheck: "",
-        }),
+function CalEmbed() {
+  // Configure the embed once on mount. `ui` here picks the light theme
+  // and hides Cal's branding bar so it visually nests inside our section.
+  useEffect(() => {
+    (async () => {
+      const cal = await getCalApi({ namespace: "30min" });
+      cal("ui", {
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#c2410c" },
+          dark: { "cal-brand": "#fb923c" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
       });
-      const body = (await res.json().catch(() => ({}))) as {
-        success?: boolean;
-        error?: string;
-      };
-      if (!res.ok || body.success === false) {
-        setError(body.error || "Could not send. Try again.");
-        setStatus("error");
-        return;
-      }
-      setStatus("sent");
-    } catch {
-      setError("Network error. Try again.");
-      setStatus("error");
-    }
-  }
-
-  if (status === "sent") {
-    return (
-      <div className="max-w-xl mx-auto bg-white border border-zinc-200 p-8 md:p-10 text-center">
-        <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-4">
-          <Check className="w-5 h-5 text-emerald-600" aria-hidden="true" />
-        </div>
-        <h3 className="text-xl md:text-2xl font-semibold text-zinc-900 mb-2 tracking-tight">
-          Got it. I&rsquo;ll reply within 24 hours.
-        </h3>
-        <p className="text-sm text-zinc-500 mb-6">
-          You&rsquo;ll get a calendar slot, a Google Meet link, and a short
-          pre-call form. If it&rsquo;s urgent, you can also self-serve a
-          time on my Cal.com page.
-        </p>
-        <a
-          href={SOCIAL_LINKS.calcom}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-3 border border-zinc-200 text-sm font-bold text-zinc-700 hover:border-orange-300 hover:text-orange-700 transition-colors"
-        >
-          Pick a time now on Cal.com
-          <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-        </a>
-      </div>
-    );
-  }
+    })();
+  }, []);
 
   return (
-    <div className="max-w-xl mx-auto bg-white border border-zinc-200 p-6 md:p-10">
-      <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
-        Book the call
-      </p>
-      <h3 className="text-2xl md:text-3xl font-semibold text-zinc-900 tracking-tight leading-tight mb-3">
-        Tell me about the page that&rsquo;s bleeding leads.
-      </h3>
-      <p className="text-sm text-zinc-500 mb-6">
-        I reply within 24 hours with a calendar slot. Free 30-minute call.
-        No credit card. No commitment.
-      </p>
-
-      <form onSubmit={submit} className="space-y-3">
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@company.com"
-          required
-          autoComplete="email"
-          className="w-full px-3 py-2.5 text-sm border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
-        />
-        <input
-          type="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="https://your-site.com (optional)"
-          className="w-full px-3 py-2.5 text-sm border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
-        />
-        <textarea
-          value={problem}
-          onChange={(e) => setProblem(e.target.value)}
-          placeholder="What's not converting? (one line is fine)"
-          rows={2}
-          className="w-full px-3 py-2.5 text-sm border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 resize-none"
-        />
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
-        >
-          {status === "sending" ? (
-            <>
-              <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
-              Sending…
-            </>
-          ) : (
-            <>
-              Book my strategy call
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </>
-          )}
-        </button>
-        {error && <p className="text-xs text-red-600">{error}</p>}
-      </form>
-
-      <div className="mt-5 pt-5 border-t border-zinc-100">
-        <a
-          href={SOCIAL_LINKS.calcom}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-orange-700 transition-colors"
-        >
-          Or self-serve a slot on Cal.com
-          <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
-        </a>
-      </div>
+    <div className="px-2 md:px-6 pb-8 md:pb-10">
+      <Cal
+        namespace="30min"
+        calLink={CAL_HANDLE}
+        style={{
+          width: "100%",
+          height: "min(720px, 90vh)",
+          overflow: "scroll",
+        }}
+        config={{ layout: "month_view", theme: "light" }}
+      />
     </div>
   );
 }

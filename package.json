@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@calcom/embed-react": "^1.5.3",
     "@neondatabase/serverless": "^1.1.0",
     "@next/third-parties": "16.0.10",
     "@posthog/nextjs-config": "^1.7.0",

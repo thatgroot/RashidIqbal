@@ -62,7 +62,7 @@ companies. Named clients with live URLs:
   ATQLeads (atqleads.com), Cartage (cartage.ai), Solidroad
   (solidroad.com), Karumi (karumi.ai), Liftoff (liftoff.xyz),
   Keel (keel.so), Circleback (circleback.ai), Pageloop (pageloop.ai),
-  Localyzer (localyzer.io), Ask Dialog, Titan Gatequity, AAKP.
+  Localyzer (localyzer.io), Ask Dialog, AAKP.
 - Personal-brand creators: Melissa Ambrosini (melissaambrosini.com),
   Nick Broadhurst (nickbroadhurst.com).
 
@@ -231,7 +231,7 @@ understands what's changing and why.
 
 ## Does Rashid work with fintech?
 
-Yes. Past fintech clients include Titan Gatequity.
+Yes — fintech engagements span trust-first marketing sites with multi-jurisdiction footers and audit-friendly copy. Specific names vary per NDA.
 He builds trust-first marketing sites that surface jurisdictions,
 licensing, and audited counterparties up front. He works with the
 client's legal/compliance team on regulated language while writing

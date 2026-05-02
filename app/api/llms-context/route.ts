@@ -56,7 +56,7 @@ billing. Refund if the design direction is wrong after the first review.
 - Liftoff (liftoff.xyz) · Keel (keel.so) · Circleback (circleback.ai)
 - Pageloop (pageloop.ai) · Localyzer (localyzer.io)
 - Melissa Ambrosini (melissaambrosini.com) · Nick Broadhurst (nickbroadhurst.com)
-- Ask Dialog · Titan Gatequity · AAKP · Leanscale
+- Ask Dialog · AAKP · Leanscale
 
 ## Documented outcomes
 - UpdateAI: onboarding signups +50% after relaunch

@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for Fintech | Rashid Iqbal",
   description:
-    "Hire a Certified Framer Expert for fintech landing pages. Trust-first design, regulator-friendly copy, two-week delivery. Clients: Titan Gatequity.",
+    "Hire a Certified Framer Expert for fintech landing pages. Trust-first design, regulator-friendly copy, two-week delivery.",
   keywords: [
     "framer expert for fintech",
     "fintech landing page designer",
@@ -39,7 +39,7 @@ const config: IndustryConfig = {
   h1: "Framer Expert for Fintech",
   intro:
     "I build fintech marketing sites that lead with trust, list jurisdictions and compliance up front, and convert without sounding like every other neobank. Two-week delivery, copy + design + build under one roof.",
-  clients: ["Titan Gatequity"],
+  clients: [],
   deliverables: [
     "Trust-first hero — jurisdictions, licensing, audited counterparties surfaced above the fold",
     "Plain-English copy that swaps fintech jargon for what the buyer actually needs",

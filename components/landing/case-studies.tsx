@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Calendar } from "lucide-react";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 // Light-theme proof showcase — sits directly under the hero.
 //
@@ -124,13 +124,9 @@ export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
         {/* Top pill */}
         <div className="flex justify-center mb-12 md:mb-16">
           <a
-            href="#booking-calendar"
-            onClick={(e) => {
-              e.preventDefault();
-              document
-                .querySelector("#booking-calendar")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" });
-            }}
+            href={SOCIAL_LINKS.calcom}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 bg-white text-zinc-900 text-sm font-semibold hover:border-orange-300 transition-colors"
           >
             <Calendar className="w-4 h-4 text-orange-500" aria-hidden="true" />
@@ -179,18 +175,55 @@ export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
   );
 }
 
+// Auto-sliding marquee. The track holds two copies of `projects` so the
+// loop is seamless: by the time the first copy translates fully off
+// screen, the second copy is in its position and the animation resets
+// to 0% with no visible jump. Animation pauses on hover so the visitor
+// can read a card.
 function ProjectShowcase({ projects }: { projects: FeaturedProject[] }) {
+  // Duration scales with the number of cards so a longer set still
+  // moves at a comfortable reading pace (~6s per card).
+  const seconds = Math.max(28, projects.length * 6);
   return (
-    <div className="relative -mx-6 md:-mx-8">
+    <div className="relative -mx-6 md:-mx-8 overflow-hidden">
+      {/* Edge fades so cards drift in/out instead of appearing flush. */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-20 bg-gradient-to-r from-white to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-20 bg-gradient-to-l from-white to-transparent z-10" />
+
       <div
-        className="case-studies-scroll flex gap-4 md:gap-5 overflow-x-auto px-6 md:px-8 pb-4 snap-x snap-mandatory"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="case-studies-track flex gap-4 md:gap-5 px-6 md:px-8 pb-4 w-max"
+        style={{
+          animation: `case-studies-marquee ${seconds}s linear infinite`,
+        }}
       >
-        {projects.map((p, i) => (
-          <ProjectCard key={p.client} project={p} index={i} />
+        {[...projects, ...projects].map((p, i) => (
+          <ProjectCard
+            key={`${p.client}-${i}`}
+            project={p}
+            index={i % projects.length}
+          />
         ))}
       </div>
-      <style>{`.case-studies-scroll::-webkit-scrollbar { display: none; }`}</style>
+
+      {/*
+        Marquee CSS — translates the duplicated track exactly half its
+        width (the length of the original list), then loops. Pauses on
+        hover so the cursor can rest on a card.
+      */}
+      <style>{`
+        @keyframes case-studies-marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .case-studies-track:hover {
+          animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .case-studies-track {
+            animation: none !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -207,21 +240,15 @@ function ProjectCard({
     ? { target: "_blank", rel: "noopener noreferrer" as const }
     : {};
 
+  // Index is unused inside the marquee — kept for the API but no
+  // longer drives a per-card stagger (the marquee handles motion).
+  void index;
   return (
-    <motion.a
+    <a
       href={project.href}
       {...linkProps}
       aria-label={`View ${project.client} project`}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: 0.45,
-        delay: Math.min(index * 0.05, 0.3),
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      whileHover={{ y: -4 }}
-      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[440px] overflow-hidden border border-zinc-200 bg-white snap-start hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 transition-all"
+      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[440px] overflow-hidden border border-zinc-200 bg-white hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 transition-all"
     >
       <div className="relative aspect-[4/3] bg-zinc-50 overflow-hidden">
         <Image
@@ -248,6 +275,6 @@ function ProjectCard({
           aria-hidden="true"
         />
       </div>
-    </motion.a>
+    </a>
   );
 }

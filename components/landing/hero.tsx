@@ -8,6 +8,7 @@ import Image from "next/image";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { OfferBanner } from "@/components/shared/offer-banner";
 import { ExpertBadges } from "@/components/landing/expert-badges";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 const projectImages = [
     "/work-screenshots/deals-finders.png",
@@ -27,14 +28,11 @@ export function Hero() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    // Single stable CTA. The previous rotating pill (Book a call /
-    // Email me / Hire me) split intent and made the click target
-    // ambiguous — if the visitor saw "Book a call" but clicked while
-    // "Email me" was on screen, they ended up where they didn't intend.
-    // Now: one verb, one destination, predictable.
+    // Single stable CTA — opens cal.com/rashid.iqbal directly so the
+    // visitor can pick a slot in the same flow they're already in.
     const cta = {
         label: "Book a strategy call",
-        href: "#booking-calendar",
+        href: SOCIAL_LINKS.calcom,
         Icon: Calendar,
     };
     // Hero unblur overlay — mounted on first paint, unmounted once the
@@ -166,16 +164,12 @@ export function Hero() {
                                 <span className="relative w-px h-4 bg-orange-200 z-10"></span>
                                 <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
                                 {/* Stable primary CTA — single verb, single
-                                    destination. Anchors to in-page booking
-                                    section; no offsite redirects. */}
+                                    destination. Opens cal.com/rashid.iqbal
+                                    in a new tab. */}
                                 <motion.a
                                     href={cta.href}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        document
-                                            .querySelector("#booking-calendar")
-                                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                                    }}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label={cta.label}
                                     title={cta.label}
                                     initial={{ scale: 0.9, opacity: 0 }}
