@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for Y Combinator Startups | Rashid Iqbal",
   description:
-    "Hire a Certified Framer Expert for YC startups. Demo-day-ready landing pages in 2 weeks. Clients: Relace, Equals, UpdateAI, Hevn, Crezco.",
+    "Hire a Certified Framer Expert for YC startups. Demo-day-ready landing pages in 2 weeks. Clients: UpdateAI, Vanos AI, SpaceDome, ATQLeads, Crezco.",
   keywords: [
     "framer expert for yc startups",
     "y combinator landing page",
@@ -40,8 +40,8 @@ const config: IndustryConfig = {
   eyebrow: "Certified Framer Expert · Top Rated on Upwork",
   h1: "Framer Expert for Y Combinator startups",
   intro:
-    "Demo day is in two weeks and your landing page is still last batch's. I ship YC-grade marketing sites in 14 days — copy, design, build, launch. Past YC clients include Relace, Equals, UpdateAI, Hevn, and Crezco.",
-  clients: ["Relace", "Equals", "UpdateAI", "Hevn", "Crezco", "Composio"],
+    "Demo day is in two weeks and your landing page is still last batch's. I ship YC-grade marketing sites in 14 days — copy, design, build, launch. Past YC clients include UpdateAI, Vanos AI, SpaceDome, ATQLeads, and Crezco.",
+  clients: ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads", "Crezco", "Karumi", "Keel"],
   deliverables: [
     "Demo-day-ready landing page: hero, features, pricing, social proof, CTA — all crisp",
     "Investor-friendly first scroll: traction, named users, $ARR or growth slope visible above the fold",

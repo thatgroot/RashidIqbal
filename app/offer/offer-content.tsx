@@ -66,7 +66,7 @@ const TIERS: readonly Tier[] = [
   },
 ] as const;
 
-const CLIENT_BRANDS = ["Relace", "Equals", "Hevn", "UpdateAI"] as const;
+const CLIENT_BRANDS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads"] as const;
 
 const PROCESS = [
   {

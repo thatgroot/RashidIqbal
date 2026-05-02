@@ -100,13 +100,20 @@ const PRINCIPLES = [
 ] as const;
 
 const CLIENTS = [
-  "Relace",
-  "Equals",
-  "Hevn",
   "UpdateAI",
-  "Crezco",
   "Vanos AI",
-  "Space Dome",
+  "SpaceDome",
+  "ATQLeads",
+  "Cartage",
+  "Solidroad",
+  "Karumi",
+  "Liftoff",
+  "Keel",
+  "Circleback",
+  "Pageloop",
+  "Localyzer",
+  "Crezco",
+  "Giga AI",
   "Leanscale",
 ] as const;
 

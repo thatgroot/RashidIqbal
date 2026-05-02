@@ -8,7 +8,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for AI Startups | Rashid Iqbal",
   description:
-    "Hire a Framer expert who designs and writes for AI/ML buyers. Two-week delivery. Clients: Relace, UpdateAI, Composio, Giga AI.",
+    "Hire a Framer expert who designs and writes for AI/ML buyers. Two-week delivery. Clients: UpdateAI, Vanos AI, Karumi, Circleback, Pageloop, Giga AI.",
   keywords: [
     "framer expert for ai startups",
     "ai startup landing page designer",
@@ -39,7 +39,7 @@ const config: IndustryConfig = {
   h1: "Framer Expert for AI Startups",
   intro:
     "I build sites for AI/ML companies that read as serious to engineers and credible to budget holders. Pricing copy that handles tokens, eval results that actually look trustworthy, and demos that load in <1s. Two-week delivery, copy + design + build.",
-  clients: ["Relace", "UpdateAI", "Composio", "Giga AI", "Vanos AI", "Ask Dialog"],
+  clients: ["UpdateAI", "Vanos AI", "Karumi", "Circleback", "Pageloop", "Giga AI", "Ask Dialog"],
   deliverables: [
     "Hero positioning: model, capability, eval signal — not 'AI-powered' platitudes",
     "Pricing copy that handles per-token, seat-based, and usage-based without confusing buyers",
@@ -55,14 +55,14 @@ const config: IndustryConfig = {
     { title: "Day 13 to 14: Launch", body: "Domain, redirects, analytics, GA + PostHog wired. Lighthouse 90+ on mobile." },
   ],
   testimonial: {
-    text: "Rashid took our dense technical pitch and turned it into a site developers actually read. Clean product positioning across three model offerings. Shipped faster than any agency we'd quoted.",
-    author: "Preston Zhou",
-    title: "Relace",
+    text: "Vanos AI builds autonomous orchestration tooling for AI engineers. We rebuilt the site for the engineer who already knows the space — clear comparison, eval results, docs equal weight to demo. Weekly active developers in docs doubled in 30 days.",
+    author: "Vanos AI",
+    title: "Case study",
   },
   faqs: [
     {
       q: "Do you understand the AI buyer?",
-      a: "I've built for code-AI tools (Relace), agent infrastructure (Composio), workflow AI (UpdateAI), and generative consumer AI (Giga AI, Vanos AI). The buyer voice is different in each segment. We pick one on the kickoff call and tune copy specifically.",
+      a: "I've built for autonomous orchestration tooling (Vanos AI), workflow AI for customer-success teams (UpdateAI), AI meeting intelligence (Circleback), code-AI / dev tooling (Karumi, Pageloop), and generative consumer AI (Giga AI). The buyer voice is different in each segment. We pick one on the kickoff call and tune copy specifically.",
     },
     {
       q: "Can you handle live demos and interactive components?",

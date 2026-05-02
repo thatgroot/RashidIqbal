@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for SaaS Landing Pages | Rashid Iqbal",
   description:
-    "Hire a Certified Framer Expert for B2B SaaS landing pages. Two-week delivery. Figma design, Framer build, UX copy included. Clients: Relace, Equals, UpdateAI, Hevn.",
+    "Hire a Certified Framer Expert for B2B SaaS landing pages. Two-week delivery. Figma design, Framer build, UX copy included. Clients: UpdateAI, Vanos AI, SpaceDome, ATQLeads, Keel.",
   keywords: [
     "framer expert for saas",
     "saas landing page designer",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CLIENTS = ["Relace", "Equals", "UpdateAI", "Hevn", "Crezco", "Vanos AI"] as const;
+const CLIENTS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads", "Keel", "Cartage", "Crezco"] as const;
 
 const DELIVERABLES = [
   "Conversion-focused information architecture for the funnel",
@@ -81,7 +81,7 @@ const FAQS = [
   },
   {
     q: "Do you work with Y Combinator startups?",
-    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including Relace, Equals, and Hevn. Two-week timeline fits launch and demo-day cycles.",
+    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, ATQLeads, and Crezco. Two-week timeline fits launch and demo-day cycles.",
   },
   {
     q: "How much does a SaaS landing page cost?",
@@ -161,7 +161,7 @@ export default function FramerExpertSaasPage() {
 
         <p className="text-base md:text-lg text-zinc-600 leading-relaxed mb-8">
           I build high-converting B2B SaaS landing pages on Framer. Copy, design, and build in
-          two weeks. Clients include Relace, Equals, UpdateAI, and Hevn. One specialist, one
+          two weeks. Clients include UpdateAI, Vanos AI, SpaceDome, and ATQLeads. One specialist, one
           timeline, one offer.
         </p>
 
@@ -176,7 +176,7 @@ export default function FramerExpertSaasPage() {
           <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
             Rashid Iqbal is a Certified Framer Expert who builds B2B SaaS landing pages
             with copy, design, and Framer development bundled into a single two-week
-            delivery. Past SaaS clients include Relace, Equals, UpdateAI, Hevn, Crezco,
+            delivery. Past SaaS clients include UpdateAI, Vanos AI, SpaceDome, ATQLeads, Crezco, Keel,
             and Vanos AI. Pricing starts at $1,500 for a single landing page and ranges
             $2,500 to $4,000 for multi-page sites with CMS, blog, and lead capture.
           </p>

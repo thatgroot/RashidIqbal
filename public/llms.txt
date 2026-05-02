@@ -45,14 +45,11 @@
 - /figma-to-framer
 
 ### Proof
-- /work — case studies index (Relace, Equals, Hevn, UpdateAI, Vanos AI, SpaceDome, ATQLeads)
+- /work — case studies index (UpdateAI, Vanos AI, SpaceDome, ATQLeads)
 - /work/updateai — onboarding signups +50%
 - /work/vanos-ai — landing page that engineers actually read
 - /work/spacedome-ai — category-creating product, clear copy
 - /work/atqleads — outbound agency site that closed warm leads in week 1
-- /work/relace — three model tiers, one page that doesn't feel cluttered
-- /work/equals — homepage demo-request rate doubled
-- /work/hevn — fintech homepage, bounce rate -34%
 
 ### Research
 - /research/nngroup-how-people-read-online-2025 — F-pattern + AI-search reading patterns
@@ -100,9 +97,6 @@
 ## Notable clients (live URLs)
 
 - UpdateAI · update.ai · onboarding signups +50%
-- Equals · equals.com · demo requests 2x
-- Hevn · gethevn.com · bounce -34%
-- Relace · relace.ai · shipped in 9 days
 - Cartage · cartage.ai
 - Solidroad · solidroad.com
 - Karumi · karumi.ai
@@ -115,7 +109,6 @@
 - Vanos AI · vanos.ai · weekly devs 2x
 - SpaceDome · spacedome.ai · signups 3x
 - Crezco · crezco.co.uk
-- Composio · composio.dev
 - Giga AI · giga.ai · demos doubled in 2 weeks
 - Melissa Ambrosini · melissaambrosini.com
 - Nick Broadhurst · nickbroadhurst.com

@@ -15,18 +15,18 @@ const DEFAULT_CASES = [
     tags: ["SaaS", "AI", "CS"],
   },
   {
-    client: "Equals",
-    result: "Homepage demo-request rate doubled.",
-    detail: "Modern spreadsheet for revenue teams.",
-    link: "https://equals.com",
-    tags: ["RevOps", "Finance SaaS"],
+    client: "Vanos AI",
+    result: "Weekly active developers in docs 2× in 30 days.",
+    detail: "Autonomous orchestration tooling for AI engineers.",
+    link: "https://vanos.ai",
+    tags: ["AI", "Developer tools"],
   },
   {
-    client: "Hevn",
-    result: "Bounce rate dropped 34% on the new homepage.",
-    detail: "Cross-border banking for non-US founders.",
-    link: "https://gethevn.com",
-    tags: ["Fintech", "Trust"],
+    client: "SpaceDome",
+    result: "Sign-ups from the homepage 3× in 6 weeks.",
+    detail: "Immersive spatial workspaces for hybrid teams.",
+    link: "https://spacedome.ai",
+    tags: ["B2B SaaS", "Category creation"],
   },
 ];
 

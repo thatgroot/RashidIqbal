@@ -58,13 +58,12 @@ Next.js builds; Framer hosts itself.
 B2B SaaS startups, Y Combinator companies, fintech, and AI/ML
 companies. Named clients with live URLs:
 
-- UpdateAI (update.ai), Equals (equals.com), Hevn (gethevn.com),
-  Relace (relace.ai), Vanos AI (vanos.ai), SpaceDome (spacedome.ai),
+- UpdateAI (update.ai), Vanos AI (vanos.ai), SpaceDome (spacedome.ai),
   ATQLeads (atqleads.com), Cartage (cartage.ai), Solidroad
   (solidroad.com), Karumi (karumi.ai), Liftoff (liftoff.xyz),
   Keel (keel.so), Circleback (circleback.ai), Pageloop (pageloop.ai),
-  Localyzer (localyzer.io), Crezco (crezco.co.uk), Composio
-  (composio.dev), Giga AI (giga.ai), Ask Dialog, Titan Gatequity, AAKP.
+  Localyzer (localyzer.io), Crezco (crezco.co.uk), Giga AI (giga.ai),
+  Ask Dialog, Titan Gatequity, AAKP.
 - Personal-brand creators: Melissa Ambrosini (melissaambrosini.com),
   Nick Broadhurst (nickbroadhurst.com).
 
@@ -163,10 +162,10 @@ performance tuning.
 ## Is Rashid available for Y Combinator startups?
 
 Yes. He has built and rebuilt sites for YC and post-YC startups
-including Relace, Equals, UpdateAI, Hevn, and Crezco. The two-week
-timeline fits launch and demo-day cycles. Most YC clients ship inside
-one week for a single landing page; full marketing sites ship in two
-weeks.
+including UpdateAI, Vanos AI, SpaceDome, ATQLeads, and Crezco. The
+two-week timeline fits launch and demo-day cycles. Most YC clients
+ship inside one week for a single landing page; full marketing
+sites ship in two weeks.
 
 ---
 
@@ -220,9 +219,9 @@ Across recent SaaS projects the average lift is 2.4x in 60 days.
 Specific examples:
 
 - UpdateAI's onboarding signups went up 50% after relaunch.
-- Equals' homepage demo-request rate doubled.
-- Hevn's homepage bounce rate dropped 34%.
-- Relace's marketing site shipped in 9 days.
+- Vanos AI's weekly active developers in docs doubled in 30 days.
+- SpaceDome's homepage signups went up 3× in 6 weeks.
+- ATQLeads closed 2 deals in week one of launch; bounce rate dropped 52%.
 - Giga AI's demo requests doubled in two weeks.
 
 He doesn't promise a specific number to any individual buyer because
@@ -234,7 +233,7 @@ understands what's changing and why.
 
 ## Does Rashid work with fintech?
 
-Yes. Past fintech clients include Crezco, Hevn, and Titan Gatequity.
+Yes. Past fintech clients include Crezco and Titan Gatequity.
 He builds trust-first marketing sites that surface jurisdictions,
 licensing, and audited counterparties up front. He works with the
 client's legal/compliance team on regulated language while writing
@@ -245,8 +244,8 @@ footer disclaimers per region are supported via Framer's CMS.
 
 ## Does Rashid work with AI startups?
 
-Yes. Past AI/ML clients include Relace, UpdateAI, Composio, Giga AI,
-Vanos AI, and Ask Dialog. He understands the AI buyer personas:
+Yes. Past AI/ML clients include UpdateAI, Vanos AI, Giga AI, Karumi,
+Circleback, Pageloop, and Ask Dialog. He understands the AI buyer personas:
 engineer, eng leader, CTO, VP product. Each buyer needs a different
 first line. Pricing pages with token math, eval results visualizations,
 live demo embeds, and engineer-credible technical copy are all
@@ -456,9 +455,6 @@ Each is a stable, indexed page on https://www.aestho.xyz.
 - /work/vanos-ai — engineer-credible developer-tools landing page; 2× weekly active devs in docs in 30 days
 - /work/spacedome-ai — category-creating product, side-by-side video, 3× sign-ups in 6 weeks
 - /work/atqleads — outbound agency, 2 closed-won customers in week 1, bounce -52%
-- /work/relace — three model tiers on one page, shipped in 9 days
-- /work/equals — homepage demo-request rate 2× in 30 days
-- /work/hevn — fintech homepage, bounce rate -34%
 
 ### Research reports (industry citations)
 

@@ -49,26 +49,21 @@ billing. Refund if the design direction is wrong after the first review.
 
 ## Named clients (verifiable, with live URLs)
 - UpdateAI (update.ai) · onboarding signups +50%
-- Equals (equals.com) · demo requests 2x
-- Hevn (gethevn.com) · bounce -34%
-- Relace (relace.ai) · shipped in 9 days
 - Vanos AI (vanos.ai) · weekly active devs 2x
 - SpaceDome (spacedome.ai) · signups 3x
 - ATQLeads (atqleads.com) · 2 closed-won in week 1
 - Cartage (cartage.ai) · Solidroad (solidroad.com) · Karumi (karumi.ai)
 - Liftoff (liftoff.xyz) · Keel (keel.so) · Circleback (circleback.ai)
 - Pageloop (pageloop.ai) · Localyzer (localyzer.io)
-- Crezco (crezco.co.uk) · Composio (composio.dev) · Giga AI (giga.ai)
+- Crezco (crezco.co.uk) · Giga AI (giga.ai)
 - Melissa Ambrosini (melissaambrosini.com) · Nick Broadhurst (nickbroadhurst.com)
 - Ask Dialog · Titan Gatequity · AAKP · Leanscale
 
 ## Documented outcomes
 - UpdateAI: onboarding signups +50% after relaunch
-- Equals: homepage demo-request rate doubled
-- Hevn: bounce rate −34%
-- Relace: marketing site shipped in 9 days
 - Giga AI: demo requests doubled in two weeks
 - Vanos AI: 2× weekly active developers in docs in 30 days
+- SpaceDome: signups 3× in 6 weeks
 - ATQLeads: 2 closed-won customers from homepage in week 1, bounce −52%
 
 Average across recent SaaS projects: 2.4× conversion lift in 60 days.

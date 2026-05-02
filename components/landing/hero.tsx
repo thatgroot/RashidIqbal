@@ -228,7 +228,7 @@ export function Hero() {
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-8"
                             >
-                                I rewrite the copy and rebuild your page in Framer with headlines and CTAs that close deals. UpdateAI: signups +50%. Equals: demos 2×. Hevn: bounce −34%. <span className="font-semibold text-zinc-900">Live in two weeks. Refund if the design is wrong.</span>
+                                I rewrite the copy and rebuild your page in Framer with headlines and CTAs that close deals. UpdateAI: signups +50%. Vanos AI: weekly devs 2×. SpaceDome: signups 3×. <span className="font-semibold text-zinc-900">Live in two weeks. Refund if the design is wrong.</span>
                             </motion.p>
 
                             {/* Trust band + secondary CTA. Both primary

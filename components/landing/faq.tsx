@@ -10,7 +10,7 @@ import { FAQStructuredData } from "@/components/seo/faq-structured-data";
 const DEFAULT_FAQS = [
   {
     q: "Will this actually move my conversion rate?",
-    a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Equals' homepage demo-request rate doubled. I won't promise your specific number — every market is different — but on the kickoff call I'll walk you through the conversion principle behind each lift so you know what's changing and why."
+    a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Vanos AI's weekly active developers doubled in 30 days. SpaceDome's homepage signups went up 3x in 6 weeks. I won't promise your specific number — every market is different — but on the kickoff call I'll walk you through the conversion principle behind each lift so you know what's changing and why."
   },
   {
     q: "What if the design isn't right?",
