@@ -84,16 +84,16 @@ export function Testimonials({ items }: { items?: Review[] }) {
 
   return (
     <section
-      className="bg-zinc-950 text-white relative overflow-hidden"
+      className="bg-zinc-50 text-zinc-900 relative overflow-hidden border-y border-zinc-100"
       id="testimonials"
     >
-      {/* Subtle dotted background — same texture as the booking section. */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+      {/* Soft dotted texture — light variant. */}
+      <div className="absolute inset-0 opacity-[0.06] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(circle, white 1px, transparent 1px)",
+              "radial-gradient(circle, #18181b 1px, transparent 1px)",
             backgroundSize: "24px 24px",
           }}
         />
@@ -103,17 +103,17 @@ export function Testimonials({ items }: { items?: Review[] }) {
         {/* Header — big "Testimonials" wordmark + eyebrow tags */}
         <header className="mb-14 md:mb-20">
           <div className="flex flex-wrap items-center gap-2 mb-6 md:mb-8">
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.22em] border border-zinc-800 px-2.5 py-1 rounded-full">
+            <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.22em] border border-zinc-200 bg-white px-2.5 py-1 rounded-full">
               Don&rsquo;t just take my word for it
             </span>
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.22em] border border-zinc-800 px-2.5 py-1 rounded-full">
+            <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.22em] border border-zinc-200 bg-white px-2.5 py-1 rounded-full">
               Kind words
             </span>
-            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.22em] border border-zinc-800 px-2.5 py-1 rounded-full">
+            <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.22em] border border-zinc-200 bg-white px-2.5 py-1 rounded-full">
               Happy customers
             </span>
           </div>
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-semibold tracking-tight leading-[0.85] text-white">
+          <h2 className="text-5xl md:text-7xl lg:text-9xl font-semibold tracking-tight leading-[0.85] text-zinc-900">
             Testimonials
           </h2>
         </header>
@@ -154,7 +154,7 @@ function TestimonialCard({
       }}
       whileHover={{ rotate: 0, scale: 1.015 }}
       style={{ rotate: `${rotate}deg` }}
-      className="group relative mb-5 md:mb-7 break-inside-avoid bg-white text-zinc-900 rounded-lg p-5 md:p-6 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.45)] transition-shadow duration-300 hover:shadow-[0_20px_50px_-16px_rgba(0,0,0,0.55)]"
+      className="group relative mb-5 md:mb-7 break-inside-avoid bg-white text-zinc-900 rounded-lg p-5 md:p-6 border border-zinc-100 shadow-[0_8px_28px_-12px_rgba(0,0,0,0.18)] transition-shadow duration-300 hover:shadow-[0_14px_36px_-12px_rgba(0,0,0,0.22)]"
     >
       {/* Avatar polaroid — small portrait pinned to the top-left corner.
           Rotated counter-direction so the photo doesn't tilt the same
