@@ -1,44 +1,25 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
+import { motion } from "framer-motion";
 
-// ============================================================================
-// Testimonial data
-// ============================================================================
-// NOTE: entries marked `placeholder: true` are team-attributed quotes I
-// drafted based on each client's public positioning. They are not literal
-// transcripts of feedback from those companies. Swap them with real
-// client-approved quotes when you have them. The three non-placeholder
-// entries (Josh Schachter, Crezco Team, Nick Broadhurst) were already on
-// the site before this change.
+// Canvas-style testimonial gallery. Every card is visible — no carousel,
+// no autoplay. Cards alternate slight rotations (-2° / +2°) so the
+// section reads as a scrapbook of pinned polaroids rather than a uniform
+// grid. CMS rows are the source of truth; the hardcoded REVIEWS array is
+// only used as a fallback during a fresh deploy or DB outage.
 
 interface Review {
   text: string;
   author: string;
   role: string;
-  /** Tailwind color token for the avatar circle (used as background behind
-   *  the photo while it loads, and as fallback when `avatarUrl` is absent). */
   accent: string;
-  /** Absolute URL or public-relative path for the avatar. Whitelisted image
-   *  hosts in next.config.ts: `images.unsplash.com`, `framerusercontent.com`. */
   avatarUrl?: string;
   placeholder?: boolean;
 }
 
-// NOTE on photos + quotes:
-// - 9 entries use real client photos from /public/testimonials/.
-// - Hevn and Leanscale still use Unsplash placeholder headshots (no photo
-//   provided yet).
-// - Entries marked `placeholder: true` have QUOTE text drafted by Rashid
-//   based on each client's public positioning. Photos are real; quote text
-//   is still pending real client-approved language. Swap the `text` field
-//   when the actual client-approved quote arrives. Entries without the flag
-//   (Josh Schachter, Yazrael Javaid, Nick Broadhurst, Melissa Ambrosini)
-//   already have a real text source.
+// Verified-only fallback — entries marked placeholder:true (drafted but
+// not client-approved) are filtered out before render.
 const REVIEWS: Review[] = [
   {
     text: "Rashid redesigned our entire marketing site. The new design is clean, loads fast, and converts way better than what we had before. Our team can update copy without waiting on a developer. Onboarding signups went up by half.",
@@ -48,14 +29,6 @@ const REVIEWS: Review[] = [
     avatarUrl: "/testimonials/josh.png",
   },
   {
-    text: "We needed a site that made open banking feel simple and trustworthy. Rashid nailed the design and the copy. Every page communicates exactly what we do without the usual fintech jargon. Our sales team finally has a site they're proud to send prospects to.",
-    author: "George Urdea",
-    role: "Crezco",
-    accent: "bg-zinc-900",
-    avatarUrl: "/testimonials/george-urdea.jpg",
-    placeholder: true,
-  },
-  {
     text: "The design feels premium and the communication was excellent throughout. Rashid delivered a polished site in under two weeks, scored 90+ on Lighthouse, and the whole experience was smooth from start to finish.",
     author: "Nick Broadhurst",
     role: "Musician & Creator",
@@ -63,69 +36,11 @@ const REVIEWS: Review[] = [
     avatarUrl: "/testimonials/nick-broadhurst.webp",
   },
   {
-    // Real review via Contra (Feb 6, 2026):
-    // https://contra.com/p/qeQNAbFA-vanosai?r=rashidiqbal
     text: "Rashid, Ans and Mehdi are very hardworking and creative group of people, will keep working with them!",
     author: "Yazrael Javaid",
     role: "Client, SpaceDome",
     accent: "bg-violet-600",
     avatarUrl: "/testimonials/yazrael.png",
-  },
-  {
-    text: "Rashid took our dense technical pitch and turned it into a site developers actually read. Clean product positioning across three model offerings. Shipped faster than any agency we'd quoted.",
-    author: "Preston Zhou",
-    role: "Relace",
-    accent: "bg-indigo-600",
-    avatarUrl: "/testimonials/preston-zhou.jpg",
-    placeholder: true,
-  },
-  {
-    text: "We brought Rashid in to reframe the pitch away from feature lists and toward trust. The new home converts RevOps teams before they even book a demo with us.",
-    author: "Ben McRedmond",
-    role: "Equals",
-    accent: "bg-rose-500",
-    avatarUrl: "/testimonials/ben-mcredmond.png",
-    placeholder: true,
-  },
-  {
-    text: "Cross-border banking is a trust game. Rashid got that immediately. The copy leads with the jurisdictions we are regulated in, not a feature matrix, and it is already winning accounts.",
-    author: "Peter Volnov",
-    role: "Hevn",
-    accent: "bg-sky-600",
-    avatarUrl: "/testimonials/peter-volnov.jpg",
-    placeholder: true,
-  },
-  {
-    text: "The rare designer who pushes back on bad copy instead of just polishing it. Our site finally sounds like us instead of every other SaaS page.",
-    author: "Anthony Enrico",
-    role: "Leanscale",
-    accent: "bg-amber-600",
-    avatarUrl: "/testimonials/anthony-enrico.png",
-    placeholder: true,
-  },
-  {
-    text: "Rashid made my site feel like the home my brand actually deserved. Fast, thoughtful, launched on time with zero drama. Traffic is up and bounce rate is down.",
-    author: "Melissa Ambrosini",
-    role: "Author & Creator",
-    accent: "bg-fuchsia-600",
-    avatarUrl: "/testimonials/melissa-ambrosini.png",
-    placeholder: true,
-  },
-  {
-    text: "Three products, three audiences, one page that does not feel cluttered. Rashid made a difficult brief look easy and shipped in two weeks.",
-    author: "Abhi Arya",
-    role: "Composio",
-    accent: "bg-teal-600",
-    avatarUrl: "/testimonials/abhi-arya.webp",
-    placeholder: true,
-  },
-  {
-    text: "Hired Rashid because our old site was not converting. Two weeks later our demo requests had doubled. No agency has ever turned things around this fast for us.",
-    author: "Vincent S.",
-    role: "Giga AI",
-    accent: "bg-zinc-700",
-    avatarUrl: "/testimonials/vincent-s.jpg",
-    placeholder: true,
   },
 ];
 
@@ -138,271 +53,158 @@ function getInitials(name: string): string {
     .toUpperCase();
 }
 
-const AUTOPLAY_MS = 7000;
+// Deterministic-but-varied rotation by index so re-renders + SSR stay
+// stable. Cycles -2°, +2°, -1°, +1°, 0°.
+function rotationFor(i: number): number {
+  const cycle = [-2, 2, -1.2, 1.2, 0, -2.4, 2.4];
+  return cycle[i % cycle.length] ?? 0;
+}
 
-// ============================================================================
-// Component
-// ============================================================================
+function accentToHex(accent: string): string {
+  const map: Record<string, string> = {
+    "bg-orange-500": "#f97316",
+    "bg-orange-600": "#ea580c",
+    "bg-zinc-900": "#18181b",
+    "bg-zinc-700": "#3f3f46",
+    "bg-emerald-600": "#059669",
+    "bg-violet-600": "#7c3aed",
+    "bg-indigo-600": "#4f46e5",
+    "bg-rose-500": "#f43f5e",
+    "bg-sky-600": "#0284c7",
+    "bg-amber-600": "#d97706",
+    "bg-fuchsia-600": "#c026d3",
+    "bg-teal-600": "#0d9488",
+  };
+  return map[accent] ?? "#52525b";
+}
 
 export function Testimonials({ items }: { items?: Review[] }) {
-  // CMS-supplied items override the hardcoded REVIEWS when present. The
-  // fallback keeps the carousel populated during a fresh deploy or when
-  // the DB is unreachable. The fallback strips entries marked
-  // `placeholder: true` (drafted-but-not-client-approved) so the public
-  // site never shows them, even if the DB read fails.
   const verifiedFallback = REVIEWS.filter((r) => !r.placeholder);
   const reviews = items && items.length > 0 ? items : verifiedFallback;
-  const [activeIndex, setActiveIndex] = useState(0);
-  const intervalRef = useRef<number | null>(null);
-
-  // Always-on autoplay. Restart the interval on any manual selection so the
-  // next advance happens a full AUTOPLAY_MS after the user's click, not an
-  // arbitrary time mid-cycle.
-  const scheduleAdvance = useCallback(() => {
-    if (intervalRef.current) {
-      window.clearInterval(intervalRef.current);
-    }
-    intervalRef.current = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % reviews.length);
-    }, AUTOPLAY_MS);
-  }, [reviews.length]);
-
-  useEffect(() => {
-    scheduleAdvance();
-    return () => {
-      if (intervalRef.current) window.clearInterval(intervalRef.current);
-    };
-  }, [scheduleAdvance]);
-
-  function select(i: number) {
-    setActiveIndex(i);
-    scheduleAdvance();
-  }
-
-  function goNext() {
-    select((activeIndex + 1) % reviews.length);
-  }
-
-  function goPrev() {
-    select((activeIndex - 1 + reviews.length) % reviews.length);
-  }
-
-  const active = reviews[activeIndex];
 
   return (
-    <section className="bg-white" id="testimonials">
-      <div className="max-w-container border-l border-zinc-100">
-        {/* Heading + avatar strip */}
-        <GridContainer>
-          <GridItem className="py-20 md:py-24">
-            <motion.div
-              className="flex flex-col items-center text-center max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-semibold text-zinc-900 mb-8 leading-[1.1] tracking-tight">
-                Words from my clients.
-              </h2>
+    <section
+      className="bg-zinc-950 text-white relative overflow-hidden"
+      id="testimonials"
+    >
+      {/* Subtle dotted background — same texture as the booking section. */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, white 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+      </div>
 
-              {/* Overlapping avatar strip — click any to jump */}
-              <div
-                className="flex -space-x-2 mb-6"
-                role="tablist"
-                aria-label="Client testimonials"
-              >
-                {reviews.map((r, i) => {
-                  const isActive = i === activeIndex;
-                  return (
-                    <button
-                      key={r.author}
-                      type="button"
-                      onClick={() => select(i)}
-                      role="tab"
-                      aria-selected={isActive}
-                      aria-label={`Testimonial from ${r.author}`}
-                      className={`relative w-10 h-10 rounded-full flex items-center justify-center overflow-hidden text-[11px] font-bold text-white border-2 border-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
-                        isActive
-                          ? `${r.accent} scale-110 z-10 ring-2 ring-offset-2 ring-orange-500`
-                          : `${r.accent} opacity-60 hover:opacity-100 hover:scale-105`
-                      }`}
-                      style={{ zIndex: isActive ? 10 : reviews.length - i }}
-                    >
-                      {r.avatarUrl ? (
-                        <Image
-                          src={r.avatarUrl}
-                          alt={r.author}
-                          width={40}
-                          height={40}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        getInitials(r.author)
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-24 md:pb-36 relative z-10">
+        {/* Header — big "Testimonials" wordmark + eyebrow tags */}
+        <header className="mb-14 md:mb-20">
+          <div className="flex flex-wrap items-center gap-2 mb-6 md:mb-8">
+            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.22em] border border-zinc-800 px-2.5 py-1 rounded-full">
+              Don&rsquo;t just take my word for it
+            </span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.22em] border border-zinc-800 px-2.5 py-1 rounded-full">
+              Kind words
+            </span>
+            <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.22em] border border-zinc-800 px-2.5 py-1 rounded-full">
+              Happy customers
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-7xl lg:text-9xl font-semibold tracking-tight leading-[0.85] text-white">
+            Testimonials
+          </h2>
+        </header>
 
-              <p className="text-sm text-zinc-500">
-                <span className="font-semibold text-zinc-900">Loved by those</span>
-                <br />
-                who value thoughtful design.
-              </p>
-            </motion.div>
-          </GridItem>
-        </GridContainer>
-
-        {/* Active testimonial card */}
-        <GridContainer>
-          <GridItem
-            className="py-12 md:py-20 relative"
-            padding={false}
-          >
-            <div className="max-w-2xl mx-auto px-6 md:px-12 min-h-[280px] flex items-center">
-              <AnimatePresence mode="wait">
-                <motion.blockquote
-                  key={activeIndex}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="w-full"
-                >
-                  {/* Stars */}
-                  <div
-                    className="flex gap-1 mb-6"
-                    role="img"
-                    aria-label="5 out of 5 stars"
-                  >
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 fill-orange-500 text-orange-500"
-                        aria-hidden="true"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Quote */}
-                  <p className="text-xl md:text-2xl text-zinc-900 leading-[1.5] font-medium mb-8">
-                    &ldquo;{active.text}&rdquo;
-                  </p>
-
-                  {/* Author */}
-                  <footer className="flex items-center gap-3">
-                    <div
-                      className={`w-11 h-11 rounded-full flex items-center justify-center overflow-hidden text-xs font-bold text-white shrink-0 ${active.accent}`}
-                      aria-hidden="true"
-                    >
-                      {active.avatarUrl ? (
-                        <Image
-                          src={active.avatarUrl}
-                          alt={active.author}
-                          width={44}
-                          height={44}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        getInitials(active.author)
-                      )}
-                    </div>
-                    <div>
-                      <div className="font-bold text-zinc-900 text-sm">{active.author}</div>
-                      <div className="text-xs text-zinc-500">{active.role}</div>
-                    </div>
-                  </footer>
-                </motion.blockquote>
-              </AnimatePresence>
-            </div>
-          </GridItem>
-        </GridContainer>
-
-        {/* Prev / dots / Next */}
-        <GridContainer>
-          <GridItem className="py-6" padding={false}>
-            <div className="flex items-center justify-center gap-3">
-              <button
-                type="button"
-                onClick={goPrev}
-                aria-label="Previous testimonial"
-                className="w-9 h-9 flex items-center justify-center border border-zinc-200 text-zinc-600 hover:border-orange-300 hover:text-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
-              >
-                <ChevronLeft className="w-4 h-4" aria-hidden="true" />
-              </button>
-
-              <div
-                className="flex items-center gap-1.5 px-2"
-                role="tablist"
-                aria-label="Testimonial pagination"
-              >
-                {reviews.map((_, i) => {
-                  const isActive = i === activeIndex;
-                  return (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => select(i)}
-                      role="tab"
-                      aria-selected={isActive}
-                      aria-label={`Go to testimonial ${i + 1}`}
-                      className={`h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
-                        isActive
-                          ? "w-8 bg-zinc-900"
-                          : "w-1.5 bg-zinc-300 hover:bg-zinc-400"
-                      }`}
-                    />
-                  );
-                })}
-              </div>
-
-              <button
-                type="button"
-                onClick={goNext}
-                aria-label="Next testimonial"
-                className="w-9 h-9 flex items-center justify-center border border-zinc-200 text-zinc-600 hover:border-orange-300 hover:text-orange-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
-              >
-                <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              </button>
-            </div>
-          </GridItem>
-        </GridContainer>
-
-        {/* Upwork aggregate link — keeps the external credibility anchor */}
-        <GridContainer>
-          <GridItem className="py-6 text-center">
-            <a
-              href="https://www.upwork.com/freelancers/~01b24c107f5b5af596"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-zinc-500 hover:text-orange-500 transition-colors"
-            >
-              Top Rated on Upwork &rarr;
-            </a>
-          </GridItem>
-        </GridContainer>
-
-        {/* Senja Video Testimonials Wall
-            To set up: go to senja.io, create a project, send collection links
-            to clients, then paste your Senja widget ID below */}
-        {process.env.NEXT_PUBLIC_SENJA_WIDGET_ID && (
-          <GridContainer>
-            <GridItem className="py-12">
-              <div
-                className="senja-embed"
-                data-id={process.env.NEXT_PUBLIC_SENJA_WIDGET_ID}
-                data-mode="shadow"
-                data-lazyload="false"
-              />
-              <script
-                async
-                src="https://widget.senja.io/widget/embed.js"
-              />
-            </GridItem>
-          </GridContainer>
-        )}
+        {/* Canvas — CSS columns gives a Pinterest/scrapbook feel where
+            each card flows into the next column rather than locking to a
+            row baseline. Every card is rendered; no carousel. */}
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-5 md:gap-7 [column-fill:_balance]">
+          {reviews.map((r, i) => (
+            <TestimonialCard key={`${r.author}-${i}`} review={r} index={i} />
+          ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+function TestimonialCard({
+  review,
+  index,
+}: {
+  review: Review;
+  index: number;
+}) {
+  const rotate = rotationFor(index);
+  const accentHex = accentToHex(review.accent);
+  const hasPhoto = !!review.avatarUrl;
+
+  return (
+    <motion.figure
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.5,
+        delay: Math.min(index * 0.04, 0.32),
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{ rotate: 0, scale: 1.015 }}
+      style={{ rotate: `${rotate}deg` }}
+      className="group relative mb-5 md:mb-7 break-inside-avoid bg-white text-zinc-900 rounded-lg p-5 md:p-6 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.45)] transition-shadow duration-300 hover:shadow-[0_20px_50px_-16px_rgba(0,0,0,0.55)]"
+    >
+      {/* Avatar polaroid — small portrait pinned to the top-left corner.
+          Rotated counter-direction so the photo doesn't tilt the same
+          way as the card. */}
+      <div className="flex items-start gap-4 mb-5">
+        <div
+          className="relative w-14 h-14 md:w-16 md:h-16 shrink-0 rounded-md overflow-hidden ring-1 ring-zinc-200 shadow-sm"
+          style={{ rotate: `${-rotate * 0.6}deg`, backgroundColor: accentHex }}
+        >
+          {hasPhoto ? (
+            <Image
+              src={review.avatarUrl as string}
+              alt={review.author}
+              fill
+              sizes="64px"
+              className="object-cover"
+            />
+          ) : (
+            <span className="absolute inset-0 flex items-center justify-center text-white text-sm font-bold">
+              {getInitials(review.author)}
+            </span>
+          )}
+        </div>
+        <figcaption className="min-w-0">
+          <p className="text-sm font-bold text-zinc-900 leading-tight truncate">
+            {review.author}
+          </p>
+          <p className="text-xs text-zinc-500 leading-snug mt-0.5">
+            {review.role}
+          </p>
+        </figcaption>
+      </div>
+
+      <blockquote className="text-sm md:text-[15px] text-zinc-700 leading-relaxed">
+        <span aria-hidden="true" className="text-zinc-300 mr-0.5">
+          &ldquo;
+        </span>
+        {review.text}
+        <span aria-hidden="true" className="text-zinc-300 ml-0.5">
+          &rdquo;
+        </span>
+      </blockquote>
+
+      {/* Subtle accent bar — a thin colored line at the bottom of the
+          card that picks up the testimonial's accent color. */}
+      <div
+        className="mt-5 h-[3px] w-10 rounded-full"
+        style={{ backgroundColor: accentHex }}
+        aria-hidden="true"
+      />
+    </motion.figure>
   );
 }
