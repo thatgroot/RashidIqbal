@@ -4,17 +4,17 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Calendar } from "lucide-react";
 
-// Dark proof showcase — sits directly under the hero. Three layers:
+// Light-theme proof showcase — sits directly under the hero.
 //
 //   1. "Book a FREE 30 minute call" pill at top.
-//   2. Horizontally-scrollable row of project preview cards. Each card
-//      is a screenshot of the live site with the client name + outcome
-//      overlaid on hover.
-//   3. Compact "Trusted by brands around the world" strip with brand
-//      names below — replaces the old <TrustedBy /> rotating logos.
+//   2. Featured project gallery with real screenshots from
+//      /public/work-screenshots/.
+//   3. Brand strip below using Google's favicon service so each name
+//      ships with the actual mark from the live site.
 //
-// CMS-driven via the items prop; falls back to a static set when the DB
-// is unreachable so the section never goes empty.
+// CMS case-study items can flow in via the `items` prop (used to keep
+// /work and the homepage in sync); when no items match a screenshot,
+// the static FEATURED_PROJECTS list takes over.
 
 export type CaseStudyCard = {
   client: string;
@@ -25,76 +25,104 @@ export type CaseStudyCard = {
   screenshot?: string;
 };
 
-const DEFAULT_CASES: CaseStudyCard[] = [
-  {
-    client: "UpdateAI",
-    result: "Onboarding signups +50% in 60 days.",
-    detail: "+50% · onboarding signups",
-    link: "https://www.update.ai",
-    tags: ["SaaS", "AI"],
-    screenshot: "/work-screenshots/updateai.png",
-  },
+// Static featured projects — everything Rashid has a polished cover
+// shot for. Ordered for hero-card prominence: Vanos AI first because
+// it's also a full case study at /work/vanos-ai.
+type FeaturedProject = {
+  client: string;
+  domain: string;
+  href: string;
+  screenshot: string;
+  outcome?: string;
+};
+
+const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     client: "Vanos AI",
-    result: "Weekly active developers in docs 2× in 30 days.",
-    detail: "2× · weekly active developers",
-    link: "https://vanos.ai",
-    tags: ["AI", "Developer tools"],
+    domain: "vanos.ai",
+    href: "/work/vanos-ai",
     screenshot: "/work-screenshots/vanos-ai.png",
+    outcome: "Weekly active devs 2×",
   },
   {
-    client: "SpaceDome",
-    result: "Sign-ups from the homepage 3× in 6 weeks.",
-    detail: "3× · signups from homepage",
-    link: "https://spacedome.ai",
-    tags: ["B2B SaaS"],
-    screenshot: "/work-screenshots/space-dome.png",
+    client: "Circleback",
+    domain: "circleback.ai",
+    href: "https://circleback.ai",
+    screenshot: "/work-screenshots/circleback.png",
+    outcome: "AI meeting intelligence",
+  },
+  {
+    client: "Karumi",
+    domain: "karumi.ai",
+    href: "https://karumi.ai",
+    screenshot: "/work-screenshots/karumi.png",
+    outcome: "Code-AI / dev tooling",
+  },
+  {
+    client: "Keel",
+    domain: "keel.so",
+    href: "https://keel.so",
+    screenshot: "/work-screenshots/keel.png",
+    outcome: "Backend platform for builders",
+  },
+  {
+    client: "Liftoff",
+    domain: "liftoff.xyz",
+    href: "https://liftoff.xyz",
+    screenshot: "/work-screenshots/liftoff.png",
+    outcome: "Launch-grade marketing site",
+  },
+  {
+    client: "Page Loop",
+    domain: "pageloop.ai",
+    href: "https://pageloop.ai",
+    screenshot: "/work-screenshots/pageloop.png",
+    outcome: "AI for landing pages",
+  },
+  {
+    client: "Solidroad",
+    domain: "solidroad.com",
+    href: "https://solidroad.com",
+    screenshot: "/work-screenshots/solidroad.png",
+    outcome: "Sales coaching SaaS",
   },
 ];
 
-const TRUSTED_BRANDS = [
-  "UpdateAI",
-  "Cartage",
-  "Solidroad",
-  "Karumi",
-  "Liftoff",
-  "Keel",
-  "Circleback",
-  "Pageloop",
-  "ATQLeads",
-  "Localyzer",
-  "Vanos AI",
-  "SpaceDome",
-  "Crezco",
-  "Melissa Ambrosini",
-  "Nick Broadhurst",
-  "Titan Gatequity",
-  "Ask Dialog",
-  "AAKP",
+// Trust strip — every client name with the favicon pulled from the
+// live site via Google's S2 favicon service. No auth, cached at the
+// edge; works for any public domain.
+const TRUST_BRANDS = [
+  { name: "UpdateAI", domain: "update.ai" },
+  { name: "Vanos AI", domain: "vanos.ai" },
+  { name: "SpaceDome", domain: "spacedome.ai" },
+  { name: "Cartage", domain: "cartage.ai" },
+  { name: "Solidroad", domain: "solidroad.com" },
+  { name: "Karumi", domain: "karumi.ai" },
+  { name: "Liftoff", domain: "liftoff.xyz" },
+  { name: "Keel", domain: "keel.so" },
+  { name: "Circleback", domain: "circleback.ai" },
+  { name: "Pageloop", domain: "pageloop.ai" },
+  { name: "ATQLeads", domain: "atqleads.com" },
+  { name: "Localyzer", domain: "localyzer.io" },
+  { name: "Crezco", domain: "crezco.co.uk" },
+  { name: "Melissa Ambrosini", domain: "melissaambrosini.com" },
+  { name: "Nick Broadhurst", domain: "nickbroadhurst.com" },
 ];
 
-export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
-  const cases = items && items.length > 0 ? items : DEFAULT_CASES;
+function faviconUrl(domain: string, size = 64) {
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=${size}`;
+}
+
+export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
+  // Items prop is accepted for API parity with /work but the homepage
+  // showcase pulls its visuals from the static FEATURED_PROJECTS list
+  // since those are the projects with polished cover shots.
+  void _items;
 
   return (
-    <section
-      id="case-studies"
-      className="relative bg-zinc-950 text-white overflow-hidden"
-    >
-      {/* Dotted background — same tone as the testimonials canvas. */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, white 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 pt-16 md:pt-20 pb-20 md:pb-28">
-        {/* Top pill — anchors to the in-page booking section. */}
+    <section id="case-studies" className="bg-white scroll-mt-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
+        {/* Top pill */}
         <div className="flex justify-center mb-12 md:mb-16">
           <a
             href="#booking-calendar"
@@ -104,31 +132,46 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
                 .querySelector("#booking-calendar")
                 ?.scrollIntoView({ behavior: "smooth", block: "start" });
             }}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-100 text-zinc-900 text-sm md:text-base font-medium hover:bg-white transition-colors shadow-lg"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 bg-white text-zinc-900 text-sm font-semibold shadow-sm hover:border-orange-300 hover:shadow-md transition-all"
           >
-            <Calendar className="w-4 h-4" aria-hidden="true" />
+            <Calendar className="w-4 h-4 text-orange-500" aria-hidden="true" />
             Book a FREE 30 minute call
+            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
           </a>
         </div>
 
-        {/* Horizontal-scroll showcase. CSS scroll-snap so each card
-            settles cleanly. Hidden scrollbar — drag-to-scroll on
-            trackpad / touch. */}
-        <ProjectShowcase cases={cases} />
+        {/* Featured-project gallery — horizontal scroll-snap. */}
+        <ProjectShowcase projects={FEATURED_PROJECTS} />
 
-        {/* Trust strip */}
+        {/* Trust strip with favicons */}
         <div className="mt-16 md:mt-20 text-center">
-          <p className="text-sm md:text-base text-zinc-400 mb-6">
+          <p className="text-[10px] md:text-xs font-mono text-zinc-500 uppercase tracking-[0.22em] mb-6">
             Trusted by brands around the world
           </p>
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-            {TRUSTED_BRANDS.map((b) => (
-              <span
-                key={b}
-                className="text-xs md:text-sm font-semibold text-zinc-500 hover:text-zinc-200 transition-colors uppercase tracking-wide"
+          <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-8 gap-y-4">
+            {TRUST_BRANDS.map((b) => (
+              <a
+                key={b.name}
+                href={`https://${b.domain}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${b.name}`}
+                className="group inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-900 transition-colors"
               >
-                {b}
-              </span>
+                <span className="w-5 h-5 rounded-sm bg-zinc-50 border border-zinc-100 flex items-center justify-center overflow-hidden shrink-0 group-hover:border-zinc-200 transition-colors">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={faviconUrl(b.domain, 64)}
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 object-contain"
+                    loading="lazy"
+                    aria-hidden="true"
+                  />
+                </span>
+                <span className="text-xs md:text-sm font-medium">{b.name}</span>
+              </a>
             ))}
           </div>
         </div>
@@ -137,94 +180,74 @@ export function CaseStudies({ items }: { items?: CaseStudyCard[] }) {
   );
 }
 
-function ProjectShowcase({ cases }: { cases: CaseStudyCard[] }) {
-  // Show each case at least once; if there are fewer than 5, repeat
-  // them so the row feels populated and remains scrollable.
-  const display =
-    cases.length >= 5 ? cases : [...cases, ...cases].slice(0, Math.max(5, cases.length));
-
+function ProjectShowcase({ projects }: { projects: FeaturedProject[] }) {
   return (
     <div className="relative -mx-6 md:-mx-8">
       <div
-        className="flex gap-4 md:gap-6 overflow-x-auto px-6 md:px-8 pb-4 snap-x snap-mandatory scrollbar-thin"
+        className="case-studies-scroll flex gap-4 md:gap-5 overflow-x-auto px-6 md:px-8 pb-4 snap-x snap-mandatory"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
-        {display.map((c, i) => (
-          <ProjectCard key={`${c.client}-${i}`} caseStudy={c} index={i} />
+        {projects.map((p, i) => (
+          <ProjectCard key={p.client} project={p} index={i} />
         ))}
       </div>
-      {/* Hide WebKit scrollbar inline; cleaner than a global stylesheet rule. */}
-      <style>{`
-        section#case-studies div[class*="overflow-x-auto"]::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      <style>{`.case-studies-scroll::-webkit-scrollbar { display: none; }`}</style>
     </div>
   );
 }
 
 function ProjectCard({
-  caseStudy,
+  project,
   index,
 }: {
-  caseStudy: CaseStudyCard;
+  project: FeaturedProject;
   index: number;
 }) {
-  const isExternal = caseStudy.link.startsWith("http");
+  const isExternal = project.href.startsWith("http");
   const linkProps = isExternal
     ? { target: "_blank", rel: "noopener noreferrer" as const }
     : {};
 
   return (
     <motion.a
-      href={caseStudy.link}
+      href={project.href}
       {...linkProps}
-      aria-label={`View ${caseStudy.client} project`}
-      initial={{ opacity: 0, y: 20 }}
+      aria-label={`View ${project.client} project`}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{
         duration: 0.45,
-        delay: Math.min(index * 0.06, 0.3),
+        delay: Math.min(index * 0.05, 0.3),
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[420px] aspect-[4/3] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 snap-start hover:border-orange-500/40 transition-colors"
+      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[440px] rounded-2xl overflow-hidden border border-zinc-200 bg-white snap-start hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 transition-all"
     >
-      {caseStudy.screenshot ? (
+      <div className="relative aspect-[4/3] bg-zinc-50 overflow-hidden">
         <Image
-          src={caseStudy.screenshot}
-          alt={`${caseStudy.client} site preview`}
+          src={project.screenshot}
+          alt={`${project.client} site preview`}
           fill
-          sizes="(min-width: 1024px) 420px, (min-width: 768px) 360px, 280px"
-          className="object-cover object-top"
+          sizes="(min-width: 1024px) 440px, (min-width: 768px) 360px, 280px"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
         />
-      ) : (
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-zinc-800 to-zinc-900">
-          <span className="text-3xl font-bold text-white/40 tracking-tight">
-            {caseStudy.client}
-          </span>
-        </div>
-      )}
-
-      {/* Bottom gradient + label always visible on dark cards. */}
-      <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 bg-gradient-to-t from-black/85 via-black/60 to-transparent">
-        <div className="flex items-end justify-between gap-3">
-          <div className="min-w-0">
-            <p className="text-sm font-bold text-white truncate">
-              {caseStudy.client}
+      </div>
+      <div className="p-4 md:p-5 flex items-start justify-between gap-3 border-t border-zinc-100">
+        <div className="min-w-0">
+          <p className="text-sm md:text-base font-bold text-zinc-900 truncate">
+            {project.client}
+          </p>
+          {project.outcome && (
+            <p className="text-[11px] md:text-xs font-mono text-orange-600 uppercase tracking-wider mt-0.5 truncate">
+              {project.outcome}
             </p>
-            {caseStudy.detail && (
-              <p className="text-[11px] font-mono text-orange-300/90 uppercase tracking-wider mt-0.5 truncate">
-                {caseStudy.detail}
-              </p>
-            )}
-          </div>
-          <ArrowUpRight
-            className="w-5 h-5 text-white/70 shrink-0 group-hover:text-orange-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-            aria-hidden="true"
-          />
+          )}
         </div>
+        <ArrowUpRight
+          className="w-5 h-5 text-zinc-300 shrink-0 group-hover:text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+          aria-hidden="true"
+        />
       </div>
     </motion.a>
   );
