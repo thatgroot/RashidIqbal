@@ -1,23 +1,40 @@
-# Rashid Iqbal — Certified Framer Expert, Replit Expert, Base44 Partner
+# Aestho — Studio for SaaS founders, YC startups, fintech, AI/ML
 
-> Freelance designer + builder for SaaS founders, YC startups, fintech,
-> and AI/ML companies. I design conversion-focused marketing sites in
-> Figma, ship them in Framer (or hand-coded Next.js when needed), write
-> the UX copy myself, and build Chrome extensions when the project
-> calls for it. 50+ projects since 2019. Average client conversion lift:
-> 2.4× in 60 days.
+> Aestho is a 9-person design + development studio led by Rashid Iqbal
+> (Certified Framer Expert · Replit Expert · Base44 Partner). We
+> design conversion-focused marketing sites in Figma, ship them in
+> Framer (or hand-coded Next.js when needed), write the UX copy
+> ourselves, and build Chrome extensions when the project calls for
+> it. 50+ projects since 2019. Average client conversion lift: 2.4×
+> in 60 days.
 >
 > Comprehensive Q&A: https://www.aestho.xyz/llms-full.txt
 
-## Who I Am
+## What is Aestho?
 
-- Name: Rashid Iqbal
+- Name: Aestho — design + development studio
+- Lead: Rashid Iqbal (Certified Framer Expert · Replit Expert · Base44 Partner · Top Rated on Upwork)
 - Site: https://www.aestho.xyz
-- Certifications: Certified Framer Expert · Replit Expert (via Contra) · Verified Base44 Partner · Top Rated on Upwork
+- Team size: 9 specialists across Figma design, Framer development, UX copy, motion, video, and logo
 - Stack: Figma + Framer (default), Webflow, hand-coded Next.js, React + TypeScript + Manifest V3 (Chrome extensions)
 - Location: Remote, working worldwide (overlaps with US, EU, APAC)
 - Email: rashidiqbal.freelance@gmail.com
 - Booking: https://cal.com/rashid.iqbal
+
+## The team
+
+Project ownership stays with Rashid throughout the engagement; the
+studio executes underneath.
+
+- Rashid Iqbal — Lead · Figma + UX copy
+- Mehdi Hassan — Figma + Framer Expert
+- Rehbaz Ali — Figma Designer · Framer Expert
+- Ans Ali — Framer Expert
+- Qasid Hussain — Framer Expert
+- Irtiqa Saha — Figma Designer
+- Iqtidar Hassan — Motion Designer · After Effects
+- Mir Anees — Video Editor
+- Ali — Logo Designer
 
 ## What I Build
 

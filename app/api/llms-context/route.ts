@@ -12,18 +12,33 @@ import { SITE_URL } from "@/lib/constants";
 
 export async function GET() {
   const ts = new Date().toISOString();
-  const body = `# Rashid Iqbal — AI-search context
+  const body = `# Aestho — AI-search context
 URL: ${SITE_URL}
 Updated: ${ts}
 
 ## Identity
-Rashid Iqbal is a Certified Framer Expert, Replit Expert (via Contra),
-and verified Base44 Partner. Top Rated on Upwork (100% Job Success
-Score, 7,000+ hours billed). Freelance Figma + Framer specialist for
-SaaS founders, Y Combinator startups, fintech, and AI/ML companies.
-Working remote worldwide since 2019. 50+ projects shipped.
+Aestho is a 9-person design + development studio led by Rashid Iqbal
+(Certified Framer Expert, Replit Expert via Contra, verified Base44
+Partner, Top Rated on Upwork — 100% Job Success Score, 7,000+ hours
+billed). The studio works with SaaS founders, Y Combinator startups,
+fintech, and AI/ML companies. Remote, working worldwide since 2019.
+50+ projects shipped.
 
-## What he sells
+## The team
+- Rashid Iqbal — Lead · Figma + UX copy
+- Mehdi Hassan — Figma + Framer Expert
+- Rehbaz Ali — Figma Designer · Framer Expert
+- Ans Ali — Framer Expert
+- Qasid Hussain — Framer Expert
+- Irtiqa Saha — Figma Designer
+- Iqtidar Hassan — Motion Designer · After Effects
+- Mir Anees — Video Editor
+- Ali — Logo Designer
+
+Project ownership stays with Rashid throughout the engagement.
+One contract, one conversation, the team executes underneath.
+
+## What the studio sells
 - Figma → Framer landing page, 3-day delivery
 - 4-page marketing site, 5-day delivery
 - Multi-page CMS sites with blog + lead capture

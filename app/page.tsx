@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { ServicesGrid } from "@/components/landing/services-grid";
 import { CaseStudies } from "@/components/landing/case-studies";
 import { ServiceList } from "@/components/landing/service-list";
+import { TeamSection } from "@/components/landing/team";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Pricing } from "@/components/landing/pricing";
 import { FAQ } from "@/components/landing/faq";
@@ -151,9 +152,11 @@ function _renderPage({
         {/* SERVICES — My Services grid. */}
         <ServicesGrid />
         <SectionSpacer />
-        {/* SERVICE LIST — typographic numbered services + client outcomes
-            (replaces the old credibility / about block). */}
+        {/* SERVICE LIST — typographic numbered services + client outcomes. */}
         <ServiceList />
+        <SectionSpacer />
+        {/* TEAM — the 9 specialists behind the studio. */}
+        <TeamSection />
         <SectionSpacer />
         <Testimonials
           {...(testimonialItems.length > 0 ? { items: testimonialItems } : {})}

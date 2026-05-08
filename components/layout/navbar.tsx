@@ -121,11 +121,11 @@ export function Navbar({ variant = "default" }: NavbarProps) {
         >
           <Image
             src="/favicon.svg"
-            alt="Rashid Iqbal logo"
+            alt="Aestho logo"
             width={28}
             height={28}
           />
-          <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
+          <span className="font-bold text-zinc-900 tracking-tight">Aestho</span>
         </button>
 
         {homepageVariant ? (
