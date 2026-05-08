@@ -63,14 +63,11 @@ billing. Refund if the design direction is wrong after the first review.
 
 ## Named clients (verifiable, with live URLs)
 - UpdateAI (update.ai) · onboarding signups +50%
-- Vanos AI (vanos.ai) · weekly active devs 2x
-- SpaceDome (spacedome.ai) · signups 3x
+- Vanos AI (vanos.ai) · voice agents for enterprise workflows
+- SpaceDome (spacedome.ai) · signups 3x in 6 weeks
 - ATQLeads (atqleads.com) · 2 closed-won in week 1
-- Cartage (cartage.ai) · Solidroad (solidroad.com) · Karumi (karumi.ai)
-- Liftoff (liftoff.xyz) · Keel (keel.so) · Circleback (circleback.ai)
-- Pageloop (pageloop.ai) · Localyzer (localyzer.io)
-- Melissa Ambrosini (melissaambrosini.com) · Nick Broadhurst (nickbroadhurst.com)
-- Ask Dialog · AAKP · Leanscale
+- Melissa Ambrosini (melissaambrosini.com) · author / creator personal brand
+- Nick Broadhurst (nickbroadhurst.com) · musician personal brand · 90+ Lighthouse
 
 ## Documented outcomes
 - UpdateAI: onboarding signups +50% after relaunch

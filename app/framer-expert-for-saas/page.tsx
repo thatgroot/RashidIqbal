@@ -10,7 +10,7 @@ const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 export const metadata: Metadata = {
   title: "Framer Expert for SaaS Landing Pages | Rashid Iqbal",
   description:
-    "Hire a Certified Framer Expert for B2B SaaS landing pages. Two-week delivery. Figma design, Framer build, UX copy included. Clients: UpdateAI, Vanos AI, SpaceDome, ATQLeads, Keel.",
+    "Hire a Certified Framer Expert for B2B SaaS landing pages. Two-week delivery. Figma design, Framer build, UX copy included. Clients: UpdateAI, Vanos AI, SpaceDome, ATQLeads.",
   keywords: [
     "framer expert for saas",
     "saas landing page designer",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CLIENTS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads", "Keel", "Cartage", "Karumi"] as const;
+const CLIENTS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads"] as const;
 
 const DELIVERABLES = [
   "Conversion-focused information architecture for the funnel",
@@ -81,7 +81,7 @@ const FAQS = [
   },
   {
     q: "Do you work with Y Combinator startups?",
-    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, ATQLeads, Karumi, and Keel. Two-week timeline fits launch and demo-day cycles.",
+    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, and ATQLeads. Two-week timeline fits launch and demo-day cycles.",
   },
   {
     q: "How much does a SaaS landing page cost?",
@@ -176,7 +176,7 @@ export default function FramerExpertSaasPage() {
           <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
             Rashid Iqbal is a Certified Framer Expert who builds B2B SaaS landing pages
             with copy, design, and Framer development bundled into a single two-week
-            delivery. Past SaaS clients include UpdateAI, Vanos AI, SpaceDome, ATQLeads, Keel,
+            delivery. Past SaaS clients include UpdateAI, Vanos AI, SpaceDome, and ATQLeads,
             and Vanos AI. Single landing pages ship in one week; multi-page sites with
             CMS, blog, and lead capture ship in two to three weeks. Pricing is fixed per
             scope and quoted on the kickoff call.

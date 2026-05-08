@@ -81,7 +81,7 @@ const config: ComparisonConfig = {
     },
     {
       q: "Can a solo person actually handle a SaaS-grade site?",
-      a: "Yes for marketing sites. UpdateAI, Vanos AI, SpaceDome, ATQLeads, Karumi, Keel — all funded SaaS companies, all shipped by a solo specialist (me). The constraint isn't capacity; it's scope. If your project needs 50 pages, dozens of stakeholders, and a brand strategist, hire an agency.",
+      a: "Yes for marketing sites. UpdateAI, Vanos AI, SpaceDome, ATQLeads — all funded SaaS companies, all shipped by a small studio. The constraint isn't capacity; it's scope. If your project needs 50 pages, dozens of stakeholders, and a brand strategist, hire an agency.",
     },
     {
       q: "What about quality?",

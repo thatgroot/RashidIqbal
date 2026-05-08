@@ -18,21 +18,11 @@ type Brand = {
 
 const brands: Brand[] = [
   { name: "UpdateAI", highlight: true, delta: "signups +50%", url: "https://www.update.ai" },
-  { name: "Cartage", highlight: false, url: "https://cartage.ai" },
-  { name: "Solidroad", highlight: true, url: "https://solidroad.com" },
-  { name: "Karumi", highlight: false, url: "https://karumi.ai" },
-  { name: "Liftoff", highlight: true, url: "https://liftoff.xyz" },
-  { name: "Keel", highlight: false, url: "https://keel.so" },
-  { name: "Circleback", highlight: true, url: "https://circleback.ai" },
-  { name: "Pageloop", highlight: false, url: "https://pageloop.ai" },
-  { name: "ATQLeads", highlight: true, delta: "2 closed-won wk 1", url: "https://atqleads.com" },
-  { name: "Localyzer", highlight: false, url: "https://localyzer.io" },
-  { name: "Vanos AI", highlight: true, delta: "weekly devs 2x", url: "https://vanos.ai" },
-  { name: "SpaceDome", highlight: false, delta: "signups 3x", url: "https://spacedome.ai" },
+  { name: "Vanos AI", highlight: false, delta: "voice agents for enterprise", url: "https://vanos.ai" },
+  { name: "SpaceDome", highlight: true, delta: "signups 3x", url: "https://spacedome.ai" },
+  { name: "ATQLeads", highlight: false, delta: "2 closed-won wk 1", url: "https://atqleads.com" },
   { name: "Melissa Ambrosini", highlight: true, url: "https://melissaambrosini.com" },
   { name: "Nick Broadhurst", highlight: false, url: "https://nickbroadhurst.com" },
-  { name: "Ask Dialog", highlight: false },
-  { name: "AAKP", highlight: true },
 ];
 
 export function TrustedBy() {

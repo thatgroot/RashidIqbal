@@ -6,46 +6,46 @@
 
 import Link from "next/link";
 
+// Six services, each one matching a discipline the studio actually
+// has full-time capacity for. The third column (`team`) names the
+// specialists who deliver it so the list reads as a real team
+// capability map, not a generic agency menu.
 const SERVICES = [
   {
     n: "01",
-    label: "Framer Websites",
-    desc: "Conversion-focused Framer websites for startups, SaaS products, personal brands, and modern service businesses built for clarity, speed, and growth.",
+    label: "Figma Design",
+    desc: "Conversion-tuned interfaces for marketing sites, dashboards, and digital products. Hierarchy, structure, and usability that hold up in the pixel-pushing review.",
+    team: "Rashid · Mehdi · Rehbaz · Irtiqa",
   },
   {
     n: "02",
-    label: "Landing Pages",
-    desc: "High-performance landing pages for launches, campaigns, offers, waitlists, and product storytelling.",
+    label: "Framer Development",
+    desc: "Pixel-perfect Framer builds from a Figma file. Custom code components, CMS, lead capture, analytics. Your team updates copy without touching code.",
+    team: "Mehdi · Rehbaz · Ans · Qasid",
   },
   {
     n: "03",
-    label: "UI/UX Design",
-    desc: "Clear, modern interface design for websites, dashboards, and digital products with strong hierarchy, structure, and usability.",
+    label: "UX Copywriting",
+    desc: "Headlines, sub-headlines, CTAs, microcopy, and full page flow written before the design starts. Tuned to the buyer's actual objections, not generic feature lists.",
+    team: "Rashid",
   },
   {
     n: "04",
-    label: "MVP Design & Development",
-    desc: "From early concept to launch-ready MVP, I help founders design, validate, and build products without wasting cycles.",
+    label: "Landing Pages",
+    desc: "High-performance landing pages for launches, campaigns, offers, waitlists, and product storytelling. Live in 3-5 days from kickoff.",
+    team: "Rashid · Mehdi · Rehbaz · Ans · Qasid",
   },
   {
     n: "05",
-    label: "Web Apps & Dashboards",
-    desc: "Scalable internal tools, portals, and SaaS interfaces designed to feel intuitive, useful, and business-ready.",
+    label: "Motion Design",
+    desc: "After Effects-grade motion for hero loops, product demos, social cuts, and on-page micro-interactions. Stitched into the build, not bolted on.",
+    team: "Iqtidar",
   },
   {
     n: "06",
-    label: "Design Systems & Product Thinking",
-    desc: "Reusable systems, cleaner workflows, and product decisions that make growth easier after launch.",
-  },
-  {
-    n: "07",
-    label: "Product Strategy",
-    desc: "Positioning, user-flow thinking, and launch planning that helps teams make better decisions before they spend time building.",
-  },
-  {
-    n: "08",
-    label: "Brand & Positioning",
-    desc: "Sharper messaging and identity direction for startups that need their product to feel clear, credible, and ready to scale.",
+    label: "Video Editing",
+    desc: "Founder-story films, product demos, social cutdowns, and case-study reels. Cut tight, captioned, and exported per platform.",
+    team: "Mir Anees",
   },
 ];
 
@@ -58,7 +58,7 @@ const OUTCOMES = [
 export function ServiceList() {
   return (
     <section className="relative bg-white border-y border-zinc-100 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-16 md:pb-24">
+      <div className="max-w-container border-l border-zinc-100 mx-auto px-6 md:px-10 pt-20 md:pt-28 pb-16 md:pb-24">
         {/* Oversized 'Service' wordmark — clipped on the sides at narrow
             viewports so the type feels editorial. */}
         <div className="overflow-hidden -mb-2 md:-mb-4">
@@ -73,8 +73,9 @@ export function ServiceList() {
         {/* Column headers — small, like a product spec sheet. */}
         <div className="grid grid-cols-12 gap-4 md:gap-6 pt-10 md:pt-14 pb-3 border-b border-zinc-200 text-[10px] md:text-xs font-mono uppercase tracking-[0.18em] text-zinc-500">
           <div className="col-span-2 md:col-span-1">№</div>
-          <div className="col-span-10 md:col-span-4">Discipline</div>
-          <div className="hidden md:block md:col-span-7">What it is</div>
+          <div className="col-span-10 md:col-span-3">Discipline</div>
+          <div className="hidden md:block md:col-span-5">What it is</div>
+          <div className="hidden md:block md:col-span-3">Team</div>
         </div>
 
         {/* Services table */}
@@ -87,11 +88,14 @@ export function ServiceList() {
               <div className="col-span-2 md:col-span-1 text-xs md:text-sm font-mono text-zinc-400">
                 ({s.n})
               </div>
-              <div className="col-span-10 md:col-span-4 text-base md:text-lg lg:text-xl text-zinc-900 font-medium tracking-tight leading-tight group-hover:text-orange-700 transition-colors">
+              <div className="col-span-10 md:col-span-3 text-base md:text-lg lg:text-xl text-zinc-900 font-medium tracking-tight leading-tight group-hover:text-orange-700 transition-colors">
                 {s.label}
               </div>
-              <p className="col-span-12 md:col-span-7 text-sm md:text-[15px] text-zinc-600 leading-relaxed">
+              <p className="col-span-12 md:col-span-5 text-sm md:text-[15px] text-zinc-600 leading-relaxed">
                 {s.desc}
+              </p>
+              <p className="col-span-12 md:col-span-3 text-xs md:text-sm font-mono text-zinc-500 leading-relaxed">
+                {s.team}
               </p>
             </li>
           ))}

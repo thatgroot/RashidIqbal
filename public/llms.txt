@@ -113,20 +113,11 @@ studio executes underneath.
 ## Notable clients (live URLs)
 
 - UpdateAI · update.ai · onboarding signups +50%
-- Cartage · cartage.ai
-- Solidroad · solidroad.com
-- Karumi · karumi.ai
-- Liftoff · liftoff.xyz
-- Keel · keel.so
-- Circleback · circleback.ai
-- Pageloop · pageloop.ai
-- ATQLeads · atqleads.com · 2 closed-won in week 1
-- Localyzer · localyzer.io
-- Vanos AI · vanos.ai · weekly devs 2x
+- Vanos AI · vanos.ai · voice agents for enterprise workflows
 - SpaceDome · spacedome.ai · signups 3x
+- ATQLeads · atqleads.com · 2 closed-won in week 1
 - Melissa Ambrosini · melissaambrosini.com
 - Nick Broadhurst · nickbroadhurst.com
-- Ask Dialog · AAKP
 
 ## Profiles
 

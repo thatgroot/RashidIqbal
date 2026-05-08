@@ -104,15 +104,8 @@ const CLIENTS = [
   "Vanos AI",
   "SpaceDome",
   "ATQLeads",
-  "Cartage",
-  "Solidroad",
-  "Karumi",
-  "Liftoff",
-  "Keel",
-  "Circleback",
-  "Pageloop",
-  "Localyzer",
-  "Leanscale",
+  "Melissa Ambrosini",
+  "Nick Broadhurst",
 ] as const;
 
 const FAQS = [

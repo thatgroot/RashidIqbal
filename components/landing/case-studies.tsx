@@ -36,9 +36,17 @@ type FeaturedProject = {
   outcome?: string;
 };
 
-// Subtext on each card mirrors the live product's actual positioning,
-// fetched from each domain's own hero copy. Update if a client pivots.
+// Subtext on each card mirrors the live product's actual positioning.
+// Six clients featured: UpdateAI, Vanos AI, SpaceDome, ATQLeads,
+// Melissa Ambrosini, Nick Broadhurst.
 const FEATURED_PROJECTS: FeaturedProject[] = [
+  {
+    client: "UpdateAI",
+    domain: "update.ai",
+    href: "/work/updateai",
+    screenshot: "/work-screenshots/updateai.png",
+    outcome: "AI meeting assistant · signups +50%",
+  },
   {
     client: "Vanos AI",
     domain: "vanos.ai",
@@ -47,46 +55,32 @@ const FEATURED_PROJECTS: FeaturedProject[] = [
     outcome: "Voice agents for enterprise workflows",
   },
   {
-    client: "Circleback",
-    domain: "circleback.ai",
-    href: "https://circleback.ai",
-    screenshot: "/work-screenshots/circleback.png",
-    outcome: "Unbelievably good meeting notes",
+    client: "SpaceDome",
+    domain: "spacedome.ai",
+    href: "/work/spacedome-ai",
+    screenshot: "/work-screenshots/space-dome.png",
+    outcome: "Immersive spatial workspaces · signups 3×",
   },
   {
-    client: "Karumi",
-    domain: "karumi.ai",
-    href: "https://karumi.ai",
-    screenshot: "/work-screenshots/karumi.png",
-    outcome: "Instant personalized product demos",
+    client: "ATQLeads",
+    domain: "atqleads.com",
+    href: "/work/atqleads",
+    screenshot: "/work-screenshots/funnel-labs.png",
+    outcome: "Outbound for SaaS · 2 closed-won wk 1",
   },
   {
-    client: "Keel",
-    domain: "keel.so",
-    href: "https://keel.so",
-    screenshot: "/work-screenshots/keel.png",
-    outcome: "Operations platform for fast-moving teams",
+    client: "Melissa Ambrosini",
+    domain: "melissaambrosini.com",
+    href: "https://melissaambrosini.com",
+    screenshot: "/work-screenshots/melissa-ambrosini.png",
+    outcome: "Author + creator personal brand",
   },
   {
-    client: "Liftoff",
-    domain: "onliftoff.com",
-    href: "https://www.onliftoff.com",
-    screenshot: "/work-screenshots/liftoff.png",
-    outcome: "Find people, through people you trust",
-  },
-  {
-    client: "Pageloop",
-    domain: "pageloop.ai",
-    href: "https://pageloop.ai",
-    screenshot: "/work-screenshots/pageloop.png",
-    outcome: "AI agent for help-center operations",
-  },
-  {
-    client: "Solidroad",
-    domain: "solidroad.com",
-    href: "https://solidroad.com",
-    screenshot: "/work-screenshots/solidroad.png",
-    outcome: "AI optimization for human and AI agents",
+    client: "Nick Broadhurst",
+    domain: "nickbroadhurst.com",
+    href: "https://nickbroadhurst.com",
+    screenshot: "/work-screenshots/nick-broadhurst.png",
+    outcome: "Musician personal brand · 90+ Lighthouse",
   },
 ];
 
@@ -97,15 +91,7 @@ const TRUST_BRANDS = [
   { name: "UpdateAI", domain: "update.ai" },
   { name: "Vanos AI", domain: "vanos.ai" },
   { name: "SpaceDome", domain: "spacedome.ai" },
-  { name: "Cartage", domain: "cartage.ai" },
-  { name: "Solidroad", domain: "solidroad.com" },
-  { name: "Karumi", domain: "karumi.ai" },
-  { name: "Liftoff", domain: "onliftoff.com" },
-  { name: "Keel", domain: "keel.so" },
-  { name: "Circleback", domain: "circleback.ai" },
-  { name: "Pageloop", domain: "pageloop.ai" },
   { name: "ATQLeads", domain: "atqleads.com" },
-  { name: "Localyzer", domain: "localyzer.io" },
   { name: "Melissa Ambrosini", domain: "melissaambrosini.com" },
   { name: "Nick Broadhurst", domain: "nickbroadhurst.com" },
 ];
@@ -122,7 +108,7 @@ export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
 
   return (
     <section id="case-studies" className="bg-white scroll-mt-16">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
+      <div className="max-w-container border-l border-zinc-100 mx-auto px-6 md:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
         {/* Top pill */}
         <div className="flex justify-center mb-12 md:mb-16">
           <a

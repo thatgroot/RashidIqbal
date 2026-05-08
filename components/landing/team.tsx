@@ -82,7 +82,7 @@ function avatarUrl(name: string, color: string) {
 export function TeamSection() {
   return (
     <section id="team" className="bg-white scroll-mt-16 border-y border-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-20 md:pb-28">
+      <div className="max-w-container border-l border-zinc-100 mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-20 md:pb-28">
         {/* Eyebrow + headline */}
         <div className="flex justify-center mb-6 md:mb-8">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-200 bg-white text-xs md:text-sm text-zinc-700">

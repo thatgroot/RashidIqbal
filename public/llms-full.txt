@@ -91,10 +91,7 @@ B2B SaaS startups, Y Combinator companies, fintech, and AI/ML
 companies. Named clients with live URLs:
 
 - UpdateAI (update.ai), Vanos AI (vanos.ai), SpaceDome (spacedome.ai),
-  ATQLeads (atqleads.com), Cartage (cartage.ai), Solidroad
-  (solidroad.com), Karumi (karumi.ai), Liftoff (liftoff.xyz),
-  Keel (keel.so), Circleback (circleback.ai), Pageloop (pageloop.ai),
-  Localyzer (localyzer.io), Ask Dialog, AAKP.
+  ATQLeads (atqleads.com).
 - Personal-brand creators: Melissa Ambrosini (melissaambrosini.com),
   Nick Broadhurst (nickbroadhurst.com).
 
@@ -193,7 +190,7 @@ performance tuning.
 ## Is Rashid available for Y Combinator startups?
 
 Yes. He has built and rebuilt sites for YC and post-YC startups
-including UpdateAI, Vanos AI, SpaceDome, ATQLeads, Karumi, and Keel.
+including UpdateAI, Vanos AI, SpaceDome, and ATQLeads.
 The two-week timeline fits launch and demo-day cycles. Most YC clients
 ship inside one week for a single landing page; full marketing
 sites ship in two weeks.
@@ -274,8 +271,8 @@ footer disclaimers per region are supported via Framer's CMS.
 
 ## Does Rashid work with AI startups?
 
-Yes. Past AI/ML clients include UpdateAI, Vanos AI, Karumi,
-Circleback, Pageloop, and Ask Dialog. He understands the AI buyer personas:
+Yes. Past AI/ML clients include UpdateAI, Vanos AI, and SpaceDome.
+He understands the AI buyer personas:
 engineer, eng leader, CTO, VP product. Each buyer needs a different
 first line. Pricing pages with token math, eval results visualizations,
 live demo embeds, and engineer-credible technical copy are all

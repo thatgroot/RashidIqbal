@@ -99,7 +99,7 @@ export function Testimonials({ items }: { items?: Review[] }) {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-24 md:pb-36 relative z-10">
+      <div className="max-w-container border-l border-zinc-100 mx-auto px-6 md:px-8 pt-20 md:pt-28 pb-24 md:pb-36 relative z-10">
         {/* Header — big "Testimonials" wordmark + eyebrow tags */}
         <header className="mb-14 md:mb-20">
           <div className="flex flex-wrap items-center gap-2 mb-6 md:mb-8">
