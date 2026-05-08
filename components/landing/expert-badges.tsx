@@ -167,6 +167,9 @@ type ExpertBadgesProps = {
   href?: string;
   /** Label announced to screen readers when `href` makes the pill clickable. */
   hrefLabel?: string;
+  /** Render as non-interactive (no anchors, no per-badge links). Used on
+   *  the hero where the badges are pure credential display. */
+  nolinks?: boolean;
   className?: string;
 };
 
@@ -174,6 +177,7 @@ export function ExpertBadges({
   variant = "pill",
   href,
   hrefLabel = "Book a call",
+  nolinks = false,
   className = "",
 }: ExpertBadgesProps) {
   if (variant === "card") {
@@ -198,8 +202,8 @@ export function ExpertBadges({
             );
             // Per-badge link points to that badge's own profile by
             // default. If a parent passes `href`, every row is
-            // overridden (used by some legacy "book a call" surfaces).
-            const linkHref = href || b.href;
+            // overridden. `nolinks` short-circuits both behaviours.
+            const linkHref = nolinks ? null : href || b.href;
             const linkLabel = href ? `${b.title} — ${hrefLabel}` : b.title;
             return (
               <li key={b.title}>
@@ -247,6 +251,19 @@ export function ExpertBadges({
 
         const pillBase =
           "inline-flex items-center gap-2 pl-1.5 pr-3 py-1 border border-zinc-200 bg-white rounded-full transition-all";
+
+        // Non-interactive credential display (used in the hero).
+        if (nolinks) {
+          return (
+            <span
+              key={b.title}
+              className={pillBase}
+              aria-label={b.title}
+            >
+              {inner}
+            </span>
+          );
+        }
 
         const pillHref = overrideHref ?? b.href;
         const pillLabel = overrideHref

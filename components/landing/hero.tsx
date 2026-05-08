@@ -235,11 +235,13 @@ export function Hero() {
                                 transition={{ delay: 0.5 }}
                                 className="flex flex-col items-center gap-3 text-sm text-zinc-500 mb-4"
                             >
-                                {/* Each badge links to its own profile so the
-                                    visitor can verify the credential directly
-                                    on Framer / Contra / Base44 / Dribbble. */}
+                                {/* Pure credential display — no anchors.
+                                    Verification links live on /about and
+                                    /links so the hero stays focused on the
+                                    primary CTA. */}
                                 <ExpertBadges
                                     variant="pill"
+                                    nolinks
                                     className="justify-center"
                                 />
                                 <p className="text-xs text-zinc-500">

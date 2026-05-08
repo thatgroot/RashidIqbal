@@ -16,7 +16,7 @@ export async function GET() {
       <guid isPermaLink="true">${postUrl}</guid>
       <description><![CDATA[${post.description}]]></description>
       <pubDate>${pubDate}</pubDate>
-      <author>rashid@aestho.xyz (Rashid Iqbal)</author>
+      <author>rashidiqbal.freelance@gmail.com (Rashid Iqbal)</author>
       ${post.tags?.map((tag) => `<category>${tag}</category>`).join('\n      ') || ''}
     </item>`;
     })
