@@ -1,9 +1,15 @@
+"use client";
+
 // Aestho team — 9 specialists across Figma design, Framer development,
 // motion, video, and logo. Rashid is the lead. Each card uses a local
 // portrait at /public/team/<slug>.jpg when present, falling back to a
 // DiceBear "initials" SVG so the section ships with placeholders right
 // away. Drop a real photo at /team/<slug>.jpg and refresh — no code
 // change needed.
+//
+// Marked "use client" because the avatar fallback chain uses an
+// onError handler on <img>, which is a DOM event and only valid on
+// client components.
 
 const ACCENTS = [
   "fed7aa", // peach
