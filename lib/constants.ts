@@ -29,7 +29,7 @@ export const SOCIAL_LINKS = {
     whatsapp: "https://wa.me/923554665643",
     // Booking surface — Cal.com (key name preserved across the codebase).
     calcom: "https://cal.com/rashid.iqbal",
-    framerExpert: "https://www.framer.com/@rashidiqbal",
+    framerExpert: "https://www.framer.com/@risiq",
     // Dribbble profile (about page, not scheduling). Used as a third
     // proof badge in the hero.
     dribbble: "https://dribbble.com/thatgroot/about",

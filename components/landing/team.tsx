@@ -35,7 +35,7 @@ const TEAM: Member[] = [
     name: "Rashid Iqbal",
     role: "Lead · Figma + UX Copy",
     slug: "rashid-iqbal",
-    href: "https://www.linkedin.com/in/callmerashidiqbal/",
+    href: "https://www.framer.com/@risiq",
   },
   {
     name: "Mehdi Hassan",

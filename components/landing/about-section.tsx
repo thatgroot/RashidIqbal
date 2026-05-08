@@ -7,7 +7,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 const credentials = [
-  { label: "Certified Framer Expert", link: "https://www.framer.com/@rashidiqbal" },
+  { label: "Certified Framer Expert", link: "https://www.framer.com/@risiq" },
   { label: "Official Replit Expert on Contra", link: SOCIAL_LINKS.contra },
   { label: "Top Rated on Upwork", link: SOCIAL_LINKS.upwork },
   { label: "Shipping for clients since 2019", link: SOCIAL_LINKS.upwork },
@@ -15,7 +15,7 @@ const credentials = [
 
 const profiles = [
   { name: "LinkedIn", href: SOCIAL_LINKS.linkedin },
-  { name: "Framer", href: "https://www.framer.com/@rashidiqbal" },
+  { name: "Framer", href: "https://www.framer.com/@risiq" },
   { name: "Upwork", href: SOCIAL_LINKS.upwork },
   { name: "Contra", href: SOCIAL_LINKS.contra },
   { name: "GitHub", href: SOCIAL_LINKS.github },

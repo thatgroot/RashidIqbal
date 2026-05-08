@@ -28,7 +28,7 @@ const schemas = [
     // Entity disambiguation - connect all profiles
     sameAs: [
       "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
-      "https://www.framer.com/@rashidiqbal",
+      "https://www.framer.com/@risiq",
       "https://www.behance.net/thatgroot",
       "https://contra.com/rashidiqbal",
       "https://github.com/thatgroot",
@@ -74,7 +74,7 @@ const schemas = [
       {
         "@type": "Organization",
         name: "Framer Expert Community",
-        url: "https://www.framer.com/@rashidiqbal",
+        url: "https://www.framer.com/@risiq",
       },
     ],
   },
@@ -234,7 +234,7 @@ const schemas = [
     foundingDate: "2019",
     sameAs: [
       "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
-      "https://www.framer.com/@rashidiqbal",
+      "https://www.framer.com/@risiq",
       "https://www.behance.net/thatgroot",
       "https://contra.com/rashidiqbal",
       "https://github.com/thatgroot",

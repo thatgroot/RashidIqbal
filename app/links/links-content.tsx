@@ -13,7 +13,7 @@ import { GridContainer, GridItem } from "@/components/shared/grid-system";
 
 const featuredLink = {
   name: "Framer Expert Profile",
-  url: "https://www.framer.com/@rashidiqbal",
+  url: "https://www.framer.com/@risiq",
   icon: <SiFramer className="w-5 h-5" />,
   label: "Design · Build",
   description: "View my certified Framer Expert profile and published work.",

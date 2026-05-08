@@ -487,7 +487,7 @@ export const TECHNOLOGIES: Technology[] = [
         certification: {
             name: "Official Framer Expert",
             issuer: "Framer",
-            link: "https://www.framer.com/@rashidiqbal",
+            link: "https://www.framer.com/@risiq",
         },
     },
     {

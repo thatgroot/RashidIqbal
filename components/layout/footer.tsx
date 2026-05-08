@@ -217,7 +217,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="https://www.framer.com/@rashidiqbal"
+                  href="https://www.framer.com/@risiq"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
@@ -243,7 +243,16 @@ export function Footer() {
         <div className="pt-8 border-t border-zinc-800 flex flex-col gap-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-zinc-400">
-              © {new Date().getFullYear()} Aestho · led by Rashid Iqbal. Remote, working worldwide.
+              © {new Date().getFullYear()} Aestho · led by{" "}
+              <a
+                href="https://www.framer.com/@risiq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange-400 transition-colors underline-offset-4 hover:underline"
+              >
+                Rashid Iqbal
+              </a>
+              . Remote, working worldwide.
             </p>
             <div className="flex items-center gap-6">
               <Link

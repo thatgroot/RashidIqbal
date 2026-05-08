@@ -290,7 +290,7 @@ export function buildLeadEmailHtml(fields: LeadFields): string {
                   <td style="font-size: 12px; color: #71717a;">
                     <a href="https://www.linkedin.com/in/callmerashidiqbal/" style="color: #52525b; text-decoration: none; margin-right: 14px;">LinkedIn</a>
                     <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" style="color: #52525b; text-decoration: none; margin-right: 14px;">Upwork</a>
-                    <a href="https://www.framer.com/@rashidiqbal" style="color: #52525b; text-decoration: none; margin-right: 14px;">Framer</a>
+                    <a href="https://www.framer.com/@risiq" style="color: #52525b; text-decoration: none; margin-right: 14px;">Framer</a>
                     <a href="https://x.com/rashidrealme" style="color: #52525b; text-decoration: none;">X/Twitter</a>
                   </td>
                 </tr>
@@ -598,7 +598,7 @@ export function buildClientEmailHtml(fields: ClientAckFields): string {
                   <td style="font-size: 12px; color: #71717a;">
                     <a href="https://www.linkedin.com/in/callmerashidiqbal/" style="color: #52525b; text-decoration: none; margin-right: 14px;">LinkedIn</a>
                     <a href="https://www.upwork.com/freelancers/~01b24c107f5b5af596" style="color: #52525b; text-decoration: none; margin-right: 14px;">Upwork</a>
-                    <a href="https://www.framer.com/@rashidiqbal" style="color: #52525b; text-decoration: none; margin-right: 14px;">Framer</a>
+                    <a href="https://www.framer.com/@risiq" style="color: #52525b; text-decoration: none; margin-right: 14px;">Framer</a>
                     <a href="https://x.com/rashidrealme" style="color: #52525b; text-decoration: none;">X/Twitter</a>
                   </td>
                 </tr>

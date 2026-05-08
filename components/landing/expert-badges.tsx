@@ -135,7 +135,7 @@ const BADGES = [
     icon: "framer" as const,
     title: "Framer Expert",
     description: "Certified by Framer as highly skilled.",
-    href: "https://www.framer.com/@rashidiqbal",
+    href: "https://www.framer.com/@risiq",
   },
   {
     icon: "replit" as const,
@@ -230,7 +230,7 @@ export function ExpertBadges({
 
   // pill variant — compact, inline, used in the hero trust band.
   // Default behaviour: each pill links to its OWN profile (Framer →
-  // framer.com/@rashidiqbal, Replit → contra.com/rashidiqbal,
+  // framer.com/@risiq, Replit → contra.com/rashidiqbal,
   // Base44 → app.base44.com, Dribbble → dribbble.com/thatgroot/about).
   // When a parent passes `href`, every pill is overridden — used by
   // some surfaces to make the whole row a "Book a call" CTA. Hash

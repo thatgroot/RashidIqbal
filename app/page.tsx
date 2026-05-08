@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { Hero } from "@/components/landing/hero";
 import { Navbar } from "@/components/layout/navbar";
-import { ServicesGrid } from "@/components/landing/services-grid";
 import { CaseStudies } from "@/components/landing/case-studies";
 import { ServiceList } from "@/components/landing/service-list";
 import { TeamSection } from "@/components/landing/team";
@@ -149,10 +148,7 @@ function _renderPage({
             scroll into anything else. */}
         <CaseStudies {...(caseItems.length > 0 ? { items: caseItems } : {})} />
         <SectionSpacer />
-        {/* SERVICES — My Services grid. */}
-        <ServicesGrid />
-        <SectionSpacer />
-        {/* SERVICE LIST — typographic numbered services + client outcomes. */}
+        {/* SERVICES — typographic numbered list + client outcomes. */}
         <ServiceList />
         <SectionSpacer />
         {/* TEAM — the 8 specialists behind the studio. */}
