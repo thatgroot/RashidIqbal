@@ -155,7 +155,7 @@ function _renderPage({
         {/* SERVICE LIST — typographic numbered services + client outcomes. */}
         <ServiceList />
         <SectionSpacer />
-        {/* TEAM — the 9 specialists behind the studio. */}
+        {/* TEAM — the 8 specialists behind the studio. */}
         <TeamSection />
         <SectionSpacer />
         <Testimonials

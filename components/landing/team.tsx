@@ -1,11 +1,10 @@
 "use client";
 
-// Aestho team — 9 specialists across Figma design, Framer development,
-// motion, video, and logo. Rashid is the lead. Each card uses a local
+// Aestho team — 8 specialists across Figma design, Framer development,
+// motion, and video. Rashid is the lead. Each card uses a local
 // portrait at /public/team/<slug>.jpg when present, falling back to a
-// DiceBear "initials" SVG so the section ships with placeholders right
-// away. Drop a real photo at /team/<slug>.jpg and refresh — no code
-// change needed.
+// DiceBear "initials" SVG if the file is missing — so the section
+// stays visible even when a photo hasn't shipped yet.
 //
 // Marked "use client" because the avatar fallback chain uses an
 // onError handler on <img>, which is a DOM event and only valid on
@@ -59,9 +58,9 @@ const TEAM: Member[] = [
     slug: "qasid-hussain",
   },
   {
-    name: "Irtiqa Saha",
+    name: "Irtiqa Shah",
     role: "Figma Designer",
-    slug: "irtiqa-saha",
+    slug: "irtiqa-shah",
   },
   {
     name: "Iqtidar Hassan",
@@ -72,11 +71,6 @@ const TEAM: Member[] = [
     name: "Mir Anees",
     role: "Video Editor",
     slug: "mir-anees",
-  },
-  {
-    name: "Ali",
-    role: "Logo Designer",
-    slug: "ali",
   },
 ];
 
@@ -103,8 +97,8 @@ export function TeamSection() {
           A studio, not a freelancer.
         </h2>
         <p className="text-center text-base md:text-lg text-zinc-500 leading-relaxed max-w-2xl mx-auto mb-14 md:mb-20">
-          Nine specialists across Figma design, Framer development,
-          UX copy, motion, video, and logo. One project lead.
+          Eight specialists across Figma design, Framer development,
+          UX copy, motion, and video. One project lead.
           One contract. One conversation.
         </p>
 

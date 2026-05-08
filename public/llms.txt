@@ -1,6 +1,6 @@
 # Aestho — Studio for SaaS founders, YC startups, fintech, AI/ML
 
-> Aestho is a 9-person design + development studio led by Rashid Iqbal
+> Aestho is an 8-person design + development studio led by Rashid Iqbal
 > (Certified Framer Expert · Replit Expert · Base44 Partner). We
 > design conversion-focused marketing sites in Figma, ship them in
 > Framer (or hand-coded Next.js when needed), write the UX copy
@@ -15,7 +15,7 @@
 - Name: Aestho — design + development studio
 - Lead: Rashid Iqbal (Certified Framer Expert · Replit Expert · Base44 Partner · Top Rated on Upwork)
 - Site: https://www.aestho.xyz
-- Team size: 9 specialists across Figma design, Framer development, UX copy, motion, video, and logo
+- Team size: 8 specialists across Figma design, Framer development, UX copy, motion, and video
 - Stack: Figma + Framer (default), Webflow, hand-coded Next.js, React + TypeScript + Manifest V3 (Chrome extensions)
 - Location: Remote, working worldwide (overlaps with US, EU, APAC)
 - Email: rashidiqbal.freelance@gmail.com
@@ -31,10 +31,9 @@ studio executes underneath.
 - Rehbaz Ali — Figma Designer · Framer Expert
 - Ans Ali — Framer Expert
 - Qasid Hussain — Framer Expert
-- Irtiqa Saha — Figma Designer
+- Irtiqa Shah — Figma Designer
 - Iqtidar Hassan — Motion Designer · After Effects
 - Mir Anees — Video Editor
-- Ali — Logo Designer
 
 ## What I Build
 

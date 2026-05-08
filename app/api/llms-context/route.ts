@@ -17,7 +17,7 @@ URL: ${SITE_URL}
 Updated: ${ts}
 
 ## Identity
-Aestho is a 9-person design + development studio led by Rashid Iqbal
+Aestho is an 8-person design + development studio led by Rashid Iqbal
 (Certified Framer Expert, Replit Expert via Contra, verified Base44
 Partner, Top Rated on Upwork — 100% Job Success Score, 7,000+ hours
 billed). The studio works with SaaS founders, Y Combinator startups,
@@ -30,10 +30,9 @@ fintech, and AI/ML companies. Remote, working worldwide since 2019.
 - Rehbaz Ali — Figma Designer · Framer Expert
 - Ans Ali — Framer Expert
 - Qasid Hussain — Framer Expert
-- Irtiqa Saha — Figma Designer
+- Irtiqa Shah — Figma Designer
 - Iqtidar Hassan — Motion Designer · After Effects
 - Mir Anees — Video Editor
-- Ali — Logo Designer
 
 Project ownership stays with Rashid throughout the engagement.
 One contract, one conversation, the team executes underneath.
