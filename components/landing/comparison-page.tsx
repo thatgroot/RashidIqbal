@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Check, X, Minus } from "lucide-react";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
+import Link from"next/link";
+import Image from"next/image";
+import { ArrowRight, Check, X, Minus } from"lucide-react";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
 
 // Shared layout for /framer-vs-* and /hire-*-vs-* pages. GEO-optimal
 // pattern: question H1, direct answer in the first paragraph,
@@ -11,82 +11,82 @@ import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 export type ComparisonRow = {
   feature: string;
   // 'yes' | 'no' | 'partial' | string custom note
-  left: "yes" | "no" | "partial" | string;
-  right: "yes" | "no" | "partial" | string;
+  left:"yes" |"no" |"partial" | string;
+  right:"yes" |"no" |"partial" | string;
 };
 
 export type ComparisonConfig = {
   pagePath: string;
   pageUrl: string;
   eyebrow: string;
-  h1: string; // "Framer vs Webflow for SaaS landing pages"
+  h1: string; //"Framer vs Webflow for SaaS landing pages"
   // Direct-answer first sentence — the GEO-optimal hook for AI search
   directAnswer: string;
   intro: string;
-  leftLabel: string; // "Framer"
-  rightLabel: string; // "Webflow"
+  leftLabel: string; //"Framer"
+  rightLabel: string; //"Webflow"
   rows: readonly ComparisonRow[];
   whoShould: { name: string; bullets: readonly string[] }[]; // 1 or 2 audiences
   faqs: readonly { q: string; a: string }[];
 };
 
 function Cell({ value }: { value: ComparisonRow["left"] }) {
-  if (value === "yes") return <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" />;
-  if (value === "no") return <X className="w-4 h-4 text-zinc-400" aria-hidden="true" />;
-  if (value === "partial")
+  if (value ==="yes") return <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" />;
+  if (value ==="no") return <X className="w-4 h-4 text-zinc-400" aria-hidden="true" />;
+  if (value ==="partial")
     return <Minus className="w-4 h-4 text-amber-500" aria-hidden="true" />;
   return <span className="text-xs text-zinc-700">{value}</span>;
 }
 
 export function ComparisonPage({ config }: { config: ComparisonConfig }) {
   const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
+"@context":"https://schema.org",
+"@type":"FAQPage",
     mainEntity: config.faqs.map((f) => ({
-      "@type": "Question",
+"@type":"Question",
       name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
+      acceptedAnswer: {"@type":"Answer", text: f.a },
     })),
   };
 
   // Article + Breadcrumb schemas — gives AI search engines a citable
   // article URL and tells Google where this page lives in the site map.
   const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+"@context":"https://schema.org",
+"@type":"Article",
     headline: config.h1,
     description: config.directAnswer,
-    inLanguage: "en-US",
+    inLanguage:"en-US",
     isAccessibleForFree: true,
     url: config.pageUrl,
-    mainEntityOfPage: { "@type": "WebPage", "@id": config.pageUrl },
+    mainEntityOfPage: {"@type":"WebPage","@id": config.pageUrl },
     author: {
-      "@type": "Person",
-      name: "Rashid Iqbal",
+"@type":"Person",
+      name:"Rashid Iqbal",
       url: SITE_URL,
       sameAs: [
-        "https://framer.link/rashidiqbal",
-        "https://www.upwork.com/freelancers/thatgroot",
-        "https://contra.com/rashidiqbal",
+"https://framer.link/rashidiqbal",
+"https://www.upwork.com/freelancers/thatgroot",
+"https://contra.com/rashidiqbal",
       ],
     },
     publisher: {
-      "@type": "Organization",
-      name: "Rashid Iqbal · aestho.xyz",
+"@type":"Organization",
+      name:"Rashid Iqbal · aestho.xyz",
       url: SITE_URL,
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.svg` },
+      logo: {"@type":"ImageObject", url: `${SITE_URL}/logo.svg` },
     },
   };
 
   const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL },
       {
-        "@type": "ListItem",
+"@type":"ListItem",
         position: 2,
-        name: config.eyebrow || "Compare",
+        name: config.eyebrow ||"Compare",
         item: config.pageUrl,
       },
     ],
@@ -238,7 +238,7 @@ export function ComparisonPage({ config }: { config: ComparisonConfig }) {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-orange-700/25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

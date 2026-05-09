@@ -58,31 +58,31 @@ export default async function PortalProjectDetail({
     <div>
       <Link
         href="/portal"
-        className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs text-[#73706d] hover:text-[#292827] mb-6 transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
         All projects
       </Link>
 
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-3 leading-tight">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-3 leading-tight">
         {project.title}
       </h1>
       {project.tier && (
-        <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] mb-6">
+        <p className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em] mb-6">
           {TIER_LABELS[project.tier] || project.tier}
         </p>
       )}
 
       {/* Quick facts */}
       <div className="grid sm:grid-cols-3 gap-3 mb-8">
-        <Card icon={<Calendar className="w-4 h-4 text-zinc-400" />} label="Started">
+        <Card icon={<Calendar className="w-4 h-4 text-[#9a9794]" />} label="Started">
           {new Date(project.createdAt).toLocaleDateString(undefined, {
             month: "short",
             day: "numeric",
             year: "numeric",
           })}
         </Card>
-        <Card icon={<Target className="w-4 h-4 text-zinc-400" />} label="Target launch">
+        <Card icon={<Target className="w-4 h-4 text-[#9a9794]" />} label="Target launch">
           {project.targetLaunchDate
             ? new Date(project.targetLaunchDate).toLocaleDateString(undefined, {
                 month: "short",
@@ -91,7 +91,7 @@ export default async function PortalProjectDetail({
               })
             : "—"}
         </Card>
-        <Card icon={<Sparkles className="w-4 h-4 text-zinc-400" />} label="Status">
+        <Card icon={<Sparkles className="w-4 h-4 text-[#9a9794]" />} label="Status">
           {project.status === "live" && project.launchedAt
             ? `Launched ${new Date(project.launchedAt).toLocaleDateString()}`
             : project.status.charAt(0).toUpperCase() + project.status.slice(1)}
@@ -136,16 +136,16 @@ export default async function PortalProjectDetail({
       {/* Brief renders below the workspace */}
       {Object.keys(brief).length > 0 && (
         <section className="mt-10">
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+          <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
             Project brief
           </p>
-          <dl className="border border-zinc-200 bg-white divide-y divide-zinc-100">
+          <dl className="border border-[#e8e4dd] bg-white divide-y divide-[#e8e4dd]">
             {Object.entries(brief).map(([k, v]) => (
               <div key={k} className="flex flex-col sm:flex-row gap-1 sm:gap-4 px-5 py-3">
-                <dt className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] sm:w-44 shrink-0 sm:pt-0.5">
+                <dt className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] sm:w-44 shrink-0 sm:pt-0.5">
                   {k.replace(/_/g, " ")}
                 </dt>
-                <dd className="text-sm text-zinc-900 whitespace-pre-wrap break-words">
+                <dd className="text-sm text-[#292827] whitespace-pre-wrap break-words">
                   {typeof v === "string"
                     ? v
                     : Array.isArray(v)
@@ -171,14 +171,14 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="border border-zinc-200 bg-white p-4">
+    <div className="border border-[#e8e4dd] bg-white p-4">
       <div className="flex items-center gap-2 mb-2">
         {icon}
-        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em]">
+        <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em]">
           {label}
         </p>
       </div>
-      <p className="text-sm font-bold text-zinc-900">{children}</p>
+      <p className="text-sm font-bold text-[#292827]">{children}</p>
     </div>
   );
 }

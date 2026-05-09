@@ -15,7 +15,7 @@ type Point = { day: string; sessions: number; pageviews: number };
 export function TrendChart({ data }: { data: Point[] }) {
   if (data.length === 0) {
     return (
-      <p className="text-sm text-zinc-500 py-12 text-center">
+      <p className="text-sm text-[#73706d] py-12 text-center">
         No sessions yet. Visits will plot here once /api/track receives them.
       </p>
     );

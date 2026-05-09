@@ -3,12 +3,13 @@ import { Hero } from "@/components/landing/hero";
 import { Navbar } from "@/components/layout/navbar";
 import { CaseStudies } from "@/components/landing/case-studies";
 import { ServiceList } from "@/components/landing/service-list";
+import { Process } from "@/components/landing/process";
+import { UseCases } from "@/components/landing/use-cases";
 import { TeamSection } from "@/components/landing/team";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Pricing } from "@/components/landing/pricing";
 import { FAQ } from "@/components/landing/faq";
-import { CTASection } from "@/components/landing/cta";
-import { Footer } from "@/components/layout/footer";
+import { ClosingBand } from "@/components/landing/closing-band";
 import { SectionSpacer } from "@/components/shared/section-spacer";
 import { ScrollCTA } from "@/components/shared/scroll-cta";
 import { AvailabilityBadge } from "@/components/shared/availability-badge";
@@ -88,7 +89,7 @@ export default async function Page() {
     text: t.quote,
     author: t.author,
     role: t.title || "",
-    accent: t.accent || "bg-orange-500",
+    accent: t.accent || "blue",
     ...(t.avatarUrl ? { avatarUrl: t.avatarUrl } : {}),
   }));
 
@@ -103,7 +104,7 @@ export default async function Page() {
     updateai: "/work-screenshots/updateai.png",
     "vanos-ai": "/work-screenshots/vanos-ai.png",
     "spacedome-ai": "/work-screenshots/space-dome.png",
-    atqleads: "/work-screenshots/funnel-labs.png",
+    atqleads: "/work-screenshots/atqleads.jpg",
   };
 
   const caseItems: CaseStudyCard[] = cmsCases.map((c) => ({
@@ -130,15 +131,7 @@ function _renderPage({
   return (
     <>
 
-      <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
-        {/* Enhanced Background with animated gradient */}
-        <div className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-size-[40px_40px]" />
-          <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-zinc-50/50" />
-          {/* Subtle gradient orbs */}
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-500/2 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/2 rounded-full blur-3xl" />
-        </div>
+      <main id="main-content" className="min-h-screen bg-white text-[#0a0a0a] font-sans relative overflow-hidden">
 
         <Navbar variant="homepage" />
         {/* HOOK */}
@@ -146,12 +139,15 @@ function _renderPage({
         {/* PROOF — case studies showcase + trust strip moved directly
             below the hero so the visitor sees real outcomes before they
             scroll into anything else. */}
+        {/* "Built for the way modern teams ship" — Codex pattern. */}
+        <ServiceList />
+        {/* "From idea to ship" — 4-step process. */}
+        <Process />
+        {/* "Built for how you ship" — 2x2 use-case grid. */}
+        <UseCases />
+        {/* PROOF — case studies. */}
         <CaseStudies {...(caseItems.length > 0 ? { items: caseItems } : {})} />
         <SectionSpacer />
-        {/* SERVICES — typographic numbered list + client outcomes. */}
-        <ServiceList />
-        <SectionSpacer />
-        {/* TEAM — the 8 specialists behind the studio. */}
         <TeamSection />
         <SectionSpacer />
         <Testimonials
@@ -162,8 +158,7 @@ function _renderPage({
         <SectionSpacer />
         <FAQ {...(faqItems.length > 0 ? { items: faqItems } : {})} />
         <SectionSpacer />
-        <CTASection />
-        <Footer />
+        <ClosingBand />
         <ScrollCTA />
         <AvailabilityBadge variant="floating" spotsLeft={2} />
       </main>

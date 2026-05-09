@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, ExternalLink, Copy } from "lucide-react";
+import { Check, ExternalLink, Copy } from "@/components/icons";
+import { X } from "lucide-react";
 import { AUTHOR } from "@/lib/constants";
 
 // Custom DOM event used by the hero, footer, and /contact "Email me"
@@ -121,20 +122,20 @@ export function EmailMeToast() {
           transition={{ type: "spring", stiffness: 260, damping: 24 }}
           role="status"
           aria-live="polite"
-          className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[min(440px,calc(100vw-2rem))] bg-zinc-900 text-white rounded-md shadow-2xl shadow-black/30 border border-zinc-800 p-4"
+          className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[min(440px,calc(100vw-2rem))] bg-[#1b1938] text-white rounded-md shadow-2xl shadow-black/30 border border-zinc-800 p-4"
         >
           <div className="flex items-start gap-3">
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
                 copyOk
-                  ? "bg-emerald-500/15 border border-emerald-500/40"
-                  : "bg-orange-500/15 border border-orange-500/40"
+                  ? "bg-[#0e3030]/15 border border-emerald-500/40"
+                  : "bg-[#1b1938]/15 border border-[#1b1938]/40"
               }`}
             >
               {copyOk ? (
                 <Check className="w-4 h-4 text-emerald-400" aria-hidden="true" />
               ) : (
-                <Copy className="w-4 h-4 text-orange-400" aria-hidden="true" />
+                <Copy className="w-4 h-4 text-[#c9b4fa]" aria-hidden="true" />
               )}
             </div>
 
@@ -146,13 +147,13 @@ export function EmailMeToast() {
                 type="button"
                 onClick={manualCopy}
                 title="Copy email address"
-                className="inline-flex items-center gap-1.5 text-[12px] text-zinc-200 font-mono mb-3 hover:text-white transition-colors text-left break-all"
+                className="inline-flex items-center gap-1.5 text-[0.75rem] text-zinc-200 font-mono mb-3 hover:text-white transition-colors text-left break-all"
               >
                 <span>{AUTHOR.email}</span>
                 <Copy className="w-3 h-3 opacity-60 shrink-0" aria-hidden="true" />
               </button>
 
-              <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] mb-2">
+              <p className="text-[0.625rem] font-mono text-[#73706d] uppercase tracking-[0.18em] mb-2">
                 Or compose in
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -163,7 +164,7 @@ export function EmailMeToast() {
                     {...(!c.sameTab
                       ? { target: "_blank", rel: "noopener noreferrer" }
                       : {})}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-700 rounded transition-colors"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 text-[0.6875rem] font-bold bg-[#0e0c1f] hover:bg-zinc-700 active:bg-zinc-700 rounded transition-colors"
                   >
                     {c.name}
                     <ExternalLink className="w-3 h-3 opacity-70" aria-hidden="true" />
@@ -176,7 +177,7 @@ export function EmailMeToast() {
               type="button"
               onClick={() => setVisible(false)}
               aria-label="Dismiss"
-              className="text-zinc-500 hover:text-white transition-colors shrink-0 -m-1 p-1"
+              className="text-[#73706d] hover:text-white transition-colors shrink-0 -m-1 p-1"
             >
               <X className="w-4 h-4" aria-hidden="true" />
             </button>

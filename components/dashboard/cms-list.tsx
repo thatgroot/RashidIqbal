@@ -27,20 +27,20 @@ export function CmsList({
   return (
     <div>
       <div className="flex items-end justify-between gap-4 mb-2">
-        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em]">
+        <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em]">
           CMS · {collectionLabel}
         </p>
       </div>
       <div className="flex items-end justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-1">
+          <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-1">
             {collectionLabel}
           </h1>
-          {description && <p className="text-sm text-zinc-500">{description}</p>}
+          {description && <p className="text-sm text-[#73706d]">{description}</p>}
         </div>
         <Link
           href={`/dashboard/cms/${collection}/new`}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 text-white text-xs font-bold hover:bg-orange-600 transition-colors shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors shrink-0"
         >
           <Plus className="w-3.5 h-3.5" aria-hidden="true" />
           New
@@ -48,34 +48,34 @@ export function CmsList({
       </div>
 
       {rows.length === 0 ? (
-        <div className="border border-zinc-200 bg-white p-10 text-center">
-          <p className="text-sm text-zinc-500">
+        <div className="border border-[#e8e4dd] bg-white p-10 text-center">
+          <p className="text-sm text-[#73706d]">
             No entries yet. Click <strong>New</strong> to add the first one.
           </p>
         </div>
       ) : (
-        <ul className="border border-zinc-200 bg-white divide-y divide-zinc-100">
+        <ul className="border border-[#e8e4dd] bg-white divide-y divide-[#e8e4dd]">
           {rows.map((r) => (
             <li key={r.id}>
               <Link
                 href={`/dashboard/cms/${collection}/${r.id}`}
-                className="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50/60 transition-colors"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-[#fafaf8]/60 transition-colors"
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                    r.isPublished ? "bg-emerald-500" : "bg-zinc-300"
+                    r.isPublished ? "bg-[#0e3030]" : "bg-zinc-300"
                   }`}
                   aria-hidden="true"
                   title={r.isPublished ? "Published" : "Draft"}
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-zinc-900 truncate">{r.primary}</p>
+                  <p className="text-sm text-[#292827] truncate">{r.primary}</p>
                   {r.secondary && (
-                    <p className="text-[12px] text-zinc-400 truncate">{r.secondary}</p>
+                    <p className="text-[12px] text-[#9a9794] truncate">{r.secondary}</p>
                   )}
                 </div>
                 {r.meta && (
-                  <span className="text-[11px] font-mono text-zinc-400 shrink-0">
+                  <span className="text-[11px] font-mono text-[#9a9794] shrink-0">
                     {r.meta}
                   </span>
                 )}

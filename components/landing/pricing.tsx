@@ -1,24 +1,29 @@
 "use client";
 
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { ArrowRight, Check, Loader2, X } from "lucide-react";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Check, Loader2, Shield, X } from"lucide-react";
+import { useState } from"react";
+import { motion, AnimatePresence, LayoutGroup } from"framer-motion";
 
-import { ONE_TIME_PLANS, RETAINER_PLANS } from "@/lib/pricing-data";
+import { ONE_TIME_PLANS, RETAINER_PLANS } from"@/lib/pricing-data";
 
-// ============================================================================
-// Inline email form — replaces the old Email/WhatsApp/Upwork/Cal.com icon row.
-// A single form scoped to the whole Pricing section, passed the current
-// plan+mode when submitted so the email lands with context baked in.
-// ============================================================================
+// OpenAI-Codex pricing.
+//   - Centred chip + bold black headline + sub.
+//   - 3 cards on a white surface, all using the same rounded-2xl
+//     hairline-border recipe. Featured tier gets the same
+//     violet-to-sky gradient corner-glow as the"Ship" mockup so it
+//     pops without inverting to dark.
+//   - Sliding pill toggle (one-time / retainer) above the cards.
+//   - Pricing numerals at weight 700.
+//   - Black pill primary CTA on every card; featured card uses the
+//     same black pill with violet ambient lift on hover.
+//   - Cards stretch to equal height via flex layout (h-full).
 
-type SubmitStatus = "idle" | "sending" | "sent" | "error";
+type SubmitStatus ="idle" |"sending" |"sent" |"error";
 
 type PricingFormProps = {
   planName: string;
   planPrice: string;
-  mode: "one-time" | "retainer";
+  mode:"one-time" |"retainer";
   onClose: () => void;
 };
 
@@ -37,21 +42,21 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
 
     try {
       const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
-          source: "pricing",
+          source:"pricing",
           email: email.trim(),
           name: name.trim() || undefined,
           plan: planName,
           mode,
           description: note.trim() || undefined,
-          botcheck: "",
+          botcheck:"",
         }),
       });
       const body = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
       if (!res.ok || body.success === false) {
-        setErrorMsg(body.error || "Something went wrong. Try again.");
+        setErrorMsg(body.error ||"Something went wrong. Try again.");
         setStatus("error");
         return;
       }
@@ -62,18 +67,18 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
     }
   }
 
-  if (status === "sent") {
+  if (status ==="sent") {
     return (
-      <div className="border-t border-zinc-100 pt-4">
+      <div className="border-t border-[#e5e5e5] pt-5 mt-5">
         <div className="flex items-start gap-3">
           <div className="w-8 h-8 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center shrink-0">
             <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" />
           </div>
-          <div className="text-sm">
-            <p className="font-semibold text-zinc-900">Got it.</p>
-            <p className="text-zinc-500 mt-0.5">
-              I&rsquo;ll reply within 24 hours with a tailored proposal for{" "}
-              <span className="font-medium text-zinc-900">{planName}</span>.
+          <div className="text-[14px]">
+            <p style={{ fontVariationSettings: '"wght" 600' }}>Got it.</p>
+            <p className="text-[#737373] mt-0.5">
+              We&rsquo;ll reply within 24 hours with a tailored proposal for{""}
+              <span style={{ fontVariationSettings: '"wght" 600' }}>{planName}</span>.
             </p>
           </div>
         </div>
@@ -82,16 +87,19 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-zinc-100 pt-4 space-y-2.5">
+    <form onSubmit={handleSubmit} className="border-t border-[#e5e5e5] pt-5 mt-5 space-y-3">
       <div className="flex items-center justify-between">
-        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">
+        <span
+          className="text-[11px] uppercase tracking-[0.18em] text-[#737373]"
+          style={{ fontVariationSettings: '"wght" 500' }}
+        >
           Send me the details
         </span>
         <button
           type="button"
           onClick={onClose}
           aria-label="Cancel"
-          className="text-zinc-400 hover:text-zinc-700 transition-colors"
+          className="text-[#737373] hover:text-[#0a0a0a] transition-colors"
         >
           <X className="w-4 h-4" aria-hidden="true" />
         </button>
@@ -103,7 +111,7 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
         onChange={(e) => setName(e.target.value)}
         placeholder="Your name (optional)"
         autoComplete="name"
-        className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+        className="w-full px-4 py-2.5 border border-[#e5e5e5] bg-white text-[14px] text-[#0a0a0a] rounded-full placeholder:text-[#a3a3a3] focus:outline-none focus:border-[#0a0a0a]"
       />
       <input
         type="email"
@@ -112,21 +120,21 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
         placeholder="your@email.com"
         required
         autoComplete="email"
-        className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+        className="w-full px-4 py-2.5 border border-[#e5e5e5] bg-white text-[14px] text-[#0a0a0a] rounded-full placeholder:text-[#a3a3a3] focus:outline-none focus:border-[#0a0a0a]"
       />
       <textarea
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        placeholder="Anything I should know? (optional)"
+        placeholder="Anything we should know? (optional)"
         rows={2}
-        className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 resize-none"
+        className="w-full px-4 py-2.5 border border-[#e5e5e5] bg-white text-[14px] text-[#0a0a0a] rounded-2xl placeholder:text-[#a3a3a3] focus:outline-none focus:border-[#0a0a0a] resize-none"
       />
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="w-full py-3 text-sm font-bold flex items-center justify-center gap-2 bg-zinc-900 text-white hover:bg-orange-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        disabled={status ==="sending"}
+        className="btn-pill btn-pill-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === "sending" ? (
+        {status ==="sending" ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
             Sending
@@ -139,261 +147,275 @@ function PricingInquiryForm({ planName, planPrice, mode, onClose }: PricingFormP
         )}
       </button>
 
-      {status === "error" && (
-        <p className="text-xs text-red-600 text-center">{errorMsg}</p>
+      {status ==="error" && (
+        <p className="text-[12px] text-rose-600 text-center">{errorMsg}</p>
       )}
-      <p className="text-[11px] text-zinc-400 text-center">
-        Lands at rashidiqbal.freelance@gmail.com. You&apos;ll get a copy too. Reply within 24h.
+      <p className="text-[11px] text-[#a3a3a3] text-center">
+        Lands at rashidiqbal.freelance@gmail.com. Reply within 24h.
       </p>
-      <p className="text-[10px] font-mono text-zinc-400 text-center uppercase tracking-wider">
-        {planName} · {mode === "retainer" ? "Monthly retainer" : "One-time"} · {planPrice}
+      <p
+        className="text-[10px] text-[#a3a3a3] text-center uppercase tracking-[0.18em]"
+        style={{ fontVariationSettings: '"wght" 500' }}
+      >
+        {planName} · {mode ==="retainer" ?"Monthly retainer" :"One-time"} · {planPrice}
       </p>
     </form>
   );
 }
 
-// ============================================================================
-// Pricing section
-// ============================================================================
-
 export function Pricing() {
   const [openPlan, setOpenPlan] = useState<number | null>(null);
-  const [mode, setMode] = useState<"one-time" | "retainer">("one-time");
-  const plans = mode === "one-time" ? ONE_TIME_PLANS : RETAINER_PLANS;
+  const [mode, setMode] = useState<"one-time" |"retainer">("one-time");
+  const plans = mode ==="one-time" ? ONE_TIME_PLANS : RETAINER_PLANS;
 
-  function toggleMode(next: "one-time" | "retainer") {
+  function toggleMode(next:"one-time" |"retainer") {
     setMode(next);
-    setOpenPlan(null); // close any open form so pricing stays consistent with the active plan
+    setOpenPlan(null);
   }
 
   return (
-    <section className="bg-white scroll-mt-16" id="pricing">
-      <div className="max-w-container border-l border-zinc-100">
-        {/* Header with Inline Selector */}
-        <GridContainer>
-          <GridItem className="py-20">
-            <motion.div
-              className="max-w-3xl"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-semibold text-zinc-900 mb-6 tracking-tight leading-[1.1]">
-                What it costs to get a website that actually works.
-              </h2>
-              <p className="text-lg text-zinc-500 mb-8">
-                This pricing gives you an idea. Your final cost depends on your specific requirements.
-              </p>
+    <section className="relative bg-white scroll-mt-24 overflow-hidden" id="pricing">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 codex-section-glow pointer-events-none"
+      />
 
-              {/* Pricing Mode Toggle */}
-              <div className="inline-flex items-center p-1 bg-zinc-100 rounded-sm">
-                <button
-                  onClick={() => toggleMode("one-time")}
-                  className={`px-5 py-2.5 text-sm font-bold transition-all rounded-sm ${
-                    mode === "one-time"
-                      ? "bg-zinc-900 text-white shadow-sm"
-                      : "text-zinc-500 hover:text-zinc-700"
-                  }`}
-                >
-                  One-Time
-                </button>
-                <button
-                  onClick={() => toggleMode("retainer")}
-                  className={`px-5 py-2.5 text-sm font-bold transition-all rounded-sm relative ${
-                    mode === "retainer"
-                      ? "bg-zinc-900 text-white shadow-sm"
-                      : "text-zinc-500 hover:text-zinc-700"
-                  }`}
-                >
-                  Monthly Retainer
-                </button>
-              </div>
-
-              <p className="text-xs text-zinc-400 mt-4">
-                No contracts. Cancel retainers anytime. Money-back on the first design round.
-              </p>
-              <p className="text-xs text-orange-600 font-medium mt-2">
-                Currently accepting 2 new projects this month.
-              </p>
-            </motion.div>
-          </GridItem>
-        </GridContainer>
-
-        <GridContainer cols={3}>
-          {plans.map((plan, i) => (
-            <motion.div
-              key={`${mode}-${i}`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.08, delayChildren: i * 0.12 } },
+      <div className="relative max-w-container mx-auto px-6 md:px-10 pt-32 md:pt-40 pb-32 md:pb-40">
+        {/* Centred opener — matches the rest of the Codex pattern. */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin:"-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <span className="codex-chip mx-auto inline-flex">
+            <span
+              aria-hidden="true"
+              className="w-4 h-4 rounded-sm flex items-center justify-center text-white text-[9px]"
+              style={{
+                background:"linear-gradient(135deg, #e6b431 0%, #9c7307 100%)",
+                fontVariationSettings: '"wght" 700',
               }}
             >
-              <GridItem
-                className={
-                  plan.popular
-                    ? "bg-linear-to-b from-orange-50/80 to-white ring-2 ring-orange-500/30 ring-inset shadow-xl shadow-orange-500/10 scale-[1.02] relative z-10"
-                    : ""
-                }
+              $
+            </span>
+            Aestho pricing
+          </span>
+          <h2
+            className="mt-7 text-[clamp(40px,5.6vw,72px)] tracking-[-0.028em] leading-[1.04] text-[#0a0a0a]"
+            style={{ fontVariationSettings: '"wght" 700' }}
+          >
+            Fixed scope. Fixed price.
+          </h2>
+          <p className="mt-5 text-[19px] leading-[1.5] text-[#404040] max-w-2xl mx-auto">
+            Final number depends on what you need — we walk through it on the
+            kickoff call. Money-back on the first design round.
+          </p>
+
+          {/* Sliding pill toggle */}
+          <LayoutGroup>
+            <div className="mt-9 inline-flex items-center p-1 bg-white border border-[#e5e5e5] rounded-full relative">
+              <button
+                onClick={() => toggleMode("one-time")}
+                className={`relative px-5 py-2.5 text-[14px] rounded-full transition-colors z-10 ${
+                  mode ==="one-time" ?"text-white" :"text-[#737373] hover:text-[#0a0a0a]"
+                }`}
+                style={{ fontVariationSettings: '"wght" 500' }}
               >
-                {(plan.popular || plan.highlight) && (
-                  <motion.div
-                    className={`absolute top-6 right-6 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
-                      plan.popular ? "bg-orange-700 text-white" : "bg-zinc-900 text-white"
-                    }`}
-                    variants={{
-                      hidden: { opacity: 0, scale: 0.8 },
-                      visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-                    }}
-                  >
-                    {plan.highlight || "Most Popular"}
-                  </motion.div>
+                {mode ==="one-time" && (
+                  <motion.span
+                    layoutId="codex-pricing-pill"
+                    className="absolute inset-0 bg-[#0a0a0a] rounded-full -z-0"
+                    transition={{ type:"spring", stiffness: 380, damping: 30 }}
+                  />
                 )}
+                <span className="relative">One-time</span>
+              </button>
+              <button
+                onClick={() => toggleMode("retainer")}
+                className={`relative px-5 py-2.5 text-[14px] rounded-full transition-colors z-10 ${
+                  mode ==="retainer" ?"text-white" :"text-[#737373] hover:text-[#0a0a0a]"
+                }`}
+                style={{ fontVariationSettings: '"wght" 500' }}
+              >
+                {mode ==="retainer" && (
+                  <motion.span
+                    layoutId="codex-pricing-pill"
+                    className="absolute inset-0 bg-[#0a0a0a] rounded-full -z-0"
+                    transition={{ type:"spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative">Monthly retainer</span>
+              </button>
+            </div>
+          </LayoutGroup>
 
-                <div className="mb-6 mt-2">
-                  <motion.h3
-                    className="text-3xl font-bold text-zinc-900 mb-1"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    {plan.name}
-                  </motion.h3>
-                  <motion.div
-                    className="text-xs font-mono text-orange-600 uppercase tracking-wider mb-3"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    {plan.tagline}
-                  </motion.div>
+          <p className="mt-5 text-[13px] text-[#737373] max-w-md mx-auto">
+            Cancel anytime. You keep the Figma file, the Framer project, and
+            everything we built — no licence revocation.
+          </p>
+        </motion.div>
 
-                  <motion.div
-                    className="mb-4"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    <span className="text-3xl font-bold text-zinc-900">{plan.price}</span>
-                    {plan.priceSuffix && (
-                      <span className="text-lg text-zinc-500 font-medium">{plan.priceSuffix}</span>
-                    )}
-                  </motion.div>
-
-                  <motion.p
-                    className="text-sm text-zinc-600 leading-relaxed mb-4"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    {plan.desc}
-                  </motion.p>
-
-                  <motion.div
-                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-100 text-xs text-zinc-600"
-                    variants={{
-                      hidden: { opacity: 0, y: 10 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-                    }}
-                  >
-                    <span className="w-1.5 h-1.5 bg-orange-500 rounded-full"></span>
-                    {plan.idealFor}
-                  </motion.div>
-                </div>
-
-                {/* Features */}
-                <div className="space-y-3 mb-6 min-h-[200px]">
-                  <motion.div
-                    className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider mb-3"
-                    variants={{
-                      hidden: { opacity: 0 },
-                      visible: { opacity: 1, transition: { duration: 0.3 } },
-                    }}
-                  >
-                    What&apos;s Included
-                  </motion.div>
-                  {plan.baseFeatures.map((f, j) => (
-                    <motion.div
-                      key={j}
-                      className="flex items-start gap-3 text-sm text-zinc-700"
-                      variants={{
-                        hidden: { opacity: 0, x: -10 },
-                        visible: {
-                          opacity: 1,
-                          x: 0,
-                          transition: { duration: 0.3, delay: j * 0.05 },
-                        },
-                      }}
-                    >
-                      <Check className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" aria-hidden="true" />
-                      <span>{f}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Delivery */}
-                <motion.div
-                  className="flex items-center justify-between py-3 border-t border-zinc-100 mb-6"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+        {/* Three cards — equal-height grid. */}
+        <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
+          <AnimatePresence mode="wait">
+            {plans.map((plan, i) => {
+              const isFeatured = !!plan.popular;
+              return (
+                <motion.article
+                  key={`${mode}-${plan.name}`}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  viewport={{ once: true, margin:"-60px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: i * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  whileHover={{ y: -4 }}
+                  className={`relative h-full flex flex-col rounded-2xl border bg-white p-7 md:p-8 ${
+                    isFeatured
+                      ?"border-[#dcd5ff]"
+                      :"border-[#e5e5e5]"
+                  }`}
+                  style={{
+                    backgroundImage: isFeatured
+                      ?"radial-gradient(80% 100% at 100% 100%, rgba(230,180,49,0.18) 0%, rgba(248,200,77,0.10) 35%, rgba(255,255,255,0) 70%)"
+                      :"none",
                   }}
                 >
-                  <span className="text-xs text-zinc-500">Delivery</span>
-                  <span className="text-sm font-semibold text-zinc-900">{plan.deliveryTime}</span>
-                </motion.div>
+                  {(plan.popular || plan.highlight) && (
+                    <span
+                      className={`absolute -top-3 left-7 inline-flex items-center gap-1.5 px-3 py-1 text-[11px] uppercase tracking-[0.16em] rounded-full ${
+                        plan.popular
+                          ?"bg-white text-[#9c7307] border border-[#dcd5ff]"
+                          :"bg-[#0a0a0a] text-white"
+                      }`}
+                      style={{ fontVariationSettings: '"wght" 600' }}
+                    >
+                      {plan.popular ?"Most popular" : plan.highlight}
+                    </span>
+                  )}
 
-                {/* CTA → expands into an inline email form */}
-                <div>
-                  <AnimatePresence mode="wait" initial={false}>
-                    {openPlan === i ? (
-                      <motion.div
-                        key="form"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden"
-                      >
-                        <PricingInquiryForm
-                          planName={plan.name}
-                          planPrice={`${plan.price}${plan.priceSuffix ?? ""}`}
-                          mode={mode}
-                          onClose={() => setOpenPlan(null)}
-                        />
-                      </motion.div>
-                    ) : (
-                      <motion.button
-                        key="button"
-                        type="button"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                        onClick={() => setOpenPlan(i)}
-                        className={`w-full py-4 text-sm font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 ${
-                          plan.popular
-                            ? "bg-orange-700 text-white hover:bg-orange-800 shadow-lg shadow-orange-700/25"
-                            : "bg-zinc-900 text-white hover:bg-zinc-800"
-                        }`}
-                      >
-                        {plan.popular ? "Start Building" : "Get Started"}
-                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                      </motion.button>
+                  <h3
+                    className="text-[22px] tracking-[-0.012em] text-[#0a0a0a] mb-1.5"
+                    style={{ fontVariationSettings: '"wght" 600' }}
+                  >
+                    {plan.name}
+                  </h3>
+                  <p
+                    className="text-[12px] uppercase tracking-[0.16em] text-[#737373] mb-6"
+                    style={{ fontVariationSettings: '"wght" 600' }}
+                  >
+                    {plan.tagline}
+                  </p>
+
+                  {/* Price — weight 700, big numerals. */}
+                  <div className="flex items-baseline gap-1.5 mb-5">
+                    <span
+                      className="text-[44px] tracking-[-0.022em] leading-none text-[#0a0a0a]"
+                      style={{ fontVariationSettings: '"wght" 700' }}
+                    >
+                      {plan.price}
+                    </span>
+                    {plan.priceSuffix && (
+                      <span className="text-[18px] text-[#737373]">
+                        {plan.priceSuffix}
+                      </span>
                     )}
-                  </AnimatePresence>
-                </div>
-              </GridItem>
-            </motion.div>
-          ))}
-        </GridContainer>
+                  </div>
+
+                  <p className="text-[15px] leading-[1.6] text-[#404040] mb-6">
+                    {plan.desc}
+                  </p>
+
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 text-[12px] rounded-full mb-6 self-start bg-[#fafafa] border border-[#e5e5e5] text-[#404040]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#e6b431]" />
+                    {plan.idealFor}
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    <p
+                      className="text-[11px] uppercase tracking-[0.16em] text-[#a3a3a3] mb-3"
+                      style={{ fontVariationSettings: '"wght" 600' }}
+                    >
+                      What&rsquo;s included
+                    </p>
+                    {plan.baseFeatures.map((f, j) => (
+                      <div
+                        key={j}
+                        className="flex items-start gap-3 text-[14px] leading-[1.5] text-[#0a0a0a]"
+                      >
+                        <Check
+                          className="w-4 h-4 shrink-0 mt-0.5 text-[#0a0a0a]"
+                          aria-hidden="true"
+                        />
+                        <span>{f}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Footer block (delivery + guarantee + CTA) pinned via mt-auto. */}
+                  <div className="mt-auto">
+                    <div className="flex items-center justify-between py-3 border-t border-[#e5e5e5] mb-2">
+                      <span className="text-[12px] text-[#737373]">Delivery</span>
+                      <span
+                        className="text-[14px] text-[#0a0a0a]"
+                        style={{ fontVariationSettings: '"wght" 600' }}
+                      >
+                        {plan.deliveryTime}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-[12px] text-[#737373] mb-5">
+                      <Shield className="w-3 h-3" aria-hidden="true" />
+                      <span>Money-back on the first design round.</span>
+                    </div>
+
+                    <AnimatePresence mode="wait" initial={false}>
+                      {openPlan === i ? (
+                        <motion.div
+                          key="form"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height:"auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="overflow-hidden"
+                        >
+                          <PricingInquiryForm
+                            planName={plan.name}
+                            planPrice={`${plan.price}${plan.priceSuffix ??""}`}
+                            mode={mode}
+                            onClose={() => setOpenPlan(null)}
+                          />
+                        </motion.div>
+                      ) : (
+                        <motion.button
+                          key="button"
+                          type="button"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.15 }}
+                          onClick={() => setOpenPlan(i)}
+                          className="btn-pill btn-pill-primary group w-full justify-center"
+                        >
+                          {isFeatured ?"Get started" :"Choose plan"}
+                          <ArrowRight
+                            className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                            aria-hidden="true"
+                          />
+                        </motion.button>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

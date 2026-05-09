@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home } from "@/components/icons";
 import type { BreadcrumbItem } from "@/types/seo";
 import { SITE_URL } from "@/lib/constants";
 
@@ -42,7 +42,7 @@ export function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
             {/* Navigation */}
             <nav
                 aria-label="Breadcrumb"
-                className={`flex items-center gap-2 text-sm text-zinc-500 ${className}`}
+                className={`flex items-center gap-2 text-sm text-[#73706d] ${className}`}
             >
                 {allItems.map((item, index) => {
                     const isLast = index === allItems.length - 1;
@@ -54,13 +54,13 @@ export function Breadcrumb({ items, className = "" }: BreadcrumbProps) {
                                 <ChevronRight className="w-4 h-4 text-zinc-300" aria-hidden="true" />
                             )}
                             {isLast ? (
-                                <span className="text-zinc-900 font-medium" aria-current="page">
+                                <span className="text-[#292827] font-medium" aria-current="page">
                                     {item.label}
                                 </span>
                             ) : (
                                 <Link
                                     href={item.href}
-                                    className="hover:text-orange-600 transition-colors flex items-center gap-1"
+                                    className="hover:text-[#1b1938] transition-colors flex items-center gap-1"
                                 >
                                     {isFirst && <Home className="w-4 h-4" aria-hidden="true" />}
                                     <span className={isFirst ? "sr-only" : ""}>{item.label}</span>

@@ -6,7 +6,7 @@ import { GridContainer, GridItem } from "@/components/shared/grid-system";
 export function SectionSpacer() {
   return (
     <div className="bg-white">
-      <div className="max-w-container border-l border-zinc-100">
+      <div className="max-w-container border-l border-[#e8e4dd]">
         <GridContainer>
           <GridItem padding={false} className="h-[200px]">
             <div className="h-full" />

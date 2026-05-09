@@ -32,7 +32,7 @@ const config: ComparisonConfig = {
   eyebrow: "Comparison · 2026",
   h1: "Hiring a Framer expert vs hiring an agency",
   directAnswer:
-    "For a marketing site under 20 pages, hire a solo Framer expert. You ship in 2 weeks. Agencies quote 6–12 weeks for the same scope, mostly because layered roles (creative director, project manager, account exec, junior designer) all bill against your invoice — the multiplier on cost is roughly 4×.",
+    "For a marketing site under 20 pages, hire a solo Framer expert. You ship in 2 weeks. Agencies quote 6–12 weeks for the same scope, mostly because layered roles (creative director, project manager, account exec, junior designer) all bill against your invoice, the multiplier on cost is roughly 4×.",
   intro:
     "Agencies make sense when scope is large, the brand work is deep, or multiple stakeholders need wrangling. Solo specialists make sense for a fast-moving marketing site where speed and clarity matter more than process.",
   leftLabel: "Solo Framer Expert",
@@ -73,19 +73,19 @@ const config: ComparisonConfig = {
   faqs: [
     {
       q: "Why is the solo expert so much cheaper?",
-      a: "An agency invoices for a creative director (marking up the work), a project manager (running daily standups), an account exec (writing emails), and a junior designer (doing the actual work). A solo specialist cuts those layers — you're paying for one brain doing all four jobs, which is faster and cheaper.",
+      a: "An agency invoices for a creative director (marking up the work), a project manager (running daily standups), an account exec (writing emails), and a junior designer (doing the actual work). A solo specialist cuts those layers, you're paying for one brain doing all four jobs, which is faster and cheaper.",
     },
     {
       q: "What if I need brand work too?",
-      a: "Most solo Framer experts (myself included) refresh brand inside a project — color tuning, typography fixes, layout system. Full identity work (new logo, brand book, guidelines) is usually a separate engagement with a brand specialist. I'll tell you honestly on the call which side of the line you're on.",
+      a: "Most solo Framer experts (myself included) refresh brand inside a project, color tuning, typography fixes, layout system. Full identity work (new logo, brand book, guidelines) is usually a separate engagement with a brand specialist. I'll tell you honestly on the call which side of the line you're on.",
     },
     {
       q: "Can a solo person actually handle a SaaS-grade site?",
-      a: "Yes for marketing sites. UpdateAI, Vanos AI, SpaceDome, ATQLeads — all funded SaaS companies, all shipped by a small studio. The constraint isn't capacity; it's scope. If your project needs 50 pages, dozens of stakeholders, and a brand strategist, hire an agency.",
+      a: "Yes for marketing sites. UpdateAI, Vanos AI, SpaceDome, ATQLeads, all funded SaaS companies, all shipped by a small studio. The constraint isn't capacity; it's scope. If your project needs 50 pages, dozens of stakeholders, and a brand strategist, hire an agency.",
     },
     {
       q: "What about quality?",
-      a: "Quality scales with the maker, not the headcount. The right solo specialist with 7+ years of experience usually ships better marketing-page work than a junior at an agency. Look at portfolios, named clients, and conversion data — not how many people are on the team.",
+      a: "Quality scales with the maker, not the headcount. The right solo specialist with 7+ years of experience usually ships better marketing-page work than a junior at an agency. Look at portfolios, named clients, and conversion data, not how many people are on the team.",
     },
   ],
 };

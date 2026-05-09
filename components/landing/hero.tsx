@@ -1,315 +1,326 @@
 "use client";
 
-import { motion, useMotionValue, useMotionTemplate } from "framer-motion";
-import { ArrowDown, Calendar } from "lucide-react";
+// OpenAI-Codex hero. Centred composition. White → soft-violet → white
+// atmospheric backdrop that terminates in pure white at the bottom so
+// there is NO visible seam between the hero and the next section.
+//
+// Layout: the hero product mockup is `position: absolute` with z-99
+// and pulled down so that ~25% of its height bleeds into the section
+// below, then nudged 100px upward so the float sits closer to the
+// CTAs. The hero `<section>` reserves enough bottom space to leave
+// 75% of the image inside the hero band.
+//
+// Animation: the headline animates one character at a time on first
+// paint (Framer Motion stagger). Each glyph fades + rises 8px in
+// sequence, with a slight per-letter delay (24ms).
 
-import { useRef, useState } from "react";
 import Image from "next/image";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { OfferBanner } from "@/components/shared/offer-banner";
-import { ExpertBadges } from "@/components/landing/expert-badges";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const projectImages = [
-    "/work-screenshots/deals-finders.png",
-    "/work-screenshots/funnel-labs.png",
-    "/work-screenshots/leanscale.png",
-    "/work-screenshots/melissa-ambrosini.png",
-    "/work-screenshots/nick-broadhurst.png",
-    "/work-screenshots/pedro-token.png",
-    "/work-screenshots/road-id.png",
-    "/work-screenshots/saku-monsters.png",
-];
+// Headline split into segments so the second word ("Studio") can pick
+// up the amber liquid-glass text-gradient while the first stays in
+// pure ink. Each segment is animated character-by-character below.
+const HEADLINE_SEGMENTS = [
+  { text: "Aestho", gradient: false },
+  { text: " ", gradient: false },
+  { text: "Studio", gradient: true },
+] as const;
+const HEADLINE_FULL = HEADLINE_SEGMENTS.map((s) => s.text).join("");
+const HEADLINE_LEN = HEADLINE_FULL.length;
 
 export function Hero() {
-    const sectionRef = useRef<HTMLElement>(null);
+  return (
+    <section
+      className="relative bg-white"
+      style={{ overflow: "visible" }}
+      aria-label="Aestho"
+    >
+      {/* Atmospheric backdrop — terminates in white so the seam between
+          hero and the next section disappears. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(60% 80% at 90% 25%, rgba(255,241,207,0.85) 0%, rgba(255,241,207,0) 60%), radial-gradient(50% 70% at 10% 70%, rgba(253,232,163,0.7) 0%, rgba(253,232,163,0) 60%), radial-gradient(40% 60% at 60% 80%, rgba(255,241,207,0.55) 0%, rgba(255,241,207,0) 60%), linear-gradient(180deg, #ffffff 0%, #fffaf0 50%, #ffffff 100%)",
+        }}
+      />
 
-    // Mouse tracking for lens effect
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
+      <div className="relative max-w-container mx-auto px-6 md:px-10 pt-36 md:pt-44">
+        {/* Per-character animated wordmark headline. */}
+        <motion.h1
+          aria-label={HEADLINE_FULL}
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.024, delayChildren: 0.06 } },
+          }}
+          className="text-center text-[clamp(3.75rem,11.5vw,9.25rem)] tracking-[-0.03em] leading-[1.0] text-[#0a0a0a]"
+          style={{ fontVariationSettings: '"wght" 700' }}
+        >
+          {HEADLINE_SEGMENTS.flatMap((seg) =>
+            seg.text.split("").map((ch, i) => (
+            <motion.span
+              key={`${ch}-${i}`}
+              aria-hidden="true"
+              variants={{
+                hidden: { opacity: 0, y: 8 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-block"
+              style={{
+                whiteSpace: ch === " " ? "pre" : "normal",
+              }}
+            >
+              {ch === " " ? " " : ch}
+            </motion.span>
+          ))
+          )}
+        </motion.h1>
 
-    // Single stable CTA — opens cal.com/rashid.iqbal directly so the
-    // visitor can pick a slot in the same flow they're already in.
-    const cta = {
-        label: "Book a strategy call",
-        href: SOCIAL_LINKS.calcom,
-        Icon: Calendar,
-    };
-    // Hero unblur overlay — mounted on first paint, unmounted once the
-    // 1.2s reveal animation finishes so backdrop-filter stops painting.
-    const [showBlurOverlay, setShowBlurOverlay] = useState(true);
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+            delay: 0.06 + HEADLINE_LEN * 0.024 + 0.1,
+          }}
+          className="mt-7 text-center text-[1.25rem] md:text-[1.5rem] leading-[1.35] text-[#404040] max-w-3xl mx-auto"
+        >
+          <span className="block">Design, build and ship</span>
+          <span className="block">
+            <RotatingWord />
+          </span>
+        </motion.p>
 
-    function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
-        const { left, top } = currentTarget.getBoundingClientRect();
-        mouseX.set(clientX - left);
-        mouseY.set(clientY - top);
-    }
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1],
+            delay: 0.06 + HEADLINE_LEN * 0.024 + 0.2,
+          }}
+          className="mt-12 flex items-center justify-center gap-3 flex-wrap"
+        >
+          <Link href="/#booking-calendar" className="btn-pill btn-pill-primary group">
+            Book a strategy call
+            <span aria-hidden="true">→</span>
+          </Link>
+          <Link href="/work" className="btn-pill btn-pill-ghost">
+            See the work
+          </Link>
+        </motion.div>
 
-    const maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
+        {/* Spacer reserving 75% of the image height inside the hero so
+            the absolutely-positioned mockup below doesn't collide with
+            this content block. */}
+        <div
+          aria-hidden="true"
+          className="mt-16 md:mt-20"
+          style={{ height: "calc(min(1320px, 90vw) * 10 / 16 * 0.75)" }}
+        />
+      </div>
 
-    return (
-        <section ref={sectionRef} className="pt-16 bg-white relative overflow-hidden">
-            {/* Promotional strip, directly below the fixed navbar */}
-            <OfferBanner />
-            <div className="max-w-container border-l border-zinc-100 relative">
-                <GridContainer cols={1}>
-                    {/* Main Hero Content */}
-                    <GridItem
-                        className="border-t relative overflow-hidden group"
-                        padding={false}
-                    >
-                        {/* Lens Effect Layer - Visible on Hover */}
-                        <motion.div
-                            className="absolute inset-0 z-0 pointer-events-none hidden md:block"
-                            style={{ maskImage, WebkitMaskImage: maskImage }}
-                        >
-                            <div className="absolute inset-0 bg-zinc-50 opacity-20" />
-                            {/* Montage of work */}
-                            <div className="absolute inset-0 grid grid-cols-4 gap-2 opacity-30 rotate-12 scale-125">
-                                {projectImages.map((src, i) => (
-                                    <div key={i} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
-                                        <Image
-                                            src={src}
-                                            alt={`Showcase of previous project ${i + 1}`}
-                                            fill
-                                            className="object-cover grayscale"
-                                            sizes="20vw"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                ))}
-                                {projectImages.map((src, i) => (
-                                    <div key={`dup-${i}`} className="relative aspect-video bg-zinc-100 rounded-lg overflow-hidden">
-                                        <Image
-                                            src={src}
-                                            alt=""
-                                            fill
-                                            className="object-cover grayscale"
-                                            sizes="20vw"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
+      {/* Floating product mockup — absolute, z-99, no shadow. Lifted
+          100px from the original 25% bleed position so it nudges
+          closer to the CTAs. */}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.34 }}
+        className="absolute left-1/2 -translate-x-1/2 px-6 md:px-10 w-full"
+        style={{
+          // Original calc was `* -0.25` (25% bleed). Adding +100px
+          // shifts the image upward by 100px relative to the hero.
+          bottom: `calc(min(1320px, 90vw) * 10 / 16 * -0.25 + 100px)`,
+          maxWidth: "1320px",
+          zIndex: 99,
+        }}
+      >
+        <HeroScreenshotCarousel />
+      </motion.div>
 
-                        {/*
-                            Backdrop-filter overlay: blurs the hero on first
-                            paint, then fades to opacity 0 over 1.2s. Once the
-                            animation finishes we unmount it so the browser
-                            stops painting backdrop-filter every frame. This
-                            avoids the iOS Safari `filter: blur()` step-tween
-                            issue and the GPU cost of animating filters
-                            directly on the content layer.
-                        */}
-                        {showBlurOverlay && (
-                            <motion.div
-                                initial={{ opacity: 1 }}
-                                animate={{ opacity: 0 }}
-                                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                                onAnimationComplete={() => setShowBlurOverlay(false)}
-                                aria-hidden="true"
-                                className="absolute inset-0 z-20 pointer-events-none"
-                                style={{
-                                    backdropFilter: "blur(16px)",
-                                    WebkitBackdropFilter: "blur(16px)",
-                                }}
-                            />
-                        )}
-
-                        <motion.article
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                            className="relative z-10 w-full px-6 py-12 md:px-12 md:py-16 flex flex-col items-center text-center"
-                            onMouseMove={handleMouseMove}
-                        >
-                            {/* Status Pill with Urgency - Animated Border Trail */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 }}
-                                className="relative inline-flex items-center gap-3 px-4 py-2 rounded-full text-xs font-medium mb-6"
-                            >
-                                {/* Static border background */}
-                                <div className="absolute inset-0 rounded-full border border-orange-200" />
-                                {/* Animated traveling light on border */}
-                                <div className="absolute inset-px rounded-full overflow-hidden">
-                                    <div
-                                        className="absolute inset-0 animate-border-travel"
-                                        style={{
-                                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 340deg, #f97316 350deg, #fb923c 355deg, #f97316 360deg)',
-                                        }}
-                                    />
-                                </div>
-                                {/* Glow that follows the light */}
-                                <div className="absolute inset-[-4px] rounded-full overflow-hidden pointer-events-none">
-                                    <div
-                                        className="absolute inset-0 animate-border-travel blur-sm opacity-60"
-                                        style={{
-                                            background: 'conic-gradient(from 0deg, transparent 0deg, transparent 340deg, #f97316 350deg, #fb923c 355deg, #f97316 360deg)',
-                                        }}
-                                    />
-                                </div>
-                                {/* Inner background */}
-                                <div className="absolute -inset-1 rounded-full bg-orange-50" />
-                                {/* Content */}
-                                <span className="relative flex items-center gap-2 text-orange-700 z-10">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-                                    </span>
-                                    AVAILABLE NOW
-                                </span>
-                                <span className="relative w-px h-4 bg-orange-200 z-10"></span>
-                                <span className="relative text-zinc-600 z-10">Accepting 2 new Framer projects</span>
-                                {/* Stable primary CTA — single verb, single
-                                    destination. Opens cal.com/rashid.iqbal
-                                    in a new tab. */}
-                                <motion.a
-                                    href={cta.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={cta.label}
-                                    title={cta.label}
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ delay: 0.4, type: "spring", stiffness: 260, damping: 18 }}
-                                    whileHover={{ scale: 1.06 }}
-                                    whileTap={{ scale: 0.96 }}
-                                    className="relative z-10 ml-1 inline-flex items-center justify-center gap-1.5 pl-2 pr-3 py-1 rounded-full bg-orange-600 text-white text-xs font-bold tracking-tight shadow-md shadow-orange-500/40 hover:bg-orange-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 overflow-hidden"
-                                >
-                                    <span
-                                        className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-60 pointer-events-none"
-                                        aria-hidden="true"
-                                    />
-                                    <span className="relative flex items-center justify-center w-5 h-5 rounded-full bg-white/20 shrink-0">
-                                        <cta.Icon className="w-3 h-3" aria-hidden="true" />
-                                    </span>
-                                    <span className="relative whitespace-nowrap">{cta.label}</span>
-                                </motion.a>
-                            </motion.div>
-
-                            {/* Frustration hook - question that teases the headline's answer */}
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.15 }}
-                                className="text-base md:text-xl font-bold tracking-tight mb-5"
-                            >
-                                <span className="text-zinc-900">Why is your site</span>{" "}
-                                <span className="text-orange-600">not converting?</span>
-                            </motion.p>
-
-                            {/* Answer headline - 7 words, completes the question with a concrete diagnosis */}
-                            <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                className="text-3xl md:text-4xl lg:text-6xl font-semibold tracking-tighter text-zinc-900 mb-6 max-w-4xl mx-auto leading-[1.1] pb-1"
-                            >
-                                <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900 pb-1">Because your page</span>{" "}
-                                <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900 pb-1">isn&rsquo;t built to</span>{" "}
-                                <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600 pb-1">sell.</span>
-                            </motion.h1>
-
-                            {/* Sub-heading — names the buyer's actual outcome
-                                 ("more demos in 60 days") and the named clients
-                                 who got it. Specificity beats abstract claims. */}
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-8"
-                            >
-                                Aestho is an 8-person studio for SaaS founders. We rewrite the copy, design in Figma, and ship in Framer with headlines and CTAs that close deals.{" "}
-                                <a href="/work/updateai" className="underline decoration-orange-300 decoration-2 underline-offset-2 hover:text-orange-700 transition-colors">UpdateAI: signups +50%</a>.{" "}
-                                <a href="/work/vanos-ai" className="underline decoration-orange-300 decoration-2 underline-offset-2 hover:text-orange-700 transition-colors">Vanos AI: weekly devs 2×</a>.{" "}
-                                <a href="/work/spacedome-ai" className="underline decoration-orange-300 decoration-2 underline-offset-2 hover:text-orange-700 transition-colors">SpaceDome: signups 3×</a>.{" "}
-                                <span className="font-semibold text-zinc-900">Live in two weeks. Refund if the design is wrong.</span>
-                            </motion.p>
-
-                            {/* Trust band + secondary CTA. Both primary
-                                 CTAs (status pill above, this band) point to
-                                 the same in-page booking anchor — no offsite
-                                 redirects, single conversion path. */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5 }}
-                                className="flex flex-col items-center gap-3 text-sm text-zinc-500 mb-4"
-                            >
-                                {/* Pure credential display — no anchors.
-                                    Verification links live on /about and
-                                    /links so the hero stays focused on the
-                                    primary CTA. */}
-                                <ExpertBadges
-                                    variant="pill"
-                                    nolinks
-                                    className="justify-center"
-                                />
-                                <p className="text-xs text-zinc-500">
-                                    Free 30-min audit · No credit card · Refund if the design is wrong
-                                </p>
-                                <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
-                                    <span>Shipping since 2019</span>
-                                    <span className="text-zinc-300">•</span>
-                                    <span>Avg. 2.4x conversion lift in 60 days</span>
-                                    <span className="text-zinc-300">•</span>
-                                    <span>Top Rated on Upwork</span>
-                                </div>
-                            </motion.div>
-
-                            {/* Scroll Indicator */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 1, duration: 0.5 }}
-                                className="mt-12 flex flex-col items-center gap-2"
-                            >
-                                <span className="text-xs text-zinc-400 uppercase tracking-widest">Scroll to explore</span>
-                                <motion.div
-                                    animate={{ y: [0, 8, 0] }}
-                                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                                >
-                                    <ArrowDown className="w-4 h-4 text-zinc-500" aria-hidden="true" />
-                                </motion.div>
-                            </motion.div>
-                        </motion.article>
-
-                        {/* Visual Background Element - Only visible when NOT hovering lens area to avoid clutter */}
-                        <div className="absolute inset-0 z-0 opacity-40 md:opacity-100 pointer-events-none mix-blend-multiply">
-                            <VisualBackground />
-                        </div>
-                    </GridItem>
-
-                </GridContainer>
-            </div>
-        </section>
-    );
+      <div aria-hidden="true" style={{ height: "200px" }} />
+    </section>
+  );
 }
 
-function VisualBackground() {
-    return (
-        <div className="w-full h-full relative overflow-hidden">
-            {/* Abstract animated shapes */}
+/** Reserved top-padding the next section adds to absorb the bleed. */
+export const HERO_BLEED_TOP_PADDING_PX = 360;
+
+// ---- HeroScreenshotCarousel -----------------------------------------
+//
+// Cycles a stack of client screenshots inside the hero browser-chrome
+// frame. Two pieces in motion at once:
+//
+//   1. The browser-chrome domain label (top of the window) cross-fades
+//      via AnimatePresence `mode: "wait"` so only one URL is visible
+//      at a time.
+//   2. The screenshot itself uses an *overlapping* cross-fade — each
+//      candidate image is absolutely stacked, animated independently
+//      with a blur + scale pixelation envelope on entry/exit:
+//
+//        entering: opacity 0 → 1, blur 24px → 0, scale 1.04 → 1
+//        exiting:  opacity 1 → 0, blur 0 → 24px, scale 1 → 1.04
+//
+//      The `contrast(1.4)` mid-transition pushes the blurred state
+//      toward chunky digital pixelation rather than a soft gaussian
+//      smear. Combined with `image-rendering: pixelated` during the
+//      transformed window, transitions read as a hardware "morph"
+//      rather than a film dissolve.
+//
+// Auto-rotates every 3.5s. Pauses if the user prefers reduced motion.
+
+const HERO_SCREENSHOTS = [
+  { domain: "update.ai", src: "/work-screenshots/updateai.png", label: "UpdateAI" },
+  { domain: "vanos.ai", src: "/work-screenshots/vanos-ai.png", label: "Vanos AI" },
+  { domain: "atqleads.com", src: "/work-screenshots/atqleads.jpg", label: "ATQLeads" },
+  { domain: "melissaambrosini.com", src: "/work-screenshots/melissa-ambrosini.png", label: "Melissa Ambrosini" },
+  { domain: "nickbroadhurst.com", src: "/work-screenshots/nick-broadhurst.png", label: "Nick Broadhurst" },
+] as const;
+
+function HeroScreenshotCarousel() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const reduce = window.matchMedia?.(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reduce) return;
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % HERO_SCREENSHOTS.length);
+    }, 3500);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const current = HERO_SCREENSHOTS[index];
+
+  return (
+    <div className="relative rounded-[1.25rem] overflow-hidden bg-white border border-[#e5e5e5]">
+      {/* Image stack — each frame absolutely-positioned so transitions
+          can OVERLAP (cross-fade with simultaneous blur/scale). */}
+      <div className="relative aspect-[16/10] bg-[#fafafa] overflow-hidden">
+        <AnimatePresence initial={false}>
+          {current ? (
             <motion.div
-                animate={{
-                    y: [0, -20, 0],
-                    rotate: [0, 5, 0]
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[10%] left-[5%] w-64 h-64 bg-linear-to-br from-orange-100/40 to-transparent rounded-full blur-3xl"
+              key={current.src}
+              className="absolute inset-0"
+              initial={{
+                opacity: 0,
+                filter: "blur(24px) contrast(1.35) saturate(0.9)",
+                scale: 1.04,
+                imageRendering: "pixelated" as const,
+              }}
+              animate={{
+                opacity: 1,
+                filter: "blur(0px) contrast(1) saturate(1)",
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                filter: "blur(24px) contrast(1.35) saturate(0.9)",
+                scale: 1.04,
+                imageRendering: "pixelated" as const,
+              }}
+              transition={{
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <Image
+                src={current.src}
+                alt={`${current.label} marketing site, designed and shipped by Aestho`}
+                fill
+                priority={index === 0}
+                sizes="(max-width: 1024px) 100vw, 1320px"
+                // `object-cover` fills the 16:10 frame on both axes and
+                // crops whatever overflows. `object-[center_top]` biases
+                // toward keeping the top of the screenshot in view —
+                // marketing-site headers/heroes are usually the most
+                // important content — while still cutting overflow on
+                // the sides for square-ish images like ATQLeads
+                // (2698×2250 ≈ 1.2:1 vs the frame's 1.6:1).
+                className="object-cover object-[center_top]"
+              />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+
+        {/* Index dots — bottom-right overlay so the visitor can spot
+            which slot is currently visible without being intrusive. */}
+        <div className="absolute bottom-3 right-4 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/85 backdrop-blur border border-[#e5e5e5]">
+          {HERO_SCREENSHOTS.map((s, i) => (
+            <button
+              key={s.domain}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Show ${s.label}`}
+              className="w-1.5 h-1.5 rounded-full transition-all"
+              style={{
+                backgroundColor:
+                  i === index ? "#0a0a0a" : "#d4d4d4",
+                width: i === index ? "0.8rem" : "0.375rem",
+              }}
             />
-            <motion.div
-                animate={{
-                    y: [0, 30, 0],
-                    rotate: [0, -5, 0]
-                }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-[20%] right-[10%] w-96 h-96 bg-linear-to-tl from-blue-100/40 to-transparent rounded-full blur-3xl"
-            />
+          ))}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
+// ---- RotatingWord ---------------------------------------------------
+//
+// Cycles through "Marketing → GTM → Product …" in place. Because the
+// rotating word now lives on its OWN line followed by "Websites", the
+// previous layout-width-animation gymnastics are unnecessary — the
+// whole line simply re-centres itself when the word changes.
+// AnimatePresence handles the vertical fade-rotate; the amber liquid-
+// glass gradient pulls the eye to the rotating word.
+
+// Each rotating phrase carries its own "Websites" so the whole noun
+// phrase swaps as one unit. Both leading word and "Websites" are
+// capitalised — keeps the line reading as a proper title.
+const ROTATING_WORDS = [
+  "Marketing Websites",
+  "GTM Websites",
+  "Product Websites",
+  "Growth Websites",
+  "Launch Websites",
+  "Conversion Websites",
+] as const;
+
+function RotatingWord() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setIndex((i) => (i + 1) % ROTATING_WORDS.length);
+    }, 2000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <span className="inline-flex items-baseline align-baseline overflow-hidden">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={ROTATING_WORDS[index]}
+          initial={{ y: "0.4em", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "-0.4em", opacity: 0 }}
+          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block whitespace-nowrap text-gradient-amber"
+          style={{ fontVariationSettings: '"wght" 600' }}
+        >
+          {ROTATING_WORDS[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}

@@ -147,8 +147,8 @@ export function NotesPanel({
         : handleSharedChange;
 
   return (
-    <div className="border border-zinc-200 bg-white">
-      <div className="flex items-center justify-between border-b border-zinc-100 px-3 py-2">
+    <div className="border border-[#e8e4dd] bg-white">
+      <div className="flex items-center justify-between border-b border-[#e8e4dd] px-3 py-2">
         <div className="flex">
           <TabButton
             active={tab === "shared"}
@@ -167,7 +167,7 @@ export function NotesPanel({
             </TabButton>
           )}
         </div>
-        <div className="flex items-center gap-2 text-[10px] font-mono text-zinc-400">
+        <div className="flex items-center gap-2 text-[10px] font-mono text-[#9a9794]">
           {savingTab === tab ? (
             <span className="inline-flex items-center gap-1">
               <Loader2 className="w-3 h-3 animate-spin" aria-hidden="true" />
@@ -185,7 +185,7 @@ export function NotesPanel({
           <button
             type="button"
             onClick={() => setConflictWarning(null)}
-            className="ml-auto text-amber-600 hover:text-amber-900"
+            className="ml-auto text-[#1b1938] hover:text-amber-900"
           >
             ✕
           </button>
@@ -200,10 +200,10 @@ export function NotesPanel({
             : "Admin-only notes. Client never sees this."
         }
         rows={10}
-        className="w-full px-4 py-3 text-sm leading-relaxed bg-white text-zinc-900 placeholder:text-zinc-400 focus:outline-none resize-y font-mono"
+        className="w-full px-4 py-3 text-sm leading-relaxed bg-white text-[#292827] placeholder:text-[#9a9794] focus:outline-none resize-y font-mono"
       />
-      <div className="px-3 py-2 border-t border-zinc-100 flex items-center justify-between bg-zinc-50/40">
-        <p className="text-[10px] text-zinc-400">
+      <div className="px-3 py-2 border-t border-[#e8e4dd] flex items-center justify-between bg-[#fafaf8]/40">
+        <p className="text-[10px] text-[#9a9794]">
           {tab === "shared"
             ? "Visible to both client and Rashid. Updates live."
             : "Hidden from the client portal."}
@@ -212,7 +212,7 @@ export function NotesPanel({
           type="button"
           onClick={() => save(tab)}
           disabled={savingTab === tab}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-zinc-600 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-[#73706d] border border-[#e8e4dd] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors disabled:opacity-50"
         >
           <Save className="w-3 h-3" aria-hidden="true" />
           Save now
@@ -238,14 +238,14 @@ function TabButton({
       type="button"
       onClick={onClick}
       className={`relative inline-flex items-center gap-1.5 px-3 py-1.5 text-xs transition-colors ${
-        active ? "text-zinc-900 font-bold" : "text-zinc-500 hover:text-zinc-900"
+        active ? "text-[#292827] font-bold" : "text-[#73706d] hover:text-[#292827]"
       }`}
     >
       {icon}
       {children}
       {active && (
         <span
-          className="absolute -bottom-2 left-2 right-2 h-0.5 bg-orange-500"
+          className="absolute -bottom-2 left-2 right-2 h-0.5 bg-[#1b1938]"
           aria-hidden="true"
         />
       )}

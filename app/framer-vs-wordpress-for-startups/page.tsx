@@ -28,7 +28,7 @@ const config: ComparisonConfig = {
   directAnswer:
     "Pick Framer. WordPress made sense when you needed a plugin for everything; in 2026 most startup marketing sites need fast pages, a clean CMS for blog posts, and zero infrastructure work. Framer ships all three out of the box. WordPress still wins for content-heavy sites with complex plugin requirements (LMS, large e-commerce, membership communities).",
   intro:
-    "WordPress powers ~43% of the web, but most of that is legacy. For a startup launching a marketing site in 2026, the speed-to-market and performance defaults of Framer win. WordPress's strength is the plugin ecosystem — pick it when that matters more than ship time.",
+    "WordPress powers ~43% of the web, but most of that is legacy. For a startup launching a marketing site in 2026, the speed-to-market and performance defaults of Framer win. WordPress's strength is the plugin ecosystem, pick it when that matters more than ship time.",
   leftLabel: "Framer",
   rightLabel: "WordPress",
   rows: [
@@ -48,7 +48,7 @@ const config: ComparisonConfig = {
     {
       name: "Pick Framer if",
       bullets: [
-        "Marketing site, blog, careers, case studies — under 20 pages",
+        "Marketing site, blog, careers, case studies, under 20 pages",
         "You don't want to manage hosting or plugin updates",
         "Designer-led (or no designer at all, using AI Workshop)",
         "Speed and Core Web Vitals matter",
@@ -67,11 +67,11 @@ const config: ComparisonConfig = {
   faqs: [
     {
       q: "Is Framer better for SEO than WordPress?",
-      a: "By default, yes — Framer renders SSR HTML with cleaner Core Web Vitals. WordPress can match this with the right hosting + cache plugins, but out-of-the-box Framer wins on Lighthouse mobile by 10–20 points.",
+      a: "By default, yes, Framer renders SSR HTML with cleaner Core Web Vitals. WordPress can match this with the right hosting + cache plugins, but out-of-the-box Framer wins on Lighthouse mobile by 10–20 points.",
     },
     {
       q: "Can I migrate from WordPress to Framer?",
-      a: "Yes. Posts migrate via export-import; pages get rebuilt cleanly in Framer. 301 redirects preserve SEO equity. Most migrations take 2–3 weeks. The exception is sites with heavy plugin dependencies (forums, e-commerce, memberships) — those usually need to stay on WordPress or move to a dedicated platform like Shopify.",
+      a: "Yes. Posts migrate via export-import; pages get rebuilt cleanly in Framer. 301 redirects preserve SEO equity. Most migrations take 2–3 weeks. The exception is sites with heavy plugin dependencies (forums, e-commerce, memberships), those usually need to stay on WordPress or move to a dedicated platform like Shopify.",
     },
     {
       q: "What about cost?",
@@ -79,7 +79,7 @@ const config: ComparisonConfig = {
     },
     {
       q: "Is Framer overkill for a tiny site?",
-      a: "No — even a 3-page site benefits from Framer's speed and zero-maintenance hosting. The free tier (1k visitors/month, no custom domain) handles a tiny launch site without paying anything.",
+      a: "No, even a 3-page site benefits from Framer's speed and zero-maintenance hosting. The free tier (1k visitors/month, no custom domain) handles a tiny launch site without paying anything.",
     },
   ],
 };

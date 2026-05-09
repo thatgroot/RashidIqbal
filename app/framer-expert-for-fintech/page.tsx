@@ -41,7 +41,7 @@ const config: IndustryConfig = {
     "I build fintech marketing sites that lead with trust, list jurisdictions and compliance up front, and convert without sounding like every other neobank. Two-week delivery, copy + design + build under one roof.",
   clients: [],
   deliverables: [
-    "Trust-first hero — jurisdictions, licensing, audited counterparties surfaced above the fold",
+    "Trust-first hero, jurisdictions, licensing, audited counterparties surfaced above the fold",
     "Plain-English copy that swaps fintech jargon for what the buyer actually needs",
     "Compliance-friendly design system: clear disclosures, footer disclaimers, accessible color contrast",
     "Framer build with CMS for press, careers, regulatory updates",
@@ -55,7 +55,7 @@ const config: IndustryConfig = {
     { title: "Day 13 to 14: Launch", body: "Domain, redirects, analytics, sitemap. You go live." },
   ],
   testimonial: {
-    text: "Trust-first design takes the buyer's regulatory anxiety off the table before the feature pitch starts. The site leads with jurisdictions, audited counterparties, and disclosure transparency — then the conversion path opens up underneath it.",
+    text: "Trust-first design takes the buyer's regulatory anxiety off the table before the feature pitch starts. The site leads with jurisdictions, audited counterparties, and disclosure transparency, then the conversion path opens up underneath it.",
     author: "Trust-first marketing for regulated buyers",
     title: "Fintech case study",
   },

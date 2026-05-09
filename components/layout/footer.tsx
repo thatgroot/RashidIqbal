@@ -6,26 +6,27 @@ import { triggerEmailMe } from "@/components/shared/email-me-toast";
 
 export function Footer() {
   return (
-    <footer className="bg-zinc-900 text-white">
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-36">
+    <footer className="bg-white text-[#737373] border-t border-[#e5e5e5]">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 pt-16 pb-24">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-orange-500 text-white flex items-center justify-center font-bold rounded">
-                R
+              <div className="w-10 h-10 bg-[#0a0a0a] text-white flex items-center justify-center rounded-full" style={{ fontVariationSettings: '"wght" 600' }}>
+                A
               </div>
-              <span className="font-bold text-lg">Aestho</span>
+              <span className="text-lg text-[#0a0a0a]" style={{ fontVariationSettings: '"wght" 600' }}>Aestho</span>
             </div>
-            <p className="text-zinc-400 text-sm mb-6 max-w-xs">
-              Figma design, Framer development, and Chrome extensions.
-              I build things that convert.
+            <p className="text-[#737373] text-sm mb-6 max-w-xs leading-[1.5]">
+              An 8-person studio for SaaS founders. Figma, Framer, UX copy,
+              motion. Sites that close deals.
             </p>
             <button
               type="button"
               onClick={triggerEmailMe}
-              className="inline-flex items-center gap-1.5 text-orange-500 hover:text-orange-400 transition-colors text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
+              className="inline-flex items-center gap-1.5 text-[#0a0a0a] hover:text-[#000000] transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
+              style={{ fontVariationSettings: '"wght" 600' }}
             >
               Email me
               <span aria-hidden="true">→</span>
@@ -34,14 +35,14 @@ export function Footer() {
 
           {/* Industries */}
           <div>
-            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#737373] mb-4">
               Industries
             </p>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/framer-expert-for-saas"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   SaaS
                 </Link>
@@ -49,7 +50,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/framer-expert-for-fintech"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Fintech
                 </Link>
@@ -57,7 +58,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/framer-expert-for-ai-startups"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   AI startups
                 </Link>
@@ -65,7 +66,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/framer-expert-for-yc-startups"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Y Combinator
                 </Link>
@@ -75,14 +76,14 @@ export function Footer() {
 
           {/* Compare — decision-stage SEO pages */}
           <div>
-            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#737373] mb-4">
               Compare
             </p>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/framer-vs-webflow-for-saas"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Framer vs Webflow
                 </Link>
@@ -90,7 +91,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/framer-vs-wordpress-for-startups"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Framer vs WordPress
                 </Link>
@@ -98,7 +99,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/hire-framer-expert-vs-agency"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Expert vs agency
                 </Link>
@@ -106,7 +107,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/figma-to-framer-cost-2026"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Figma → Framer cost
                 </Link>
@@ -114,7 +115,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/figma-to-framer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Figma to Framer service
                 </Link>
@@ -124,14 +125,14 @@ export function Footer() {
 
           {/* Proof — case studies, research, and free audit */}
           <div>
-            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#737373] mb-4">
               Proof
             </p>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/work"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Case studies
                 </Link>
@@ -139,7 +140,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/research"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Research
                 </Link>
@@ -147,7 +148,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/blog"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Blog
                 </Link>
@@ -155,7 +156,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   About
                 </Link>
@@ -163,7 +164,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/offer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Free audit
                 </Link>
@@ -171,7 +172,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Start a project
                 </Link>
@@ -181,7 +182,7 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <p className="font-semibold text-sm uppercase tracking-wider text-zinc-400 mb-4">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#737373] mb-4">
               Connect
             </p>
             <ul className="space-y-3">
@@ -190,7 +191,7 @@ export function Footer() {
                   href={SOCIAL_LINKS.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Twitter / X
                 </Link>
@@ -200,7 +201,7 @@ export function Footer() {
                   href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   LinkedIn
                 </Link>
@@ -210,7 +211,7 @@ export function Footer() {
                   href={SOCIAL_LINKS.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   GitHub
                 </Link>
@@ -220,7 +221,7 @@ export function Footer() {
                   href="https://www.framer.com/@risiq"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Framer
                 </Link>
@@ -230,7 +231,7 @@ export function Footer() {
                   href={SOCIAL_LINKS.upwork}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-zinc-300 hover:text-orange-500 transition-colors"
+                  className="text-sm text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
                 >
                   Upwork
                 </Link>
@@ -240,15 +241,15 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-zinc-800 flex flex-col gap-4">
+        <div className="pt-8 border-t border-[#e5e5e5] flex flex-col gap-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-[#737373]">
               © {new Date().getFullYear()} Aestho · led by{" "}
               <a
                 href="https://www.framer.com/@risiq"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-orange-400 transition-colors underline-offset-4 hover:underline"
+                className="hover:text-[#0a0a0a] transition-colors underline-offset-4 hover:underline"
               >
                 Rashid Iqbal
               </a>
@@ -257,19 +258,19 @@ export function Footer() {
             <div className="flex items-center gap-6">
               <Link
                 href="/blog"
-                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
+                className="text-sm text-[#737373] hover:text-[#0a0a0a] transition-colors"
               >
                 Blog
               </Link>
               <Link
                 href="/contact"
-                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
+                className="text-sm text-[#737373] hover:text-[#0a0a0a] transition-colors"
               >
                 Contact
               </Link>
               <Link
                 href="/links"
-                className="text-sm text-zinc-400 hover:text-zinc-300 transition-colors"
+                className="text-sm text-[#737373] hover:text-[#0a0a0a] transition-colors"
               >
                 Links
               </Link>

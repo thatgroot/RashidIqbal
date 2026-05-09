@@ -183,7 +183,7 @@ export function ExpertBadges({
   if (variant === "card") {
     return (
       <div
-        className={`border border-zinc-200 bg-white rounded-2xl p-5 md:p-6 max-w-md ${className}`}
+        className={`border border-[#e8e4dd] bg-white rounded-2xl p-5 md:p-6 max-w-md ${className}`}
       >
         <ul className="space-y-5">
           {BADGES.map((b) => {
@@ -191,10 +191,10 @@ export function ExpertBadges({
               <>
                 <BrandLogo icon={b.icon} size="lg" />
                 <div className="pt-0.5 flex-1 min-w-0">
-                  <h4 className="font-bold text-zinc-900 text-sm md:text-base leading-tight">
+                  <h4 className="font-bold text-[#292827] text-sm md:text-base leading-tight">
                     {b.title}
                   </h4>
-                  <p className="text-xs md:text-sm text-zinc-500 mt-1 leading-snug">
+                  <p className="text-xs md:text-sm text-[#73706d] mt-1 leading-snug">
                     {b.description}
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export function ExpertBadges({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={linkLabel}
-                    className="flex items-start gap-4 rounded-lg -m-1 p-1 hover:bg-zinc-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    className="flex items-start gap-4 rounded-lg -m-1 p-1 hover:bg-[#fafaf8] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1938]"
                   >
                     {content}
                   </a>
@@ -243,14 +243,14 @@ export function ExpertBadges({
         const inner = (
           <>
             <BrandLogo icon={b.icon} size="sm" />
-            <span className="text-xs sm:text-sm font-semibold text-zinc-900">
+            <span className="text-xs sm:text-sm font-semibold text-[#292827]">
               {b.title}
             </span>
           </>
         );
 
         const pillBase =
-          "inline-flex items-center gap-2 pl-1.5 pr-3 py-1 border border-zinc-200 bg-white rounded-full transition-all";
+          "inline-flex items-center gap-2 pl-1.5 pr-3 py-1 border border-[#e8e4dd] bg-white rounded-full transition-all";
 
         // Non-interactive credential display (used in the hero).
         if (nolinks) {
@@ -285,7 +285,7 @@ export function ExpertBadges({
                 }
               : { target: "_blank", rel: "noopener noreferrer" })}
             aria-label={pillLabel}
-            className={`${pillBase} hover:border-orange-300 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500`}
+            className={`${pillBase} hover:border-[#e8c773] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1938]`}
           >
             {inner}
           </a>

@@ -159,19 +159,19 @@ export function InboxListRow({ row }: { row: InboxRow }) {
     >
       <Link
         href={`/dashboard/inbox/${row.id}`}
-        className={`flex items-center gap-3 px-4 py-3 hover:bg-zinc-50/60 transition-colors ${
-          unread ? "bg-orange-50/30" : ""
+        className={`flex items-center gap-3 px-4 py-3 hover:bg-[#fafaf8]/60 transition-colors ${
+          unread ? "bg-[#fafaf8]/30" : ""
         }`}
       >
         <span
           className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-            unread ? "bg-orange-500" : "bg-transparent"
+            unread ? "bg-[#1b1938]" : "bg-transparent"
           }`}
           aria-hidden="true"
         />
         {starred ? (
           <Star
-            className="w-3.5 h-3.5 text-orange-500 fill-orange-500 shrink-0"
+            className="w-3.5 h-3.5 text-[#1b1938] fill-[#1b1938] shrink-0"
             aria-hidden="true"
           />
         ) : (
@@ -180,25 +180,25 @@ export function InboxListRow({ row }: { row: InboxRow }) {
         <div className="w-44 shrink-0 flex flex-col">
           <span
             className={`text-sm truncate ${
-              unread ? "font-bold text-zinc-900" : "text-zinc-700"
+              unread ? "font-bold text-[#292827]" : "text-[#292827]"
             }`}
           >
             {row.name || row.email.split("@")[0]}
           </span>
-          <span className="text-[10px] font-mono text-zinc-400 truncate">
+          <span className="text-[10px] font-mono text-[#9a9794] truncate">
             {SOURCE_LABELS[row.source] || row.source}
           </span>
         </div>
         <div className="flex-1 min-w-0">
           <p
             className={`text-sm truncate ${
-              unread ? "text-zinc-900 font-medium" : "text-zinc-600"
+              unread ? "text-[#292827] font-medium" : "text-[#73706d]"
             }`}
           >
             {row.subject}
           </p>
           {row.preview && (
-            <p className="text-[12px] text-zinc-400 truncate">{row.preview}</p>
+            <p className="text-[12px] text-[#9a9794] truncate">{row.preview}</p>
           )}
         </div>
         {archived && (
@@ -207,7 +207,7 @@ export function InboxListRow({ row }: { row: InboxRow }) {
             aria-hidden="true"
           />
         )}
-        <span className="text-[11px] text-zinc-400 font-mono tabular-nums shrink-0 w-12 text-right">
+        <span className="text-[11px] text-[#9a9794] font-mono tabular-nums shrink-0 w-12 text-right">
           {timeAgo(row.createdAt)}
         </span>
       </Link>
@@ -217,9 +217,9 @@ export function InboxListRow({ row }: { row: InboxRow }) {
           ref={menuRef}
           role="menu"
           style={{ position: "fixed", left: menu.x, top: menu.y }}
-          className="z-50 w-60 bg-white border border-zinc-200 shadow-xl py-1.5"
+          className="z-50 w-60 bg-white border border-[#e8e4dd] shadow-xl py-1.5"
         >
-          <p className="px-3 pb-1.5 text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] truncate">
+          <p className="px-3 pb-1.5 text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em] truncate">
             {row.name || row.email}
           </p>
           <MenuLink
@@ -230,12 +230,12 @@ export function InboxListRow({ row }: { row: InboxRow }) {
           </MenuLink>
           <MenuLink
             href={`/dashboard/projects/new?from=${row.id}`}
-            icon={<FolderPlus className="w-3.5 h-3.5 text-orange-600" aria-hidden="true" />}
+            icon={<FolderPlus className="w-3.5 h-3.5 text-[#1b1938]" aria-hidden="true" />}
             accent
           >
             Convert to project
           </MenuLink>
-          <div className="border-t border-zinc-100 my-1" />
+          <div className="border-t border-[#e8e4dd] my-1" />
           <MenuButton
             onClick={toggleRead}
             disabled={busy}
@@ -254,7 +254,7 @@ export function InboxListRow({ row }: { row: InboxRow }) {
             disabled={busy}
             icon={
               <Star
-                className={`w-3.5 h-3.5 ${starred ? "fill-orange-500 text-orange-500" : ""}`}
+                className={`w-3.5 h-3.5 ${starred ? "fill-[#1b1938] text-[#1b1938]" : ""}`}
                 aria-hidden="true"
               />
             }
@@ -275,7 +275,7 @@ export function InboxListRow({ row }: { row: InboxRow }) {
             {archived ? "Unarchive" : "Archive"}
           </MenuButton>
           {busy && (
-            <div className="px-3 pt-1 pb-0.5 text-[10px] text-zinc-400 flex items-center gap-1">
+            <div className="px-3 pt-1 pb-0.5 text-[10px] text-[#9a9794] flex items-center gap-1">
               <Loader2 className="w-3 h-3 animate-spin" aria-hidden="true" />
               Working…
             </div>
@@ -301,8 +301,8 @@ function MenuLink({
     <Link
       href={href}
       role="menuitem"
-      className={`flex items-center gap-2.5 px-3 py-2 text-xs hover:bg-zinc-50 transition-colors ${
-        accent ? "font-bold text-orange-700" : "text-zinc-700"
+      className={`flex items-center gap-2.5 px-3 py-2 text-xs hover:bg-[#fafaf8] transition-colors ${
+        accent ? "font-bold text-[#1b1938]" : "text-[#292827]"
       }`}
     >
       {icon}
@@ -328,7 +328,7 @@ function MenuButton({
       onClick={onClick}
       disabled={disabled}
       role="menuitem"
-      className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-zinc-700 hover:bg-zinc-50 transition-colors text-left disabled:opacity-50"
+      className="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-[#292827] hover:bg-[#fafaf8] transition-colors text-left disabled:opacity-50"
     >
       {icon}
       {children}

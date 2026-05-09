@@ -6,11 +6,11 @@
 
 export function TypingIndicator({ name }: { name: string }) {
   return (
-    <div className="flex items-center gap-2 px-1 py-2 text-xs text-zinc-500">
-      <span className="font-mono uppercase tracking-[0.18em] text-orange-600">
+    <div className="flex items-center gap-2 px-1 py-2 text-xs text-[#73706d]">
+      <span className="font-mono uppercase tracking-[0.18em] text-[#1b1938]">
         {name}
       </span>
-      <span className="text-zinc-400">is typing</span>
+      <span className="text-[#9a9794]">is typing</span>
       <span className="inline-flex items-end gap-0.5 ml-0.5">
         <Dot delay={0} />
         <Dot delay={0.18} />
@@ -29,7 +29,7 @@ export function TypingIndicator({ name }: { name: string }) {
 function Dot({ delay }: { delay: number }) {
   return (
     <span
-      className="inline-block w-1 h-1 rounded-full bg-orange-500"
+      className="inline-block w-1 h-1 rounded-full bg-[#1b1938]"
       style={{
         animation: "aestho-typing-bounce 1.1s ease-in-out infinite",
         animationDelay: `${delay}s`,

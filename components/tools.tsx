@@ -201,7 +201,7 @@ export function Tools() {
 
   return (
     <section className="bg-white" id="tools">
-      <div className="max-w-container border-l border-zinc-100">
+      <div className="max-w-container border-l border-[#e8e4dd]">
         <GridContainer>
           <GridItem className="py-32">
             <motion.div
@@ -210,46 +210,46 @@ export function Tools() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-semibold text-zinc-900 mb-6">
+              <h2 className="text-4xl font-semibold text-[#292827] mb-6">
                 Tools I Work With.
               </h2>
-              <p className="text-lg text-zinc-500 max-w-xl mb-16">
+              <p className="text-lg text-[#73706d] max-w-xl mb-16">
                 A curated toolkit that helps me ship faster without sacrificing quality.
               </p>
 
               {/* Window - Styled to match site aesthetic */}
               <div className="max-w-3xl">
-                <div className="border border-zinc-200 overflow-hidden bg-zinc-50/50 rounded-xl shadow-xs">
+                <div className="border border-[#e8e4dd] overflow-hidden bg-[#fafaf8]/50 rounded-xl shadow-xs">
                   {/* Window Title Bar - Minimal */}
-                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border-b border-zinc-100">
+                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border-b border-[#e8e4dd]">
                     <div className="flex gap-1.5 sm:gap-2">
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-400/20 border border-red-400/50" />
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400/20 border border-amber-400/50" />
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-400/20 border border-green-400/50" />
                     </div>
-                    <span className="text-[8px] sm:text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
+                    <span className="text-[8px] sm:text-[10px] font-mono text-[#73706d] uppercase tracking-widest">
                       stack.config
                     </span>
                     <div className="w-8 sm:w-12" />
                   </div>
 
                   {/* Tabs - Responsive with horizontal scroll on mobile */}
-                  <div className="flex border-b border-zinc-100 bg-zinc-50/50 overflow-x-auto scrollbar-hide">
+                  <div className="flex border-b border-[#e8e4dd] bg-[#fafaf8]/50 overflow-x-auto scrollbar-hide">
                     {categories.map((category) => (
                       <button
                         key={category.id}
                         onClick={() => setActiveTab(category.id)}
                         className={`relative px-3 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-colors whitespace-nowrap shrink-0 ${
                           activeTab === category.id 
-                            ? 'text-zinc-900 font-medium' 
-                            : 'text-zinc-500 hover:text-zinc-700'
+                            ? 'text-[#292827] font-medium' 
+                            : 'text-[#73706d] hover:text-[#292827]'
                         }`}
                       >
                         {category.label}
                         {activeTab === category.id && (
                           <motion.div
                             layoutId="toolsActiveTab"
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500"
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1b1938]"
                             transition={{ type: "spring", stiffness: 500, damping: 30 }}
                           />
                         )}
@@ -274,26 +274,26 @@ export function Tools() {
                             href={tool.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6 hover:bg-zinc-50/50 transition-all group"
+                            className="flex items-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6 hover:bg-[#fafaf8]/50 transition-all group"
                           >
                             {/* Icon Container */}
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-zinc-50 rounded-lg border border-zinc-100 group-hover:border-zinc-200 group-hover:scale-105 transition-all shadow-sm shrink-0">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#fafaf8] rounded-lg border border-[#e8e4dd] group-hover:border-[#e8e4dd] group-hover:scale-105 transition-all shadow-sm shrink-0">
                                 <tool.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                             </div>
                             
                             {/* Tool info */}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-3 mb-1">
-                                <span className="font-semibold text-zinc-900 group-hover:text-orange-500 transition-colors">
+                                <span className="font-semibold text-[#292827] group-hover:text-[#1b1938] transition-colors">
                                     {tool.name}
                                 </span>
                               </div>
-                              <span className="text-sm text-zinc-500">{tool.desc}</span>
+                              <span className="text-sm text-[#73706d]">{tool.desc}</span>
                             </div>
                             
                             {/* Link icon */}
                             <ExternalLink 
-                              className="w-4 h-4 text-zinc-300 group-hover:text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" 
+                              className="w-4 h-4 text-zinc-300 group-hover:text-[#1b1938] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" 
                               aria-hidden="true"
                             />
                           </motion.a>
@@ -304,7 +304,7 @@ export function Tools() {
                 </div>
 
                 {/* Footer */}
-                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-[10px] sm:text-xs text-zinc-400 font-mono">
+                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-[10px] sm:text-xs text-[#9a9794] font-mono">
                     <p>The right tool for the right job.</p>
                     <p>Always exploring what&apos;s next.</p>
                 </div>

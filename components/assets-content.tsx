@@ -8,9 +8,9 @@ import { motion } from "framer-motion";
 
 // Link Share Preview Components (How link appears when shared)
 const FacebookLinkPreview = () => (
-    <div className="w-full bg-white rounded-lg border border-zinc-200 overflow-hidden">
+    <div className="w-full bg-white rounded-lg border border-[#e8e4dd] overflow-hidden">
         {/* OG Image Preview */}
-        <div className="aspect-1200/630 bg-zinc-100 relative overflow-hidden">
+        <div className="aspect-1200/630 bg-[#fafaf8] relative overflow-hidden">
             <Image
                 src="/opengraph-image"
                 alt="Facebook Link Preview"
@@ -19,10 +19,10 @@ const FacebookLinkPreview = () => (
                 unoptimized
             />
         </div>
-        <div className="p-4 bg-zinc-50 border-t border-zinc-100">
-            <p className="text-[11px] text-zinc-400 uppercase tracking-wide mb-1">aestho.xyz</p>
-            <p className="text-sm font-semibold text-zinc-900 line-clamp-2 mb-1">Your Vision, Built Right | Rashid Iqbal</p>
-            <p className="text-xs text-zinc-500 line-clamp-2">High-converting landing pages, scalable web apps, and native mobile applications.</p>
+        <div className="p-4 bg-[#fafaf8] border-t border-[#e8e4dd]">
+            <p className="text-[11px] text-[#9a9794] uppercase tracking-wide mb-1">aestho.xyz</p>
+            <p className="text-sm font-semibold text-[#292827] line-clamp-2 mb-1">Your Vision, Built Right | Rashid Iqbal</p>
+            <p className="text-xs text-[#73706d] line-clamp-2">High-converting landing pages, scalable web apps, and native mobile applications.</p>
         </div>
     </div>
 );
@@ -30,7 +30,7 @@ const FacebookLinkPreview = () => (
 const TwitterLinkPreview = () => (
     <div className="w-full bg-zinc-950 rounded-2xl border border-zinc-800 overflow-hidden">
         {/* Twitter Card Image */}
-        <div className="aspect-1200/630 bg-zinc-900 relative overflow-hidden">
+        <div className="aspect-1200/630 bg-[#1b1938] relative overflow-hidden">
             <Image
                 src="/twitter-image"
                 alt="Twitter Link Preview"
@@ -41,8 +41,8 @@ const TwitterLinkPreview = () => (
         </div>
         <div className="p-4">
             <p className="text-[15px] text-white font-medium line-clamp-1">Your Vision, Built Right | Rashid Iqbal</p>
-            <p className="text-[13px] text-zinc-500 line-clamp-2 mt-1">High-converting landing pages, scalable web apps, and native mobile applications.</p>
-            <p className="text-[13px] text-zinc-600 mt-2 flex items-center gap-1">
+            <p className="text-[13px] text-[#73706d] line-clamp-2 mt-1">High-converting landing pages, scalable web apps, and native mobile applications.</p>
+            <p className="text-[13px] text-[#73706d] mt-2 flex items-center gap-1">
                 <ExternalLink className="w-3 h-3" /> aestho.xyz
             </p>
         </div>
@@ -50,9 +50,9 @@ const TwitterLinkPreview = () => (
 );
 
 const LinkedInLinkPreview = () => (
-    <div className="w-full bg-white rounded-lg border border-zinc-200 overflow-hidden">
+    <div className="w-full bg-white rounded-lg border border-[#e8e4dd] overflow-hidden">
         {/* LinkedIn Card Image */}
-        <div className="aspect-1200/630 bg-zinc-100 relative overflow-hidden">
+        <div className="aspect-1200/630 bg-[#fafaf8] relative overflow-hidden">
             <Image
                 src="/opengraph-image"
                 alt="LinkedIn Link Preview"
@@ -61,10 +61,10 @@ const LinkedInLinkPreview = () => (
                 unoptimized
             />
         </div>
-        <div className="p-4 bg-white border-t border-zinc-100">
-            <p className="text-sm font-semibold text-zinc-900 line-clamp-2">Your Vision, Built Right | Rashid Iqbal</p>
-            <p className="text-xs text-zinc-500 mt-1 flex items-center gap-1">
-                <span className="w-3 h-3 bg-zinc-200 rounded-full inline-block"></span>
+        <div className="p-4 bg-white border-t border-[#e8e4dd]">
+            <p className="text-sm font-semibold text-[#292827] line-clamp-2">Your Vision, Built Right | Rashid Iqbal</p>
+            <p className="text-xs text-[#73706d] mt-1 flex items-center gap-1">
+                <span className="w-3 h-3 bg-[#e8e4dd] rounded-full inline-block"></span>
                 aestho.xyz
             </p>
         </div>
@@ -77,39 +77,39 @@ const InstagramLinkPreview = () => (
         <div className="p-5">
             {/* Profile Header */}
             <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-full p-[2px] bg-linear-to-tr from-yellow-400 via-orange-500 to-purple-600">
-                    <div className="w-full h-full bg-zinc-900 rounded-full p-[2px]">
-                        <div className="w-full h-full bg-orange-500 rounded-full flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full p-[2px] bg-linear-to-tr from-yellow-400 via-[#c9b4fa] to-purple-600">
+                    <div className="w-full h-full bg-[#1b1938] rounded-full p-[2px]">
+                        <div className="w-full h-full bg-[#1b1938] rounded-full flex items-center justify-center">
                             <div className="w-4 h-4 bg-white rounded-full"></div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <p className="text-white font-bold text-sm">rashid.dev</p>
-                    <p className="text-zinc-500 text-xs">Web & Mobile Developer</p>
+                    <p className="text-[#73706d] text-xs">Web & Mobile Developer</p>
                 </div>
             </div>
 
             {/* Value Prop */}
-            <div className="bg-linear-to-r from-orange-500/20 to-orange-600/10 rounded-xl p-4 mb-3 border border-orange-500/20">
+            <div className="bg-linear-to-r from-[#c9b4fa]/20 to-[#1b1938]/10 rounded-xl p-4 mb-3 border border-[#1b1938]/20">
                 <p className="text-white font-semibold text-sm mb-1">🚀 Your Vision, Built Right</p>
-                <p className="text-zinc-400 text-xs">High-converting websites & apps</p>
+                <p className="text-[#9a9794] text-xs">High-converting websites & apps</p>
             </div>
 
             {/* CTA Links */}
             <div className="space-y-2">
                 <div className="bg-white rounded-lg p-3 flex items-center justify-between">
-                    <span className="text-zinc-900 font-semibold text-sm">View Portfolio</span>
-                    <span className="text-orange-500 text-xs">→</span>
+                    <span className="text-[#292827] font-semibold text-sm">View Portfolio</span>
+                    <span className="text-[#1b1938] text-xs">→</span>
                 </div>
-                <div className="bg-zinc-800 rounded-lg p-3 flex items-center justify-between">
+                <div className="bg-[#0e0c1f] rounded-lg p-3 flex items-center justify-between">
                     <span className="text-white font-medium text-sm">Start a Project</span>
-                    <span className="text-orange-500 text-xs">→</span>
+                    <span className="text-[#1b1938] text-xs">→</span>
                 </div>
             </div>
 
             {/* Domain */}
-            <p className="text-center text-zinc-600 text-xs mt-3">aestho.xyz</p>
+            <p className="text-center text-[#73706d] text-xs mt-3">aestho.xyz</p>
         </div>
     </div>
 );
@@ -136,24 +136,24 @@ function AssetCard({
 
     return (
         <motion.div
-            className={`border border-zinc-100 rounded-2xl p-6 bg-white hover:border-orange-200 transition-all duration-300 group ${fullWidth ? 'col-span-full' : ''}`}
+            className={`border border-[#e8e4dd] rounded-2xl p-6 bg-white hover:border-[#e8e4dd] transition-all duration-300 group ${fullWidth ? 'col-span-full' : ''}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -4 }}
         >
-            <div className={`bg-zinc-50 rounded-xl mb-6 flex items-center justify-center overflow-hidden border border-zinc-100/50 group-hover:bg-white group-hover:border-orange-100 transition-colors ${fullWidth ? 'aspect-2/1 p-8' : 'aspect-video'}`}>
+            <div className={`bg-[#fafaf8] rounded-xl mb-6 flex items-center justify-center overflow-hidden border border-[#e8e4dd]/50 group-hover:bg-white group-hover:border-[#e8e4dd] transition-colors ${fullWidth ? 'aspect-2/1 p-8' : 'aspect-video'}`}>
                 {children}
             </div>
             <div className="flex justify-between items-start">
                 <div>
-                    <h3 className="font-bold text-zinc-900 mb-1">{title}</h3>
-                    <p className="text-xs text-zinc-500">{desc}</p>
+                    <h3 className="font-bold text-[#292827] mb-1">{title}</h3>
+                    <p className="text-xs text-[#73706d]">{desc}</p>
                 </div>
                 <div className="flex gap-2">
                     <button
                         onClick={handleCopy}
-                        className="p-2 hover:bg-orange-50 rounded-lg text-zinc-400 hover:text-orange-500 transition-colors"
+                        className="p-2 hover:bg-[#fafaf8] rounded-lg text-[#9a9794] hover:text-[#1b1938] transition-colors"
                         title="Copy"
                         aria-label="Copy asset"
                     >
@@ -163,7 +163,7 @@ function AssetCard({
                         <a
                             href={downloadUrl}
                             download
-                            className="p-2 hover:bg-orange-50 rounded-lg text-zinc-400 hover:text-orange-500 transition-colors"
+                            className="p-2 hover:bg-[#fafaf8] rounded-lg text-[#9a9794] hover:text-[#1b1938] transition-colors"
                             title="Download"
                             aria-label="Download asset"
                         >
@@ -177,11 +177,11 @@ function AssetCard({
 }
 
 function SectionHeader({ title, color = "orange" }: { title: string, color?: string }) {
-    const colorClass = color === "orange" ? "bg-orange-500" : color === "blue" ? "bg-blue-500" : "bg-green-500";
+    const colorClass = color === "orange" ? "bg-[#1b1938]" : color === "blue" ? "bg-[#1b1938]" : "bg-green-500";
     return (
-        <div className="flex items-center gap-4 mb-8 border-b border-zinc-100 pb-4">
+        <div className="flex items-center gap-4 mb-8 border-b border-[#e8e4dd] pb-4">
             <div className={`w-2 h-2 ${colorClass} rounded-full`}></div>
-            <h2 className="text-xl font-bold text-zinc-900">{title}</h2>
+            <h2 className="text-xl font-bold text-[#292827]">{title}</h2>
         </div>
     );
 }
@@ -196,15 +196,15 @@ export function AssetsContent() {
             </div>
 
             {/* Navbar */}
-            <nav className="fixed top-0 left-0 right-0 h-16 border-b border-zinc-100 bg-white/80 backdrop-blur-md z-50 flex items-center px-6">
-                <Link href="/" className="flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-orange-500 transition-colors">
+            <nav className="fixed top-0 left-0 right-0 h-16 border-b border-[#e8e4dd] bg-white/80 backdrop-blur-md z-50 flex items-center px-6">
+                <Link href="/" className="flex items-center gap-2 text-sm font-medium text-[#73706d] hover:text-[#1b1938] transition-colors">
                     <ArrowLeft className="w-4 h-4" /> Back to Home
                 </Link>
                 <div className="mx-auto flex items-center gap-3">
-                    <div className="w-6 h-6 bg-orange-500 rounded-lg flex items-center justify-center">
+                    <div className="w-6 h-6 bg-[#1b1938] rounded-lg flex items-center justify-center">
                         <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
-                    <span className="font-bold text-zinc-900">Brand Assets</span>
+                    <span className="font-bold text-[#292827]">Brand Assets</span>
                 </div>
                 <div className="w-20"></div>
             </nav>
@@ -216,10 +216,10 @@ export function AssetsContent() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1 className="text-5xl font-bold mb-6 text-zinc-900">
+                    <h1 className="text-5xl font-bold mb-6 text-[#292827]">
                         Brand Guidelines<br />& Assets
                     </h1>
-                    <p className="text-lg text-zinc-500">
+                    <p className="text-lg text-[#73706d]">
                         Official brand assets for Rashid Iqbal. Use these assets to ensure consistency across all platforms and communications.
                     </p>
                 </motion.div>
@@ -241,18 +241,18 @@ export function AssetsContent() {
                         <AssetCard title="Color Palette" desc="Primary Brand Colors">
                             <div className="flex gap-6">
                                 <div className="text-center">
-                                    <div className="w-14 h-14 bg-orange-500 rounded-xl mb-2"></div>
-                                    <span className="text-[10px] font-mono text-zinc-400">#F97316</span>
+                                    <div className="w-14 h-14 bg-[#1b1938] rounded-xl mb-2"></div>
+                                    <span className="text-[10px] font-mono text-[#9a9794]">#F97316</span>
                                     <p className="text-[9px] text-zinc-300 mt-1">Primary</p>
                                 </div>
                                 <div className="text-center">
-                                    <div className="w-14 h-14 bg-zinc-900 rounded-xl mb-2"></div>
-                                    <span className="text-[10px] font-mono text-zinc-400">#18181B</span>
+                                    <div className="w-14 h-14 bg-[#1b1938] rounded-xl mb-2"></div>
+                                    <span className="text-[10px] font-mono text-[#9a9794]">#18181B</span>
                                     <p className="text-[9px] text-zinc-300 mt-1">Dark</p>
                                 </div>
                                 <div className="text-center">
-                                    <div className="w-14 h-14 bg-white border border-zinc-200 rounded-xl mb-2"></div>
-                                    <span className="text-[10px] font-mono text-zinc-400">#FFFFFF</span>
+                                    <div className="w-14 h-14 bg-white border border-[#e8e4dd] rounded-xl mb-2"></div>
+                                    <span className="text-[10px] font-mono text-[#9a9794]">#FFFFFF</span>
                                     <p className="text-[9px] text-zinc-300 mt-1">Light</p>
                                 </div>
                             </div>
@@ -263,7 +263,7 @@ export function AssetsContent() {
                 {/* Social Media Link Previews */}
                 <section className="mb-24">
                     <SectionHeader title="Link Share Previews" color="blue" />
-                    <p className="text-sm text-zinc-500 mb-8 -mt-4">How your link appears when shared on social media platforms</p>
+                    <p className="text-sm text-[#73706d] mb-8 -mt-4">How your link appears when shared on social media platforms</p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <AssetCard title="Facebook" desc="Open Graph Card (1200×630)">

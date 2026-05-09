@@ -46,26 +46,26 @@ export default async function ClientsPage() {
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Clients
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Client roster
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         Every client provisioned in the portal. Adding a project from an inbox
         entry auto-creates the client row.
       </p>
 
-      <div className="border border-zinc-200 bg-white">
+      <div className="border border-[#e8e4dd] bg-white">
         {rows.length === 0 ? (
-          <p className="text-sm text-zinc-500 px-6 py-12 text-center">
+          <p className="text-sm text-[#73706d] px-6 py-12 text-center">
             No clients yet. Convert a form submission into a project to get
             started.
           </p>
         ) : (
           <table className="w-full text-sm">
-            <thead className="bg-zinc-50 text-[10px] font-mono uppercase tracking-[0.18em] text-zinc-500">
+            <thead className="bg-[#fafaf8] text-[10px] font-mono uppercase tracking-[0.18em] text-[#73706d]">
               <tr>
                 <th className="text-left px-4 py-2.5 font-normal">Name</th>
                 <th className="text-left px-4 py-2.5 font-normal">Email</th>
@@ -75,28 +75,28 @@ export default async function ClientsPage() {
                 <th className="text-left px-4 py-2.5 font-normal">Last login</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100">
+            <tbody className="divide-y divide-[#e8e4dd]">
               {rows.map((r) => (
-                <tr key={r.id} className="hover:bg-zinc-50/60 transition-colors">
-                  <td className="px-4 py-2.5 font-medium text-zinc-900">
+                <tr key={r.id} className="hover:bg-[#fafaf8]/60 transition-colors">
+                  <td className="px-4 py-2.5 font-medium text-[#292827]">
                     {r.name || "—"}
                   </td>
-                  <td className="px-4 py-2.5 text-zinc-600 font-mono text-[12px] break-all">
+                  <td className="px-4 py-2.5 text-[#73706d] font-mono text-[12px] break-all">
                     {r.email}
                   </td>
-                  <td className="px-4 py-2.5 text-zinc-600">{r.company || "—"}</td>
+                  <td className="px-4 py-2.5 text-[#73706d]">{r.company || "—"}</td>
                   <td className="px-4 py-2.5 text-right tabular-nums">
                     <Link
                       href={`/dashboard/projects?client=${r.id}`}
-                      className="font-bold text-zinc-900 hover:text-orange-700"
+                      className="font-bold text-[#292827] hover:text-[#1b1938]"
                     >
                       {Number(r.projectCount)}
                     </Link>
                   </td>
-                  <td className="px-4 py-2.5 text-zinc-500">
+                  <td className="px-4 py-2.5 text-[#73706d]">
                     {timeAgo(r.lastActivityAt)}
                   </td>
-                  <td className="px-4 py-2.5 text-zinc-500">
+                  <td className="px-4 py-2.5 text-[#73706d]">
                     {timeAgo(r.lastLoginAt)}
                   </td>
                 </tr>

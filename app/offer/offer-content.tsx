@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Check, Star, Clock, Shield, Zap, Loader2 } from "lucide-react";
+import { ArrowRight, Check, Star, Clock, Shield, Zap } from "@/components/icons";
+import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import posthog from "posthog-js";
 
@@ -33,8 +34,8 @@ const TIERS: readonly Tier[] = [
   {
     id: "landing-page",
     name: "Landing Page",
-    price: "Quote on call",
-    priceLabel: "Quote · 3 days",
+    price: "$1,200",
+    priceLabel: "$1,200 · 3 days",
     days: "3 days",
     anchor: "Agency-grade scope",
     blurb: "For one focused offer or product.",
@@ -50,8 +51,8 @@ const TIERS: readonly Tier[] = [
   {
     id: "four-page-site",
     name: "4-Page Website",
-    price: "Quote on call",
-    priceLabel: "Quote · 5 days",
+    price: "$3,500",
+    priceLabel: "$3,500 · 5 days",
     days: "5 days",
     anchor: "Agency-grade scope",
     blurb: "A full marketing site. Best value.",
@@ -174,26 +175,26 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
 
   if (status === "sent") {
     return (
-      <div className="border border-emerald-200 bg-emerald-50/40 px-6 py-8 text-center">
-        <div className="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mx-auto mb-5">
-          <Check className="w-5 h-5 text-emerald-600" aria-hidden="true" />
+      <div className="border border-[#e5e5e5] bg-[#fafafa]/40 px-6 py-8 text-center">
+        <div className="w-12 h-12 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center mx-auto mb-5">
+          <Check className="w-5 h-5 text-[#0a0a0a]" aria-hidden="true" />
         </div>
-        <h3 className="text-xl md:text-2xl font-bold text-zinc-900 mb-2">
+        <h3 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-2">
           Booking received.
         </h3>
-        <p className="text-sm text-zinc-600 max-w-md mx-auto mb-4">
+        <p className="text-sm text-[#737373] max-w-md mx-auto mb-4">
           I will reply to{" "}
-          <span className="font-semibold text-zinc-900">{email}</span> within 24 hours
+          <span className="font-semibold text-[#0a0a0a]">{email}</span> within 24 hours
           with a kickoff link to lock in your slot for{" "}
-          <span className="font-semibold text-zinc-900">{selectedTier.name}</span>.
+          <span className="font-semibold text-[#0a0a0a]">{selectedTier.name}</span>.
         </p>
-        <p className="text-xs text-zinc-500">
+        <p className="text-xs text-[#737373]">
           Check spam if you do not see it. Want to skip the wait?{" "}
           <a
             href={CAL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline font-medium text-zinc-700 hover:text-orange-600"
+            className="underline font-medium text-[#0a0a0a] hover:text-[#0a0a0a]"
           >
             Book the kickoff call now
           </a>
@@ -204,12 +205,12 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border border-zinc-200 bg-white p-6 md:p-8 space-y-3">
+    <form onSubmit={handleSubmit} className="border border-[#e5e5e5] bg-white p-6 md:p-8 space-y-3">
       <div className="flex items-center justify-between mb-2">
-        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em]">
+        <p className="text-[10px] font-mono text-[#737373] uppercase tracking-[0.2em]">
           Claim your slot
         </p>
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em]">
+        <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em]">
           {selectedTier.name} · {selectedTier.priceLabel}
         </p>
       </div>
@@ -230,7 +231,7 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
         onChange={(e) => setName(e.target.value)}
         placeholder="Your name"
         autoComplete="name"
-        className="w-full px-4 py-3 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+        className="w-full px-4 py-3 border border-[#e5e5e5] bg-white text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a]"
       />
       <input
         type="email"
@@ -239,7 +240,7 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
         placeholder="your@email.com"
         required
         autoComplete="email"
-        className="w-full px-4 py-3 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+        className="w-full px-4 py-3 border border-[#e5e5e5] bg-white text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a]"
       />
       <input
         type="url"
@@ -247,19 +248,19 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
         onChange={(e) => setWebsite(e.target.value)}
         placeholder="Current website (optional)"
         autoComplete="url"
-        className="w-full px-4 py-3 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+        className="w-full px-4 py-3 border border-[#e5e5e5] bg-white text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a]"
       />
       <textarea
         value={note}
         onChange={(e) => setNote(e.target.value)}
         placeholder="What is the offer or product? Any references you like? (optional)"
         rows={3}
-        className="w-full px-4 py-3 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 resize-none"
+        className="w-full px-4 py-3 border border-[#e5e5e5] bg-white text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] resize-none"
       />
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full py-3.5 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors flex items-center justify-center gap-2 shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full py-3.5 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "sending" ? (
           <>
@@ -278,7 +279,7 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
         <p className="text-xs text-red-600 text-center">{errorMsg}</p>
       )}
 
-      <p className="text-[11px] text-zinc-400 text-center pt-1">
+      <p className="text-[11px] text-[#737373] text-center pt-1">
         No payment yet. I confirm scope first, then send a kickoff link. Full refund
         if you do not love the result.
       </p>
@@ -320,19 +321,19 @@ export default function OfferPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
+      className="min-h-screen bg-[#ffffff] text-[#0a0a0a] selection:bg-[#0a0a0a]/30 selection:text-black font-sans relative overflow-hidden"
     >
       {/* Background */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#f4f4f5_1px,transparent_1px),linear-gradient(to_bottom,#f4f4f5_1px,transparent_1px)] bg-size-[40px_40px]" />
         <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-zinc-50/40" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/3 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0a0a0a]/3 rounded-full blur-3xl" />
       </div>
 
       {/* Logo only, no nav */}
       <header className="max-w-3xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Image src="/favicon.svg" alt="Rashid Iqbal logo" width={28} height={28} />
-        <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
+        <span className="font-bold text-[#0a0a0a] tracking-tight">Rashid Iqbal</span>
       </header>
 
       <section className="max-w-3xl mx-auto px-6 pt-10 md:pt-14 pb-16">
@@ -341,13 +342,13 @@ export default function OfferPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-[11px] md:text-xs font-semibold text-orange-700 mb-6"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#e5e5e5] bg-[#fafafa] text-[11px] md:text-xs font-semibold text-[#0a0a0a] mb-6"
         >
           <Clock className="w-3.5 h-3.5" aria-hidden="true" />
           1 slot left this month · 2 booked
         </motion.div>
 
-        {/* Frustration eyebrow — names the cost (lost leads), not the
+        {/* Frustration eyebrow, names the cost (lost leads), not the
             absence of a thing. Specific number lands harder than "stuck". */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
@@ -355,8 +356,8 @@ export default function OfferPage() {
           transition={{ delay: 0.1 }}
           className="text-base md:text-lg font-bold tracking-tight mb-4"
         >
-          <span className="text-zinc-900">Your landing page is bleeding</span>{" "}
-          <span className="text-orange-600">30% of qualified leads.</span>
+          <span className="text-[#0a0a0a]">Your landing page is bleeding</span>{" "}
+          <span className="text-[#0a0a0a]">30% of qualified leads.</span>
         </motion.p>
 
         {/* Headline */}
@@ -364,12 +365,12 @@ export default function OfferPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-zinc-900 mb-5 leading-[1.1] pb-1"
+          className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-[#0a0a0a] mb-5 leading-[1.1] pb-1"
         >
           <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900 pb-1">
             Ship a high-converting landing page
           </span>{" "}
-          <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-orange-500 to-orange-600 pb-1">
+          <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-[#8b7cf8] to-[#0a0a0a] pb-1">
             in 3 days.
           </span>
         </motion.h1>
@@ -379,12 +380,12 @@ export default function OfferPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-base md:text-lg text-zinc-600 leading-relaxed mb-6 max-w-xl"
+          className="text-base md:text-lg text-[#737373] leading-relaxed mb-6 max-w-xl"
         >
           Figma design plus Framer build plus UX copy. One specialist, one timeline, one
           fixed price.{" "}
-          <span className="font-semibold text-zinc-900">Don&rsquo;t love it? Full refund.</span>{" "}
-          <span className="text-zinc-500">Agencies charge multiples for the same scope.</span>
+          <span className="font-semibold text-[#0a0a0a]">Don&rsquo;t love it? Full refund.</span>{" "}
+          <span className="text-[#737373]">Agencies charge multiples for the same scope.</span>
         </motion.p>
 
         {/* Trust strip */}
@@ -392,9 +393,9 @@ export default function OfferPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
-          className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-zinc-500 mb-10"
+          className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-[#737373] mb-10"
         >
-          <span className="font-medium text-zinc-700">Certified Framer Expert</span>
+          <span className="font-medium text-[#0a0a0a]">Certified Framer Expert</span>
           <span className="text-zinc-300">•</span>
           <span>Top Rated on Upwork</span>
           <span className="text-zinc-300">•</span>
@@ -403,7 +404,7 @@ export default function OfferPage() {
           <span>50+ projects shipped</span>
         </motion.div>
 
-        {/* Pricing — two tiers */}
+        {/* Pricing, two tiers */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -418,37 +419,37 @@ export default function OfferPage() {
                 key={tier.id}
                 className={`relative bg-white p-6 md:p-7 flex flex-col transition-shadow ${
                   isPopular
-                    ? "border-2 border-orange-500 shadow-lg shadow-orange-500/15"
-                    : "border border-zinc-200"
-                } ${isActive ? "ring-2 ring-orange-500/40" : ""}`}
+                    ? "border-2 border-[#0a0a0a] shadow-lg shadow-[#0a0a0a]/15"
+                    : "border border-[#e5e5e5]"
+                } ${isActive ? "ring-2 ring-[#0a0a0a]/40" : ""}`}
               >
                 {isPopular && (
-                  <div className="absolute -top-3 left-6 px-2.5 py-1 bg-orange-500 text-white text-[10px] font-bold tracking-wider uppercase">
+                  <div className="absolute -top-3 left-6 px-2.5 py-1 bg-[#0a0a0a] text-white text-[10px] font-bold tracking-wider uppercase">
                     Most popular
                   </div>
                 )}
                 <div className="flex items-baseline justify-between mb-1">
-                  <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em]">
+                  <p className="text-[10px] font-mono text-[#737373] uppercase tracking-[0.2em]">
                     {tier.name}
                   </p>
-                  <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em]">
+                  <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em]">
                     {tier.days}
                   </p>
                 </div>
-                <p className="text-sm text-zinc-500 mb-4">{tier.blurb}</p>
+                <p className="text-sm text-[#737373] mb-4">{tier.blurb}</p>
 
                 <div className="flex items-end gap-3 mb-5">
-                  <span className="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight">
+                  <span className="text-4xl md:text-5xl font-bold text-[#0a0a0a] tracking-tight">
                     {tier.price}
                   </span>
-                  <span className="text-sm text-zinc-400 line-through pb-1">{tier.anchor}</span>
+                  <span className="text-sm text-[#737373] line-through pb-1">{tier.anchor}</span>
                 </div>
 
                 <ul className="space-y-2.5 mb-6 flex-1">
                   {tier.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm text-zinc-700">
+                    <li key={f} className="flex items-start gap-2.5 text-sm text-[#0a0a0a]">
                       <Check
-                        className="w-4 h-4 text-orange-500 shrink-0 mt-0.5"
+                        className="w-4 h-4 text-[#0a0a0a] shrink-0 mt-0.5"
                         aria-hidden="true"
                       />
                       <span>{f}</span>
@@ -461,8 +462,8 @@ export default function OfferPage() {
                   onClick={() => pickTier(tier.id)}
                   className={`w-full py-3 text-sm font-bold transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                     isPopular
-                      ? "bg-orange-700 text-white hover:bg-orange-800 shadow-lg shadow-orange-700/25 focus-visible:ring-orange-700"
-                      : "bg-zinc-900 text-white hover:bg-zinc-800 focus-visible:ring-zinc-900"
+                      ? "bg-[#0a0a0a] text-white hover:bg-[#0a0a0a] shadow-lg shadow-[#0a0a0a]/25 focus-visible:ring-[#0a0a0a]"
+                      : "bg-[#0a0a0a] text-white hover:bg-[#000000] focus-visible:ring-[#0a0a0a]"
                   }`}
                 >
                   Claim my {tier.price} slot
@@ -487,10 +488,10 @@ export default function OfferPage() {
           ].map(({ Icon, label }) => (
             <div
               key={label}
-              className="border border-zinc-100 bg-zinc-50/40 px-4 py-3 flex items-center gap-3"
+              className="border border-[#e5e5e5] bg-[#fafafa]/40 px-4 py-3 flex items-center gap-3"
             >
-              <Icon className="w-4 h-4 text-orange-500 shrink-0" aria-hidden="true" />
-              <span className="text-sm font-medium text-zinc-700">{label}</span>
+              <Icon className="w-4 h-4 text-[#0a0a0a] shrink-0" aria-hidden="true" />
+              <span className="text-sm font-medium text-[#0a0a0a]">{label}</span>
             </div>
           ))}
         </motion.div>
@@ -498,7 +499,7 @@ export default function OfferPage() {
         {/* Inline claim form, anchored target of the pricing-card buttons */}
         <div ref={formRef} id="claim" className="mb-12 scroll-mt-8">
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mr-2">
+            <p className="text-[10px] font-mono text-[#737373] uppercase tracking-[0.2em] mr-2">
               Selected
             </p>
             {TIERS.map((t) => (
@@ -509,8 +510,8 @@ export default function OfferPage() {
                 aria-pressed={t.id === selectedTierId}
                 className={`text-xs font-bold px-3 py-1.5 border transition-colors ${
                   t.id === selectedTierId
-                    ? "border-orange-500 bg-orange-50 text-orange-700"
-                    : "border-zinc-200 text-zinc-500 hover:border-zinc-300 hover:text-zinc-700"
+                    ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a]"
+                    : "border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5] hover:text-[#0a0a0a]"
                 }`}
               >
                 {t.name} · {t.price}
@@ -527,20 +528,20 @@ export default function OfferPage() {
           viewport={{ once: true, margin: "-100px" }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="border border-zinc-100 bg-white px-6 py-8 mb-10"
+          className="border border-[#e5e5e5] bg-white px-6 py-8 mb-10"
         >
           <div className="flex gap-1 mb-4" role="img" aria-label="5 out of 5 stars">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} className="w-4 h-4 fill-orange-500 text-orange-500" aria-hidden="true" />
+              <Star key={i} className="w-4 h-4 fill-[#0a0a0a] text-[#0a0a0a]" aria-hidden="true" />
             ))}
           </div>
-          <blockquote className="text-base md:text-lg text-zinc-900 leading-relaxed font-medium mb-4">
+          <blockquote className="text-base md:text-lg text-[#0a0a0a] leading-relaxed font-medium mb-4">
             &ldquo;The new design loads fast and converts way better than what we had before.
             Onboarding signups went up by half.&rdquo;
           </blockquote>
           <figcaption className="text-sm">
-            <span className="font-bold text-zinc-900">Josh Schachter</span>{" "}
-            <span className="text-zinc-500">· Founder &amp; CEO, UpdateAI</span>
+            <span className="font-bold text-[#0a0a0a]">Josh Schachter</span>{" "}
+            <span className="text-[#737373]">· Founder &amp; CEO, UpdateAI</span>
           </figcaption>
         </motion.figure>
 
@@ -550,11 +551,11 @@ export default function OfferPage() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-zinc-400 mb-16"
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-[#737373] mb-16"
           aria-label="Brands I have shipped work for"
         >
           {CLIENT_BRANDS.map((brand, i) => (
-            <span key={brand} className={i % 2 === 0 ? "text-zinc-700" : ""}>
+            <span key={brand} className={i % 2 === 0 ? "text-[#0a0a0a]" : ""}>
               {brand}
             </span>
           ))}
@@ -562,18 +563,18 @@ export default function OfferPage() {
 
         {/* Process */}
         <div className="mb-16">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-6 text-center">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-6 text-center">
             How the 3 days play out
           </h2>
           <ol className="space-y-4">
             {PROCESS.map((s) => (
-              <li key={s.n} className="flex gap-4 border-l-2 border-orange-500 pl-4">
-                <div className="shrink-0 w-7 h-7 rounded-full bg-orange-100 text-orange-700 text-sm font-bold flex items-center justify-center -ml-[30px] -mt-0.5 ring-4 ring-white">
+              <li key={s.n} className="flex gap-4 border-l-2 border-[#0a0a0a] pl-4">
+                <div className="shrink-0 w-7 h-7 rounded-full bg-[#fafafa] text-[#0a0a0a] text-sm font-bold flex items-center justify-center -ml-[30px] -mt-0.5 ring-4 ring-white">
                   {s.n}
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-zinc-900">{s.title}</p>
-                  <p className="text-sm text-zinc-600 mt-1 leading-relaxed">{s.body}</p>
+                  <p className="text-sm font-bold text-[#0a0a0a]">{s.title}</p>
+                  <p className="text-sm text-[#737373] mt-1 leading-relaxed">{s.body}</p>
                 </div>
               </li>
             ))}
@@ -582,12 +583,12 @@ export default function OfferPage() {
 
         {/* FAQ */}
         <div className="mb-16">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-6">Before you book</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-6">Before you book</h2>
           <div className="space-y-6">
             {FAQS.map((f) => (
               <div key={f.q}>
-                <p className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</p>
-                <p className="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
+                <p className="text-sm font-bold text-[#0a0a0a] mb-1.5">{f.q}</p>
+                <p className="text-sm text-[#737373] leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
@@ -599,16 +600,16 @@ export default function OfferPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.4 }}
-          className="border-t border-zinc-200 pt-10"
+          className="border-t border-[#e5e5e5] pt-10"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-orange-200 bg-orange-50 text-[11px] md:text-xs font-semibold text-orange-700 mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#e5e5e5] bg-[#fafafa] text-[11px] md:text-xs font-semibold text-[#0a0a0a] mb-5">
             <Clock className="w-3.5 h-3.5" aria-hidden="true" />
             Slots refresh next month. This month is full after 2 more bookings.
           </div>
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-3">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#0a0a0a] mb-3">
             By Friday, your competitor&rsquo;s landing page is shipping.
           </h2>
-          <p className="text-base text-zinc-600 mb-6 max-w-xl">
+          <p className="text-base text-[#737373] mb-6 max-w-xl">
             Where is yours? Send me your project details. If we are not a fit, you walk
             away. If we are, you ship before the weekend.
           </p>
@@ -618,7 +619,7 @@ export default function OfferPage() {
               onClick={() => {
                 formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
             >
               Claim my slot
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -627,7 +628,7 @@ export default function OfferPage() {
               href={CAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-zinc-300 text-zinc-900 text-sm font-bold hover:bg-zinc-50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-[#e5e5e5] text-[#0a0a0a] text-sm font-bold hover:bg-[#fafafa] transition-colors"
             >
               Or book a call instead
             </a>
@@ -635,7 +636,7 @@ export default function OfferPage() {
         </motion.div>
 
         {/* Footer line */}
-        <p className="text-[11px] text-zinc-400 font-mono tracking-[0.2em] uppercase text-center mt-16">
+        <p className="text-[11px] text-[#737373] font-mono tracking-[0.2em] uppercase text-center mt-16">
           © {new Date().getFullYear()} Rashid Iqbal · Remote, working worldwide
         </p>
       </section>

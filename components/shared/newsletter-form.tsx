@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Loader2, Check } from "lucide-react";
+import { ArrowRight, Check } from "@/components/icons";
+import { Loader2 } from "lucide-react";
 
 // Compact signup form. Two visual variants — `inline` for blog post
 // footers, `card` for the homepage section. Both POST to
@@ -56,14 +57,14 @@ export function NewsletterForm({
 
   if (variant === "card") {
     return (
-      <section className="border border-zinc-200 bg-white p-6 md:p-8">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-2">
+      <section className="border border-[#e8e4dd] bg-white p-6 md:p-8">
+        <p className="text-[0.625rem] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-2">
           Newsletter
         </p>
-        <h3 className="text-xl md:text-2xl font-bold text-zinc-900 mb-2">
+        <h3 className="text-xl md:text-2xl font-bold text-[#292827] mb-2">
           {headline || "5-minute teardowns, every Tuesday."}
         </h3>
-        <p className="text-sm text-zinc-600 mb-5 max-w-md">
+        <p className="text-sm text-[#73706d] mb-5 max-w-md">
           {description ||
             "One SaaS landing page broken down per email. Three concrete fixes you can apply to your own page that day. Unsubscribe anytime."}
         </p>
@@ -79,14 +80,14 @@ export function NewsletterForm({
   }
 
   return (
-    <section className="border border-zinc-100 bg-zinc-50/40 p-5 my-10">
-      <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-2">
+    <section className="border border-[#e8e4dd] bg-[#fafaf8]/40 p-5 my-10">
+      <p className="text-[0.625rem] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-2">
         Get the next one
       </p>
-      <h3 className="text-base font-bold text-zinc-900 mb-1">
+      <h3 className="text-base font-bold text-[#292827] mb-1">
         {headline || "Subscribe to the 5-minute teardown."}
       </h3>
-      <p className="text-xs text-zinc-500 mb-4">
+      <p className="text-xs text-[#73706d] mb-4">
         {description ||
           "One SaaS landing page broken down per week. Real fixes you can ship the same day."}
       </p>
@@ -134,12 +135,12 @@ function Inner({
         onChange={(e) => setEmail(e.target.value)}
         placeholder="you@yourcompany.com"
         autoComplete="email"
-        className={`flex-1 px-3 ${compact ? "py-2" : "py-3"} text-sm border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500`}
+        className={`flex-1 px-3 ${compact ? "py-2" : "py-3"} text-sm border border-[#e8e4dd] bg-white focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]`}
       />
       <button
         type="submit"
         disabled={status === "sending"}
-        className={`inline-flex items-center justify-center gap-1.5 px-4 ${compact ? "py-2" : "py-3"} bg-orange-700 text-white text-xs font-bold hover:bg-orange-800 transition-colors disabled:opacity-60`}
+        className={`inline-flex items-center justify-center gap-1.5 px-4 ${compact ? "py-2" : "py-3"} bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-60`}
       >
         {status === "sending" ? (
           <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
@@ -151,7 +152,7 @@ function Inner({
         )}
       </button>
       {error && (
-        <p className="text-[11px] text-red-600 sm:absolute sm:-bottom-5">{error}</p>
+        <p className="text-[0.6875rem] text-red-600 sm:absolute sm:-bottom-5">{error}</p>
       )}
     </form>
   );

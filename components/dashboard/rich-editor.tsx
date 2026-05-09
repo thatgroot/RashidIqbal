@@ -74,7 +74,7 @@ export function RichEditor({
         codeBlock: {
           HTMLAttributes: {
             class:
-              "rounded bg-zinc-900 text-zinc-100 p-3 font-mono text-xs overflow-x-auto",
+              "rounded bg-[#1b1938] text-zinc-100 p-3 font-mono text-xs overflow-x-auto",
           },
         },
         heading: { levels: [1, 2, 3] },
@@ -82,7 +82,7 @@ export function RichEditor({
       Link.configure({
         openOnClick: false,
         autolink: true,
-        HTMLAttributes: { class: "text-orange-700 underline" },
+        HTMLAttributes: { class: "text-[#1b1938] underline" },
       }),
       Placeholder.configure({
         placeholder: placeholder || "Type '/' or just start writing… Markdown shortcuts work (## heading, > quote, - list, 1. ordered, ``` code).",
@@ -117,9 +117,9 @@ export function RichEditor({
           "prose-h3:text-xl prose-h3:mt-5 prose-h3:mb-2 " +
           "prose-p:my-3 prose-p:leading-relaxed " +
           "prose-li:my-1 " +
-          "prose-blockquote:border-l-4 prose-blockquote:border-orange-300 prose-blockquote:bg-orange-50/30 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:not-italic " +
-          "prose-code:bg-zinc-100 prose-code:text-zinc-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none " +
-          "prose-hr:my-8 prose-a:text-orange-700",
+          "prose-blockquote:border-l-4 prose-blockquote:border-[#c9b4fa] prose-blockquote:bg-[#fafaf8]/30 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:not-italic " +
+          "prose-code:bg-[#fafaf8] prose-code:text-[#292827] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none " +
+          "prose-hr:my-8 prose-a:text-[#1b1938]",
       },
     },
     onCreate: () => setReady(true),
@@ -150,7 +150,7 @@ export function RichEditor({
   if (!editor) {
     return (
       <div
-        className="border border-zinc-200 bg-white text-sm text-zinc-400 px-4 py-3 rounded"
+        className="border border-[#e8e4dd] bg-white text-sm text-[#9a9794] px-4 py-3 rounded"
         style={{ minHeight: minHeight || `${(rows || 8) * 1.6}rem` }}
       >
         Loading editor…
@@ -159,7 +159,7 @@ export function RichEditor({
   }
 
   return (
-    <div className="border border-zinc-200 bg-white rounded-md overflow-hidden focus-within:border-zinc-300 transition-colors">
+    <div className="border border-[#e8e4dd] bg-white rounded-md overflow-hidden focus-within:border-[#e8e4dd] transition-colors">
       <Toolbar editor={editor} />
       <div
         className="bg-white"
@@ -177,12 +177,12 @@ export function RichEditor({
 // ---------------------------------------------------------------------------
 function Toolbar({ editor }: { editor: Editor }) {
   const btn = (active: boolean) =>
-    `inline-flex items-center justify-center w-8 h-8 text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 rounded transition-colors disabled:opacity-40 ${
-      active ? "bg-zinc-100 text-zinc-900" : ""
+    `inline-flex items-center justify-center w-8 h-8 text-[#73706d] hover:text-[#292827] hover:bg-[#fafaf8] rounded transition-colors disabled:opacity-40 ${
+      active ? "bg-[#fafaf8] text-[#292827]" : ""
     }`;
 
   return (
-    <div className="sticky top-0 z-10 flex items-center gap-0.5 px-2 py-1.5 border-b border-zinc-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 flex-wrap">
+    <div className="sticky top-0 z-10 flex items-center gap-0.5 px-2 py-1.5 border-b border-[#e8e4dd] bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/75 flex-wrap">
       <Group>
         <ToolButton
           title="Heading 1"
@@ -313,7 +313,7 @@ function Toolbar({ editor }: { editor: Editor }) {
           <Redo2 className="w-4 h-4" aria-hidden="true" />
         </ToolButton>
       </Group>
-      <span className="ml-auto text-[10px] font-mono text-zinc-400 hidden md:block pr-2">
+      <span className="ml-auto text-[10px] font-mono text-[#9a9794] hidden md:block pr-2">
         Markdown · live preview
       </span>
     </div>
@@ -353,5 +353,5 @@ function ToolButton({
 }
 
 function Divider() {
-  return <span className="w-px h-5 bg-zinc-200 mx-1" aria-hidden="true" />;
+  return <span className="w-px h-5 bg-[#e8e4dd] mx-1" aria-hidden="true" />;
 }

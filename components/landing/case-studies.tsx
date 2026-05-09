@@ -1,20 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { ArrowUpRight, Calendar } from "lucide-react";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import Image from"next/image";
+import { ArrowUpRight } from"lucide-react";
+import { motion } from"framer-motion";
 
-// Light-theme proof showcase — sits directly under the hero.
-//
-//   1. "Book a FREE 30 minute call" pill at top.
-//   2. Featured project gallery with real screenshots from
-//      /public/work-screenshots/.
-//   3. Brand strip below using Google's favicon service so each name
-//      ships with the actual mark from the live site.
-//
-// CMS case-study items can flow in via the `items` prop (used to keep
-// /work and the homepage in sync); when no items match a screenshot,
-// the static FEATURED_PROJECTS list takes over.
+//"Selected work" — Codex card pattern. Centred chip + bold black
+// headline + sub. 3-col grid of equal-height cards (h-full + flex)
+// with macOS browser chrome above each screenshot,"Live" pill, and
+// title + outcome footer.
 
 export type CaseStudyCard = {
   client: string;
@@ -25,244 +18,158 @@ export type CaseStudyCard = {
   screenshot?: string;
 };
 
-// Static featured projects — everything Rashid has a polished cover
-// shot for. Ordered for hero-card prominence: Vanos AI first because
-// it's also a full case study at /work/vanos-ai.
 type FeaturedProject = {
   client: string;
   domain: string;
   href: string;
   screenshot: string;
   outcome?: string;
+  tag?: string;
+  shippedAgo?: string;
 };
 
-// Subtext on each card mirrors the live product's actual positioning.
-// Six clients featured: UpdateAI, Vanos AI, SpaceDome, ATQLeads,
-// Melissa Ambrosini, Nick Broadhurst.
 const FEATURED_PROJECTS: FeaturedProject[] = [
-  {
-    client: "UpdateAI",
-    domain: "update.ai",
-    href: "/work/updateai",
-    screenshot: "/work-screenshots/updateai.png",
-    outcome: "AI meeting assistant · signups +50%",
-  },
-  {
-    client: "Vanos AI",
-    domain: "vanos.ai",
-    href: "/work/vanos-ai",
-    screenshot: "/work-screenshots/vanos-ai.png",
-    outcome: "Voice agents for enterprise workflows",
-  },
-  {
-    client: "SpaceDome",
-    domain: "spacedome.ai",
-    href: "/work/spacedome-ai",
-    screenshot: "/work-screenshots/space-dome.png",
-    outcome: "Immersive spatial workspaces · signups 3×",
-  },
-  {
-    client: "ATQLeads",
-    domain: "atqleads.com",
-    href: "/work/atqleads",
-    screenshot: "/work-screenshots/funnel-labs.png",
-    outcome: "Outbound for SaaS · 2 closed-won wk 1",
-  },
-  {
-    client: "Melissa Ambrosini",
-    domain: "melissaambrosini.com",
-    href: "https://melissaambrosini.com",
-    screenshot: "/work-screenshots/melissa-ambrosini.png",
-    outcome: "Author + creator personal brand",
-  },
-  {
-    client: "Nick Broadhurst",
-    domain: "nickbroadhurst.com",
-    href: "https://nickbroadhurst.com",
-    screenshot: "/work-screenshots/nick-broadhurst.png",
-    outcome: "Musician personal brand · 90+ Lighthouse",
-  },
+  { client:"UpdateAI", domain:"update.ai", href:"/work/updateai", screenshot:"/work-screenshots/updateai.png", outcome:"Signups +50% in 60 days", tag:"B2B SaaS", shippedAgo:"3 weeks ago" },
+  { client:"Vanos AI", domain:"vanos.ai", href:"/work/vanos-ai", screenshot:"/work-screenshots/vanos-ai.png", outcome:"Weekly devs 2× post-launch", tag:"AI · Voice", shippedAgo:"5 weeks ago" },
+  { client:"SpaceDome", domain:"spacedome.ai", href:"/work/spacedome-ai", screenshot:"/work-screenshots/space-dome.png", outcome:"Signups 3× from launch wave", tag:"AI · Spatial", shippedAgo:"2 months ago" },
+  { client:"ATQLeads", domain:"atqleads.com", href:"/work/atqleads", screenshot:"/work-screenshots/funnel-labs.png", outcome:"2 closed-won in week one", tag:"Outbound", shippedAgo:"6 weeks ago" },
+  { client:"Melissa Ambrosini", domain:"melissaambrosini.com", href:"https://melissaambrosini.com", screenshot:"/work-screenshots/melissa-ambrosini.png", outcome:"Author + creator brand", tag:"Personal", shippedAgo:"3 months ago" },
+  { client:"Nick Broadhurst", domain:"nickbroadhurst.com", href:"https://nickbroadhurst.com", screenshot:"/work-screenshots/nick-broadhurst.png", outcome:"90+ Lighthouse, refreshed brand", tag:"Music", shippedAgo:"4 months ago" },
 ];
-
-// Trust strip — every client name with the favicon pulled from the
-// live site via Google's S2 favicon service. No auth, cached at the
-// edge; works for any public domain.
-const TRUST_BRANDS = [
-  { name: "UpdateAI", domain: "update.ai" },
-  { name: "Vanos AI", domain: "vanos.ai" },
-  { name: "SpaceDome", domain: "spacedome.ai" },
-  { name: "ATQLeads", domain: "atqleads.com" },
-  { name: "Melissa Ambrosini", domain: "melissaambrosini.com" },
-  { name: "Nick Broadhurst", domain: "nickbroadhurst.com" },
-];
-
-function faviconUrl(domain: string, size = 64) {
-  return `https://www.google.com/s2/favicons?domain=${domain}&sz=${size}`;
-}
 
 export function CaseStudies({ items: _items }: { items?: CaseStudyCard[] }) {
-  // Items prop is accepted for API parity with /work but the homepage
-  // showcase pulls its visuals from the static FEATURED_PROJECTS list
-  // since those are the projects with polished cover shots.
   void _items;
-
   return (
-    <section id="case-studies" className="bg-white scroll-mt-16">
-      <div className="max-w-container border-l border-zinc-100 mx-auto px-6 md:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
-        {/* Top pill */}
-        <div className="flex justify-center mb-12 md:mb-16">
-          <a
-            href={SOCIAL_LINKS.calcom}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-zinc-200 bg-white text-zinc-900 text-sm font-semibold hover:border-orange-300 transition-colors"
+    <section id="case-studies" className="relative bg-white scroll-mt-24 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 codex-section-glow pointer-events-none"
+      />
+      <div className="relative max-w-container mx-auto px-6 md:px-10 pt-28 md:pt-36 pb-32 md:pb-40">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin:"-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center max-w-3xl mx-auto"
+        >
+          <span className="codex-chip mx-auto inline-flex">
+            <span
+              aria-hidden="true"
+              className="w-4 h-4 rounded-sm flex items-center justify-center text-white text-[9px]"
+              style={{
+                background:"linear-gradient(135deg, #e6b431 0%, #9c7307 100%)",
+                fontVariationSettings: '"wght" 700',
+              }}
+            >
+              ⌘
+            </span>
+            Selected work
+          </span>
+          <h2
+            className="mt-7 text-[clamp(40px,5.6vw,72px)] tracking-[-0.028em] leading-[1.04] text-[#0a0a0a]"
+            style={{ fontVariationSettings: '"wght" 700' }}
           >
-            <Calendar className="w-4 h-4 text-orange-500" aria-hidden="true" />
-            Book a FREE 30 minute call
-            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" aria-hidden="true" />
-          </a>
+            Six recent live builds.
+          </h2>
+          <p className="mt-5 text-[19px] leading-[1.5] text-[#404040] max-w-2xl mx-auto">
+            Click any card for the brief, the rewrite, and the number we moved.
+          </p>
+        </motion.div>
+
+        <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 items-stretch">
+          {FEATURED_PROJECTS.map((p, i) => (
+            <ProjectCard key={p.domain} project={p} index={i} />
+          ))}
         </div>
 
-        {/* Featured-project gallery — horizontal scroll-snap. */}
-        <ProjectShowcase projects={FEATURED_PROJECTS} />
-
-        {/* Trust strip with favicons */}
-        <div className="mt-16 md:mt-20 text-center">
-          <p className="text-[10px] md:text-xs font-mono text-zinc-500 uppercase tracking-[0.22em] mb-6">
-            Trusted by brands around the world
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-6 md:gap-x-8 gap-y-4">
-            {TRUST_BRANDS.map((b) => (
-              <a
-                key={b.name}
-                href={`https://${b.domain}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Visit ${b.name}`}
-                className="group inline-flex items-center gap-2 text-zinc-500 hover:text-zinc-900 transition-colors"
-              >
-                <span className="w-5 h-5 bg-zinc-50 border border-zinc-100 flex items-center justify-center overflow-hidden shrink-0 group-hover:border-zinc-200 transition-colors">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={faviconUrl(b.domain, 64)}
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 object-contain"
-                    loading="lazy"
-                    aria-hidden="true"
-                  />
-                </span>
-                <span className="text-xs md:text-sm font-medium">{b.name}</span>
-              </a>
-            ))}
-          </div>
+        <div className="mt-12 flex justify-center">
+          <a
+            href="/work"
+            className="group inline-flex items-center gap-2 text-[15px] text-[#0a0a0a] hover:text-[#9c7307] transition-colors"
+            style={{ fontVariationSettings: '"wght" 500' }}
+          >
+            See the full archive
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-0.5">→</span>
+          </a>
         </div>
       </div>
     </section>
   );
 }
 
-// Auto-sliding marquee. The track holds two copies of `projects` so the
-// loop is seamless: by the time the first copy translates fully off
-// screen, the second copy is in its position and the animation resets
-// to 0% with no visible jump. Animation pauses on hover so the visitor
-// can read a card.
-function ProjectShowcase({ projects }: { projects: FeaturedProject[] }) {
-  // Duration scales with the number of cards so a longer set still
-  // moves at a comfortable reading pace (~6s per card).
-  const seconds = Math.max(28, projects.length * 6);
-  return (
-    <div className="relative -mx-6 md:-mx-8 overflow-hidden">
-      {/* Edge fades so cards drift in/out instead of appearing flush. */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-20 bg-gradient-to-r from-white to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-20 bg-gradient-to-l from-white to-transparent z-10" />
-
-      <div
-        className="case-studies-track flex gap-4 md:gap-5 px-6 md:px-8 pb-4 w-max"
-        style={{
-          animation: `case-studies-marquee ${seconds}s linear infinite`,
-        }}
-      >
-        {[...projects, ...projects].map((p, i) => (
-          <ProjectCard
-            key={`${p.client}-${i}`}
-            project={p}
-            index={i % projects.length}
-          />
-        ))}
-      </div>
-
-      {/*
-        Marquee CSS — translates the duplicated track exactly half its
-        width (the length of the original list), then loops. Pauses on
-        hover so the cursor can rest on a card.
-      */}
-      <style>{`
-        @keyframes case-studies-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .case-studies-track:hover {
-          animation-play-state: paused;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .case-studies-track {
-            animation: none !important;
-          }
-        }
-      `}</style>
-    </div>
-  );
-}
-
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: FeaturedProject;
-  index: number;
-}) {
+function ProjectCard({ project, index }: { project: FeaturedProject; index: number }) {
   const isExternal = project.href.startsWith("http");
-  const linkProps = isExternal
-    ? { target: "_blank", rel: "noopener noreferrer" as const }
-    : {};
-
-  // Index is unused inside the marquee — kept for the API but no
-  // longer drives a per-card stagger (the marquee handles motion).
-  void index;
+  const linkProps = isExternal ? { target:"_blank", rel:"noopener noreferrer" as const } : {};
   return (
-    <a
+    <motion.a
       href={project.href}
       {...linkProps}
       aria-label={`View ${project.client} project`}
-      className="group relative shrink-0 w-[280px] md:w-[360px] lg:w-[440px] overflow-hidden border border-zinc-200 bg-white hover:border-orange-300 hover:shadow-xl hover:shadow-orange-500/10 transition-all"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin:"-60px" }}
+      transition={{ duration: 0.6, delay: Math.min(index * 0.08, 0.4), ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -4 }}
+      className="group relative h-full flex flex-col overflow-hidden rounded-2xl border border-[#e5e5e5] bg-white transition-all"
     >
-      <div className="relative aspect-[4/3] bg-zinc-50 overflow-hidden">
+      <div className="flex items-center gap-1.5 px-3 py-2.5 bg-[#fafafa] border-b border-[#e5e5e5]">
+        <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+        <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+        <span className="ml-2 text-[11px] text-[#737373] truncate" style={{ fontVariationSettings: '"wght" 500' }}>
+          {project.domain}
+        </span>
+        {project.tag ? (
+          <span
+            className="ml-auto text-[10px] uppercase tracking-[0.16em] text-[#9c7307] px-2 py-0.5 rounded-full bg-white border border-[#dcd5ff]"
+            style={{ fontVariationSettings: '"wght" 600' }}
+          >
+            {project.tag}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="relative aspect-[4/3] bg-[#fafafa] overflow-hidden">
+        <span className="absolute top-3 right-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur border border-[#e5e5e5]">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#27c93f]/70 opacity-75" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#27c93f]" />
+          </span>
+          <span className="text-[10px] uppercase tracking-[0.18em] text-[#0a0a0a]" style={{ fontVariationSettings: '"wght" 600' }}>
+            Live
+          </span>
+        </span>
         <Image
           src={project.screenshot}
           alt={`${project.client} site preview`}
           fill
-          sizes="(min-width: 1024px) 440px, (min-width: 768px) 360px, 280px"
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
         />
       </div>
-      <div className="p-4 md:p-5 flex items-start justify-between gap-3 border-t border-zinc-100">
+
+      <div className="px-6 py-5 flex items-start justify-between gap-3 border-t border-[#e5e5e5] mt-auto">
         <div className="min-w-0">
-          <p className="text-sm md:text-base font-bold text-zinc-900 truncate">
+          <p className="text-[18px] text-[#0a0a0a] truncate" style={{ fontVariationSettings: '"wght" 600' }}>
             {project.client}
           </p>
-          {project.outcome && (
-            <p className="text-[11px] md:text-xs font-mono text-orange-600 uppercase tracking-wider mt-0.5 truncate">
-              {project.outcome}
+          {project.outcome ? (
+            <p className="text-[14px] text-[#737373] mt-1 truncate">{project.outcome}</p>
+          ) : null}
+          {project.shippedAgo ? (
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#a3a3a3] mt-2" style={{ fontVariationSettings: '"wght" 600' }}>
+              Shipped {project.shippedAgo}
             </p>
-          )}
+          ) : null}
         </div>
-        <ArrowUpRight
-          className="w-5 h-5 text-zinc-300 shrink-0 group-hover:text-orange-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
-          aria-hidden="true"
-        />
+        <span className="shrink-0 w-9 h-9 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center group-hover:bg-[#0a0a0a] group-hover:border-[#0a0a0a] transition-colors">
+          <ArrowUpRight
+            className="w-4 h-4 text-[#737373] group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+            aria-hidden="true"
+          />
+        </span>
       </div>
-    </a>
+    </motion.a>
   );
 }

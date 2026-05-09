@@ -101,13 +101,13 @@ export function ProjectEditor({
   }
 
   return (
-    <form onSubmit={save} className="border border-zinc-200 bg-white p-5 space-y-4">
+    <form onSubmit={save} className="border border-[#e8e4dd] bg-white p-5 space-y-4">
       <Field label="Title">
         <input
           type="text"
           value={state.title}
           onChange={(e) => setField("title", e.target.value)}
-          className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+          className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
         />
       </Field>
       <div className="grid grid-cols-2 gap-3">
@@ -115,7 +115,7 @@ export function ProjectEditor({
           <select
             value={state.status}
             onChange={(e) => setField("status", e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm capitalize focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm capitalize focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           >
             {STATUS_KEYS.map((k) => (
               <option key={k} value={k}>
@@ -128,7 +128,7 @@ export function ProjectEditor({
           <select
             value={state.tier}
             onChange={(e) => setField("tier", e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           >
             {TIERS.map((t) => (
               <option key={t.value} value={t.value}>
@@ -144,7 +144,7 @@ export function ProjectEditor({
             type="date"
             value={state.targetLaunchDate}
             onChange={(e) => setField("targetLaunchDate", e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </Field>
         <Field label="Launched on">
@@ -152,28 +152,28 @@ export function ProjectEditor({
             type="date"
             value={state.launchedAt}
             onChange={(e) => setField("launchedAt", e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </Field>
       </div>
 
       {/* Links editor */}
       <div>
-        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] mb-2">
+        <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] mb-2">
           Project links (visible to client)
         </p>
         <ul className="space-y-1.5 mb-2">
           {Object.entries(state.links).map(([k, v]) => (
             <li
               key={k}
-              className="flex items-center gap-2 text-xs border border-zinc-100 px-2 py-1.5 bg-zinc-50/40"
+              className="flex items-center gap-2 text-xs border border-[#e8e4dd] px-2 py-1.5 bg-[#fafaf8]/40"
             >
-              <span className="font-bold text-zinc-700 capitalize w-20 shrink-0">{k}</span>
-              <span className="font-mono text-zinc-600 flex-1 truncate">{v}</span>
+              <span className="font-bold text-[#292827] capitalize w-20 shrink-0">{k}</span>
+              <span className="font-mono text-[#73706d] flex-1 truncate">{v}</span>
               <button
                 type="button"
                 onClick={() => removeLink(k)}
-                className="text-zinc-400 hover:text-red-600"
+                className="text-[#9a9794] hover:text-red-600"
                 aria-label={`Remove ${k} link`}
               >
                 <X className="w-3.5 h-3.5" />
@@ -187,19 +187,19 @@ export function ProjectEditor({
             placeholder="figma"
             value={linkKey}
             onChange={(e) => setLinkKey(e.target.value)}
-            className="w-24 px-2 py-1.5 border border-zinc-200 bg-white text-xs focus:outline-none focus:border-orange-500"
+            className="w-24 px-2 py-1.5 border border-[#e8e4dd] bg-white text-xs focus:outline-none focus:border-[#1b1938]"
           />
           <input
             type="url"
             placeholder="https://…"
             value={linkValue}
             onChange={(e) => setLinkValue(e.target.value)}
-            className="flex-1 px-2 py-1.5 border border-zinc-200 bg-white text-xs font-mono focus:outline-none focus:border-orange-500"
+            className="flex-1 px-2 py-1.5 border border-[#e8e4dd] bg-white text-xs font-mono focus:outline-none focus:border-[#1b1938]"
           />
           <button
             type="button"
             onClick={addLink}
-            className="inline-flex items-center gap-1 px-3 py-1.5 border border-zinc-300 text-xs font-bold hover:border-orange-300 hover:text-orange-700 transition-colors"
+            className="inline-flex items-center gap-1 px-3 py-1.5 border border-[#e8e4dd] text-xs font-bold hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors"
           >
             <Plus className="w-3 h-3" />
             Add
@@ -213,7 +213,7 @@ export function ProjectEditor({
           value={state.notesInternal}
           onChange={(e) => setField("notesInternal", e.target.value)}
           placeholder="Stuff the client should never see"
-          className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 resize-none"
+          className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938] resize-none"
         />
       </Field>
 
@@ -221,7 +221,7 @@ export function ProjectEditor({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-xs font-bold hover:bg-orange-600 transition-colors disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-60"
         >
           {saving ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
@@ -230,7 +230,7 @@ export function ProjectEditor({
           )}
           Save changes
         </button>
-        {savedAt && <span className="text-[11px] text-zinc-400">Saved at {savedAt}</span>}
+        {savedAt && <span className="text-[11px] text-[#9a9794]">Saved at {savedAt}</span>}
       </div>
       {error && (
         <p className="text-xs text-red-600 bg-red-50 border border-red-100 px-3 py-2">
@@ -293,13 +293,13 @@ function StatusUpdateComposer({
   }
 
   return (
-    <div className="border border-orange-200 bg-orange-50/30 p-4 mt-2 space-y-3">
+    <div className="border border-[#e8e4dd] bg-[#fafaf8]/30 p-4 mt-2 space-y-3">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.18em] mb-0.5">
+          <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.18em] mb-0.5">
             Status changed → send the client an update?
           </p>
-          <p className="text-xs text-zinc-600">
+          <p className="text-xs text-[#73706d]">
             One click drafts a message into the project thread + sends an
             email via Resend.
           </p>
@@ -308,7 +308,7 @@ function StatusUpdateComposer({
           type="button"
           onClick={onClose}
           aria-label="Skip"
-          className="text-zinc-400 hover:text-zinc-700"
+          className="text-[#9a9794] hover:text-[#292827]"
         >
           ✕
         </button>
@@ -317,14 +317,14 @@ function StatusUpdateComposer({
         value={body}
         onChange={(e) => setBody(e.target.value)}
         rows={3}
-        className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+        className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
       />
       <div className="flex items-center gap-2">
         <button
           type="button"
           onClick={send}
           disabled={!body.trim() || sending || sent}
-          className="inline-flex items-center gap-1.5 px-3 py-2 bg-orange-700 text-white text-xs font-bold hover:bg-orange-800 transition-colors disabled:opacity-60"
+          className="inline-flex items-center gap-1.5 px-3 py-2 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-60"
         >
           {sending ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
@@ -337,7 +337,7 @@ function StatusUpdateComposer({
         <button
           type="button"
           onClick={onClose}
-          className="text-xs text-zinc-500 hover:text-zinc-900"
+          className="text-xs text-[#73706d] hover:text-[#292827]"
         >
           Skip
         </button>
@@ -350,7 +350,7 @@ function StatusUpdateComposer({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] mb-1.5 block">
+      <span className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] mb-1.5 block">
         {label}
       </span>
       {children}

@@ -1,20 +1,23 @@
 "use client";
 
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus } from "@/components/icons";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FAQStructuredData } from "@/components/seo/faq-structured-data";
 
-// Default fallback set. Used whenever the CMS has no published FAQs.
+// Superhuman + cap.so FAQ. Two-column layout: editorial opener on the
+// left (sticky on desktop), accordion on the right. Smooth height-grow
+// animation on open. "Still have questions?" sticky email row pinned to
+// the bottom of the left column.
+
 const DEFAULT_FAQS = [
   {
     q: "Will this actually move my conversion rate?",
-    a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Vanos AI's weekly active developers doubled in 30 days. SpaceDome's homepage signups went up 3x in 6 weeks. I won't promise your specific number — every market is different — but on the kickoff call I'll walk you through the conversion principle behind each lift so you know what's changing and why."
+    a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Vanos AI's weekly active developers doubled in 30 days. SpaceDome's homepage signups went up 3x in 6 weeks. We won't promise your specific number — every market is different — but on the kickoff call we'll walk you through the conversion principle behind each lift so you know what's changing and why."
   },
   {
     q: "What if the design isn't right?",
-    a: "You get unlimited revisions on the Figma design before I touch Framer. If the direction is still wrong after the first review, I refund your deposit. That has happened exactly once in years of projects."
+    a: "You get unlimited revisions on the Figma design before we touch Framer. If the direction is still wrong after the first review, we refund your deposit. That has happened exactly once in years of projects."
   },
   {
     q: "What happens after we go live? Will I need you for every change?",
@@ -22,24 +25,20 @@ const DEFAULT_FAQS = [
   },
   {
     q: "Who owns the design and code? Can I move it later?",
-    a: "You do, from day one. The Figma file transfers to your team, the Framer project transfers to your Framer account, and any Chrome extension or custom code ships to your GitHub. No licensing fee, no 'works only while you're on retainer' clause. If you fire me tomorrow, you keep everything."
+    a: "You do, from day one. The Figma file transfers to your team, the Framer project transfers to your Framer account, and any Chrome extension or custom code ships to your GitHub. No licensing fee, no 'works only while you're on retainer' clause. If you fire us tomorrow, you keep everything."
   },
   {
     q: "Can you work with my existing brand, Figma, or in-house team?",
-    a: "Yes. I work inside your designer's Figma file when there is one, follow your brand guide, and pair with your developer on backend or API integration. Stack-wise I ship fastest in Framer but also work in Webflow and hand-coded Next.js when the project needs it. Tell me what you have and I'll be honest about fit."
+    a: "Yes. We work inside your designer's Figma file when there is one, follow your brand guide, and pair with your developer on backend or API integration. Stack-wise we ship fastest in Framer but also work in Webflow and hand-coded Next.js when the project needs it. Tell us what you have and we'll be honest about fit."
   }
 ];
 
 type FaqItem = { q: string; a: string };
 
 export function FAQ({ items }: { items?: FaqItem[] }) {
-  // Use the CMS-supplied list if present; otherwise fall back to the
-  // hardcoded set so the section never goes empty during a deploy.
   const faqs = items && items.length > 0 ? items : DEFAULT_FAQS;
-  // Every FAQ open by default. Click toggles a single one closed/open
-  // independently — no accordion behavior. Open set is the ground truth.
   const [openSet, setOpenSet] = useState<Set<number>>(
-    () => new Set(faqs.map((_, i) => i))
+    () => new Set([0]) // first one open by default — cap.so pattern
   );
 
   function toggle(i: number) {
@@ -54,55 +53,135 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
   return (
     <>
       <FAQStructuredData
-        faqs={faqs.map(f => ({ question: f.q, answer: f.a }))}
+        faqs={faqs.map((f) => ({ question: f.q, answer: f.a }))}
       />
       <section className="bg-white scroll-mt-16" id="faq">
-        <div className="max-w-7xl mx-auto border-l border-zinc-100">
-          <GridContainer cols={2}  >
-            <GridItem className="py-24">
-              <div className="max-w-md">
-                <h2 className="text-4xl font-semibold text-zinc-900 mb-6 leading-[1.1]">
-                  What SaaS founders ask before hiring.
-                </h2>
-                <p className="text-lg text-zinc-500">
-                  Straight answers. No marketing fluff. Pricing and timelines
-                  live in the section above — these are the harder questions.
-                </p>
-              </div>
-            </GridItem>
+        <div className="max-w-container mx-auto px-6 md:px-10 pt-28 md:pt-36 pb-24 md:pb-32">
+          <div className="grid lg:grid-cols-12 gap-10 md:gap-14">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start"
+            >
+              <p
+                className="text-[11px] uppercase tracking-[0.22em] text-[#737373] mb-4"
+                style={{ fontVariationSettings: '"wght" 540' }}
+              >
+                05 · Honest answers
+              </p>
+              <h2
+                className="text-[clamp(36px,5vw,60px)] tracking-[-0.024em] leading-[0.96] text-[#0a0a0a]"
+                style={{ fontVariationSettings: '"wght" 460' }}
+              >
+                What founders ask
+                <br className="hidden md:inline" />
+                <span className="text-[#0a0a0a]" style={{ fontVariationSettings: '"wght" 540' }}>
+                  {" "}before hiring.
+                </span>
+              </h2>
+              <p
+                className="mt-6 text-[16px] md:text-[17px] text-[#737373] leading-[1.6] max-w-md"
+                style={{ fontVariationSettings: '"wght" 460' }}
+              >
+                Straight answers. No marketing fluff. Pricing and timelines
+                live in the section above.
+              </p>
 
-            <div className="bg-white">
+              {/* Sticky email row — retention pattern. */}
+              <div className="mt-10 p-5 rounded-lg border border-[#e8e4dd] bg-[#fafaf8]">
+                <p
+                  className="text-[13px] text-[#0a0a0a] leading-[1.5]"
+                  style={{ fontVariationSettings: '"wght" 600' }}
+                >
+                  Still have questions?
+                </p>
+                <p
+                  className="text-[13px] text-[#737373] mt-1 leading-[1.5]"
+                  style={{ fontVariationSettings: '"wght" 460' }}
+                >
+                  Email us — replies in under 24h.
+                </p>
+                <a
+                  href="mailto:rashidiqbal.freelance@gmail.com"
+                  className="group mt-4 inline-flex items-center gap-2 text-[13px] text-[#0a0a0a]"
+                  style={{ fontVariationSettings: '"wght" 600' }}
+                >
+                  rashidiqbal.freelance@gmail.com
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              </div>
+            </motion.div>
+
+            <div className="lg:col-span-7 divide-y divide-[#e8e4dd] border-y border-[#e8e4dd]">
               {faqs.map((faq, i) => {
                 const isOpen = openSet.has(i);
                 return (
-                  <div key={i} className="border-b border-r border-zinc-100">
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{
+                      duration: 0.4,
+                      delay: Math.min(i * 0.05, 0.3),
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
                     <button
                       onClick={() => toggle(i)}
                       aria-expanded={isOpen}
-                      className="w-full flex items-center justify-between p-8 text-left hover:bg-zinc-50 transition-colors"
+                      className="w-full flex items-start justify-between gap-6 py-7 md:py-8 text-left hover:bg-[#fafaf8] transition-colors px-2 -mx-2 rounded-md"
                     >
-                      <span className="font-medium text-zinc-900 pr-8">{faq.q}</span>
-                      {isOpen ? <Minus className="w-5 h-5 text-zinc-500" /> : <Plus className="w-5 h-5 text-zinc-500" />}
+                      <h3
+                        className="text-[18px] md:text-[21px] text-[#0a0a0a] leading-[1.3] tracking-[-0.012em] pr-2"
+                        style={{ fontVariationSettings: isOpen ? '"wght" 600' : '"wght" 540' }}
+                      >
+                        {faq.q}
+                      </h3>
+                      <span
+                        className={`shrink-0 mt-1 flex items-center justify-center w-7 h-7 rounded-full transition-all ${
+                          isOpen
+                            ? "bg-[#0a0a0a] text-white rotate-180"
+                            : "bg-[#fafaf8] border border-[#e8e4dd] text-[#737373]"
+                        }`}
+                      >
+                        {isOpen ? (
+                          <Minus className="w-3.5 h-3.5" />
+                        ) : (
+                          <Plus className="w-3.5 h-3.5" />
+                        )}
+                      </span>
                     </button>
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: "auto" }}
-                          exit={{ height: 0 }}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
                           className="overflow-hidden"
                         >
-                          <div className="px-8 pb-8 text-zinc-500 leading-relaxed text-sm">
+                          <div
+                            className="px-2 pb-7 md:pb-8 text-[15px] md:text-[16px] text-[#737373] leading-[1.65] max-w-2xl"
+                            style={{ fontVariationSettings: '"wght" 460' }}
+                          >
                             {faq.a}
                           </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
-          </GridContainer>
+          </div>
         </div>
       </section>
     </>

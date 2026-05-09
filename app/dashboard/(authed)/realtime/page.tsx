@@ -8,13 +8,13 @@ export default async function RealtimePage() {
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Realtime
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Live activity
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         Every event in the last 5 minutes. Refreshes every 10 seconds.
       </p>
 

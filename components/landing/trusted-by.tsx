@@ -27,21 +27,21 @@ const brands: Brand[] = [
 
 export function TrustedBy() {
   return (
-    <section id="work" className="bg-zinc-50/50 scroll-mt-16">
-      <div className="max-w-container border-x border-zinc-100">
+    <section id="work" className="bg-[#fafaf8]/50 scroll-mt-16">
+      <div className="max-w-container border-x border-[#e8e4dd]">
         <GridContainer>
           <GridItem className="py-6 md:py-8" padding={false}>
             <div className="flex flex-col md:flex-row items-center gap-6 px-6 md:px-8">
               {/* Label */}
               <div className="flex items-center gap-2 shrink-0">
-                <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#1b1938]" />
+                <p className="text-[0.625rem] font-bold text-[#73706d] uppercase tracking-wider">
                   Shipped for YC startups &amp; indie creators
                 </p>
               </div>
 
               {/* Divider */}
-              <div className="hidden md:block w-px h-6 bg-zinc-200" />
+              <div className="hidden md:block w-px h-6 bg-[#e8e4dd]" />
 
               {/* Scrolling Logos */}
               <div className="flex-1 w-full overflow-hidden relative">
@@ -56,13 +56,13 @@ export function TrustedBy() {
                 >
                   {[...brands, ...brands].map((brand, i) => {
                     const colorClass = brand.highlight
-                      ? "text-zinc-700"
-                      : "text-zinc-400";
+                      ? "text-[#292827]"
+                      : "text-[#9a9794]";
                     const inner = (
                       <>
                         <span className="font-semibold">{brand.name}</span>
                         {brand.delta && (
-                          <span className="ml-2 text-orange-600 text-[12px] font-mono">
+                          <span className="ml-2 text-[#1b1938] text-[0.75rem] font-mono">
                             · {brand.delta}
                           </span>
                         )}
@@ -76,7 +76,7 @@ export function TrustedBy() {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={`Visit ${brand.name}`}
-                          className={`text-sm whitespace-nowrap transition-colors ${colorClass} hover:text-zinc-900 hover:underline underline-offset-4 decoration-orange-500/40`}
+                          className={`text-sm whitespace-nowrap transition-colors ${colorClass} hover:text-[#292827] hover:underline underline-offset-4 decoration-[#1b1938]/40`}
                         >
                           {inner}
                         </a>
@@ -85,7 +85,7 @@ export function TrustedBy() {
                     return (
                       <span
                         key={i}
-                        className={`text-sm whitespace-nowrap transition-colors cursor-default ${colorClass} hover:text-zinc-900`}
+                        className={`text-sm whitespace-nowrap transition-colors cursor-default ${colorClass} hover:text-[#292827]`}
                       >
                         {inner}
                       </span>

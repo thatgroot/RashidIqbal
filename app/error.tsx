@@ -22,7 +22,7 @@ export default function Error({ error, reset }: ErrorProps) {
       <div className="text-center max-w-md">
         <div className="mb-6">
           <svg
-            className="mx-auto h-16 w-16 text-zinc-400"
+            className="mx-auto h-16 w-16 text-[#737373]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -36,23 +36,23 @@ export default function Error({ error, reset }: ErrorProps) {
             />
           </svg>
         </div>
-        <h2 className="text-2xl font-semibold text-zinc-900 mb-2">
+        <h2 className="text-2xl font-semibold text-[#0a0a0a] mb-2">
           Something went wrong
         </h2>
-        <p className="text-zinc-600 mb-6">
+        <p className="text-[#737373] mb-6">
           An unexpected error occurred. Please try again or contact support if
           the problem persists.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
             onClick={reset}
-            className="inline-flex items-center justify-center px-5 py-2.5 bg-zinc-900 text-white font-medium rounded-lg hover:bg-zinc-800 transition-colors"
+            className="inline-flex items-center justify-center px-5 py-2.5 bg-[#0a0a0a] text-white font-medium rounded-lg hover:bg-[#000000] transition-colors"
           >
             Try again
           </button>
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-5 py-2.5 border border-zinc-300 text-zinc-700 font-medium rounded-lg hover:bg-zinc-50 transition-colors"
+            className="inline-flex items-center justify-center px-5 py-2.5 border border-[#e5e5e5] text-[#0a0a0a] font-medium rounded-lg hover:bg-[#fafafa] transition-colors"
           >
             Go home
           </Link>

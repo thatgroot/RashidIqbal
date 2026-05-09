@@ -41,15 +41,15 @@ export default async function EditCollectionRowPage({
     <div>
       <Link
         href={`/dashboard/cms/${collection}`}
-        className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 mb-6 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs text-[#73706d] hover:text-[#292827] mb-6 transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
         All {meta.label.toLowerCase()}
       </Link>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-1">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-1">
         {meta.toEditTitle(row as never)}
       </h1>
-      <p className="text-sm text-zinc-500 mb-6">
+      <p className="text-sm text-[#73706d] mb-6">
         {isPublished ? "Published · live on the site." : "Draft."}
       </p>
       <CmsEditor

@@ -104,14 +104,14 @@ export function MessageThread({
   }
 
   return (
-    <div className="border border-zinc-200 bg-white flex flex-col">
+    <div className="border border-[#e8e4dd] bg-white flex flex-col">
       <div
         ref={scrollRef}
         className="flex-1 px-5 py-5 max-h-[480px] overflow-auto space-y-4"
       >
         {messages.length === 0 ? (
           <div className="text-center py-8 space-y-4">
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-[#73706d]">
               {viewer === "client"
                 ? "No messages yet. Drop a note below to start the conversation."
                 : "No messages yet. Send the first note to kick off communication."}
@@ -126,7 +126,7 @@ export function MessageThread({
                       setBody(chip);
                       textareaRef.current?.focus();
                     }}
-                    className="text-xs px-3 py-1.5 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+                    className="text-xs px-3 py-1.5 border border-[#e8e4dd] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors"
                   >
                     {chip}
                   </button>
@@ -145,7 +145,7 @@ export function MessageThread({
                 <div className={`max-w-[85%] ${fromMe ? "items-end" : "items-start"} flex flex-col`}>
                   <p
                     className={`text-[10px] font-mono uppercase tracking-[0.18em] mb-1 ${
-                      fromMe ? "text-zinc-400" : "text-orange-600"
+                      fromMe ? "text-[#9a9794]" : "text-[#1b1938]"
                     }`}
                   >
                     {fromMe ? viewerName : m.senderType === "admin" ? "Rashid" : "Client"} ·{" "}
@@ -154,8 +154,8 @@ export function MessageThread({
                   <div
                     className={`px-4 py-2.5 text-sm whitespace-pre-wrap break-words ${
                       fromMe
-                        ? "bg-zinc-900 text-white"
-                        : "bg-zinc-50 border border-zinc-100 text-zinc-900"
+                        ? "bg-[#1b1938] text-white"
+                        : "bg-[#fafaf8] border border-[#e8e4dd] text-[#292827]"
                     }`}
                   >
                     {m.body}
@@ -167,7 +167,7 @@ export function MessageThread({
         )}
       </div>
       {remoteTyping && remoteTyping.who !== viewer && (
-        <div className="px-5 border-t border-zinc-100 bg-zinc-50/40">
+        <div className="px-5 border-t border-[#e8e4dd] bg-[#fafaf8]/40">
           <TypingIndicator
             name={
               remoteTyping.name ||
@@ -176,7 +176,7 @@ export function MessageThread({
           />
         </div>
       )}
-      <form onSubmit={send} className="border-t border-zinc-100 p-3 bg-zinc-50/40">
+      <form onSubmit={send} className="border-t border-[#e8e4dd] p-3 bg-[#fafaf8]/40">
         <div className="flex items-end gap-2">
           <textarea
             ref={textareaRef}
@@ -194,12 +194,12 @@ export function MessageThread({
             }}
             placeholder={viewer === "client" ? "Message Rashid…" : "Reply to client…"}
             rows={2}
-            className="flex-1 px-3 py-2 text-sm border border-zinc-200 bg-white text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 resize-none"
+            className="flex-1 px-3 py-2 text-sm border border-[#e8e4dd] bg-white text-[#292827] placeholder:text-[#9a9794] focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938] resize-none"
           />
           <button
             type="submit"
             disabled={!body.trim() || sending}
-            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-orange-700 text-white text-xs font-bold hover:bg-orange-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {sending ? (
               <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
@@ -212,7 +212,7 @@ export function MessageThread({
           </button>
         </div>
         {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
-        <p className="text-[10px] text-zinc-400 mt-1.5">
+        <p className="text-[10px] text-[#9a9794] mt-1.5">
           {viewer === "client"
             ? "Rashid gets an email when you send. Replies appear here in seconds. ⌘/Ctrl + Enter to send."
             : "The client gets an email when you reply. Replies appear here in seconds. ⌘/Ctrl + Enter to send."}

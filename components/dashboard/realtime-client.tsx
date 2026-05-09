@@ -17,12 +17,12 @@ type RealtimeRow = {
 const POLL_MS = 10_000;
 
 function eventIcon(type: string) {
-  if (type === "pageview") return <Eye className="w-3.5 h-3.5 text-zinc-500" aria-hidden="true" />;
+  if (type === "pageview") return <Eye className="w-3.5 h-3.5 text-[#73706d]" aria-hidden="true" />;
   if (type === "scroll")
-    return <ArrowDownToLine className="w-3.5 h-3.5 text-zinc-500" aria-hidden="true" />;
+    return <ArrowDownToLine className="w-3.5 h-3.5 text-[#73706d]" aria-hidden="true" />;
   if (type === "form_submit")
-    return <FileText className="w-3.5 h-3.5 text-emerald-600" aria-hidden="true" />;
-  return <MousePointerClick className="w-3.5 h-3.5 text-orange-500" aria-hidden="true" />;
+    return <FileText className="w-3.5 h-3.5 text-[#0e3030]" aria-hidden="true" />;
+  return <MousePointerClick className="w-3.5 h-3.5 text-[#1b1938]" aria-hidden="true" />;
 }
 
 function deviceIcon(d: string | null) {
@@ -68,40 +68,40 @@ export function RealtimeClient({ initial }: { initial: RealtimeRow[] }) {
   }, []);
 
   return (
-    <div className="border border-zinc-200 bg-white">
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-100 bg-zinc-50">
-        <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em]">
+    <div className="border border-[#e8e4dd] bg-white">
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-[#e8e4dd] bg-[#fafaf8]">
+        <span className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em]">
           {rows.length} events · last 5 min
         </span>
-        <span className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-600 uppercase tracking-[0.18em]">
+        <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#0e3030] uppercase tracking-[0.18em]">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9b4fa] opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0e3030]"></span>
           </span>
           Live
         </span>
       </div>
       {rows.length === 0 ? (
-        <p className="text-sm text-zinc-500 px-6 py-12 text-center">
+        <p className="text-sm text-[#73706d] px-6 py-12 text-center">
           Quiet right now. Events from the last 5 minutes will land here.
         </p>
       ) : (
-        <ol className="divide-y divide-zinc-100" key={tick}>
+        <ol className="divide-y divide-[#e8e4dd]" key={tick}>
           {rows.map((r) => (
             <li key={r.id} className="flex items-start gap-3 px-4 py-2.5">
               <span className="mt-1 shrink-0">{eventIcon(r.type)}</span>
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-zinc-900">
-                  <span className="font-mono text-[11px] text-zinc-400 mr-2">{r.type}</span>
+                <p className="text-sm text-[#292827]">
+                  <span className="font-mono text-[11px] text-[#9a9794] mr-2">{r.type}</span>
                   {r.target ? (
                     <span className="font-mono">{r.target}</span>
                   ) : r.path ? (
                     <span className="font-mono">{r.path}</span>
                   ) : (
-                    <span className="text-zinc-400">—</span>
+                    <span className="text-[#9a9794]">—</span>
                   )}
                 </p>
-                <p className="text-[11px] text-zinc-400 flex items-center gap-2 mt-0.5">
+                <p className="text-[11px] text-[#9a9794] flex items-center gap-2 mt-0.5">
                   <span className="inline-flex items-center gap-1">
                     {deviceIcon(r.deviceType)}
                     {r.deviceType || "—"}
@@ -111,7 +111,7 @@ export function RealtimeClient({ initial }: { initial: RealtimeRow[] }) {
                   {r.path && r.target && <span className="font-mono truncate">{r.path}</span>}
                 </p>
               </div>
-              <span className="text-[11px] text-zinc-400 font-mono shrink-0">
+              <span className="text-[11px] text-[#9a9794] font-mono shrink-0">
                 {timeAgo(r.createdAt)}
               </span>
             </li>

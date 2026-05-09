@@ -15,13 +15,13 @@ const CARDS = [
 export default function CmsHome() {
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         CMS
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Content
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         Everything editable on the public site lives here. Drafts stay
         unpublished until you flip the switch.
       </p>
@@ -31,22 +31,22 @@ export default function CmsHome() {
           <Link
             key={c.href}
             href={c.href}
-            className="border border-zinc-200 bg-white p-5 hover:border-orange-300 transition-colors group"
+            className="border border-[#e8e4dd] bg-white p-5 hover:border-[#c9b4fa] transition-colors group"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 border border-zinc-200 flex items-center justify-center bg-zinc-50/40">
-                  <c.Icon className="w-4 h-4 text-zinc-600" aria-hidden="true" />
+                <div className="w-9 h-9 border border-[#e8e4dd] flex items-center justify-center bg-[#fafaf8]/40">
+                  <c.Icon className="w-4 h-4 text-[#73706d]" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-zinc-900 group-hover:text-orange-700 transition-colors">
+                  <p className="text-sm font-bold text-[#292827] group-hover:text-[#1b1938] transition-colors">
                     {c.label}
                   </p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{c.description}</p>
+                  <p className="text-xs text-[#73706d] mt-0.5">{c.description}</p>
                 </div>
               </div>
               <ArrowRight
-                className="w-4 h-4 text-zinc-400 group-hover:text-orange-500 transition-colors mt-1 shrink-0"
+                className="w-4 h-4 text-[#9a9794] group-hover:text-[#1b1938] transition-colors mt-1 shrink-0"
                 aria-hidden="true"
               />
             </div>

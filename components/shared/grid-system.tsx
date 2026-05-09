@@ -52,7 +52,7 @@ export function GridItem({ children, className, title, label, padding = true }: 
       ref={itemRef}
       onMouseMove={!isVisual ? handleMouseMove : undefined}
       className={cn(
-        "relative border-b border-r border-zinc-100 bg-white group grid-item-corners overflow-hidden transition-colors duration-200 flex flex-col",
+        "relative border-b border-r border-[#e8e4dd] bg-white group grid-item-corners overflow-hidden transition-colors duration-200 flex flex-col",
         !isVisual && "grid-item-hover",
         padding ? "p-8 sm:p-12" : "",
         className
@@ -60,9 +60,9 @@ export function GridItem({ children, className, title, label, padding = true }: 
     >
       {(title || label) && (
         <div className="flex justify-between items-start mb-6">
-          {title && <h3 className="text-lg font-medium text-zinc-900">{title}</h3>}
+          {title && <h3 className="text-lg font-medium text-[#292827]">{title}</h3>}
           {label && (
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest group-hover:text-orange-500 transition-colors duration-300">
+            <span className="text-[0.625rem] font-mono text-[#73706d] uppercase tracking-widest group-hover:text-[#1b1938] transition-colors duration-300">
               {label}
             </span>
           )}

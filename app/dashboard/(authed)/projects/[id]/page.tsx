@@ -34,7 +34,7 @@ export default async function AdminProjectDetail({
       <div className="flex items-center justify-between gap-3 mb-6">
         <Link
           href="/dashboard/projects"
-          className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-900 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs text-[#73706d] hover:text-[#292827] transition-colors"
         >
           <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
           Back to projects
@@ -43,7 +43,7 @@ export default async function AdminProjectDetail({
           href={`/portal/projects/${project.id}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-zinc-600 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#73706d] border border-[#e8e4dd] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors"
           title="Open the portal view in a new tab"
         >
           <Eye className="w-3.5 h-3.5" aria-hidden="true" />
@@ -51,18 +51,18 @@ export default async function AdminProjectDetail({
         </Link>
       </div>
 
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 leading-tight mb-1">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] leading-tight mb-1">
         {project.title}
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         Client:{" "}
-        <span className="text-zinc-900 font-semibold">
+        <span className="text-[#292827] font-semibold">
           {client.name || client.email}
         </span>{" "}
         ·{" "}
         <a
           href={`mailto:${client.email}`}
-          className="font-mono hover:text-orange-700 inline-flex items-center gap-1"
+          className="font-mono hover:text-[#1b1938] inline-flex items-center gap-1"
         >
           <Mail className="w-3 h-3" aria-hidden="true" />
           {client.email}
@@ -78,7 +78,7 @@ export default async function AdminProjectDetail({
             {" "}·{" "}
             <Link
               href={`/dashboard/inbox/${project.sourceFormId}`}
-              className="text-orange-700 hover:underline inline-flex items-center gap-1"
+              className="text-[#1b1938] hover:underline inline-flex items-center gap-1"
             >
               View origin <ExternalLink className="w-3 h-3" aria-hidden="true" />
             </Link>
@@ -88,7 +88,7 @@ export default async function AdminProjectDetail({
 
       <div className="grid lg:grid-cols-[420px_1fr] gap-6 items-start">
         <section>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+          <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
             Manage
           </p>
           <ProjectEditor
@@ -148,16 +148,16 @@ export default async function AdminProjectDetail({
 
       {project.brief && Object.keys(project.brief).length > 0 && (
         <section className="mt-10">
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+          <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
             Brief (from intake)
           </p>
-          <dl className="border border-zinc-200 bg-white divide-y divide-zinc-100">
+          <dl className="border border-[#e8e4dd] bg-white divide-y divide-[#e8e4dd]">
             {Object.entries(project.brief as Record<string, unknown>).map(([k, v]) => (
               <div key={k} className="flex flex-col sm:flex-row gap-1 sm:gap-4 px-5 py-3">
-                <dt className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] sm:w-44 shrink-0 sm:pt-0.5">
+                <dt className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] sm:w-44 shrink-0 sm:pt-0.5">
                   {k.replace(/_/g, " ")}
                 </dt>
-                <dd className="text-sm text-zinc-900 whitespace-pre-wrap break-words">
+                <dd className="text-sm text-[#292827] whitespace-pre-wrap break-words">
                   {typeof v === "string"
                     ? v
                     : Array.isArray(v)

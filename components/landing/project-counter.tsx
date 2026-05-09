@@ -54,10 +54,10 @@ export function ProjectCounter() {
         >
           <GridItem>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-zinc-900 mb-2 tabular-nums">
+              <div className="text-4xl md:text-5xl font-bold text-[#292827] mb-2 tabular-nums">
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-xs font-mono text-zinc-500 uppercase tracking-wider">
+              <div className="text-xs font-mono text-[#73706d] uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

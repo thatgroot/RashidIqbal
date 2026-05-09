@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, X } from "lucide-react";
+import { ArrowRight } from "@/components/icons";
+import { X } from "lucide-react";
+import { Sparkles } from "@/components/icons";
 import { motion, AnimatePresence } from "framer-motion";
 import posthog from "posthog-js";
 
@@ -70,7 +72,7 @@ export function OfferBanner() {
           animate={{ height: "auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="w-full bg-orange-600 text-white overflow-hidden"
+          className="w-full bg-[#000000] text-white overflow-hidden border-b border-white/5"
           role="region"
           aria-label="Promotional offer"
         >
@@ -78,17 +80,20 @@ export function OfferBanner() {
             <Link
               href="/offer"
               onClick={handleCtaClick}
-              className="flex items-center justify-center gap-2 sm:gap-3 py-2.5 pr-10 sm:pr-14 text-xs sm:text-sm font-medium text-center hover:underline decoration-white/70 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-600"
+              className="group flex items-center justify-center gap-2 sm:gap-3 py-2.5 pr-10 sm:pr-14 text-xs sm:text-sm text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4a017] focus-visible:ring-offset-2 focus-visible:ring-offset-[#000000]"
+              style={{ fontVariationSettings: '"wght" 500' }}
             >
-              <Sparkles className="w-4 h-4 shrink-0 hidden sm:inline" aria-hidden="true" />
+              <Sparkles className="w-4 h-4 shrink-0 hidden sm:inline text-[#d4a017]" aria-hidden="true" />
               <span>
-                <span className="font-bold">Landing page in 3 days · free 60-sec audit</span>
-                <span className="hidden sm:inline">
-                  {" "}
-                  · 4-page site in 5 days · only 2 slots left this month
+                <span className="text-[#d4a017]" style={{ fontVariationSettings: '"wght" 600' }}>
+                  Free 60-sec site audit
                 </span>
+                <span className="text-white/65"> · landing in 3 days · 2 slots left this month</span>
               </span>
-              <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+              <ArrowRight
+                className="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
             </Link>
             <button
               onClick={handleDismiss}

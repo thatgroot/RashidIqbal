@@ -17,7 +17,7 @@ export function CopyLinkButton({ url }: { url: string }) {
     return (
         <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-4 py-2 bg-zinc-100 text-zinc-900 rounded hover:bg-zinc-200 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[#fafaf8] text-[#292827] rounded hover:bg-[#e8e4dd] transition-colors"
             aria-label="Copy link to clipboard"
         >
             {copied ? <Check className="w-4 h-4 text-green-600" /> : <Link2 className="w-4 h-4" />}

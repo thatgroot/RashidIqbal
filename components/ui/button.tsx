@@ -10,16 +10,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-zinc-900 text-white hover:bg-orange-600",
+          "bg-[#1b1938] text-white hover:bg-[#1b1938]",
         destructive:
           "bg-red-500 text-white hover:bg-red-600",
         outline:
-          "bg-white text-zinc-900 hover:bg-zinc-100",
+          "bg-white text-[#292827] hover:bg-[#fafaf8]",
         secondary:
-          "bg-zinc-100 text-zinc-900 hover:bg-zinc-200",
-        ghost: "hover:bg-zinc-100 hover:text-zinc-900",
-        link: "text-zinc-900 underline-offset-4 hover:underline",
-        grid: "bg-white text-zinc-900 hover:text-orange-600 border-zinc-200 before:absolute before:inset-0 before:opacity-[0.15] before:pointer-events-none before:bg-[radial-gradient(#000_1px,transparent_1px)] before:bg-[size:4px_4px] hover:before:opacity-[0.25]",
+          "bg-[#fafaf8] text-[#292827] hover:bg-[#e8e4dd]",
+        ghost: "hover:bg-[#fafaf8] hover:text-[#292827]",
+        link: "text-[#292827] underline-offset-4 hover:underline",
+        grid: "bg-white text-[#292827] hover:text-[#1b1938] border-[#e8e4dd] before:absolute before:inset-0 before:opacity-[0.15] before:pointer-events-none before:bg-[radial-gradient(#000_1px,transparent_1px)] before:bg-[size:4px_4px] hover:before:opacity-[0.25]",
       },
       size: {
         default: "h-12 px-6",

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { StructuredData } from "@/components/seo/structured-data";
 import { StickyAuditRail } from "@/components/shared/sticky-audit-rail";
+import { ScrollProgress } from "@/components/shared/scroll-progress";
 import { EmailMeToast } from "@/components/shared/email-me-toast";
 import { Tracker } from "@/components/analytics/tracker";
 import { Suspense } from "react";
@@ -13,11 +14,16 @@ import { SITE_URL as siteUrl } from "@/lib/constants";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-BZT67TX18E";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Inter Variable — Superhuman-system substitute for Super Sans VF.
+// We rely on the variable axis to pick sub-default weights (460 / 540 / 600)
+// in CSS via `font-variation-settings`, so the brand's typographic warmth
+// signature comes through.
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
   preload: true,
+  axes: ["opsz"],
 });
 
 const geistMono = Geist_Mono({
@@ -115,8 +121,8 @@ export const metadata: Metadata = {
   },
   other: {
     // Theme
-    'theme-color': '#18181b',
-    'msapplication-TileColor': '#18181b',
+    'theme-color': '#ffffff',
+    'msapplication-TileColor': '#ffffff',
     'msapplication-tap-highlight': 'no',
     'mobile-web-app-capable': 'yes',
     // Social Media
@@ -160,7 +166,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             See: https://business.facebook.com/events_manager → Create Pixel for aestho.xyz */}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
+        className={`${inter.variable} ${geistMono.variable} antialiased bg-white text-[#0a0a0a]`}
         suppressHydrationWarning
       >
         {/* Google Tag Manager (noscript) */}
@@ -175,11 +181,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {/* Skip Link for Accessibility */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-zinc-900 focus:text-white focus:font-medium focus:rounded-sm"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:bg-[#0a0a0a] focus:text-white focus:font-medium focus:rounded-full"
         >
           Skip to main content
         </a>
         <StructuredData />
+        <ScrollProgress />
         <StickyAuditRail />
         <EmailMeToast />
         <Suspense fallback={null}>

@@ -52,18 +52,18 @@ export default async function AuthedLayout({
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans flex">
-      <aside className="w-56 shrink-0 border-r border-zinc-200 bg-white flex flex-col">
-        <div className="px-5 py-5 border-b border-zinc-100">
-          <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em]">
+    <div className="min-h-screen bg-[#fafaf8] text-[#292827] font-sans flex">
+      <aside className="w-56 shrink-0 border-r border-[#e8e4dd] bg-white flex flex-col">
+        <div className="px-5 py-5 border-b border-[#e8e4dd]">
+          <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em]">
             Aestho
           </p>
-          <p className="text-sm font-bold text-zinc-900 mt-0.5">Dashboard</p>
+          <p className="text-sm font-bold text-[#292827] mt-0.5">Dashboard</p>
         </div>
         <nav className="flex-1 px-2 py-3 space-y-4 overflow-auto">
           {NAV.map((g) => (
             <div key={g.group}>
-              <p className="text-[9px] font-mono text-zinc-400 uppercase tracking-[0.2em] px-3 mb-1.5">
+              <p className="text-[9px] font-mono text-[#9a9794] uppercase tracking-[0.2em] px-3 mb-1.5">
                 {g.group}
               </p>
               <div className="space-y-0.5">
@@ -74,12 +74,12 @@ export default async function AuthedLayout({
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 transition-colors rounded-sm"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-[#73706d] hover:bg-[#fafaf8] hover:text-[#292827] transition-colors rounded-sm"
                     >
                       <item.Icon className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span className="flex-1">{item.label}</span>
                       {showBadge && (
-                        <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold tabular-nums bg-orange-500 text-white rounded">
+                        <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 text-[10px] font-bold tabular-nums bg-[#1b1938] text-white rounded">
                           {unread}
                         </span>
                       )}
@@ -90,14 +90,14 @@ export default async function AuthedLayout({
             </div>
           ))}
         </nav>
-        <div className="p-3 border-t border-zinc-100">
-          <p className="text-[10px] text-zinc-400 mb-2 truncate" title={session.email}>
+        <div className="p-3 border-t border-[#e8e4dd]">
+          <p className="text-[10px] text-[#9a9794] mb-2 truncate" title={session.email}>
             {session.email}
           </p>
           <form action="/api/dashboard/auth/logout" method="post">
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold text-zinc-600 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+              className="w-full flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-bold text-[#73706d] border border-[#e8e4dd] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors"
             >
               <LogOut className="w-3.5 h-3.5" aria-hidden="true" />
               Sign out

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check } from "@/components/icons";
 import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 
 const PAGE_PATH = "/chrome-extension-developer";
@@ -143,7 +143,7 @@ export default function ChromeExtensionDeveloperPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
+      className="min-h-screen bg-[#ffffff] text-[#0a0a0a] selection:bg-[#0a0a0a]/30 selection:text-black font-sans relative overflow-hidden"
     >
       <script
         type="application/ld+json"
@@ -162,20 +162,20 @@ export default function ChromeExtensionDeveloperPage() {
       <header className="max-w-3xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/favicon.svg" alt="" width={28} height={28} aria-hidden="true" />
-          <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
+          <span className="font-bold text-[#0a0a0a] tracking-tight">Rashid Iqbal</span>
         </Link>
       </header>
 
       <section className="max-w-3xl mx-auto px-6 pt-10 md:pt-14 pb-16">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-4">
+        <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em] mb-4">
           Manifest V3 · React · TypeScript
         </p>
 
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-zinc-900 mb-5 leading-[1.1]">
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-[#0a0a0a] mb-5 leading-[1.1]">
           Chrome Extension Developer for SaaS
         </h1>
 
-        <p className="text-base md:text-lg text-zinc-600 leading-relaxed mb-8">
+        <p className="text-base md:text-lg text-[#737373] leading-relaxed mb-8">
           I build Chrome extensions for SaaS teams. Manifest V3, React, TypeScript. From spec
           to Web Store submission in two to four weeks. One developer, one timeline, one
           shipped extension.
@@ -184,12 +184,12 @@ export default function ChromeExtensionDeveloperPage() {
         {/* TL;DR — quotable answer block for AI search citation */}
         <aside
           aria-label="Summary"
-          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+          className="border-l-4 border-[#0a0a0a] bg-[#fafafa]/50 px-5 py-4 mb-10"
         >
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+          <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em] mb-2">
             Summary
           </p>
-          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+          <p className="text-sm md:text-base text-[#0a0a0a] leading-relaxed">
             Rashid Iqbal is a freelance Chrome extension developer building Manifest V3
             extensions in React and TypeScript. Typical projects ship from spec to Web
             Store submission in two to four weeks. Single-popup extensions with one
@@ -205,7 +205,7 @@ export default function ChromeExtensionDeveloperPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
           >
             Book a scoping call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -214,18 +214,18 @@ export default function ChromeExtensionDeveloperPage() {
             href={SOCIAL_LINKS.upwork}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 border border-zinc-300 text-zinc-900 text-sm font-bold hover:bg-zinc-50 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-3 border border-[#e5e5e5] text-[#0a0a0a] text-sm font-bold hover:bg-[#fafafa] transition-colors"
           >
             Hire on Upwork
           </a>
         </div>
 
-        <div className="border border-zinc-200 bg-white p-6 md:p-8 mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">What I build</h2>
+        <div className="border border-[#e5e5e5] bg-white p-6 md:p-8 mb-12">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">What I build</h2>
           <ul className="space-y-3">
             {CAPABILITIES.map((c) => (
-              <li key={c} className="flex items-start gap-3 text-sm text-zinc-700">
-                <Check className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" aria-hidden="true" />
+              <li key={c} className="flex items-start gap-3 text-sm text-[#0a0a0a]">
+                <Check className="w-4 h-4 text-[#0a0a0a] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{c}</span>
               </li>
             ))}
@@ -233,57 +233,57 @@ export default function ChromeExtensionDeveloperPage() {
         </div>
 
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">Use cases</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">Use cases</h2>
           <div className="grid sm:grid-cols-2 gap-5">
             {USE_CASES.map((u) => (
-              <div key={u.title} className="border border-zinc-200 bg-white p-5">
-                <p className="text-sm font-bold text-zinc-900 mb-1.5">{u.title}</p>
-                <p className="text-sm text-zinc-600 leading-relaxed">{u.body}</p>
+              <div key={u.title} className="border border-[#e5e5e5] bg-white p-5">
+                <p className="text-sm font-bold text-[#0a0a0a] mb-1.5">{u.title}</p>
+                <p className="text-sm text-[#737373] leading-relaxed">{u.body}</p>
               </div>
             ))}
           </div>
         </div>
 
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             How a project runs
           </h2>
           <ol className="space-y-4">
             {PROCESS.map((s) => (
-              <li key={s.title} className="border-l-2 border-orange-500 pl-4">
-                <p className="text-sm font-bold text-zinc-900">{s.title}</p>
-                <p className="text-sm text-zinc-600 mt-1">{s.body}</p>
+              <li key={s.title} className="border-l-2 border-[#0a0a0a] pl-4">
+                <p className="text-sm font-bold text-[#0a0a0a]">{s.title}</p>
+                <p className="text-sm text-[#737373] mt-1">{s.body}</p>
               </li>
             ))}
           </ol>
         </div>
 
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             Frequently asked questions
           </h2>
           <div className="space-y-6">
             {FAQS.map((f) => (
               <div key={f.q}>
-                <p className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</p>
-                <p className="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
+                <p className="text-sm font-bold text-[#0a0a0a] mb-1.5">{f.q}</p>
+                <p className="text-sm text-[#737373] leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="border-t border-zinc-200 pt-10">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-3">
+        <div className="border-t border-[#e5e5e5] pt-10">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-3">
             Have a Chrome extension idea?
           </h2>
-          <p className="text-sm text-zinc-600 mb-5">
+          <p className="text-sm text-[#737373] mb-5">
             Send me the rough spec. I will scope it on a 30-minute call.
           </p>
           <a
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
           >
             Book a scoping call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

@@ -95,18 +95,18 @@ export function TodoList({
   const done = todos.filter((t) => t.completedAt);
 
   return (
-    <div className="border border-zinc-200 bg-white">
-      <div className="px-5 py-3 border-b border-zinc-100 flex items-center justify-between">
-        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em]">
+    <div className="border border-[#e8e4dd] bg-white">
+      <div className="px-5 py-3 border-b border-[#e8e4dd] flex items-center justify-between">
+        <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em]">
           {open.length} open
           {done.length > 0 ? ` · ${done.length} done` : ""}
         </p>
         {error && <p className="text-[10px] text-red-600">{error}</p>}
       </div>
 
-      <ul className="divide-y divide-zinc-100">
+      <ul className="divide-y divide-[#e8e4dd]">
         {todos.length === 0 && (
-          <li className="px-5 py-6 text-sm text-zinc-500 text-center">
+          <li className="px-5 py-6 text-sm text-[#73706d] text-center">
             No todos yet. Add the first one below.
           </li>
         )}
@@ -116,7 +116,7 @@ export function TodoList({
             <li
               key={t.id}
               className={`flex items-start gap-3 px-5 py-2.5 ${
-                isDone ? "bg-zinc-50/40" : ""
+                isDone ? "bg-[#fafaf8]/40" : ""
               }`}
             >
               <button
@@ -125,20 +125,20 @@ export function TodoList({
                 aria-label={isDone ? "Mark incomplete" : "Mark complete"}
                 className={`mt-0.5 w-4 h-4 shrink-0 border flex items-center justify-center transition-colors ${
                   isDone
-                    ? "bg-orange-500 border-orange-500 text-white"
-                    : "border-zinc-300 hover:border-orange-400"
+                    ? "bg-[#1b1938] border-[#1b1938] text-white"
+                    : "border-[#e8e4dd] hover:border-[#c9b4fa]"
                 }`}
               >
                 {isDone && <Check className="w-3 h-3" aria-hidden="true" />}
               </button>
               <span
                 className={`flex-1 text-sm whitespace-pre-wrap break-words ${
-                  isDone ? "line-through text-zinc-400" : "text-zinc-900"
+                  isDone ? "line-through text-[#9a9794]" : "text-[#292827]"
                 }`}
               >
                 {t.body}
               </span>
-              <span className="text-[10px] font-mono text-zinc-400 capitalize shrink-0 mt-0.5">
+              <span className="text-[10px] font-mono text-[#9a9794] capitalize shrink-0 mt-0.5">
                 {t.addedBy === viewer ? "you" : t.addedBy}
               </span>
               <button
@@ -156,7 +156,7 @@ export function TodoList({
 
       <form
         onSubmit={add}
-        className="border-t border-zinc-100 p-3 bg-zinc-50/40 flex items-center gap-2"
+        className="border-t border-[#e8e4dd] p-3 bg-[#fafaf8]/40 flex items-center gap-2"
       >
         <input
           type="text"
@@ -164,12 +164,12 @@ export function TodoList({
           onChange={(e) => setDraft(e.target.value)}
           placeholder="Add a todo and press Enter…"
           maxLength={1000}
-          className="flex-1 px-3 py-2 text-sm border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+          className="flex-1 px-3 py-2 text-sm border border-[#e8e4dd] bg-white focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
         />
         <button
           type="submit"
           disabled={!draft.trim() || busy}
-          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-zinc-900 text-white text-xs font-bold hover:bg-orange-600 transition-colors disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-50"
         >
           {busy ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />

@@ -1,138 +1,102 @@
 import { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { ServiceBuilder } from "@/components/shared/service-builder";
+import { ClosingBand } from "@/components/landing/closing-band";
 import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
-import { Mail, Phone, Calendar } from "lucide-react";
+import { Mail, Calendar } from "@/components/icons";
 import { EmailMeButton } from "@/components/shared/email-me-toast";
 
 export const metadata: Metadata = {
-    title: "Start a Figma, Framer, or Chrome Extension Project",
-    description: "Tell me about your project. Figma design, Framer development, or Chrome extensions. I respond within 24 hours with a scope and quote.",
-    openGraph: {
-        title: "Start a Figma, Framer, or Chrome Extension Project",
-        description: "Describe your project and get a response within 24 hours.",
-        type: "website",
-        url: `${SITE_URL}/contact`,
-        images: [
-            {
-                url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Start a project · 24-hour quote")}`,
-                width: 1200,
-                height: 630,
-            },
-        ],
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Start a Figma, Framer, or Chrome Extension Project",
-        description: "Describe your project and get a response within 24 hours.",
-        images: [
-            `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Start a project · 24-hour quote")}`,
-        ],
-    },
-    alternates: {
-        canonical: `${SITE_URL}/contact`,
-    },
+  title: "Start a project · Aestho",
+  description:
+    "Tell us about your project. Figma design, Framer development, or Chrome extensions. 24-hour reply with a scope and quote.",
+  openGraph: {
+    title: "Start a project · Aestho",
+    description: "Describe your project and get a reply within 24 hours.",
+    type: "website",
+    url: `${SITE_URL}/contact`,
+    images: [
+      {
+        url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent(
+          "Start a project · 24-hour quote",
+        )}`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Start a project · Aestho",
+    description: "Describe your project and get a reply within 24 hours.",
+    images: [
+      `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Start a project · 24-hour quote")}`,
+    ],
+  },
+  alternates: { canonical: `${SITE_URL}/contact` },
 };
 
 export default function ContactPage() {
-    return (
-        <main
-            id="main-content"
-            className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
-        >
-            <Navbar />
+  return (
+    <main
+      id="main-content"
+      className="min-h-screen bg-[#ffffff] text-[#0a0a0a] selection:bg-[#0a0a0a]/30 selection:text-black font-sans"
+    >
+      <Navbar />
 
-            <section className="pt-16 bg-white">
-                <div className="max-w-container border-l border-zinc-100">
-                    <div className="grid lg:grid-cols-[1fr_340px] gap-0 border-b border-zinc-100">
-                        {/* Main: Service Builder */}
-                        <div className="py-24 px-6 md:px-12 lg:px-16">
-                            <span className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded text-xs font-mono uppercase tracking-wider mb-6">
-                                <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                                Accepting New Projects
-                            </span>
-                            <h1 className="text-3xl md:text-4xl font-semibold tracking-tighter text-zinc-900 mb-3 leading-[1.1]">
-                                Start a project with Rashid
-                            </h1>
-                            <p className="text-base text-zinc-600 leading-relaxed max-w-xl mb-10">
-                                Figma design, Framer development, or Chrome extensions. Tell me about your project below and I will respond within 24 hours with a scope and quote.
-                            </p>
-                            <ServiceBuilder />
-                        </div>
+      {/* Editorial header, no chip, no pulsing dot, no boilerplate.
+          Title + a single short paragraph + 2 quiet contact links. */}
+      <section className="max-w-container mx-auto px-6 md:px-10 pt-32 md:pt-40 pb-12 md:pb-16">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-end">
+          <h1
+            className="md:col-span-7 text-[clamp(40px,6vw,76px)] tracking-[-0.014em] leading-[1.02] text-black"
+            style={{ fontVariationSettings: '"wght" 600' }}
+          >
+            Start a project.
+          </h1>
+          <div className="md:col-span-5">
+            <p className="text-[16px] text-[#737373] leading-[1.6] mb-5">
+              Tell us about it below. We reply within 24 hours with a scope and
+              fixed quote, no sales call required first.
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-[14px]">
+              <EmailMeButton
+                className="group inline-flex items-center gap-2 text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
+              >
+                <Mail className="w-4 h-4" aria-hidden="true" />
+                <span style={{ fontVariationSettings: '"wght" 500' }}>
+                  Email instead
+                </span>
+              </EmailMeButton>
+              <a
+                href={SOCIAL_LINKS.calcom}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 text-[#0a0a0a] hover:text-[#0a0a0a] transition-colors"
+              >
+                <Calendar className="w-4 h-4" aria-hidden="true" />
+                <span style={{ fontVariationSettings: '"wght" 500' }}>
+                  Book a 30-min call
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                        {/* Sidebar: Contact Info */}
-                        <div className="py-24 px-6 lg:px-8 border-l border-zinc-100 bg-zinc-50/30">
-                            <h3 className="text-lg font-bold text-zinc-900 mb-6">
-                                Prefer to talk first?
-                            </h3>
+      {/* The form sits in a single rounded-2xl card on white inside the
+          warm-grey canvas, same shape language as the homepage cards. */}
+      <section className="max-w-container mx-auto px-6 md:px-10 pb-24 md:pb-32">
+        <div className="bg-white border border-[#e5e5e5] rounded-2xl p-6 md:p-10 lg:p-14">
+          <ServiceBuilder />
+        </div>
+      </section>
 
-                            <div className="space-y-6">
-                                <EmailMeButton className="flex items-center gap-4 group w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2">
-                                    <div className="w-10 h-10 bg-zinc-100 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
-                                        <Mail className="w-4 h-4 text-zinc-600 group-hover:text-orange-600" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-medium text-zinc-900 group-hover:text-orange-600 transition-colors">Email me</p>
-                                        <p className="text-xs text-zinc-500">Direct to my inbox</p>
-                                    </div>
-                                </EmailMeButton>
-
-                                <a
-                                    href={SOCIAL_LINKS.whatsapp}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-4 group"
-                                >
-                                    <div className="w-10 h-10 bg-zinc-100 flex items-center justify-center group-hover:bg-green-100 transition-colors">
-                                        <Phone className="w-4 h-4 text-zinc-600 group-hover:text-green-600" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-medium text-zinc-900">WhatsApp</p>
-                                        <p className="text-xs text-zinc-500">Quick chat</p>
-                                    </div>
-                                </a>
-
-                                <a
-                                    href={SOCIAL_LINKS.calcom}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-4 group"
-                                >
-                                    <div className="w-10 h-10 bg-zinc-100 flex items-center justify-center group-hover:bg-orange-100 transition-colors">
-                                        <Calendar className="w-4 h-4 text-zinc-600 group-hover:text-orange-600" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-medium text-zinc-900">Book a Call</p>
-                                        <p className="text-xs text-zinc-500">30 min, free</p>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div className="mt-10 p-4 bg-white border border-zinc-200">
-                                <h4 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-3">
-                                    Why work with me?
-                                </h4>
-                                <ul className="space-y-2.5">
-                                    {[
-                                        "Direct communication",
-                                        "High-quality delivery",
-                                        "24hr response guarantee",
-                                        "Transparent pricing",
-                                    ].map((item) => (
-                                        <li key={item} className="flex items-center gap-2 text-sm text-zinc-600">
-                                            <span className="w-1 h-1 rounded-full bg-orange-500 shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <Footer />
-        </main>
-    );
+      <ClosingBand
+        headline="Prefer to talk it through?"
+        sub="A 30-min call usually gets you a fixed quote same day. No pitch deck, no follow-up sequence."
+        ctaLabel="Book a strategy call"
+      />
+    </main>
+  );
 }

@@ -2,19 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowRight,
-  ArrowLeft,
-  Loader2,
-  CheckCircle,
-  Palette,
-  Layout,
-  Globe,
-  Puzzle,
-  Search,
-  Mail,
-  Figma,
-} from "lucide-react";
+import { ArrowRight, ArrowLeft, Layout, Search, Mail } from "@/components/icons";
+import { Loader2, CheckCircle, Palette, Globe, Puzzle, Figma } from "lucide-react";
 import { AUTHOR } from "@/lib/constants";
 
 // ============================================================================
@@ -302,8 +291,8 @@ export function ServiceBuilder() {
         className="py-12 text-center"
       >
         <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
-        <h3 className="text-2xl font-bold text-zinc-900 mb-2">Got it!</h3>
-        <p className="text-zinc-500 mb-8">Here&apos;s what happens next:</p>
+        <h3 className="text-2xl font-bold text-[#0a0a0a] mb-2">Got it!</h3>
+        <p className="text-[#737373] mb-8">Here&apos;s what happens next:</p>
         <div className="space-y-4 max-w-sm mx-auto text-left">
           {[
             { num: "1", text: "I review your project details (today)" },
@@ -311,18 +300,18 @@ export function ServiceBuilder() {
             { num: "3", text: "We hop on a quick call if it's a fit" },
           ].map((s) => (
             <div key={s.num} className="flex items-start gap-3">
-              <span className="w-6 h-6 bg-orange-100 text-orange-600 text-xs font-bold flex items-center justify-center shrink-0 rounded-full">
+              <span className="w-6 h-6 bg-[#fafafa] text-[#0a0a0a] text-xs font-bold flex items-center justify-center shrink-0 rounded-full">
                 {s.num}
               </span>
-              <span className="text-sm text-zinc-700">{s.text}</span>
+              <span className="text-sm text-[#0a0a0a]">{s.text}</span>
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-400 text-center mt-8">
+        <p className="text-xs text-[#737373] text-center mt-8">
           Trusted by founders and teams including{" "}
-          <a href="https://www.update.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">UpdateAI</a>,{" "}
-          <a href="https://vanos.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">Vanos AI</a>, and{" "}
-          <a href="https://spacedome.ai" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-orange-500 underline">SpaceDome</a>.
+          <a href="https://www.update.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">UpdateAI</a>,{" "}
+          <a href="https://vanos.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">Vanos AI</a>, and{" "}
+          <a href="https://spacedome.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">SpaceDome</a>.
         </p>
       </motion.div>
     );
@@ -340,61 +329,29 @@ export function ServiceBuilder() {
 
   return (
     <div>
-      {/* Step Indicator */}
-      <div className="flex items-center gap-2 mb-8">
-        {steps.map((s, i) => (
-          <div key={s.num} className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                if (s.num === 2 && formData.selectedServices.length === 0) return;
-                if (
-                  s.num === 3 &&
-                  (formData.selectedServices.length === 0 ||
-                    formData.stack.length === 0 ||
-                    !formData.budget ||
-                    !formData.timeline)
-                ) {
-                  return;
-                }
-
-                if (
-                  s.num <= step ||
-                  (s.num === 2 && formData.selectedServices.length > 0) ||
-                  (s.num === 3 &&
-                    formData.stack.length > 0 &&
-                    formData.budget &&
-                    formData.timeline)
-                ) {
-                  setStep(s.num);
-                }
-              }}
-              className={`flex items-center gap-2 text-sm font-medium transition-colors ${
-                step === s.num
-                  ? "text-orange-600"
-                  : step > s.num
-                  ? "text-zinc-900 hover:text-orange-600 cursor-pointer"
-                  : "text-zinc-400"
-              }`}
-            >
-              <span
-                className={`w-6 h-6 flex items-center justify-center text-xs font-bold rounded-full transition-colors ${
-                  step === s.num
-                    ? "bg-orange-500 text-white"
-                    : step > s.num
-                    ? "bg-zinc-900 text-white"
-                    : "bg-zinc-200 text-zinc-500"
-                }`}
-              >
-                {step > s.num ? "✓" : s.num}
-              </span>
-              <span className="hidden sm:inline">{s.label}</span>
-            </button>
-            {i < steps.length - 1 && (
-              <div className={`w-8 h-px ${step > s.num ? "bg-zinc-900" : "bg-zinc-200"}`} />
-            )}
-          </div>
-        ))}
+      {/* Step indicator — minimal numerical bar with a progress fill,
+          editorial rather than the chunky chip-stack we had before. */}
+      <div className="mb-10 flex items-center justify-between gap-6">
+        <div className="flex items-center gap-3">
+          <span
+            className="text-[0.75rem] uppercase tracking-[0.18em] text-[#737373]"
+            style={{ fontVariationSettings: '"wght" 500' }}
+          >
+            Step {step} / {steps.length}
+          </span>
+          <span
+            className="text-[0.875rem] text-[#0a0a0a]"
+            style={{ fontVariationSettings: '"wght" 500' }}
+          >
+            {steps[step - 1]?.label}
+          </span>
+        </div>
+        <div className="flex-1 h-px bg-[#e5e5e5] relative max-w-[180px]">
+          <div
+            className="absolute left-0 top-0 h-px bg-[#0a0a0a] transition-[width]"
+            style={{ width: `${((step - 1) / (steps.length - 1)) * 100}%` }}
+          />
+        </div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -408,8 +365,8 @@ export function ServiceBuilder() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
           >
-            <h2 className="text-2xl font-bold text-zinc-900 mb-2">Select Your Services</h2>
-            <p className="text-zinc-500 mb-6">Choose one or more areas you need help with.</p>
+            <h2 className="text-[1.375rem] md:text-[1.5rem] tracking-[-0.012em] leading-[1.1] text-black mb-2" style={{ fontVariationSettings: '"wght" 600' }}>Select Your Services</h2>
+            <p className="text-[#737373] mb-6">Choose one or more areas you need help with.</p>
 
             <div className="grid gap-3">
               {AVAILABLE_SERVICES.map((service) => {
@@ -419,26 +376,26 @@ export function ServiceBuilder() {
                     key={service.slug}
                     type="button"
                     onClick={() => toggleService(service.slug)}
-                    className={`flex items-center gap-4 p-4 border text-left transition-all ${
+                    className={`flex items-center gap-4 p-4 border text-left transition-all rounded-2xl ${
                       selected
-                        ? "border-orange-500 bg-orange-50/50 ring-1 ring-orange-500"
-                        : "border-zinc-200 hover:border-zinc-300 bg-white"
+                        ? "border-[#0a0a0a] bg-[#fafafa]/50 ring-1 ring-[#0a0a0a]"
+                        : "border-[#e5e5e5] hover:border-[#e5e5e5] bg-white"
                     }`}
                   >
                     <div
-                      className={`w-10 h-10 flex items-center justify-center shrink-0 ${
-                        selected ? "bg-orange-500 text-white" : "bg-zinc-100 text-zinc-600"
+                      className={`w-10 h-10 flex items-center justify-center shrink-0 rounded-full ${
+                        selected ? "bg-[#0a0a0a] text-white" : "bg-[#fafafa] text-[#737373]"
                       }`}
                     >
                       {service.icon}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-zinc-900">{service.name}</p>
-                      <p className="text-xs text-zinc-500 mt-0.5">{service.description}</p>
+                      <p className="text-sm font-medium text-[#0a0a0a]">{service.name}</p>
+                      <p className="text-xs text-[#737373] mt-0.5">{service.description}</p>
                     </div>
                     <div
-                      className={`w-5 h-5 border flex items-center justify-center shrink-0 ${
-                        selected ? "border-orange-500 bg-orange-500" : "border-zinc-300"
+                      className={`w-5 h-5 border rounded-full flex items-center justify-center shrink-0 ${
+                        selected ? "border-[#0a0a0a] bg-[#0a0a0a]" : "border-[#e5e5e5]"
                       }`}
                     >
                       {selected && <CheckCircle className="w-3.5 h-3.5 text-white" />}
@@ -453,7 +410,7 @@ export function ServiceBuilder() {
                 type="button"
                 disabled={formData.selectedServices.length === 0}
                 onClick={() => setStep(2)}
-                className="px-6 py-3 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="btn-pill btn-pill-primary group disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 Project Scope <ArrowRight className="w-4 h-4" />
               </button>
@@ -471,13 +428,13 @@ export function ServiceBuilder() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
           >
-            <h2 className="text-2xl font-bold text-zinc-900 mb-2">Project Scope</h2>
-            <p className="text-zinc-500 mb-6">Let me know your stack, budget, and timeline.</p>
+            <h2 className="text-[1.375rem] md:text-[1.5rem] tracking-[-0.012em] leading-[1.1] text-black mb-2" style={{ fontVariationSettings: '"wght" 600' }}>Project Scope</h2>
+            <p className="text-[#737373] mb-6">Let me know your stack, budget, and timeline.</p>
 
             <div className="space-y-6">
               <div>
-                <label className="text-sm font-medium text-zinc-700 mb-1 block">Stack / Discipline</label>
-                <p className="text-xs text-zinc-500 mb-3">
+                <label className="text-sm font-medium text-[#0a0a0a] mb-1 block">Stack / Discipline</label>
+                <p className="text-xs text-[#737373] mb-3">
                   Pick the tools you need. Most projects pair Figma (design) with Framer (build).
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -488,15 +445,15 @@ export function ServiceBuilder() {
                         key={option.value}
                         type="button"
                         onClick={() => toggleStack(option.value)}
-                        className={`relative py-3 px-4 border text-left text-sm font-medium transition-all ${
+                        className={`relative py-3 px-4 border text-left text-sm font-medium transition-all rounded-full ${
                           selected
-                            ? "border-orange-500 bg-orange-50 text-orange-700 ring-1 ring-orange-500"
-                            : "border-zinc-200 text-zinc-700 hover:border-zinc-300 bg-white"
+                            ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
+                            : "border-[#e5e5e5] text-[#0a0a0a] hover:border-[#e5e5e5] bg-white"
                         }`}
                       >
                         <span
-                          className={`block text-[10px] font-mono uppercase tracking-widest mb-1 ${
-                            selected ? "text-orange-600" : "text-zinc-400"
+                          className={`block text-[0.625rem] font-mono uppercase tracking-widest mb-1 ${
+                            selected ? "text-[#0a0a0a]" : "text-[#737373]"
                           }`}
                         >
                           {option.kind === "design" ? "Design" : "Build"}
@@ -509,17 +466,17 @@ export function ServiceBuilder() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-zinc-700 mb-3 block">Budget Range</label>
+                <label className="text-sm font-medium text-[#0a0a0a] mb-3 block">Budget Range</label>
                 <div className="grid grid-cols-2 gap-3">
                   {BUDGET_RANGES.map((b) => (
                     <button
                       key={b}
                       type="button"
                       onClick={() => setFormData({ ...formData, budget: b })}
-                      className={`py-3 px-4 border text-center text-sm font-medium transition-all ${
+                      className={`py-3 px-4 border text-center text-sm font-medium transition-all rounded-full ${
                         formData.budget === b
-                          ? "border-orange-500 bg-orange-50 text-orange-700 ring-1 ring-orange-500"
-                          : "border-zinc-200 text-zinc-600 hover:border-zinc-300"
+                          ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
+                          : "border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5]"
                       }`}
                     >
                       {b}
@@ -529,17 +486,17 @@ export function ServiceBuilder() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-zinc-700 mb-3 block">Timeline</label>
+                <label className="text-sm font-medium text-[#0a0a0a] mb-3 block">Timeline</label>
                 <div className="grid grid-cols-2 gap-3">
                   {TIMELINES.map((t) => (
                     <button
                       key={t}
                       type="button"
                       onClick={() => setFormData({ ...formData, timeline: t })}
-                      className={`py-3 px-4 border text-center text-sm font-medium transition-all ${
+                      className={`py-3 px-4 border text-center text-sm font-medium transition-all rounded-full ${
                         formData.timeline === t
-                          ? "border-orange-500 bg-orange-50 text-orange-700 ring-1 ring-orange-500"
-                          : "border-zinc-200 text-zinc-600 hover:border-zinc-300"
+                          ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
+                          : "border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5]"
                       }`}
                     >
                       {t}
@@ -555,7 +512,7 @@ export function ServiceBuilder() {
                   animate={{ opacity: 1, y: 0 }}
                   className="pt-2"
                 >
-                  <label htmlFor="pkg-pages" className="block text-sm font-medium text-zinc-700 mb-2">
+                  <label htmlFor="pkg-pages" className="block text-sm font-medium text-[#0a0a0a] mb-2">
                     Approximate Number of Pages
                   </label>
                   <input
@@ -564,7 +521,7 @@ export function ServiceBuilder() {
                     required
                     value={formData.pageCount}
                     onChange={(e) => setFormData({ ...formData, pageCount: e.target.value })}
-                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 bg-white"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] rounded-2xl bg-[#fafafa] bg-white"
                     placeholder="e.g. 5-10 pages"
                   />
                 </motion.div>
@@ -575,7 +532,7 @@ export function ServiceBuilder() {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-zinc-400 transition-colors flex items-center gap-2"
+                className="btn-pill btn-pill-ghost"
               >
                 <ArrowLeft className="w-4 h-4" /> Back
               </button>
@@ -588,7 +545,7 @@ export function ServiceBuilder() {
                   ((formData.selectedServices.includes("multi-page") || formData.selectedServices.includes("website-redesign")) && !formData.pageCount.trim())
                 }
                 onClick={() => setStep(3)}
-                className="px-6 py-3 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center gap-2 disabled:opacity-30 disabled:cursor-not-allowed"
+                className="btn-pill btn-pill-primary group disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 Your Details <ArrowRight className="w-4 h-4" />
               </button>
@@ -606,8 +563,8 @@ export function ServiceBuilder() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
           >
-            <h2 className="text-2xl font-bold text-zinc-900 mb-2">Your Details</h2>
-            <p className="text-zinc-500 mb-6">Tell me a bit about yourself and your project.</p>
+            <h2 className="text-[1.375rem] md:text-[1.5rem] tracking-[-0.012em] leading-[1.1] text-black mb-2" style={{ fontVariationSettings: '"wght" 600' }}>Your Details</h2>
+            <p className="text-[#737373] mb-6">Tell me a bit about yourself and your project.</p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Honeypot */}
@@ -617,7 +574,7 @@ export function ServiceBuilder() {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="pkg-name" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                  <label htmlFor="pkg-name" className="block text-sm font-medium text-[#0a0a0a] mb-1.5">
                     Name
                   </label>
                   <input
@@ -626,12 +583,12 @@ export function ServiceBuilder() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] rounded-2xl bg-[#fafafa]"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="pkg-email" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                  <label htmlFor="pkg-email" className="block text-sm font-medium text-[#0a0a0a] mb-1.5">
                     Email
                   </label>
                   <input
@@ -640,7 +597,7 @@ export function ServiceBuilder() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] rounded-2xl bg-[#fafafa]"
                     placeholder="you@company.com"
                   />
                 </div>
@@ -648,7 +605,7 @@ export function ServiceBuilder() {
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="pkg-website" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                  <label htmlFor="pkg-website" className="block text-sm font-medium text-[#0a0a0a] mb-1.5">
                     Website
                   </label>
                   <input
@@ -657,12 +614,12 @@ export function ServiceBuilder() {
                     required
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] rounded-2xl bg-[#fafafa]"
                     placeholder="yourcompany.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="pkg-location" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                  <label htmlFor="pkg-location" className="block text-sm font-medium text-[#0a0a0a] mb-1.5">
                     Location
                   </label>
                   <input
@@ -671,14 +628,14 @@ export function ServiceBuilder() {
                     required
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] rounded-2xl bg-[#fafafa]"
                     placeholder="City, Country"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="pkg-desc" className="block text-sm font-medium text-zinc-700 mb-1.5">
+                <label htmlFor="pkg-desc" className="block text-sm font-medium text-[#0a0a0a] mb-1.5">
                   Project description
                 </label>
                 <textarea
@@ -688,18 +645,18 @@ export function ServiceBuilder() {
                   maxLength={1000}
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-3 border border-zinc-200 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 resize-none"
+                  className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#737373] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] rounded-2xl bg-[#fafafa] resize-none"
                   placeholder="Describe your project in as much detail as possible..."
                 />
-                <p className="text-xs text-zinc-400 mt-1">{formData.description.length}/1000</p>
+                <p className="text-xs text-[#737373] mt-1">{formData.description.length}/1000</p>
               </div>
 
               {/* Summary reminder */}
-              <div className="p-4 bg-zinc-50 border border-zinc-200 flex flex-col gap-1">
-                <h4 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">
+              <div className="p-5 bg-[#fafafa] border border-[#e5e5e5] rounded-2xl flex flex-col gap-1">
+                <h4 className="text-xs font-bold text-[#737373] uppercase tracking-wider mb-2">
                   Project Summary
                 </h4>
-                <p className="text-sm text-zinc-700 flex justify-between">
+                <p className="text-sm text-[#0a0a0a] flex justify-between">
                   <span>Services:</span>
                   <span className="font-medium text-right max-w-[60%]">
                     {formData.selectedServices
@@ -707,11 +664,11 @@ export function ServiceBuilder() {
                       .join(", ")}
                   </span>
                 </p>
-                <p className="text-sm text-zinc-700 flex justify-between">
+                <p className="text-sm text-[#0a0a0a] flex justify-between">
                   <span>Budget:</span>
                   <span className="font-medium">{formData.budget}</span>
                 </p>
-                <p className="text-sm text-zinc-700 flex justify-between">
+                <p className="text-sm text-[#0a0a0a] flex justify-between">
                   <span>Timeline:</span>
                   <span className="font-medium">{formData.timeline}</span>
                 </p>
@@ -721,7 +678,7 @@ export function ServiceBuilder() {
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-zinc-400 transition-colors flex items-center justify-center gap-2 sm:w-auto"
+                  className="btn-pill btn-pill-ghost"
                 >
                   <ArrowLeft className="w-4 h-4" /> Back
                 </button>
@@ -738,7 +695,7 @@ export function ServiceBuilder() {
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 border border-zinc-200 text-zinc-700 text-sm font-medium hover:border-orange-300 hover:text-orange-600 transition-colors flex items-center justify-center gap-2"
+                    className="btn-pill btn-pill-ghost"
                     title="Opens Gmail compose with the form pre-filled — useful if automated mail ends up in your spam folder."
                   >
                     <Mail className="w-4 h-4" /> Open in Gmail
@@ -746,7 +703,7 @@ export function ServiceBuilder() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="px-6 py-3 bg-zinc-900 text-white text-sm font-bold hover:bg-orange-500 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="btn-pill btn-pill-primary group disabled:opacity-50"
                   >
                     {status === "sending" ? (
                       <>
@@ -767,7 +724,7 @@ export function ServiceBuilder() {
                 </p>
               )}
 
-              <p className="text-xs text-zinc-400 text-center">
+              <p className="text-xs text-[#737373] text-center">
                 I respond within 24 hours. No spam, no sales calls.
               </p>
             </form>

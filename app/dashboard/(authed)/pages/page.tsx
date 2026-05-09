@@ -66,28 +66,28 @@ export default async function PagesAnalyticsPage() {
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Pages
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Top pages and sections
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         Last 30 days. Bounce rate is per landing page (sessions that landed on the
         path and never went anywhere else).
       </p>
 
       {/* Top pages */}
       <section className="mb-10">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
           Most visited
         </p>
-        <div className="border border-zinc-200 bg-white">
+        <div className="border border-[#e8e4dd] bg-white">
           {topPages.length === 0 ? (
-            <p className="text-sm text-zinc-500 px-6 py-12 text-center">No pageviews yet.</p>
+            <p className="text-sm text-[#73706d] px-6 py-12 text-center">No pageviews yet.</p>
           ) : (
             <table className="w-full text-sm">
-              <thead className="bg-zinc-50 text-[10px] font-mono uppercase tracking-[0.18em] text-zinc-500">
+              <thead className="bg-[#fafaf8] text-[10px] font-mono uppercase tracking-[0.18em] text-[#73706d]">
                 <tr>
                   <th className="text-left px-4 py-2.5 font-normal">Path</th>
                   <th className="text-right px-4 py-2.5 font-normal">Views</th>
@@ -95,19 +95,19 @@ export default async function PagesAnalyticsPage() {
                   <th className="text-right px-4 py-2.5 font-normal">Bounce</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100">
+              <tbody className="divide-y divide-[#e8e4dd]">
                 {topPages.map((p) => (
-                  <tr key={p.path} className="hover:bg-zinc-50/60 transition-colors">
-                    <td className="px-4 py-2.5 font-mono text-zinc-900 truncate max-w-[360px]">
+                  <tr key={p.path} className="hover:bg-[#fafaf8]/60 transition-colors">
+                    <td className="px-4 py-2.5 font-mono text-[#292827] truncate max-w-[360px]">
                       {p.path}
                     </td>
                     <td className="px-4 py-2.5 text-right tabular-nums font-bold">
                       {fmt(p.views)}
                     </td>
-                    <td className="px-4 py-2.5 text-right tabular-nums text-zinc-600">
+                    <td className="px-4 py-2.5 text-right tabular-nums text-[#73706d]">
                       {fmt(p.uniqueSessions)}
                     </td>
-                    <td className="px-4 py-2.5 text-right tabular-nums text-zinc-600">
+                    <td className="px-4 py-2.5 text-right tabular-nums text-[#73706d]">
                       {fmtPct(p.bounceRate)}
                     </td>
                   </tr>
@@ -120,21 +120,21 @@ export default async function PagesAnalyticsPage() {
 
       {/* Scroll depth */}
       <section className="mb-10">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
           Scroll depth distribution
         </p>
-        <p className="text-xs text-zinc-500 mb-3">
+        <p className="text-xs text-[#73706d] mb-3">
           Share of pageviews that scrolled past each milestone. Lower 100% number = visitors
           stop reading before the bottom.
         </p>
-        <div className="border border-zinc-200 bg-white">
+        <div className="border border-[#e8e4dd] bg-white">
           {scrollDepth.length === 0 ? (
-            <p className="text-sm text-zinc-500 px-6 py-12 text-center">
+            <p className="text-sm text-[#73706d] px-6 py-12 text-center">
               No scroll events yet.
             </p>
           ) : (
             <table className="w-full text-sm">
-              <thead className="bg-zinc-50 text-[10px] font-mono uppercase tracking-[0.18em] text-zinc-500">
+              <thead className="bg-[#fafaf8] text-[10px] font-mono uppercase tracking-[0.18em] text-[#73706d]">
                 <tr>
                   <th className="text-left px-4 py-2.5 font-normal">Path</th>
                   <th className="text-right px-4 py-2.5 font-normal">25%</th>
@@ -143,12 +143,12 @@ export default async function PagesAnalyticsPage() {
                   <th className="text-right px-4 py-2.5 font-normal">100%</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100">
+              <tbody className="divide-y divide-[#e8e4dd]">
                 {scrollDepth.map((r) => {
                   const tot = Number(r.total) || 1;
                   return (
-                    <tr key={r.path!} className="hover:bg-zinc-50/60 transition-colors">
-                      <td className="px-4 py-2.5 font-mono text-zinc-900 truncate max-w-[360px]">
+                    <tr key={r.path!} className="hover:bg-[#fafaf8]/60 transition-colors">
+                      <td className="px-4 py-2.5 font-mono text-[#292827] truncate max-w-[360px]">
                         {r.path}
                       </td>
                       <td className="px-4 py-2.5 text-right tabular-nums">
@@ -174,21 +174,21 @@ export default async function PagesAnalyticsPage() {
 
       {/* Top exit pages */}
       <section>
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
           Top exit pages
         </p>
-        <p className="text-xs text-zinc-500 mb-3">
+        <p className="text-xs text-[#73706d] mb-3">
           The last page each session was on before leaving. High exits on a deep page = good.
           High exits on /pricing or /offer = something is leaking.
         </p>
-        <div className="border border-zinc-200 bg-white">
+        <div className="border border-[#e8e4dd] bg-white">
           {exitPaths.length === 0 ? (
-            <p className="text-sm text-zinc-500 px-6 py-12 text-center">No exit data yet.</p>
+            <p className="text-sm text-[#73706d] px-6 py-12 text-center">No exit data yet.</p>
           ) : (
-            <ul className="divide-y divide-zinc-100">
+            <ul className="divide-y divide-[#e8e4dd]">
               {exitPaths.map((p, i) => (
                 <li key={p.path} className="flex items-center gap-3 px-4 py-2.5">
-                  <span className="text-[10px] font-mono text-zinc-400 w-5">
+                  <span className="text-[10px] font-mono text-[#9a9794] w-5">
                     {(i + 1).toString().padStart(2, "0")}
                   </span>
                   <span className="flex-1 font-mono text-sm truncate">{p.path}</span>

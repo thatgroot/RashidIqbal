@@ -41,7 +41,7 @@ const config: IndustryConfig = {
     "I build sites for AI/ML companies that read as serious to engineers and credible to budget holders. Pricing copy that handles tokens, eval results that actually look trustworthy, and demos that load in <1s. Two-week delivery, copy + design + build.",
   clients: ["UpdateAI", "Vanos AI", "SpaceDome"],
   deliverables: [
-    "Hero positioning: model, capability, eval signal — not 'AI-powered' platitudes",
+    "Hero positioning: model, capability, eval signal, not 'AI-powered' platitudes",
     "Pricing copy that handles per-token, seat-based, and usage-based without confusing buyers",
     "Live demo embed (or interactive component) on the landing page",
     "Engineer-credible technical copy: vector dim, latency, model lineage when it matters",
@@ -55,7 +55,7 @@ const config: IndustryConfig = {
     { title: "Day 13 to 14: Launch", body: "Domain, redirects, analytics, GA + PostHog wired. Lighthouse 90+ on mobile." },
   ],
   testimonial: {
-    text: "Vanos AI builds autonomous orchestration tooling for AI engineers. We rebuilt the site for the engineer who already knows the space — clear comparison, eval results, docs equal weight to demo. Weekly active developers in docs doubled in 30 days.",
+    text: "Vanos AI builds autonomous orchestration tooling for AI engineers. We rebuilt the site for the engineer who already knows the space, clear comparison, eval results, docs equal weight to demo. Weekly active developers in docs doubled in 30 days.",
     author: "Vanos AI",
     title: "Case study",
   },
@@ -66,7 +66,7 @@ const config: IndustryConfig = {
     },
     {
       q: "Can you handle live demos and interactive components?",
-      a: "Yes — Framer supports custom code components, so I can embed a working playground, a token-cost calculator, a model-comparison widget, etc. If your demo is too heavy for Framer's runtime, I host it separately and iframe it in.",
+      a: "Yes, Framer supports custom code components, so I can embed a working playground, a token-cost calculator, a model-comparison widget, etc. If your demo is too heavy for Framer's runtime, I host it separately and iframe it in.",
     },
     {
       q: "What about pricing pages with token math?",

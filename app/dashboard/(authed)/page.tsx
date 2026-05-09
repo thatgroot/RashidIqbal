@@ -62,10 +62,10 @@ export default async function OverviewPage() {
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Overview
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-8">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-8">
         Visitor activity
       </h1>
 
@@ -81,16 +81,16 @@ export default async function OverviewPage() {
           ];
           return (
             <section key={label}>
-              <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+              <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
                 {label}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                 {cards.map((c) => (
-                  <div key={c.label} className="border border-zinc-200 bg-white p-4">
-                    <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] mb-2">
+                  <div key={c.label} className="border border-[#e8e4dd] bg-white p-4">
+                    <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] mb-2">
                       {c.label}
                     </p>
-                    <p className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">
+                    <p className="text-xl md:text-2xl font-bold text-[#292827] tracking-tight">
                       {c.value}
                     </p>
                   </div>
@@ -103,10 +103,10 @@ export default async function OverviewPage() {
 
       {/* Trend chart */}
       <section className="mb-10">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
           Last 30 days
         </p>
-        <div className="border border-zinc-200 bg-white p-5">
+        <div className="border border-[#e8e4dd] bg-white p-5">
           <TrendChart data={series} />
         </div>
       </section>
@@ -149,28 +149,28 @@ export default async function OverviewPage() {
 
       {/* Device mix */}
       <section>
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
           Device mix · 7 days
         </p>
-        <div className="border border-zinc-200 bg-white p-5">
+        <div className="border border-[#e8e4dd] bg-white p-5">
           {deviceMix.length === 0 ? (
-            <p className="text-sm text-zinc-500">No sessions yet.</p>
+            <p className="text-sm text-[#73706d]">No sessions yet.</p>
           ) : (
             <div className="space-y-2">
               {deviceMix.map((d) => {
                 const pct = (d.sessions / totalDevice) * 100;
                 return (
                   <div key={d.device} className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-zinc-700 w-20 capitalize">
+                    <span className="text-xs font-bold text-[#292827] w-20 capitalize">
                       {d.device}
                     </span>
-                    <div className="flex-1 h-2 bg-zinc-100 overflow-hidden">
+                    <div className="flex-1 h-2 bg-[#fafaf8] overflow-hidden">
                       <div
-                        className="h-full bg-orange-500"
+                        className="h-full bg-[#1b1938]"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <span className="text-xs text-zinc-500 w-20 text-right tabular-nums">
+                    <span className="text-xs text-[#73706d] w-20 text-right tabular-nums">
                       {fmt(d.sessions)} · {fmtPct(pct)}
                     </span>
                   </div>
@@ -198,38 +198,38 @@ function RankTable({
   return (
     <div>
       <div className="flex items-baseline justify-between mb-3">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em]">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em]">
           {title}
         </p>
-        <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
+        <p className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em]">
           {subtitle}
         </p>
       </div>
-      <div className="border border-zinc-200 bg-white">
+      <div className="border border-[#e8e4dd] bg-white">
         {rows.length === 0 ? (
-          <p className="text-sm text-zinc-500 px-4 py-8 text-center">No data yet.</p>
+          <p className="text-sm text-[#73706d] px-4 py-8 text-center">No data yet.</p>
         ) : (
-          <ul className="divide-y divide-zinc-100">
+          <ul className="divide-y divide-[#e8e4dd]">
             {rows.map((r, i) => (
               <li
                 key={i}
                 className={`flex items-center gap-3 px-4 py-2.5 ${
-                  r.accent ? "bg-orange-50/40" : ""
+                  r.accent ? "bg-[#fafaf8]/40" : ""
                 }`}
               >
-                <span className="text-[10px] font-mono text-zinc-400 w-5">
+                <span className="text-[10px] font-mono text-[#9a9794] w-5">
                   {(i + 1).toString().padStart(2, "0")}
                 </span>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-zinc-900 truncate flex items-center gap-1.5">
+                  <p className="text-sm text-[#292827] truncate flex items-center gap-1.5">
                     {r.accent && icon}
                     {r.primary}
                   </p>
                   {r.secondary && (
-                    <p className="text-[11px] text-zinc-400 truncate">{r.secondary}</p>
+                    <p className="text-[11px] text-[#9a9794] truncate">{r.secondary}</p>
                   )}
                 </div>
-                <span className="text-sm font-bold text-zinc-900 tabular-nums">
+                <span className="text-sm font-bold text-[#292827] tabular-nums">
                   {r.value.toLocaleString()}
                 </span>
               </li>
@@ -260,18 +260,18 @@ function ReferrersTable({
   return (
     <div>
       <div className="flex items-baseline justify-between mb-3">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em]">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em]">
           Top referrers
         </p>
-        <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
+        <p className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em]">
           7 days · AI sources highlighted
         </p>
       </div>
-      <div className="border border-zinc-200 bg-white">
+      <div className="border border-[#e8e4dd] bg-white">
         {rows.length === 0 ? (
-          <p className="text-sm text-zinc-500 px-4 py-8 text-center">No data yet.</p>
+          <p className="text-sm text-[#73706d] px-4 py-8 text-center">No data yet.</p>
         ) : (
-          <ul className="divide-y divide-zinc-100">
+          <ul className="divide-y divide-[#e8e4dd]">
             {rows.map((r, i) => {
               const parsed = parseReferrer(r.referrer);
               const pct = ((r.sessions / total) * 100).toFixed(1);
@@ -279,23 +279,23 @@ function ReferrersTable({
                 <li
                   key={i}
                   className={`flex items-start gap-3 px-4 py-3 ${
-                    r.isAi ? "bg-orange-50/40" : ""
+                    r.isAi ? "bg-[#fafaf8]/40" : ""
                   }`}
                 >
-                  <span className="text-[10px] font-mono text-zinc-400 w-6 mt-0.5">
+                  <span className="text-[10px] font-mono text-[#9a9794] w-6 mt-0.5">
                     {(i + 1).toString().padStart(2, "0")}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-bold text-zinc-900 truncate flex items-center gap-1.5">
+                    <p className="text-sm font-bold text-[#292827] truncate flex items-center gap-1.5">
                       {r.isAi && (
                         <Sparkles
-                          className="w-3 h-3 text-orange-500 shrink-0"
+                          className="w-3 h-3 text-[#1b1938] shrink-0"
                           aria-hidden="true"
                         />
                       )}
                       {parsed.host || "Direct"}
                       {parsed.path && (
-                        <span className="text-zinc-400 font-mono font-normal">
+                        <span className="text-[#9a9794] font-mono font-normal">
                           {parsed.path}
                         </span>
                       )}
@@ -304,7 +304,7 @@ function ReferrersTable({
                       href={r.referrer}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-[11px] font-mono text-zinc-500 hover:text-orange-700 transition-colors truncate inline-flex items-center gap-1 max-w-full"
+                      className="block text-[11px] font-mono text-[#73706d] hover:text-[#1b1938] transition-colors truncate inline-flex items-center gap-1 max-w-full"
                       title={r.referrer}
                     >
                       <ExternalLink
@@ -314,16 +314,16 @@ function ReferrersTable({
                       <span className="truncate">{r.referrer}</span>
                     </a>
                     {r.isAi && (
-                      <p className="text-[10px] font-mono text-orange-600 uppercase tracking-[0.18em] mt-0.5">
+                      <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.18em] mt-0.5">
                         AI search
                       </p>
                     )}
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="text-sm font-bold text-zinc-900 tabular-nums">
+                    <p className="text-sm font-bold text-[#292827] tabular-nums">
                       {r.sessions.toLocaleString()}
                     </p>
-                    <p className="text-[11px] text-zinc-400 tabular-nums">{pct}%</p>
+                    <p className="text-[11px] text-[#9a9794] tabular-nums">{pct}%</p>
                   </div>
                 </li>
               );

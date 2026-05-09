@@ -51,13 +51,13 @@ export default async function FunnelsPage() {
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Funnels
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Conversion funnels
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         Last 30 days. Each step counts unique visitors who completed all prior steps.
         Drop-off is the gap between steps.
       </p>
@@ -67,12 +67,12 @@ export default async function FunnelsPage() {
           const top = f.steps[0]?.count || 0;
           return (
             <section key={f.title}>
-              <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+              <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
                 {f.title}
               </p>
-              <div className="border border-zinc-200 bg-white p-5">
+              <div className="border border-[#e8e4dd] bg-white p-5">
                 {top === 0 ? (
-                  <p className="text-sm text-zinc-500 py-6 text-center">
+                  <p className="text-sm text-[#73706d] py-6 text-center">
                     No visitors in this funnel yet.
                   </p>
                 ) : (
@@ -85,27 +85,27 @@ export default async function FunnelsPage() {
                       return (
                         <div key={s.label}>
                           <div className="flex items-center justify-between text-sm mb-1">
-                            <span className="text-zinc-700">
-                              <span className="font-mono text-[10px] text-zinc-400 mr-2">
+                            <span className="text-[#292827]">
+                              <span className="font-mono text-[10px] text-[#9a9794] mr-2">
                                 {(i + 1).toString().padStart(2, "0")}
                               </span>
                               {s.label}
                             </span>
                             <span className="tabular-nums">
-                              <span className="font-bold text-zinc-900">
+                              <span className="font-bold text-[#292827]">
                                 {s.count.toLocaleString()}
                               </span>
-                              <span className="text-zinc-400 ml-2">{fmtPct(s.pct)}</span>
+                              <span className="text-[#9a9794] ml-2">{fmtPct(s.pct)}</span>
                             </span>
                           </div>
-                          <div className="h-2 bg-zinc-100 overflow-hidden">
+                          <div className="h-2 bg-[#fafaf8] overflow-hidden">
                             <div
-                              className="h-full bg-orange-500 transition-all"
+                              className="h-full bg-[#1b1938] transition-all"
                               style={{ width: `${s.pct}%` }}
                             />
                           </div>
                           {i > 0 && drop > 0 && (
-                            <p className="text-[11px] text-zinc-400 mt-1">
+                            <p className="text-[11px] text-[#9a9794] mt-1">
                               Drop: {drop.toLocaleString()} ({fmtPct(dropPct)})
                             </p>
                           )}

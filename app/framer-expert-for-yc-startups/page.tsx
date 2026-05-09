@@ -40,15 +40,15 @@ const config: IndustryConfig = {
   eyebrow: "Certified Framer Expert · Top Rated on Upwork",
   h1: "Framer Expert for Y Combinator startups",
   intro:
-    "Demo day is in two weeks and your landing page is still last batch's. I ship YC-grade marketing sites in 14 days — copy, design, build, launch. Past YC clients include UpdateAI, Vanos AI, SpaceDome, and ATQLeads.",
+    "Demo day is in two weeks and your landing page is still last batch's. I ship YC-grade marketing sites in 14 days, copy, design, build, launch. Past YC clients include UpdateAI, Vanos AI, SpaceDome, and ATQLeads.",
   clients: ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads"],
   deliverables: [
-    "Demo-day-ready landing page: hero, features, pricing, social proof, CTA — all crisp",
+    "Demo-day-ready landing page: hero, features, pricing, social proof, CTA, all crisp",
     "Investor-friendly first scroll: traction, named users, $ARR or growth slope visible above the fold",
     "Lead capture wired to your CRM (Hubspot, Attio, Pipedrive, Notion CRM)",
     "Founders' page so investors can see who they're betting on",
     "Performance: Lighthouse 90+ on mobile, sub-1s LCP",
-    "Two-week delivery from kickoff to launch — fits the demo-day cycle",
+    "Two-week delivery from kickoff to launch, fits the demo-day cycle",
   ],
   processSteps: [
     { title: "Day 1 to 2: Strategy", body: "30-min kickoff. Pitch, ICP, traction story locked. Quote returned same day." },
@@ -68,11 +68,11 @@ const config: IndustryConfig = {
     },
     {
       q: "Do you handle the deck, the pitch, the data room?",
-      a: "Just the landing page. Decks, pitch coaching, and data rooms are out of scope — I'll point you to specialists I trust if you need referrals.",
+      a: "Just the landing page. Decks, pitch coaching, and data rooms are out of scope, I'll point you to specialists I trust if you need referrals.",
     },
     {
       q: "Is there a YC discount?",
-      a: "I treat YC startups the same way I treat all clients — scoped pricing, fixed rate, full ownership. The 'discount' is the speed: agencies quote 8 weeks for the same scope at 4× the cost.",
+      a: "I treat YC startups the same way I treat all clients, scoped pricing, fixed rate, full ownership. The 'discount' is the speed: agencies quote 8 weeks for the same scope at 4× the cost.",
     },
   ],
 };

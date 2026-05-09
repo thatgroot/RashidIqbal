@@ -32,19 +32,19 @@ export default async function InboxPage({
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Inbox
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Form submissions
       </h1>
-      <p className="text-sm text-zinc-500 mb-6">
+      <p className="text-sm text-[#73706d] mb-6">
         Every submission to /api/lead and /api/contact lands here in addition to
         your Gmail. Click a row to read the full payload.
       </p>
 
       {/* Folder tabs */}
-      <div className="flex gap-1 mb-5 border-b border-zinc-200">
+      <div className="flex gap-1 mb-5 border-b border-[#e8e4dd]">
         {FOLDERS.map((f) => {
           const c =
             f.key === "unread"
@@ -61,15 +61,15 @@ export default async function InboxPage({
               href={`/dashboard/inbox?folder=${f.key}`}
               className={`relative px-4 py-2.5 text-sm transition-colors ${
                 active
-                  ? "text-zinc-900 font-bold"
-                  : "text-zinc-500 hover:text-zinc-900"
+                  ? "text-[#292827] font-bold"
+                  : "text-[#73706d] hover:text-[#292827]"
               }`}
             >
               {f.label}
               {c > 0 && (
                 <span
                   className={`ml-2 inline-flex items-center justify-center text-[10px] font-bold tabular-nums px-1.5 py-0.5 rounded ${
-                    active ? "bg-orange-500 text-white" : "bg-zinc-100 text-zinc-600"
+                    active ? "bg-[#1b1938] text-white" : "bg-[#fafaf8] text-[#73706d]"
                   }`}
                 >
                   {c}
@@ -77,7 +77,7 @@ export default async function InboxPage({
               )}
               {active && (
                 <span
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1b1938]"
                   aria-hidden="true"
                 />
               )}
@@ -87,11 +87,11 @@ export default async function InboxPage({
       </div>
 
       {/* List */}
-      <div className="border border-zinc-200 bg-white">
+      <div className="border border-[#e8e4dd] bg-white">
         {inbox.rows.length === 0 ? (
           <div className="px-6 py-16 text-center">
             <Inbox className="w-8 h-8 text-zinc-300 mx-auto mb-3" aria-hidden="true" />
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-[#73706d]">
               {folder === "all"
                 ? "No submissions yet. Forms posted to /api/lead or /api/contact will land here."
                 : folder === "unread"
@@ -102,7 +102,7 @@ export default async function InboxPage({
             </p>
           </div>
         ) : (
-          <ul className="divide-y divide-zinc-100">
+          <ul className="divide-y divide-[#e8e4dd]">
             {inbox.rows.map((r) => (
               <InboxListRow
                 key={r.id}
@@ -119,7 +119,7 @@ export default async function InboxPage({
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-4 text-xs text-zinc-500">
+        <div className="flex items-center justify-between mt-4 text-xs text-[#73706d]">
           <span>
             Page {page} of {totalPages} · {inbox.total.toLocaleString()} entries
           </span>
@@ -127,7 +127,7 @@ export default async function InboxPage({
             {page > 1 && (
               <Link
                 href={`?folder=${folder}&page=${page - 1}`}
-                className="px-3 py-1.5 border border-zinc-200 hover:border-zinc-400 transition-colors"
+                className="px-3 py-1.5 border border-[#e8e4dd] hover:border-zinc-400 transition-colors"
               >
                 Previous
               </Link>
@@ -135,7 +135,7 @@ export default async function InboxPage({
             {page < totalPages && (
               <Link
                 href={`?folder=${folder}&page=${page + 1}`}
-                className="px-3 py-1.5 border border-zinc-200 hover:border-zinc-400 transition-colors"
+                className="px-3 py-1.5 border border-[#e8e4dd] hover:border-zinc-400 transition-colors"
               >
                 Next
               </Link>
@@ -144,7 +144,7 @@ export default async function InboxPage({
         </div>
       )}
 
-      <p className="mt-6 text-[10px] text-zinc-400 flex items-center gap-1.5">
+      <p className="mt-6 text-[10px] text-[#9a9794] flex items-center gap-1.5">
         <Mail className="w-3 h-3" aria-hidden="true" />
         Submissions are also delivered to your Gmail inbox via Resend.
       </p>

@@ -50,25 +50,25 @@ export function ProjectWorkspace({
       <div className="flex flex-wrap items-center gap-3">
         <StatusPill status={live.project.status} />
         {live.project.tier && (
-          <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
+          <span className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em]">
             {live.project.tier}
           </span>
         )}
-        <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] ml-auto">
+        <span className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em] ml-auto">
           Updated {new Date(live.project.updatedAt).toLocaleTimeString()}
         </span>
       </div>
 
       {/* Conversation lifted up — the primary surface for clients */}
       <section>
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3 flex items-center gap-2">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3 flex items-center gap-2">
           Conversation
           {live.wsConnected && (
             <span
-              className="inline-flex items-center gap-1 normal-case tracking-normal text-emerald-600 font-mono text-[9px]"
+              className="inline-flex items-center gap-1 normal-case tracking-normal text-[#0e3030] font-mono text-[9px]"
               title="Realtime connection active"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#0e3030] animate-pulse" />
               Live
             </span>
           )}
@@ -100,7 +100,7 @@ export function ProjectWorkspace({
       {/* Todos + notes side-by-side on desktop */}
       <section className="grid lg:grid-cols-2 gap-6">
         <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+          <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
             Todo list
           </p>
           <TodoList
@@ -113,7 +113,7 @@ export function ProjectWorkspace({
           />
         </div>
         <div>
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em] mb-3">
+          <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em] mb-3">
             Notes
           </p>
           <NotesPanel

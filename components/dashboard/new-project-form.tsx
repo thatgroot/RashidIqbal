@@ -74,7 +74,7 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Partiful · Landing page rebuild"
-          className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+          className="w-full px-3 py-2.5 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
         />
       </Field>
       <div className="grid sm:grid-cols-2 gap-4">
@@ -84,7 +84,7 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm font-mono focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2.5 border border-[#e8e4dd] bg-white text-sm font-mono focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </Field>
         <Field label="Client name">
@@ -93,7 +93,7 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Grace"
-            className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2.5 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </Field>
       </div>
@@ -102,7 +102,7 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
           <select
             value={tier}
             onChange={(e) => setTier(e.target.value)}
-            className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2.5 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           >
             {TIERS.map((t) => (
               <option key={t.value} value={t.value}>
@@ -115,7 +115,7 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
           <select
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 capitalize"
+            className="w-full px-3 py-2.5 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938] capitalize"
           >
             {STATUS_KEYS.map((k) => (
               <option key={k} value={k}>
@@ -129,14 +129,14 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
             type="date"
             value={target}
             onChange={(e) => setTarget(e.target.value)}
-            className="w-full px-3 py-2.5 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2.5 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </Field>
       </div>
       <button
         type="submit"
         disabled={busy}
-        className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors disabled:opacity-60"
+        className="inline-flex items-center gap-2 px-5 py-3 bg-[#1b1938] text-white text-sm font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-60"
       >
         {busy ? (
           <>
@@ -162,7 +162,7 @@ export function NewProjectForm({ prefill }: { prefill: Prefill }) {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] mb-1.5 block">
+      <span className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] mb-1.5 block">
         {label}
       </span>
       {children}

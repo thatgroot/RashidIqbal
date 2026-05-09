@@ -6,7 +6,7 @@ const PAGE_PATH = "/figma-to-framer-cost-2026";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Figma to Framer Cost in 2026 — What You'll Actually Pay",
+  title: "Figma to Framer Cost in 2026 · What You'll Actually Pay",
   description:
     "How much does Figma to Framer conversion cost in 2026? Direct answer: agency-grade scope shipped in 1 week for a single page, 2 weeks for a 4-page site. Quote returned same day.",
   keywords: ["figma to framer cost", "framer pricing 2026", "figma to framer conversion price"],
@@ -24,11 +24,11 @@ const config: ComparisonConfig = {
   pagePath: PAGE_PATH,
   pageUrl: PAGE_URL,
   eyebrow: "Pricing · 2026",
-  h1: "Figma to Framer cost in 2026 — what you'll actually pay",
+  h1: "Figma to Framer cost in 2026, what you'll actually pay",
   directAnswer:
     "Pixel-perfect Figma to Framer conversion takes about 1 week for a single landing page, 2 weeks for a 4-page marketing site, and 2-3 weeks for a Webflow / WordPress migration with redirects. Solo specialists deliver the same scope much faster than agencies. Quote returned same day.",
   intro:
-    "Pricing varies based on page count, CMS depth, and whether the design is fully production-ready or needs cleanup. The biggest cost driver is not the build itself — it's how production-ready the Figma file is when handed off. Below is the going rate at each tier in 2026 plus the cheaper / more expensive alternatives.",
+    "Pricing varies based on page count, CMS depth, and whether the design is fully production-ready or needs cleanup. The biggest cost driver is not the build itself, it's how production-ready the Figma file is when handed off. Below is the going rate at each tier in 2026 plus the cheaper / more expensive alternatives.",
   leftLabel: "Solo specialist",
   rightLabel: "Agency",
   rows: [
@@ -64,7 +64,7 @@ const config: ComparisonConfig = {
   faqs: [
     {
       q: "Why the wide price range for a single landing page?",
-      a: "Three drivers. First, scope: 1 hero or 6 sections? Second, Figma readiness — if I have to fix auto-layout, normalize tokens, and add missing breakpoints, that adds days. Third, copy: if you're handing me final copy, the build is faster; if I'm writing the copy too, that's part of the price.",
+      a: "Three drivers. First, scope: 1 hero or 6 sections? Second, Figma readiness, if I have to fix auto-layout, normalize tokens, and add missing breakpoints, that adds days. Third, copy: if you're handing me final copy, the build is faster; if I'm writing the copy too, that's part of the price.",
     },
     {
       q: "Is the price fixed or hourly?",

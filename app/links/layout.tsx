@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { SITE_URL as siteUrl } from "@/lib/constants";
 
 export const metadata: Metadata = {
-    title: "Links | Rashid Iqbal — Framer + Replit + Base44",
+    title: "Links | Rashid Iqbal · Framer + Replit + Base44",
     description:
         "All my profiles in one place: Framer Experts directory, Upwork (Top Rated), Contra, Base44, LinkedIn, GitHub, X. Rashid Iqbal · aestho.xyz.",
     alternates: {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Rashid Iqbal · Links",
         description:
-            "Framer Expert · Replit Expert · Base44 Partner — all profiles in one place.",
+            "Framer Expert · Replit Expert · Base44 Partner, all profiles in one place.",
         url: `${siteUrl}/links`,
         type: "profile",
         images: [

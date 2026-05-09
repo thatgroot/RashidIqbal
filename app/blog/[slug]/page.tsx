@@ -8,13 +8,12 @@ import {
   getRelatedPostsHybrid,
 } from "@/lib/blog-hybrid";
 import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { PageBackground } from "@/components/ui/page-background";
 import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
 import { NewsletterForm } from "@/components/shared/newsletter-form";
 import { GridContainer, GridItem } from "@/components/shared/grid-system";
 import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
-import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from "@/components/icons";
 import { SiX, SiLinkedin } from "react-icons/si";
 import { CopyLinkButton } from "@/components/blog/copy-link";
 
@@ -228,13 +227,13 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <>
       <ArticleStructuredData post={post} slug={slug} />
-      <main id="main-content" className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden">
+      <main id="main-content" className="min-h-screen bg-[#ffffff] text-[#0a0a0a] selection:bg-[#0a0a0a]/30 selection:text-black font-sans relative overflow-hidden">
         <PageBackground />
         <Navbar />
 
         {/* Article Header */}
         <section className="pt-16 bg-white relative">
-          <div className="max-w-container border-l border-zinc-100 relative">
+          <div className="max-w-container border-l border-[#e5e5e5] relative">
             <GridContainer cols={1}>
               <GridItem className="border-t pt-10 pb-12" padding={false}>
                 <div className="px-8 sm:px-12">
@@ -242,7 +241,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <nav className="mb-8" aria-label="Breadcrumb">
                     <Link
                       href="/blog"
-                      className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-orange-600 transition-colors font-mono"
+                      className="inline-flex items-center gap-2 text-sm text-[#737373] hover:text-[#0a0a0a] transition-colors font-mono"
                     >
                       <ArrowLeft className="w-4 h-4" aria-hidden="true" />
                       Back to Blog
@@ -251,10 +250,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                   {/* Meta row */}
                   <div className="flex items-center gap-3 flex-wrap mb-6">
-                    <span className="text-[10px] font-mono text-orange-600 uppercase tracking-widest border border-orange-100 bg-orange-50 px-2 py-1">
+                    <span className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-widest border border-[#e5e5e5] bg-[#fafafa] px-2 py-1">
                       {post.category}
                     </span>
-                    <span className="flex items-center gap-1 text-xs text-zinc-400 font-mono">
+                    <span className="flex items-center gap-1 text-xs text-[#737373] font-mono">
                       <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
                       {new Date(post.date).toLocaleDateString("en-US", {
                         year: "numeric",
@@ -263,32 +262,32 @@ export default async function BlogPostPage({ params }: PageProps) {
                       })}
                     </span>
                     <span className="text-zinc-200" aria-hidden="true">•</span>
-                    <span className="flex items-center gap-1 text-xs text-zinc-400 font-mono">
+                    <span className="flex items-center gap-1 text-xs text-[#737373] font-mono">
                       <Clock className="w-3.5 h-3.5" aria-hidden="true" />
                       {post.readingTime}
                     </span>
                   </div>
 
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-zinc-900 mb-4 tracking-tight leading-[1.1]">
+                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0a0a0a] mb-4 tracking-tight leading-[1.1]">
                     {post.title}
                   </h1>
-                  <p className="text-lg text-zinc-500 leading-relaxed mb-8 max-w-2xl">
+                  <p className="text-lg text-[#737373] leading-relaxed mb-8 max-w-2xl">
                     {post.description}
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-center gap-4 pt-6 border-t border-zinc-100">
-                    <div className="w-10 h-10 bg-orange-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                  <div className="flex items-center gap-4 pt-6 border-t border-[#e5e5e5]">
+                    <div className="w-10 h-10 bg-[#0a0a0a] flex items-center justify-center text-white font-bold text-sm shrink-0">
                       {post.author.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-medium text-zinc-900 text-sm">{post.author.name}</p>
+                      <p className="font-medium text-[#0a0a0a] text-sm">{post.author.name}</p>
                       {post.author.twitter && (
                         <a
                           href={`https://twitter.com/${post.author.twitter.replace("@", "")}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs text-zinc-400 font-mono hover:text-orange-600 transition-colors"
+                          className="text-xs text-[#737373] font-mono hover:text-[#0a0a0a] transition-colors"
                         >
                           {post.author.twitter}
                         </a>
@@ -303,11 +302,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Article Content + Sidebar */}
         <section className="bg-white">
-          <div className="max-w-container border-l border-zinc-100">
-            <div className="grid desktop:grid-cols-3 border-b border-zinc-100">
+          <div className="max-w-container border-l border-[#e5e5e5]">
+            <div className="grid desktop:grid-cols-3 border-b border-[#e5e5e5]">
 
               {/* Main content — 2 cols */}
-              <div className="desktop:col-span-2 border-r border-zinc-100 p-8 sm:p-12">
+              <div className="desktop:col-span-2 border-r border-[#e5e5e5] p-8 sm:p-12">
                 <div className="prose prose-lg max-w-none">
                   <MarkdownRenderer content={post.content} />
                 </div>
@@ -317,12 +316,12 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                 {/* Tags */}
                 {post.tags.length > 0 && (
-                  <div className="flex items-center gap-2 flex-wrap pt-8 mt-8 border-t border-zinc-100">
-                    <Tag className="w-4 h-4 text-zinc-400 shrink-0" aria-hidden="true" />
+                  <div className="flex items-center gap-2 flex-wrap pt-8 mt-8 border-t border-[#e5e5e5]">
+                    <Tag className="w-4 h-4 text-[#737373] shrink-0" aria-hidden="true" />
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs text-zinc-600 px-3 py-1 border border-zinc-100 font-mono hover:border-orange-200 hover:text-orange-600 transition-colors"
+                        className="text-xs text-[#737373] px-3 py-1 border border-[#e5e5e5] font-mono hover:border-[#e5e5e5] hover:text-[#0a0a0a] transition-colors"
                       >
                         {tag}
                       </span>
@@ -331,8 +330,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                 )}
 
                 {/* Share */}
-                <div className="pt-8 mt-8 border-t border-zinc-100">
-                  <h2 className="flex items-center gap-2 text-xs font-mono text-zinc-500 uppercase tracking-widest mb-5">
+                <div className="pt-8 mt-8 border-t border-[#e5e5e5]">
+                  <h2 className="flex items-center gap-2 text-xs font-mono text-[#737373] uppercase tracking-widest mb-5">
                     <Share2 className="w-3.5 h-3.5" aria-hidden="true" />
                     Share this article
                   </h2>
@@ -341,7 +340,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                       href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(postUrl)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#0a0a0a] text-white text-sm font-medium hover:bg-[#000000] transition-colors"
                       aria-label="Share on X (Twitter)"
                     >
                       <SiX className="w-4 h-4" aria-hidden="true" />
@@ -366,21 +365,21 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* Sidebar */}
               <aside>
                 {/* CTA */}
-                <div className="border-b border-zinc-100 p-8 sm:p-10">
-                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest block mb-4">
+                <div className="border-b border-[#e5e5e5] p-8 sm:p-10">
+                  <span className="text-xs font-mono text-[#737373] uppercase tracking-widest block mb-4">
                     Work Together
                   </span>
-                  <h3 className="text-lg font-semibold text-zinc-900 mb-3 leading-snug">
+                  <h3 className="text-lg font-semibold text-[#0a0a0a] mb-3 leading-snug">
                     Have a project in mind?
                   </h3>
-                  <p className="text-sm text-zinc-500 mb-6 leading-relaxed">
+                  <p className="text-sm text-[#737373] mb-6 leading-relaxed">
                     I design in Figma, build in Framer, and ship Chrome extensions that convert.
                   </p>
                   <a
                     href={SOCIAL_LINKS.calcom}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-700 text-white font-bold text-sm hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a] text-white font-bold text-sm hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
                   >
                     Book a Free Call
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -389,21 +388,21 @@ export default async function BlogPostPage({ params }: PageProps) {
 
                 {/* About */}
                 <div className="p-8 sm:p-10">
-                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest block mb-4">
+                  <span className="text-xs font-mono text-[#737373] uppercase tracking-widest block mb-4">
                     About the Author
                   </span>
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-9 h-9 bg-orange-500 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    <div className="w-9 h-9 bg-[#0a0a0a] flex items-center justify-center text-white font-bold text-sm shrink-0">
                       {post.author.name.charAt(0)}
                     </div>
-                    <p className="font-medium text-zinc-900 text-sm">{post.author.name}</p>
+                    <p className="font-medium text-[#0a0a0a] text-sm">{post.author.name}</p>
                   </div>
-                  <p className="text-sm text-zinc-500 leading-relaxed">
+                  <p className="text-sm text-[#737373] leading-relaxed">
                     Figma &amp; Framer expert specializing in high-converting landing pages, UX copywriting, and Chrome extensions.
                   </p>
                   <Link
                     href="/"
-                    className="inline-flex items-center gap-1 text-sm font-medium text-orange-600 mt-5 hover:text-orange-500 transition-colors"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-[#0a0a0a] mt-5 hover:text-[#0a0a0a] transition-colors"
                   >
                     View portfolio
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -417,10 +416,10 @@ export default async function BlogPostPage({ params }: PageProps) {
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
           <section className="bg-white">
-            <div className="max-w-container border-l border-zinc-100">
+            <div className="max-w-container border-l border-[#e5e5e5]">
               <GridContainer cols={1}>
                 <GridItem padding={false} className="py-6 px-8 sm:px-12">
-                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">
+                  <span className="text-xs font-mono text-[#737373] uppercase tracking-widest">
                     Related Articles
                   </span>
                 </GridItem>
@@ -433,12 +432,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                     className="block group"
                   >
                     <GridItem className="h-full flex flex-col min-h-[160px]">
-                      <h3 className="font-medium text-zinc-900 group-hover:text-orange-600 transition-colors line-clamp-2 leading-snug flex-1 mb-4">
+                      <h3 className="font-medium text-[#0a0a0a] group-hover:text-[#0a0a0a] transition-colors line-clamp-2 leading-snug flex-1 mb-4">
                         {relatedPost.title}
                       </h3>
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-zinc-400 font-mono">{relatedPost.readingTime}</span>
-                        <ArrowRight className="w-4 h-4 text-orange-600 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                        <span className="text-xs text-[#737373] font-mono">{relatedPost.readingTime}</span>
+                        <ArrowRight className="w-4 h-4 text-[#0a0a0a] group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                       </div>
                     </GridItem>
                   </Link>
@@ -447,8 +446,6 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
           </section>
         )}
-
-        <Footer />
       </main>
     </>
   );

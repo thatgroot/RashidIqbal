@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check, Star } from "lucide-react";
+import { ArrowRight, Check, Star } from "@/components/icons";
 import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
 
 const PAGE_PATH = "/framer-expert-for-saas";
@@ -127,7 +127,7 @@ export default function FramerExpertSaasPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
+      className="min-h-screen bg-[#ffffff] text-[#0a0a0a] selection:bg-[#0a0a0a]/30 selection:text-black font-sans relative overflow-hidden"
     >
       <script
         type="application/ld+json"
@@ -146,34 +146,34 @@ export default function FramerExpertSaasPage() {
       <header className="max-w-3xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/favicon.svg" alt="" width={28} height={28} aria-hidden="true" />
-          <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
+          <span className="font-bold text-[#0a0a0a] tracking-tight">Rashid Iqbal</span>
         </Link>
       </header>
 
       <section className="max-w-3xl mx-auto px-6 pt-10 md:pt-14 pb-16">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-4">
+        <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em] mb-4">
           Certified Framer Expert · Top Rated on Upwork
         </p>
 
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-zinc-900 mb-5 leading-[1.1]">
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-[#0a0a0a] mb-5 leading-[1.1]">
           Framer Expert for SaaS Landing Pages
         </h1>
 
-        <p className="text-base md:text-lg text-zinc-600 leading-relaxed mb-8">
+        <p className="text-base md:text-lg text-[#737373] leading-relaxed mb-8">
           I build high-converting B2B SaaS landing pages on Framer. Copy, design, and build in
           two weeks. Clients include UpdateAI, Vanos AI, SpaceDome, and ATQLeads. One specialist, one
           timeline, one offer.
         </p>
 
-        {/* TL;DR — quotable answer block for AI search citation */}
+        {/* TL;DR, quotable answer block for AI search citation */}
         <aside
           aria-label="Summary"
-          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+          className="border-l-4 border-[#0a0a0a] bg-[#fafafa]/50 px-5 py-4 mb-10"
         >
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+          <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em] mb-2">
             Summary
           </p>
-          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+          <p className="text-sm md:text-base text-[#0a0a0a] leading-relaxed">
             Rashid Iqbal is a Certified Framer Expert who builds B2B SaaS landing pages
             with copy, design, and Framer development bundled into a single two-week
             delivery. Past SaaS clients include UpdateAI, Vanos AI, SpaceDome, and ATQLeads,
@@ -188,7 +188,7 @@ export default function FramerExpertSaasPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -197,29 +197,29 @@ export default function FramerExpertSaasPage() {
             href="https://framer.link/rashidiqbal"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 border border-zinc-300 text-zinc-900 text-sm font-bold hover:bg-zinc-50 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-3 border border-[#e5e5e5] text-[#0a0a0a] text-sm font-bold hover:bg-[#fafafa] transition-colors"
           >
             Hire on Framer
           </a>
         </div>
 
         <div className="mb-12">
-          <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.2em] mb-3">
+          <p className="text-[10px] font-mono text-[#737373] uppercase tracking-[0.2em] mb-3">
             SaaS clients shipped
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-zinc-700">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-[#0a0a0a]">
             {CLIENTS.map((c) => (
               <span key={c}>{c}</span>
             ))}
           </div>
         </div>
 
-        <div className="border border-zinc-200 bg-white p-6 md:p-8 mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">What you get</h2>
+        <div className="border border-[#e5e5e5] bg-white p-6 md:p-8 mb-12">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">What you get</h2>
           <ul className="space-y-3">
             {DELIVERABLES.map((d) => (
-              <li key={d} className="flex items-start gap-3 text-sm text-zinc-700">
-                <Check className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" aria-hidden="true" />
+              <li key={d} className="flex items-start gap-3 text-sm text-[#0a0a0a]">
+                <Check className="w-4 h-4 text-[#0a0a0a] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{d}</span>
               </li>
             ))}
@@ -227,63 +227,63 @@ export default function FramerExpertSaasPage() {
         </div>
 
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             Two-week delivery, day by day
           </h2>
           <ol className="space-y-4">
             {PROCESS_STEPS.map((s) => (
-              <li key={s.title} className="border-l-2 border-orange-500 pl-4">
-                <p className="text-sm font-bold text-zinc-900">{s.title}</p>
-                <p className="text-sm text-zinc-600 mt-1">{s.body}</p>
+              <li key={s.title} className="border-l-2 border-[#0a0a0a] pl-4">
+                <p className="text-sm font-bold text-[#0a0a0a]">{s.title}</p>
+                <p className="text-sm text-[#737373] mt-1">{s.body}</p>
               </li>
             ))}
           </ol>
         </div>
 
-        <figure className="border border-zinc-100 bg-white px-6 py-8 mb-12">
+        <figure className="border border-[#e5e5e5] bg-white px-6 py-8 mb-12">
           <div className="flex gap-1 mb-4" role="img" aria-label="5 out of 5 stars">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star
                 key={i}
-                className="w-4 h-4 fill-orange-500 text-orange-500"
+                className="w-4 h-4 fill-[#0a0a0a] text-[#0a0a0a]"
                 aria-hidden="true"
               />
             ))}
           </div>
-          <blockquote className="text-base md:text-lg text-zinc-900 leading-relaxed font-medium mb-4">
+          <blockquote className="text-base md:text-lg text-[#0a0a0a] leading-relaxed font-medium mb-4">
             &ldquo;The new design loads fast and converts way better than what we had before.
             Onboarding signups went up by half.&rdquo;
           </blockquote>
           <figcaption className="text-sm">
-            <span className="font-bold text-zinc-900">Josh Schachter</span>{" "}
-            <span className="text-zinc-500">· Founder &amp; CEO, UpdateAI</span>
+            <span className="font-bold text-[#0a0a0a]">Josh Schachter</span>{" "}
+            <span className="text-[#737373]">· Founder &amp; CEO, UpdateAI</span>
           </figcaption>
         </figure>
 
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             Frequently asked questions
           </h2>
           <div className="space-y-6">
             {FAQS.map((f) => (
               <div key={f.q}>
-                <p className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</p>
-                <p className="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
+                <p className="text-sm font-bold text-[#0a0a0a] mb-1.5">{f.q}</p>
+                <p className="text-sm text-[#737373] leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="border-t border-zinc-200 pt-10">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-3">Ready to ship?</h2>
-          <p className="text-sm text-zinc-600 mb-5">
+        <div className="border-t border-[#e5e5e5] pt-10">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-3">Ready to ship?</h2>
+          <p className="text-sm text-[#737373] mb-5">
             One call decides if we are a fit. No pitch, no upsell.
           </p>
           <a
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

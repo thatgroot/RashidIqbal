@@ -32,22 +32,22 @@ export default async function PortalHome() {
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         {isPreview ? "All projects" : "Welcome"}
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         {isPreview ? "Every active project" : `Hi, ${greetingName}.`}
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         {isPreview
           ? "Browsing as the owner. Each card opens the same view your client sees."
           : "Every project we’re working on lives here. Click any card to see timeline, links, and the full conversation."}
       </p>
 
       {items.length === 0 ? (
-        <div className="border border-zinc-200 bg-white p-10 text-center">
+        <div className="border border-[#e8e4dd] bg-white p-10 text-center">
           <FolderOpen className="w-8 h-8 text-zinc-300 mx-auto mb-3" aria-hidden="true" />
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-[#73706d]">
             {isPreview
               ? "No projects in the system yet. Convert a form submission from /dashboard/inbox to provision the first one."
               : "No active projects yet. Once Rashid kicks one off, it shows up here."}
@@ -59,26 +59,26 @@ export default async function PortalHome() {
             <li key={p.id}>
               <Link
                 href={`/portal/projects/${p.id}`}
-                className="block border border-zinc-200 bg-white p-5 hover:border-orange-300 transition-colors group"
+                className="block border border-[#e8e4dd] bg-white p-5 hover:border-[#c9b4fa] transition-colors group"
               >
                 <div className="flex items-center justify-between gap-4 mb-2">
                   <div className="flex items-center gap-3">
                     <StatusPill status={p.status} />
                     {p.tier && (
-                      <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
+                      <span className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em]">
                         {TIER_LABELS[p.tier] || p.tier}
                       </span>
                     )}
                   </div>
-                  <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-orange-500 transition-colors" />
+                  <ArrowRight className="w-4 h-4 text-[#9a9794] group-hover:text-[#1b1938] transition-colors" />
                 </div>
-                <p className="text-base md:text-lg font-bold text-zinc-900 group-hover:text-orange-700 transition-colors mb-1">
+                <p className="text-base md:text-lg font-bold text-[#292827] group-hover:text-[#1b1938] transition-colors mb-1">
                   {p.title}
                 </p>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-[#73706d]">
                   {p.clientName && (
                     <>
-                      <span className="text-zinc-700 font-semibold">{p.clientName}</span>
+                      <span className="text-[#292827] font-semibold">{p.clientName}</span>
                       <span className="text-zinc-300 mx-1.5">·</span>
                     </>
                   )}

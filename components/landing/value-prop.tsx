@@ -24,12 +24,12 @@ const valueProps = [
 export function ValueProp() {
   return (
     <section className="bg-white">
-      <div className="max-w-container border-l border-zinc-100">
+      <div className="max-w-container border-l border-[#e8e4dd]">
         <GridContainer>
           <GridItem className="py-16" padding={false}>
             <div className="px-8 sm:px-12 max-w-2xl">
               <motion.span
-                className="text-[10px] font-mono text-orange-600 uppercase tracking-[0.2em] block mb-4"
+                className="text-[0.625rem] font-mono text-[#1b1938] uppercase tracking-[0.2em] block mb-4"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
@@ -38,7 +38,7 @@ export function ValueProp() {
                 How this works
               </motion.span>
               <motion.h2
-                className="text-3xl md:text-4xl font-semibold text-zinc-900 tracking-tight leading-[1.15]"
+                className="text-3xl md:text-4xl font-semibold text-[#292827] tracking-tight leading-[1.15]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
@@ -47,7 +47,7 @@ export function ValueProp() {
                 Why founders pick this over a design agency.
               </motion.h2>
               <motion.p
-                className="text-base text-zinc-500 mt-4 leading-relaxed"
+                className="text-base text-[#73706d] mt-4 leading-relaxed"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
@@ -69,13 +69,13 @@ export function ValueProp() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <GridItem className="h-full flex flex-col">
-                <span className="text-xs font-mono text-orange-500 tracking-widest mb-6">
+                <span className="text-xs font-mono text-[#1b1938] tracking-widest mb-6">
                   {item.number}
                 </span>
-                <h3 className="text-xl font-semibold text-zinc-900 mb-3 leading-tight">
+                <h3 className="text-xl font-semibold text-[#292827] mb-3 leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-sm text-zinc-500 leading-relaxed">
+                <p className="text-sm text-[#73706d] leading-relaxed">
                   {item.desc}
                 </p>
               </GridItem>

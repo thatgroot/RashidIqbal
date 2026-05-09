@@ -11,23 +11,23 @@ export default async function AdminProjectsPage() {
   return (
     <div>
       <div className="flex items-start justify-between gap-4 mb-2">
-        <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em]">
+        <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em]">
           Projects
         </p>
       </div>
       <div className="flex items-end justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+          <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
             Active projects
           </h1>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-[#73706d]">
             Convert a form submission into a project from the inbox. Click any
             row to manage status, links, and the conversation.
           </p>
         </div>
         <Link
           href="/dashboard/inbox"
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-900 text-white text-xs font-bold hover:bg-orange-600 transition-colors shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors shrink-0"
         >
           <Plus className="w-3.5 h-3.5" aria-hidden="true" />
           New from inbox
@@ -35,8 +35,8 @@ export default async function AdminProjectsPage() {
       </div>
 
       {rows.length === 0 ? (
-        <div className="border border-zinc-200 bg-white p-10 text-center">
-          <p className="text-sm text-zinc-500">
+        <div className="border border-[#e8e4dd] bg-white p-10 text-center">
+          <p className="text-sm text-[#73706d]">
             No projects yet. Open the inbox, click a submission, and hit
             "Convert to project" to provision the first one.
           </p>
@@ -47,30 +47,30 @@ export default async function AdminProjectsPage() {
             <li key={project.id}>
               <Link
                 href={`/dashboard/projects/${project.id}`}
-                className="block border border-zinc-200 bg-white p-5 hover:border-orange-300 transition-colors group"
+                className="block border border-[#e8e4dd] bg-white p-5 hover:border-[#c9b4fa] transition-colors group"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <StatusPill status={project.status} />
                   {project.tier && (
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em]">
+                    <span className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em]">
                       {TIER_LABELS[project.tier] || project.tier}
                     </span>
                   )}
-                  <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] ml-auto">
+                  <span className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em] ml-auto">
                     Updated {new Date(project.updatedAt).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-base md:text-lg font-bold text-zinc-900 truncate group-hover:text-orange-700 transition-colors">
+                    <p className="text-base md:text-lg font-bold text-[#292827] truncate group-hover:text-[#1b1938] transition-colors">
                       {project.title}
                     </p>
-                    <p className="text-xs text-zinc-500 truncate">
+                    <p className="text-xs text-[#73706d] truncate">
                       {client.name || client.email} ·{" "}
                       <span className="font-mono">{client.email}</span>
                     </p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-zinc-400 group-hover:text-orange-500 transition-colors shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-[#9a9794] group-hover:text-[#1b1938] transition-colors shrink-0" />
                 </div>
               </Link>
             </li>

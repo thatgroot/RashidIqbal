@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from"framer-motion";
 import {
   Type,
   LayoutGrid,
@@ -8,9 +8,9 @@ import {
   Code,
   Palette,
   Film,
-} from "lucide-react";
+} from"lucide-react";
 
-// "My Services" grid — six cards in a 2 × 3 layout. Light theme to match
+//"My Services" grid — six cards in a 2 × 3 layout. Light theme to match
 // the rest of the site (white bg, zinc-100 borders, orange accents).
 // No rounded corners on cards / panels / mock frames — Aestho design
 // system uses sharp 90° edges throughout. Only circular elements
@@ -25,44 +25,44 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: "Copywriting",
+    title:"Copywriting",
     desc:
-      "Conversion copy written before the design starts. Headlines, CTAs, and microcopy tuned to the buyer's actual objections — not generic feature lists.",
+"Conversion copy written before the design starts. Headlines, CTAs, and microcopy tuned to the buyer's actual objections — not generic feature lists.",
     Icon: Type,
     Mock: CopyMock,
   },
   {
-    title: "Web Design",
+    title:"Web Design",
     desc:
-      "Visually stunning, user-friendly websites and landing pages that captivate visitors. Turning clicks into customers with intuitive design.",
+"Visually stunning, user-friendly websites and landing pages that captivate visitors. Turning clicks into customers with intuitive design.",
     Icon: LayoutGrid,
     Mock: WebDesignMock,
   },
   {
-    title: "Product Design",
+    title:"Product Design",
     desc:
-      "Intuitive product designs that resonate with users. Enhancing user experience and retention through clear hierarchy and considered interaction.",
+"Intuitive product designs that resonate with users. Enhancing user experience and retention through clear hierarchy and considered interaction.",
     Icon: Smartphone,
     Mock: ProductMock,
   },
   {
-    title: "Development",
+    title:"Development",
     desc:
-      "Building robust, scalable applications using the latest technologies. Bringing your ideas to life seamlessly — Framer, Next.js, or React.",
+"Building robust, scalable applications using the latest technologies. Bringing your ideas to life seamlessly — Framer, Next.js, or React.",
     Icon: Code,
     Mock: DevMock,
   },
   {
-    title: "Branding",
+    title:"Branding",
     desc:
-      "Cohesive brand identities that reflect your core values. Making your brand unforgettable and instantly recognizable across every surface.",
+"Cohesive brand identities that reflect your core values. Making your brand unforgettable and instantly recognizable across every surface.",
     Icon: Palette,
     Mock: BrandMock,
   },
   {
-    title: "Motion Design",
+    title:"Motion Design",
     desc:
-      "Dynamic motion graphics that engage and entertain. Capturing attention with every movement, telling your story visually.",
+"Dynamic motion graphics that engage and entertain. Capturing attention with every movement, telling your story visually.",
     Icon: Film,
     Mock: MotionMock,
   },
@@ -105,13 +105,13 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin:"-60px" }}
       transition={{
         duration: 0.5,
         delay: Math.min(index * 0.04, 0.24),
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group relative border border-zinc-200 bg-white p-6 md:p-8 overflow-hidden hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition-all"
+      className="group relative border border-zinc-200 bg-white p-6 md:p-8 overflow-hidden hover:border-orange-300 hover:shadow-orange-500/5 transition-all"
     >
       <div className="flex items-start gap-3 mb-3">
         <span className="w-9 h-9 bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 shrink-0 group-hover:bg-orange-100 transition-colors">
@@ -138,15 +138,15 @@ function ServiceCard({ service, index }: { service: Service; index: number }) {
 // ----------------------------------------------------------------------------
 
 // Copywriting — Notion-style task table with status pills. The
-// disciplined "in progress" / "review" / "done" workflow conveys the
+// disciplined"in progress" /"review" /"done" workflow conveys the
 // actual rigour of Rashid's copy process.
 function CopyMock() {
   const rows = [
-    { label: "Hero · headline", status: "Done", color: "bg-emerald-100 text-emerald-700" },
-    { label: "Sub · value prop", status: "Done", color: "bg-emerald-100 text-emerald-700" },
-    { label: "Pricing · objections", status: "Review", color: "bg-amber-100 text-amber-700" },
-    { label: "CTA · button copy", status: "Drafting", color: "bg-orange-100 text-orange-700" },
-    { label: "FAQ · 5 entries", status: "Queued", color: "bg-zinc-100 text-zinc-500" },
+    { label:"Hero · headline", status:"Done", color:"bg-emerald-100 text-emerald-700" },
+    { label:"Sub · value prop", status:"Done", color:"bg-emerald-100 text-emerald-700" },
+    { label:"Pricing · objections", status:"Review", color:"bg-amber-100 text-amber-700" },
+    { label:"CTA · button copy", status:"Drafting", color:"bg-orange-100 text-orange-700" },
+    { label:"FAQ · 5 entries", status:"Queued", color:"bg-zinc-100 text-zinc-500" },
   ];
   return (
     <div className="absolute inset-0 px-4 py-3 md:px-5 md:py-4 flex flex-col">
@@ -239,17 +239,17 @@ function Phone({
   variant,
   offset,
 }: {
-  variant: "signin" | "dashboard" | "profile";
+  variant:"signin" |"dashboard" |"profile";
   offset: string;
 }) {
   return (
     <div
-      className={`relative w-12 md:w-14 aspect-[9/19] border border-zinc-300 bg-white shadow-sm ${offset} flex flex-col`}
+      className={`relative w-12 md:w-14 aspect-[9/19] border border-zinc-300 bg-white ${offset} flex flex-col`}
     >
       {/* Notch */}
       <div className="mx-auto mt-1 w-4 h-1 rounded-full bg-zinc-200" />
       <div className="flex-1 px-1.5 pt-1.5 pb-1 flex flex-col gap-1">
-        {variant === "signin" && (
+        {variant ==="signin" && (
           <>
             <span className="h-1 w-2/3 bg-zinc-800 mt-1" />
             <span className="h-1 w-1/2 bg-zinc-200" />
@@ -258,7 +258,7 @@ function Phone({
             <span className="h-2.5 w-full bg-orange-500" />
           </>
         )}
-        {variant === "dashboard" && (
+        {variant ==="dashboard" && (
           <>
             <span className="h-1 w-1/2 bg-zinc-800" />
             <div className="flex gap-0.5 mt-1">
@@ -274,7 +274,7 @@ function Phone({
             </div>
           </>
         )}
-        {variant === "profile" && (
+        {variant ==="profile" && (
           <>
             <span className="mx-auto w-3 h-3 rounded-full bg-orange-500 mt-1" />
             <span className="mx-auto h-1 w-2/3 bg-zinc-800 mt-1" />
@@ -316,13 +316,13 @@ function DevMock() {
           <span className="text-zinc-500 truncate">Hero.tsx</span>
         </div>
         <div className="text-zinc-500">
-          <span className="text-violet-400">export</span>{" "}
-          <span className="text-violet-400">function</span>{" "}
+          <span className="text-violet-400">export</span>{""}
+          <span className="text-violet-400">function</span>{""}
           <span className="text-amber-300">Hero</span>
           <span className="text-zinc-300">() {"{"}</span>
         </div>
         <div className="pl-2 text-zinc-300">
-          <span className="text-violet-400">return</span>{" "}
+          <span className="text-violet-400">return</span>{""}
           <span className="text-zinc-500">&lt;</span>
           <span className="text-emerald-400">section</span>
           <span className="text-zinc-500">&gt;</span>
@@ -343,7 +343,7 @@ function DevMock() {
 function BrandMock() {
   return (
     <div className="absolute inset-0 p-3 md:p-4 grid grid-cols-12 gap-2">
-      {/* Big "Aa" type specimen */}
+      {/* Big"Aa" type specimen */}
       <div className="col-span-5 border border-zinc-200 bg-white flex items-center justify-center">
         <span className="text-4xl md:text-5xl font-semibold text-zinc-900 tracking-tight leading-none">
           Aa
@@ -352,10 +352,10 @@ function BrandMock() {
       {/* Color palette */}
       <div className="col-span-7 grid grid-cols-2 gap-2">
         {[
-          { c: "#f97316", label: "Primary" },
-          { c: "#18181b", label: "Ink" },
-          { c: "#fafaf9", label: "Paper" },
-          { c: "#fed7aa", label: "Tint" },
+          { c:"#f97316", label:"Primary" },
+          { c:"#18181b", label:"Ink" },
+          { c:"#fafaf9", label:"Paper" },
+          { c:"#fed7aa", label:"Tint" },
         ].map((s) => (
           <div
             key={s.label}
@@ -383,16 +383,16 @@ function MotionMock() {
     <div className="absolute inset-0 px-4 py-3 md:px-5 md:py-4 flex flex-col gap-1.5">
       {/* Time ruler */}
       <div className="flex justify-between text-[8px] font-mono text-zinc-400 mb-0.5">
-        {["0.0s", "0.2s", "0.4s", "0.6s", "0.8s", "1.0s"].map((t, i) => (
+        {["0.0s","0.2s","0.4s","0.6s","0.8s","1.0s"].map((t, i) => (
           <span key={i}>{t}</span>
         ))}
       </div>
 
       {/* Tracks */}
       {[
-        { color: "bg-orange-500", w: "w-2/3", offset: "left-0" },
-        { color: "bg-blue-500", w: "w-1/3", offset: "left-1/4" },
-        { color: "bg-emerald-500", w: "w-1/2", offset: "left-1/3" },
+        { color:"bg-orange-500", w:"w-2/3", offset:"left-0" },
+        { color:"bg-blue-500", w:"w-1/3", offset:"left-1/4" },
+        { color:"bg-emerald-500", w:"w-1/2", offset:"left-1/3" },
       ].map((t, i) => (
         <div
           key={i}

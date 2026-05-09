@@ -45,26 +45,26 @@ export default async function VisitorsPage({
 
   return (
     <div>
-      <p className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em] mb-2">
+      <p className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em] mb-2">
         Visitors
       </p>
-      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 mb-2">
+      <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-[#292827] mb-2">
         Visitor explorer
       </h1>
-      <p className="text-sm text-zinc-500 mb-8">
+      <p className="text-sm text-[#73706d] mb-8">
         {total.toLocaleString()} total visitors. Click any row for the full timeline,
         device, geo, and a deep-link into Microsoft Clarity for the session replay.
       </p>
 
-      <div className="border border-zinc-200 bg-white">
+      <div className="border border-[#e8e4dd] bg-white">
         {rows.length === 0 ? (
-          <p className="text-sm text-zinc-500 px-6 py-12 text-center">
+          <p className="text-sm text-[#73706d] px-6 py-12 text-center">
             No visitors yet. Visits will land here as soon as the tracker fires on
             production.
           </p>
         ) : (
           <table className="w-full text-sm">
-            <thead className="bg-zinc-50 text-[10px] font-mono uppercase tracking-[0.18em] text-zinc-500">
+            <thead className="bg-[#fafaf8] text-[10px] font-mono uppercase tracking-[0.18em] text-[#73706d]">
               <tr>
                 <th className="text-left px-4 py-2.5 font-normal">Last seen</th>
                 <th className="text-left px-4 py-2.5 font-normal">Location</th>
@@ -75,40 +75,40 @@ export default async function VisitorsPage({
                 <th className="px-2 py-2.5"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100">
+            <tbody className="divide-y divide-[#e8e4dd]">
               {rows.map((r) => (
-                <tr key={r.id} className="hover:bg-zinc-50/60 transition-colors">
+                <tr key={r.id} className="hover:bg-[#fafaf8]/60 transition-colors">
                   <td className="px-4 py-2.5">
-                    <p className="text-zinc-900 font-medium">{timeAgo(r.lastSeenAt)}</p>
-                    <p className="text-[11px] text-zinc-400">
+                    <p className="text-[#292827] font-medium">{timeAgo(r.lastSeenAt)}</p>
+                    <p className="text-[11px] text-[#9a9794]">
                       {new Date(r.lastSeenAt).toLocaleString()}
                     </p>
                   </td>
-                  <td className="px-4 py-2.5 text-zinc-600">
+                  <td className="px-4 py-2.5 text-[#73706d]">
                     {[r.city, r.country].filter(Boolean).join(", ") || "—"}
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className="inline-flex items-center gap-1.5 text-zinc-600 capitalize">
+                    <span className="inline-flex items-center gap-1.5 text-[#73706d] capitalize">
                       {deviceIcon(r.deviceType)}
                       {r.deviceType || "—"}
                     </span>
                   </td>
-                  <td className="px-4 py-2.5 text-zinc-600 truncate max-w-[140px]">
+                  <td className="px-4 py-2.5 text-[#73706d] truncate max-w-[140px]">
                     {r.browser || "—"}
                   </td>
-                  <td className="px-4 py-2.5 text-right tabular-nums text-zinc-900 font-semibold">
+                  <td className="px-4 py-2.5 text-right tabular-nums text-[#292827] font-semibold">
                     {r.totalSessions}
                   </td>
-                  <td className="px-4 py-2.5 text-right tabular-nums text-zinc-600">
+                  <td className="px-4 py-2.5 text-right tabular-nums text-[#73706d]">
                     {r.totalEvents}
                   </td>
                   <td className="px-2 py-2.5">
                     <Link
                       href={`/dashboard/visitors/${r.id}`}
-                      className="inline-flex items-center justify-center w-8 h-8 hover:bg-zinc-100 rounded transition-colors"
+                      className="inline-flex items-center justify-center w-8 h-8 hover:bg-[#fafaf8] rounded transition-colors"
                       aria-label="View detail"
                     >
-                      <ArrowRight className="w-4 h-4 text-zinc-400" aria-hidden="true" />
+                      <ArrowRight className="w-4 h-4 text-[#9a9794]" aria-hidden="true" />
                     </Link>
                   </td>
                 </tr>
@@ -119,7 +119,7 @@ export default async function VisitorsPage({
       </div>
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-between mt-4 text-xs text-zinc-500">
+        <div className="flex items-center justify-between mt-4 text-xs text-[#73706d]">
           <span>
             Page {page} of {totalPages} · {total.toLocaleString()} visitors
           </span>
@@ -127,7 +127,7 @@ export default async function VisitorsPage({
             {page > 1 && (
               <Link
                 href={`?page=${page - 1}`}
-                className="px-3 py-1.5 border border-zinc-200 hover:border-zinc-400 transition-colors"
+                className="px-3 py-1.5 border border-[#e8e4dd] hover:border-zinc-400 transition-colors"
               >
                 Previous
               </Link>
@@ -135,7 +135,7 @@ export default async function VisitorsPage({
             {page < totalPages && (
               <Link
                 href={`?page=${page + 1}`}
-                className="px-3 py-1.5 border border-zinc-200 hover:border-zinc-400 transition-colors"
+                className="px-3 py-1.5 border border-[#e8e4dd] hover:border-zinc-400 transition-colors"
               >
                 Next
               </Link>

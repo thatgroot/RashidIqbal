@@ -22,13 +22,13 @@ const KIND_META: Record<
   { label: string; Icon: React.ComponentType<{ className?: string }>; tone: string }
 > = {
   figma: { label: "Figma", Icon: PenTool, tone: "bg-purple-50 text-purple-700 border-purple-200" },
-  framer: { label: "Framer", Icon: Box, tone: "bg-zinc-900 text-white border-zinc-900" },
-  notion: { label: "Notion", Icon: BookOpen, tone: "bg-zinc-50 text-zinc-700 border-zinc-200" },
+  framer: { label: "Framer", Icon: Box, tone: "bg-[#1b1938] text-white border-[#1b1938]" },
+  notion: { label: "Notion", Icon: BookOpen, tone: "bg-[#fafaf8] text-[#292827] border-[#e8e4dd]" },
   google: { label: "Google", Icon: FileText, tone: "bg-blue-50 text-blue-700 border-blue-200" },
-  github: { label: "GitHub", Icon: Github, tone: "bg-zinc-900 text-white border-zinc-900" },
+  github: { label: "GitHub", Icon: Github, tone: "bg-[#1b1938] text-white border-[#1b1938]" },
   video: { label: "Video", Icon: Video, tone: "bg-red-50 text-red-700 border-red-200" },
-  image: { label: "Image", Icon: ImageIcon, tone: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-  link: { label: "Link", Icon: Globe, tone: "bg-zinc-50 text-zinc-700 border-zinc-200" },
+  image: { label: "Image", Icon: ImageIcon, tone: "bg-[#fafaf8] text-emerald-700 border-[#e8e4dd]" },
+  link: { label: "Link", Icon: Globe, tone: "bg-[#fafaf8] text-[#292827] border-[#e8e4dd]" },
 };
 
 export function AssetGrid({
@@ -101,13 +101,13 @@ export function AssetGrid({
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.22em]">
+        <p className="text-[10px] font-mono text-[#1b1938] uppercase tracking-[0.22em]">
           Assets &amp; links
         </p>
         <button
           type="button"
           onClick={() => setOpen((s) => !s)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-zinc-600 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#73706d] border border-[#e8e4dd] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors"
         >
           <Plus className="w-3 h-3" aria-hidden="true" />
           {open ? "Cancel" : "Add asset"}
@@ -117,7 +117,7 @@ export function AssetGrid({
       {open && (
         <form
           onSubmit={add}
-          className="border border-zinc-200 bg-white p-4 mb-3 space-y-2"
+          className="border border-[#e8e4dd] bg-white p-4 mb-3 space-y-2"
         >
           <input
             type="text"
@@ -126,7 +126,7 @@ export function AssetGrid({
             placeholder="Asset name (e.g. Figma source file)"
             required
             maxLength={200}
-            className="w-full px-3 py-2 text-sm border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 text-sm border border-[#e8e4dd] bg-white focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
           <input
             type="url"
@@ -135,13 +135,13 @@ export function AssetGrid({
             placeholder="https://figma.com/file/…"
             required
             maxLength={1000}
-            className="w-full px-3 py-2 text-sm font-mono border border-zinc-200 bg-white focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 text-sm font-mono border border-[#e8e4dd] bg-white focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
           <div className="flex items-center gap-2">
             <button
               type="submit"
               disabled={busy}
-              className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-700 text-white text-xs font-bold hover:bg-orange-800 transition-colors disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-60"
             >
               {busy ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
@@ -150,7 +150,7 @@ export function AssetGrid({
               )}
               Save asset
             </button>
-            <p className="text-[10px] text-zinc-400">
+            <p className="text-[10px] text-[#9a9794]">
               Type is auto-detected from the URL.
             </p>
           </div>
@@ -163,8 +163,8 @@ export function AssetGrid({
       )}
 
       {assets.length === 0 ? (
-        <div className="border border-zinc-200 bg-white p-6 text-center">
-          <p className="text-sm text-zinc-500">
+        <div className="border border-[#e8e4dd] bg-white p-6 text-center">
+          <p className="text-sm text-[#73706d]">
             No assets yet. Drop a Figma file, Framer build, doc, or any URL.
           </p>
         </div>
@@ -175,7 +175,7 @@ export function AssetGrid({
             return (
               <li
                 key={a.id}
-                className="border border-zinc-200 bg-white p-3 flex items-start gap-3 group hover:border-orange-300 transition-colors"
+                className="border border-[#e8e4dd] bg-white p-3 flex items-start gap-3 group hover:border-[#c9b4fa] transition-colors"
               >
                 <span
                   className={`shrink-0 inline-flex items-center justify-center w-8 h-8 border ${meta.tone}`}
@@ -187,14 +187,14 @@ export function AssetGrid({
                     href={a.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-sm font-bold text-zinc-900 hover:text-orange-700 transition-colors truncate"
+                    className="block text-sm font-bold text-[#292827] hover:text-[#1b1938] transition-colors truncate"
                   >
                     {a.name}
                   </a>
-                  <p className="text-[11px] font-mono text-zinc-400 truncate">
+                  <p className="text-[11px] font-mono text-[#9a9794] truncate">
                     {a.url.replace(/^https?:\/\//, "")}
                   </p>
-                  <p className="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.18em] mt-1">
+                  <p className="text-[10px] font-mono text-[#9a9794] uppercase tracking-[0.18em] mt-1">
                     {meta.label} · added by {a.addedBy === viewer ? "you" : a.addedBy}
                   </p>
                 </div>
@@ -203,7 +203,7 @@ export function AssetGrid({
                     href={a.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1 text-zinc-400 hover:text-orange-600"
+                    className="p-1 text-[#9a9794] hover:text-[#1b1938]"
                     aria-label="Open in new tab"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -211,7 +211,7 @@ export function AssetGrid({
                   <button
                     type="button"
                     onClick={() => remove(a)}
-                    className="p-1 text-zinc-400 hover:text-red-600"
+                    className="p-1 text-[#9a9794] hover:text-red-600"
                     aria-label="Remove asset"
                   >
                     <Trash2 className="w-3.5 h-3.5" />

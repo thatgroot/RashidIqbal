@@ -100,12 +100,12 @@ export function CmsEditor({
         <Field key={f.key} field={f} value={state[f.key]} onChange={(v) => setField(f.key, v)} />
       ))}
 
-      <div className="flex items-center gap-3 pt-3 border-t border-zinc-100">
+      <div className="flex items-center gap-3 pt-3 border-t border-[#e8e4dd]">
         <button
           type="button"
           onClick={save}
           disabled={saving}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white text-xs font-bold hover:bg-orange-600 transition-colors disabled:opacity-60"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors disabled:opacity-60"
         >
           {saving ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
@@ -120,20 +120,20 @@ export function CmsEditor({
             onClick={togglePublished}
             className={`inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold border transition-colors ${
               isPublished
-                ? "border-emerald-300 text-emerald-700 bg-emerald-50/40 hover:border-emerald-400"
-                : "border-zinc-200 text-zinc-600 hover:border-orange-300 hover:text-orange-700"
+                ? "border-emerald-300 text-emerald-700 bg-[#fafaf8]/40 hover:border-emerald-400"
+                : "border-[#e8e4dd] text-[#73706d] hover:border-[#c9b4fa] hover:text-[#1b1938]"
             }`}
           >
             {isPublished ? "Unpublish" : "Publish"}
           </button>
         )}
-        {savedAt && <span className="text-[11px] text-zinc-400">Saved at {savedAt}</span>}
+        {savedAt && <span className="text-[11px] text-[#9a9794]">Saved at {savedAt}</span>}
         <span className="ml-auto" />
         {rowId && (
           <button
             type="button"
             onClick={remove}
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-zinc-500 border border-zinc-200 hover:border-red-300 hover:text-red-600 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold text-[#73706d] border border-[#e8e4dd] hover:border-red-300 hover:text-red-600 transition-colors"
           >
             <Trash2 className="w-3.5 h-3.5" aria-hidden="true" />
             Delete
@@ -158,7 +158,7 @@ function Field({
   onChange: (v: unknown) => void;
 }) {
   const labelEl = (
-    <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.18em] mb-1.5 block">
+    <span className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.18em] mb-1.5 block">
       {"label" in field && field.label}
       {"required" in field && field.required ? " · required" : ""}
     </span>
@@ -176,7 +176,7 @@ function Field({
             onChange={(e) => onChange(e.target.value)}
             required={"required" in field && field.required}
             placeholder={"placeholder" in field ? field.placeholder : undefined}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </label>
       );
@@ -190,7 +190,7 @@ function Field({
             min={"min" in field ? field.min : undefined}
             max={"max" in field ? field.max : undefined}
             onChange={(e) => onChange(parseInt(e.target.value, 10) || 0)}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           />
         </label>
       );
@@ -203,7 +203,7 @@ function Field({
             onChange={(e) => onChange(e.target.value)}
             rows={field.rows ?? 4}
             placeholder={field.placeholder}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-mono"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938] font-mono"
           />
         </label>
       );
@@ -226,7 +226,7 @@ function Field({
           <select
             value={(value as string) ?? field.options[0]?.value ?? ""}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
           >
             {field.options.map((o) => (
               <option key={o.value} value={o.value}>
@@ -259,9 +259,9 @@ function Field({
             }}
             rows={6}
             placeholder={field.placeholder ?? '[\n  {"label": "...", "value": "..."}\n]'}
-            className="w-full px-3 py-2 border border-zinc-200 bg-white text-sm focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-mono"
+            className="w-full px-3 py-2 border border-[#e8e4dd] bg-white text-sm focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938] font-mono"
           />
-          <p className="text-[10px] text-zinc-400 mt-1">JSON · validated on save</p>
+          <p className="text-[10px] text-[#9a9794] mt-1">JSON · validated on save</p>
         </label>
       );
     case "publishedAt":

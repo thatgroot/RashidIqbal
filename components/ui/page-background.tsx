@@ -22,15 +22,15 @@ export function PageBackground({
             {/* Gradient orbs for default variant */}
             {variant === "default" && (
                 <>
-                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-500/[0.02] rounded-full blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/[0.02] rounded-full blur-3xl" />
+                    <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#1b1938]/[0.02] rounded-full blur-3xl" />
+                    <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1b1938]/[0.02] rounded-full blur-3xl" />
                 </>
             )}
 
             {/* Gradient orbs for gradient variant */}
             {variant === "gradient" && (
                 <>
-                    <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-orange-500/[0.03] rounded-full blur-3xl" />
+                    <div className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-[#1b1938]/[0.03] rounded-full blur-3xl" />
                     <div className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-purple-500/[0.02] rounded-full blur-3xl" />
                 </>
             )}

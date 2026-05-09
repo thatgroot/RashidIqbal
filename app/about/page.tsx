@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "@/components/icons";
 import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
 
 const PAGE_PATH = "/about";
@@ -191,7 +191,7 @@ export default function AboutPage() {
   return (
     <main
       id="main-content"
-      className="min-h-screen bg-white text-zinc-900 selection:bg-orange-500 selection:text-white font-sans relative overflow-hidden"
+      className="min-h-screen bg-[#ffffff] text-[#0a0a0a] selection:bg-[#0a0a0a]/30 selection:text-black font-sans relative overflow-hidden"
     >
       <script
         type="application/ld+json"
@@ -210,35 +210,35 @@ export default function AboutPage() {
       <header className="max-w-3xl mx-auto px-6 pt-6 md:pt-8 flex items-center gap-3">
         <Link href="/" className="flex items-center gap-3">
           <Image src="/favicon.svg" alt="" width={28} height={28} aria-hidden="true" />
-          <span className="font-bold text-zinc-900 tracking-tight">Rashid Iqbal</span>
+          <span className="font-bold text-[#0a0a0a] tracking-tight">Rashid Iqbal</span>
         </Link>
       </header>
 
       <section className="max-w-3xl mx-auto px-6 pt-10 md:pt-14 pb-16">
-        <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-4">
+        <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em] mb-4">
           About
         </p>
 
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-zinc-900 mb-5 leading-[1.1]">
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-[#0a0a0a] mb-5 leading-[1.1]">
           I design and ship sites that turn visitors into customers.
         </h1>
 
-        <p className="text-base md:text-lg text-zinc-600 leading-relaxed mb-8">
+        <p className="text-base md:text-lg text-[#737373] leading-relaxed mb-8">
           I am Rashid Iqbal. Certified Framer Expert. Top Rated on Upwork. I have shipped
           50 plus projects for SaaS founders, Y Combinator startups, and agencies in 12
           countries since 2019. Copy first, design second, build third. Two-week delivery is
           the default.
         </p>
 
-        {/* TL;DR — quotable answer block for AI search citation */}
+        {/* TL;DR, quotable answer block for AI search citation */}
         <aside
           aria-label="Summary"
-          className="border-l-4 border-orange-500 bg-orange-50/50 px-5 py-4 mb-10"
+          className="border-l-4 border-[#0a0a0a] bg-[#fafafa]/50 px-5 py-4 mb-10"
         >
-          <p className="text-[10px] font-mono text-orange-700 uppercase tracking-[0.2em] mb-2">
+          <p className="text-[10px] font-mono text-[#0a0a0a] uppercase tracking-[0.2em] mb-2">
             Summary
           </p>
-          <p className="text-sm md:text-base text-zinc-800 leading-relaxed">
+          <p className="text-sm md:text-base text-[#0a0a0a] leading-relaxed">
             Rashid Iqbal is a Certified Framer Expert and Top Rated Upwork freelancer who
             designs in Figma, writes UX copy, and builds in Framer. Based remote, working
             worldwide. Has shipped 50 plus landing pages and websites for SaaS founders and
@@ -252,7 +252,7 @@ export default function AboutPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -261,38 +261,38 @@ export default function AboutPage() {
             href="https://framer.link/rashidiqbal"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 border border-zinc-300 text-zinc-900 text-sm font-bold hover:bg-zinc-50 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-3 border border-[#e5e5e5] text-[#0a0a0a] text-sm font-bold hover:bg-[#fafafa] transition-colors"
           >
             Hire on Framer
           </a>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 border-y border-zinc-200 py-8 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 border-y border-[#e5e5e5] py-8 mb-12">
           {STATS.map((s) => (
             <div key={s.label}>
-              <div className="text-2xl md:text-3xl font-bold text-zinc-900">{s.value}</div>
-              <div className="text-xs text-zinc-500 mt-1">{s.label}</div>
+              <div className="text-2xl md:text-3xl font-bold text-[#0a0a0a]">{s.value}</div>
+              <div className="text-xs text-[#737373] mt-1">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Story */}
         <div className="mb-12 prose prose-zinc max-w-none">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-4">The short story</h2>
-          <p className="text-base text-zinc-600 leading-relaxed mb-4">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-4">The short story</h2>
+          <p className="text-base text-[#737373] leading-relaxed mb-4">
             I started as a Figma designer in 2019. Spent three years watching beautiful
             designs get built into slow, heavy WordPress sites that lost half the visitors.
             Switched to Framer in 2022 because the canvas felt like Figma and the output felt
             like a real site. Never went back.
           </p>
-          <p className="text-base text-zinc-600 leading-relaxed mb-4">
+          <p className="text-base text-[#737373] leading-relaxed mb-4">
             Today I design, write, and build the whole site myself. One specialist, one
             timeline, one bill. No handoff lag, no agency overhead, no creative-director
             tax. Most of my work is for B2B SaaS founders who need a marketing site that
             converts cold traffic into demos.
           </p>
-          <p className="text-base text-zinc-600 leading-relaxed">
+          <p className="text-base text-[#737373] leading-relaxed">
             On the side I build Chrome extensions. Manifest V3, React, TypeScript. Usually
             shipped to the Web Store inside three weeks for SaaS teams that need a custom
             browser tool their developers do not have time to build.
@@ -301,22 +301,22 @@ export default function AboutPage() {
 
         {/* Services */}
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">What I do</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">What I do</h2>
           <div className="space-y-4">
             {SERVICES.map((s) => (
               <Link
                 key={s.title}
                 href={s.href}
-                className="block border border-zinc-200 bg-white p-5 hover:border-orange-300 transition-colors group"
+                className="block border border-[#e5e5e5] bg-white p-5 hover:border-[#8b7cf8] transition-colors group"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm font-bold text-zinc-900 group-hover:text-orange-700 transition-colors mb-1.5">
+                    <p className="text-sm font-bold text-[#0a0a0a] group-hover:text-[#0a0a0a] transition-colors mb-1.5">
                       {s.title}
                     </p>
-                    <p className="text-sm text-zinc-600 leading-relaxed">{s.body}</p>
+                    <p className="text-sm text-[#737373] leading-relaxed">{s.body}</p>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-orange-500 shrink-0 mt-1" />
+                  <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#0a0a0a] shrink-0 mt-1" />
                 </div>
               </Link>
             ))}
@@ -325,11 +325,11 @@ export default function AboutPage() {
 
         {/* How I work */}
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">How I work</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">How I work</h2>
           <ul className="space-y-3">
             {PRINCIPLES.map((p) => (
-              <li key={p} className="flex items-start gap-3 text-sm text-zinc-700">
-                <Check className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" aria-hidden="true" />
+              <li key={p} className="flex items-start gap-3 text-sm text-[#0a0a0a]">
+                <Check className="w-4 h-4 text-[#0a0a0a] shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{p}</span>
               </li>
             ))}
@@ -338,7 +338,7 @@ export default function AboutPage() {
 
         {/* Credentials */}
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">Credentials</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">Credentials</h2>
           <div className="space-y-4">
             {CREDENTIALS.map((c) => (
               <a
@@ -346,15 +346,15 @@ export default function AboutPage() {
                 href={c.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start justify-between gap-4 group border-b border-zinc-100 pb-4 last:border-b-0 last:pb-0"
+                className="flex items-start justify-between gap-4 group border-b border-[#e5e5e5] pb-4 last:border-b-0 last:pb-0"
               >
                 <div>
-                  <p className="text-sm font-bold text-zinc-900 group-hover:text-orange-700 transition-colors">
+                  <p className="text-sm font-bold text-[#0a0a0a] group-hover:text-[#0a0a0a] transition-colors">
                     {c.label}
                   </p>
-                  <p className="text-sm text-zinc-600 mt-1">{c.note}</p>
+                  <p className="text-sm text-[#737373] mt-1">{c.note}</p>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-orange-500 shrink-0 mt-1" />
+                <ArrowUpRight className="w-4 h-4 text-[#737373] group-hover:text-[#0a0a0a] shrink-0 mt-1" />
               </a>
             ))}
           </div>
@@ -362,10 +362,10 @@ export default function AboutPage() {
 
         {/* Clients */}
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             Clients I have shipped for
           </h2>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-zinc-700">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-[#0a0a0a]">
             {CLIENTS.map((c) => (
               <span key={c}>{c}</span>
             ))}
@@ -374,7 +374,7 @@ export default function AboutPage() {
 
         {/* Profiles */}
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             Verify me
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -391,7 +391,7 @@ export default function AboutPage() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-600 border border-zinc-200 hover:border-orange-300 hover:text-orange-700 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#737373] border border-[#e5e5e5] hover:border-[#8b7cf8] hover:text-[#0a0a0a] transition-colors"
               >
                 {p.name}
                 <ArrowUpRight className="w-3 h-3" aria-hidden="true" />
@@ -402,25 +402,25 @@ export default function AboutPage() {
 
         {/* FAQ */}
         <div className="mb-12">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-5">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-5">
             Frequently asked questions
           </h2>
           <div className="space-y-6">
             {FAQS.map((f) => (
               <div key={f.q}>
-                <h3 className="text-sm font-bold text-zinc-900 mb-1.5">{f.q}</h3>
-                <p className="text-sm text-zinc-600 leading-relaxed">{f.a}</p>
+                <h3 className="text-sm font-bold text-[#0a0a0a] mb-1.5">{f.q}</h3>
+                <p className="text-sm text-[#737373] leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* CTA */}
-        <div className="border-t border-zinc-200 pt-10">
-          <h2 className="text-xl md:text-2xl font-bold text-zinc-900 mb-3">
+        <div className="border-t border-[#e5e5e5] pt-10">
+          <h2 className="text-xl md:text-2xl font-bold text-[#0a0a0a] mb-3">
             Want to work together?
           </h2>
-          <p className="text-sm text-zinc-600 mb-5">
+          <p className="text-sm text-[#737373] mb-5">
             Book a 30-minute call. We talk through scope, timeline, and budget. You get a
             fixed quote within 24 hours.
           </p>
@@ -428,7 +428,7 @@ export default function AboutPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-orange-700 text-white text-sm font-bold hover:bg-orange-800 transition-colors shadow-lg shadow-orange-700/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

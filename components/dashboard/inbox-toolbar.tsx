@@ -58,12 +58,12 @@ export function InboxToolbar({
         aria-label={starred ? "Unstar" : "Star"}
         className={`inline-flex items-center justify-center w-8 h-8 border transition-colors disabled:opacity-50 ${
           starred
-            ? "border-orange-300 text-orange-500 bg-orange-50/40"
-            : "border-zinc-200 text-zinc-500 hover:border-orange-300 hover:text-orange-500"
+            ? "border-[#c9b4fa] text-[#1b1938] bg-[#fafaf8]/40"
+            : "border-[#e8e4dd] text-[#73706d] hover:border-[#c9b4fa] hover:text-[#1b1938]"
         }`}
       >
         <Star
-          className={`w-4 h-4 ${starred ? "fill-orange-500 text-orange-500" : ""}`}
+          className={`w-4 h-4 ${starred ? "fill-[#1b1938] text-[#1b1938]" : ""}`}
           aria-hidden="true"
         />
       </button>
@@ -73,7 +73,7 @@ export function InboxToolbar({
         disabled={busy}
         title={archived ? "Unarchive" : "Archive"}
         aria-label={archived ? "Unarchive" : "Archive"}
-        className="inline-flex items-center justify-center w-8 h-8 border border-zinc-200 text-zinc-500 hover:border-orange-300 hover:text-orange-700 transition-colors disabled:opacity-50"
+        className="inline-flex items-center justify-center w-8 h-8 border border-[#e8e4dd] text-[#73706d] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors disabled:opacity-50"
       >
         {archived ? (
           <ArchiveRestore className="w-4 h-4" aria-hidden="true" />
@@ -85,11 +85,11 @@ export function InboxToolbar({
         href={`mailto:${email}`}
         title="Reply"
         aria-label="Reply"
-        className="inline-flex items-center justify-center w-8 h-8 border border-zinc-200 text-zinc-500 hover:border-orange-300 hover:text-orange-700 transition-colors"
+        className="inline-flex items-center justify-center w-8 h-8 border border-[#e8e4dd] text-[#73706d] hover:border-[#c9b4fa] hover:text-[#1b1938] transition-colors"
       >
         <Reply className="w-4 h-4" aria-hidden="true" />
       </a>
-      {busy && <Loader2 className="w-3.5 h-3.5 animate-spin text-zinc-400" />}
+      {busy && <Loader2 className="w-3.5 h-3.5 animate-spin text-[#9a9794]" />}
       {/* Hidden token to silence unused-import warnings if Mail icon ever drops */}
       <span className="hidden">
         <Mail aria-hidden="true" className="w-0 h-0" />

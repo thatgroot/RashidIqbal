@@ -35,7 +35,7 @@ const config: ComparisonConfig = {
   directAnswer:
     "For a B2B SaaS marketing site under 20 pages, pick Framer. It ships faster, has better Core Web Vitals out of the box, and the AI layout tools cut design time in half. Pick Webflow when you need a deep CMS, e-commerce, or have an existing Webflow team.",
   intro:
-    "Both platforms output production websites without a separate developer. The differences matter most at the edges — speed of iteration, performance defaults, and the size of your CMS. Below is the side-by-side I run for SaaS founders deciding between them.",
+    "Both platforms output production websites without a separate developer. The differences matter most at the edges, speed of iteration, performance defaults, and the size of your CMS. Below is the side-by-side I run for SaaS founders deciding between them.",
   leftLabel: "Framer",
   rightLabel: "Webflow",
   rows: [
@@ -75,7 +75,7 @@ const config: ComparisonConfig = {
   faqs: [
     {
       q: "Is Framer faster than Webflow in 2026?",
-      a: "On default Lighthouse mobile scores, yes — Framer averages 90+ where Webflow averages 70–85 without optimization. Both can hit 90+ with manual tuning, but Framer's runtime ships less JavaScript by default.",
+      a: "On default Lighthouse mobile scores, yes, Framer averages 90+ where Webflow averages 70–85 without optimization. Both can hit 90+ with manual tuning, but Framer's runtime ships less JavaScript by default.",
     },
     {
       q: "Can I migrate from Webflow to Framer?",
@@ -83,7 +83,7 @@ const config: ComparisonConfig = {
     },
     {
       q: "Which has the better blog?",
-      a: "Both are fine for blogs under 200 posts. Above that, Webflow's CMS is sturdier — pagination, references, and Webflow's API for headless reuse all work well. Framer's CMS is simpler but starts to feel slow above 500 posts.",
+      a: "Both are fine for blogs under 200 posts. Above that, Webflow's CMS is sturdier, pagination, references, and Webflow's API for headless reuse all work well. Framer's CMS is simpler but starts to feel slow above 500 posts.",
     },
     {
       q: "Does Framer have a CMS?",

@@ -69,18 +69,18 @@ export default function PortalLoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-50 text-zinc-900 font-sans flex items-center justify-center px-6 py-12">
+    <main className="min-h-screen bg-[#fafaf8] text-[#292827] font-sans flex items-center justify-center px-6 py-12">
       <div className="w-full max-w-md">
         <div className="flex items-center gap-2 mb-6">
-          <ShieldCheck className="w-5 h-5 text-orange-600" aria-hidden="true" />
-          <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-[0.22em]">
+          <ShieldCheck className="w-5 h-5 text-[#1b1938]" aria-hidden="true" />
+          <span className="text-[10px] font-mono text-[#73706d] uppercase tracking-[0.22em]">
             Aestho · Project portal
           </span>
         </div>
-        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900 mb-2 leading-[1.1]">
+        <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-[#292827] mb-2 leading-[1.1]">
           {step === "email" ? "Sign in" : "Enter your code"}
         </h1>
-        <p className="text-sm text-zinc-500 mb-8 leading-relaxed">
+        <p className="text-sm text-[#73706d] mb-8 leading-relaxed">
           {step === "email"
             ? "Enter the email Rashid used to set up your project. A 6-digit code expires in 10 minutes."
             : `Sent to ${email}. Check spam if it's not in your inbox.`}
@@ -89,7 +89,7 @@ export default function PortalLoginPage() {
         {step === "email" ? (
           <form onSubmit={sendCode} className="space-y-3">
             <div className="relative">
-              <Mail className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
+              <Mail className="w-4 h-4 text-[#9a9794] absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true" />
               <input
                 type="email"
                 value={email}
@@ -98,13 +98,13 @@ export default function PortalLoginPage() {
                 required
                 autoComplete="email"
                 autoFocus
-                className="w-full pl-10 pr-4 py-3 border border-zinc-200 bg-white text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500"
+                className="w-full pl-10 pr-4 py-3 border border-[#e8e4dd] bg-white text-sm text-[#292827] placeholder:text-[#9a9794] focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
               />
             </div>
             <button
               type="submit"
               disabled={status === "sending"}
-              className="w-full py-3 bg-zinc-900 text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-zinc-800 transition-colors disabled:opacity-60"
+              className="w-full py-3 bg-[#1b1938] text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-[#0e0c1f] transition-colors disabled:opacity-60"
             >
               {status === "sending" ? (
                 <>
@@ -132,12 +132,12 @@ export default function PortalLoginPage() {
               placeholder="123456"
               required
               autoComplete="one-time-code"
-              className="w-full px-4 py-4 border border-zinc-200 bg-white text-center text-2xl tracking-[0.6em] font-bold text-zinc-900 placeholder:text-zinc-300 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 font-mono"
+              className="w-full px-4 py-4 border border-[#e8e4dd] bg-white text-center text-2xl tracking-[0.6em] font-bold text-[#292827] placeholder:text-zinc-300 focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938] font-mono"
             />
             <button
               type="submit"
               disabled={status === "verifying" || code.length !== 6}
-              className="w-full py-3 bg-orange-700 text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-orange-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-[#1b1938] text-white text-sm font-bold flex items-center justify-center gap-2 hover:bg-[#1b1938] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {status === "verifying" ? (
                 <>
@@ -151,7 +151,7 @@ export default function PortalLoginPage() {
                 </>
               )}
             </button>
-            <div className="flex items-center justify-between pt-2 text-xs text-zinc-500">
+            <div className="flex items-center justify-between pt-2 text-xs text-[#73706d]">
               <button
                 type="button"
                 onClick={() => {
@@ -159,7 +159,7 @@ export default function PortalLoginPage() {
                   setCode("");
                   setError(null);
                 }}
-                className="hover:text-zinc-900"
+                className="hover:text-[#292827]"
               >
                 ← Change email
               </button>
@@ -167,7 +167,7 @@ export default function PortalLoginPage() {
                 type="button"
                 onClick={() => sendCode()}
                 disabled={status === "sending"}
-                className="hover:text-zinc-900 disabled:opacity-50"
+                className="hover:text-[#292827] disabled:opacity-50"
               >
                 Resend code
               </button>
@@ -181,7 +181,7 @@ export default function PortalLoginPage() {
           </p>
         )}
 
-        <p className="mt-12 text-[11px] font-mono text-zinc-400 uppercase tracking-[0.2em] text-center">
+        <p className="mt-12 text-[11px] font-mono text-[#9a9794] uppercase tracking-[0.2em] text-center">
           © {new Date().getFullYear()} Rashid Iqbal · Aestho
         </p>
       </div>
