@@ -86,16 +86,14 @@ const STACK_OPTIONS: { value: string; label: string; kind: "design" | "build" }[
   { value: "figma", label: "Figma (design)", kind: "design" },
   { value: "framer", label: "Framer", kind: "build" },
   { value: "webflow", label: "Webflow", kind: "build" },
-  { value: "replit", label: "Replit", kind: "build" },
-  { value: "nextjs", label: "Next.js / custom", kind: "build" },
   { value: "unsure", label: "Not sure yet", kind: "design" },
 ];
 
 const BUDGET_RANGES = [
-  "Single landing page",
-  "Multi-page marketing site",
-  "Site + CMS + blog",
-  "Larger / custom scope",
+  "Single landing page · $2,000",
+  "Multi-page marketing site · $5,000",
+  "Site + CMS + blog · $11,000",
+  "Larger / custom scope · $11,000+",
   "Not sure yet",
 ];
 
@@ -186,7 +184,7 @@ export function ServiceBuilder() {
     website: "",
     location: "",
     pageCount: "",
-    budget: "Multi-page marketing site",
+    budget: "Multi-page marketing site · $5,000",
     timeline: "This month",
     description: "",
     selectedServices: ["figma-design", "ux-audit"],
