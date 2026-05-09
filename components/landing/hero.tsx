@@ -74,7 +74,7 @@ export function Hero() {
                                             fill
                                             className="object-cover grayscale"
                                             sizes="20vw"
-                                            priority={i < 4}
+                                            loading="lazy"
                                         />
                                     </div>
                                 ))}
@@ -222,7 +222,11 @@ export function Hero() {
                                 transition={{ delay: 0.3 }}
                                 className="text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-8"
                             >
-                                Aestho is an 8-person studio for SaaS founders. We rewrite the copy, design in Figma, and ship in Framer with headlines and CTAs that close deals. UpdateAI: signups +50%. Vanos AI: weekly devs 2×. SpaceDome: signups 3×. <span className="font-semibold text-zinc-900">Live in two weeks. Refund if the design is wrong.</span>
+                                Aestho is an 8-person studio for SaaS founders. We rewrite the copy, design in Figma, and ship in Framer with headlines and CTAs that close deals.{" "}
+                                <a href="/work/updateai" className="underline decoration-orange-300 decoration-2 underline-offset-2 hover:text-orange-700 transition-colors">UpdateAI: signups +50%</a>.{" "}
+                                <a href="/work/vanos-ai" className="underline decoration-orange-300 decoration-2 underline-offset-2 hover:text-orange-700 transition-colors">Vanos AI: weekly devs 2×</a>.{" "}
+                                <a href="/work/spacedome-ai" className="underline decoration-orange-300 decoration-2 underline-offset-2 hover:text-orange-700 transition-colors">SpaceDome: signups 3×</a>.{" "}
+                                <span className="font-semibold text-zinc-900">Live in two weeks. Refund if the design is wrong.</span>
                             </motion.p>
 
                             {/* Trust band + secondary CTA. Both primary

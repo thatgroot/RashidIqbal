@@ -216,13 +216,18 @@ const schemas = [
       "query-input": "required name=search_term_string",
     },
   },
-  // Organization
+  // Organization — 8-person studio. The `employee` array is what
+  // separates this from the older personal-brand framing; AI search
+  // engines (Perplexity, ChatGPT, Claude) and Google's Knowledge
+  // Graph use it to merge "Aestho" + "the team" into one entity.
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${siteUrl}#organization`,
     name: "Aestho",
-    legalName: "Rashid Iqbal",
+    description:
+      "8-person design + development studio for SaaS founders. Figma design, Framer development, UX copy, motion, and video — led by Rashid Iqbal. Shipping conversion-focused marketing sites since 2019.",
+    legalName: "Aestho",
     url: siteUrl,
     logo: {
       "@type": "ImageObject",
@@ -232,6 +237,25 @@ const schemas = [
     },
     founder: { "@id": `${siteUrl}#person` },
     foundingDate: "2019",
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 8 },
+    employee: [
+      { "@type": "Person", name: "Rashid Iqbal", jobTitle: "Lead · Figma + UX Copy", url: "https://www.framer.com/@risiq" },
+      { "@type": "Person", name: "Mehdi Hassan", jobTitle: "Figma + Framer Expert" },
+      { "@type": "Person", name: "Rehbaz Ali", jobTitle: "Figma Designer · Framer Expert" },
+      { "@type": "Person", name: "Ans Ali", jobTitle: "Framer Expert" },
+      { "@type": "Person", name: "Qasid Hussain", jobTitle: "Framer Expert" },
+      { "@type": "Person", name: "Irtiqa Shah", jobTitle: "Figma Designer" },
+      { "@type": "Person", name: "Iqtidar Hassan", jobTitle: "Motion Designer · After Effects" },
+      { "@type": "Person", name: "Mir Anees", jobTitle: "Video Editor" },
+    ],
+    knowsAbout: [
+      "Figma design",
+      "Framer development",
+      "UX copywriting",
+      "landing-page conversion optimization",
+      "motion design",
+      "video editing",
+    ],
     sameAs: [
       "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
       "https://www.framer.com/@risiq",
