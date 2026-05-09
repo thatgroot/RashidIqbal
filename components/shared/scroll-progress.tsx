@@ -9,14 +9,14 @@
 // JS frames, and degrades gracefully — so we don't pay observer cost
 // on browsers that already do this for free.
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from"react";
 
 export function ScrollProgress() {
   const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Feature-detect scroll-driven animations (CSS @scroll-timeline).
-    if (typeof window !== "undefined" && CSS?.supports?.("animation-timeline: scroll()")) {
+    if (typeof window !=="undefined" && CSS?.supports?.("animation-timeline: scroll()")) {
       return; // CSS handles it via the inline style block below
     }
     // JS fallback for older browsers
@@ -44,9 +44,9 @@ export function ScrollProgress() {
         className="aestho-scroll-progress fixed top-0 left-0 right-0 h-[2px] origin-left z-[100] pointer-events-none"
         style={{
           background:
-            "linear-gradient(90deg, #c9b4fa 0%, #1b1938 50%, #0e3030 100%)",
-          transform: "scaleX(0)",
-          willChange: "transform",
+"linear-gradient(90deg, #fde8a3 0%, #0a0a0a 50%, #0a0a0a 100%)",
+          transform:"scaleX(0)",
+          willChange:"transform",
         }}
       />
       <style>{`

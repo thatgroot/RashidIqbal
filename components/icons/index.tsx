@@ -9,9 +9,9 @@
 // surrounding text colour, and is visually distinct from every other
 // icon in the file. No two icons look the same.
 
-import type { SVGProps } from "react";
+import type { SVGProps } from"react";
 
-interface IconProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
+interface IconProps extends Omit<SVGProps<SVGSVGElement>,"ref"> {
   className?: string;
   size?: number;
 }
@@ -295,7 +295,7 @@ export function GitBranchSm(props: IconProps) {
 
 // ---- Star (amber-filled — the only icon that breaks currentColor) ----
 
-interface StarProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
+interface StarProps extends Omit<SVGProps<SVGSVGElement>,"ref"> {
   className?: string;
   size?: number;
   /** filled=true draws an amber star; filled=false an outline. */
@@ -311,8 +311,8 @@ export function Star({ size = 16, className, filled = true, ...rest }: StarProps
       viewBox="0 0 24 24"
       className={className}
       aria-hidden="true"
-      fill={filled ? "#E6B431" : "none"}
-      stroke={filled ? "#9C7307" : "currentColor"}
+      fill={filled ?"#E6B431" :"none"}
+      stroke={filled ?"#9C7307" :"currentColor"}
       strokeWidth="1.6"
       strokeLinejoin="round"
       {...rest}

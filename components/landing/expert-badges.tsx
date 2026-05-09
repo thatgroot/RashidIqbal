@@ -18,7 +18,7 @@
 // Brand icons — inlined from Contra SVGs
 // ============================================================================
 
-function FramerLogo({ className = "w-6 h-6" }: { className?: string }) {
+function FramerLogo({ className ="w-6 h-6" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -41,7 +41,7 @@ function FramerLogo({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
-function Base44Logo({ className = "w-6 h-6" }: { className?: string }) {
+function Base44Logo({ className ="w-6 h-6" }: { className?: string }) {
   // Sourced from /public/brands/base44.svg so the asset ships with the
   // build and never depends on Base44's CDN. Replace the file if Base44
   // ever rotates the mark — no code change needed.
@@ -57,7 +57,7 @@ function Base44Logo({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
-function ReplitLogo({ className = "w-6 h-6" }: { className?: string }) {
+function ReplitLogo({ className ="w-6 h-6" }: { className?: string }) {
   return (
     <svg
       className={className}
@@ -82,7 +82,7 @@ function ReplitLogo({ className = "w-6 h-6" }: { className?: string }) {
   );
 }
 
-function DribbbleLogo({ className = "w-6 h-6" }: { className?: string }) {
+function DribbbleLogo({ className ="w-6 h-6" }: { className?: string }) {
   // Dribbble brand mark — pink basketball-style circle.
   return (
     <svg
@@ -104,25 +104,25 @@ function DribbbleLogo({ className = "w-6 h-6" }: { className?: string }) {
 // Shared logo size map
 // ============================================================================
 
-type TileSize = "sm" | "md" | "lg";
+type TileSize ="sm" |"md" |"lg";
 
 const LOGO_SIZE: Record<TileSize, string> = {
-  sm: "w-6 h-6",
-  md: "w-8 h-8",
-  lg: "w-11 h-11",
+  sm:"w-6 h-6",
+  md:"w-8 h-8",
+  lg:"w-11 h-11",
 };
 
 function BrandLogo({
   icon,
-  size = "md",
+  size ="md",
 }: {
-  icon: "framer" | "replit" | "base44" | "dribbble";
+  icon:"framer" |"replit" |"base44" |"dribbble";
   size?: TileSize;
 }) {
   const className = LOGO_SIZE[size];
-  if (icon === "framer") return <FramerLogo className={className} />;
-  if (icon === "base44") return <Base44Logo className={className} />;
-  if (icon === "dribbble") return <DribbbleLogo className={className} />;
+  if (icon ==="framer") return <FramerLogo className={className} />;
+  if (icon ==="base44") return <Base44Logo className={className} />;
+  if (icon ==="dribbble") return <DribbbleLogo className={className} />;
   return <ReplitLogo className={className} />;
 }
 
@@ -132,28 +132,28 @@ function BrandLogo({
 
 const BADGES = [
   {
-    icon: "framer" as const,
-    title: "Framer Expert",
-    description: "Certified by Framer as highly skilled.",
-    href: "https://www.framer.com/@risiq",
+    icon:"framer" as const,
+    title:"Framer Expert",
+    description:"Certified by Framer as highly skilled.",
+    href:"https://www.framer.com/@risiq",
   },
   {
-    icon: "replit" as const,
-    title: "Replit Expert",
-    description: "Certified by Replit as highly skilled.",
-    href: "https://contra.com/rashidiqbal",
+    icon:"replit" as const,
+    title:"Replit Expert",
+    description:"Certified by Replit as highly skilled.",
+    href:"https://contra.com/rashidiqbal",
   },
   {
-    icon: "base44" as const,
-    title: "Base44 Partner",
-    description: "Verified Base44 build partner.",
-    href: "https://app.base44.com/@rashid-iqbal",
+    icon:"base44" as const,
+    title:"Base44 Partner",
+    description:"Verified Base44 build partner.",
+    href:"https://app.base44.com/@rashid-iqbal",
   },
   {
-    icon: "dribbble" as const,
-    title: "Dribbble | Framer Expert",
-    description: "Verified Framer Expert profile on Dribbble.",
-    href: "https://dribbble.com/thatgroot/about",
+    icon:"dribbble" as const,
+    title:"Dribbble | Framer Expert",
+    description:"Verified Framer Expert profile on Dribbble.",
+    href:"https://dribbble.com/thatgroot/about",
   },
 ];
 
@@ -162,7 +162,7 @@ const BADGES = [
 // ============================================================================
 
 type ExpertBadgesProps = {
-  variant?: "pill" | "card";
+  variant?:"pill" |"card";
   /** When set, every pill (or card row) becomes a link to this URL. */
   href?: string;
   /** Label announced to screen readers when `href` makes the pill clickable. */
@@ -174,16 +174,16 @@ type ExpertBadgesProps = {
 };
 
 export function ExpertBadges({
-  variant = "pill",
+  variant ="pill",
   href,
-  hrefLabel = "Book a call",
+  hrefLabel ="Book a call",
   nolinks = false,
-  className = "",
+  className ="",
 }: ExpertBadgesProps) {
-  if (variant === "card") {
+  if (variant ==="card") {
     return (
       <div
-        className={`border border-[#e8e4dd] bg-white rounded-2xl p-5 md:p-6 max-w-md ${className}`}
+        className={`border border-[#e5e5e5] bg-white rounded-2xl p-5 md:p-6 max-w-md ${className}`}
       >
         <ul className="space-y-5">
           {BADGES.map((b) => {
@@ -191,10 +191,10 @@ export function ExpertBadges({
               <>
                 <BrandLogo icon={b.icon} size="lg" />
                 <div className="pt-0.5 flex-1 min-w-0">
-                  <h4 className="font-bold text-[#292827] text-sm md:text-base leading-tight">
+                  <h4 className="font-bold text-[#0a0a0a] text-sm md:text-base leading-tight">
                     {b.title}
                   </h4>
-                  <p className="text-xs md:text-sm text-[#73706d] mt-1 leading-snug">
+                  <p className="text-xs md:text-sm text-[#737373] mt-1 leading-snug">
                     {b.description}
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export function ExpertBadges({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={linkLabel}
-                    className="flex items-start gap-4 rounded-lg -m-1 p-1 hover:bg-[#fafaf8] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1938]"
+                    className="flex items-start gap-4 rounded-lg -m-1 p-1 hover:bg-[#fafafa] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a]"
                   >
                     {content}
                   </a>
@@ -233,8 +233,8 @@ export function ExpertBadges({
   // framer.com/@risiq, Replit → contra.com/rashidiqbal,
   // Base44 → app.base44.com, Dribbble → dribbble.com/thatgroot/about).
   // When a parent passes `href`, every pill is overridden — used by
-  // some surfaces to make the whole row a "Book a call" CTA. Hash
-  // anchors (e.g. "#booking-calendar") are smooth-scrolled in-page.
+  // some surfaces to make the whole row a"Book a call" CTA. Hash
+  // anchors (e.g."#booking-calendar") are smooth-scrolled in-page.
   const overrideHref = href;
   const isInPageAnchor = !!overrideHref && overrideHref.startsWith("#");
   return (
@@ -243,14 +243,14 @@ export function ExpertBadges({
         const inner = (
           <>
             <BrandLogo icon={b.icon} size="sm" />
-            <span className="text-xs sm:text-sm font-semibold text-[#292827]">
+            <span className="text-xs sm:text-sm font-semibold text-[#0a0a0a]">
               {b.title}
             </span>
           </>
         );
 
         const pillBase =
-          "inline-flex items-center gap-2 pl-1.5 pr-3 py-1 border border-[#e8e4dd] bg-white rounded-full transition-all";
+"inline-flex items-center gap-2 pl-1.5 pr-3 py-1 border border-[#e5e5e5] bg-white rounded-full transition-all";
 
         // Non-interactive credential display (used in the hero).
         if (nolinks) {
@@ -280,12 +280,12 @@ export function ExpertBadges({
                     e.preventDefault();
                     document
                       .querySelector(overrideHref)
-                      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      ?.scrollIntoView({ behavior:"smooth", block:"start" });
                   },
                 }
-              : { target: "_blank", rel: "noopener noreferrer" })}
+              : { target:"_blank", rel:"noopener noreferrer" })}
             aria-label={pillLabel}
-            className={`${pillBase} hover:border-[#e8c773] hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1b1938]`}
+            className={`${pillBase} hover:border-[#e8c773] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a]`}
           >
             {inner}
           </a>

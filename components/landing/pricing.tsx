@@ -277,7 +277,7 @@ export function Pricing() {
                   whileHover={{ y: -4 }}
                   className={`relative h-full flex flex-col rounded-2xl border bg-white p-7 md:p-8 ${
                     isFeatured
-                      ?"border-[#dcd5ff]"
+                      ?"border-[#fde8a3]"
                       :"border-[#e5e5e5]"
                   }`}
                   style={{
@@ -290,7 +290,7 @@ export function Pricing() {
                     <span
                       className={`absolute -top-3 left-7 inline-flex items-center gap-1.5 px-3 py-1 text-[11px] uppercase tracking-[0.16em] rounded-full ${
                         plan.popular
-                          ?"bg-white text-[#9c7307] border border-[#dcd5ff]"
+                          ?"bg-white text-[#9c7307] border border-[#fde8a3]"
                           :"bg-[#0a0a0a] text-white"
                       }`}
                       style={{ fontVariationSettings: '"wght" 600' }}

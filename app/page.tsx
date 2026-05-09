@@ -1,56 +1,56 @@
-import { Metadata } from "next";
-import { Hero } from "@/components/landing/hero";
-import { Navbar } from "@/components/layout/navbar";
-import { CaseStudies } from "@/components/landing/case-studies";
-import { ServiceList } from "@/components/landing/service-list";
-import { Process } from "@/components/landing/process";
-import { UseCases } from "@/components/landing/use-cases";
-import { TeamSection } from "@/components/landing/team";
-import { Testimonials } from "@/components/landing/testimonials";
-import { Pricing } from "@/components/landing/pricing";
-import { FAQ } from "@/components/landing/faq";
-import { ClosingBand } from "@/components/landing/closing-band";
-import { SectionSpacer } from "@/components/shared/section-spacer";
-import { ScrollCTA } from "@/components/shared/scroll-cta";
-import { AvailabilityBadge } from "@/components/shared/availability-badge";
-import { SITE_URL as siteUrl } from "@/lib/constants";
+import { Metadata } from"next";
+import { Hero } from"@/components/landing/hero";
+import { Navbar } from"@/components/layout/navbar";
+import { CaseStudies } from"@/components/landing/case-studies";
+import { ServiceList } from"@/components/landing/service-list";
+import { Process } from"@/components/landing/process";
+import { UseCases } from"@/components/landing/use-cases";
+import { TeamSection } from"@/components/landing/team";
+import { Testimonials } from"@/components/landing/testimonials";
+import { Pricing } from"@/components/landing/pricing";
+import { FAQ } from"@/components/landing/faq";
+import { ClosingBand } from"@/components/landing/closing-band";
+import { SectionSpacer } from"@/components/shared/section-spacer";
+import { ScrollCTA } from"@/components/shared/scroll-cta";
+import { AvailabilityBadge } from"@/components/shared/availability-badge";
+import { SITE_URL as siteUrl } from"@/lib/constants";
 
 
 
 
 export const metadata: Metadata = {
-  title: "Figma & Framer Expert | Websites That Convert",
-  description: "I design in Figma, build in Framer, and develop Chrome extensions. High-converting landing pages and websites with UX copy baked in. 50+ projects.",
-  keywords: ["Figma expert", "Framer expert", "Chrome extensions Figma", "UX copywriting", "landing page designer", "Framer developer", "Figma to Framer", "conversion optimization", "Chrome extension developer", "landing page conversion"],
+  title:"Figma & Framer Expert | Websites That Convert",
+  description:"I design in Figma, build in Framer, and develop Chrome extensions. High-converting landing pages and websites with UX copy baked in. 50+ projects.",
+  keywords: ["Figma expert","Framer expert","Chrome extensions Figma","UX copywriting","landing page designer","Framer developer","Figma to Framer","conversion optimization","Chrome extension developer","landing page conversion"],
   openGraph: {
-    title: "Figma & Framer Expert | Websites That Convert",
-    description: "Figma design, Framer builds, Chrome extensions. Websites that convert with UX copy baked in. 50+ projects shipped.",
-    type: "website",
-    locale: "en_US",
+    title:"Figma & Framer Expert | Websites That Convert",
+    description:"Figma design, Framer builds, Chrome extensions. Websites that convert with UX copy baked in. 50+ projects shipped.",
+    type:"website",
+    locale:"en_US",
     url: siteUrl,
-    siteName: "Rashid Iqbal",
+    siteName:"Rashid Iqbal",
     images: [
       {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal. Figma & Framer Expert",
-        type: "image/png",
+        alt:"Rashid Iqbal. Figma & Framer Expert",
+        type:"image/png",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    site: "@rashidrealme",
-    creator: "@rashidrealme",
-    title: "Figma & Framer Expert | Websites That Convert",
-    description: "Figma design, Framer builds, Chrome extensions. Websites that convert with UX copy baked in.",
+    card:"summary_large_image",
+    site:"@rashidrealme",
+    creator:"@rashidrealme",
+    title:"Figma & Framer Expert | Websites That Convert",
+    description:"Figma design, Framer builds, Chrome extensions. Websites that convert with UX copy baked in.",
     images: [
       {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal. Figma & Framer Expert",
+        alt:"Rashid Iqbal. Figma & Framer Expert",
       },
     ],
   },
@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon:"/favicon.svg",
+    shortcut:"/favicon.svg",
+    apple:"/favicon.svg",
   },
 };
 
@@ -71,8 +71,8 @@ import {
   listPublishedTestimonials,
   listPublishedFaqs,
   listPublishedCaseStudies,
-} from "@/lib/cms/queries";
-import type { CaseStudyCard } from "@/components/landing/case-studies";
+} from"@/lib/cms/queries";
+import type { CaseStudyCard } from"@/components/landing/case-studies";
 
 // ISR: regenerate every 30 minutes so CMS edits propagate without
 // giving up static delivery (force-dynamic killed TTFB + Core Web Vitals).
@@ -88,8 +88,8 @@ export default async function Page() {
   const testimonialItems = cmsTestimonials.map((t) => ({
     text: t.quote,
     author: t.author,
-    role: t.title || "",
-    accent: t.accent || "blue",
+    role: t.title ||"",
+    accent: t.accent ||"blue",
     ...(t.avatarUrl ? { avatarUrl: t.avatarUrl } : {}),
   }));
 
@@ -97,14 +97,14 @@ export default async function Page() {
 
   // Map CMS case-study rows onto the homepage card shape. The CMS row
   // doesn't carry separate problem/solution columns yet — only summary
-  // + body — so the card renders summary as the "result" line and the
+  // + body — so the card renders summary as the"result" line and the
   // body deep-dive lives at /work/<slug>.
   // Slug → screenshot path. Mirrors files in public/work-screenshots/.
   const screenshotForSlug: Record<string, string> = {
-    updateai: "/work-screenshots/updateai.png",
-    "vanos-ai": "/work-screenshots/vanos-ai.png",
-    "spacedome-ai": "/work-screenshots/space-dome.png",
-    atqleads: "/work-screenshots/atqleads.jpg",
+    updateai:"/work-screenshots/updateai.png",
+"vanos-ai":"/work-screenshots/vanos-ai.png",
+"spacedome-ai":"/work-screenshots/space-dome.png",
+    atqleads:"/work-screenshots/atqleads.jpg",
   };
 
   const caseItems: CaseStudyCard[] = cmsCases.map((c) => ({
@@ -139,11 +139,11 @@ function _renderPage({
         {/* PROOF — case studies showcase + trust strip moved directly
             below the hero so the visitor sees real outcomes before they
             scroll into anything else. */}
-        {/* "Built for the way modern teams ship" — Codex pattern. */}
+        {/*"Built for the way modern teams ship" — Codex pattern. */}
         <ServiceList />
-        {/* "From idea to ship" — 4-step process. */}
+        {/*"From idea to ship" — 4-step process. */}
         <Process />
-        {/* "Built for how you ship" — 2x2 use-case grid. */}
+        {/*"Built for how you ship" — 2x2 use-case grid. */}
         <UseCases />
         {/* PROOF — case studies. */}
         <CaseStudies {...(caseItems.length > 0 ? { items: caseItems } : {})} />

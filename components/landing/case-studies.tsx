@@ -122,7 +122,7 @@ function ProjectCard({ project, index }: { project: FeaturedProject; index: numb
         </span>
         {project.tag ? (
           <span
-            className="ml-auto text-[10px] uppercase tracking-[0.16em] text-[#9c7307] px-2 py-0.5 rounded-full bg-white border border-[#dcd5ff]"
+            className="ml-auto text-[10px] uppercase tracking-[0.16em] text-[#9c7307] px-2 py-0.5 rounded-full bg-white border border-[#fde8a3]"
             style={{ fontVariationSettings: '"wght" 600' }}
           >
             {project.tag}

@@ -1,23 +1,23 @@
-import Link from "next/link";
-import Image from "next/image";
-import type { Metadata } from "next";
-import { ArrowRight, ArrowUpRight } from "@/components/icons";
-import { listPublishedCaseStudies } from "@/lib/cms/queries";
-import { SITE_URL } from "@/lib/constants";
+import Link from"next/link";
+import Image from"next/image";
+import type { Metadata } from"next";
+import { ArrowRight, ArrowUpRight } from"@/components/icons";
+import { listPublishedCaseStudies } from"@/lib/cms/queries";
+import { SITE_URL } from"@/lib/constants";
 
 // ISR: regenerate every 30 minutes; CMS edits propagate without losing static delivery.
 export const revalidate = 1800;
 
 export const metadata: Metadata = {
-  title: "Case Studies · Rashid Iqbal",
+  title:"Case Studies · Rashid Iqbal",
   description:
-    "Live SaaS sites I designed, wrote copy for, and shipped on Framer. Real outcomes, named clients, public URLs.",
+"Live SaaS sites I designed, wrote copy for, and shipped on Framer. Real outcomes, named clients, public URLs.",
   alternates: { canonical: `${SITE_URL}/work` },
   openGraph: {
-    title: "Case Studies · Rashid Iqbal",
-    description: "Real outcomes, named clients, public URLs.",
+    title:"Case Studies · Rashid Iqbal",
+    description:"Real outcomes, named clients, public URLs.",
     url: `${SITE_URL}/work`,
-    type: "website",
+    type:"website",
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Case Studies")}`,
@@ -32,25 +32,25 @@ export default async function WorkIndexPage() {
   const cases = await listPublishedCaseStudies();
 
   const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Case studies · Rashid Iqbal",
+"@context":"https://schema.org",
+"@type":"ItemList",
+    name:"Case studies · Rashid Iqbal",
     description:
-      "Live SaaS sites I designed, wrote copy for, and shipped on Framer. Real outcomes, named clients, public URLs.",
+"Live SaaS sites I designed, wrote copy for, and shipped on Framer. Real outcomes, named clients, public URLs.",
     numberOfItems: cases.length,
     itemListElement: cases.map((c, i) => ({
-      "@type": "ListItem",
+"@type":"ListItem",
       position: i + 1,
       url: `${SITE_URL}/work/${c.slug}`,
       name: `${c.title} · ${c.clientName}`,
     })),
   };
   const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Case studies", item: `${SITE_URL}/work` },
+      {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL },
+      {"@type":"ListItem", position: 2, name:"Case studies", item: `${SITE_URL}/work` },
     ],
   };
 
@@ -157,7 +157,7 @@ export default async function WorkIndexPage() {
           </h2>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Start a project
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

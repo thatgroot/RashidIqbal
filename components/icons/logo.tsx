@@ -6,17 +6,17 @@
 //
 // Variants:
 //   - `mark`   — the layered-card mark in full colour (gradient + ribbons)
-//   - `lockup` — the mark + the word "Aestho" beside it
+//   - `lockup` — the mark + the word"Aestho" beside it
 //   - `mono`   — single-colour silhouette of the front card (currentColor),
 //                for footers / favicon-adjacent contexts where the
 //                gradient would not survive (e.g. embedded in the page
 //                ink at small sizes).
 
-import type { SVGProps } from "react";
+import type { SVGProps } from"react";
 
-interface LogoProps extends Omit<SVGProps<SVGSVGElement>, "ref"> {
+interface LogoProps extends Omit<SVGProps<SVGSVGElement>,"ref"> {
   size?: number;
-  variant?: "mark" | "lockup" | "mono";
+  variant?:"mark" |"lockup" |"mono";
 }
 
 let __idCounter = 0;
@@ -46,11 +46,11 @@ function MarkPaths({ id }: { id: string }) {
 
 export function Logo({
   size = 24,
-  variant = "mark",
+  variant ="mark",
   className,
   ...rest
 }: LogoProps) {
-  if (variant === "mono") {
+  if (variant ==="mono") {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ export function Logo({
 
   const gradId = nextId("body");
 
-  if (variant === "lockup") {
+  if (variant ==="lockup") {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

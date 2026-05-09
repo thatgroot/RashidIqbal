@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Check } from "@/components/icons";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
+import type { Metadata } from"next";
+import Link from"next/link";
+import Image from"next/image";
+import { ArrowRight, Check } from"@/components/icons";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
 
-const PAGE_PATH = "/chrome-extension-developer";
+const PAGE_PATH ="/chrome-extension-developer";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Chrome Extension Developer for SaaS | Rashid Iqbal",
+  title:"Chrome Extension Developer for SaaS | Rashid Iqbal",
   description:
-    "Hire a freelance Chrome extension developer. Manifest V3, React, TypeScript. Built extensions for Figma, Framer, and SaaS workflows. Two to four week delivery.",
+"Hire a freelance Chrome extension developer. Manifest V3, React, TypeScript. Built extensions for Figma, Framer, and SaaS workflows. Two to four week delivery.",
   keywords: [
-    "chrome extension developer for saas",
-    "custom chrome extension manifest v3 developer",
-    "chrome extension freelancer",
-    "figma chrome extension",
-    "framer chrome extension",
-    "browser extension developer",
+"chrome extension developer for saas",
+"custom chrome extension manifest v3 developer",
+"chrome extension freelancer",
+"figma chrome extension",
+"framer chrome extension",
+"browser extension developer",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Chrome Extension Developer for SaaS | Rashid Iqbal",
+    title:"Chrome Extension Developer for SaaS | Rashid Iqbal",
     description:
-      "Manifest V3, React, TypeScript. Built and shipped extensions used by SaaS teams.",
+"Manifest V3, React, TypeScript. Built and shipped extensions used by SaaS teams.",
     url: PAGE_URL,
-    type: "website",
+    type:"website",
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent(
-          "Chrome Extension Developer for SaaS"
+"Chrome Extension Developer for SaaS"
         )}`,
         width: 1200,
         height: 630,
@@ -37,106 +37,106 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Chrome Extension Developer for SaaS",
-    description: "Manifest V3, React, TypeScript. Two to four week delivery.",
+    card:"summary_large_image",
+    title:"Chrome Extension Developer for SaaS",
+    description:"Manifest V3, React, TypeScript. Two to four week delivery.",
   },
 };
 
 const CAPABILITIES = [
-  "Manifest V3 architecture with service worker background scripts",
-  "Content scripts that read and modify the active tab safely",
-  "OAuth flows for Google, Notion, Linear, Slack, and custom IdPs",
-  "React + TypeScript popup UI with Tailwind styling",
-  "Chrome Web Store listing, screenshots, and review submission",
-  "Privacy policy, permissions audit, and review-friendly architecture",
+"Manifest V3 architecture with service worker background scripts",
+"Content scripts that read and modify the active tab safely",
+"OAuth flows for Google, Notion, Linear, Slack, and custom IdPs",
+"React + TypeScript popup UI with Tailwind styling",
+"Chrome Web Store listing, screenshots, and review submission",
+"Privacy policy, permissions audit, and review-friendly architecture",
 ] as const;
 
 const USE_CASES = [
   {
-    title: "Productivity tools for SaaS teams",
-    body: "Quick-capture extensions that send selections to your app. One-click context, zero copy-paste.",
+    title:"Productivity tools for SaaS teams",
+    body:"Quick-capture extensions that send selections to your app. One-click context, zero copy-paste.",
   },
   {
-    title: "Sales and outbound enrichment",
-    body: "LinkedIn, GitHub, or directory scrapers that push enriched contacts into your CRM through a webhook.",
+    title:"Sales and outbound enrichment",
+    body:"LinkedIn, GitHub, or directory scrapers that push enriched contacts into your CRM through a webhook.",
   },
   {
-    title: "Internal QA and admin tools",
-    body: "Hidden admin panels gated by domain, exposing feature flags or internal actions on staging environments.",
+    title:"Internal QA and admin tools",
+    body:"Hidden admin panels gated by domain, exposing feature flags or internal actions on staging environments.",
   },
   {
-    title: "Design and engineering helpers",
-    body: "Color pickers, asset extractors, accessibility audits, or Figma-to-code shortcuts.",
+    title:"Design and engineering helpers",
+    body:"Color pickers, asset extractors, accessibility audits, or Figma-to-code shortcuts.",
   },
 ] as const;
 
 const PROCESS = [
   {
-    title: "Week 1: Spec",
-    body: "Permissions audit, flow diagrams, mock UI, Manifest V3 architecture decisions documented.",
+    title:"Week 1: Spec",
+    body:"Permissions audit, flow diagrams, mock UI, Manifest V3 architecture decisions documented.",
   },
   {
-    title: "Week 2: Build",
-    body: "Popup, content scripts, background service worker. CI set up. First test build sideloadable.",
+    title:"Week 2: Build",
+    body:"Popup, content scripts, background service worker. CI set up. First test build sideloadable.",
   },
   {
-    title: "Week 3: Polish + submit",
-    body: "Icons, screenshots, listing copy. Web Store submission. Privacy policy hosted.",
+    title:"Week 3: Polish + submit",
+    body:"Icons, screenshots, listing copy. Web Store submission. Privacy policy hosted.",
   },
   {
-    title: "Optional Week 4: Iterate",
-    body: "Review feedback addressed, edge cases fixed, analytics wired through PostHog or similar.",
+    title:"Optional Week 4: Iterate",
+    body:"Review feedback addressed, edge cases fixed, analytics wired through PostHog or similar.",
   },
 ] as const;
 
 const FAQS = [
   {
-    q: "Do you build with Manifest V3?",
-    a: "Yes. Every extension I ship in 2025 and 2026 is Manifest V3 native. Manifest V2 is deprecated and Chrome stops accepting V2 submissions for most cases.",
+    q:"Do you build with Manifest V3?",
+    a:"Yes. Every extension I ship in 2025 and 2026 is Manifest V3 native. Manifest V2 is deprecated and Chrome stops accepting V2 submissions for most cases.",
   },
   {
-    q: "Can you publish the extension to the Chrome Web Store for me?",
-    a: "Yes. I prepare the listing, write the description, generate screenshots, and submit on your developer account. Review usually takes one to three days.",
+    q:"Can you publish the extension to the Chrome Web Store for me?",
+    a:"Yes. I prepare the listing, write the description, generate screenshots, and submit on your developer account. Review usually takes one to three days.",
   },
   {
-    q: "How much does a Chrome extension cost?",
-    a: "Simple extensions with a popup and one content script ship in two weeks. SaaS-integrated extensions with auth and webhooks ship in three to four weeks. Enterprise builds are quoted after spec. Pricing is fixed per scope and quoted on the kickoff call.",
+    q:"How much does a Chrome extension cost?",
+    a:"Simple extensions with a popup and one content script ship in two weeks. SaaS-integrated extensions with auth and webhooks ship in three to four weeks. Enterprise builds are quoted after spec. Pricing is fixed per scope and quoted on the kickoff call.",
   },
   {
-    q: "Do you support Firefox and Edge too?",
-    a: "Yes. Modern Manifest V3 builds with cross-browser polyfills run on Edge directly and Firefox with minimal adjustments. I build cross-browser when requested.",
+    q:"Do you support Firefox and Edge too?",
+    a:"Yes. Modern Manifest V3 builds with cross-browser polyfills run on Edge directly and Firefox with minimal adjustments. I build cross-browser when requested.",
   },
   {
-    q: "Can the extension talk to my SaaS backend?",
-    a: "Yes. OAuth flows, JWT auth, signed webhooks, and direct API calls are all standard. I work with your engineering team to keep the auth boundary clean.",
+    q:"Can the extension talk to my SaaS backend?",
+    a:"Yes. OAuth flows, JWT auth, signed webhooks, and direct API calls are all standard. I work with your engineering team to keep the auth boundary clean.",
   },
   {
-    q: "What stack do you use?",
-    a: "React, TypeScript, Vite for bundling, Tailwind for styling, and Plasmo or a custom build pipeline depending on scope. PostHog for analytics. Sentry for error tracking.",
+    q:"What stack do you use?",
+    a:"React, TypeScript, Vite for bundling, Tailwind for styling, and Plasmo or a custom build pipeline depending on scope. PostHog for analytics. Sentry for error tracking.",
   },
 ] as const;
 
 const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+"@context":"https://schema.org",
+"@type":"FAQPage",
   mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
+"@type":"Question",
     name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
+    acceptedAnswer: {"@type":"Answer", text: f.a },
   })),
 };
 
 const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Chrome Extension Developer",
-  provider: { "@type": "Person", name: "Rashid Iqbal", url: SITE_URL },
-  areaServed: "Worldwide",
-  serviceType: "Chrome extension development with Manifest V3",
+"@context":"https://schema.org",
+"@type":"Service",
+  name:"Chrome Extension Developer",
+  provider: {"@type":"Person", name:"Rashid Iqbal", url: SITE_URL },
+  areaServed:"Worldwide",
+  serviceType:"Chrome extension development with Manifest V3",
   url: PAGE_URL,
   description:
-    "Freelance Chrome extension developer building Manifest V3 extensions in React and TypeScript for SaaS teams.",
+"Freelance Chrome extension developer building Manifest V3 extensions in React and TypeScript for SaaS teams.",
 };
 
 export default function ChromeExtensionDeveloperPage() {
@@ -205,7 +205,7 @@ export default function ChromeExtensionDeveloperPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a scoping call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -283,7 +283,7 @@ export default function ChromeExtensionDeveloperPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a scoping call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

@@ -1,21 +1,21 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import type { BlogPost } from "@/lib/blog";
+import { Metadata } from"next";
+import { notFound } from"next/navigation";
+import Link from"next/link";
+import type { BlogPost } from"@/lib/blog";
 import {
   getPostBySlugHybrid,
   getPostSlugsHybrid,
   getRelatedPostsHybrid,
-} from "@/lib/blog-hybrid";
-import { Navbar } from "@/components/layout/navbar";
-import { PageBackground } from "@/components/ui/page-background";
-import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
-import { NewsletterForm } from "@/components/shared/newsletter-form";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
-import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from "@/components/icons";
-import { SiX, SiLinkedin } from "react-icons/si";
-import { CopyLinkButton } from "@/components/blog/copy-link";
+} from"@/lib/blog-hybrid";
+import { Navbar } from"@/components/layout/navbar";
+import { PageBackground } from"@/components/ui/page-background";
+import { MarkdownRenderer } from"@/components/blog/markdown-renderer";
+import { NewsletterForm } from"@/components/shared/newsletter-form";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
+import { SITE_URL as siteUrl, SOCIAL_LINKS } from"@/lib/constants";
+import { Calendar, Clock, ArrowLeft, ArrowRight, Tag, Share2 } from"@/components/icons";
+import { SiX, SiLinkedin } from"react-icons/si";
+import { CopyLinkButton } from"@/components/blog/copy-link";
 
 
 
@@ -25,7 +25,7 @@ import { CopyLinkButton } from "@/components/blog/copy-link";
  */
 function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string }) {
   // Word count + ISO-8601 reading-time so AI search engines and Google
-  // can surface "5-minute read" badges and pick the right snippet.
+  // can surface"5-minute read" badges and pick the right snippet.
   const wordCount = post.content.split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(1, Math.round(wordCount / 230));
   const timeRequired = `PT${minutes}M`;
@@ -39,8 +39,8 @@ function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string })
   const articleBodyExcerpt = firstParagraph.slice(0, 600);
 
   const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
+"@context":"https://schema.org",
+"@type":"BlogPosting",
     headline: post.title,
     alternativeHeadline: post.seoTitle && post.seoTitle !== post.title ? post.seoTitle : undefined,
     description: post.description,
@@ -52,66 +52,66 @@ function ArticleStructuredData({ post, slug }: { post: BlogPost; slug: string })
       : `${siteUrl}/opengraph-image`,
     datePublished: post.date,
     dateModified: post.date,
-    inLanguage: "en-US",
+    inLanguage:"en-US",
     isAccessibleForFree: true,
     isFamilyFriendly: true,
     author: {
-      "@type": "Person",
+"@type":"Person",
       name: post.author.name,
       url: siteUrl,
       sameAs: [
-        "https://framer.link/rashidiqbal",
-        "https://www.upwork.com/freelancers/thatgroot",
-        "https://contra.com/rashidiqbal",
-        "https://www.linkedin.com/in/callmerashidiqbal/",
-        "https://x.com/rashidrealme",
-        "https://github.com/thatgroot",
+"https://framer.link/rashidiqbal",
+"https://www.upwork.com/freelancers/thatgroot",
+"https://contra.com/rashidiqbal",
+"https://www.linkedin.com/in/callmerashidiqbal/",
+"https://x.com/rashidrealme",
+"https://github.com/thatgroot",
       ],
     },
     publisher: {
-      "@type": "Organization",
-      name: "Rashid Iqbal · aestho.xyz",
+"@type":"Organization",
+      name:"Rashid Iqbal · aestho.xyz",
       url: siteUrl,
       logo: {
-        "@type": "ImageObject",
+"@type":"ImageObject",
         url: `${siteUrl}/logo.svg`,
       },
     },
     mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${siteUrl}/blog/${slug}`,
+"@type":"WebPage",
+"@id": `${siteUrl}/blog/${slug}`,
     },
     url: `${siteUrl}/blog/${slug}`,
-    keywords: post.tags.join(", "),
+    keywords: post.tags.join(","),
     about: post.tags,
     articleSection: post.category,
     wordCount,
     timeRequired,
     articleBody: articleBodyExcerpt,
     speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: ["h1", "h2", ".prose p:first-of-type"],
+"@type":"SpeakableSpecification",
+      cssSelector: ["h1","h2",".prose p:first-of-type"],
     },
   };
 
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
     itemListElement: [
       {
-        "@type": "ListItem",
+"@type":"ListItem",
         position: 1,
-        name: "Home",
+        name:"Home",
         item: siteUrl,
       },
       {
-        "@type": "ListItem",
+"@type":"ListItem",
         position: 2,
-        name: "Blog",
+        name:"Blog",
         item: `${siteUrl}/blog`,
       },
       {
-        "@type": "ListItem",
+"@type":"ListItem",
         position: 3,
         name: post.title,
         item: `${siteUrl}/blog/${slug}`,
@@ -148,7 +148,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!post) {
     return {
-      title: "Post Not Found",
+      title:"Post Not Found",
     };
   }
 
@@ -173,14 +173,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.description,
-      type: "article",
+      type:"article",
       publishedTime: post.date,
       modifiedTime: post.date,
       authors: [post.author.name],
       tags: post.tags,
       section: post.category,
-      siteName: "Rashid Iqbal",
-      locale: "en_US",
+      siteName:"Rashid Iqbal",
+      locale:"en_US",
       url: `${siteUrl}/blog/${slug}`,
       images: [
         {
@@ -188,14 +188,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           width: 1200,
           height: 630,
           alt: post.title,
-          type: "image/png",
+          type:"image/png",
         },
       ],
     },
     twitter: {
-      card: post.twitterCard || "summary_large_image",
-      site: "@rashidiqbal",
-      creator: post.author.twitter || "@rashidiqbal",
+      card: post.twitterCard ||"summary_large_image",
+      site:"@rashidiqbal",
+      creator: post.author.twitter ||"@rashidiqbal",
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.description,
       images: [
@@ -256,9 +256,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <span className="flex items-center gap-1 text-xs text-[#737373] font-mono">
                       <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
                       {new Date(post.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
+                        year:"numeric",
+                        month:"long",
+                        day:"numeric",
                       })}
                     </span>
                     <span className="text-zinc-200" aria-hidden="true">•</span>
@@ -284,7 +284,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                       <p className="font-medium text-[#0a0a0a] text-sm">{post.author.name}</p>
                       {post.author.twitter && (
                         <a
-                          href={`https://twitter.com/${post.author.twitter.replace("@", "")}`}
+                          href={`https://twitter.com/${post.author.twitter.replace("@","")}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs text-[#737373] font-mono hover:text-[#0a0a0a] transition-colors"
@@ -379,7 +379,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     href={SOCIAL_LINKS.calcom}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a] text-white font-bold text-sm hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a] text-white font-bold text-sm hover:bg-[#0a0a0a] transition-colors /25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
                   >
                     Book a Free Call
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />

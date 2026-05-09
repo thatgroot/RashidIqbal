@@ -1,7 +1,7 @@
 "use client"; // Error boundaries must be Client Components
 
-import posthog from "posthog-js";
-import { useEffect } from "react";
+import posthog from"posthog-js";
+import { useEffect } from"react";
 
 interface GlobalErrorProps {
   error: Error & { digest?: string };
@@ -13,7 +13,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
     // Log the error to PostHog
     posthog.captureException(error, {
       digest: error.digest,
-      scope: "global",
+      scope:"global",
     });
   }, [error]);
 
@@ -23,22 +23,22 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
       <body>
         <div
           style={{
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "1rem",
-            fontFamily: "system-ui, -apple-system, sans-serif",
+            minHeight:"100vh",
+            display:"flex",
+            alignItems:"center",
+            justifyContent:"center",
+            padding:"1rem",
+            fontFamily:"system-ui, -apple-system, sans-serif",
           }}
         >
-          <div style={{ textAlign: "center", maxWidth: "400px" }}>
-            <div style={{ marginBottom: "1.5rem" }}>
+          <div style={{ textAlign:"center", maxWidth:"400px" }}>
+            <div style={{ marginBottom:"1.5rem" }}>
               <svg
                 style={{
-                  margin: "0 auto",
-                  height: "64px",
-                  width: "64px",
-                  color: "#71717a",
+                  margin:"0 auto",
+                  height:"64px",
+                  width:"64px",
+                  color:"#71717a",
                 }}
                 fill="none"
                 viewBox="0 0 24 24"
@@ -55,30 +55,30 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
             </div>
             <h2
               style={{
-                fontSize: "1.5rem",
+                fontSize:"1.5rem",
                 fontWeight: 600,
-                color: "#18181b",
-                marginBottom: "0.5rem",
+                color:"#18181b",
+                marginBottom:"0.5rem",
               }}
             >
               Something went wrong
             </h2>
-            <p style={{ color: "#52525b", marginBottom: "1.5rem" }}>
+            <p style={{ color:"#52525b", marginBottom:"1.5rem" }}>
               A critical error occurred. Please try refreshing the page.
             </p>
             <button
               onClick={reset}
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "0.625rem 1.25rem",
-                backgroundColor: "#18181b",
-                color: "white",
+                display:"inline-flex",
+                alignItems:"center",
+                justifyContent:"center",
+                padding:"0.625rem 1.25rem",
+                backgroundColor:"#18181b",
+                color:"white",
                 fontWeight: 500,
-                borderRadius: "0.5rem",
-                border: "none",
-                cursor: "pointer",
+                borderRadius:"0.5rem",
+                border:"none",
+                cursor:"pointer",
               }}
             >
               Try again

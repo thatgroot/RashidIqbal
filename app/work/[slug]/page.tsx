@@ -1,13 +1,13 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import type { Metadata } from "next";
-import { ArrowLeft, ArrowRight, ExternalLink } from "@/components/icons";
-import { eq } from "drizzle-orm";
-import { db, schema } from "@/db/client";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
-import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
-import { getCaseStudyBySlug } from "@/lib/cms/queries";
+import { notFound } from"next/navigation";
+import Link from"next/link";
+import Image from"next/image";
+import type { Metadata } from"next";
+import { ArrowLeft, ArrowRight, ExternalLink } from"@/components/icons";
+import { eq } from"drizzle-orm";
+import { db, schema } from"@/db/client";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
+import { MarkdownRenderer } from"@/components/blog/markdown-renderer";
+import { getCaseStudyBySlug } from"@/lib/cms/queries";
 
 export const revalidate = 1800;
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const c = await getCaseStudyBySlug(slug);
-  if (!c) return { title: "Case study" };
+  if (!c) return { title:"Case study" };
   const url = `${SITE_URL}/work/${slug}`;
   return {
     title: `${c.title} · ${c.clientName} case study`,
@@ -28,7 +28,7 @@ export async function generateMetadata({
       title: `${c.title} · ${c.clientName}`,
       description: c.summary || undefined,
       url,
-      type: "article",
+      type:"article",
       images: c.coverImage
         ? [{ url: c.coverImage, width: 1200, height: 630 }]
         : [
@@ -40,7 +40,7 @@ export async function generateMetadata({
           ],
     },
     twitter: {
-      card: "summary_large_image",
+      card:"summary_large_image",
       title: `${c.title} · ${c.clientName}`,
       description: c.summary || undefined,
     },
@@ -64,44 +64,44 @@ export default async function CaseStudyPage({
 
   const url = `${SITE_URL}/work/${c.slug}`;
   const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+"@context":"https://schema.org",
+"@type":"Article",
     headline: c.title,
     alternativeHeadline: `${c.clientName} case study`,
     description: c.summary || undefined,
     image: c.coverImage || c.heroImage || `${SITE_URL}/api/blog-og?title=${encodeURIComponent(c.title)}`,
     datePublished: (c.publishedAt ?? c.createdAt).toISOString(),
     dateModified: c.updatedAt.toISOString(),
-    inLanguage: "en-US",
+    inLanguage:"en-US",
     isAccessibleForFree: true,
     url,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: {"@type":"WebPage","@id": url },
     author: {
-      "@type": "Person",
-      name: "Rashid Iqbal",
+"@type":"Person",
+      name:"Rashid Iqbal",
       url: SITE_URL,
       sameAs: [
-        "https://framer.link/rashidiqbal",
-        "https://www.upwork.com/freelancers/thatgroot",
-        "https://contra.com/rashidiqbal",
+"https://framer.link/rashidiqbal",
+"https://www.upwork.com/freelancers/thatgroot",
+"https://contra.com/rashidiqbal",
       ],
     },
     publisher: {
-      "@type": "Organization",
-      name: "Rashid Iqbal · aestho.xyz",
+"@type":"Organization",
+      name:"Rashid Iqbal · aestho.xyz",
       url: SITE_URL,
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.svg` },
+      logo: {"@type":"ImageObject", url: `${SITE_URL}/logo.svg` },
     },
     about: tags,
-    keywords: tags.join(", "),
+    keywords: tags.join(","),
   };
   const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Case studies", item: `${SITE_URL}/work` },
-      { "@type": "ListItem", position: 3, name: c.title, item: url },
+      {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL },
+      {"@type":"ListItem", position: 2, name:"Case studies", item: `${SITE_URL}/work` },
+      {"@type":"ListItem", position: 3, name: c.title, item: url },
     ],
   };
 
@@ -212,7 +212,7 @@ export default async function CaseStudyPage({
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
+import { useEffect, useRef, useState } from"react";
+import { motion, useInView } from"framer-motion";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
 
 const stats = [
-  { value: 50, suffix: "+", label: "Projects Delivered" },
-  { value: 14, suffix: "", label: "Active This Year" },
-  { value: 12, suffix: "%", label: "Avg. Conversion Lift" },
+  { value: 50, suffix:"+", label:"Projects Delivered" },
+  { value: 14, suffix:"", label:"Active This Year" },
+  { value: 12, suffix:"%", label:"Avg. Conversion Lift" },
 ];
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin:"-50px" });
 
   useEffect(() => {
     if (!isInView) return;
@@ -54,10 +54,10 @@ export function ProjectCounter() {
         >
           <GridItem>
             <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-[#292827] mb-2 tabular-nums">
+              <div className="text-4xl md:text-5xl font-bold text-[#0a0a0a] mb-2 tabular-nums">
                 <CountUp target={stat.value} suffix={stat.suffix} />
               </div>
-              <div className="text-xs font-mono text-[#73706d] uppercase tracking-wider">
+              <div className="text-xs font-mono text-[#737373] uppercase tracking-wider">
                 {stat.label}
               </div>
             </div>

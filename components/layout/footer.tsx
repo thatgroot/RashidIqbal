@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { SOCIAL_LINKS } from "@/lib/constants";
-import { triggerEmailMe } from "@/components/shared/email-me-toast";
+import Link from"next/link";
+import { SOCIAL_LINKS } from"@/lib/constants";
+import { triggerEmailMe } from"@/components/shared/email-me-toast";
 
 export function Footer() {
   return (
@@ -244,7 +244,7 @@ export function Footer() {
         <div className="pt-8 border-t border-[#e5e5e5] flex flex-col gap-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-[#737373]">
-              © {new Date().getFullYear()} Aestho · led by{" "}
+              © {new Date().getFullYear()} Aestho · led by{""}
               <a
                 href="https://www.framer.com/@risiq"
                 target="_blank"

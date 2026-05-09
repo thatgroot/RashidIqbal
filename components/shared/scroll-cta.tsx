@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "@/components/icons";
-import { X } from "lucide-react";
-import { CTA_TRIGGERS, type CTATrigger } from "@/lib/cta-config";
+import { useState, useEffect, useCallback } from"react";
+import { motion, AnimatePresence } from"framer-motion";
+import { ArrowRight } from"@/components/icons";
+import { X } from"lucide-react";
+import { CTA_TRIGGERS, type CTATrigger } from"@/lib/cta-config";
 
 export function ScrollCTA() {
   const [activeCTA, setActiveCTA] = useState<CTATrigger | null>(null);
@@ -43,7 +43,7 @@ export function ScrollCTA() {
             }
           });
         },
-        { threshold: 0, rootMargin: "0px 0px -100px 0px" }
+        { threshold: 0, rootMargin:"0px 0px -100px 0px" }
       );
 
       observer.observe(el);
@@ -62,16 +62,16 @@ export function ScrollCTA() {
           exit={{ opacity: 0, y: 20, x: 20 }}
           className="fixed bottom-6 right-6 z-40 max-w-xs"
         >
-          <div className="bg-white border border-[#e8e4dd] shadow-xl p-5 relative">
+          <div className="bg-white border border-[#e5e5e5] p-5 relative">
             <button
               onClick={dismiss}
-              className="absolute top-3 right-3 text-[#9a9794] hover:text-[#292827] transition-colors"
+              className="absolute top-3 right-3 text-[#a3a3a3] hover:text-[#0a0a0a] transition-colors"
               aria-label="Dismiss"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <p className="text-sm font-medium text-[#292827] mb-3 pr-6">
+            <p className="text-sm font-medium text-[#0a0a0a] mb-3 pr-6">
               {activeCTA.message}
             </p>
 
@@ -80,7 +80,7 @@ export function ScrollCTA() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={dismiss}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#1b1938] text-white text-xs font-bold hover:bg-[#1b1938] transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#0a0a0a] text-white text-xs font-bold hover:bg-[#0a0a0a] transition-colors"
             >
               {activeCTA.cta} <ArrowRight className="w-3 h-3" />
             </a>

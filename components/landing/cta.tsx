@@ -1,22 +1,22 @@
 "use client";
 
-import { useEffect } from "react";
-import Cal, { getCalApi } from "@calcom/embed-react";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { Check, Clock } from "@/components/icons";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { useEffect } from"react";
+import Cal, { getCalApi } from"@calcom/embed-react";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
+import { Check, Clock } from"@/components/icons";
+import { SOCIAL_LINKS } from"@/lib/constants";
 
 // Cal.com handle — last segment of cal.com/<handle>. Sourced from
 // SOCIAL_LINKS.calcom so the embed and the external links never drift.
-const CAL_HANDLE = SOCIAL_LINKS.calcom.replace(/^https?:\/\/cal\.com\//, "");
+const CAL_HANDLE = SOCIAL_LINKS.calcom.replace(/^https?:\/\/cal\.com\//,"");
 
 export function CTASection() {
   return (
     <>
-      <section className="bg-white border-y border-[#e8e4dd]">
-        <div className="max-w-container border-l border-[#e8e4dd]">
+      <section className="bg-white border-y border-[#e5e5e5]">
+        <div className="max-w-container border-l border-[#e5e5e5]">
           <GridContainer cols={2}>
-            <div className="border-b border-r border-[#e8e4dd] p-12 lg:p-24 flex flex-col justify-center">
+            <div className="border-b border-r border-[#e5e5e5] p-12 lg:p-24 flex flex-col justify-center">
               <h2 className="text-4xl md:text-6xl font-semibold text-[#0a0a0a] tracking-tight leading-[1.05]">
                 30 minutes. <br />
                 <span className="text-[#737373]">Audit + fix list.</span>
@@ -28,7 +28,7 @@ export function CTASection() {
               </p>
             </div>
 
-            <div className="border-b border-r border-[#e8e4dd] p-12 lg:p-24 relative overflow-hidden dotted-bg">
+            <div className="border-b border-r border-[#e5e5e5] p-12 lg:p-24 relative overflow-hidden dotted-bg">
               <div className="relative z-10 flex flex-col gap-6 max-w-md">
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 text-sm text-[#737373]">
@@ -64,9 +64,9 @@ export function CTASection() {
           of the booking flow (slot picker, form, confirmation). */}
       <section
         id="booking-calendar"
-        className="bg-white border-b border-[#e8e4dd] scroll-mt-16"
+        className="bg-white border-b border-[#e5e5e5] scroll-mt-16"
       >
-        <div className="max-w-container border-l border-r border-[#e8e4dd]">
+        <div className="max-w-container border-l border-r border-[#e5e5e5]">
           <GridContainer cols={1}>
             <GridItem className="relative" padding={false}>
               <div className="px-6 md:px-12 pt-10 md:pt-14 pb-2 max-w-3xl">
@@ -78,7 +78,7 @@ export function CTASection() {
                 </h3>
                 <p className="text-sm md:text-base text-[#737373]">
                   Free. No credit card. You&rsquo;ll get a Google Meet link
-                  and a short pre-call form. If self-scheduling is broken,{" "}
+                  and a short pre-call form. If self-scheduling is broken,{""}
                   <a
                     href={SOCIAL_LINKS.calcom}
                     target="_blank"
@@ -104,14 +104,14 @@ function CalEmbed() {
   // and hides Cal's branding bar so it visually nests inside our section.
   useEffect(() => {
     (async () => {
-      const cal = await getCalApi({ namespace: "30min" });
+      const cal = await getCalApi({ namespace:"30min" });
       cal("ui", {
         cssVarsPerTheme: {
-          light: { "cal-brand": "#9c7307" },
-          dark: { "cal-brand": "#e6b431" },
+          light: {"cal-brand":"#9c7307" },
+          dark: {"cal-brand":"#e6b431" },
         },
         hideEventTypeDetails: false,
-        layout: "month_view",
+        layout:"month_view",
       });
     })();
   }, []);
@@ -122,11 +122,11 @@ function CalEmbed() {
         namespace="30min"
         calLink={CAL_HANDLE}
         style={{
-          width: "100%",
-          height: "min(720px, 90vh)",
-          overflow: "scroll",
+          width:"100%",
+          height:"min(720px, 90vh)",
+          overflow:"scroll",
         }}
-        config={{ layout: "month_view", theme: "light" }}
+        config={{ layout:"month_view", theme:"light" }}
       />
     </div>
   );

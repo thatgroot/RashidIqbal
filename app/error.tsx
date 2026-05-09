@@ -1,8 +1,8 @@
 "use client"; // Error boundaries must be Client Components
 
-import Link from "next/link";
-import posthog from "posthog-js";
-import { useEffect } from "react";
+import Link from"next/link";
+import posthog from"posthog-js";
+import { useEffect } from"react";
 
 interface ErrorProps {
   error: Error & { digest?: string };

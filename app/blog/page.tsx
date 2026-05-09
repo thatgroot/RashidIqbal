@@ -1,16 +1,16 @@
-import { Metadata } from "next";
-import Link from "next/link";
+import { Metadata } from"next";
+import Link from"next/link";
 import {
   getAllPostsHybrid,
   getFeaturedPostsHybrid,
   getPostsByTagHybrid,
   getAllTagsHybrid,
-} from "@/lib/blog-hybrid";
-import { Navbar } from "@/components/layout/navbar";
-import { PageBackground } from "@/components/ui/page-background";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { ArrowRight, Calendar, Clock, Tag, X, ChevronLeft, ChevronRight } from "@/components/icons";
-import { SITE_URL as siteUrl, SOCIAL_LINKS } from "@/lib/constants";
+} from"@/lib/blog-hybrid";
+import { Navbar } from"@/components/layout/navbar";
+import { PageBackground } from"@/components/ui/page-background";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
+import { ArrowRight, Calendar, Clock, Tag, X, ChevronLeft, ChevronRight } from"@/components/icons";
+import { SITE_URL as siteUrl, SOCIAL_LINKS } from"@/lib/constants";
 
 // ============================================================================
 // Constants
@@ -32,14 +32,14 @@ type BlogPageProps = {
 
 function formatDate(dateString: string): string {
   return new Date(dateString).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year:"numeric",
+    month:"long",
+    day:"numeric",
   });
 }
 
 function parsePage(raw: string | undefined): number {
-  const n = parseInt(raw ?? "1", 10);
+  const n = parseInt(raw ??"1", 10);
   if (!Number.isFinite(n) || n < 1) return 1;
   return n;
 }
@@ -62,15 +62,15 @@ function buildBlogUrl(
   if (finalTag) params.set("tag", finalTag);
   if (finalPage && finalPage > 1) params.set("page", String(finalPage));
   const qs = params.toString();
-  return qs ? `/blog?${qs}` : "/blog";
+  return qs ? `/blog?${qs}` :"/blog";
 }
 
-// Produce a compact pagination range with ellipsis, e.g. [1, "…", 4, 5, 6, "…", 12]
-function paginationRange(current: number, total: number): (number | "…")[] {
+// Produce a compact pagination range with ellipsis, e.g. [1,"…", 4, 5, 6,"…", 12]
+function paginationRange(current: number, total: number): (number |"…")[] {
   if (total <= 7) {
     return Array.from({ length: total }, (_, i) => i + 1);
   }
-  const out: (number | "…")[] = [];
+  const out: (number |"…")[] = [];
   const around = [current - 1, current, current + 1].filter(
     (n) => n > 1 && n < total
   );
@@ -95,9 +95,9 @@ export async function generateMetadata(
   const tag = normalizeTag(sp.tag);
   const page = parsePage(sp.page);
 
-  const baseTitle = "Blog: Figma, Framer & Conversion Insights";
+  const baseTitle ="Blog: Figma, Framer & Conversion Insights";
   const baseDesc =
-    "Articles on Figma design, Framer development, UX copy, and conversion optimization. Real insights from 50+ projects shipped.";
+"Articles on Figma design, Framer development, UX copy, and conversion optimization. Real insights from 50+ projects shipped.";
 
   let title = baseTitle;
   let description = baseDesc;
@@ -105,7 +105,7 @@ export async function generateMetadata(
 
   if (tag) {
     title = `${tag} articles · Rashid Iqbal`;
-    description = `Articles tagged "${tag}", covering ${tag.toLowerCase()} for Figma, Framer, and conversion-focused web design.`;
+    description = `Articles tagged"${tag}", covering ${tag.toLowerCase()} for Figma, Framer, and conversion-focused web design.`;
     // Canonical uses LOWERCASE tag so /blog?tag=Design and
     // /blog?tag=design collapse to one URL in Google's index. Case
     // variants were producing 4 duplicate-content pairs in the audit.
@@ -129,19 +129,19 @@ export async function generateMetadata(
     description,
     ...(isPaginated ? { robots: { index: false, follow: true } } : {}),
     keywords: [
-      "Figma blog",
-      "Framer tutorials",
-      "UX copywriting",
-      "conversion optimization",
-      "Chrome extension development",
-      "Figma to Framer",
-      "landing page design",
+"Figma blog",
+"Framer tutorials",
+"UX copywriting",
+"conversion optimization",
+"Chrome extension development",
+"Figma to Framer",
+"landing page design",
     ],
     openGraph: {
-      type: "website",
-      locale: "en_US",
+      type:"website",
+      locale:"en_US",
       url: canonical,
-      siteName: "Rashid Iqbal",
+      siteName:"Rashid Iqbal",
       title,
       description,
       images: [
@@ -150,14 +150,14 @@ export async function generateMetadata(
           width: 1200,
           height: 630,
           alt: title,
-          type: "image/png",
+          type:"image/png",
         },
       ],
     },
     twitter: {
-      card: "summary_large_image",
-      site: "@rashidrealme",
-      creator: "@rashidrealme",
+      card:"summary_large_image",
+      site:"@rashidrealme",
+      creator:"@rashidrealme",
       title,
       description,
       images: [
@@ -310,10 +310,10 @@ export default async function BlogPage(props: BlogPageProps) {
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs font-mono text-[#737373] uppercase tracking-widest">
                   {activeTag
-                    ? `Tagged "${activeTag}" · ${filteredPosts.length} article${
-                        filteredPosts.length === 1 ? "" : "s"
+                    ? `Tagged"${activeTag}" · ${filteredPosts.length} article${
+                        filteredPosts.length === 1 ?"" :"s"
                       }`
-                    : "What else is on the blog?"}
+                    :"What else is on the blog?"}
                 </span>
                 {activeTag && (
                   <Link
@@ -339,8 +339,8 @@ export default async function BlogPage(props: BlogPageProps) {
                 <div className="p-12 text-center border-b border-[#e5e5e5]">
                   <p className="text-[#737373] font-mono text-sm mb-4">
                     {activeTag
-                      ? `No posts tagged "${activeTag}" yet.`
-                      : "No posts yet. Check back soon!"}
+                      ? `No posts tagged"${activeTag}" yet.`
+                      :"No posts yet. Check back soon!"}
                   </p>
                   {activeTag && (
                     <Link
@@ -425,7 +425,7 @@ export default async function BlogPage(props: BlogPageProps) {
                   {/* Page numbers */}
                   <ol className="flex items-center gap-1.5">
                     {paginationRange(currentPage, totalPages).map((p, i) =>
-                      p === "…" ? (
+                      p ==="…" ? (
                         <li
                           key={`gap-${i}`}
                           className="px-2 text-xs font-mono text-zinc-300"
@@ -503,7 +503,7 @@ export default async function BlogPage(props: BlogPageProps) {
                   )}
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {/* "All" pill */}
+                  {/*"All" pill */}
                   {activeTag ? (
                     <Link
                       href="/blog"
@@ -556,7 +556,7 @@ export default async function BlogPage(props: BlogPageProps) {
                   href={SOCIAL_LINKS.calcom}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a] text-white font-bold text-sm hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#0a0a0a] text-white font-bold text-sm hover:bg-[#0a0a0a] transition-colors /25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
                 >
                   Book a Free Call
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />

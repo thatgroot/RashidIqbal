@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Check } from "@/components/icons";
-import { SITE_URL, SOCIAL_LINKS, AUTHOR } from "@/lib/constants";
+import type { Metadata } from"next";
+import Link from"next/link";
+import Image from"next/image";
+import { ArrowRight, ArrowUpRight, Check } from"@/components/icons";
+import { SITE_URL, SOCIAL_LINKS, AUTHOR } from"@/lib/constants";
 
-const PAGE_PATH = "/about";
+const PAGE_PATH ="/about";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "About Rashid Iqbal | Figma & Framer Expert",
+  title:"About Rashid Iqbal | Figma & Framer Expert",
   description:
-    "Rashid Iqbal is a Certified Framer Expert and Top Rated Upwork freelancer designing and building high-converting landing pages since 2019. Clients in 12 countries, 50 plus projects shipped.",
+"Rashid Iqbal is a Certified Framer Expert and Top Rated Upwork freelancer designing and building high-converting landing pages since 2019. Clients in 12 countries, 50 plus projects shipped.",
   keywords: [
-    "about rashid iqbal",
-    "rashid iqbal framer expert",
-    "rashid iqbal figma designer",
-    "freelance framer developer",
-    "certified framer expert",
-    "top rated upwork freelancer",
+"about rashid iqbal",
+"rashid iqbal framer expert",
+"rashid iqbal figma designer",
+"freelance framer developer",
+"certified framer expert",
+"top rated upwork freelancer",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "About Rashid Iqbal | Figma & Framer Expert",
+    title:"About Rashid Iqbal | Figma & Framer Expert",
     description:
-      "Certified Framer Expert. Top Rated on Upwork. 50 plus projects shipped since 2019.",
+"Certified Framer Expert. Top Rated on Upwork. 50 plus projects shipped since 2019.",
     url: PAGE_URL,
-    type: "profile",
+    type:"profile",
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent(
-          "About Rashid Iqbal"
+"About Rashid Iqbal"
         )}`,
         width: 1200,
         height: 630,
@@ -37,122 +37,122 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "About Rashid Iqbal",
-    description: "Certified Framer Expert. Top Rated on Upwork. 50+ projects shipped.",
+    card:"summary_large_image",
+    title:"About Rashid Iqbal",
+    description:"Certified Framer Expert. Top Rated on Upwork. 50+ projects shipped.",
   },
 };
 
 const STATS = [
-  { label: "Years shipping", value: "7+" },
-  { label: "Countries served", value: "12" },
-  { label: "Projects delivered", value: "50+" },
-  { label: "Avg. conversion lift", value: "2.4x" },
+  { label:"Years shipping", value:"7+" },
+  { label:"Countries served", value:"12" },
+  { label:"Projects delivered", value:"50+" },
+  { label:"Avg. conversion lift", value:"2.4x" },
 ] as const;
 
 const CREDENTIALS = [
   {
-    label: "Certified Framer Expert",
-    href: "https://framer.link/rashidiqbal",
-    note: "Verified by Framer's official directory.",
+    label:"Certified Framer Expert",
+    href:"https://framer.link/rashidiqbal",
+    note:"Verified by Framer's official directory.",
   },
   {
-    label: "Official Replit Expert on Contra",
+    label:"Official Replit Expert on Contra",
     href: SOCIAL_LINKS.contra,
-    note: "Selected to the Replit Experts program.",
+    note:"Selected to the Replit Experts program.",
   },
   {
-    label: "Top Rated on Upwork",
+    label:"Top Rated on Upwork",
     href: SOCIAL_LINKS.upwork,
-    note: "Top 10 percent of freelancers, since 2021.",
+    note:"Top 10 percent of freelancers, since 2021.",
   },
   {
-    label: "100 percent job success score",
+    label:"100 percent job success score",
     href: SOCIAL_LINKS.upwork,
-    note: "Over 7,000 hours billed across 40 plus contracts.",
+    note:"Over 7,000 hours billed across 40 plus contracts.",
   },
 ] as const;
 
 const SERVICES = [
   {
-    title: "Landing pages and websites",
-    body: "Figma design, Framer build, UX copy. Two-week delivery. Best for SaaS, agencies, and Y Combinator startups.",
-    href: "/framer-expert-for-saas",
+    title:"Landing pages and websites",
+    body:"Figma design, Framer build, UX copy. Two-week delivery. Best for SaaS, agencies, and Y Combinator startups.",
+    href:"/framer-expert-for-saas",
   },
   {
-    title: "Figma to Framer conversion",
-    body: "Pixel-perfect handoff with CMS, forms, and analytics wired in. Lighthouse 90 plus on mobile.",
-    href: "/figma-to-framer",
+    title:"Figma to Framer conversion",
+    body:"Pixel-perfect handoff with CMS, forms, and analytics wired in. Lighthouse 90 plus on mobile.",
+    href:"/figma-to-framer",
   },
   {
-    title: "Chrome extensions",
-    body: "Manifest V3 extensions in React and TypeScript. Spec to Web Store submission in two to four weeks.",
-    href: "/chrome-extension-developer",
+    title:"Chrome extensions",
+    body:"Manifest V3 extensions in React and TypeScript. Spec to Web Store submission in two to four weeks.",
+    href:"/chrome-extension-developer",
   },
 ] as const;
 
 const PRINCIPLES = [
-  "Copy comes first. Design serves the message, not the other way around.",
-  "Two-week delivery is the default, not a rush job. Scope fits the timeline.",
-  "One specialist beats a team of three for marketing sites under twenty pages.",
-  "Performance is a feature. Lighthouse 90 plus on mobile or it does not ship.",
-  "Conversion data, not opinions, drives the second iteration after launch.",
+"Copy comes first. Design serves the message, not the other way around.",
+"Two-week delivery is the default, not a rush job. Scope fits the timeline.",
+"One specialist beats a team of three for marketing sites under twenty pages.",
+"Performance is a feature. Lighthouse 90 plus on mobile or it does not ship.",
+"Conversion data, not opinions, drives the second iteration after launch.",
 ] as const;
 
 const CLIENTS = [
-  "UpdateAI",
-  "Vanos AI",
-  "SpaceDome",
-  "ATQLeads",
-  "Melissa Ambrosini",
-  "Nick Broadhurst",
+"UpdateAI",
+"Vanos AI",
+"SpaceDome",
+"ATQLeads",
+"Melissa Ambrosini",
+"Nick Broadhurst",
 ] as const;
 
 const FAQS = [
   {
-    q: "Where are you based and what hours do you work?",
-    a: "Remote, working worldwide. Most client calls run between 9 AM and 7 PM UTC. Async communication on Slack, Linear, or email between meetings.",
+    q:"Where are you based and what hours do you work?",
+    a:"Remote, working worldwide. Most client calls run between 9 AM and 7 PM UTC. Async communication on Slack, Linear, or email between meetings.",
   },
   {
-    q: "Do you work solo or with a team?",
-    a: "Solo for design and build. I bring in a trusted copywriter for long-form content, and a developer for back-end work outside Framer or Chrome extensions.",
+    q:"Do you work solo or with a team?",
+    a:"Solo for design and build. I bring in a trusted copywriter for long-form content, and a developer for back-end work outside Framer or Chrome extensions.",
   },
   {
-    q: "What is your typical project timeline?",
-    a: "Single landing pages: 1 week. Multi-page sites with CMS: 2 weeks. Migrations from Webflow or WordPress: 2 to 3 weeks. Chrome extensions: 2 to 4 weeks.",
+    q:"What is your typical project timeline?",
+    a:"Single landing pages: 1 week. Multi-page sites with CMS: 2 weeks. Migrations from Webflow or WordPress: 2 to 3 weeks. Chrome extensions: 2 to 4 weeks.",
   },
   {
-    q: "Do you take retainer clients?",
-    a: "Yes. Monthly retainers cover ongoing design, build, and copy work. Best fit for SaaS marketing teams shipping new pages or experiments every month.",
+    q:"Do you take retainer clients?",
+    a:"Yes. Monthly retainers cover ongoing design, build, and copy work. Best fit for SaaS marketing teams shipping new pages or experiments every month.",
   },
   {
-    q: "What is your pricing model?",
-    a: "Fixed-price per project, paid 50 percent upfront and 50 percent on launch. Retainers billed monthly. Pricing tiers listed at /#pricing.",
+    q:"What is your pricing model?",
+    a:"Fixed-price per project, paid 50 percent upfront and 50 percent on launch. Retainers billed monthly. Pricing tiers listed at /#pricing.",
   },
   {
-    q: "Can I see live client work?",
-    a: "Yes. Case studies and testimonials run on the homepage. For private NDA work, I share examples on the kickoff call.",
+    q:"Can I see live client work?",
+    a:"Yes. Case studies and testimonials run on the homepage. For private NDA work, I share examples on the kickoff call.",
   },
   {
-    q: "What tools do you use?",
-    a: "Figma, Framer, Cursor, Claude Code, Linear, Notion, Slack, GitHub, Vercel, Resend, PostHog, and Cal.com.",
+    q:"What tools do you use?",
+    a:"Figma, Framer, Cursor, Claude Code, Linear, Notion, Slack, GitHub, Vercel, Resend, PostHog, and Cal.com.",
   },
   {
-    q: "How do I start working with you?",
-    a: "Book a 30-minute call on Cal. We talk through scope, timeline, and budget. You get a fixed quote within 24 hours.",
+    q:"How do I start working with you?",
+    a:"Book a 30-minute call on Cal. We talk through scope, timeline, and budget. You get a fixed quote within 24 hours.",
   },
 ] as const;
 
 const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE_URL}#person`,
+"@context":"https://schema.org",
+"@type":"Person",
+"@id": `${SITE_URL}#person`,
   name: AUTHOR.name,
   url: SITE_URL,
   email: AUTHOR.email,
-  jobTitle: "Figma & Framer Expert",
+  jobTitle:"Figma & Framer Expert",
   description:
-    "Certified Framer Expert and Top Rated Upwork freelancer designing and building high-converting landing pages since 2019.",
+"Certified Framer Expert and Top Rated Upwork freelancer designing and building high-converting landing pages since 2019.",
   sameAs: [
     SOCIAL_LINKS.linkedin,
     SOCIAL_LINKS.twitter,
@@ -162,28 +162,28 @@ const personJsonLd = {
     SOCIAL_LINKS.framerExpert,
   ],
   knowsAbout: [
-    "Framer development",
-    "Figma design",
-    "UX copywriting",
-    "Landing page conversion",
-    "Chrome extension development",
-    "Manifest V3",
-    "SaaS marketing sites",
+"Framer development",
+"Figma design",
+"UX copywriting",
+"Landing page conversion",
+"Chrome extension development",
+"Manifest V3",
+"SaaS marketing sites",
   ],
   hasCredential: [
-    { "@type": "EducationalOccupationalCredential", name: "Certified Framer Expert" },
-    { "@type": "EducationalOccupationalCredential", name: "Official Replit Expert on Contra" },
-    { "@type": "EducationalOccupationalCredential", name: "Top Rated on Upwork" },
+    {"@type":"EducationalOccupationalCredential", name:"Certified Framer Expert" },
+    {"@type":"EducationalOccupationalCredential", name:"Official Replit Expert on Contra" },
+    {"@type":"EducationalOccupationalCredential", name:"Top Rated on Upwork" },
   ],
 };
 
 const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+"@context":"https://schema.org",
+"@type":"FAQPage",
   mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
+"@type":"Question",
     name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
+    acceptedAnswer: {"@type":"Answer", text: f.a },
   })),
 };
 
@@ -252,7 +252,7 @@ export default function AboutPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -379,12 +379,12 @@ export default function AboutPage() {
           </h2>
           <div className="flex flex-wrap gap-3">
             {[
-              { name: "LinkedIn", href: SOCIAL_LINKS.linkedin },
-              { name: "Framer", href: "https://framer.link/rashidiqbal" },
-              { name: "Upwork", href: SOCIAL_LINKS.upwork },
-              { name: "Contra", href: SOCIAL_LINKS.contra },
-              { name: "GitHub", href: SOCIAL_LINKS.github },
-              { name: "Twitter", href: SOCIAL_LINKS.twitter },
+              { name:"LinkedIn", href: SOCIAL_LINKS.linkedin },
+              { name:"Framer", href:"https://framer.link/rashidiqbal" },
+              { name:"Upwork", href: SOCIAL_LINKS.upwork },
+              { name:"Contra", href: SOCIAL_LINKS.contra },
+              { name:"GitHub", href: SOCIAL_LINKS.github },
+              { name:"Twitter", href: SOCIAL_LINKS.twitter },
             ].map((p) => (
               <a
                 key={p.name}
@@ -428,7 +428,7 @@ export default function AboutPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

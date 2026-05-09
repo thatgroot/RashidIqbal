@@ -1,25 +1,25 @@
-import Link from "next/link";
-import Image from "next/image";
-import type { Metadata } from "next";
-import { ArrowLeft, ArrowUpRight } from "@/components/icons";
-import { listAllResearchReports } from "@/lib/cms/queries";
-import { SITE_URL } from "@/lib/constants";
+import Link from"next/link";
+import Image from"next/image";
+import type { Metadata } from"next";
+import { ArrowLeft, ArrowUpRight } from"@/components/icons";
+import { listAllResearchReports } from"@/lib/cms/queries";
+import { SITE_URL } from"@/lib/constants";
 
 export const revalidate = 1800;
 
 const PAGE_URL = `${SITE_URL}/research`;
 
 export const metadata: Metadata = {
-  title: "Research · UX, copy, and conversion benchmarks",
+  title:"Research · UX, copy, and conversion benchmarks",
   description:
-    "Distilled findings from NN/g, Baymard, ContentSquare, Microsoft Clarity, and Google. Citations from the institutions that publish the conversion-research most quoted in 2026.",
+"Distilled findings from NN/g, Baymard, ContentSquare, Microsoft Clarity, and Google. Citations from the institutions that publish the conversion-research most quoted in 2026.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Research · UX, copy, and conversion benchmarks",
+    title:"Research · UX, copy, and conversion benchmarks",
     description:
-      "Distilled findings from NN/g, Baymard, ContentSquare, Microsoft Clarity, and Google.",
+"Distilled findings from NN/g, Baymard, ContentSquare, Microsoft Clarity, and Google.",
     url: PAGE_URL,
-    type: "website",
+    type:"website",
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Research · UX & conversion benchmarks")}`,
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Research · UX, copy, and conversion benchmarks",
+    card:"summary_large_image",
+    title:"Research · UX, copy, and conversion benchmarks",
     description:
-      "Distilled findings from NN/g, Baymard, ContentSquare, Microsoft Clarity, and Google.",
+"Distilled findings from NN/g, Baymard, ContentSquare, Microsoft Clarity, and Google.",
   },
 };
 
@@ -41,25 +41,25 @@ export default async function ResearchIndexPage() {
   const reports = all.filter((r) => !!r.publishedAt);
 
   const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Research · Aestho",
+"@context":"https://schema.org",
+"@type":"ItemList",
+    name:"Research · Aestho",
     description:
-      "Distilled UX and conversion research from top institutions: NN/g, Baymard, ContentSquare, Microsoft Clarity, Google.",
+"Distilled UX and conversion research from top institutions: NN/g, Baymard, ContentSquare, Microsoft Clarity, Google.",
     numberOfItems: reports.length,
     itemListElement: reports.map((r, i) => ({
-      "@type": "ListItem",
+"@type":"ListItem",
       position: i + 1,
       url: `${SITE_URL}/research/${r.slug}`,
       name: r.title,
     })),
   };
   const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Research", item: PAGE_URL },
+      {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL },
+      {"@type":"ListItem", position: 2, name:"Research", item: PAGE_URL },
     ],
   };
 

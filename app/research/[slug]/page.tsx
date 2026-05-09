@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import type { Metadata } from "next";
-import { ArrowLeft, Download, ArrowRight } from "@/components/icons";
-import { eq } from "drizzle-orm";
-import { db, schema } from "@/db/client";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
-import { MarkdownRenderer } from "@/components/blog/markdown-renderer";
+import { notFound } from"next/navigation";
+import Link from"next/link";
+import Image from"next/image";
+import type { Metadata } from"next";
+import { ArrowLeft, Download, ArrowRight } from"@/components/icons";
+import { eq } from"drizzle-orm";
+import { db, schema } from"@/db/client";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
+import { MarkdownRenderer } from"@/components/blog/markdown-renderer";
 
 export const revalidate = 1800;
 
@@ -27,7 +27,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const r = await getReport(slug);
-  if (!r) return { title: "Research report" };
+  if (!r) return { title:"Research report" };
   const url = `${SITE_URL}/research/${slug}`;
   return {
     title: `${r.title} | Aestho Research`,
@@ -37,7 +37,7 @@ export async function generateMetadata({
       title: r.title,
       description: r.summary || undefined,
       url,
-      type: "article",
+      type:"article",
       images: r.coverImage
         ? [{ url: r.coverImage, width: 1200, height: 630 }]
         : [
@@ -49,7 +49,7 @@ export async function generateMetadata({
           ],
     },
     twitter: {
-      card: "summary_large_image",
+      card:"summary_large_image",
       title: r.title,
       description: r.summary || undefined,
     },
@@ -69,8 +69,8 @@ export default async function ResearchReportPage({
   const url = `${SITE_URL}/research/${r.slug}`;
 
   const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+"@context":"https://schema.org",
+"@type":"Article",
     headline: r.title,
     description: r.summary || undefined,
     image:
@@ -78,29 +78,29 @@ export default async function ResearchReportPage({
       `${SITE_URL}/api/blog-og?title=${encodeURIComponent(r.title)}`,
     datePublished: (r.publishedAt ?? r.createdAt).toISOString(),
     dateModified: r.updatedAt.toISOString(),
-    inLanguage: "en-US",
+    inLanguage:"en-US",
     isAccessibleForFree: true,
     url,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    mainEntityOfPage: {"@type":"WebPage","@id": url },
     author: {
-      "@type": "Person",
-      name: "Rashid Iqbal",
+"@type":"Person",
+      name:"Rashid Iqbal",
       url: SITE_URL,
     },
     publisher: {
-      "@type": "Organization",
-      name: "Rashid Iqbal · aestho.xyz",
+"@type":"Organization",
+      name:"Rashid Iqbal · aestho.xyz",
       url: SITE_URL,
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.svg` },
+      logo: {"@type":"ImageObject", url: `${SITE_URL}/logo.svg` },
     },
   };
   const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Research", item: `${SITE_URL}/research` },
-      { "@type": "ListItem", position: 3, name: r.title, item: url },
+      {"@type":"ListItem", position: 1, name:"Home", item: SITE_URL },
+      {"@type":"ListItem", position: 2, name:"Research", item: `${SITE_URL}/research` },
+      {"@type":"ListItem", position: 3, name: r.title, item: url },
     ],
   };
 
@@ -192,7 +192,7 @@ export default async function ResearchReportPage({
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

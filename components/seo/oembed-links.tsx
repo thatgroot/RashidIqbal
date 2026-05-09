@@ -1,4 +1,4 @@
-import { SITE_URL as siteUrl } from "@/lib/constants";
+import { SITE_URL as siteUrl } from"@/lib/constants";
 
 /**
  * Server-side rendered oEmbed discovery links

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowLeft, Layout, Search, Mail } from "@/components/icons";
-import { Loader2, CheckCircle, Palette, Globe, Puzzle, Figma } from "lucide-react";
-import { AUTHOR } from "@/lib/constants";
+import { useState } from"react";
+import { motion, AnimatePresence } from"framer-motion";
+import { ArrowRight, ArrowLeft, Layout, Search, Mail } from"@/components/icons";
+import { Loader2, CheckCircle, Palette, Globe, Puzzle, Figma } from"lucide-react";
+import { AUTHOR } from"@/lib/constants";
 
 // ============================================================================
 // Types
@@ -36,79 +36,79 @@ interface ServiceBuilderFormData {
 
 const AVAILABLE_SERVICES: ServiceOption[] = [
   {
-    slug: "figma-design",
-    name: "Figma Design",
-    description: "UI design, UX copy, and interactive prototype in Figma.",
+    slug:"figma-design",
+    name:"Figma Design",
+    description:"UI design, UX copy, and interactive prototype in Figma.",
     icon: <Figma className="w-5 h-5" />,
   },
   {
-    slug: "landing-page",
-    name: "Landing Page",
-    description: "High-converting, single-page site optimized for conversion.",
+    slug:"landing-page",
+    name:"Landing Page",
+    description:"High-converting, single-page site optimized for conversion.",
     icon: <Layout className="w-5 h-5" />,
   },
   {
-    slug: "multi-page",
-    name: "Multi-Page Website",
-    description: "Complete website with CMS, blogs, and multiple pages.",
+    slug:"multi-page",
+    name:"Multi-Page Website",
+    description:"Complete website with CMS, blogs, and multiple pages.",
     icon: <Globe className="w-5 h-5" />,
   },
   {
-    slug: "website-redesign",
-    name: "Website Redesign",
-    description: "Modernizing existing sites for better UX/UI and conversion.",
+    slug:"website-redesign",
+    name:"Website Redesign",
+    description:"Modernizing existing sites for better UX/UI and conversion.",
     icon: <Palette className="w-5 h-5" />,
   },
   {
-    slug: "chrome-extension",
-    name: "Chrome Extension",
-    description: "Custom browser extension development (React, TS).",
+    slug:"chrome-extension",
+    name:"Chrome Extension",
+    description:"Custom browser extension development (React, TS).",
     icon: <Puzzle className="w-5 h-5" />,
   },
   {
-    slug: "ux-audit",
-    name: "UX Copy / CRO Audit",
-    description: "Reviewing copy and user flow to boost your metrics.",
+    slug:"ux-audit",
+    name:"UX Copy / CRO Audit",
+    description:"Reviewing copy and user flow to boost your metrics.",
     icon: <Search className="w-5 h-5" />,
   },
   {
-    slug: "other",
-    name: "Other",
-    description: "Something else in mind? Let's discuss.",
+    slug:"other",
+    name:"Other",
+    description:"Something else in mind? Let's discuss.",
     icon: <CheckCircle className="w-5 h-5" />,
   },
 ];
 
 // Stack / discipline the visitor actually needs. Decoupled from deliverable
 // type: they may want design only (Figma), dev only (Framer/Webflow/Next.js),
-// or both. Multi-select so the common "Figma + Framer" pair is expressible.
-const STACK_OPTIONS: { value: string; label: string; kind: "design" | "build" }[] = [
-  { value: "figma", label: "Figma (design)", kind: "design" },
-  { value: "framer", label: "Framer", kind: "build" },
-  { value: "webflow", label: "Webflow", kind: "build" },
-  { value: "unsure", label: "Not sure yet", kind: "design" },
+// or both. Multi-select so the common"Figma + Framer" pair is expressible.
+const STACK_OPTIONS: { value: string; label: string; kind:"design" |"build" }[] = [
+  { value:"figma", label:"Figma (design)", kind:"design" },
+  { value:"framer", label:"Framer", kind:"build" },
+  { value:"webflow", label:"Webflow", kind:"build" },
+  { value:"unsure", label:"Not sure yet", kind:"design" },
 ];
 
 const BUDGET_RANGES = [
-  "Single landing page · $2,000",
-  "Multi-page marketing site · $5,000",
-  "Site + CMS + blog · $11,000",
-  "Larger / custom scope · $11,000+",
-  "Not sure yet",
+"Single landing page · $2,000",
+"Multi-page marketing site · $5,000",
+"Site + CMS + blog · $11,000",
+"Larger / custom scope · $11,000+",
+"Not sure yet",
 ];
 
 const TIMELINES = [
-  "ASAP (this week)",
-  "This month",
-  "Next month",
-  "No rush, just exploring",
+"ASAP (this week)",
+"This month",
+"Next month",
+"No rush, just exploring",
 ];
 
 // ============================================================================
 // Compose-URL builder
 // ============================================================================
 // Build a Gmail compose URL pre-filled with a plain-text summary of the form.
-// Used by the "Open in Gmail" fallback next to Submit. When the visitor sends
+// Used by the"Open in Gmail" fallback next to Submit. When the visitor sends
 // from their real inbox the message lands in Rashid's inbox like a regular
 // personal email — bypassing Resend and the spam classifiers that sometimes
 // flag automated mail from new domains.
@@ -119,15 +119,15 @@ const TIMELINES = [
 // handler on devices that map Gmail to their default app.
 
 function buildComposeHref(form: ServiceBuilderFormData, servicesLabel: string, stackLabel: string): string {
-  const firstName = form.name.trim().split(/\s+/)[0] || "there";
+  const firstName = form.name.trim().split(/\s+/)[0] ||"there";
 
-  const subject = `Project inquiry${form.name ? ` from ${form.name}` : ""}${
-    servicesLabel ? ` — ${servicesLabel}` : ""
+  const subject = `Project inquiry${form.name ? ` from ${form.name}` :""}${
+    servicesLabel ? ` — ${servicesLabel}` :""
   }`;
 
   const section = (title: string, rows: (string | null | undefined)[]): string => {
     const filled = rows.filter(Boolean) as string[];
-    if (filled.length === 0) return "";
+    if (filled.length === 0) return"";
     return `— ${title.toUpperCase()} —\n${filled.join("\n")}`;
   };
 
@@ -179,18 +179,18 @@ export function ServiceBuilder() {
   // both Figma Design and CRO Audit already selected, so they can just
   // click through if that's what they want, or uncheck/swap as needed.
   const [formData, setFormData] = useState<ServiceBuilderFormData>({
-    name: "",
-    email: "",
-    website: "",
-    location: "",
-    pageCount: "",
-    budget: "Multi-page marketing site · $5,000",
-    timeline: "This month",
-    description: "",
-    selectedServices: ["figma-design", "ux-audit"],
+    name:"",
+    email:"",
+    website:"",
+    location:"",
+    pageCount:"",
+    budget:"Multi-page marketing site · $5,000",
+    timeline:"This month",
+    description:"",
+    selectedServices: ["figma-design","ux-audit"],
     stack: ["figma"],
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" |"sending" |"sent" |"error">("idle");
 
   // Toggle service selection
   function toggleService(slug: string) {
@@ -211,15 +211,15 @@ export function ServiceBuilder() {
 
   function toggleStack(value: string) {
     setFormData((prev) => {
-      // "Not sure yet" is exclusive — picking it clears others, and picking
-      // another tool clears "Not sure yet".
-      if (value === "unsure") {
+      //"Not sure yet" is exclusive — picking it clears others, and picking
+      // another tool clears"Not sure yet".
+      if (value ==="unsure") {
         return {
           ...prev,
           stack: prev.stack.includes("unsure") ? [] : ["unsure"],
         };
       }
-      const nextStack = prev.stack.filter((s) => s !== "unsure");
+      const nextStack = prev.stack.filter((s) => s !=="unsure");
       if (nextStack.includes(value)) {
         return { ...prev, stack: nextStack.filter((s) => s !== value) };
       }
@@ -234,17 +234,17 @@ export function ServiceBuilder() {
     try {
       const projectTypes = formData.selectedServices
         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
-        .join(", ");
+        .join(",");
 
       const stackLabels = formData.stack
         .map((v) => STACK_OPTIONS.find((o) => o.value === v)?.label || v)
-        .join(", ");
+        .join(",");
 
       const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
-          source: "service-builder",
+          source:"service-builder",
           email: formData.email,
           name: formData.name,
           website: formData.website,
@@ -255,7 +255,7 @@ export function ServiceBuilder() {
           budget: formData.budget,
           timeline: formData.timeline,
           description: formData.description,
-          botcheck: "", // honeypot
+          botcheck:"", // honeypot
         }),
       });
 
@@ -281,7 +281,7 @@ export function ServiceBuilder() {
   // Render: Success State
   // ============================================================================
 
-  if (status === "sent") {
+  if (status ==="sent") {
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -293,9 +293,9 @@ export function ServiceBuilder() {
         <p className="text-[#737373] mb-8">Here&apos;s what happens next:</p>
         <div className="space-y-4 max-w-sm mx-auto text-left">
           {[
-            { num: "1", text: "I review your project details (today)" },
-            { num: "2", text: "I send questions or a rough scope within 24 hours" },
-            { num: "3", text: "We hop on a quick call if it's a fit" },
+            { num:"1", text:"I review your project details (today)" },
+            { num:"2", text:"I send questions or a rough scope within 24 hours" },
+            { num:"3", text:"We hop on a quick call if it's a fit" },
           ].map((s) => (
             <div key={s.num} className="flex items-start gap-3">
               <span className="w-6 h-6 bg-[#fafafa] text-[#0a0a0a] text-xs font-bold flex items-center justify-center shrink-0 rounded-full">
@@ -306,9 +306,9 @@ export function ServiceBuilder() {
           ))}
         </div>
         <p className="text-xs text-[#737373] text-center mt-8">
-          Trusted by founders and teams including{" "}
-          <a href="https://www.update.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">UpdateAI</a>,{" "}
-          <a href="https://vanos.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">Vanos AI</a>, and{" "}
+          Trusted by founders and teams including{""}
+          <a href="https://www.update.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">UpdateAI</a>,{""}
+          <a href="https://vanos.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">Vanos AI</a>, and{""}
           <a href="https://spacedome.ai" target="_blank" rel="noopener noreferrer" className="text-[#737373] hover:text-[#0a0a0a] underline">SpaceDome</a>.
         </p>
       </motion.div>
@@ -320,9 +320,9 @@ export function ServiceBuilder() {
   // ============================================================================
 
   const steps = [
-    { num: 1, label: "Select Services" },
-    { num: 2, label: "Project Scope" },
-    { num: 3, label: "Your Details" },
+    { num: 1, label:"Select Services" },
+    { num: 2, label:"Project Scope" },
+    { num: 3, label:"Your Details" },
   ];
 
   return (
@@ -376,13 +376,13 @@ export function ServiceBuilder() {
                     onClick={() => toggleService(service.slug)}
                     className={`flex items-center gap-4 p-4 border text-left transition-all rounded-2xl ${
                       selected
-                        ? "border-[#0a0a0a] bg-[#fafafa]/50 ring-1 ring-[#0a0a0a]"
-                        : "border-[#e5e5e5] hover:border-[#e5e5e5] bg-white"
+                        ?"border-[#0a0a0a] bg-[#fafafa]/50 ring-1 ring-[#0a0a0a]"
+                        :"border-[#e5e5e5] hover:border-[#e5e5e5] bg-white"
                     }`}
                   >
                     <div
                       className={`w-10 h-10 flex items-center justify-center shrink-0 rounded-full ${
-                        selected ? "bg-[#0a0a0a] text-white" : "bg-[#fafafa] text-[#737373]"
+                        selected ?"bg-[#0a0a0a] text-white" :"bg-[#fafafa] text-[#737373]"
                       }`}
                     >
                       {service.icon}
@@ -393,7 +393,7 @@ export function ServiceBuilder() {
                     </div>
                     <div
                       className={`w-5 h-5 border rounded-full flex items-center justify-center shrink-0 ${
-                        selected ? "border-[#0a0a0a] bg-[#0a0a0a]" : "border-[#e5e5e5]"
+                        selected ?"border-[#0a0a0a] bg-[#0a0a0a]" :"border-[#e5e5e5]"
                       }`}
                     >
                       {selected && <CheckCircle className="w-3.5 h-3.5 text-white" />}
@@ -445,16 +445,16 @@ export function ServiceBuilder() {
                         onClick={() => toggleStack(option.value)}
                         className={`relative py-3 px-4 border text-left text-sm font-medium transition-all rounded-full ${
                           selected
-                            ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
-                            : "border-[#e5e5e5] text-[#0a0a0a] hover:border-[#e5e5e5] bg-white"
+                            ?"border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
+                            :"border-[#e5e5e5] text-[#0a0a0a] hover:border-[#e5e5e5] bg-white"
                         }`}
                       >
                         <span
                           className={`block text-[0.625rem] font-mono uppercase tracking-widest mb-1 ${
-                            selected ? "text-[#0a0a0a]" : "text-[#737373]"
+                            selected ?"text-[#0a0a0a]" :"text-[#737373]"
                           }`}
                         >
-                          {option.kind === "design" ? "Design" : "Build"}
+                          {option.kind ==="design" ?"Design" :"Build"}
                         </span>
                         {option.label}
                       </button>
@@ -473,8 +473,8 @@ export function ServiceBuilder() {
                       onClick={() => setFormData({ ...formData, budget: b })}
                       className={`py-3 px-4 border text-center text-sm font-medium transition-all rounded-full ${
                         formData.budget === b
-                          ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
-                          : "border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5]"
+                          ?"border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
+                          :"border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5]"
                       }`}
                     >
                       {b}
@@ -493,8 +493,8 @@ export function ServiceBuilder() {
                       onClick={() => setFormData({ ...formData, timeline: t })}
                       className={`py-3 px-4 border text-center text-sm font-medium transition-all rounded-full ${
                         formData.timeline === t
-                          ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
-                          : "border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5]"
+                          ?"border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a] ring-1 ring-[#0a0a0a]"
+                          :"border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5]"
                       }`}
                     >
                       {t}
@@ -659,7 +659,7 @@ export function ServiceBuilder() {
                   <span className="font-medium text-right max-w-[60%]">
                     {formData.selectedServices
                       .map(slug => AVAILABLE_SERVICES.find(s => s.slug === slug)?.name || slug)
-                      .join(", ")}
+                      .join(",")}
                   </span>
                 </p>
                 <p className="text-sm text-[#0a0a0a] flex justify-between">
@@ -686,10 +686,10 @@ export function ServiceBuilder() {
                       formData,
                       formData.selectedServices
                         .map((slug) => AVAILABLE_SERVICES.find((s) => s.slug === slug)?.name || slug)
-                        .join(", "),
+                        .join(","),
                       formData.stack
                         .map((v) => STACK_OPTIONS.find((o) => o.value === v)?.label || v)
-                        .join(", ")
+                        .join(",")
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -700,10 +700,10 @@ export function ServiceBuilder() {
                   </a>
                   <button
                     type="submit"
-                    disabled={status === "sending"}
+                    disabled={status ==="sending"}
                     className="btn-pill btn-pill-primary group disabled:opacity-50"
                   >
-                    {status === "sending" ? (
+                    {status ==="sending" ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" /> Sending...
                       </>
@@ -716,7 +716,7 @@ export function ServiceBuilder() {
                 </div>
               </div>
 
-              {status === "error" && (
+              {status ==="error" && (
                 <p className="text-sm text-red-600 text-center">
                   Something went wrong. Try &ldquo;Open in Gmail&rdquo; above, or email me directly.
                 </p>

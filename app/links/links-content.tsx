@@ -1,92 +1,92 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight, Check, Copy } from "@/components/icons";
-import { FaGithub, FaLinkedinIn, FaXTwitter, FaBehance, FaWhatsapp, FaDribbble } from "react-icons/fa6";
-import { SiUpwork, SiFramer } from "react-icons/si";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { Navbar } from "@/components/layout/navbar";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
+import Link from"next/link";
+import Image from"next/image";
+import { ArrowUpRight, Check, Copy } from"@/components/icons";
+import { FaGithub, FaLinkedinIn, FaXTwitter, FaBehance, FaWhatsapp, FaDribbble } from"react-icons/fa6";
+import { SiUpwork, SiFramer } from"react-icons/si";
+import { motion, AnimatePresence } from"framer-motion";
+import { useState } from"react";
+import { Navbar } from"@/components/layout/navbar";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
 
 const featuredLink = {
-  name: "Framer Expert Profile",
-  url: "https://www.framer.com/@risiq",
+  name:"Framer Expert Profile",
+  url:"https://www.framer.com/@risiq",
   icon: <SiFramer className="w-5 h-5" />,
-  label: "Design · Build",
-  description: "View my certified Framer Expert profile and published work.",
+  label:"Design · Build",
+  description:"View my certified Framer Expert profile and published work.",
 };
 
 const links = [
   {
-    name: "Read the Blog",
-    url: "/blog",
+    name:"Read the Blog",
+    url:"/blog",
     icon: <ArrowUpRight className="w-4 h-4" />,
-    label: "Writing",
+    label:"Writing",
     isExternal: false,
   },
   {
-    name: "Start a Project",
-    url: "/contact",
+    name:"Start a Project",
+    url:"/contact",
     icon: <ArrowUpRight className="w-4 h-4" />,
-    label: "Contact",
+    label:"Contact",
     isExternal: false,
   },
   {
-    name: "Hire me on Upwork",
-    url: "https://www.upwork.com/freelancers/~01b24c107f5b5af596",
+    name:"Hire me on Upwork",
+    url:"https://www.upwork.com/freelancers/~01b24c107f5b5af596",
     icon: <SiUpwork className="w-4 h-4" />,
-    label: "Freelance",
+    label:"Freelance",
     isExternal: true,
   },
   {
-    name: "Hire me on Contra",
-    url: "https://contra.com/rashidiqbal",
+    name:"Hire me on Contra",
+    url:"https://contra.com/rashidiqbal",
     icon: <SiFramer className="w-4 h-4" />,
-    label: "Freelance",
+    label:"Freelance",
     isExternal: true,
   },
   {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/callmerashidiqbal/",
+    name:"LinkedIn",
+    url:"https://www.linkedin.com/in/callmerashidiqbal/",
     icon: <FaLinkedinIn className="w-4 h-4" />,
-    label: "Social",
+    label:"Social",
     isExternal: true,
   },
   {
-    name: "X / Twitter",
-    url: "https://x.com/rashidrealme",
+    name:"X / Twitter",
+    url:"https://x.com/rashidrealme",
     icon: <FaXTwitter className="w-4 h-4" />,
-    label: "Social",
+    label:"Social",
     isExternal: true,
   },
   {
-    name: "Behance Portfolio",
-    url: "https://www.behance.net/thatgroot",
+    name:"Behance Portfolio",
+    url:"https://www.behance.net/thatgroot",
     icon: <FaBehance className="w-4 h-4" />,
-    label: "Design",
+    label:"Design",
     isExternal: true,
   },
   {
-    name: "Dribbble Shots",
-    url: "https://dribbble.com/thatgroot",
+    name:"Dribbble Shots",
+    url:"https://dribbble.com/thatgroot",
     icon: <FaDribbble className="w-4 h-4" />,
-    label: "Design",
+    label:"Design",
     isExternal: true,
   },
   {
-    name: "GitHub",
-    url: "https://github.com/thatgroot",
+    name:"GitHub",
+    url:"https://github.com/thatgroot",
     icon: <FaGithub className="w-4 h-4" />,
-    label: "Code",
+    label:"Code",
     isExternal: true,
   },
   {
-    name: "WhatsApp",
-    url: "https://wa.me/923554665643",
+    name:"WhatsApp",
+    url:"https://wa.me/923554665643",
     icon: <FaWhatsapp className="w-4 h-4" />,
-    label: "Contact",
+    label:"Contact",
     isExternal: true,
   },
 ];
@@ -207,21 +207,21 @@ export default function LinksPage() {
             {/* Link grid */}
             <GridContainer cols={2}>
               {links.map((link, index) => {
-                const LinkComponent = link.isExternal ? "a" : Link;
+                const LinkComponent = link.isExternal ?"a" : Link;
                 return (
                   <motion.div
                     key={link.name}
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-20px" }}
+                    viewport={{ once: true, margin:"-20px" }}
                     transition={{ duration: 0.4, delay: index * 0.04 }}
                   >
                     <GridItem className="group h-full">
                       <div className="relative h-full flex flex-col">
                         <LinkComponent
                           href={link.url}
-                          target={link.isExternal ? "_blank" : undefined}
-                          rel={link.isExternal ? "noopener noreferrer" : undefined}
+                          target={link.isExternal ?"_blank" : undefined}
+                          rel={link.isExternal ?"noopener noreferrer" : undefined}
                           className="flex items-start gap-4 h-full"
                         >
                           <div className="w-10 h-10 bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center text-[#0a0a0a] shrink-0 group-hover:bg-[#fafafa] group-hover:border-[#e5e5e5] group-hover:text-[#0a0a0a] transition-colors">
@@ -236,7 +236,7 @@ export default function LinksPage() {
                             </span>
                             <span className="text-xs text-[#737373] truncate block">
                               {link.isExternal
-                                ? new URL(link.url).hostname.replace("www.", "")
+                                ? new URL(link.url).hostname.replace("www.","")
                                 : `aestho.xyz${link.url}`}
                             </span>
                           </div>

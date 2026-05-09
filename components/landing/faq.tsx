@@ -1,35 +1,35 @@
 "use client";
 
-import { Plus, Minus } from "@/components/icons";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FAQStructuredData } from "@/components/seo/faq-structured-data";
+import { Plus, Minus } from"@/components/icons";
+import { useState } from"react";
+import { motion, AnimatePresence } from"framer-motion";
+import { FAQStructuredData } from"@/components/seo/faq-structured-data";
 
 // Superhuman + cap.so FAQ. Two-column layout: editorial opener on the
 // left (sticky on desktop), accordion on the right. Smooth height-grow
-// animation on open. "Still have questions?" sticky email row pinned to
+// animation on open."Still have questions?" sticky email row pinned to
 // the bottom of the left column.
 
 const DEFAULT_FAQS = [
   {
-    q: "Will this actually move my conversion rate?",
-    a: "Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Vanos AI's weekly active developers doubled in 30 days. SpaceDome's homepage signups went up 3x in 6 weeks. We won't promise your specific number — every market is different — but on the kickoff call we'll walk you through the conversion principle behind each lift so you know what's changing and why."
+    q:"Will this actually move my conversion rate?",
+    a:"Across recent SaaS projects the average lift is 2.4x in 60 days. UpdateAI's onboarding signups went up 50% after relaunch. Vanos AI's weekly active developers doubled in 30 days. SpaceDome's homepage signups went up 3x in 6 weeks. We won't promise your specific number — every market is different — but on the kickoff call we'll walk you through the conversion principle behind each lift so you know what's changing and why."
   },
   {
-    q: "What if the design isn't right?",
-    a: "You get unlimited revisions on the Figma design before we touch Framer. If the direction is still wrong after the first review, we refund your deposit. That has happened exactly once in years of projects."
+    q:"What if the design isn't right?",
+    a:"You get unlimited revisions on the Figma design before we touch Framer. If the direction is still wrong after the first review, we refund your deposit. That has happened exactly once in years of projects."
   },
   {
-    q: "What happens after we go live? Will I need you for every change?",
-    a: "You walk away with a 15-minute Loom showing how to update copy, swap images, and add blog posts yourself. If you'd rather not touch it, monthly retainers cover edits, A/B tests, and new pages. Most clients pick the retainer for the first 3 months, then go DIY."
+    q:"What happens after we go live? Will I need you for every change?",
+    a:"You walk away with a 15-minute Loom showing how to update copy, swap images, and add blog posts yourself. If you'd rather not touch it, monthly retainers cover edits, A/B tests, and new pages. Most clients pick the retainer for the first 3 months, then go DIY."
   },
   {
-    q: "Who owns the design and code? Can I move it later?",
-    a: "You do, from day one. The Figma file transfers to your team, the Framer project transfers to your Framer account, and any Chrome extension or custom code ships to your GitHub. No licensing fee, no 'works only while you're on retainer' clause. If you fire us tomorrow, you keep everything."
+    q:"Who owns the design and code? Can I move it later?",
+    a:"You do, from day one. The Figma file transfers to your team, the Framer project transfers to your Framer account, and any Chrome extension or custom code ships to your GitHub. No licensing fee, no 'works only while you're on retainer' clause. If you fire us tomorrow, you keep everything."
   },
   {
-    q: "Can you work with my existing brand, Figma, or in-house team?",
-    a: "Yes. We work inside your designer's Figma file when there is one, follow your brand guide, and pair with your developer on backend or API integration. Stack-wise we ship fastest in Framer but also work in Webflow and hand-coded Next.js when the project needs it. Tell us what you have and we'll be honest about fit."
+    q:"Can you work with my existing brand, Figma, or in-house team?",
+    a:"Yes. We work inside your designer's Figma file when there is one, follow your brand guide, and pair with your developer on backend or API integration. Stack-wise we ship fastest in Framer but also work in Webflow and hand-coded Next.js when the project needs it. Tell us what you have and we'll be honest about fit."
   }
 ];
 
@@ -61,7 +61,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
+              viewport={{ once: true, margin:"-80px" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start"
             >
@@ -78,7 +78,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
                 What founders ask
                 <br className="hidden md:inline" />
                 <span className="text-[#0a0a0a]" style={{ fontVariationSettings: '"wght" 540' }}>
-                  {" "}before hiring.
+                  {""}before hiring.
                 </span>
               </h2>
               <p
@@ -90,7 +90,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
               </p>
 
               {/* Sticky email row — retention pattern. */}
-              <div className="mt-10 p-5 rounded-lg border border-[#e8e4dd] bg-[#fafaf8]">
+              <div className="mt-10 p-5 rounded-lg border border-[#e5e5e5] bg-[#fafafa]">
                 <p
                   className="text-[13px] text-[#0a0a0a] leading-[1.5]"
                   style={{ fontVariationSettings: '"wght" 600' }}
@@ -116,7 +116,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
               </div>
             </motion.div>
 
-            <div className="lg:col-span-7 divide-y divide-[#e8e4dd] border-y border-[#e8e4dd]">
+            <div className="lg:col-span-7 divide-y divide-[#e5e5e5] border-y border-[#e5e5e5]">
               {faqs.map((faq, i) => {
                 const isOpen = openSet.has(i);
                 return (
@@ -124,7 +124,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
                     key={i}
                     initial={{ opacity: 0, y: 8 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
+                    viewport={{ once: true, margin:"-40px" }}
                     transition={{
                       duration: 0.4,
                       delay: Math.min(i * 0.05, 0.3),
@@ -134,7 +134,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
                     <button
                       onClick={() => toggle(i)}
                       aria-expanded={isOpen}
-                      className="w-full flex items-start justify-between gap-6 py-7 md:py-8 text-left hover:bg-[#fafaf8] transition-colors px-2 -mx-2 rounded-md"
+                      className="w-full flex items-start justify-between gap-6 py-7 md:py-8 text-left hover:bg-[#fafafa] transition-colors px-2 -mx-2 rounded-md"
                     >
                       <h3
                         className="text-[18px] md:text-[21px] text-[#0a0a0a] leading-[1.3] tracking-[-0.012em] pr-2"
@@ -145,8 +145,8 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
                       <span
                         className={`shrink-0 mt-1 flex items-center justify-center w-7 h-7 rounded-full transition-all ${
                           isOpen
-                            ? "bg-[#0a0a0a] text-white rotate-180"
-                            : "bg-[#fafaf8] border border-[#e8e4dd] text-[#737373]"
+                            ?"bg-[#0a0a0a] text-white rotate-180"
+                            :"bg-[#fafafa] border border-[#e5e5e5] text-[#737373]"
                         }`}
                       >
                         {isOpen ? (
@@ -160,7 +160,7 @@ export function FAQ({ items }: { items?: FaqItem[] }) {
                       {isOpen && (
                         <motion.div
                           initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
+                          animate={{ height:"auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
                           transition={{
                             duration: 0.3,

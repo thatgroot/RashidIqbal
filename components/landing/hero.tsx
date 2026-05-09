@@ -14,18 +14,18 @@
 // paint (Framer Motion stagger). Each glyph fades + rises 8px in
 // sequence, with a slight per-letter delay (24ms).
 
-import Image from "next/image";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import Image from"next/image";
+import Link from"next/link";
+import { motion, AnimatePresence } from"framer-motion";
+import { useEffect, useState } from"react";
 
 // Headline split into segments so the second word ("Studio") can pick
 // up the amber liquid-glass text-gradient while the first stays in
 // pure ink. Each segment is animated character-by-character below.
 const HEADLINE_SEGMENTS = [
-  { text: "Aestho", gradient: false },
-  { text: " ", gradient: false },
-  { text: "Studio", gradient: true },
+  { text:"Aestho", gradient: false },
+  { text:"", gradient: false },
+  { text:"Studio", gradient: true },
 ] as const;
 const HEADLINE_FULL = HEADLINE_SEGMENTS.map((s) => s.text).join("");
 const HEADLINE_LEN = HEADLINE_FULL.length;
@@ -34,7 +34,7 @@ export function Hero() {
   return (
     <section
       className="relative bg-white"
-      style={{ overflow: "visible" }}
+      style={{ overflow:"visible" }}
       aria-label="Aestho"
     >
       {/* Atmospheric backdrop — terminates in white so the seam between
@@ -44,7 +44,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(60% 80% at 90% 25%, rgba(255,241,207,0.85) 0%, rgba(255,241,207,0) 60%), radial-gradient(50% 70% at 10% 70%, rgba(253,232,163,0.7) 0%, rgba(253,232,163,0) 60%), radial-gradient(40% 60% at 60% 80%, rgba(255,241,207,0.55) 0%, rgba(255,241,207,0) 60%), linear-gradient(180deg, #ffffff 0%, #fffaf0 50%, #ffffff 100%)",
+"radial-gradient(60% 80% at 90% 25%, rgba(255,241,207,0.85) 0%, rgba(255,241,207,0) 60%), radial-gradient(50% 70% at 10% 70%, rgba(253,232,163,0.7) 0%, rgba(253,232,163,0) 60%), radial-gradient(40% 60% at 60% 80%, rgba(255,241,207,0.55) 0%, rgba(255,241,207,0) 60%), linear-gradient(180deg, #ffffff 0%, #fffaf0 50%, #ffffff 100%)",
         }}
       />
 
@@ -73,10 +73,10 @@ export function Hero() {
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
               className="inline-block"
               style={{
-                whiteSpace: ch === " " ? "pre" : "normal",
+                whiteSpace: ch ==="" ?"pre" :"normal",
               }}
             >
-              {ch === " " ? " " : ch}
+              {ch ==="" ?" " : ch}
             </motion.span>
           ))
           )}
@@ -123,7 +123,7 @@ export function Hero() {
         <div
           aria-hidden="true"
           className="mt-16 md:mt-20"
-          style={{ height: "calc(min(1320px, 90vw) * 10 / 16 * 0.75)" }}
+          style={{ height:"calc(min(1320px, 90vw) * 10 / 16 * 0.75)" }}
         />
       </div>
 
@@ -139,14 +139,14 @@ export function Hero() {
           // Original calc was `* -0.25` (25% bleed). Adding +100px
           // shifts the image upward by 100px relative to the hero.
           bottom: `calc(min(1320px, 90vw) * 10 / 16 * -0.25 + 100px)`,
-          maxWidth: "1320px",
+          maxWidth:"1320px",
           zIndex: 99,
         }}
       >
         <HeroScreenshotCarousel />
       </motion.div>
 
-      <div aria-hidden="true" style={{ height: "200px" }} />
+      <div aria-hidden="true" style={{ height:"200px" }} />
     </section>
   );
 }
@@ -160,7 +160,7 @@ export const HERO_BLEED_TOP_PADDING_PX = 360;
 // frame. Two pieces in motion at once:
 //
 //   1. The browser-chrome domain label (top of the window) cross-fades
-//      via AnimatePresence `mode: "wait"` so only one URL is visible
+//      via AnimatePresence `mode:"wait"` so only one URL is visible
 //      at a time.
 //   2. The screenshot itself uses an *overlapping* cross-fade — each
 //      candidate image is absolutely stacked, animated independently
@@ -172,17 +172,17 @@ export const HERO_BLEED_TOP_PADDING_PX = 360;
 //      The `contrast(1.4)` mid-transition pushes the blurred state
 //      toward chunky digital pixelation rather than a soft gaussian
 //      smear. Combined with `image-rendering: pixelated` during the
-//      transformed window, transitions read as a hardware "morph"
+//      transformed window, transitions read as a hardware"morph"
 //      rather than a film dissolve.
 //
 // Auto-rotates every 3.5s. Pauses if the user prefers reduced motion.
 
 const HERO_SCREENSHOTS = [
-  { domain: "update.ai", src: "/work-screenshots/updateai.png", label: "UpdateAI" },
-  { domain: "vanos.ai", src: "/work-screenshots/vanos-ai.png", label: "Vanos AI" },
-  { domain: "atqleads.com", src: "/work-screenshots/atqleads.jpg", label: "ATQLeads" },
-  { domain: "melissaambrosini.com", src: "/work-screenshots/melissa-ambrosini.png", label: "Melissa Ambrosini" },
-  { domain: "nickbroadhurst.com", src: "/work-screenshots/nick-broadhurst.png", label: "Nick Broadhurst" },
+  { domain:"update.ai", src:"/work-screenshots/updateai.png", label:"UpdateAI" },
+  { domain:"vanos.ai", src:"/work-screenshots/vanos-ai.png", label:"Vanos AI" },
+  { domain:"atqleads.com", src:"/work-screenshots/atqleads.jpg", label:"ATQLeads" },
+  { domain:"melissaambrosini.com", src:"/work-screenshots/melissa-ambrosini.png", label:"Melissa Ambrosini" },
+  { domain:"nickbroadhurst.com", src:"/work-screenshots/nick-broadhurst.png", label:"Nick Broadhurst" },
 ] as const;
 
 function HeroScreenshotCarousel() {
@@ -190,7 +190,7 @@ function HeroScreenshotCarousel() {
 
   useEffect(() => {
     const reduce = window.matchMedia?.(
-      "(prefers-reduced-motion: reduce)"
+"(prefers-reduced-motion: reduce)"
     ).matches;
     if (reduce) return;
     const id = window.setInterval(() => {
@@ -213,20 +213,20 @@ function HeroScreenshotCarousel() {
               className="absolute inset-0"
               initial={{
                 opacity: 0,
-                filter: "blur(24px) contrast(1.35) saturate(0.9)",
+                filter:"blur(24px) contrast(1.35) saturate(0.9)",
                 scale: 1.04,
-                imageRendering: "pixelated" as const,
+                imageRendering:"pixelated" as const,
               }}
               animate={{
                 opacity: 1,
-                filter: "blur(0px) contrast(1) saturate(1)",
+                filter:"blur(0px) contrast(1) saturate(1)",
                 scale: 1,
               }}
               exit={{
                 opacity: 0,
-                filter: "blur(24px) contrast(1.35) saturate(0.9)",
+                filter:"blur(24px) contrast(1.35) saturate(0.9)",
                 scale: 1.04,
-                imageRendering: "pixelated" as const,
+                imageRendering:"pixelated" as const,
               }}
               transition={{
                 duration: 0.7,
@@ -264,8 +264,8 @@ function HeroScreenshotCarousel() {
               className="w-1.5 h-1.5 rounded-full transition-all"
               style={{
                 backgroundColor:
-                  i === index ? "#0a0a0a" : "#d4d4d4",
-                width: i === index ? "0.8rem" : "0.375rem",
+                  i === index ?"#0a0a0a" :"#d4d4d4",
+                width: i === index ?"0.8rem" :"0.375rem",
               }}
             />
           ))}
@@ -277,23 +277,23 @@ function HeroScreenshotCarousel() {
 
 // ---- RotatingWord ---------------------------------------------------
 //
-// Cycles through "Marketing → GTM → Product …" in place. Because the
-// rotating word now lives on its OWN line followed by "Websites", the
+// Cycles through"Marketing → GTM → Product …" in place. Because the
+// rotating word now lives on its OWN line followed by"Websites", the
 // previous layout-width-animation gymnastics are unnecessary — the
 // whole line simply re-centres itself when the word changes.
 // AnimatePresence handles the vertical fade-rotate; the amber liquid-
 // glass gradient pulls the eye to the rotating word.
 
-// Each rotating phrase carries its own "Websites" so the whole noun
-// phrase swaps as one unit. Both leading word and "Websites" are
+// Each rotating phrase carries its own"Websites" so the whole noun
+// phrase swaps as one unit. Both leading word and"Websites" are
 // capitalised — keeps the line reading as a proper title.
 const ROTATING_WORDS = [
-  "Marketing Websites",
-  "GTM Websites",
-  "Product Websites",
-  "Growth Websites",
-  "Launch Websites",
-  "Conversion Websites",
+"Marketing Websites",
+"GTM Websites",
+"Product Websites",
+"Growth Websites",
+"Launch Websites",
+"Conversion Websites",
 ] as const;
 
 function RotatingWord() {
@@ -311,9 +311,9 @@ function RotatingWord() {
       <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={ROTATING_WORDS[index]}
-          initial={{ y: "0.4em", opacity: 0 }}
+          initial={{ y:"0.4em", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: "-0.4em", opacity: 0 }}
+          exit={{ y:"-0.4em", opacity: 0 }}
           transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           className="inline-block whitespace-nowrap text-gradient-amber"
           style={{ fontVariationSettings: '"wght" 600' }}

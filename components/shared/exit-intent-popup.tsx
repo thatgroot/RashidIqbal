@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "@/components/icons";
-import { X } from "lucide-react";
+import { useState, useEffect, useCallback } from"react";
+import { usePathname } from"next/navigation";
+import { motion, AnimatePresence } from"framer-motion";
+import { ArrowRight } from"@/components/icons";
+import { X } from"lucide-react";
 
 export function ExitIntentPopup() {
   const pathname = usePathname();
@@ -16,7 +16,7 @@ export function ExitIntentPopup() {
   const handleClose = useCallback(() => {
     setIsOpen(false);
     try {
-      localStorage.setItem("exit-popup-dismissed", "true");
+      localStorage.setItem("exit-popup-dismissed","true");
     } catch { }
   }, []);
 
@@ -26,13 +26,13 @@ export function ExitIntentPopup() {
 
     try {
       await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
-          source: "exit-intent",
+          source:"exit-intent",
           email: email.trim(),
           website: url.trim(),
-          botcheck: "",
+          botcheck:"",
         }),
       });
     } catch (err) {
@@ -44,7 +44,7 @@ export function ExitIntentPopup() {
   };
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window ==="undefined") return;
 
     // Desktop only - check for fine pointer (mouse)
     try {
@@ -71,7 +71,7 @@ export function ExitIntentPopup() {
       if (e.clientY <= 0) {
         setIsOpen(true);
         try {
-          sessionStorage.setItem("exit-popup-shown", "true");
+          sessionStorage.setItem("exit-popup-shown","true");
         } catch { }
         document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
       }
@@ -88,7 +88,7 @@ export function ExitIntentPopup() {
   // Never show on the stripped A/B landing page — the whole /offer route
   // is the conversion experience. An exit-intent popup there breaks the
   // one-offer rule.
-  if (pathname === "/offer") return null;
+  if (pathname ==="/offer") return null;
 
   return (
     <AnimatePresence>
@@ -108,14 +108,14 @@ export function ExitIntentPopup() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{ type:"spring", stiffness: 300, damping: 30 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-md w-full bg-white shadow-2xl p-8 z-10"
+            className="relative max-w-md w-full bg-white p-8 z-10"
           >
             {/* Close button */}
             <button
               onClick={handleClose}
-              className="absolute top-4 right-4 text-[#9a9794] hover:text-[#292827] transition-colors"
+              className="absolute top-4 right-4 text-[#a3a3a3] hover:text-[#0a0a0a] transition-colors"
               aria-label="Close popup"
             >
               <X className="w-5 h-5" />
@@ -126,19 +126,19 @@ export function ExitIntentPopup() {
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <ArrowRight className="w-5 h-5 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-[#292827] mb-2">Got it!</h3>
-                <p className="text-sm text-[#73706d]">I&apos;ll send your audit shortly.</p>
+                <h3 className="text-xl font-bold text-[#0a0a0a] mb-2">Got it!</h3>
+                <p className="text-sm text-[#737373]">I&apos;ll send your audit shortly.</p>
               </div>
             ) : (
               <>
                 <div className="mb-6">
-                  <span className="text-xs font-mono text-[#1b1938] uppercase tracking-wider">
+                  <span className="text-xs font-mono text-[#0a0a0a] uppercase tracking-wider">
                     Before you go
                   </span>
-                  <h3 className="text-2xl font-bold text-[#292827] mt-2 mb-2">
+                  <h3 className="text-2xl font-bold text-[#0a0a0a] mt-2 mb-2">
                     Get a Free Website Audit
                   </h3>
-                  <p className="text-sm text-[#73706d]">
+                  <p className="text-sm text-[#737373]">
                     Drop your URL and email. I&apos;ll send you a quick video breakdown of
                     what&apos;s working and what&apos;s costing you conversions.
                   </p>
@@ -150,7 +150,7 @@ export function ExitIntentPopup() {
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="yourwebsite.com"
-                    className="w-full px-4 py-3 border border-[#e8e4dd] text-sm text-[#292827] placeholder:text-[#9a9794] focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#a3a3a3] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a]"
                     required
                   />
                   <input
@@ -158,17 +158,17 @@ export function ExitIntentPopup() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="w-full px-4 py-3 border border-[#e8e4dd] text-sm text-[#292827] placeholder:text-[#9a9794] focus:outline-none focus:border-[#1b1938] focus:ring-1 focus:ring-[#1b1938]"
+                    className="w-full px-4 py-3 border border-[#e5e5e5] text-sm text-[#0a0a0a] placeholder:text-[#a3a3a3] focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a]"
                     required
                   />
                   <button
                     type="submit"
-                    className="w-full py-3 bg-[#1b1938] text-white text-sm font-bold hover:bg-[#1b1938] transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors flex items-center justify-center gap-2"
                   >
                     Send My Free Audit <ArrowRight className="w-4 h-4" />
                   </button>
                 </form>
-                <p className="text-xs text-[#9a9794] mt-3 text-center">No spam. Just your audit.</p>
+                <p className="text-xs text-[#a3a3a3] mt-3 text-center">No spam. Just your audit.</p>
               </>
             )}
           </motion.div>

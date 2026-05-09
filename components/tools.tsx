@@ -1,10 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { useState } from "react";
-import { ExternalLink } from "lucide-react";
-import Image from "next/image";
+import { motion, AnimatePresence } from"framer-motion";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
+import { useState } from"react";
+import { ExternalLink } from"lucide-react";
+import Image from"next/image";
 
 // --- Icon Components with Real Logos ---
 
@@ -110,7 +110,7 @@ function LovableIconSvg({ className }: { className?: string }) {
                     <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
                     <feGaussianBlur result="effect1" stdDeviation="3.58"/>
                 </filter>
-                <mask id="lovable-mask-tools" width="23" height="24" x="0" y="0" maskUnits="userSpaceOnUse" style={{maskType: "alpha"}}>
+                <mask id="lovable-mask-tools" width="23" height="24" x="0" y="0" maskUnits="userSpaceOnUse" style={{maskType:"alpha"}}>
                     <path fill="url(#lovable-gradient-tools)" fillRule="evenodd" d="M6.898 0c3.81 0 6.898 3.179 6.898 7.1v2.7h2.295c3.81 0 6.898 3.178 6.898 7.1S19.901 24 16.091 24H0V7.1C0 3.18 3.088 0 6.898 0" clipRule="evenodd"/>
                 </mask>
             </defs>
@@ -161,36 +161,36 @@ function Base44IconImg({ className }: { className?: string }) {
 
 const categories = [
   {
-    id: "design",
-    label: "Design",
+    id:"design",
+    label:"Design",
     tools: [
-      { name: "Figma", desc: "Collaborative interface design", url: "https://figma.com", icon: FigmaIcon },
-      { name: "Framer", desc: "No-code production sites", url: "https://framer.com", icon: FramerIconSvg }
+      { name:"Figma", desc:"Collaborative interface design", url:"https://figma.com", icon: FigmaIcon },
+      { name:"Framer", desc:"No-code production sites", url:"https://framer.com", icon: FramerIconSvg }
     ]
   },
   {
-    id: "development",
-    label: "Development",
+    id:"development",
+    label:"Development",
     tools: [
-      { name: "Next.js", desc: "React framework for the web", url: "https://nextjs.org", icon: NextJsIcon },
-      { name: "Expo", desc: "Universal native apps", url: "https://expo.dev", icon: ExpoIconSvg }
+      { name:"Next.js", desc:"React framework for the web", url:"https://nextjs.org", icon: NextJsIcon },
+      { name:"Expo", desc:"Universal native apps", url:"https://expo.dev", icon: ExpoIconSvg }
     ]
   },
   {
-    id: "ai-ides",
-    label: "AI IDEs",
+    id:"ai-ides",
+    label:"AI IDEs",
     tools: [
-      { name: "Cursor", desc: "AI-first code editor", url: "https://cursor.com", icon: CursorIcon },
-      { name: "Antigravity", desc: "Google's AI coding agents", url: "https://idx.google.com", icon: GoogleIcon }
+      { name:"Cursor", desc:"AI-first code editor", url:"https://cursor.com", icon: CursorIcon },
+      { name:"Antigravity", desc:"Google's AI coding agents", url:"https://idx.google.com", icon: GoogleIcon }
     ]
   },
   {
-    id: "ai-builders",
-    label: "AI Builders",
+    id:"ai-builders",
+    label:"AI Builders",
     tools: [
-      { name: "Lovable", desc: "Apps & websites by chatting with AI", url: "https://lovable.dev", icon: LovableIconSvg },
-      { name: "Bolt", desc: "The #1 vibe coding tool", url: "https://bolt.new", icon: BoltIconSvg },
-      { name: "Base44", desc: "Build apps in minutes with words", url: "https://base44.com", icon: Base44IconImg }
+      { name:"Lovable", desc:"Apps & websites by chatting with AI", url:"https://lovable.dev", icon: LovableIconSvg },
+      { name:"Bolt", desc:"The #1 vibe coding tool", url:"https://bolt.new", icon: BoltIconSvg },
+      { name:"Base44", desc:"Build apps in minutes with words", url:"https://base44.com", icon: Base44IconImg }
     ]
   }
 ];
@@ -201,56 +201,56 @@ export function Tools() {
 
   return (
     <section className="bg-white" id="tools">
-      <div className="max-w-container border-l border-[#e8e4dd]">
+      <div className="max-w-container border-l border-[#e5e5e5]">
         <GridContainer>
           <GridItem className="py-32">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin:"-100px" }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-semibold text-[#292827] mb-6">
+              <h2 className="text-4xl font-semibold text-[#0a0a0a] mb-6">
                 Tools I Work With.
               </h2>
-              <p className="text-lg text-[#73706d] max-w-xl mb-16">
+              <p className="text-lg text-[#737373] max-w-xl mb-16">
                 A curated toolkit that helps me ship faster without sacrificing quality.
               </p>
 
               {/* Window - Styled to match site aesthetic */}
               <div className="max-w-3xl">
-                <div className="border border-[#e8e4dd] overflow-hidden bg-[#fafaf8]/50 rounded-xl shadow-xs">
+                <div className="border border-[#e5e5e5] overflow-hidden bg-[#fafafa]/50 rounded-xl shadow-xs">
                   {/* Window Title Bar - Minimal */}
-                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border-b border-[#e8e4dd]">
+                  <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white border-b border-[#e5e5e5]">
                     <div className="flex gap-1.5 sm:gap-2">
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-400/20 border border-red-400/50" />
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-400/20 border border-amber-400/50" />
                       <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-400/20 border border-green-400/50" />
                     </div>
-                    <span className="text-[8px] sm:text-[10px] font-mono text-[#73706d] uppercase tracking-widest">
+                    <span className="text-[8px] sm:text-[10px] font-mono text-[#737373] uppercase tracking-widest">
                       stack.config
                     </span>
                     <div className="w-8 sm:w-12" />
                   </div>
 
                   {/* Tabs - Responsive with horizontal scroll on mobile */}
-                  <div className="flex border-b border-[#e8e4dd] bg-[#fafaf8]/50 overflow-x-auto scrollbar-hide">
+                  <div className="flex border-b border-[#e5e5e5] bg-[#fafafa]/50 overflow-x-auto scrollbar-hide">
                     {categories.map((category) => (
                       <button
                         key={category.id}
                         onClick={() => setActiveTab(category.id)}
                         className={`relative px-3 sm:px-6 py-3 sm:py-4 text-[10px] sm:text-xs font-mono uppercase tracking-wider transition-colors whitespace-nowrap shrink-0 ${
                           activeTab === category.id 
-                            ? 'text-[#292827] font-medium' 
-                            : 'text-[#73706d] hover:text-[#292827]'
+                            ? 'text-[#0a0a0a] font-medium' 
+                            : 'text-[#737373] hover:text-[#0a0a0a]'
                         }`}
                       >
                         {category.label}
                         {activeTab === category.id && (
                           <motion.div
                             layoutId="toolsActiveTab"
-                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1b1938]"
-                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#0a0a0a]"
+                            transition={{ type:"spring", stiffness: 500, damping: 30 }}
                           />
                         )}
                       </button>
@@ -274,26 +274,26 @@ export function Tools() {
                             href={tool.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6 hover:bg-[#fafaf8]/50 transition-all group"
+                            className="flex items-center gap-4 sm:gap-6 px-4 sm:px-8 py-4 sm:py-6 hover:bg-[#fafafa]/50 transition-all group"
                           >
                             {/* Icon Container */}
-                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#fafaf8] rounded-lg border border-[#e8e4dd] group-hover:border-[#e8e4dd] group-hover:scale-105 transition-all shadow-sm shrink-0">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#fafafa] rounded-lg border border-[#e5e5e5] group-hover:border-[#e5e5e5] group-hover:scale-105 transition-all shrink-0">
                                 <tool.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                             </div>
                             
                             {/* Tool info */}
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-3 mb-1">
-                                <span className="font-semibold text-[#292827] group-hover:text-[#1b1938] transition-colors">
+                                <span className="font-semibold text-[#0a0a0a] group-hover:text-[#0a0a0a] transition-colors">
                                     {tool.name}
                                 </span>
                               </div>
-                              <span className="text-sm text-[#73706d]">{tool.desc}</span>
+                              <span className="text-sm text-[#737373]">{tool.desc}</span>
                             </div>
                             
                             {/* Link icon */}
                             <ExternalLink 
-                              className="w-4 h-4 text-zinc-300 group-hover:text-[#1b1938] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" 
+                              className="w-4 h-4 text-zinc-300 group-hover:text-[#0a0a0a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" 
                               aria-hidden="true"
                             />
                           </motion.a>
@@ -304,7 +304,7 @@ export function Tools() {
                 </div>
 
                 {/* Footer */}
-                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-[10px] sm:text-xs text-[#9a9794] font-mono">
+                <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center sm:justify-between gap-1 text-[10px] sm:text-xs text-[#a3a3a3] font-mono">
                     <p>The right tool for the right job.</p>
                     <p>Always exploring what&apos;s next.</p>
                 </div>

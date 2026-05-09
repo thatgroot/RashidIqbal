@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import Script from "next/script";
-import { Inter, Geist_Mono } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import "./globals.css";
-import { StructuredData } from "@/components/seo/structured-data";
-import { StickyAuditRail } from "@/components/shared/sticky-audit-rail";
-import { ScrollProgress } from "@/components/shared/scroll-progress";
-import { EmailMeToast } from "@/components/shared/email-me-toast";
-import { Tracker } from "@/components/analytics/tracker";
-import { Suspense } from "react";
-import { OEmbedLinks } from "@/components/seo/oembed-links";
-import { SITE_URL as siteUrl } from "@/lib/constants";
+import type { Metadata } from"next";
+import Script from"next/script";
+import { Inter, Geist_Mono } from"next/font/google";
+import { GoogleAnalytics } from"@next/third-parties/google";
+import"./globals.css";
+import { StructuredData } from"@/components/seo/structured-data";
+import { StickyAuditRail } from"@/components/shared/sticky-audit-rail";
+import { ScrollProgress } from"@/components/shared/scroll-progress";
+import { EmailMeToast } from"@/components/shared/email-me-toast";
+import { Tracker } from"@/components/analytics/tracker";
+import { Suspense } from"react";
+import { OEmbedLinks } from"@/components/seo/oembed-links";
+import { SITE_URL as siteUrl } from"@/lib/constants";
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-BZT67TX18E";
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||"G-BZT67TX18E";
 
 // Inter Variable — Superhuman-system substitute for Super Sans VF.
 // We rely on the variable axis to pick sub-default weights (460 / 540 / 600)
 // in CSS via `font-variation-settings`, so the brand's typographic warmth
 // signature comes through.
 const inter = Inter({
-  variable: "--font-inter",
+  variable:"--font-inter",
   subsets: ["latin"],
-  display: "swap",
+  display:"swap",
   preload: true,
   axes: ["opsz"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable:"--font-geist-mono",
   subsets: ["latin"],
-  display: "swap",
+  display:"swap",
   preload: true,
 });
 
@@ -38,56 +38,56 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Rashid Iqbal | Figma & Framer Expert",
-    template: "%s | Rashid Iqbal",
+    default:"Rashid Iqbal | Figma & Framer Expert",
+    template:"%s | Rashid Iqbal",
   },
-  description: "Figma design, Framer development, and Chrome extensions. I build websites that convert, write UX copy, and ship browser tools. 50+ projects delivered.",
+  description:"Figma design, Framer development, and Chrome extensions. I build websites that convert, write UX copy, and ship browser tools. 50+ projects delivered.",
   keywords: [
-    "Figma expert",
-    "Framer expert",
-    "Chrome extension developer",
-    "UX copywriting",
-    "landing page designer",
-    "Framer developer",
-    "Figma to Framer",
-    "conversion optimization",
-    "hire Framer expert",
-    "hire Figma designer",
-    "Figma Chrome extension",
-    "Framer Chrome extension",
-    "landing page conversion",
-    "UX design",
+"Figma expert",
+"Framer expert",
+"Chrome extension developer",
+"UX copywriting",
+"landing page designer",
+"Framer developer",
+"Figma to Framer",
+"conversion optimization",
+"hire Framer expert",
+"hire Figma designer",
+"Figma Chrome extension",
+"Framer Chrome extension",
+"landing page conversion",
+"UX design",
   ],
-  authors: [{ name: "Rashid Iqbal", url: siteUrl }],
-  creator: "Rashid Iqbal",
-  publisher: "Rashid Iqbal",
+  authors: [{ name:"Rashid Iqbal", url: siteUrl }],
+  creator:"Rashid Iqbal",
+  publisher:"Rashid Iqbal",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    type:"website",
+    locale:"en_US",
     url: siteUrl,
-    siteName: "Rashid Iqbal",
-    title: "Rashid Iqbal | Figma & Framer Expert",
-    description: "Figma design, Framer development, and Chrome extensions. Websites that convert. 50+ projects shipped.",
+    siteName:"Rashid Iqbal",
+    title:"Rashid Iqbal | Figma & Framer Expert",
+    description:"Figma design, Framer development, and Chrome extensions. Websites that convert. 50+ projects shipped.",
     images: [
       {
         url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Rashid Iqbal - Figma & Framer Expert. Book a Free Call.",
+        alt:"Rashid Iqbal - Figma & Framer Expert. Book a Free Call.",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Rashid Iqbal | Figma & Framer Expert",
-    description: "Figma design, Framer development, and Chrome extensions. Websites that convert. 50+ projects shipped.",
+    card:"summary_large_image",
+    title:"Rashid Iqbal | Figma & Framer Expert",
+    description:"Figma design, Framer development, and Chrome extensions. Websites that convert. 50+ projects shipped.",
     images: [`${siteUrl}/opengraph-image`],
-    creator: "@rashidrealme",
+    creator:"@rashidrealme",
   },
   robots: {
     index: true,
@@ -95,9 +95,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+"max-video-preview": -1,
+"max-image-preview":"large",
+"max-snippet": -1,
     },
   },
   alternates: {
@@ -175,7 +175,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             src="https://www.googletagmanager.com/ns.html?id=GTM-WTKJ9XZF"
             height="0"
             width="0"
-            style={{ display: "none", visibility: "hidden" }}
+            style={{ display:"none", visibility:"hidden" }}
           />
         </noscript>
         {/* Skip Link for Accessibility */}
@@ -203,7 +203,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");`}
+            })(window, document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");`}
           </Script>
         )}
         {/* Tidio Chat Widget */}

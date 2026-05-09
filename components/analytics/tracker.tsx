@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useRef } from"react";
+import { usePathname, useSearchParams } from"next/navigation";
 
 // ----------------------------------------------------------------------------
 // Self-hosted tracker
@@ -17,20 +17,20 @@ import { usePathname, useSearchParams } from "next/navigation";
 //  5. Form events — capture `submit` on every <form>.
 //  6. Batching — events accumulate in a buffer, flushed every 4s. On
 //     pagehide we use sendBeacon so the last batch survives the unload.
-//  7. DNT respect — bails out entirely if navigator.doNotTrack === "1" or
-//     localStorage.aestho_track_off === "1".
+//  7. DNT respect — bails out entirely if navigator.doNotTrack ==="1" or
+//     localStorage.aestho_track_off ==="1".
 // ----------------------------------------------------------------------------
 
 type QueuedEvent = {
-  type: "pageview" | "click" | "scroll" | "form_view" | "form_submit" | "cta_click" | "custom";
+  type:"pageview" |"click" |"scroll" |"form_view" |"form_submit" |"cta_click" |"custom";
   path?: string;
   target?: string;
   properties?: Record<string, unknown>;
   ts?: number;
 };
 
-const COOKIE_VISITOR = "aestho_v";
-const COOKIE_SESSION = "aestho_s";
+const COOKIE_VISITOR ="aestho_v";
+const COOKIE_SESSION ="aestho_s";
 const VISITOR_TTL_DAYS = 365;
 const SESSION_TTL_MIN = 30;
 const FLUSH_INTERVAL_MS = 4000;
@@ -43,7 +43,7 @@ function readCookie(name: string): string | null {
 
 function writeCookie(name: string, value: string, ttlMs: number) {
   const expires = new Date(Date.now() + ttlMs).toUTCString();
-  const secure = location.protocol === "https:" ? "; Secure" : "";
+  const secure = location.protocol ==="https:" ?"; Secure" :"";
   document.cookie = `${name}=${encodeURIComponent(value)}; path=/; expires=${expires}; SameSite=Lax${secure}`;
 }
 
@@ -51,7 +51,7 @@ function randomId(bytes = 16): string {
   const buf = new Uint8Array(bytes);
   crypto.getRandomValues(buf);
   return Array.from(buf)
-    .map((b) => b.toString(16).padStart(2, "0"))
+    .map((b) => b.toString(16).padStart(2,"0"))
     .join("");
 }
 
@@ -96,8 +96,8 @@ function isPathTrackable(path: string): boolean {
 
 function shouldOptOut(): boolean {
   try {
-    if (navigator.doNotTrack === "1") return true;
-    if (localStorage.getItem("aestho_track_off") === "1") return true;
+    if (navigator.doNotTrack ==="1") return true;
+    if (localStorage.getItem("aestho_track_off") ==="1") return true;
     if (!isPathTrackable(location.pathname)) return true;
   } catch {
     // localStorage may throw in iframes / privacy modes — fall through to track.
@@ -109,7 +109,7 @@ function descTextOf(el: HTMLElement | null): string | undefined {
   if (!el) return undefined;
   const aria = el.getAttribute("aria-label");
   if (aria) return aria.trim().slice(0, 80);
-  const txt = el.textContent?.replace(/\s+/g, " ").trim();
+  const txt = el.textContent?.replace(/\s+/g,"").trim();
   return txt ? txt.slice(0, 80) : undefined;
 }
 
@@ -139,7 +139,7 @@ export function Tracker() {
   const lastPathRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window ==="undefined") return;
     if (shouldOptOut()) return;
 
     const visitorId = getVisitorId();
@@ -160,11 +160,11 @@ export function Tracker() {
       };
 
       const body = JSON.stringify(payload);
-      const url = "/api/track";
+      const url ="/api/track";
 
-      if (useBeacon && "sendBeacon" in navigator) {
+      if (useBeacon &&"sendBeacon" in navigator) {
         try {
-          const blob = new Blob([body], { type: "application/json" });
+          const blob = new Blob([body], { type:"application/json" });
           navigator.sendBeacon(url, blob);
           return;
         } catch {
@@ -172,8 +172,8 @@ export function Tracker() {
         }
       }
       fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body,
         keepalive: true,
       }).catch(() => {
@@ -191,7 +191,7 @@ export function Tracker() {
       queueRef.current.push(ev);
       // Hot-flush milestones (form_submit, cta_click) so leads aren't lost
       // if the visitor closes the tab a second after submit.
-      if (ev.type === "form_submit" || ev.type === "cta_click") flush();
+      if (ev.type ==="form_submit" || ev.type ==="cta_click") flush();
     }
 
     // ---------- Scroll milestones ----------
@@ -204,7 +204,7 @@ export function Tracker() {
       for (const m of SCROLL_MILESTONES) {
         if (pct >= m && !scrollFiredRef.current.has(m)) {
           scrollFiredRef.current.add(m);
-          enqueue({ type: "scroll", properties: { pct: m } });
+          enqueue({ type:"scroll", properties: { pct: m } });
         }
       }
     }
@@ -216,23 +216,23 @@ export function Tracker() {
       // Climb to the nearest clickable: <a>, <button>, [role="button"], or
       // anything with data-track explicitly set.
       const el = target.closest<HTMLElement>(
-        "a, button, [role='button'], [data-track]"
+"a, button, [role='button'], [data-track]"
       );
       if (!el) return;
 
       const dataTrack = el.getAttribute("data-track");
-      const isLink = el.tagName === "A";
-      const isButton = el.tagName === "BUTTON" || el.getAttribute("role") === "button";
+      const isLink = el.tagName ==="A";
+      const isButton = el.tagName ==="BUTTON" || el.getAttribute("role") ==="button";
 
       const tag = dataTrack
         ? dataTrack
         : isLink
-          ? `link:${(el as HTMLAnchorElement).getAttribute("href") || ""}`
+          ? `link:${(el as HTMLAnchorElement).getAttribute("href") ||""}`
           : isButton
-            ? `button:${descTextOf(el) || "anonymous"}`
+            ? `button:${descTextOf(el) ||"anonymous"}`
             : `el:${el.tagName.toLowerCase()}`;
 
-      const eventType = dataTrack || isButton ? "cta_click" : "click";
+      const eventType = dataTrack || isButton ?"cta_click" :"click";
 
       enqueue({
         type: eventType,
@@ -253,8 +253,8 @@ export function Tracker() {
         form.id ||
         form.getAttribute("name") ||
         form.action ||
-        "form";
-      enqueue({ type: "form_submit", target: `form:${id}` });
+"form";
+      enqueue({ type:"form_submit", target: `form:${id}` });
     }
 
     // ---------- Wire up listeners ----------
@@ -266,7 +266,7 @@ export function Tracker() {
     const onHide = () => flush(true);
     window.addEventListener("pagehide", onHide);
     document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "hidden") flush(true);
+      if (document.visibilityState ==="hidden") flush(true);
     });
 
     // Cleanup
@@ -284,14 +284,14 @@ export function Tracker() {
 
   // Pageview — fires on mount and on every pathname/searchParams change.
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window ==="undefined") return;
     if (shouldOptOut()) return;
     if (lastPathRef.current === pathname) return;
     lastPathRef.current = pathname;
     scrollFiredRef.current.clear();
 
     queueRef.current.push({
-      type: "pageview",
+      type:"pageview",
       path: pathname || location.pathname,
       ts: Date.now(),
     });
@@ -313,8 +313,8 @@ export function Tracker() {
           ...ctx,
         });
         fetch("/api/track", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+          method:"POST",
+          headers: {"Content-Type":"application/json" },
           body,
           keepalive: true,
         }).catch(() => {});

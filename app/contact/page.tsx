@@ -1,24 +1,24 @@
-import { Metadata } from "next";
-import { Navbar } from "@/components/layout/navbar";
-import { ServiceBuilder } from "@/components/shared/service-builder";
-import { ClosingBand } from "@/components/landing/closing-band";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
-import { Mail, Calendar } from "@/components/icons";
-import { EmailMeButton } from "@/components/shared/email-me-toast";
+import { Metadata } from"next";
+import { Navbar } from"@/components/layout/navbar";
+import { ServiceBuilder } from"@/components/shared/service-builder";
+import { ClosingBand } from"@/components/landing/closing-band";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
+import { Mail, Calendar } from"@/components/icons";
+import { EmailMeButton } from"@/components/shared/email-me-toast";
 
 export const metadata: Metadata = {
-  title: "Start a project · Aestho",
+  title:"Start a project · Aestho",
   description:
-    "Tell us about your project. Figma design, Framer development, or Chrome extensions. 24-hour reply with a scope and quote.",
+"Tell us about your project. Figma design, Framer development, or Chrome extensions. 24-hour reply with a scope and quote.",
   openGraph: {
-    title: "Start a project · Aestho",
-    description: "Describe your project and get a reply within 24 hours.",
-    type: "website",
+    title:"Start a project · Aestho",
+    description:"Describe your project and get a reply within 24 hours.",
+    type:"website",
     url: `${SITE_URL}/contact`,
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent(
-          "Start a project · 24-hour quote",
+"Start a project · 24-hour quote",
         )}`,
         width: 1200,
         height: 630,
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Start a project · Aestho",
-    description: "Describe your project and get a reply within 24 hours.",
+    card:"summary_large_image",
+    title:"Start a project · Aestho",
+    description:"Describe your project and get a reply within 24 hours.",
     images: [
       `${SITE_URL}/api/blog-og?title=${encodeURIComponent("Start a project · 24-hour quote")}`,
     ],

@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Check, Star } from "@/components/icons";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
+import type { Metadata } from"next";
+import Link from"next/link";
+import Image from"next/image";
+import { ArrowRight, Check, Star } from"@/components/icons";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
 
-const PAGE_PATH = "/framer-expert-for-saas";
+const PAGE_PATH ="/framer-expert-for-saas";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Framer Expert for SaaS Landing Pages | Rashid Iqbal",
+  title:"Framer Expert for SaaS Landing Pages | Rashid Iqbal",
   description:
-    "Hire a Certified Framer Expert for B2B SaaS landing pages. Two-week delivery. Figma design, Framer build, UX copy included. Clients: UpdateAI, Vanos AI, SpaceDome, ATQLeads.",
+"Hire a Certified Framer Expert for B2B SaaS landing pages. Two-week delivery. Figma design, Framer build, UX copy included. Clients: UpdateAI, Vanos AI, SpaceDome, ATQLeads.",
   keywords: [
-    "framer expert for saas",
-    "saas landing page designer",
-    "b2b saas framer expert",
-    "framer expert for y combinator startups",
-    "framer expert for landing page",
-    "high converting figma to framer landing page",
+"framer expert for saas",
+"saas landing page designer",
+"b2b saas framer expert",
+"framer expert for y combinator startups",
+"framer expert for landing page",
+"high converting figma to framer landing page",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Framer Expert for SaaS Landing Pages | Rashid Iqbal",
+    title:"Framer Expert for SaaS Landing Pages | Rashid Iqbal",
     description:
-      "Certified Framer Expert building high-converting B2B SaaS landing pages. Two-week delivery.",
+"Certified Framer Expert building high-converting B2B SaaS landing pages. Two-week delivery.",
     url: PAGE_URL,
-    type: "website",
+    type:"website",
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent(
-          "Framer Expert for SaaS Landing Pages"
+"Framer Expert for SaaS Landing Pages"
         )}`,
         width: 1200,
         height: 630,
@@ -37,90 +37,90 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Framer Expert for SaaS Landing Pages",
+    card:"summary_large_image",
+    title:"Framer Expert for SaaS Landing Pages",
     description:
-      "Certified Framer Expert. Two-week delivery. Copy + design + build.",
+"Certified Framer Expert. Two-week delivery. Copy + design + build.",
   },
 };
 
-const CLIENTS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads"] as const;
+const CLIENTS = ["UpdateAI","Vanos AI","SpaceDome","ATQLeads"] as const;
 
 const DELIVERABLES = [
-  "Conversion-focused information architecture for the funnel",
-  "UX copy written by a copywriter, not laid out from your draft",
-  "Figma design tuned for SaaS buyer scanning patterns",
-  "Framer build with CMS, blog, and lead capture wired in",
-  "Performance tuned for Core Web Vitals on mobile",
-  "Two-week delivery from kickoff to launch",
+"Conversion-focused information architecture for the funnel",
+"UX copy written by a copywriter, not laid out from your draft",
+"Figma design tuned for SaaS buyer scanning patterns",
+"Framer build with CMS, blog, and lead capture wired in",
+"Performance tuned for Core Web Vitals on mobile",
+"Two-week delivery from kickoff to launch",
 ] as const;
 
 const PROCESS_STEPS = [
   {
-    title: "Day 1 to 2: Strategy",
-    body: "Kickoff call, audit of your current page, positioning sharpened, ICP narrowed to one buyer.",
+    title:"Day 1 to 2: Strategy",
+    body:"Kickoff call, audit of your current page, positioning sharpened, ICP narrowed to one buyer.",
   },
   {
-    title: "Day 3 to 7: Design and copy",
-    body: "Figma layout with final copy in place. One async review round, one live walkthrough.",
+    title:"Day 3 to 7: Design and copy",
+    body:"Figma layout with final copy in place. One async review round, one live walkthrough.",
   },
   {
-    title: "Day 8 to 12: Build",
-    body: "Framer build with CMS, forms, analytics, and Cal.com booking. Lighthouse passes 90 plus.",
+    title:"Day 8 to 12: Build",
+    body:"Framer build with CMS, forms, analytics, and Cal.com booking. Lighthouse passes 90 plus.",
   },
   {
-    title: "Day 13 to 14: Launch",
-    body: "Domain pointed, redirects mapped, sitemap submitted, GA and PostHog wired. You go live.",
+    title:"Day 13 to 14: Launch",
+    body:"Domain pointed, redirects mapped, sitemap submitted, GA and PostHog wired. You go live.",
   },
 ] as const;
 
 const FAQS = [
   {
-    q: "What does a Framer expert for SaaS actually deliver?",
-    a: "A complete marketing site: hero, features, pricing, blog, lead capture, and Cal.com booking. Built on Framer, written for B2B buyers, designed to turn cold visitors into demos.",
+    q:"What does a Framer expert for SaaS actually deliver?",
+    a:"A complete marketing site: hero, features, pricing, blog, lead capture, and Cal.com booking. Built on Framer, written for B2B buyers, designed to turn cold visitors into demos.",
   },
   {
-    q: "Do you work with Y Combinator startups?",
-    a: "Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, and ATQLeads. Two-week timeline fits launch and demo-day cycles.",
+    q:"Do you work with Y Combinator startups?",
+    a:"Yes. I have built and rebuilt sites for YC and post-YC startups including UpdateAI, Vanos AI, SpaceDome, and ATQLeads. Two-week timeline fits launch and demo-day cycles.",
   },
   {
-    q: "How much does a SaaS landing page cost?",
-    a: "Single landing page projects ship in one week. Full multi-page marketing sites with CMS ship in two to three weeks. Pricing is fixed per scope and quoted on the kickoff call.",
+    q:"How much does a SaaS landing page cost?",
+    a:"Single landing page projects ship in one week. Full multi-page marketing sites with CMS ship in two to three weeks. Pricing is fixed per scope and quoted on the kickoff call.",
   },
   {
-    q: "Do you write the copy?",
-    a: "Yes. Copy is included in every project, not an upsell. I interview your founders, study your competitors, and write the page before I design it.",
+    q:"Do you write the copy?",
+    a:"Yes. Copy is included in every project, not an upsell. I interview your founders, study your competitors, and write the page before I design it.",
   },
   {
-    q: "Can you migrate my existing Webflow or WordPress site to Framer?",
-    a: "Yes. I rebuild the site in Framer, set up 301 redirects, and preserve SEO equity. Migrations usually run two to three weeks depending on page count.",
+    q:"Can you migrate my existing Webflow or WordPress site to Framer?",
+    a:"Yes. I rebuild the site in Framer, set up 301 redirects, and preserve SEO equity. Migrations usually run two to three weeks depending on page count.",
   },
   {
-    q: "Why Framer instead of Webflow for SaaS?",
-    a: "Framer ships better Core Web Vitals out of the box, has a faster canvas for design iteration, and supports AI-assisted layout generation. Read the full comparison at /blog/why-framer-2026-wordpress-webflow.",
+    q:"Why Framer instead of Webflow for SaaS?",
+    a:"Framer ships better Core Web Vitals out of the box, has a faster canvas for design iteration, and supports AI-assisted layout generation. Read the full comparison at /blog/why-framer-2026-wordpress-webflow.",
   },
 ] as const;
 
 const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+"@context":"https://schema.org",
+"@type":"FAQPage",
   mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
+"@type":"Question",
     name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
+    acceptedAnswer: {"@type":"Answer", text: f.a },
   })),
 };
 
 const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Framer Expert for SaaS Landing Pages",
-  provider: { "@type": "Person", name: "Rashid Iqbal", url: SITE_URL },
-  areaServed: "Worldwide",
-  serviceType: "Framer development for B2B SaaS",
+"@context":"https://schema.org",
+"@type":"Service",
+  name:"Framer Expert for SaaS Landing Pages",
+  provider: {"@type":"Person", name:"Rashid Iqbal", url: SITE_URL },
+  areaServed:"Worldwide",
+  serviceType:"Framer development for B2B SaaS",
   url: PAGE_URL,
   description:
-    "Certified Framer Expert building high-converting B2B SaaS landing pages with copy, design, and CMS in two weeks.",
+"Certified Framer Expert building high-converting B2B SaaS landing pages with copy, design, and CMS in two weeks.",
 };
 
 export default function FramerExpertSaasPage() {
@@ -188,7 +188,7 @@ export default function FramerExpertSaasPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -255,7 +255,7 @@ export default function FramerExpertSaasPage() {
             Onboarding signups went up by half.&rdquo;
           </blockquote>
           <figcaption className="text-sm">
-            <span className="font-bold text-[#0a0a0a]">Josh Schachter</span>{" "}
+            <span className="font-bold text-[#0a0a0a]">Josh Schachter</span>{""}
             <span className="text-[#737373]">· Founder &amp; CEO, UpdateAI</span>
           </figcaption>
         </figure>
@@ -283,7 +283,7 @@ export default function FramerExpertSaasPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a strategy call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

@@ -11,13 +11,13 @@ export const size = {
 export const contentType = 'image/png';
 
 const links = [
-    "Framer Expert Profile",
-    "Portfolio & Services",
-    "Read My Latest Articles",
-    "Hire Me on Upwork",
-    "Follow on LinkedIn",
-    "Follow on X/Twitter",
-    "View Designs on Behance",
+"Framer Expert Profile",
+"Portfolio & Services",
+"Read My Latest Articles",
+"Hire Me on Upwork",
+"Follow on LinkedIn",
+"Follow on X/Twitter",
+"View Designs on Behance",
 ];
 
 export default async function Image() {

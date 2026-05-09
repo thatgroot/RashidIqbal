@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowRight } from "@/components/icons";
-import { X } from "lucide-react";
-import { Sparkles } from "@/components/icons";
-import { motion, AnimatePresence } from "framer-motion";
-import posthog from "posthog-js";
+import { useEffect, useState } from"react";
+import Link from"next/link";
+import { ArrowRight } from"@/components/icons";
+import { X } from"lucide-react";
+import { Sparkles } from"@/components/icons";
+import { motion, AnimatePresence } from"framer-motion";
+import posthog from"posthog-js";
 
-const DISMISS_KEY = "offer-banner-dismissed-at";
+const DISMISS_KEY ="offer-banner-dismissed-at";
 const DISMISS_DAYS = 7; // expire dismiss after a week so returning visitors see the offer again
 
 /**
@@ -49,7 +49,7 @@ export function OfferBanner() {
       /* no-op */
     }
     try {
-      posthog.capture("offer_banner_dismissed", { source: "homepage" });
+      posthog.capture("offer_banner_dismissed", { source:"homepage" });
     } catch {
       /* no-op */
     }
@@ -58,7 +58,7 @@ export function OfferBanner() {
 
   function handleCtaClick() {
     try {
-      posthog.capture("offer_banner_clicked", { source: "homepage" });
+      posthog.capture("offer_banner_clicked", { source:"homepage" });
     } catch {
       /* no-op */
     }
@@ -69,9 +69,9 @@ export function OfferBanner() {
       {visible && (
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
+          animate={{ height:"auto", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
+          transition={{ duration: 0.25, ease:"easeOut" }}
           className="w-full bg-[#000000] text-white overflow-hidden border-b border-white/5"
           role="region"
           aria-label="Promotional offer"

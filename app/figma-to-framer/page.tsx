@@ -1,35 +1,35 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Check } from "@/components/icons";
-import { SITE_URL, SOCIAL_LINKS } from "@/lib/constants";
+import type { Metadata } from"next";
+import Link from"next/link";
+import Image from"next/image";
+import { ArrowRight, Check } from"@/components/icons";
+import { SITE_URL, SOCIAL_LINKS } from"@/lib/constants";
 
-const PAGE_PATH = "/figma-to-framer";
+const PAGE_PATH ="/figma-to-framer";
 const PAGE_URL = `${SITE_URL}${PAGE_PATH}`;
 
 export const metadata: Metadata = {
-  title: "Figma to Framer Conversion · 2-week delivery",
+  title:"Figma to Framer Conversion · 2-week delivery",
   description:
-    "Convert your Figma design into a live Framer site in two weeks. Pixel-perfect, responsive, fast. CMS, forms, analytics included. Certified Framer Expert, Top Rated on Upwork.",
+"Convert your Figma design into a live Framer site in two weeks. Pixel-perfect, responsive, fast. CMS, forms, analytics included. Certified Framer Expert, Top Rated on Upwork.",
   keywords: [
-    "figma to framer",
-    "figma to framer freelancer",
-    "figma to framer 2 week delivery",
-    "high converting figma to framer landing page",
-    "figma to framer service",
-    "figma design to framer site",
+"figma to framer",
+"figma to framer freelancer",
+"figma to framer 2 week delivery",
+"high converting figma to framer landing page",
+"figma to framer service",
+"figma design to framer site",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Figma to Framer | Two-Week Delivery | Rashid Iqbal",
+    title:"Figma to Framer | Two-Week Delivery | Rashid Iqbal",
     description:
-      "Pixel-perfect Figma to Framer conversion. Two-week delivery. CMS, forms, analytics included.",
+"Pixel-perfect Figma to Framer conversion. Two-week delivery. CMS, forms, analytics included.",
     url: PAGE_URL,
-    type: "website",
+    type:"website",
     images: [
       {
         url: `${SITE_URL}/api/blog-og?title=${encodeURIComponent(
-          "Figma to Framer Conversion"
+"Figma to Framer Conversion"
         )}`,
         width: 1200,
         height: 630,
@@ -37,110 +37,110 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Figma to Framer in Two Weeks",
-    description: "Pixel-perfect conversion. CMS, forms, analytics included.",
+    card:"summary_large_image",
+    title:"Figma to Framer in Two Weeks",
+    description:"Pixel-perfect conversion. CMS, forms, analytics included.",
   },
 };
 
 const INCLUDED = [
-  "Pixel-perfect parity with your Figma file across every breakpoint",
-  "Smart Components for buttons, cards, nav, and hero variants",
-  "Framer CMS for blog, case studies, careers, or any structured content",
-  "Forms wired to your inbox, Resend, Mailchimp, or HubSpot",
-  "Lighthouse 90 plus on mobile with image, font, and JS optimization",
-  "SEO meta, Open Graph, sitemap, robots, and JSON-LD structured data",
-  "Custom domain, HTTPS, redirects, and analytics handoff",
+"Pixel-perfect parity with your Figma file across every breakpoint",
+"Smart Components for buttons, cards, nav, and hero variants",
+"Framer CMS for blog, case studies, careers, or any structured content",
+"Forms wired to your inbox, Resend, Mailchimp, or HubSpot",
+"Lighthouse 90 plus on mobile with image, font, and JS optimization",
+"SEO meta, Open Graph, sitemap, robots, and JSON-LD structured data",
+"Custom domain, HTTPS, redirects, and analytics handoff",
 ] as const;
 
 const PROCESS = [
   {
-    title: "Day 1: Audit your Figma",
-    body: "I review the file, flag missing breakpoints, fix unconstrained layers, and document tokens.",
+    title:"Day 1: Audit your Figma",
+    body:"I review the file, flag missing breakpoints, fix unconstrained layers, and document tokens.",
   },
   {
-    title: "Day 2 to 8: Build the canvas",
-    body: "Component library set up, sections built, breakpoints tuned, interactions wired.",
+    title:"Day 2 to 8: Build the canvas",
+    body:"Component library set up, sections built, breakpoints tuned, interactions wired.",
   },
   {
-    title: "Day 9 to 11: CMS and integrations",
-    body: "Blog or case studies modeled, content migrated, forms connected, analytics installed.",
+    title:"Day 9 to 11: CMS and integrations",
+    body:"Blog or case studies modeled, content migrated, forms connected, analytics installed.",
   },
   {
-    title: "Day 12 to 14: QA and launch",
-    body: "Cross-browser QA, Lighthouse pass, redirects mapped, domain pointed, you go live.",
+    title:"Day 12 to 14: QA and launch",
+    body:"Cross-browser QA, Lighthouse pass, redirects mapped, domain pointed, you go live.",
   },
 ] as const;
 
 const PRICING = [
   {
-    label: "Single landing page",
-    price: "1 week",
-    body: "One-page Figma to Framer conversion. Forms, analytics, custom domain, two revision rounds.",
+    label:"Single landing page",
+    price:"1 week",
+    body:"One-page Figma to Framer conversion. Forms, analytics, custom domain, two revision rounds.",
   },
   {
-    label: "Multi-page site",
-    price: "2 weeks",
-    body: "Five to ten pages with CMS, blog, case studies. Includes copy review and SEO setup.",
+    label:"Multi-page site",
+    price:"2 weeks",
+    body:"Five to ten pages with CMS, blog, case studies. Includes copy review and SEO setup.",
   },
   {
-    label: "Migration from Webflow or WordPress",
-    price: "2–3 weeks",
-    body: "Full rebuild on Framer with 301 redirects, content migration, and SEO equity preserved.",
+    label:"Migration from Webflow or WordPress",
+    price:"2–3 weeks",
+    body:"Full rebuild on Framer with 301 redirects, content migration, and SEO equity preserved.",
   },
 ] as const;
 
 const FAQS = [
   {
-    q: "How long does Figma to Framer conversion take?",
-    a: "Single landing pages ship in one week. Full multi-page sites with CMS ship in two weeks. Migrations from Webflow or WordPress take two to three weeks.",
+    q:"How long does Figma to Framer conversion take?",
+    a:"Single landing pages ship in one week. Full multi-page sites with CMS ship in two weeks. Migrations from Webflow or WordPress take two to three weeks.",
   },
   {
-    q: "Do you handle responsive design?",
-    a: "Yes. Every page is built across desktop, tablet, and mobile breakpoints. If your Figma is missing breakpoints, I extend the design to cover them at no extra cost.",
+    q:"Do you handle responsive design?",
+    a:"Yes. Every page is built across desktop, tablet, and mobile breakpoints. If your Figma is missing breakpoints, I extend the design to cover them at no extra cost.",
   },
   {
-    q: "Can I edit the site after you hand off?",
-    a: "Yes. Framer is built for designer and marketer editing. I record a 15-minute walkthrough showing how to update copy, swap images, add blog posts, and tweak components.",
+    q:"Can I edit the site after you hand off?",
+    a:"Yes. Framer is built for designer and marketer editing. I record a 15-minute walkthrough showing how to update copy, swap images, add blog posts, and tweak components.",
   },
   {
-    q: "What if my Figma is not Framer-ready?",
-    a: "I fix it. Most Figma files need light cleanup before conversion: auto-layout fixes, token consolidation, missing variants. This is included, not extra.",
+    q:"What if my Figma is not Framer-ready?",
+    a:"I fix it. Most Figma files need light cleanup before conversion: auto-layout fixes, token consolidation, missing variants. This is included, not extra.",
   },
   {
-    q: "Do you offer revisions?",
-    a: "Yes. Two async review rounds plus one live walkthrough are included. Additional rounds run at the standard rate, but most projects ship inside the included rounds.",
+    q:"Do you offer revisions?",
+    a:"Yes. Two async review rounds plus one live walkthrough are included. Additional rounds run at the standard rate, but most projects ship inside the included rounds.",
   },
   {
-    q: "Why convert Figma to Framer instead of using a developer?",
-    a: "Framer outputs production-grade sites with edge CDN, image optimization, and SEO defaults that take a Next.js developer weeks to replicate. For marketing sites, the speed and cost difference is real.",
+    q:"Why convert Figma to Framer instead of using a developer?",
+    a:"Framer outputs production-grade sites with edge CDN, image optimization, and SEO defaults that take a Next.js developer weeks to replicate. For marketing sites, the speed and cost difference is real.",
   },
   {
-    q: "Do you include UX copy?",
-    a: "Yes when requested. I write headlines, subheads, CTAs, and FAQs tuned to your buyer. Add it to scope on the kickoff call.",
+    q:"Do you include UX copy?",
+    a:"Yes when requested. I write headlines, subheads, CTAs, and FAQs tuned to your buyer. Add it to scope on the kickoff call.",
   },
 ] as const;
 
 const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+"@context":"https://schema.org",
+"@type":"FAQPage",
   mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
+"@type":"Question",
     name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
+    acceptedAnswer: {"@type":"Answer", text: f.a },
   })),
 };
 
 const serviceJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  name: "Figma to Framer Conversion",
-  provider: { "@type": "Person", name: "Rashid Iqbal", url: SITE_URL },
-  areaServed: "Worldwide",
-  serviceType: "Figma to Framer conversion with two-week delivery",
+"@context":"https://schema.org",
+"@type":"Service",
+  name:"Figma to Framer Conversion",
+  provider: {"@type":"Person", name:"Rashid Iqbal", url: SITE_URL },
+  areaServed:"Worldwide",
+  serviceType:"Figma to Framer conversion with two-week delivery",
   url: PAGE_URL,
   description:
-    "Pixel-perfect Figma to Framer conversion in two weeks. CMS, forms, analytics, and SEO included.",
+"Pixel-perfect Figma to Framer conversion in two weeks. CMS, forms, analytics, and SEO included.",
 };
 
 export default function FigmaToFramerPage() {
@@ -208,7 +208,7 @@ export default function FigmaToFramerPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a scoping call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -294,7 +294,7 @@ export default function FigmaToFramerPage() {
             href={SOCIAL_LINKS.calcom}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25"
           >
             Book a scoping call
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

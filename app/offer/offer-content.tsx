@@ -1,26 +1,26 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { ArrowRight, Check, Star, Clock, Shield, Zap } from "@/components/icons";
-import { Loader2 } from "lucide-react";
-import { motion } from "framer-motion";
-import posthog from "posthog-js";
+import { useEffect, useRef, useState } from"react";
+import Image from"next/image";
+import { ArrowRight, Check, Star, Clock, Shield, Zap } from"@/components/icons";
+import { Loader2 } from"lucide-react";
+import { motion } from"framer-motion";
+import posthog from"posthog-js";
 
-const CAL_URL = "https://cal.com/rashid.iqbal";
+const CAL_URL ="https://cal.com/rashid.iqbal";
 
 // Conversion-psychology copy notes
 // ---------------------------------
 // Anchoring: agency price ($5,000+) shown crossed out next to our price.
 // Decoy / contrast: 1-page vs 4-page — the 4-page tier is positioned as
-//   "Most popular" so the $1,500 feels like the obvious upgrade.
-// Specificity: "3 days" / "5 days" beats "fast".
-// Scarcity: "Only 2 slots left this month" stated up top and again at close.
-// Risk reversal: "Don't love it? Full refund. No drama."
+//"Most popular" so the $1,500 feels like the obvious upgrade.
+// Specificity:"3 days" /"5 days" beats"fast".
+// Scarcity:"Only 2 slots left this month" stated up top and again at close.
+// Risk reversal:"Don't love it? Full refund. No drama."
 // Social proof: 4 client brand names + Josh testimonial near the CTA.
 
 type Tier = {
-  id: "landing-page" | "four-page-site";
+  id:"landing-page" |"four-page-site";
   name: string;
   price: string;
   priceLabel: string;
@@ -32,91 +32,91 @@ type Tier = {
 
 const TIERS: readonly Tier[] = [
   {
-    id: "landing-page",
-    name: "Landing Page",
-    price: "$1,200",
-    priceLabel: "$1,200 · 3 days",
-    days: "3 days",
-    anchor: "Agency-grade scope",
-    blurb: "For one focused offer or product.",
+    id:"landing-page",
+    name:"Landing Page",
+    price:"$1,200",
+    priceLabel:"$1,200 · 3 days",
+    days:"3 days",
+    anchor:"Agency-grade scope",
+    blurb:"For one focused offer or product.",
     features: [
-      "1 high-converting landing page (hero, features, pricing, FAQ, CTA)",
-      "Figma design tuned for SaaS buyer scanning patterns",
-      "Framer build with custom domain, forms, and analytics",
-      "UX copy written by me, not laid out from your draft",
-      "2 revision rounds, async or live walkthrough",
-      "Lighthouse 90 plus on mobile, SEO meta wired",
+"1 high-converting landing page (hero, features, pricing, FAQ, CTA)",
+"Figma design tuned for SaaS buyer scanning patterns",
+"Framer build with custom domain, forms, and analytics",
+"UX copy written by me, not laid out from your draft",
+"2 revision rounds, async or live walkthrough",
+"Lighthouse 90 plus on mobile, SEO meta wired",
     ],
   },
   {
-    id: "four-page-site",
-    name: "4-Page Website",
-    price: "$3,500",
-    priceLabel: "$3,500 · 5 days",
-    days: "5 days",
-    anchor: "Agency-grade scope",
-    blurb: "A full marketing site. Best value.",
+    id:"four-page-site",
+    name:"4-Page Website",
+    price:"$3,500",
+    priceLabel:"$3,500 · 5 days",
+    days:"5 days",
+    anchor:"Agency-grade scope",
+    blurb:"A full marketing site. Best value.",
     features: [
-      "Home + 3 inner pages (about, pricing, contact, blog, etc.)",
-      "Everything in the Landing Page tier",
-      "Framer CMS for blog or case studies, ready to fill",
-      "Up to 4 lead-capture forms with email or webhook routing",
-      "Cross-page nav, footer, and brand system locked in",
-      "Migration from Webflow or WordPress on request",
+"Home + 3 inner pages (about, pricing, contact, blog, etc.)",
+"Everything in the Landing Page tier",
+"Framer CMS for blog or case studies, ready to fill",
+"Up to 4 lead-capture forms with email or webhook routing",
+"Cross-page nav, footer, and brand system locked in",
+"Migration from Webflow or WordPress on request",
     ],
   },
 ] as const;
 
-const CLIENT_BRANDS = ["UpdateAI", "Vanos AI", "SpaceDome", "ATQLeads"] as const;
+const CLIENT_BRANDS = ["UpdateAI","Vanos AI","SpaceDome","ATQLeads"] as const;
 
 const PROCESS = [
   {
-    n: "1",
-    title: "Today: Book + brief",
-    body: "30-min kickoff. Share Figma, brand, references, ICP. I quote a fixed scope same day.",
+    n:"1",
+    title:"Today: Book + brief",
+    body:"30-min kickoff. Share Figma, brand, references, ICP. I quote a fixed scope same day.",
   },
   {
-    n: "2",
-    title: "Day 2 to 3 (or 4): Design + build",
-    body: "I design and build in Framer. You see a live URL inside 48 hours. One revision round.",
+    n:"2",
+    title:"Day 2 to 3 (or 4): Design + build",
+    body:"I design and build in Framer. You see a live URL inside 48 hours. One revision round.",
   },
   {
-    n: "3",
-    title: "Friday: Launch",
-    body: "Domain pointed, redirects mapped, analytics wired. You ship before the week ends.",
+    n:"3",
+    title:"Friday: Launch",
+    body:"Domain pointed, redirects mapped, analytics wired. You ship before the week ends.",
   },
 ] as const;
 
 const FAQS = [
   {
-    q: "Is the 3-day timeline real?",
-    a: "Yes. I block focused time once you book. 90 percent of landing pages ship inside 3 days. The 10 percent that slip do so because of client-side delays (copy approval, asset waiting). I do not bill the extra days.",
+    q:"Is the 3-day timeline real?",
+    a:"Yes. I block focused time once you book. 90 percent of landing pages ship inside 3 days. The 10 percent that slip do so because of client-side delays (copy approval, asset waiting). I do not bill the extra days.",
   },
   {
-    q: "What if I do not love it?",
-    a: "Full refund. No drama. You keep the Figma file. I would rather refund you than ship something neither of us is proud of.",
+    q:"What if I do not love it?",
+    a:"Full refund. No drama. You keep the Figma file. I would rather refund you than ship something neither of us is proud of.",
   },
   {
-    q: "What do I need to provide?",
-    a: "Brand colors, logo, any existing Figma file, a sentence on what your product does, and 2 to 3 references you like. The kickoff call covers the rest.",
+    q:"What do I need to provide?",
+    a:"Brand colors, logo, any existing Figma file, a sentence on what your product does, and 2 to 3 references you like. The kickoff call covers the rest.",
   },
   {
-    q: "Can the price scale up?",
-    a: "Only if scope grows beyond what is listed. Prices are fixed for the scope on this page. If you need 8 pages, e-commerce, or a custom Stripe flow, that gets a separate quote on the kickoff call.",
+    q:"Can the price scale up?",
+    a:"Only if scope grows beyond what is listed. Prices are fixed for the scope on this page. If you need 8 pages, e-commerce, or a custom Stripe flow, that gets a separate quote on the kickoff call.",
   },
   {
-    q: "Why is this so much cheaper than an agency?",
-    a: "I am one specialist, not a creative director plus a junior designer plus a project manager plus an account exec. I cut the layers, not the quality.",
+    q:"Why is this so much cheaper than an agency?",
+    a:"I am one specialist, not a creative director plus a junior designer plus a project manager plus an account exec. I cut the layers, not the quality.",
   },
 ] as const;
 
 // ============================================================================
-// Inline claim form — posts to /api/lead with source "offer-paid" so the
-// internal email lands as "New Booking | <Tier> from <Name>" and the client
+// Inline claim form — posts to /api/lead with source"offer-paid" so the
+// internal email lands as"New Booking | <Tier> from <Name>" and the client
 // gets a confirmation with the kickoff next-steps copy from email-template.ts.
 // ============================================================================
 
-type SubmitStatus = "idle" | "sending" | "sent" | "error";
+type SubmitStatus ="idle" |"sending" |"sent" |"error";
 
 function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
   const [name, setName] = useState("");
@@ -134,17 +134,17 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
 
     try {
       const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method:"POST",
+        headers: {"Content-Type":"application/json" },
         body: JSON.stringify({
-          source: "offer-paid",
+          source:"offer-paid",
           email: email.trim(),
           name: name.trim() || undefined,
           website: website.trim() || undefined,
           plan: `${selectedTier.name} (${selectedTier.priceLabel})`,
           mode: selectedTier.id,
           description: note.trim() || undefined,
-          botcheck: "",
+          botcheck:"",
         }),
       });
       const body = (await res.json().catch(() => ({}))) as {
@@ -152,13 +152,13 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
         error?: string;
       };
       if (!res.ok || body.success === false) {
-        setErrorMsg(body.error || "Something went wrong. Try again.");
+        setErrorMsg(body.error ||"Something went wrong. Try again.");
         setStatus("error");
         return;
       }
       try {
         posthog.capture("offer_lead_submitted", {
-          source: "offer-lp-pricing",
+          source:"offer-lp-pricing",
           plan: selectedTier.id,
         });
       } catch {
@@ -167,13 +167,13 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
       setStatus("sent");
     } catch {
       setErrorMsg(
-        "Network error. Try again or email rashidiqbal.freelance@gmail.com directly."
+"Network error. Try again or email rashidiqbal.freelance@gmail.com directly."
       );
       setStatus("error");
     }
   }
 
-  if (status === "sent") {
+  if (status ==="sent") {
     return (
       <div className="border border-[#e5e5e5] bg-[#fafafa]/40 px-6 py-8 text-center">
         <div className="w-12 h-12 rounded-full bg-[#fafafa] border border-[#e5e5e5] flex items-center justify-center mx-auto mb-5">
@@ -183,13 +183,13 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
           Booking received.
         </h3>
         <p className="text-sm text-[#737373] max-w-md mx-auto mb-4">
-          I will reply to{" "}
+          I will reply to{""}
           <span className="font-semibold text-[#0a0a0a]">{email}</span> within 24 hours
-          with a kickoff link to lock in your slot for{" "}
+          with a kickoff link to lock in your slot for{""}
           <span className="font-semibold text-[#0a0a0a]">{selectedTier.name}</span>.
         </p>
         <p className="text-xs text-[#737373]">
-          Check spam if you do not see it. Want to skip the wait?{" "}
+          Check spam if you do not see it. Want to skip the wait?{""}
           <a
             href={CAL_URL}
             target="_blank"
@@ -259,10 +259,10 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
       />
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="w-full py-3.5 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors flex items-center justify-center gap-2 shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+        disabled={status ==="sending"}
+        className="w-full py-3.5 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors flex items-center justify-center gap-2 /25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === "sending" ? (
+        {status ==="sending" ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
             Sending…
@@ -275,7 +275,7 @@ function ClaimForm({ selectedTier }: { selectedTier: Tier }) {
         )}
       </button>
 
-      {status === "error" && (
+      {status ==="error" && (
         <p className="text-xs text-red-600 text-center">{errorMsg}</p>
       )}
 
@@ -299,7 +299,7 @@ export default function OfferPage() {
 
   useEffect(() => {
     try {
-      posthog.capture("lp_view", { source: "offer-lp-pricing" });
+      posthog.capture("lp_view", { source:"offer-lp-pricing" });
     } catch {
       /* no-op */
     }
@@ -308,13 +308,13 @@ export default function OfferPage() {
   function pickTier(id: Tier["id"]) {
     setSelectedTierId(id);
     try {
-      posthog.capture("offer_cta_clicked", { source: "offer-lp-pricing", plan: id });
+      posthog.capture("offer_cta_clicked", { source:"offer-lp-pricing", plan: id });
     } catch {
       /* no-op */
     }
     // Scroll the form into view smoothly so the click feels intentional
     requestAnimationFrame(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      formRef.current?.scrollIntoView({ behavior:"smooth", block:"start" });
     });
   }
 
@@ -349,14 +349,14 @@ export default function OfferPage() {
         </motion.div>
 
         {/* Frustration eyebrow, names the cost (lost leads), not the
-            absence of a thing. Specific number lands harder than "stuck". */}
+            absence of a thing. Specific number lands harder than"stuck". */}
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="text-base md:text-lg font-bold tracking-tight mb-4"
         >
-          <span className="text-[#0a0a0a]">Your landing page is bleeding</span>{" "}
+          <span className="text-[#0a0a0a]">Your landing page is bleeding</span>{""}
           <span className="text-[#0a0a0a]">30% of qualified leads.</span>
         </motion.p>
 
@@ -369,7 +369,7 @@ export default function OfferPage() {
         >
           <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-zinc-500 to-zinc-900 pb-1">
             Ship a high-converting landing page
-          </span>{" "}
+          </span>{""}
           <span className="inline-block text-transparent bg-clip-text bg-linear-to-b from-[#8b7cf8] to-[#0a0a0a] pb-1">
             in 3 days.
           </span>
@@ -383,8 +383,8 @@ export default function OfferPage() {
           className="text-base md:text-lg text-[#737373] leading-relaxed mb-6 max-w-xl"
         >
           Figma design plus Framer build plus UX copy. One specialist, one timeline, one
-          fixed price.{" "}
-          <span className="font-semibold text-[#0a0a0a]">Don&rsquo;t love it? Full refund.</span>{" "}
+          fixed price.{""}
+          <span className="font-semibold text-[#0a0a0a]">Don&rsquo;t love it? Full refund.</span>{""}
           <span className="text-[#737373]">Agencies charge multiples for the same scope.</span>
         </motion.p>
 
@@ -417,11 +417,11 @@ export default function OfferPage() {
             return (
               <div
                 key={tier.id}
-                className={`relative bg-white p-6 md:p-7 flex flex-col transition-shadow ${
+                className={`relative bg-white p-6 md:p-7 flex flex-col ${
                   isPopular
-                    ? "border-2 border-[#0a0a0a] shadow-lg shadow-[#0a0a0a]/15"
-                    : "border border-[#e5e5e5]"
-                } ${isActive ? "ring-2 ring-[#0a0a0a]/40" : ""}`}
+                    ?"border-2 border-[#0a0a0a] /15"
+                    :"border border-[#e5e5e5]"
+                } ${isActive ?"ring-2 ring-[#0a0a0a]/40" :""}`}
               >
                 {isPopular && (
                   <div className="absolute -top-3 left-6 px-2.5 py-1 bg-[#0a0a0a] text-white text-[10px] font-bold tracking-wider uppercase">
@@ -462,8 +462,8 @@ export default function OfferPage() {
                   onClick={() => pickTier(tier.id)}
                   className={`w-full py-3 text-sm font-bold transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
                     isPopular
-                      ? "bg-[#0a0a0a] text-white hover:bg-[#0a0a0a] shadow-lg shadow-[#0a0a0a]/25 focus-visible:ring-[#0a0a0a]"
-                      : "bg-[#0a0a0a] text-white hover:bg-[#000000] focus-visible:ring-[#0a0a0a]"
+                      ?"bg-[#0a0a0a] text-white hover:bg-[#0a0a0a] /25 focus-visible:ring-[#0a0a0a]"
+                      :"bg-[#0a0a0a] text-white hover:bg-[#000000] focus-visible:ring-[#0a0a0a]"
                   }`}
                 >
                   Claim my {tier.price} slot
@@ -482,9 +482,9 @@ export default function OfferPage() {
           className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-12"
         >
           {[
-            { Icon: Shield, label: "Don't love it? Full refund." },
-            { Icon: Zap, label: "Live in 3 days, not 3 months." },
-            { Icon: Clock, label: "Fixed price. No scope creep." },
+            { Icon: Shield, label:"Don't love it? Full refund." },
+            { Icon: Zap, label:"Live in 3 days, not 3 months." },
+            { Icon: Clock, label:"Fixed price. No scope creep." },
           ].map(({ Icon, label }) => (
             <div
               key={label}
@@ -510,8 +510,8 @@ export default function OfferPage() {
                 aria-pressed={t.id === selectedTierId}
                 className={`text-xs font-bold px-3 py-1.5 border transition-colors ${
                   t.id === selectedTierId
-                    ? "border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a]"
-                    : "border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5] hover:text-[#0a0a0a]"
+                    ?"border-[#0a0a0a] bg-[#fafafa] text-[#0a0a0a]"
+                    :"border-[#e5e5e5] text-[#737373] hover:border-[#e5e5e5] hover:text-[#0a0a0a]"
                 }`}
               >
                 {t.name} · {t.price}
@@ -525,7 +525,7 @@ export default function OfferPage() {
         <motion.figure
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin:"-100px" }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="border border-[#e5e5e5] bg-white px-6 py-8 mb-10"
@@ -540,7 +540,7 @@ export default function OfferPage() {
             Onboarding signups went up by half.&rdquo;
           </blockquote>
           <figcaption className="text-sm">
-            <span className="font-bold text-[#0a0a0a]">Josh Schachter</span>{" "}
+            <span className="font-bold text-[#0a0a0a]">Josh Schachter</span>{""}
             <span className="text-[#737373]">· Founder &amp; CEO, UpdateAI</span>
           </figcaption>
         </motion.figure>
@@ -549,13 +549,13 @@ export default function OfferPage() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin:"-100px" }}
           transition={{ duration: 0.4 }}
           className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm font-semibold text-[#737373] mb-16"
           aria-label="Brands I have shipped work for"
         >
           {CLIENT_BRANDS.map((brand, i) => (
-            <span key={brand} className={i % 2 === 0 ? "text-[#0a0a0a]" : ""}>
+            <span key={brand} className={i % 2 === 0 ?"text-[#0a0a0a]" :""}>
               {brand}
             </span>
           ))}
@@ -598,7 +598,7 @@ export default function OfferPage() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin:"-100px" }}
           transition={{ duration: 0.4 }}
           className="border-t border-[#e5e5e5] pt-10"
         >
@@ -617,9 +617,9 @@ export default function OfferPage() {
             <button
               type="button"
               onClick={() => {
-                formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+                formRef.current?.scrollIntoView({ behavior:"smooth", block:"start" });
               }}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors shadow-lg shadow-[#0a0a0a]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#0a0a0a] text-white text-sm font-bold hover:bg-[#0a0a0a] transition-colors /25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a0a0a] focus-visible:ring-offset-2"
             >
               Claim my slot
               <ArrowRight className="w-4 h-4" aria-hidden="true" />

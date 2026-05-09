@@ -6,9 +6,9 @@
 // content (icon + title + body + small chip kicker), right half is a
 // realistic UI mockup that illustrates the use case.
 
-import { motion } from "framer-motion";
-import { Check, GitPullRequest } from "lucide-react";
-import Image from "next/image";
+import { motion } from"framer-motion";
+import { Check, GitPullRequest } from"lucide-react";
+import Image from"next/image";
 
 // ---- Inline use-case SVGs --------------------------------------------
 //

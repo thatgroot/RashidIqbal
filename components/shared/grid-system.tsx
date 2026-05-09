@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useCallback } from "react";
-import { cn } from "@/lib/utils";
-import { GridSnake } from "@/components/ui/grid-snake";
+import { useRef, useCallback } from"react";
+import { cn } from"@/lib/utils";
+import { GridSnake } from"@/components/ui/grid-snake";
 
 interface GridContainerProps {
   children: React.ReactNode;
@@ -18,11 +18,11 @@ export function GridContainer({ children, className, cols = 1, enableSnake = fal
     <div 
       ref={containerRef}
       className={cn(
-      "grid relative items-stretch", 
-      cols === 4 ? "desktop:grid-cols-4" : 
-      cols === 3 ? "desktop:grid-cols-3" : 
-      cols === 2 ? "desktop:grid-cols-2" : 
-      "grid-cols-1", 
+"grid relative items-stretch", 
+      cols === 4 ?"desktop:grid-cols-4" : 
+      cols === 3 ?"desktop:grid-cols-3" : 
+      cols === 2 ?"desktop:grid-cols-2" : 
+"grid-cols-1", 
       className
     )}>
       {children}
@@ -52,23 +52,23 @@ export function GridItem({ children, className, title, label, padding = true }: 
       ref={itemRef}
       onMouseMove={!isVisual ? handleMouseMove : undefined}
       className={cn(
-        "relative border-b border-r border-[#e8e4dd] bg-white group grid-item-corners overflow-hidden transition-colors duration-200 flex flex-col",
-        !isVisual && "grid-item-hover",
-        padding ? "p-8 sm:p-12" : "",
+"relative border-b border-r border-[#e5e5e5] bg-white group grid-item-corners overflow-hidden transition-colors duration-200 flex flex-col",
+        !isVisual &&"grid-item-hover",
+        padding ?"p-8 sm:p-12" :"",
         className
       )}
     >
       {(title || label) && (
         <div className="flex justify-between items-start mb-6">
-          {title && <h3 className="text-lg font-medium text-[#292827]">{title}</h3>}
+          {title && <h3 className="text-lg font-medium text-[#0a0a0a]">{title}</h3>}
           {label && (
-            <span className="text-[0.625rem] font-mono text-[#73706d] uppercase tracking-widest group-hover:text-[#1b1938] transition-colors duration-300">
+            <span className="text-[0.625rem] font-mono text-[#737373] uppercase tracking-widest group-hover:text-[#0a0a0a] transition-colors duration-300">
               {label}
             </span>
           )}
         </div>
       )}
-      <div className={cn("flex-1 flex flex-col", isVisual && "items-center justify-center")}>
+      <div className={cn("flex-1 flex flex-col", isVisual &&"items-center justify-center")}>
         {children}
       </div>
     </div>

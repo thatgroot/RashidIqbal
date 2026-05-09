@@ -7,8 +7,8 @@
 // description, checklist, file footer + Review button) overlapping
 // each other with offsets and ambient shadows.
 
-import { motion } from "framer-motion";
-import { Check, ChevronRight, Circle } from "lucide-react";
+import { motion } from"framer-motion";
+import { Check, ChevronRight, Circle } from"lucide-react";
 
 // ---- Inline service-list SVGs ----------------------------------------
 //

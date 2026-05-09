@@ -62,15 +62,13 @@ function accentToHex(accent: string): string {
   // Accepts either short brand keys ("violet" /"teal" /"indigo") or
   // legacy `bg-[#hex]` strings carried over from CMS rows.
   const map: Record<string, string> = {
-    violet:"#f5d77a",
-    teal:"#0e3030",
-    indigo:"#1b1938",
-"bg-[#f5d77a]":"#f5d77a",
-"bg-[#0e3030]":"#0e3030",
-"bg-[#1b1938]":"#1b1938",
-"bg-[#0e0c1f]":"#0e0c1f",
+    violet:"#fde8a3",
+    teal:"#0a0a0a",
+    indigo:"#0a0a0a",
+"bg-[#fde8a3]":"#fde8a3",
+"bg-[#0a0a0a]":"#0a0a0a",
   };
-  return map[accent] ??"#f5d77a";
+  return map[accent] ??"#fde8a3";
 }
 
 export function Testimonials({ items }: { items?: Review[] }) {
@@ -79,7 +77,7 @@ export function Testimonials({ items }: { items?: Review[] }) {
 
   return (
     <section
-      className="bg-[#fafaf8] text-[#292827] relative overflow-hidden border-y border-[#e8e4dd]"
+      className="bg-[#fafafa] text-[#0a0a0a] relative overflow-hidden border-y border-[#e5e5e5]"
       id="testimonials"
     >
       <div className="max-w-container mx-auto px-6 md:px-10 pt-28 md:pt-36 pb-24 md:pb-32 relative z-10">
@@ -92,18 +90,18 @@ export function Testimonials({ items }: { items?: Review[] }) {
           className="mb-14 md:mb-20 max-w-3xl"
         >
           <p
-            className="text-[11px] uppercase tracking-[0.22em] text-[#73706d] mb-4"
+            className="text-[11px] uppercase tracking-[0.22em] text-[#737373] mb-4"
             style={{ fontVariationSettings: '"wght" 540' }}
           >
             04 · Receipts
           </p>
           <h2
-            className="text-[clamp(38px,5.6vw,68px)] tracking-[-0.024em] leading-[0.96] text-[#292827]"
+            className="text-[clamp(38px,5.6vw,68px)] tracking-[-0.024em] leading-[0.96] text-[#0a0a0a]"
             style={{ fontVariationSettings: '"wght" 460' }}
           >
             Don&rsquo;t take our word.
             <br className="hidden md:inline" />
-            <span className="text-[#1b1938]" style={{ fontVariationSettings: '"wght" 540' }}>
+            <span className="text-[#0a0a0a]" style={{ fontVariationSettings: '"wght" 540' }}>
               {""}Take theirs.
             </span>
           </h2>
@@ -114,26 +112,26 @@ export function Testimonials({ items }: { items?: Review[] }) {
               {[0, 1, 2, 3, 4].map((i) => (
                 <Star
                   key={i}
-                  className="w-4 h-4 text-[#1b1938]"
-                  fill="#1b1938"
+                  className="w-4 h-4 text-[#0a0a0a]"
+                  fill="#0a0a0a"
                   aria-hidden="true"
                 />
               ))}
             </div>
             <span
-              className="text-[#292827]"
+              className="text-[#0a0a0a]"
               style={{ fontVariationSettings: '"wght" 600' }}
             >
               4.9 average
             </span>
-            <span className="text-[#9a9794]">·</span>
-            <span className="text-[#73706d]">30 verified reviews</span>
-            <span className="text-[#9a9794]">·</span>
+            <span className="text-[#a3a3a3]">·</span>
+            <span className="text-[#737373]">30 verified reviews</span>
+            <span className="text-[#a3a3a3]">·</span>
             <a
               href="https://www.upwork.com/freelancers/~01b24c107f5b5af596"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#1b1938] underline decoration-[#f5d77a] underline-offset-2 hover:decoration-[#1b1938]"
+              className="text-[#0a0a0a] underline decoration-[#fde8a3] underline-offset-2 hover:decoration-[#0a0a0a]"
               style={{ fontVariationSettings: '"wght" 540' }}
             >
               Upwork Top Rated
@@ -173,12 +171,12 @@ function TestimonialCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -4 }}
-      className="group relative bg-white rounded-lg p-7 md:p-8 border border-[#e8e4dd] hover:border-[#1b1938] transition-all flex flex-col"
+      className="group relative bg-white rounded-lg p-7 md:p-8 border border-[#e5e5e5] hover:border-[#0a0a0a] transition-all flex flex-col"
     >
       {/* Quote mark — cap.so style, oversized + violet-soft. */}
       <span
         aria-hidden="true"
-        className="absolute top-5 right-6 text-[64px] leading-none text-[#f5d77a]/35 select-none pointer-events-none"
+        className="absolute top-5 right-6 text-[64px] leading-none text-[#fde8a3]/35 select-none pointer-events-none"
         style={{ fontVariationSettings: '"wght" 600' }}
       >
         &ldquo;
@@ -189,24 +187,24 @@ function TestimonialCard({
         {[0, 1, 2, 3, 4].map((i) => (
           <Star
             key={i}
-            className="w-3.5 h-3.5 text-[#1b1938]"
-            fill="#1b1938"
+            className="w-3.5 h-3.5 text-[#0a0a0a]"
+            fill="#0a0a0a"
             aria-hidden="true"
           />
         ))}
       </div>
 
       <blockquote
-        className="text-[16px] md:text-[17px] text-[#292827] leading-[1.6] flex-1"
+        className="text-[16px] md:text-[17px] text-[#0a0a0a] leading-[1.6] flex-1"
         style={{ fontVariationSettings: '"wght" 460' }}
       >
         {review.text}
       </blockquote>
 
       {/* Author row — cap.so pattern: photo + name + role. */}
-      <figcaption className="mt-6 pt-5 border-t border-[#e8e4dd] flex items-center gap-3">
+      <figcaption className="mt-6 pt-5 border-t border-[#e5e5e5] flex items-center gap-3">
         <div
-          className="relative w-10 h-10 shrink-0 overflow-hidden rounded-full ring-1 ring-[#e8e4dd]"
+          className="relative w-10 h-10 shrink-0 overflow-hidden rounded-full ring-1 ring-[#e5e5e5]"
           style={{ backgroundColor: accentHex }}
         >
           {hasPhoto ? (
@@ -228,12 +226,12 @@ function TestimonialCard({
         </div>
         <div className="min-w-0">
           <p
-            className="text-[14px] text-[#292827] leading-tight truncate"
+            className="text-[14px] text-[#0a0a0a] leading-tight truncate"
             style={{ fontVariationSettings: '"wght" 600' }}
           >
             {review.author}
           </p>
-          <p className="text-[12px] text-[#73706d] leading-snug mt-0.5 truncate">
+          <p className="text-[12px] text-[#737373] leading-snug mt-0.5 truncate">
             {review.role}
           </p>
         </div>

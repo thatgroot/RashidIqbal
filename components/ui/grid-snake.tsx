@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useEffect, useState, useRef } from"react";
+import { motion, useScroll, useTransform, useSpring } from"framer-motion";
 
 interface GridSnakeProps {
   gridRef: React.RefObject<HTMLElement | null>;
@@ -16,7 +16,7 @@ export function GridSnake({ gridRef, offset = { top: 0, left: 0 } }: GridSnakePr
   // Track scroll progress relative to the grid
   const { scrollYProgress } = useScroll({
     target: gridRef,
-    offset: ["start center", "end center"],
+    offset: ["start center","end center"],
   });
 
   const pathLength = useSpring(scrollYProgress, {

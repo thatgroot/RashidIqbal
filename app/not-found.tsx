@@ -1,7 +1,7 @@
-import Link from "next/link";
-import { GridContainer, GridItem } from "@/components/shared/grid-system";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Search, FileQuestion } from "@/components/icons";
+import Link from"next/link";
+import { GridContainer, GridItem } from"@/components/shared/grid-system";
+import { Button } from"@/components/ui/button";
+import { ArrowLeft, Search, FileQuestion } from"@/components/icons";
 
 export default function NotFound() {
   return (
@@ -34,19 +34,19 @@ export default function NotFound() {
                 <div className="flex justify-center mb-12 relative" aria-hidden="true">
                    <div className="relative w-64 h-32">
                       {/* File Icon floating */}
-                      <div className="absolute left-0 top-0 transform -rotate-12 bg-white border border-[#e5e5e5] p-4 shadow-sm rounded-lg z-10">
+                      <div className="absolute left-0 top-0 transform -rotate-12 bg-white border border-[#e5e5e5] p-4 rounded-lg z-10">
                         <div className="w-16 h-2 bg-[#fafafa] rounded mb-2" />
                         <div className="w-12 h-2 bg-[#fafafa] rounded mb-2" />
                         <div className="w-20 h-2 bg-[#fafafa] rounded" />
                       </div>
                       
                       {/* Question Icon */}
-                      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-full shadow-lg border border-[#e5e5e5] z-20">
+                      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-full border border-[#e5e5e5] z-20">
                         <FileQuestion className="w-12 h-12 text-[#0a0a0a]" />
                       </div>
 
                       {/* Magnifying Glass */}
-                      <div className="absolute right-0 bottom-0 transform rotate-12 bg-[#0a0a0a] p-3 rounded-lg shadow-lg z-10">
+                      <div className="absolute right-0 bottom-0 transform rotate-12 bg-[#0a0a0a] p-3 rounded-lg z-10">
                         <Search className="w-6 h-6 text-white" />
                       </div>
                    </div>
